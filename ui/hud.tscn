@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://ui/hud.gd" type="Script" id=1]
+[ext_resource path="res://ui/hearts.png" type="Texture" id=2]
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource( 1 )
+
+[node name="Hearts" type="Sprite" parent="."]
+position = Vector2( 5, 5 )
+texture = ExtResource( 2 )
+hframes = 5

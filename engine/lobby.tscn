@@ -1,0 +1,119 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://engine/lobby.gd" type="Script" id=1]
+
+[node name="lobby" type="Control"]
+margin_left = -120.805
+margin_top = -65.401
+margin_right = -80.8054
+margin_bottom = -25.4011
+rect_scale = Vector2( 0.5, 0.5 )
+size_flags_horizontal = 2
+size_flags_vertical = 2
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="title" type="Label" parent="."]
+margin_left = 393.514
+margin_top = 162.774
+margin_right = 613.514
+margin_bottom = 202.774
+size_flags_horizontal = 2
+size_flags_vertical = 0
+text = "Zelda-like"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="panel" type="Panel" parent="."]
+anchor_left = -1.52589e-006
+anchor_right = -1.52589e-006
+margin_left = 397.144
+margin_top = 261.05
+margin_right = 617.144
+margin_bottom = 371.05
+size_flags_horizontal = 2
+size_flags_vertical = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="address_label" type="Label" parent="panel"]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 62.0
+margin_bottom = 24.0
+size_flags_horizontal = 2
+size_flags_vertical = 0
+text = "Address"
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="address" type="LineEdit" parent="panel"]
+margin_left = 10.0
+margin_top = 30.0
+margin_right = 210.0
+margin_bottom = 54.0
+size_flags_horizontal = 2
+size_flags_vertical = 2
+text = "73.111.201.237"
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="host" type="Button" parent="panel"]
+margin_left = 10.0
+margin_top = 60.0
+margin_right = 90.0
+margin_bottom = 80.0
+size_flags_horizontal = 2
+size_flags_vertical = 2
+text = "Host"
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="join" type="Button" parent="panel"]
+margin_left = 130.0
+margin_top = 60.0
+margin_right = 210.0
+margin_bottom = 80.0
+size_flags_horizontal = 2
+size_flags_vertical = 2
+text = "Join"
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="status_ok" type="Label" parent="panel"]
+margin_left = 10.0
+margin_top = 90.0
+margin_right = 210.0
+margin_bottom = 104.0
+size_flags_horizontal = 2
+size_flags_vertical = 0
+custom_colors/font_color = Color( 0, 1, 0.015625, 1 )
+align = 1
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="status_fail" type="Label" parent="panel"]
+margin_left = 10.0
+margin_top = 90.0
+margin_right = 210.0
+margin_bottom = 104.0
+size_flags_horizontal = 2
+size_flags_vertical = 0
+custom_colors/font_color = Color( 1, 0, 0, 1 )
+align = 1
+__meta__ = {
+"_edit_lock_": true
+}
+[connection signal="pressed" from="panel/host" to="." method="_on_host_pressed"]
+[connection signal="pressed" from="panel/join" to="." method="_on_join_pressed"]
