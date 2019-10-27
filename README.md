@@ -17,7 +17,7 @@ As of right now we have player and enemy synchronization finished. If players ar
 
 This should keep the networking light. If players are exploring different parts of the world, very little synchronization will be necessary. If they decide the join up, they will seamlessly connect.
 
-No builds are out yet. In the meantime, feel free to download the source and play around with it.
+No builds are out yet. In the meantime, feel free to download the source and play around with it. Current build is on Godot Engine 3.2 alpha 3.
 
 ##### The Team
 - [fornclake](https://twitter.com/_fornclake "fornclake") - Project lead, programmer
