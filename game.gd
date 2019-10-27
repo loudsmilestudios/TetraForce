@@ -10,14 +10,35 @@ func _ready():
 	
 	screenfx.play("fadein")
 
+func _process(delta):
+	var visible_enemies = []
+	for entity_detect in get_tree().get_nodes_in_group("entity_detect"):
+		for entity in entity_detect.get_overlapping_bodies():
+			if entity.is_in_group("enemy"):
+				visible_enemies.append(entity)
+	
+	for enemy in get_tree().get_nodes_in_group("enemy"):
+		if visible_enemies.has(enemy):
+			enemy.set_physics_process(true)
+		else:
+			enemy.set_physics_process(false)
+			enemy.position = enemy.home_position
+
 func add_new_player(id):
 	var new_player = preload("res://player/player.tscn").instance()
 	new_player.name = str(id)
 	new_player.set_network_master(id, true)
 	
+	var entity_detect = preload("res://engine/entity_detect.tscn").instance()
+	entity_detect.player = new_player
+	add_child(entity_detect)
+	
 	add_child(new_player)
 	new_player.position = get_node("Spawn").position
 	new_player.initialize()
+
+func remove_player(id):
+	get_node(str(id)).queue_free()
 
 func update_players():
 	var player_nodes = get_tree().get_nodes_in_group("player")
@@ -29,7 +50,7 @@ func update_players():
 	for player in player_nodes:
 		var id = int(player.name)
 		if !map_peers.has(id) && id != get_tree().get_network_unique_id():
-			player.queue_free()
+			remove_player(id)
 	
 	# add player names to an array
 	var player_names = []

@@ -6,9 +6,9 @@ func _ready():
 	add_to_group("entity_detect")
 
 func _process(delta):
-	if player == null:
+	if !is_instance_valid(player):
+		remove_from_group("entity_detect")
 		queue_free()
-		return
 	
 	position = get_grid_pos(player.position) * Vector2(256, 144)
 

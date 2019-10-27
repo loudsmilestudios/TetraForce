@@ -101,14 +101,6 @@ sync func enemy_death():
 	get_parent().add_child(death_animation)
 	queue_free()
 
-sync func reset():
-	var new_instance = load(filename).instance()
-	get_parent().add_child(new_instance)
-	new_instance.position = home_position
-	new_instance.home_position = home_position
-	new_instance.set_physics_process(false)
-	queue_free()
-
 func rset_map(property, value):
 	for peer in network.map_peers:
 		rset_id(peer, property, value)
