@@ -2,9 +2,13 @@ extends Node
 
 func _ready():
 	network.current_map = self
+	add_child(preload("res://engine/camera.tscn").instance())
+	add_child(preload("res://ui/hud.tscn").instance())
 	add_new_player(get_tree().get_network_unique_id())
 	
 	network.update_maps()
+	
+	screenfx.play("fadein")
 
 func add_new_player(id):
 	var new_player = preload("res://player/player.tscn").instance()

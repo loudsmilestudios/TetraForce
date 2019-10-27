@@ -22,7 +22,7 @@ margin_right = 613.514
 margin_bottom = 202.774
 size_flags_horizontal = 2
 size_flags_vertical = 0
-text = "Zelda-like"
+text = "TetraForce"
 align = 1
 valign = 1
 __meta__ = {
@@ -61,7 +61,7 @@ margin_right = 210.0
 margin_bottom = 54.0
 size_flags_horizontal = 2
 size_flags_vertical = 2
-text = "73.111.201.237"
+text = "127.0.0.1"
 __meta__ = {
 "_edit_lock_": true
 }

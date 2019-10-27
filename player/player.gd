@@ -14,6 +14,11 @@ func _ready():
 	ray.add_exception(hitbox)
 	
 	connect_camera()
+	
+	if is_network_master():
+		var hud = get_parent().get_node("HUD")
+		hud.player = self
+		hud.initialize()
 
 func initialize():
 	if is_network_master():
