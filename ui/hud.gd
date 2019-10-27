@@ -1,13 +1,13 @@
 extends CanvasLayer
 
-export(NodePath) var player
+var player
 
 const HEART_ROW_SIZE = 8
 const HEART_SIZE = 8
 
 onready var hearts = $Hearts
 
-func _ready():
+func initialize():
 	for i in player.MAX_HEALTH:
 		var newheart = Sprite.new()
 		newheart.texture = hearts.texture

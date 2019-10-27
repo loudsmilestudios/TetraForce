@@ -26,10 +26,13 @@ func destroy(animation):
 				z_index -= 1
 			"Down":
 				position.y -= 3
-		rpc("set_pos", position)
+		for peer in network.map_peers:
+			rpc_id(peer, "set_pos", position)
 		return
 	
-	rpc("delete")
+	for peer in network.map_peers:
+		rpc_id(peer, "delete")
+	delete()
 
 remote func set_pos(p_pos):
 	position = p_pos
