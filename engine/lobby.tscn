@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://engine/lobby.gd" type="Script" id=1]
+[ext_resource path="res://ui/TetraForce.tres" type="Theme" id=2]
 
 [node name="lobby" type="Control"]
 margin_left = -120.805
@@ -22,6 +23,7 @@ margin_right = 613.514
 margin_bottom = 202.774
 size_flags_horizontal = 2
 size_flags_vertical = 0
+theme = ExtResource( 2 )
 text = "TetraForce"
 align = 1
 valign = 1
@@ -30,65 +32,48 @@ __meta__ = {
 }
 
 [node name="panel" type="Panel" parent="."]
-anchor_left = -1.52589e-006
-anchor_right = -1.52589e-006
-margin_left = 397.144
-margin_top = 261.05
-margin_right = 617.144
-margin_bottom = 371.05
+anchor_left = -1.52589e-06
+anchor_right = -1.52589e-06
+margin_left = 395.86
+margin_top = 329.982
+margin_right = 615.86
+margin_bottom = 390.982
 size_flags_horizontal = 2
 size_flags_vertical = 2
+theme = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
-}
-
-[node name="address_label" type="Label" parent="panel"]
-margin_left = 10.0
-margin_top = 10.0
-margin_right = 62.0
-margin_bottom = 24.0
-size_flags_horizontal = 2
-size_flags_vertical = 0
-text = "Address"
-__meta__ = {
-"_edit_lock_": true
 }
 
 [node name="address" type="LineEdit" parent="panel"]
 margin_left = 10.0
 margin_top = 30.0
-margin_right = 210.0
+margin_right = 125.0
 margin_bottom = 54.0
 size_flags_horizontal = 2
 size_flags_vertical = 2
 text = "127.0.0.1"
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="host" type="Button" parent="panel"]
-margin_left = 10.0
-margin_top = 60.0
-margin_right = 90.0
-margin_bottom = 80.0
+margin_left = 72.4255
+margin_top = 4.70076
+margin_right = 152.425
+margin_bottom = 24.7008
 size_flags_horizontal = 2
 size_flags_vertical = 2
-text = "Host"
+text = "New Game"
 __meta__ = {
-"_edit_lock_": true
+"_edit_use_anchors_": false
 }
 
 [node name="join" type="Button" parent="panel"]
-margin_left = 130.0
-margin_top = 60.0
-margin_right = 210.0
-margin_bottom = 80.0
+margin_left = 131.14
+margin_top = 33.4906
+margin_right = 211.14
+margin_bottom = 53.4906
 size_flags_horizontal = 2
 size_flags_vertical = 2
 text = "Join"
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="status_ok" type="Label" parent="panel"]
 margin_left = 10.0
@@ -99,9 +84,6 @@ size_flags_horizontal = 2
 size_flags_vertical = 0
 custom_colors/font_color = Color( 0, 1, 0.015625, 1 )
 align = 1
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="status_fail" type="Label" parent="panel"]
 margin_left = 10.0
@@ -112,8 +94,5 @@ size_flags_horizontal = 2
 size_flags_vertical = 0
 custom_colors/font_color = Color( 1, 0, 0, 1 )
 align = 1
-__meta__ = {
-"_edit_lock_": true
-}
 [connection signal="pressed" from="panel/host" to="." method="_on_host_pressed"]
 [connection signal="pressed" from="panel/join" to="." method="_on_join_pressed"]
