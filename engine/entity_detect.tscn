@@ -1,9 +1,15 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://engine/entity_detect.gd" type="Script" id=1]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 128, 72 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 4, 72 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 128, 4 )
 
 [node name="EntityDetect" type="Area2D"]
 collision_layer = 2
@@ -16,3 +22,23 @@ __meta__ = {
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 128, 72 )
 shape = SubResource( 1 )
+
+[node name="EnemyCage" type="StaticBody2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyCage"]
+position = Vector2( -4, 72 )
+shape = SubResource( 2 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="EnemyCage"]
+position = Vector2( 260, 72 )
+shape = SubResource( 2 )
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="EnemyCage"]
+position = Vector2( 128, -4 )
+shape = SubResource( 3 )
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="EnemyCage"]
+position = Vector2( 128, 148 )
+shape = SubResource( 3 )
