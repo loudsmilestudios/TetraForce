@@ -12,3 +12,8 @@ export(bool) var delete_on_hit = false
 func _ready():
 	TYPE = get_parent().TYPE
 	add_to_group("item")
+	set_physics_process(false)
+
+sync func hit():
+	if delete_on_hit:
+		rpc("delete")

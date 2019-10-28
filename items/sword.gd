@@ -2,9 +2,6 @@ extends Item
 
 onready var anim = $AnimationPlayer
 
-func _ready():
-	set_physics_process(false)
-
 func start():
 	if get_parent().is_network_master():
 		anim.connect("animation_finished", self, "destroy")
@@ -40,10 +37,6 @@ remote func set_pos(p_pos):
 sync func delete():
 	get_parent().state = "default"
 	queue_free()
-
-sync func hit():
-	if delete_on_hit:
-		rpc("delete")
 
 func _physics_process(delta):
 	delete_on_hit = true

@@ -13,6 +13,7 @@ export(String, FILE) var HURT_SOUND = "res://enemies/enemy_hurt.wav"
 var movedir = Vector2(0,0)
 var knockdir = Vector2(0,0)
 var spritedir = "Down"
+var last_movedir = Vector2(0,1)
 
 # COMBAT
 var health = MAX_HEALTH
@@ -83,6 +84,9 @@ func loop_movement():
 	else:
 		motion = knockdir.normalized() * 125
 	move_and_slide(motion)
+	
+	if movedir != Vector2.ZERO:
+		last_movedir = movedir
 
 func loop_spritedir():
 	match movedir:
@@ -134,6 +138,23 @@ func anim_switch(animation):
 		newanim = str(animation,"Side")
 	if anim.current_animation != newanim:
 		anim.play(newanim)
+
+sync func use_item(item, input):
+	var newitem = load(item).instance()
+	var itemgroup = str(item,name)
+	newitem.add_to_group(itemgroup)
+	newitem.add_to_group(name)
+	add_child(newitem)
+	
+	if is_network_master():
+		newitem.set_network_master(get_tree().get_network_unique_id())
+	
+	if get_tree().get_nodes_in_group(itemgroup).size() > newitem.MAX_AMOUNT:
+		newitem.delete()
+		return
+	
+	newitem.input = input
+	newitem.start()
 
 sync func enemy_death():
 	var death_animation = preload("res://enemies/enemy_death.tscn").instance()

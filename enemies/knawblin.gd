@@ -30,6 +30,11 @@ func _physics_process(delta):
 		movedir = rand_direction()
 		movetimer = movetimer_length
 	
+	if movetimer == 25:
+		use_item("res://items/arrow.tscn", "A")
+		for peer in network.map_peers:
+			rpc_id(peer, "use_item", "res://items/arrow.tscn", "A")
+	
 	rset_map("puppet_pos", position)
 	rset_map("puppet_spritedir", spritedir)
 	rset_map("puppet_anim", anim.current_animation)

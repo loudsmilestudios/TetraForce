@@ -39,6 +39,8 @@ func add_new_player(id):
 
 func remove_player(id):
 	get_node(str(id)).queue_free()
+	for node in get_tree().get_nodes_in_group(str(id)):
+		node.queue_free()
 
 func update_players():
 	var player_nodes = get_tree().get_nodes_in_group("player")

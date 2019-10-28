@@ -133,21 +133,6 @@ func loop_interact():
 			sfx.play(preload("res://player/player_jump.wav"), 20)
 			state = "fall"
 
-
-sync func use_item(item, input):
-	var newitem = load(item).instance()
-	var itemgroup = str(item,self)
-	newitem.add_to_group(itemgroup)
-	add_child(newitem)
-	
-	newitem.set_network_master(int(name))
-	
-	if get_tree().get_nodes_in_group(itemgroup).size() > newitem.MAX_AMOUNT:
-		newitem.queue_free()
-		return
-	newitem.input = input
-	newitem.start()
-
 func connect_camera():
 	camera.connect("screen_change_started", self, "screen_change_started")
 	camera.connect("screen_change_completed", self, "screen_change_completed")
