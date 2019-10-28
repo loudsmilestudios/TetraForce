@@ -32,8 +32,8 @@ __meta__ = {
 }
 
 [node name="panel" type="Panel" parent="."]
-anchor_left = -1.52589e-06
-anchor_right = -1.52589e-06
+anchor_left = -1.52589e-006
+anchor_right = -1.52589e-006
 margin_left = 395.86
 margin_top = 329.982
 margin_right = 615.86
