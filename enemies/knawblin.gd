@@ -1,12 +1,13 @@
 extends Entity
 
-var movetimer_length = 15
+var movetimer_length = 100
 var movetimer = 0
 
 puppet var puppet_pos = position
+puppet var puppet_spritedir = spritedir
+puppet var puppet_anim = "idleDown"
 
 func _ready():
-	anim.play("default")
 	movedir = rand_direction()
 
 func _physics_process(delta):
@@ -15,6 +16,13 @@ func _physics_process(delta):
 	
 	loop_movement()
 	loop_damage()
+	loop_spritedir()
+	
+	if movetimer > 50:
+		anim_switch("walk")
+	else:
+		movedir = Vector2.ZERO
+		anim_switch("idle")
 	
 	if movetimer > 0:
 		movetimer -= 1
@@ -23,9 +31,15 @@ func _physics_process(delta):
 		movetimer = movetimer_length
 	
 	rset_map("puppet_pos", position)
+	rset_map("puppet_spritedir", spritedir)
+	rset_map("puppet_anim", anim.current_animation)
 
 func puppet_update():
 	position = puppet_pos
+	spritedir = puppet_spritedir
+	if anim.current_animation != puppet_anim:
+		anim.play(puppet_anim)
+	sprite.flip_h = (spritedir == "Left")
 
 func _process(delta):
 	loop_network()

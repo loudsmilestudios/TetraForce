@@ -28,7 +28,7 @@ __meta__ = {
 [node name="ObjectPlacer" parent="." instance=ExtResource( 1 )]
 position = Vector2( 1, 0 )
 z_index = 100
-tile_data = PoolIntArray( 262149, 0, 0, 262169, 1, 0, 262170, 1, 0, 262171, 1, 0, 262172, 1, 0 )
+tile_data = PoolIntArray( 262149, 0, 0, 262169, 1, 0, 262170, 1, 0, 262171, 1, 0, 262172, 1, 0, 327699, 2, 0 )
 
 [node name="Sign" parent="." instance=ExtResource( 4 )]
 position = Vector2( 184, 23 )

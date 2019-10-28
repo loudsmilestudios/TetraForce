@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://enemies/stalfos.png" type="Texture" id=1]
 [ext_resource path="res://engine/object_placer.gd" type="Script" id=2]
 [ext_resource path="res://tiles/cliff.png" type="Texture" id=3]
+[ext_resource path="res://enemies/knawblin.png" type="Texture" id=4]
 
 [sub_resource type="TileSet" id=1]
 0/name = "stalfos"
@@ -25,6 +26,16 @@
 1/navigation_offset = Vector2( 0, 0 )
 1/shapes = [  ]
 1/z_index = 0
+2/name = "knawblin"
+2/texture = ExtResource( 4 )
+2/tex_offset = Vector2( 0, 0 )
+2/modulate = Color( 1, 1, 1, 1 )
+2/region = Rect2( 0, 0, 16, 16 )
+2/tile_mode = 0
+2/occluder_offset = Vector2( 0, 0 )
+2/navigation_offset = Vector2( 0, 0 )
+2/shapes = [  ]
+2/z_index = 0
 
 [node name="ObjectPlacer" type="TileMap"]
 tile_set = SubResource( 1 )

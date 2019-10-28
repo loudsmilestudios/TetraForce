@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://enemies/stalfos.gd" type="Script" id=1]
 [ext_resource path="res://enemies/stalfos.png" type="Texture" id=2]
@@ -22,9 +22,6 @@ tracks/0/keys = {
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 6, 6 )
 
-[sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 6.5, 6.5 )
-
 [node name="Stalfos" type="KinematicBody2D"]
 collision_layer = 2
 collision_mask = 2
@@ -43,9 +40,3 @@ flip_h = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
 shape = SubResource( 2 )
-
-[node name="Hitbox" type="Area2D" parent="."]
-visible = false
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
-shape = SubResource( 3 )

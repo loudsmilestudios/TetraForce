@@ -24,13 +24,12 @@ var home_position = Vector2(0,0)
 
 onready var anim = $AnimationPlayer
 onready var sprite = $Sprite
-onready var hitbox = $Hitbox
+var hitbox # to be defined by create_hitbox()
 
 onready var camera = get_parent().get_node("Camera")
 
 var texture_default = null
 var texture_hurt = null
-var animation = "idleDown"
 
 func _ready():
 	texture_default = sprite.texture
@@ -38,9 +37,44 @@ func _ready():
 	add_to_group("entity")
 	health = MAX_HEALTH
 	home_position = position
+	create_hitbox()
 	
 	if TYPE == "ENEMY":
 		add_to_group("enemy")
+		set_collision_layer_bit(0,0)
+		set_collision_mask_bit(0,0)
+		set_collision_layer_bit(1,1)
+		set_collision_mask_bit(1,1)
+
+func create_hitbox():
+	var new_hitbox = Area2D.new()
+	add_child(new_hitbox)
+	
+	var new_collision = CollisionShape2D.new()
+	new_hitbox.add_child(new_collision)
+	
+	var new_shape = RectangleShape2D.new()
+	new_collision.shape = new_shape
+	new_shape.extents = $CollisionShape2D.shape.extents + Vector2(1,1)
+	
+	hitbox = new_hitbox
+
+func loop_network():
+	set_network_master(network.map_owners[network.current_map.name])
+	if !network.map_owners[network.current_map.name] == get_tree().get_network_unique_id():
+		puppet_update()
+	if position == Vector2(0,0):
+		hide()
+	else:
+		show()
+
+func puppet_update():
+	pass
+
+func is_scene_owner():
+	if network.map_owners[network.current_map.name] == get_tree().get_network_unique_id():
+		return true
+	return false
 
 func loop_movement():
 	var motion
@@ -66,9 +100,12 @@ func loop_damage():
 	health = min(health, MAX_HEALTH)
 	sprite.texture = texture_default
 	
-	if hitstun > 0:
+	if hitstun > 1:
 		hitstun -= 1
 		rpc_unreliable("hurt_texture")
+	elif hitstun == 1:
+		rpc("default_texture")
+		hitstun -= 1
 	else:
 		if TYPE == "ENEMY" && health <= 0:
 			rpc("enemy_death")
@@ -87,6 +124,9 @@ func loop_damage():
 
 sync func hurt_texture():
 	sprite.texture = texture_hurt
+
+sync func default_texture():
+	sprite.texture = texture_default
 
 func anim_switch(animation):
 	var newanim = str(animation,spritedir)
