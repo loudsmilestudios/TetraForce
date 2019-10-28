@@ -3,7 +3,7 @@
 [ext_resource path="res://enemies/knawblin.png" type="Texture" id=1]
 [ext_resource path="res://enemies/knawblin.gd" type="Script" id=2]
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=1]
 resource_name = "idleDown"
 loop = true
 step = 0.5
@@ -20,7 +20,7 @@ tracks/0/keys = {
 "values": [ 0 ]
 }
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=2]
 resource_name = "idleSide"
 loop = true
 step = 0.5
@@ -37,7 +37,7 @@ tracks/0/keys = {
 "values": [ 4 ]
 }
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=3]
 resource_name = "idleUp"
 loop = true
 step = 0.5
@@ -54,8 +54,7 @@ tracks/0/keys = {
 "values": [ 2 ]
 }
 
-[sub_resource type="Animation" id=3]
-resource_name = "walkDown"
+[sub_resource type="Animation" id=4]
 loop = true
 step = 0.5
 tracks/0/type = "value"
@@ -71,8 +70,7 @@ tracks/0/keys = {
 "values": [ 0, 1 ]
 }
 
-[sub_resource type="Animation" id=4]
-resource_name = "walkSide"
+[sub_resource type="Animation" id=5]
 loop = true
 step = 0.5
 tracks/0/type = "value"
@@ -88,8 +86,7 @@ tracks/0/keys = {
 "values": [ 4, 5 ]
 }
 
-[sub_resource type="Animation" id=5]
-resource_name = "walkUp"
+[sub_resource type="Animation" id=6]
 loop = true
 step = 0.5
 tracks/0/type = "value"
@@ -105,7 +102,7 @@ tracks/0/keys = {
 "values": [ 2, 3 ]
 }
 
-[sub_resource type="RectangleShape2D" id=1]
+[sub_resource type="RectangleShape2D" id=7]
 extents = Vector2( 6, 6 )
 
 [node name="Knawblin" type="KinematicBody2D"]
@@ -117,12 +114,12 @@ SPEED = 45
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "idleDown"
 playback_speed = 4.0
-anims/idleDown = SubResource( 8 )
-anims/idleSide = SubResource( 6 )
-anims/idleUp = SubResource( 7 )
-anims/walkDown = SubResource( 3 )
-anims/walkSide = SubResource( 4 )
-anims/walkUp = SubResource( 5 )
+anims/idleDown = SubResource( 1 )
+anims/idleSide = SubResource( 2 )
+anims/idleUp = SubResource( 3 )
+anims/walkDown = SubResource( 4 )
+anims/walkSide = SubResource( 5 )
+anims/walkUp = SubResource( 6 )
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )
@@ -130,4 +127,4 @@ hframes = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
-shape = SubResource( 1 )
+shape = SubResource( 7 )

@@ -38,8 +38,8 @@ func _physics_process(delta):
 	position += movedir * SPEED * delta
 
 func body_entered(body):
-	if body is TileMap:
-		queue_free()
+	if body.get("TYPE") != TYPE:
+		delete()
 
 sync func delete():
 	queue_free()

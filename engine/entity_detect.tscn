@@ -24,8 +24,8 @@ position = Vector2( 128, 72 )
 shape = SubResource( 1 )
 
 [node name="EnemyCage" type="StaticBody2D" parent="."]
-collision_layer = 2
-collision_mask = 2
+collision_layer = 6
+collision_mask = 6
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyCage"]
 position = Vector2( -4, 72 )
