@@ -41,5 +41,5 @@ func body_entered(body):
 	if body is TileMap:
 		queue_free()
 
-remote func delete():
+sync func delete():
 	queue_free()

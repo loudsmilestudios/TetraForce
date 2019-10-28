@@ -126,8 +126,7 @@ func loop_damage():
 			
 			if body.has_method("hit"):
 				body.rpc("hit")
-				if body.delete_on_hit:
-					body.queue_free()
+				body.hit()
 
 sync func hurt_texture():
 	sprite.texture = texture_hurt

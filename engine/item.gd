@@ -14,6 +14,9 @@ func _ready():
 	add_to_group("item")
 	set_physics_process(false)
 
-remote func hit():
+sync func hit():
 	if delete_on_hit:
 		rpc("delete")
+
+sync func delete():
+	queue_free()
