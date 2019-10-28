@@ -124,7 +124,10 @@ func loop_damage():
 			knockdir = global_position - body.global_position
 			sfx.play(load(HURT_SOUND))
 			
-			body.rpc("hit")
+			if body.has_method("hit"):
+				body.rpc("hit")
+				if body.delete_on_hit:
+					body.queue_free()
 
 sync func hurt_texture():
 	sprite.texture = texture_hurt

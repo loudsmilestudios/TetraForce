@@ -14,6 +14,6 @@ func _ready():
 	add_to_group("item")
 	set_physics_process(false)
 
-sync func hit():
+remote func hit():
 	if delete_on_hit:
 		rpc("delete")
