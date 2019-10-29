@@ -30,11 +30,16 @@ var hitbox # to be defined by create_hitbox()
 onready var camera = get_parent().get_node("Camera")
 
 var texture_default = null
-var texture_hurt = null
+var entity_shader = preload("res://engine/entity.shader")
 
 func _ready():
 	texture_default = sprite.texture
-	texture_hurt = load(sprite.texture.get_path().replace(".png","_hurt.png"))
+	
+	# Create default material if one does not exist...
+	if !sprite.material:
+		sprite.material = ShaderMaterial.new()
+		sprite.material.set_shader(entity_shader)
+	
 	add_to_group("entity")
 	health = MAX_HEALTH
 	home_position = position
@@ -129,10 +134,10 @@ func loop_damage():
 				body.hit()
 
 sync func hurt_texture():
-	sprite.texture = texture_hurt
+	sprite.material.set_shader_param("is_hurt", true)
 
 sync func default_texture():
-	sprite.texture = texture_default
+	sprite.material.set_shader_param("is_hurt", false)
 
 func anim_switch(animation):
 	var newanim = str(animation,spritedir)
