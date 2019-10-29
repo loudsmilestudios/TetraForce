@@ -146,6 +146,14 @@ func anim_switch(animation):
 	if anim.current_animation != newanim:
 		anim.play(newanim)
 
+func hp_up(health_value):
+	if health > 0:
+		health += health_value
+	elif health == MAX_HEALTH:
+		pass
+	else:
+		pass
+
 sync func use_item(item, input):
 	var newitem = load(item).instance()
 	var itemgroup = str(item,name)

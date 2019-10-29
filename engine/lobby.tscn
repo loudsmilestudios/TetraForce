@@ -50,8 +50,6 @@ __meta__ = {
 }
 
 [node name="panel" type="Panel" parent="."]
-anchor_left = -1.52589e-006
-anchor_right = -1.52589e-006
 margin_left = 389.61
 margin_top = 264.802
 margin_right = 609.61
