@@ -39,7 +39,7 @@ func _physics_process(delta):
 	
 	match state:
 		"default":
-			state_default()
+			state_default(delta)
 		"swing":
 			state_swing()
 		"hold":
@@ -58,7 +58,7 @@ func _physics_process(delta):
 	rset_unreliable_map("puppet_spritedir", spritedir)
 	rset_unreliable_map("puppet_anim", anim.current_animation)
 
-func state_default():
+func state_default(delta):
 	loop_controls()
 	loop_movement()
 	loop_damage()
@@ -72,6 +72,9 @@ func state_default():
 		anim_switch("idle")
 	elif is_on_wall() && ray.is_colliding() && !ray.get_collider().is_in_group("nopush"):
 		anim_switch("push")
+		var collider = ray.get_collider()
+		if collider.has_method("push"):
+			collider.call("push",delta,global_position)
 	else:
 		anim_switch("walk")
 	
