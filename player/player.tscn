@@ -1,7 +1,7 @@
 [gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://player/player.gd" type="Script" id=1]
-[ext_resource path="res://player/player.png" type="Texture" id=2]
+[ext_resource path="res://player/player2.png" type="Texture" id=2]
 
 [sub_resource type="Animation" id=1]
 resource_name = "idleDown"
@@ -30,7 +30,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ 5 ]
+"values": [ 3 ]
 }
 
 [sub_resource type="Animation" id=3]
@@ -45,7 +45,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ 3 ]
+"values": [ 4 ]
 }
 
 [sub_resource type="Animation" id=4]
@@ -129,7 +129,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.5 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
-"values": [ 10, 11 ]
+"values": [ 8, 9 ]
 }
 
 [sub_resource type="Animation" id=9]
@@ -144,7 +144,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.5 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
-"values": [ 8, 9 ]
+"values": [ 10, 11 ]
 }
 
 [sub_resource type="Animation" id=10]
@@ -160,7 +160,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.66 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
-"values": [ 12, 13 ]
+"values": [ 24, 25 ]
 }
 
 [sub_resource type="Animation" id=11]
@@ -176,7 +176,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.66 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
-"values": [ 16, 17 ]
+"values": [ 26, 27 ]
 }
 
 [sub_resource type="Animation" id=12]
@@ -192,7 +192,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.66 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
-"values": [ 14, 15 ]
+"values": [ 28, 29 ]
 }
 
 [sub_resource type="Animation" id=13]
@@ -222,7 +222,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.5 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
-"values": [ 4, 5 ]
+"values": [ 2, 3 ]
 }
 
 [sub_resource type="Animation" id=15]
@@ -237,7 +237,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.5 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
-"values": [ 2, 3 ]
+"values": [ 4, 5 ]
 }
 
 [sub_resource type="RectangleShape2D" id=16]
@@ -271,9 +271,9 @@ anims/walkUp = SubResource( 15 )
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 2 )
-vframes = 6
+vframes = 7
 hframes = 6
-frame = 1
+frame = 6
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false

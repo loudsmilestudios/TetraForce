@@ -11,7 +11,6 @@ func body_entered(body):
 		screenfx.play("fadewhite")
 		yield(screenfx, "animation_finished")
 		
-		
 		var old_map = get_parent()
 		var root = old_map.get_parent()
 		

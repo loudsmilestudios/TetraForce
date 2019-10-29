@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://engine/lobby.gd" type="Script" id=1]
 [ext_resource path="res://ui/TetraForce.tres" type="Theme" id=2]
+[ext_resource path="res://engine/characterselect.gd" type="Script" id=3]
+[ext_resource path="res://player/player.png" type="Texture" id=4]
 
 [node name="lobby" type="Control"]
 margin_left = -120.805
@@ -34,10 +36,10 @@ __meta__ = {
 [node name="panel" type="Panel" parent="."]
 anchor_left = -1.52589e-006
 anchor_right = -1.52589e-006
-margin_left = 395.86
-margin_top = 329.982
-margin_right = 615.86
-margin_bottom = 390.982
+margin_left = 389.61
+margin_top = 264.802
+margin_right = 609.61
+margin_bottom = 325.802
 size_flags_horizontal = 2
 size_flags_vertical = 2
 theme = ExtResource( 2 )
@@ -53,6 +55,9 @@ margin_bottom = 54.0
 size_flags_horizontal = 2
 size_flags_vertical = 2
 text = "127.0.0.1"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="host" type="Button" parent="panel"]
 margin_left = 72.4255
@@ -74,6 +79,9 @@ margin_bottom = 53.4906
 size_flags_horizontal = 2
 size_flags_vertical = 2
 text = "Join"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="status_ok" type="Label" parent="panel"]
 margin_left = 10.0
@@ -84,6 +92,9 @@ size_flags_horizontal = 2
 size_flags_vertical = 0
 custom_colors/font_color = Color( 0, 1, 0.015625, 1 )
 align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="status_fail" type="Label" parent="panel"]
 margin_left = 10.0
@@ -94,5 +105,46 @@ size_flags_horizontal = 2
 size_flags_vertical = 0
 custom_colors/font_color = Color( 1, 0, 0, 1 )
 align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="characterselect" type="Panel" parent="."]
+margin_left = 435.61
+margin_top = 342.802
+margin_right = 567.61
+margin_bottom = 405.802
+theme = ExtResource( 2 )
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="preview" type="Sprite" parent="characterselect"]
+position = Vector2( 64, 32 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 4 )
+vframes = 7
+hframes = 6
+
+[node name="back" type="Button" parent="characterselect"]
+margin_left = 12.0
+margin_top = 24.0
+margin_right = 34.0
+margin_bottom = 42.0
+text = "<"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="forward" type="Button" parent="characterselect"]
+margin_left = 96.0
+margin_top = 24.0
+margin_right = 118.0
+margin_bottom = 42.0
+text = ">"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 [connection signal="pressed" from="panel/host" to="." method="_on_host_pressed"]
 [connection signal="pressed" from="panel/join" to="." method="_on_join_pressed"]

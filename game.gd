@@ -36,6 +36,10 @@ func add_new_player(id):
 	add_child(new_player)
 	new_player.position = get_node("Spawn").position
 	new_player.initialize()
+	
+	new_player.get_node("Sprite").texture = load(network.player_skins.get(id))
+	new_player.texture_default = load(network.player_skins.get(id))
+	new_player.texture_hurt = load(new_player.get_node("Sprite").texture.get_path().replace(".png","_hurt.png"))
 
 func remove_player(id):
 	get_node(str(id)).queue_free()
