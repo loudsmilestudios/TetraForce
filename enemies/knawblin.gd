@@ -8,7 +8,7 @@ puppet var puppet_spritedir = spritedir
 puppet var puppet_anim = "idleDown"
 
 func _ready():
-	movedir = rand_direction()
+	movedir = entity_helper.rand_direction()
 
 func _physics_process(delta):
 	if !is_scene_owner():
@@ -27,7 +27,7 @@ func _physics_process(delta):
 	if movetimer > 0:
 		movetimer -= 1
 	if (movetimer == 0 || is_on_wall()) && hitstun == 0:
-		movedir = rand_direction()
+		movedir = entity_helper.rand_direction()
 		movetimer = movetimer_length
 	
 	if movetimer == 25:
