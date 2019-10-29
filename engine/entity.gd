@@ -172,6 +172,13 @@ sync func use_item(item, input):
 	newitem.start()
 
 sync func enemy_death():
+	var drop_chance = 33
+	randomize()
+	var random = randi() % 100 + 1
+	if drop_chance >= random:
+		var hp_drop = preload("res://items/hp_pickup.tscn").instance()
+		hp_drop.global_position = global_position
+		get_parent().add_child(hp_drop)
 	var death_animation = preload("res://enemies/enemy_death.tscn").instance()
 	death_animation.global_position = global_position
 	get_parent().add_child(death_animation)
