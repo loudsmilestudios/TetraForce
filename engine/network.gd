@@ -42,12 +42,6 @@ func clock_update():
 	update_maps()
 	update_current_players()
 
-func _process(delta):
-	print(player_skins)
-	return
-	#print(map_owners)
-	#print(current_players)
-
 func update_maps():
 	if get_tree().is_network_server():
 		active_maps[1] = current_map.name

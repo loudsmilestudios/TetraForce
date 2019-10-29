@@ -1,9 +1,25 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://engine/lobby.gd" type="Script" id=1]
 [ext_resource path="res://ui/TetraForce.tres" type="Theme" id=2]
 [ext_resource path="res://engine/characterselect.gd" type="Script" id=3]
 [ext_resource path="res://player/player.png" type="Texture" id=4]
+
+[sub_resource type="Animation" id=1]
+resource_name = "animation"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("preview:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 0, 1 ]
+}
 
 [node name="lobby" type="Control"]
 margin_left = -120.805
@@ -85,9 +101,9 @@ __meta__ = {
 
 [node name="status_ok" type="Label" parent="panel"]
 margin_left = 10.0
-margin_top = 90.0
+margin_top = 64.0
 margin_right = 210.0
-margin_bottom = 104.0
+margin_bottom = 78.0
 size_flags_horizontal = 2
 size_flags_vertical = 0
 custom_colors/font_color = Color( 0, 1, 0.015625, 1 )
@@ -98,9 +114,9 @@ __meta__ = {
 
 [node name="status_fail" type="Label" parent="panel"]
 margin_left = 10.0
-margin_top = 90.0
+margin_top = 64.0
 margin_right = 210.0
-margin_bottom = 104.0
+margin_bottom = 78.0
 size_flags_horizontal = 2
 size_flags_vertical = 0
 custom_colors/font_color = Color( 1, 0, 0, 1 )
@@ -120,12 +136,18 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="characterselect"]
+autoplay = "animation"
+playback_speed = 4.0
+anims/animation = SubResource( 1 )
+
 [node name="preview" type="Sprite" parent="characterselect"]
 position = Vector2( 64, 32 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 4 )
 vframes = 7
 hframes = 6
+frame = 1
 
 [node name="back" type="Button" parent="characterselect"]
 margin_left = 12.0
