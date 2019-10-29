@@ -163,9 +163,19 @@ sync func use_item(item, input):
 	newitem.input = input
 	newitem.start()
 
+sync func add_health_pickup(pos):
+	var health_pickup = preload("res://items/small_heart.tscn").instance()
+	health_pickup.global_position = pos
+	get_parent().add_child(health_pickup)
+
 sync func enemy_death():
 	var death_animation = preload("res://enemies/enemy_death.tscn").instance()
 	death_animation.global_position = global_position
+
+	if get_tree().is_network_server():
+		if rand_range(0, 10) < 7:
+			rpc("add_health_pickup", global_position)
+
 	get_parent().add_child(death_animation)
 	queue_free()
 
