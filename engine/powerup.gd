@@ -16,5 +16,4 @@ func on_pickup(player):
 
 sync func delete():
 	queue_free()
-	print("deleting...")
 	pass
