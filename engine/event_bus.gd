@@ -2,10 +2,10 @@ extends Node
 
 var listeners = []
 
-func send(event, params):
+func send(event, payload):
 	for listener in listeners:
 		if listener.event_name == event:
-			listener.receive(event, params)
+			listener.receive(event, payload)
 
 
 func attach_event(event):
