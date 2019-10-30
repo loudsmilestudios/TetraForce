@@ -4,5 +4,4 @@
 
 [node name="EventUnlock" type="Node"]
 script = ExtResource( 1 )
-is_sender = true
 event_name = "unlock"
