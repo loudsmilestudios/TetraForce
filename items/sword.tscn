@@ -47,7 +47,7 @@ tracks/1/keys = {
 "times": PoolRealArray( 0, 0.33, 0.66, 0.99, 1.32, 1.65, 1.98, 2.31, 2.64 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ Vector2( -3, -16 ), Vector2( -15, -10 ), Vector2( -16, 4 ), Vector2( -11, 12 ), Vector2( 4, 15 ), Vector2( 11, 12 ), Vector2( 16, 4 ), Vector2( 15, -10 ), Vector2( -3, -16 ) ]
+"values": [ Vector2( -3, -16 ), Vector2( -10, -10 ), Vector2( -10, 4 ), Vector2( -10, 12 ), Vector2( 4, 15 ), Vector2( 11, 12 ), Vector2( 13, 4 ), Vector2( 13, -10 ), Vector2( -3, -16 ) ]
 }
 tracks/2/type = "value"
 tracks/2/path = NodePath("Sprite:rotation_degrees")
@@ -181,10 +181,10 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.33, 0.66 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.33, 0.66, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 1,
-"values": [ Vector2( -3, -16 ), Vector2( -15, -10 ), Vector2( -16, 4 ) ]
+"values": [ Vector2( -3, -16 ), Vector2( -13, -10 ), Vector2( -13, 4 ), Vector2( -13, 4 ) ]
 }
 tracks/2/type = "value"
 tracks/2/path = NodePath("Sprite:rotation_degrees")
@@ -247,7 +247,7 @@ tracks/1/keys = {
 "times": PoolRealArray( 0, 0.33, 0.66 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
-"values": [ Vector2( 3, -16 ), Vector2( 15, -10 ), Vector2( 16, 4 ) ]
+"values": [ Vector2( 3, -16 ), Vector2( 13, -10 ), Vector2( 13, 4 ) ]
 }
 tracks/2/type = "value"
 tracks/2/path = NodePath("Sprite:rotation_degrees")
@@ -365,14 +365,15 @@ anims/swingRight = SubResource( 5 )
 anims/swingUp = SubResource( 6 )
 
 [node name="Sprite" type="Sprite" parent="."]
-position = Vector2( -3, -16 )
+position = Vector2( -10, 12 )
+rotation = 3.14159
 texture = ExtResource( 2 )
 hframes = 2
+frame = 1
 
 [node name="Hitbox" type="Area2D" parent="."]
 visible = false
-position = Vector2( -3, -15 )
-scale = Vector2( 0.25, 1 )
+position = Vector2( -9, 10 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 shape = SubResource( 7 )

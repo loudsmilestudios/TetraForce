@@ -9,18 +9,25 @@ func start():
 		anim.connect("animation_finished", self, "destroy")
 		if get_parent().has_method("state_swing"):
 			get_parent().state = "swing"
+
 	anim.play(str("swing", get_parent().spritedir))
 	sfx.play(load(str("res://items/sword_swing",int(rand_range(1,5)),".wav")))
 
 func destroy(animation):
+	# If this is true, spinAtk animation is done, so delete stuff (no need to check inputs)
+	if  get_parent().spinAtk: 
+		for peer in network.map_peers:
+			rpc_id(peer, "delete")
+		delete()
+		
 	if input != null && Input.is_action_pressed(input):
 		set_physics_process(true)
 		delete_on_hit = true
 		match get_parent().spritedir:
 			"Left":
-				position.x += 2
+				position.x += 3
 			"Right":
-				position.x -= 2
+				position.x -= 3
 			"Up":
 				position.y += 4
 				z_index -= 1
@@ -70,8 +77,10 @@ func _physics_process(delta):
 			match get_parent().spritedir:
 				"Left":
 					anim.advance(0.2)
+					position.x -= 4
 				"Right":
 					anim.advance(0.2)
+					position.x += 4
 					scale.x = -1
 				"Up":
 					anim.advance(0.08)
