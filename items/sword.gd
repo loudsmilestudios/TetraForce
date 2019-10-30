@@ -25,9 +25,9 @@ func destroy(animation):
 		delete_on_hit = true
 		match get_parent().spritedir:
 			"Left":
-				position.x += 4
+				position.x += 3
 			"Right":
-				position.x -= 4
+				position.x -= 3
 			"Up":
 				position.y += 4
 				z_index -= 1
