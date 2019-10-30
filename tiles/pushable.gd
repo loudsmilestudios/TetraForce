@@ -1,22 +1,27 @@
 extends StaticBody2D
 
+signal on_pushable_moved
 
 export(float) var time_for_effect = 1.0
 export(bool) var is_one_shot = false
 export(Array) var direction_limits
 
+
 var has_been_pushed = false
 var time_being_pushed = 0.0
 var is_moving = false
+
 
 onready var tween := $Tween
 onready var ray := $RayCast2D
 onready var destination := position
 
 
+
 func _ready():
 	set_physics_process(false)
 	add_to_group("pushable")
+	
 	
 	$Tween.connect("tween_completed", self, "_done_moving")
 	# Ask for pushable state if needed (this must be deferred because the map_owners variable is 1 tick late after this _ready)
@@ -49,6 +54,7 @@ func stop_interact():
 func _done_moving(node, key) -> void:
 	is_moving = false
 	
+	emit_signal('on_pushable_moved')
 	# If pushable is not a one shot, add it back to the pushable group
 	if !is_one_shot:
 		add_to_group("pushable")

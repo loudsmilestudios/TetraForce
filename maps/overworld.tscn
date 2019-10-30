@@ -1,11 +1,13 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://game.gd" type="Script" id=1]
 [ext_resource path="res://maps/overworld.tres" type="TileSet" id=2]
 [ext_resource path="res://engine/object_placer.tscn" type="PackedScene" id=3]
 [ext_resource path="res://tiles/exit.tscn" type="PackedScene" id=4]
 [ext_resource path="res://tiles/sign.tscn" type="PackedScene" id=5]
-[ext_resource path="res://tiles/pushable.tscn" type="PackedScene" id=6]
+[ext_resource path="res://tiles/door.tscn" type="PackedScene" id=6]
+[ext_resource path="res://engine/events/event_unlock.tscn" type="PackedScene" id=7]
+[ext_resource path="res://tiles/pushable.tscn" type="PackedScene" id=8]
 
 [node name="overworld" type="Node2D"]
 script = ExtResource( 1 )
@@ -44,5 +46,35 @@ map = "res://maps/testmap.tscn"
 position = Vector2( 25, 56 )
 text = "Welcome to TetraForce!"
 
-[node name="Pushable" parent="." instance=ExtResource( 6 )]
+[node name="Door" parent="." instance=ExtResource( 6 )]
+position = Vector2( 35.4206, 85.7281 )
+key_type = "EVENT_KEY"
+
+[node name="EventUnlock" parent="Door" instance=ExtResource( 7 )]
+is_sender = false
+is_receiver = true
+
+[node name="Door2" parent="." instance=ExtResource( 6 )]
+position = Vector2( 43.2689, 67.1776 )
+key_id = 1
+key_type = "EVENT_KEY"
+
+[node name="EventUnlock" parent="Door2" instance=ExtResource( 7 )]
+is_sender = false
+is_receiver = true
+
+[node name="Pushable" parent="." instance=ExtResource( 8 )]
 position = Vector2( 88, 104 )
+
+[node name="EventUnlock" parent="Pushable" instance=ExtResource( 7 )]
+trigger = "on_pushable_moved"
+
+[node name="Pushable2" parent="." instance=ExtResource( 8 )]
+position = Vector2( 109.404, 58.0994 )
+
+[node name="EventUnlock" parent="Pushable2" instance=ExtResource( 7 )]
+trigger = "on_pushable_moved"
+key_id = 1
+
+[node name="Pushable3" parent="." instance=ExtResource( 8 )]
+position = Vector2( 113.447, 85.2117 )
