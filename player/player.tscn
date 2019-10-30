@@ -147,7 +147,7 @@ tracks/0/keys = {
 "values": [ 10, 11 ]
 }
 
-[sub_resource type="Animation" id=18]
+[sub_resource type="Animation" id=10]
 resource_name = "spinDown"
 length = 1.6
 step = 0.33
@@ -176,8 +176,7 @@ tracks/1/keys = {
 "values": [ Vector2( 1, 1 ), Vector2( -1, 1 ), Vector2( 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=10]
-resource_name = "spinSide"
+[sub_resource type="Animation" id=11]
 length = 1.6
 step = 0.33
 tracks/0/type = "value"
@@ -205,7 +204,7 @@ tracks/1/keys = {
 "values": [ Vector2( 1, 1 ), Vector2( -1, 1 ), Vector2( 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=19]
+[sub_resource type="Animation" id=12]
 resource_name = "spinUp"
 length = 1.6
 step = 0.33
@@ -234,7 +233,7 @@ tracks/1/keys = {
 "values": [ Vector2( 1, 1 ), Vector2( -1, 1 ), Vector2( 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=11]
+[sub_resource type="Animation" id=13]
 length = 0.66
 step = 0.33
 tracks/0/type = "value"
@@ -250,7 +249,7 @@ tracks/0/keys = {
 "values": [ 24, 25 ]
 }
 
-[sub_resource type="Animation" id=12]
+[sub_resource type="Animation" id=14]
 length = 0.66
 step = 0.33
 tracks/0/type = "value"
@@ -266,7 +265,7 @@ tracks/0/keys = {
 "values": [ 26, 27 ]
 }
 
-[sub_resource type="Animation" id=13]
+[sub_resource type="Animation" id=15]
 length = 0.66
 step = 0.33
 tracks/0/type = "value"
@@ -282,7 +281,7 @@ tracks/0/keys = {
 "values": [ 28, 29 ]
 }
 
-[sub_resource type="Animation" id=14]
+[sub_resource type="Animation" id=16]
 step = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -297,7 +296,7 @@ tracks/0/keys = {
 "values": [ 0, 1 ]
 }
 
-[sub_resource type="Animation" id=15]
+[sub_resource type="Animation" id=17]
 step = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -312,7 +311,7 @@ tracks/0/keys = {
 "values": [ 2, 3 ]
 }
 
-[sub_resource type="Animation" id=16]
+[sub_resource type="Animation" id=18]
 step = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -327,7 +326,7 @@ tracks/0/keys = {
 "values": [ 4, 5 ]
 }
 
-[sub_resource type="RectangleShape2D" id=17]
+[sub_resource type="RectangleShape2D" id=19]
 extents = Vector2( 4.5, 6 )
 
 [node name="Player" type="KinematicBody2D"]
@@ -349,26 +348,26 @@ anims/jumpUp = SubResource( 6 )
 anims/pushDown = SubResource( 7 )
 anims/pushSide = SubResource( 8 )
 anims/pushUp = SubResource( 9 )
-anims/spinDown = SubResource( 18 )
-anims/spinSide = SubResource( 10 )
-anims/spinUp = SubResource( 19 )
-anims/swingDown = SubResource( 11 )
-anims/swingSide = SubResource( 12 )
-anims/swingUp = SubResource( 13 )
-anims/walkDown = SubResource( 14 )
-anims/walkSide = SubResource( 15 )
-anims/walkUp = SubResource( 16 )
+anims/spinDown = SubResource( 10 )
+anims/spinSide = SubResource( 11 )
+anims/spinUp = SubResource( 12 )
+anims/swingDown = SubResource( 13 )
+anims/swingSide = SubResource( 14 )
+anims/swingUp = SubResource( 15 )
+anims/walkDown = SubResource( 16 )
+anims/walkSide = SubResource( 17 )
+anims/walkUp = SubResource( 18 )
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 2 )
 vframes = 7
 hframes = 6
-frame = 29
+frame = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
 position = Vector2( 0, 1 )
-shape = SubResource( 17 )
+shape = SubResource( 19 )
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
 visible = false
@@ -377,5 +376,6 @@ cast_to = Vector2( 0, 10 )
 collide_with_areas = true
 
 [node name="HoldTimer" type="Timer" parent="."]
+wait_time = 0.75
 one_shot = true
 [connection signal="timeout" from="HoldTimer" to="." method="_on_HoldTimer_timeout"]
