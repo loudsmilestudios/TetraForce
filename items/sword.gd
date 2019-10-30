@@ -13,6 +13,12 @@ func start():
 	sfx.play(load(str("res://items/sword_swing",int(rand_range(1,5)),".wav")))
 
 func destroy(animation):
+	# If this is true, spinAtk animation is done, so delete stuff (no need to check inputs)
+	if  get_parent().spinAtk: 
+		for peer in network.map_peers:
+			rpc_id(peer, "delete")
+		delete()
+		
 	if input != null && Input.is_action_pressed(input):
 		set_physics_process(true)
 		delete_on_hit = true
