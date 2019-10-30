@@ -1,10 +1,10 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://objects/rupee.gd" type="Script" id=1]
-[ext_resource path="res://objects/rupee.png" type="Texture" id=2]
+[ext_resource path="res://objects/heart_pickup.gd" type="Script" id=1]
+[ext_resource path="res://objects/heart.png" type="Texture" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 6.53017, 8.32255 )
+extents = Vector2( 8.47137, 8.96962 )
 
 [node name="StaticBody2D" type="StaticBody2D"]
 script = ExtResource( 1 )

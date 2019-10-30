@@ -162,7 +162,7 @@ func loop_interact():
 			sfx.play(preload("res://player/player_jump.wav"), 20)
 			state = "fall"
 		elif collider.is_in_group("subitem"):
-			collider.collect(self)
+			collider.on_pickup(self)
 		elif movedir != Vector2.ZERO && is_on_wall() && collider.is_in_group("pushable"):
 			collider.interact(self)
 			push_target = collider

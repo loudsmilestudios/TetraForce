@@ -1,9 +1,9 @@
-extends StaticBody2D
+extends Subitem
 
 func _ready():
 	add_to_group("subitem")
 	add_to_group("nopush")
-
-func collect(node):
+	
+func on_pickup(player):
 	print_debug("Got a rupee!")
 	queue_free()

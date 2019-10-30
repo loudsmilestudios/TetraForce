@@ -180,7 +180,24 @@ sync func use_item(item, input):
 	newitem.input = input
 	newitem.start()
 
+func drop_subitem(possible_drops, drop_chance):
+	randomize()
+	var will_drop = randi() % 100 + 1
+	if will_drop <= drop_chance:
+		var dropped = possible_drops[randi() % possible_drops.size()]
+		var drop_instance = 0
+		match dropped:
+			"HEALTH":
+				drop_instance = preload("res://objects/heart_pickup.tscn").instance()
+			"RUPEE":
+				drop_instance = preload("res://objects/rupee.tscn").instance()
+		
+		if typeof(drop_instance) != TYPE_INT:
+			drop_instance.global_position = global_position
+			get_parent().add_child(drop_instance)
+
 sync func enemy_death():
+	drop_subitem(["HEALTH", "RUPEE"], 10) #Drop possible rupee or heart, 10% chance
 	var death_animation = preload("res://enemies/enemy_death.tscn").instance()
 	death_animation.global_position = global_position
 	get_parent().add_child(death_animation)
