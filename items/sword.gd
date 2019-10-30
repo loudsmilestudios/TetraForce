@@ -52,7 +52,6 @@ remote func spin(p_adv):
 	DAMAGE *= 2
 
 sync func delete():
-	print('should delete sword')
 	get_parent().state = "default"
 	get_parent().spinAtk = false
 	queue_free()
