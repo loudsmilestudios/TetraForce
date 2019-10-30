@@ -8,7 +8,7 @@ export var is_sender := false # Is this event a sender?
 export var trigger_signal := "" # Signal on the parent that will trigger the event
 
 
-export var is_receiver := false # Is this event a receiver?
+export var is_listener := false # Is this event a listener?
 export var listen_function := "" # Which function should be triggered on the parent when an event is received
 
 
@@ -16,7 +16,7 @@ var payload # Payload of the event, can be anything right now
 
 
 func _ready() -> void:
-	if is_receiver:
+	if is_listener:
 		event_bus.attach_event(self)
 		connect("tree_exiting", self, "_on_Event_tree_exiting")
 	
@@ -34,5 +34,5 @@ func receive(event, payload) -> void:
 
 
 func _on_Event_tree_exiting() -> void:
-	if is_receiver:
+	if is_listener:
 		event_bus.detach_event(self)

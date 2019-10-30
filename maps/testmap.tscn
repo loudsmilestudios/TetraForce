@@ -48,7 +48,7 @@ map = "res://maps/overworld.tscn"
 position = Vector2( 264, 72 )
 
 [node name="EventUnlock" parent="Door" instance=ExtResource( 8 )]
-is_receiver = true
+is_listener = true
 listen_function = "attempt_unlock"
 
 [node name="Pushable" parent="." instance=ExtResource( 9 )]
@@ -62,7 +62,6 @@ trigger_signal = "on_done_moving"
 
 [node name="Pushable2" parent="." instance=ExtResource( 9 )]
 position = Vector2( 472, 104 )
-is_one_shot = true
 direction_limits = [ Vector2( -1, 0 ) ]
 
 [node name="EventUnlock" parent="Pushable2" instance=ExtResource( 8 )]
@@ -74,7 +73,7 @@ event_key_id = 1
 position = Vector2( 376, 136 )
 
 [node name="EventUnlock" parent="Door2" instance=ExtResource( 8 )]
-is_receiver = true
+is_listener = true
 listen_function = "attempt_unlock"
 event_key_id = 1
 
@@ -82,6 +81,6 @@ event_key_id = 1
 position = Vector2( 392, 136 )
 
 [node name="EventUnlock" parent="Door3" instance=ExtResource( 8 )]
-is_receiver = true
+is_listener = true
 listen_function = "attempt_unlock"
 event_key_id = 1
