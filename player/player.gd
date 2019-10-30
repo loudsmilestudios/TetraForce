@@ -4,6 +4,9 @@ onready var ray = $RayCast2D
 
 var action_cooldown = 0
 
+var spinAtk = false
+onready var holdTimer = $HoldTimer
+
 # MULTIPLAYER
 puppet var puppet_pos = position
 puppet var puppet_spritedir = "Down"
@@ -50,6 +53,8 @@ func _physics_process(delta):
 			state_swing()
 		"hold":
 			state_hold()
+		"spin":
+			state_spin()
 		"fall":
 			state_fall()
 	
@@ -115,6 +120,12 @@ func state_hold():
 	if !Input.is_action_pressed("A") && !Input.is_action_pressed("B"):
 		state = "default"
 
+func state_spin():
+	anim_switch("spin")
+	loop_movement()
+	loop_damage()
+	movedir = Vector2.ZERO
+
 func state_fall():
 	anim_switch("jump")
 	position.y += 100 * get_physics_process_delta_time()
@@ -159,3 +170,8 @@ func screen_change_started():
 
 func screen_change_completed():
 	set_physics_process(true)
+
+
+func _on_HoldTimer_timeout():
+	spinAtk = true
+	sfx.play(preload("res://items/tink.wav"), 20) # get better sfx

@@ -123,6 +123,7 @@ func loop_spritedir():
 func loop_damage():
 	health = min(health, MAX_HEALTH)
 	sprite.texture = texture_default
+	sprite.scale.x = 1
 	
 	if hitstun > 1:
 		hitstun -= 1
