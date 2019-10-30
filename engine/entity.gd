@@ -192,16 +192,3 @@ func rset_map(property, value):
 func rset_unreliable_map(property, value):
 	for peer in network.map_peers:
 		rset_unreliable_id(peer, property, value)
-
-# put into helper script pls
-static func rand_direction():
-	var new_direction = randi() % 4 + 1
-	match new_direction:
-		1:
-			return Vector2.LEFT
-		2:
-			return Vector2.RIGHT
-		3:
-			return Vector2.UP
-		4:
-			return Vector2.DOWN
