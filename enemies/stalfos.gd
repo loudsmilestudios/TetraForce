@@ -7,7 +7,8 @@ puppet var puppet_pos = position
 
 func _ready():
 	anim.play("default")
-	movedir = rand_direction()
+	movedir = entity_helper.rand_direction()
+	connect("update_position", self, "_on_update_position")
 
 func _physics_process(delta):
 	if !is_scene_owner():
@@ -19,10 +20,11 @@ func _physics_process(delta):
 	if movetimer > 0:
 		movetimer -= 1
 	if movetimer == 0 || is_on_wall():
-		movedir = rand_direction()
+		movedir = entity_helper.rand_direction()
 		movetimer = movetimer_length
-	
-	rset_map("puppet_pos", position)
+
+func _on_update_position(value):
+	rset_map("puppet_pos", value)
 
 func puppet_update():
 	position = puppet_pos

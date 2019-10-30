@@ -3,6 +3,10 @@ extends Entity
 onready var ray = $RayCast2D
 
 var action_cooldown = 0
+var push_target = null
+
+var spinAtk = false
+onready var holdTimer = $HoldTimer
 
 # MULTIPLAYER
 puppet var puppet_pos = position
@@ -19,6 +23,9 @@ func _ready():
 		var hud = get_parent().get_node("HUD")
 		hud.player = self
 		hud.initialize()
+		connect("update_position", self, "_on_update_position")
+		connect("update_spritedir", self, "_on_update_spritedir")
+		connect("update_animation", self, "_on_update_animation")
 
 func initialize():
 	if is_network_master():
@@ -33,7 +40,10 @@ func _physics_process(delta):
 		
 		if anim.current_animation != puppet_anim:
 			anim.play(puppet_anim)
-		sprite.flip_h = (spritedir == "Left")
+		
+		var flip = (spritedir == "Left")
+		if sprite.flip_h != flip:
+			sprite.flip_h = flip
 		
 		return
 	
@@ -44,6 +54,8 @@ func _physics_process(delta):
 			state_swing()
 		"hold":
 			state_hold()
+		"spin":
+			state_spin()
 		"fall":
 			state_fall()
 	
@@ -52,11 +64,22 @@ func _physics_process(delta):
 	
 	#if movedir.length() > 1:
 	#	$Sprite.global_position = global_position.snapped(Vector2(1,1))
-	
-	# syncing
-	rset_unreliable_map("puppet_pos", position)
-	rset_unreliable_map("puppet_spritedir", spritedir)
-	rset_unreliable_map("puppet_anim", anim.current_animation)
+
+func _on_update_position(value):
+	rset_unreliable_map("puppet_pos", value)
+
+func _on_update_spritedir(value):
+	rset_unreliable_map("puppet_spritedir", value)
+
+func _on_update_animation(value):
+	rset_unreliable_map("puppet_anim", value)
+
+# Called from game.gd, to sync attributes on player connect
+func sync_all():
+	if is_network_master():
+		_on_update_position(position)
+		_on_update_spritedir(spritedir)
+		_on_update_animation(anim.current_animation)
 
 func state_default():
 	loop_controls()
@@ -98,6 +121,12 @@ func state_hold():
 	if !Input.is_action_pressed("A") && !Input.is_action_pressed("B"):
 		state = "default"
 
+func state_spin():
+	anim_switch("spin")
+	loop_movement()
+	loop_damage()
+	movedir = Vector2.ZERO
+
 func state_fall():
 	anim_switch("jump")
 	position.y += 100 * get_physics_process_delta_time()
@@ -134,6 +163,15 @@ func loop_interact():
 			state = "fall"
 		elif collider.is_in_group("subitem"):
 			collider.collect(self)
+		elif movedir != Vector2.ZERO && is_on_wall() && collider.is_in_group("pushable"):
+			collider.interact(self)
+			push_target = collider
+		elif push_target:
+			push_target.stop_interact()
+			push_target = null
+	elif push_target:
+		push_target.stop_interact()
+		push_target = null
 
 func connect_camera():
 	camera.connect("screen_change_started", self, "screen_change_started")
@@ -144,3 +182,8 @@ func screen_change_started():
 
 func screen_change_completed():
 	set_physics_process(true)
+
+
+func _on_HoldTimer_timeout():
+	spinAtk = true
+	sfx.play(preload("res://items/tink.wav"), 20) # get better sfx

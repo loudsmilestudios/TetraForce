@@ -2,6 +2,10 @@ extends KinematicBody2D
 
 class_name Entity
 
+signal update_position
+signal update_spritedir
+signal update_animation
+
 # ATTRIBUTES
 export(String, "ENEMY", "PLAYER") var TYPE = "ENEMY"
 export(float, 0.5, 20, 0.5) var MAX_HEALTH = 1
@@ -33,6 +37,7 @@ var texture_default = null
 var entity_shader = preload("res://engine/entity.shader")
 
 func _ready():
+	
 	texture_default = sprite.texture
 	
 	# Create default material if one does not exist...
@@ -88,12 +93,16 @@ func loop_movement():
 		motion = movedir.normalized() * SPEED
 	else:
 		motion = knockdir.normalized() * 125
-	move_and_slide(motion)
+	
+	if move_and_slide(motion) != Vector2.ZERO:
+		emit_signal("update_position", position)
 	
 	if movedir != Vector2.ZERO:
 		last_movedir = movedir
 
 func loop_spritedir():
+	var old_spritedir = spritedir
+	
 	match movedir:
 		Vector2.LEFT:
 			spritedir = "Left"
@@ -103,11 +112,18 @@ func loop_spritedir():
 			spritedir = "Up"
 		Vector2.DOWN:
 			spritedir = "Down"
-	sprite.flip_h = spritedir == "Left"
+	
+	if old_spritedir != spritedir:
+		emit_signal("update_spritedir", spritedir)
+	
+	var flip = spritedir == "Left"
+	if sprite.flip_h != flip:
+		sprite.flip_h = flip
 
 func loop_damage():
 	health = min(health, MAX_HEALTH)
 	sprite.texture = texture_default
+	sprite.scale.x = 1
 	
 	if hitstun > 1:
 		hitstun -= 1
@@ -144,6 +160,7 @@ func anim_switch(animation):
 	if ["Left","Right"].has(spritedir):
 		newanim = str(animation,"Side")
 	if anim.current_animation != newanim:
+		emit_signal("update_animation", newanim)
 		anim.play(newanim)
 
 sync func use_item(item, input):
@@ -176,16 +193,3 @@ func rset_map(property, value):
 func rset_unreliable_map(property, value):
 	for peer in network.map_peers:
 		rset_unreliable_id(peer, property, value)
-
-# put into helper script pls
-static func rand_direction():
-	var new_direction = randi() % 4 + 1
-	match new_direction:
-		1:
-			return Vector2.LEFT
-		2:
-			return Vector2.RIGHT
-		3:
-			return Vector2.UP
-		4:
-			return Vector2.DOWN

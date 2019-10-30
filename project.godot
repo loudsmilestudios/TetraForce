@@ -18,10 +18,16 @@ _global_script_classes=[ {
 "class": "Item",
 "language": "GDScript",
 "path": "res://engine/item.gd"
+}, {
+"base": "Reference",
+"class": "entity_helper",
+"language": "GDScript",
+"path": "res://engine/helper_scipts/entity_helper.gd"
 } ]
 _global_script_class_icons={
 "Entity": "",
-"Item": ""
+"Item": "",
+"entity_helper": ""
 }
 
 [application]
@@ -97,12 +103,12 @@ DOWN={
 }
 A={
 "deadzone": 0.5,
-"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":88,"unicode":0,"echo":false,"script":null)
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":67,"unicode":0,"echo":false,"script":null)
  ]
 }
 B={
 "deadzone": 0.5,
-"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":90,"unicode":0,"echo":false,"script":null)
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":88,"unicode":0,"echo":false,"script":null)
  ]
 }
 
@@ -110,5 +116,6 @@ B={
 
 quality/driver/driver_name="GLES2"
 quality/2d/gles2_use_nvidia_rect_flicker_workaround=true
+quality/intended_usage/framebuffer_allocation=0
+quality/intended_usage/framebuffer_allocation.mobile=0
 quality/2d/use_pixel_snap=true
-environment/default_environment="res://default_env.tres"
