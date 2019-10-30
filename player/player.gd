@@ -3,6 +3,7 @@ extends Entity
 onready var ray = $RayCast2D
 
 var action_cooldown = 0
+var push_target = null
 
 var spinAtk = false
 onready var holdTimer = $HoldTimer
@@ -160,6 +161,15 @@ func loop_interact():
 			position.y += 2
 			sfx.play(preload("res://player/player_jump.wav"), 20)
 			state = "fall"
+		elif movedir != Vector2.ZERO && is_on_wall() && collider.is_in_group("pushable"):
+			collider.interact(self)
+			push_target = collider
+		elif push_target:
+			push_target.stop_interact()
+			push_target = null
+	elif push_target:
+		push_target.stop_interact()
+		push_target = null
 
 func connect_camera():
 	camera.connect("screen_change_started", self, "screen_change_started")
