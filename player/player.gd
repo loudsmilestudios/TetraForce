@@ -132,6 +132,8 @@ func loop_interact():
 			position.y += 2
 			sfx.play(preload("res://player/player_jump.wav"), 20)
 			state = "fall"
+		elif collider.is_in_group("subitem"):
+			collider.collect(self)
 
 func connect_camera():
 	camera.connect("screen_change_started", self, "screen_change_started")
