@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://player/player.gd" type="Script" id=1]
 [ext_resource path="res://player/player2.png" type="Texture" id=2]
@@ -147,8 +147,9 @@ tracks/0/keys = {
 "values": [ 10, 11 ]
 }
 
-[sub_resource type="Animation" id=10]
-length = 0.66
+[sub_resource type="Animation" id=18]
+resource_name = "spinDown"
+length = 1.6
 step = 0.33
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -157,10 +158,80 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.66 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0, 0.33, 0.66, 0.99, 1.32 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 24, 25 ]
+"values": [ 25, 27, 29, 27, 25 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.99, 1.32 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ Vector2( 1, 1 ), Vector2( -1, 1 ), Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=10]
+resource_name = "spinSide"
+length = 1.6
+step = 0.33
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.33, 0.66, 0.99, 1.32 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 27, 25, 27, 29, 27 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.66, 0.99 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ Vector2( 1, 1 ), Vector2( -1, 1 ), Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=19]
+resource_name = "spinUp"
+length = 1.6
+step = 0.33
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.33, 0.66, 0.99, 1.32 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 29, 27, 25, 27, 29 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.33, 0.66 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ Vector2( 1, 1 ), Vector2( -1, 1 ), Vector2( 1, 1 ) ]
 }
 
 [sub_resource type="Animation" id=11]
@@ -176,7 +247,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.66 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
-"values": [ 26, 27 ]
+"values": [ 24, 25 ]
 }
 
 [sub_resource type="Animation" id=12]
@@ -192,11 +263,12 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.66 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
-"values": [ 28, 29 ]
+"values": [ 26, 27 ]
 }
 
 [sub_resource type="Animation" id=13]
-step = 0.5
+length = 0.66
+step = 0.33
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -204,10 +276,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5 ),
+"times": PoolRealArray( 0, 0.66 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
-"values": [ 0, 1 ]
+"values": [ 28, 29 ]
 }
 
 [sub_resource type="Animation" id=14]
@@ -222,7 +294,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.5 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
-"values": [ 2, 3 ]
+"values": [ 0, 1 ]
 }
 
 [sub_resource type="Animation" id=15]
@@ -237,10 +309,25 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.5 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
+"values": [ 2, 3 ]
+}
+
+[sub_resource type="Animation" id=16]
+step = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
 "values": [ 4, 5 ]
 }
 
-[sub_resource type="RectangleShape2D" id=16]
+[sub_resource type="RectangleShape2D" id=17]
 extents = Vector2( 4.5, 6 )
 
 [node name="Player" type="KinematicBody2D"]
@@ -262,26 +349,33 @@ anims/jumpUp = SubResource( 6 )
 anims/pushDown = SubResource( 7 )
 anims/pushSide = SubResource( 8 )
 anims/pushUp = SubResource( 9 )
-anims/swingDown = SubResource( 10 )
-anims/swingSide = SubResource( 11 )
-anims/swingUp = SubResource( 12 )
-anims/walkDown = SubResource( 13 )
-anims/walkSide = SubResource( 14 )
-anims/walkUp = SubResource( 15 )
+anims/spinDown = SubResource( 18 )
+anims/spinSide = SubResource( 10 )
+anims/spinUp = SubResource( 19 )
+anims/swingDown = SubResource( 11 )
+anims/swingSide = SubResource( 12 )
+anims/swingUp = SubResource( 13 )
+anims/walkDown = SubResource( 14 )
+anims/walkSide = SubResource( 15 )
+anims/walkUp = SubResource( 16 )
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 2 )
 vframes = 7
 hframes = 6
-frame = 6
+frame = 29
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
 position = Vector2( 0, 1 )
-shape = SubResource( 16 )
+shape = SubResource( 17 )
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
 visible = false
 enabled = true
 cast_to = Vector2( 0, 10 )
 collide_with_areas = true
+
+[node name="HoldTimer" type="Timer" parent="."]
+one_shot = true
+[connection signal="timeout" from="HoldTimer" to="." method="_on_HoldTimer_timeout"]
