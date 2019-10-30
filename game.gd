@@ -37,8 +37,12 @@ func add_new_player(id):
 	new_player.position = get_node("Spawn").position
 	new_player.initialize()
 	
-	new_player.get_node("Sprite").texture = load(network.player_skins.get(id))
-	new_player.texture_default = load(network.player_skins.get(id))
+	if id == get_tree().get_network_unique_id():
+		new_player.get_node("Sprite").texture = load(network.my_skin)
+		new_player.texture_default = load(network.my_skin)
+	else:
+		new_player.get_node("Sprite").texture = load(network.player_skins.get(id))
+		new_player.texture_default = load(network.player_skins.get(id))
 	new_player.sync_all()
 
 func remove_player(id):
