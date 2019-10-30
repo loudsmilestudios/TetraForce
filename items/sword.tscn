@@ -373,7 +373,9 @@ frame = 1
 
 [node name="Hitbox" type="Area2D" parent="."]
 visible = false
-position = Vector2( -9, 10 )
+position = Vector2( -3, -15 )
+scale = Vector2( 0.25, 1 )
+collision_mask = 9
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 shape = SubResource( 7 )

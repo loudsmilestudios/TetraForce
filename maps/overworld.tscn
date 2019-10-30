@@ -31,7 +31,7 @@ tile_data = PoolIntArray( -655345, 6, 0, -655343, 6, 0, -655341, 6, 0, -655339, 
 [node name="ObjectPlacer" parent="." instance=ExtResource( 3 )]
 position = Vector2( 1, 0 )
 z_index = 100
-tile_data = PoolIntArray( -458729, 0, 0, -458724, 0, 0, -393190, 0, 0, 196634, 0, 0, 262154, 2, 0, 262166, 2, 0 )
+tile_data = PoolIntArray( -458729, 0, 0, -458724, 0, 0, -393190, 0, 0, 196610, 3, 0, 196611, 3, 0, 196612, 3, 0, 196634, 0, 0, 262154, 2, 0, 262166, 2, 0 )
 
 [node name="Spawn" type="Position2D" parent="."]
 position = Vector2( 56, 136 )
