@@ -4,6 +4,7 @@ onready var ray = $RayCast2D
 
 var action_cooldown = 0
 var push_target = null
+var network_id = 1
 
 var spinAtk = false
 onready var holdTimer = $HoldTimer
@@ -16,6 +17,8 @@ puppet var puppet_anim = "idleDown"
 func _ready():
 	add_to_group("player")
 	ray.add_exception(hitbox)
+	
+	network_id = get_tree().get_network_unique_id()
 	
 	connect_camera()
 	

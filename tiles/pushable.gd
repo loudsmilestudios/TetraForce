@@ -115,7 +115,7 @@ remote func _update_state(pos):
 	destination = pos
 	has_been_pushed = true # we can infer this value from the fact that we only get a response if the block has been pushed
 	
-	# Signal anyone who cares, if we do this, then attached events are synced as well
+	# Signal anyone who cares, if we do this, then connected nodes are synced as well
 	# and we don't need additional server requests to open doors for example (assuming they are controlled by this object)
 	emit_signal('on_done_moving') 
 	

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://engine/uitlity_nodes/counter.gd" type="Script" id=1]
+
+[node name="Counter" type="Node"]
+script = ExtResource( 1 )

@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://engine/camera.gd" type="Script" id=1]
+[ext_resource path="res://engine/camera/camera.gd" type="Script" id=1]
 
 [node name="Camera" type="Camera2D"]
 anchor_mode = 0

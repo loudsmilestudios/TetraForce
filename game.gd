@@ -2,7 +2,7 @@ extends Node
 
 func _ready():
 	network.current_map = self
-	add_child(preload("res://engine/camera.tscn").instance())
+	add_child(preload("res://engine/camera/camera.tscn").instance())
 	add_child(preload("res://ui/hud.tscn").instance())
 	add_new_player(get_tree().get_network_unique_id())
 	
@@ -15,8 +15,13 @@ func _ready():
 
 func _connect_transitions():
 	# On these 2 signals, we want to check whether we want to activate enemies or not
-	screenfx.connect("animation_finished", self, "_set_enemy_physics_processes")
-	$Camera.connect("screen_change_completed", self, "_set_enemy_physics_processes")
+	screenfx.connect("animation_finished", self, "initialize_enemy_process")
+	if has_node("Camera"): # Should always be true, but can't be sure enough.
+		$Camera.connect("screen_change_completed", self, "_set_enemy_physics_processes")
+
+# Filler function to initiate the _set function without params. There's probably a better way to do this
+func initialize_enemy_process(anim):
+	_set_enemy_physics_processes()
 
 func _set_enemy_physics_processes():
 	var visible_enemies = []
@@ -24,7 +29,6 @@ func _set_enemy_physics_processes():
 		for entity in entity_detect.get_overlapping_bodies():
 			if entity.is_in_group("enemy"):
 				visible_enemies.append(entity)
-	
 	for enemy in get_tree().get_nodes_in_group("enemy"):
 		if visible_enemies.has(enemy):
 			enemy.set_physics_process(true)

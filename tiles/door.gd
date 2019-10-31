@@ -23,7 +23,11 @@ func unlock():
 	is_locked = false
 	# Do fancy animation or something, then make door inactive
 	visible = false
-	set_collision_layer_bit(0,0)
+	
+	# TODO: Improve this
+	# I feel like we should do this better.
+	# Don't really want to set collision layers in code nilly willy
+	set_collision_layer_bit(0,0) 
 	set_collision_layer_bit(1,0)
 
 
@@ -35,3 +39,6 @@ func lock():
 	set_collision_layer_bit(1,1)
 	# Do fancy animation
 
+
+func increment() -> void:
+	pass # Replace with function body.

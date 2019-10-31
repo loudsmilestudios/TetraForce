@@ -5,6 +5,7 @@ class_name Entity
 signal update_position
 signal update_spritedir
 signal update_animation
+signal on_death
 
 # ATTRIBUTES
 export(String, "ENEMY", "PLAYER") var TYPE = "ENEMY"
@@ -12,6 +13,7 @@ export(float, 0.5, 20, 0.5) var MAX_HEALTH = 1
 export(int) var SPEED = 70
 export(float, 0, 20, 0.5) var DAMAGE = 0.5
 export(String, FILE) var HURT_SOUND = "res://enemies/enemy_hurt.wav"
+export(float) var SCALE_MULTIPLIER = 1
 
 # MOVEMENT
 var movedir = Vector2(0,0)
@@ -31,13 +33,15 @@ onready var anim = $AnimationPlayer
 onready var sprite = $Sprite
 var hitbox # to be defined by create_hitbox()
 
-onready var camera = get_parent().get_node("Camera")
+var camera
 
 var texture_default = null
 var entity_shader = preload("res://engine/entity.shader")
 
 func _ready():
-	
+	if get_parent().has_node("Camera"):
+		camera = get_parent().get_node("Camera")
+	scale *= SCALE_MULTIPLIER
 	texture_default = sprite.texture
 	
 	# Create default material if one does not exist...
@@ -181,6 +185,8 @@ sync func use_item(item, input):
 	newitem.start()
 
 sync func enemy_death():
+	emit_signal("on_death")
+	
 	var death_animation = preload("res://enemies/enemy_death.tscn").instance()
 	death_animation.global_position = global_position
 	get_parent().add_child(death_animation)
