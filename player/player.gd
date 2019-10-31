@@ -28,8 +28,7 @@ func initialize():
 		camera.initialize(self)
 		
 func set_player_label(name):
-	$PlayerName.text = name
-	$PlayerName.visible = true
+	$name_text_box/PlayerName.text = name
 
 func _physics_process(delta):
 	# puppet

@@ -1,8 +1,9 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://player/player.gd" type="Script" id=1]
-[ext_resource path="res://ui/monogram.tres" type="DynamicFont" id=2]
-[ext_resource path="res://player/player2.png" type="Texture" id=3]
+[ext_resource path="res://player/player2.png" type="Texture" id=2]
+[ext_resource path="res://player/name_text_box.png" type="Texture" id=3]
+[ext_resource path="res://ui/monogram.ttf" type="DynamicFontData" id=4]
 
 [sub_resource type="Animation" id=1]
 resource_name = "idleDown"
@@ -330,6 +331,9 @@ tracks/0/keys = {
 [sub_resource type="RectangleShape2D" id=19]
 extents = Vector2( 4.5, 6 )
 
+[sub_resource type="DynamicFont" id=20]
+font_data = ExtResource( 4 )
+
 [node name="Player" type="KinematicBody2D"]
 z_index = 10
 script = ExtResource( 1 )
@@ -337,22 +341,6 @@ TYPE = "PLAYER"
 MAX_HEALTH = 3.0
 DAMAGE = 0.0
 HURT_SOUND = "res://player/player_hurt.wav"
-
-[node name="PlayerName" type="Label" parent="."]
-visible = false
-anchor_left = 1.0
-anchor_right = 1.0
-margin_left = -16.1656
-margin_top = -18.0881
-margin_right = 37.8344
-margin_bottom = -4.08811
-grow_horizontal = 2
-grow_vertical = 2
-rect_scale = Vector2( 0.6, 0.6 )
-custom_fonts/font = ExtResource( 2 )
-text = "Some Name"
-align = 1
-valign = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 playback_speed = 4.0
@@ -376,7 +364,7 @@ anims/walkSide = SubResource( 17 )
 anims/walkUp = SubResource( 18 )
 
 [node name="Sprite" type="Sprite" parent="."]
-texture = ExtResource( 3 )
+texture = ExtResource( 2 )
 vframes = 7
 hframes = 6
 frame = 1
@@ -395,4 +383,24 @@ collide_with_areas = true
 [node name="HoldTimer" type="Timer" parent="."]
 wait_time = 0.75
 one_shot = true
+
+[node name="name_text_box" type="Sprite" parent="."]
+position = Vector2( -0.116257, -16.0991 )
+texture = ExtResource( 3 )
+
+[node name="PlayerName" type="Label" parent="name_text_box"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -54.0
+margin_top = -5.0
+margin_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+rect_scale = Vector2( 0.6, 0.6 )
+custom_fonts/font = SubResource( 20 )
+text = "Some Name"
+align = 1
+valign = 1
+clip_text = true
+percent_visible = 1.125
 [connection signal="timeout" from="HoldTimer" to="." method="_on_HoldTimer_timeout"]

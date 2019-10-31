@@ -36,9 +36,31 @@ func initialize():
 	rpc_id(1, "_receive_my_player_data", get_tree().get_network_unique_id(), my_player_data)
 
 remote func _receive_my_player_data(id, new_player_data):
+	
+	var collision_count = 0
+	var player_name = new_player_data.name
+	
+	while check_dupe_name(player_name):
+		collision_count += 1
+		player_name = get_player_name(new_player_data.name, collision_count)
+		
+	new_player_data.name = player_name
 	player_data[id] = new_player_data
 	
 	rpc("_receive_player_data", player_data)
+	
+func get_player_name(player_name, collision_count):
+	if collision_count == 0:
+		return player_name
+	else:
+		return player_name + "%d" % collision_count
+
+func check_dupe_name(player_name):
+	for value in player_data.values():
+		if player_name == player_data.name:
+			return true
+			
+	return false
 
 remote func _receive_player_data(received_player_data):
 	player_data = received_player_data
