@@ -8,6 +8,8 @@ var push_target = null
 var spinAtk = false
 onready var holdTimer = $HoldTimer
 
+var inventory_node = preload("res://ui/inventory.tscn").instance()
+
 func _ready():
 	puppet_pos = position
 	puppet_spritedir = "Down"
@@ -54,12 +56,28 @@ func _physics_process(delta):
 			state_spin()
 		"fall":
 			state_fall()
+		"inventory":
+			state_inventory()
 	
 	if action_cooldown > 0:
 		action_cooldown -= 1
 	
 	#if movedir.length() > 1:
 	#	$Sprite.global_position = global_position.snapped(Vector2(1,1))
+
+func show_inventory():
+	print_debug("Inventory pressed")
+	get_parent().add_child(inventory_node)
+	action_cooldown = 5
+	state = "inventory"
+	
+func hide_inventory():
+	get_parent().remove_child(inventory_node)
+	state = "default"
+	
+func state_inventory():
+	if Input.is_action_just_pressed("ui_select"):
+		hide_inventory()
 
 func state_default():
 	loop_controls()
@@ -82,6 +100,8 @@ func state_default():
 		use_item("res://items/sword.tscn", "B")
 		for peer in network.map_peers:
 			rpc_id(peer, "use_item", "res://items/sword.tscn", "B")
+	elif Input.is_action_just_pressed("ui_select") && action_cooldown == 0:
+		show_inventory()
 
 func state_swing():
 	anim_switch("swing")
