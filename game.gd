@@ -38,15 +38,14 @@ func add_new_player(id):
 	new_player.initialize()
 	
 	if id == get_tree().get_network_unique_id():
-		new_player.get_node("Sprite").texture = load(network.my_skin)
-		new_player.texture_default = load(network.my_skin)
-		new_player.set_player_label(network.my_name)
+		new_player.get_node("Sprite").texture = load(network.my_player_data.skin)
+		new_player.texture_default = load(network.my_player_data.skin)
+		new_player.set_player_label(network.my_player_data.name)
 
 	else:
-		new_player.get_node("Sprite").texture = load(network.player_skins.get(id))
-		new_player.texture_default = load(network.player_skins.get(id))
-		new_player.set_player_label(network.player_names.get(id))
-	new_player.sync_all()
+		new_player.get_node("Sprite").texture = load(network.player_data.get(id).skin)
+		new_player.texture_default = load(network.player_data.get(id).skin)
+		new_player.set_player_label(network.player_data.get(id).name)
 
 func remove_player(id):
 	get_node(str(id)).queue_free()
@@ -68,16 +67,8 @@ func update_players():
 		
 		# add player names to an array
 		player_names.append(int(player.name))
-		
-		# sync player attributes
-		player.sync_all()
 	
 	# now try to add new players
 	for id in map_peers:
 		if !player_names.has(id):
 			add_new_player(id)
-
-
-
-
-

@@ -7,11 +7,12 @@ var current_players = []
 var map_owners = {}
 var map_peers = []
 
-var my_skin = "res://player/player.png"
-var my_name = ""
+var player_data = {}
 
-var player_skins = {}
-var player_names = {}
+var my_player_data = {
+	skin ="res://player/player.png",
+	name = "", 
+	}
 
 var clock
 
@@ -30,20 +31,17 @@ func initialize():
 	clock.connect("timeout", self, "clock_update")
 	
 	if get_tree().is_network_server():
-		player_skins[1] = my_skin
-		player_names[1] = my_name
+		player_data[1] = my_player_data
 	
-	rpc_id(1, "_receive_my_player_info", get_tree().get_network_unique_id(), my_skin, my_name)
+	rpc_id(1, "_receive_my_player_data", get_tree().get_network_unique_id(), my_player_data)
 
-remote func _receive_my_player_info(id, skin, name):
-	player_skins[id] = skin
-	player_names[id] = name
+remote func _receive_my_player_data(id, new_player_data):
+	player_data[id] = new_player_data
 	
-	rpc("_receive_player_info", player_skins, player_names)
+	rpc("_receive_player_data", player_data)
 
-remote func _receive_player_info(skins, names):
-	player_skins = skins
-	player_names = names
+remote func _receive_player_data(received_player_data):
+	player_data = received_player_data
 
 func clock_update():
 	update_maps()
