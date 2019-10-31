@@ -35,7 +35,6 @@ func _process(delta):
 	camera_rect = Rect2(position, SCREEN_SIZE)
 	
 	if !$Tween.is_active() && !camera_rect.has_point(target.position):
-		print('SCROLLING')
 		scroll_camera()
 	
 	last_target_grid_pos = target_grid_pos
