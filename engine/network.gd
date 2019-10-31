@@ -57,7 +57,7 @@ func get_player_name(player_name, collision_count):
 
 func check_dupe_name(player_name):
 	for value in player_data.values():
-		if player_name == player_data.name:
+		if player_name == value.name:
 			return true
 			
 	return false
