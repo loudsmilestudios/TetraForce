@@ -3,7 +3,7 @@ extends KinematicBody2D
 class_name Entity
 
 # ATTRIBUTES
-export(String, "ENEMY", "PLAYER") var TYPE = "ENEMY"
+export(String, "ENEMY", "PLAYER", "TRAP") var TYPE = "ENEMY"
 export(float, 0.5, 20, 0.5) var MAX_HEALTH = 1
 export(int) var SPEED = 70
 export(float, 0, 20, 0.5) var DAMAGE = 0.5
@@ -61,6 +61,7 @@ func _ready():
 func create_hitbox():
 	var new_hitbox = Area2D.new()
 	add_child(new_hitbox)
+	new_hitbox.name = "Hitbox"
 	
 	var new_collision = CollisionShape2D.new()
 	new_hitbox.add_child(new_collision)
@@ -141,6 +142,8 @@ func loop_damage():
 			rpc("enemy_death")
 	
 	for area in hitbox.get_overlapping_areas():
+		if area.name != "Hitbox":
+			continue
 		var body = area.get_parent()
 		if !body.get_groups().has("entity") && !body.get_groups().has("item"):
 			continue

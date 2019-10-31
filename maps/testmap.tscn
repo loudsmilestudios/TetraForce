@@ -3,12 +3,12 @@
 [ext_resource path="res://game.gd" type="Script" id=1]
 [ext_resource path="res://engine/camera.tscn" type="PackedScene" id=2]
 [ext_resource path="res://tiles/tileset.tres" type="TileSet" id=3]
-[ext_resource path="res://engine/object_placer.tscn" type="PackedScene" id=4]
-[ext_resource path="res://tiles/sign.tscn" type="PackedScene" id=5]
-[ext_resource path="res://tiles/exit.tscn" type="PackedScene" id=6]
-[ext_resource path="res://tiles/door.tscn" type="PackedScene" id=7]
-[ext_resource path="res://engine/events/event_unlock.tscn" type="PackedScene" id=8]
-[ext_resource path="res://tiles/pushable.tscn" type="PackedScene" id=9]
+[ext_resource path="res://tiles/sign.tscn" type="PackedScene" id=4]
+[ext_resource path="res://tiles/door.tscn" type="PackedScene" id=5]
+[ext_resource path="res://engine/events/event_unlock.tscn" type="PackedScene" id=6]
+[ext_resource path="res://tiles/pushable.tscn" type="PackedScene" id=7]
+[ext_resource path="res://engine/object_placer.tscn" type="PackedScene" id=8]
+[ext_resource path="res://tiles/exit.tscn" type="PackedScene" id=9]
 
 [node name="testmap" type="Node2D"]
 script = ExtResource( 1 )
@@ -28,59 +28,59 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="ObjectPlacer" parent="." instance=ExtResource( 4 )]
+[node name="ObjectPlacer" parent="." instance=ExtResource( 8 )]
 position = Vector2( 1, 0 )
 z_index = 100
-tile_data = PoolIntArray( 262149, 0, 0, 262169, 1, 0, 262170, 1, 0, 262171, 1, 0, 262172, 1, 0, 327699, 2, 0 )
+tile_data = PoolIntArray( 196636, 3, 0, 262149, 0, 0, 262169, 1, 0, 262170, 1, 0, 262171, 1, 0, 262172, 1, 0, 327699, 2, 0 )
 
-[node name="Sign" parent="." instance=ExtResource( 5 )]
+[node name="Sign" parent="." instance=ExtResource( 4 )]
 position = Vector2( 184, 23 )
 text = "Hello!"
 
 [node name="Spawn" type="Position2D" parent="."]
 position = Vector2( 440, 8 )
 
-[node name="Exit" parent="." instance=ExtResource( 6 )]
+[node name="Exit" parent="." instance=ExtResource( 9 )]
 position = Vector2( 440, -4 )
 map = "res://maps/overworld.tscn"
 
-[node name="Door" parent="." instance=ExtResource( 7 )]
+[node name="Door" parent="." instance=ExtResource( 5 )]
 position = Vector2( 264, 72 )
 
-[node name="EventUnlock" parent="Door" instance=ExtResource( 8 )]
+[node name="EventUnlock" parent="Door" instance=ExtResource( 6 )]
 is_listener = true
 listen_function = "attempt_unlock"
 
-[node name="Pushable" parent="." instance=ExtResource( 9 )]
+[node name="Pushable" parent="." instance=ExtResource( 7 )]
 position = Vector2( 296, 40 )
 is_one_shot = true
 direction_limits = [ Vector2( -1, 0 ) ]
 
-[node name="EventUnlock" parent="Pushable" instance=ExtResource( 8 )]
+[node name="EventUnlock" parent="Pushable" instance=ExtResource( 6 )]
 is_sender = true
 trigger_signal = "on_done_moving"
 
-[node name="Pushable2" parent="." instance=ExtResource( 9 )]
+[node name="Pushable2" parent="." instance=ExtResource( 7 )]
 position = Vector2( 472, 104 )
 direction_limits = [ Vector2( -1, 0 ) ]
 
-[node name="EventUnlock" parent="Pushable2" instance=ExtResource( 8 )]
+[node name="EventUnlock" parent="Pushable2" instance=ExtResource( 6 )]
 is_sender = true
 trigger_signal = "on_done_moving"
 event_key_id = 1
 
-[node name="Door2" parent="." instance=ExtResource( 7 )]
+[node name="Door2" parent="." instance=ExtResource( 5 )]
 position = Vector2( 376, 136 )
 
-[node name="EventUnlock" parent="Door2" instance=ExtResource( 8 )]
+[node name="EventUnlock" parent="Door2" instance=ExtResource( 6 )]
 is_listener = true
 listen_function = "attempt_unlock"
 event_key_id = 1
 
-[node name="Door3" parent="." instance=ExtResource( 7 )]
+[node name="Door3" parent="." instance=ExtResource( 5 )]
 position = Vector2( 392, 136 )
 
-[node name="EventUnlock" parent="Door3" instance=ExtResource( 8 )]
+[node name="EventUnlock" parent="Door3" instance=ExtResource( 6 )]
 is_listener = true
 listen_function = "attempt_unlock"
 event_key_id = 1
