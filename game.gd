@@ -40,9 +40,12 @@ func add_new_player(id):
 	if id == get_tree().get_network_unique_id():
 		new_player.get_node("Sprite").texture = load(network.my_skin)
 		new_player.texture_default = load(network.my_skin)
+		new_player.set_player_label(network.my_name)
+
 	else:
 		new_player.get_node("Sprite").texture = load(network.player_skins.get(id))
 		new_player.texture_default = load(network.player_skins.get(id))
+		new_player.set_player_label(network.player_names.get(id))
 	new_player.sync_all()
 
 func remove_player(id):

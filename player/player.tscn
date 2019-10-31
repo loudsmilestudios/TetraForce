@@ -1,7 +1,8 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://player/player.gd" type="Script" id=1]
-[ext_resource path="res://player/player2.png" type="Texture" id=2]
+[ext_resource path="res://ui/monogram.tres" type="DynamicFont" id=2]
+[ext_resource path="res://player/player2.png" type="Texture" id=3]
 
 [sub_resource type="Animation" id=1]
 resource_name = "idleDown"
@@ -337,6 +338,22 @@ MAX_HEALTH = 3.0
 DAMAGE = 0.0
 HURT_SOUND = "res://player/player_hurt.wav"
 
+[node name="PlayerName" type="Label" parent="."]
+visible = false
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -16.1656
+margin_top = -18.0881
+margin_right = 37.8344
+margin_bottom = -4.08811
+grow_horizontal = 2
+grow_vertical = 2
+rect_scale = Vector2( 0.6, 0.6 )
+custom_fonts/font = ExtResource( 2 )
+text = "Some Name"
+align = 1
+valign = 1
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 playback_speed = 4.0
 anims/idleDown = SubResource( 1 )
@@ -359,7 +376,7 @@ anims/walkSide = SubResource( 17 )
 anims/walkUp = SubResource( 18 )
 
 [node name="Sprite" type="Sprite" parent="."]
-texture = ExtResource( 2 )
+texture = ExtResource( 3 )
 vframes = 7
 hframes = 6
 frame = 1

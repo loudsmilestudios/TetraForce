@@ -30,6 +30,10 @@ func _ready():
 func initialize():
 	if is_network_master():
 		camera.initialize(self)
+		
+func set_player_label(name):
+	$PlayerName.text = name
+	$PlayerName.visible = true
 
 func _physics_process(delta):
 	# puppet

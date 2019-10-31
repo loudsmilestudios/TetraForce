@@ -1,6 +1,7 @@
 extends Panel
 
 var selected = 0
+var player_name: String = ""
 
 var options = {
 	"guy": "res://player/player.png",

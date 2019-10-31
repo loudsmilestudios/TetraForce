@@ -65,6 +65,7 @@ func _set_status(text,isok):
 		get_node("panel/status_fail").set_text(text)
 
 func _on_host_pressed():
+	network.my_name = $panel/name.text
 	
 	var host = NetworkedMultiplayerENet.new()
 	host.set_compression_mode(NetworkedMultiplayerENet.COMPRESS_RANGE_CODER)
@@ -81,6 +82,7 @@ func _on_host_pressed():
 	create_level()
 
 func _on_join_pressed():
+	network.my_name = $panel/name.text
 	
 	var ip = get_node("panel/address").get_text()
 	if (not ip.is_valid_ip_address()):
