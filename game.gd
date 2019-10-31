@@ -14,7 +14,6 @@ func _ready():
 	call_deferred("_connect_transitions")
 
 func _connect_transitions():
-	print(network.current_map)
 	# On these 2 signals, we want to check whether we want to activate enemies or not
 	screenfx.connect("animation_finished", self, "_set_enemy_physics_processes")
 	$Camera.connect("screen_change_completed", self, "_set_enemy_physics_processes")
