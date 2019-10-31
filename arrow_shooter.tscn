@@ -9,6 +9,7 @@ extents = Vector2( 6.77654, 3.58818 )
 [node name="Shooter" type="KinematicBody2D"]
 script = ExtResource( 2 )
 timer = 50.0
+direction = "Down"
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( -12, 0 )
