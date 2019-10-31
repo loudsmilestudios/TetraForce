@@ -70,7 +70,7 @@ text = "What is your quest?"
 
 [node name="Sign4" parent="RoomB" instance=ExtResource( 7 )]
 position = Vector2( 440, 360 )
-text = "What is your favourite color?"
+text = "What is your favorite color?"
 
 [node name="UnlockedCamera" parent="RoomB" instance=ExtResource( 8 )]
 visible = false
@@ -177,11 +177,11 @@ SPEED = 80
 DAMAGE = 1.0
 SCALE_MULTIPLIER = 0.5
 [connection signal="on_done_moving" from="RoomA/Pushable" to="RoomA/Door" method="unlock"]
-[connection signal="on_done_moving" from="RoomA/Pushable2" to="RoomA/Door2" method="unlock"]
 [connection signal="on_done_moving" from="RoomA/Pushable2" to="RoomA/Door3" method="unlock"]
+[connection signal="on_done_moving" from="RoomA/Pushable2" to="RoomA/Door2" method="unlock"]
+[connection signal="counter_done" from="RoomB/Counter" to="RoomB/Door4" method="unlock"]
 [connection signal="counter_done" from="RoomB/Counter" to="RoomB/Door5" method="unlock"]
 [connection signal="counter_done" from="RoomB/Counter" to="RoomB/Door6" method="unlock"]
-[connection signal="counter_done" from="RoomB/Counter" to="RoomB/Door4" method="unlock"]
 [connection signal="on_done_moving" from="RoomB/Pushable3" to="RoomB/Counter" method="increment"]
 [connection signal="on_done_moving" from="RoomB/Pushable4" to="RoomB/Counter" method="increment"]
 [connection signal="on_done_moving" from="RoomB/Pushable5" to="RoomB/Counter" method="increment"]

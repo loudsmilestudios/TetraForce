@@ -2,10 +2,8 @@ extends KinematicBody2D
 
 class_name Entity
 
-signal update_position
-signal update_spritedir
-signal update_animation
 signal on_death
+
 
 # ATTRIBUTES
 export(String, "ENEMY", "PLAYER") var TYPE = "ENEMY"
@@ -24,6 +22,11 @@ var last_movedir = Vector2(0,1)
 # COMBAT
 var health = MAX_HEALTH
 var hitstun = 0
+
+# NETWORK
+puppet var puppet_pos
+puppet var puppet_spritedir
+puppet var puppet_anim
 
 var state = "default"
 
@@ -98,8 +101,12 @@ func loop_movement():
 	else:
 		motion = knockdir.normalized() * 125
 	
-	if move_and_slide(motion) != Vector2.ZERO:
-		emit_signal("update_position", position)
+	# This is optimal, but it doesn't sync players on initial connection.
+	# if move_and_slide(motion) != Vector2.ZERO:
+	# 	sync_property("puppet_pos", position)
+	
+	move_and_slide(motion)
+	sync_property_unreliable("puppet_pos", position)
 	
 	if movedir != Vector2.ZERO:
 		last_movedir = movedir
@@ -118,7 +125,7 @@ func loop_spritedir():
 			spritedir = "Down"
 	
 	if old_spritedir != spritedir:
-		emit_signal("update_spritedir", spritedir)
+		sync_property("puppet_spritedir", spritedir)
 	
 	var flip = spritedir == "Left"
 	if sprite.flip_h != flip:
@@ -164,7 +171,7 @@ func anim_switch(animation):
 	if ["Left","Right"].has(spritedir):
 		newanim = str(animation,"Side")
 	if anim.current_animation != newanim:
-		emit_signal("update_animation", newanim)
+		sync_property("puppet_anim", newanim)
 		anim.play(newanim)
 
 sync func use_item(item, input):
@@ -199,3 +206,21 @@ func rset_map(property, value):
 func rset_unreliable_map(property, value):
 	for peer in network.map_peers:
 		rset_unreliable_id(peer, property, value)
+
+func sync_property(property, value):
+	if TYPE == "PLAYER":
+		if !is_network_master(): 
+			return
+	else: 
+		if !is_scene_owner():
+			return
+	rset_map(property, value)
+
+func sync_property_unreliable(property, value):
+	if TYPE == "PLAYER":
+		if !is_network_master(): 
+			return
+	else: 
+		if !is_scene_owner():
+			return
+	rset_unreliable_map(property, value)

@@ -9,12 +9,11 @@ var network_id = 1
 var spinAtk = false
 onready var holdTimer = $HoldTimer
 
-# MULTIPLAYER
-puppet var puppet_pos = position
-puppet var puppet_spritedir = "Down"
-puppet var puppet_anim = "idleDown"
-
 func _ready():
+	puppet_pos = position
+	puppet_spritedir = "Down"
+	puppet_anim = "idleDown"
+	
 	add_to_group("player")
 	ray.add_exception(hitbox)
 	
@@ -26,9 +25,6 @@ func _ready():
 		var hud = get_parent().get_node("HUD")
 		hud.player = self
 		hud.initialize()
-		connect("update_position", self, "_on_update_position")
-		connect("update_spritedir", self, "_on_update_spritedir")
-		connect("update_animation", self, "_on_update_animation")
 
 func initialize():
 	if is_network_master():
@@ -67,22 +63,6 @@ func _physics_process(delta):
 	
 	#if movedir.length() > 1:
 	#	$Sprite.global_position = global_position.snapped(Vector2(1,1))
-
-func _on_update_position(value):
-	rset_unreliable_map("puppet_pos", value)
-
-func _on_update_spritedir(value):
-	rset_unreliable_map("puppet_spritedir", value)
-
-func _on_update_animation(value):
-	rset_unreliable_map("puppet_anim", value)
-
-# Called from game.gd, to sync attributes on player connect
-func sync_all():
-	if is_network_master():
-		_on_update_position(position)
-		_on_update_spritedir(spritedir)
-		_on_update_animation(anim.current_animation)
 
 func state_default():
 	loop_controls()
