@@ -9,8 +9,17 @@ func _ready():
 	network.update_maps()
 	
 	screenfx.play("fadein")
+	
+	# defer these connections to make sure all elements are attached and ready
+	call_deferred("_connect_transitions")
 
-func _process(delta):
+func _connect_transitions():
+	print(network.current_map)
+	# On these 2 signals, we want to check whether we want to activate enemies or not
+	screenfx.connect("animation_finished", self, "_set_enemy_physics_processes")
+	$Camera.connect("screen_change_completed", self, "_set_enemy_physics_processes")
+
+func _set_enemy_physics_processes():
 	var visible_enemies = []
 	for entity_detect in get_tree().get_nodes_in_group("entity_detect"):
 		for entity in entity_detect.get_overlapping_bodies():

@@ -18,6 +18,7 @@ func attempt_unlock(key):
 	unlock()
 
 
+# Master unlock function, doesn't require a key
 func unlock():
 	is_locked = false
 	# Do fancy animation or something, then make door inactive
@@ -33,3 +34,4 @@ func lock():
 	set_collision_layer_bit(0,1)
 	set_collision_layer_bit(1,1)
 	# Do fancy animation
+
