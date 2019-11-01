@@ -7,6 +7,9 @@ func _ready():
 		if tile_name.begins_with("tile_"):
 			tile_name.erase(0, 5)
 			tile_path = "res://tiles/"+tile_name+".tscn"
+		elif tile_name.begins_with("obj_"):
+			tile_name.erase(0, 4)
+			tile_path = "res://objects/"+tile_name+".tscn"
 		else:
 			tile_path = "res://enemies/"+tile_name+".tscn"
 		

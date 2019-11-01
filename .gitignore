@@ -13,3 +13,5 @@ export_presets.cfg
 *.csproj
 *.sln
 .vs
+# Mac-specific ignores
+.DS_Store
