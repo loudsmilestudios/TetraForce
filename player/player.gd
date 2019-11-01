@@ -18,7 +18,7 @@ func _ready():
 	
 	connect_camera()
 	
-	$PlayerName.visible = user_preferences.get_pref("show_name_tags")
+	$PlayerName.visible = settings.get_pref("show_name_tags")
 	
 	if is_network_master():
 		var hud = get_parent().get_node("HUD")

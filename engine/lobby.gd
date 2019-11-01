@@ -4,7 +4,7 @@ extends Control
 const DEFAULT_PORT = 4564 # some random number, pick your port properly
 
 var map = "res://maps/overworld.tscn"
-onready var host = user_preferences.get_pref("host_address")
+onready var host = settings.get_pref("host_address")
 
 #### Network callbacks from SceneTree ####
 
@@ -29,7 +29,6 @@ func _connected_ok():
 	
 # callback from SceneTree, only for clients (not server)	
 func _connected_fail():
-
 	_set_status("Couldn't connect",false)
 	
 	get_tree().set_network_peer(null) #remove peer
@@ -67,23 +66,23 @@ func _set_status(text,isok):
 
 func check_host_address(ip: String) -> String:
 	if ip.length() == 0:
-		ip = user_preferences.default_host
+		ip = settings.default_host
 	
 	if (not ip.is_valid_ip_address()):
 		_set_status("IP address is invalid",false)
 		return ""
 	
-	user_preferences.set_pref("host_address", ip)
+	settings.set_pref("host_address", ip)
 	
 	return ip
 
 func _on_host_pressed():
 	network.my_player_data.name = $characterselect.player_name
 	
-	var ip = check_host_address(get_node("panel/address").get_text())
+	var ip = get_node("panel/address").get_text()
 	
-	if ip == null:
-		return
+	if ip.length() == 0:
+		ip = settings.default_host
 	
 	var host = NetworkedMultiplayerENet.new()
 	host.set_compression_mode(NetworkedMultiplayerENet.COMPRESS_RANGE_CODER)

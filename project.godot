@@ -48,7 +48,7 @@ sfx="*res://engine/sound.gd"
 global="*res://engine/global.gd"
 network="*res://engine/network.gd"
 screenfx="*res://engine/screenfx.tscn"
-user_preferences="*res://engine/user_preferences.gd"
+settings="*res://engine/settings.gd"
 
 [debug]
 

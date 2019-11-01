@@ -110,7 +110,7 @@ func _migrate_save(loaded_save) -> void:
 			_user_prefs[key] = loaded_save[key]
 	
 	_save_to_preferences()
-	
+
 func get_pref(key: String):
 	if _user_prefs.has(key):
 		return _user_prefs[key]
