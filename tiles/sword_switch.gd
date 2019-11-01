@@ -4,14 +4,13 @@ signal on_activate
 signal on_deactivate
 
 export(int, "one_shot", "toggle", "time_out") var mode: int = 0
-
-export(bool) var one_shot: bool = false
+export(float) var cooldown: float = 5.0
 
 var activated: bool = false
 var on_cooldown: bool = false
 
 func _ready():
-	pass
+	$CooldownTimer.wait_time = cooldown
 
 func _physics_process(delta):
 	pass
@@ -78,7 +77,7 @@ remote func enable_remote():
 		emit_signal("on_activate")
 
 remote func disable_remote():
-	if !on_cooldown and !one_shot:
+	if !on_cooldown and mode != 0:
 		$Sprite.frame_coords.x = 0
 		emit_signal("on_deactivate")
 
