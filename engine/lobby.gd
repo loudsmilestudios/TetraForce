@@ -4,7 +4,7 @@ extends Control
 const DEFAULT_PORT = 4564 # some random number, pick your port properly
 
 var map = "res://maps/overworld.tscn"
-onready var host = global.get_pref("host_address")
+onready var host = user_preferences.get_pref("host_address")
 
 #### Network callbacks from SceneTree ####
 
@@ -67,13 +67,13 @@ func _set_status(text,isok):
 
 func check_host_address(ip: String) -> String:
 	if ip.length() == 0:
-		ip = global.default_host
+		ip = user_preferences.default_host
 	
 	if (not ip.is_valid_ip_address()):
 		_set_status("IP address is invalid",false)
 		return ""
 	
-	global.set_pref("host_address", ip)
+	user_preferences.set_pref("host_address", ip)
 	
 	return ip
 

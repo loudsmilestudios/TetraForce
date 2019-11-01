@@ -143,7 +143,6 @@ margin_right = 125.0
 margin_bottom = 80.0
 size_flags_horizontal = 2
 size_flags_vertical = 2
-text = "Greg"
 placeholder_text = "Display Name"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -160,7 +159,6 @@ scale = Vector2( 2, 2 )
 texture = ExtResource( 4 )
 vframes = 7
 hframes = 6
-frame = 1
 
 [node name="back" type="Button" parent="characterselect"]
 margin_left = 11.8569

@@ -1,7 +1,7 @@
 extends Panel
 
-onready var selected: int = global.get_pref("skin")
-onready var player_name: String = global.get_pref("display_name")
+onready var selected: int = user_preferences.get_pref("skin")
+onready var player_name: String = user_preferences.get_pref("display_name")
 
 var options = {
 	"Chain": "res://player/player.png",
@@ -13,7 +13,7 @@ func _ready():
 	$forward.connect("pressed", self, "forward_pressed")
 	
 	$name.text = player_name
-	update_skin(global.get_pref("skin"))
+	update_skin(user_preferences.get_pref("skin"))
 
 func update_skin(new_selection: int):
 	selected = wrapi(new_selection, 0, options.size())
@@ -21,9 +21,9 @@ func update_skin(new_selection: int):
 	$preview.texture = load(options.values()[selected])
 	network.my_player_data.skin = options.values()[selected]
 	
-	global.set_pref("skin", selected)
+	user_preferences.set_pref("skin", selected)
 	
-	if global.get_pref("display_name").length() == 0:
+	if user_preferences.get_pref("display_name").length() == 0:
 		player_name = options.keys()[selected]
 		$name.text = player_name
 	
@@ -39,4 +39,4 @@ func _on_name_text_changed(new_name: String):
 	else:
 		player_name = new_name
 		
-	global.set_pref("display_name", new_name)
+	user_preferences.set_pref("display_name", new_name)
