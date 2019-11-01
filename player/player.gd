@@ -24,6 +24,7 @@ func _ready():
 	for i in range(MAX_ITEMS+1):
 		has_item.append(false)
 	has_item[0] = true
+	has_item[1] = true  #Not a real item, use at own risk
 	
 	inventory_node.MAX_SELECT = MAX_ITEMS
 	
