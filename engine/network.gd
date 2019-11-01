@@ -7,8 +7,12 @@ var current_players = []
 var map_owners = {}
 var map_peers = []
 
-var my_skin = "res://player/player.png"
-var player_skins = {}
+var player_data = {}
+
+var my_player_data = {
+	skin ="res://player/player.png",
+	name = "", 
+	}
 
 var clock
 
@@ -27,16 +31,39 @@ func initialize():
 	clock.connect("timeout", self, "clock_update")
 	
 	if get_tree().is_network_server():
-		player_skins[1] = my_skin
+		player_data[1] = my_player_data
 	
-	rpc_id(1, "_receive_my_skin", get_tree().get_network_unique_id(), my_skin)
+	rpc_id(1, "_receive_my_player_data", get_tree().get_network_unique_id(), my_player_data)
 
-remote func _receive_my_skin(id, skin):
-	player_skins[id] = skin
-	rpc("_receive_player_skins", player_skins)
+remote func _receive_my_player_data(id, new_player_data):
+	
+	var collision_count = 0
+	var player_name = new_player_data.name
+	
+	while check_dupe_name(player_name):
+		collision_count += 1
+		player_name = get_player_name(new_player_data.name, collision_count)
+		
+	new_player_data.name = player_name
+	player_data[id] = new_player_data
+	
+	rpc("_receive_player_data", player_data)
+	
+func get_player_name(player_name, collision_count):
+	if collision_count == 0:
+		return player_name
+	else:
+		return player_name + "%d" % collision_count
 
-remote func _receive_player_skins(skins):
-	player_skins = skins
+func check_dupe_name(player_name):
+	for value in player_data.values():
+		if player_name == value.name:
+			return true
+			
+	return false
+
+remote func _receive_player_data(received_player_data):
+	player_data = received_player_data
 
 func clock_update():
 	update_maps()

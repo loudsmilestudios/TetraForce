@@ -51,9 +51,9 @@ __meta__ = {
 
 [node name="panel" type="Panel" parent="."]
 margin_left = 389.61
-margin_top = 264.802
+margin_top = 245.0
 margin_right = 609.61
-margin_bottom = 325.802
+margin_bottom = 306.0
 size_flags_horizontal = 2
 size_flags_vertical = 2
 theme = ExtResource( 2 )
@@ -62,10 +62,10 @@ __meta__ = {
 }
 
 [node name="address" type="LineEdit" parent="panel"]
-margin_left = 10.0
-margin_top = 30.0
-margin_right = 125.0
-margin_bottom = 54.0
+margin_left = 10.2468
+margin_top = 30.2467
+margin_right = 125.247
+margin_bottom = 54.2467
 size_flags_horizontal = 2
 size_flags_vertical = 2
 text = "127.0.0.1"
@@ -124,12 +124,26 @@ __meta__ = {
 }
 
 [node name="characterselect" type="Panel" parent="."]
-margin_left = 435.61
-margin_top = 342.802
-margin_right = 567.61
-margin_bottom = 405.802
+margin_left = 435.363
+margin_top = 318.247
+margin_right = 567.363
+margin_bottom = 405.247
+rect_pivot_offset = Vector2( 50.0191, 75.2492 )
 theme = ExtResource( 2 )
 script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="name" type="LineEdit" parent="characterselect"]
+margin_left = 6.0
+margin_top = 56.0
+margin_right = 125.0
+margin_bottom = 80.0
+size_flags_horizontal = 2
+size_flags_vertical = 2
+text = "Greg"
+placeholder_text = "Display Name"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -140,7 +154,7 @@ playback_speed = 4.0
 anims/animation = SubResource( 1 )
 
 [node name="preview" type="Sprite" parent="characterselect"]
-position = Vector2( 64, 32 )
+position = Vector2( 63.8569, 28 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 4 )
 vframes = 7
@@ -148,10 +162,10 @@ hframes = 6
 frame = 1
 
 [node name="back" type="Button" parent="characterselect"]
-margin_left = 12.0
-margin_top = 24.0
-margin_right = 34.0
-margin_bottom = 42.0
+margin_left = 11.8569
+margin_top = 20.0
+margin_right = 33.8569
+margin_bottom = 38.0
 text = "<"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -159,9 +173,9 @@ __meta__ = {
 
 [node name="forward" type="Button" parent="characterselect"]
 margin_left = 96.0
-margin_top = 24.0
+margin_top = 20.0
 margin_right = 118.0
-margin_bottom = 42.0
+margin_bottom = 38.0
 text = ">"
 __meta__ = {
 "_edit_use_anchors_": false

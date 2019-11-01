@@ -7,3 +7,6 @@ export_presets.cfg
 
 # Mono-specific ignores
 .mono/
+
+# Mac-specific ignores
+.DS_Store

@@ -1,6 +1,7 @@
 extends Panel
 
 var selected = 0
+var player_name: String = ""
 
 var options = {
 	"guy": "res://player/player.png",
@@ -13,7 +14,7 @@ func _ready():
 
 func update_skin():
 	$preview.texture = load(options.values()[selected])
-	network.my_skin = options.values()[selected]
+	network.my_player_data.skin = options.values()[selected]
 
 func back_pressed():
 	selected = wrapi(selected - 1, 0, options.size())

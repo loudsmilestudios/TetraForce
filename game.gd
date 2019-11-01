@@ -38,11 +38,14 @@ func add_new_player(id):
 	new_player.initialize()
 	
 	if id == get_tree().get_network_unique_id():
-		new_player.get_node("Sprite").texture = load(network.my_skin)
-		new_player.texture_default = load(network.my_skin)
+		new_player.get_node("Sprite").texture = load(network.my_player_data.skin)
+		new_player.texture_default = load(network.my_player_data.skin)
+		new_player.set_player_label(network.my_player_data.name)
+
 	else:
-		new_player.get_node("Sprite").texture = load(network.player_skins.get(id))
-		new_player.texture_default = load(network.player_skins.get(id))
+		new_player.get_node("Sprite").texture = load(network.player_data.get(id).skin)
+		new_player.texture_default = load(network.player_data.get(id).skin)
+		new_player.set_player_label(network.player_data.get(id).name)
 
 func remove_player(id):
 	get_node(str(id)).queue_free()
