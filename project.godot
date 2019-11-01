@@ -54,6 +54,7 @@ sfx="*res://engine/sound.gd"
 global="*res://engine/global.gd"
 network="*res://engine/network.gd"
 screenfx="*res://engine/screenfx.tscn"
+event_bus="*res://engine/event_bus.gd"
 
 [debug]
 
