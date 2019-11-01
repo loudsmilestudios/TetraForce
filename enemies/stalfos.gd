@@ -1,4 +1,4 @@
-extends Entity
+extends Enemy
 
 var movetimer_length = 15
 var movetimer = 0
