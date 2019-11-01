@@ -1,6 +1,7 @@
 extends Node2D
 
 signal on_activate
+signal on_deactivate
 
 export(bool) var one_shot: bool = false
 
@@ -32,6 +33,7 @@ func _on_HitBox_area_entered(area):
 				emit_signal("on_activate")
 			else:
 				sprite.frame_coords.x = 0
+				emit_signal("on_deactivate")
 			
 			$CooldownTimer.start()
 			on_cooldown = true

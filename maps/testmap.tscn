@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://game.gd" type="Script" id=1]
 [ext_resource path="res://engine/camera.tscn" type="PackedScene" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://tiles/exit.tscn" type="PackedScene" id=6]
 [ext_resource path="res://tiles/door.tscn" type="PackedScene" id=7]
 [ext_resource path="res://tiles/pushable.tscn" type="PackedScene" id=8]
+[ext_resource path="res://tiles/sword_switch.tscn" type="PackedScene" id=9]
 
 [node name="testmap" type="Node2D"]
 script = ExtResource( 1 )
@@ -46,6 +47,9 @@ map = "res://maps/overworld.tscn"
 [node name="Door" parent="." instance=ExtResource( 7 )]
 position = Vector2( 264, 72 )
 
+[node name="Door4" parent="." instance=ExtResource( 7 )]
+position = Vector2( 376, 184 )
+
 [node name="Pushable" parent="." instance=ExtResource( 8 )]
 position = Vector2( 296, 40 )
 is_one_shot = true
@@ -60,6 +64,11 @@ position = Vector2( 376, 136 )
 
 [node name="Door3" parent="." instance=ExtResource( 7 )]
 position = Vector2( 392, 136 )
+
+[node name="SwordSwitch" parent="." instance=ExtResource( 9 )]
+position = Vector2( 328, 183 )
 [connection signal="on_done_moving" from="Pushable" to="Door" method="unlock"]
 [connection signal="on_done_moving" from="Pushable2" to="Door2" method="unlock"]
 [connection signal="on_done_moving" from="Pushable2" to="Door3" method="unlock"]
+[connection signal="on_activate" from="SwordSwitch" to="Door4" method="unlock"]
+[connection signal="on_deactivate" from="SwordSwitch" to="Door4" method="lock"]
