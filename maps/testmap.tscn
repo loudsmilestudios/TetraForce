@@ -66,7 +66,7 @@ position = Vector2( 376, 136 )
 position = Vector2( 392, 136 )
 
 [node name="SwordSwitch" parent="." instance=ExtResource( 9 )]
-position = Vector2( 328, 183 )
+position = Vector2( 328, 184 )
 [connection signal="on_done_moving" from="Pushable" to="Door" method="unlock"]
 [connection signal="on_done_moving" from="Pushable2" to="Door2" method="unlock"]
 [connection signal="on_done_moving" from="Pushable2" to="Door3" method="unlock"]
