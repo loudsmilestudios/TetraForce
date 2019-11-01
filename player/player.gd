@@ -27,8 +27,8 @@ func initialize():
 	if is_network_master():
 		camera.initialize(self)
 		
-func set_player_label(name):
-	$name_text_box/PlayerName.text = name
+func set_player_label(player_name):
+	$PlayerName.text = player_name
 
 func _physics_process(delta):
 	# puppet

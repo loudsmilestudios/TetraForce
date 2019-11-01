@@ -1,8 +1,7 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://player/player.gd" type="Script" id=1]
 [ext_resource path="res://player/player2.png" type="Texture" id=2]
-[ext_resource path="res://player/name_text_box.png" type="Texture" id=3]
 [ext_resource path="res://ui/monogram.ttf" type="DynamicFontData" id=4]
 
 [sub_resource type="Animation" id=1]
@@ -332,6 +331,8 @@ tracks/0/keys = {
 extents = Vector2( 4.5, 6 )
 
 [sub_resource type="DynamicFont" id=20]
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 4 )
 
 [node name="Player" type="KinematicBody2D"]
@@ -384,16 +385,14 @@ collide_with_areas = true
 wait_time = 0.75
 one_shot = true
 
-[node name="name_text_box" type="Sprite" parent="."]
-position = Vector2( -0.116257, -16.0991 )
-texture = ExtResource( 3 )
-
-[node name="PlayerName" type="Label" parent="name_text_box"]
+[node name="PlayerName" type="Label" parent="."]
+modulate = Color( 1, 1, 1, 0.784314 )
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = -54.0
-margin_top = -5.0
-margin_bottom = 10.0
+margin_left = -16.2383
+margin_top = -17.3144
+margin_right = 37.7617
+margin_bottom = -2.31442
 grow_horizontal = 2
 grow_vertical = 2
 rect_scale = Vector2( 0.6, 0.6 )
@@ -402,5 +401,7 @@ text = "Some Name"
 align = 1
 valign = 1
 clip_text = true
-percent_visible = 1.125
+__meta__ = {
+"_edit_use_anchors_": false
+}
 [connection signal="timeout" from="HoldTimer" to="." method="_on_HoldTimer_timeout"]
