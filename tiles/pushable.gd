@@ -1,22 +1,27 @@
 extends StaticBody2D
 
+signal on_done_moving
 
 export(float) var time_for_effect = 1.0
 export(bool) var is_one_shot = false
 export(Array) var direction_limits
 
+
 var has_been_pushed = false
 var time_being_pushed = 0.0
 var is_moving = false
+
 
 onready var tween := $Tween
 onready var ray := $RayCast2D
 onready var destination := position
 
 
+
 func _ready():
 	set_physics_process(false)
 	add_to_group("pushable")
+	
 	
 	$Tween.connect("tween_completed", self, "_done_moving")
 	# Ask for pushable state if needed (this must be deferred because the map_owners variable is 1 tick late after this _ready)
@@ -49,6 +54,7 @@ func stop_interact():
 func _done_moving(node, key) -> void:
 	is_moving = false
 	
+	emit_signal('on_done_moving') # Signal anyone who cares
 	# If pushable is not a one shot, add it back to the pushable group
 	if !is_one_shot:
 		add_to_group("pushable")
@@ -108,6 +114,11 @@ remote func _update_state(pos):
 	position = pos
 	destination = pos
 	has_been_pushed = true # we can infer this value from the fact that we only get a response if the block has been pushed
+	
+	# Signal anyone who cares, if we do this, then attached events are synced as well
+	# and we don't need additional server requests to open doors for example (assuming they are controlled by this object)
+	emit_signal('on_done_moving') 
+	
 	if is_one_shot: # de-activate pushable object if it's a one shot
 		remove_from_group("pushable")
 

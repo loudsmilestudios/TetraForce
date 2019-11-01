@@ -3,12 +3,11 @@ extends Entity
 var movetimer_length = 15
 var movetimer = 0
 
-puppet var puppet_pos = position
-
 func _ready():
+	puppet_pos = position
+	
 	anim.play("default")
 	movedir = entity_helper.rand_direction()
-	connect("update_position", self, "_on_update_position")
 
 func _physics_process(delta):
 	if !is_scene_owner():
@@ -22,9 +21,6 @@ func _physics_process(delta):
 	if movetimer == 0 || is_on_wall():
 		movedir = entity_helper.rand_direction()
 		movetimer = movetimer_length
-
-func _on_update_position(value):
-	rset_map("puppet_pos", value)
 
 func puppet_update():
 	position = puppet_pos
