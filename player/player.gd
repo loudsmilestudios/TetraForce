@@ -26,6 +26,9 @@ func _ready():
 func initialize():
 	if is_network_master():
 		camera.initialize(self)
+		
+func set_player_label(player_name):
+	$PlayerName.text = player_name
 
 func _physics_process(delta):
 	# puppet
@@ -141,6 +144,8 @@ func loop_interact():
 			position.y += 2
 			sfx.play(preload("res://player/player_jump.wav"), 20)
 			state = "fall"
+		elif collider.is_in_group("subitem"):
+			collider.on_pickup(self)
 		elif movedir != Vector2.ZERO && is_on_wall() && collider.is_in_group("pushable"):
 			collider.interact(self)
 			push_target = collider

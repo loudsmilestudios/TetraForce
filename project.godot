@@ -14,15 +14,15 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://engine/entity.gd"
 }, {
-"base": "Node",
-"class": "Event",
-"language": "GDScript",
-"path": "res://engine/events/event.gd"
-}, {
 "base": "Node2D",
 "class": "Item",
 "language": "GDScript",
 "path": "res://engine/item.gd"
+}, {
+"base": "StaticBody2D",
+"class": "Subitem",
+"language": "GDScript",
+"path": "res://engine/subitem.gd"
 }, {
 "base": "Reference",
 "class": "entity_helper",
@@ -31,8 +31,8 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "Entity": "",
-"Event": "",
 "Item": "",
+"Subitem": "",
 "entity_helper": ""
 }
 
@@ -48,7 +48,6 @@ sfx="*res://engine/sound.gd"
 global="*res://engine/global.gd"
 network="*res://engine/network.gd"
 screenfx="*res://engine/screenfx.tscn"
-event_bus="*res://engine/event_bus.gd"
 
 [debug]
 
