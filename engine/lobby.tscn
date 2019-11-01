@@ -51,9 +51,9 @@ __meta__ = {
 
 [node name="panel" type="Panel" parent="."]
 margin_left = 389.61
-margin_top = 245.0
+margin_top = 235.0
 margin_right = 609.61
-margin_bottom = 306.0
+margin_bottom = 296.0
 size_flags_horizontal = 2
 size_flags_vertical = 2
 theme = ExtResource( 2 )
@@ -69,6 +69,7 @@ margin_bottom = 54.2467
 size_flags_horizontal = 2
 size_flags_vertical = 2
 text = "127.0.0.1"
+placeholder_text = "127.0.0.1"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -182,3 +183,4 @@ __meta__ = {
 }
 [connection signal="pressed" from="panel/host" to="." method="_on_host_pressed"]
 [connection signal="pressed" from="panel/join" to="." method="_on_join_pressed"]
+[connection signal="text_changed" from="characterselect/name" to="characterselect" method="_on_name_text_changed"]
