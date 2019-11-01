@@ -11,6 +11,7 @@ extents = Vector2( 3, 8 )
 
 [node name="SwordSwitch" type="StaticBody2D"]
 script = ExtResource( 2 )
+mode = 2
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( 0, 2 )
@@ -31,7 +32,7 @@ position = Vector2( 0, -2 )
 shape = SubResource( 2 )
 
 [node name="CooldownTimer" type="Timer" parent="."]
-wait_time = 0.1
+wait_time = 5.0
 one_shot = true
 [connection signal="area_entered" from="HitBox" to="." method="_on_HitBox_area_entered"]
 [connection signal="timeout" from="CooldownTimer" to="." method="_on_CooldownTimer_timeout"]

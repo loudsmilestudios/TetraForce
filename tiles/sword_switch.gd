@@ -26,6 +26,7 @@ func _on_HitBox_area_entered(area: Area2D):
 			emit_signal("on_activate")
 			update_remote("enable_remote")
 			
+			
 	elif mode == 1:
 		
 		if !on_cooldown:
@@ -43,12 +44,29 @@ func _on_HitBox_area_entered(area: Area2D):
 			
 			$CooldownTimer.start()
 			on_cooldown = true
+		
+	elif mode == 2:
+		
+		if !activated:
+			activated = true
+			sprite.frame_coords.x = 1
+			emit_signal("on_activate")
+			update_remote("enable_remote")
+			$CooldownTimer.start()
+			on_cooldown = true
 
 func _on_CooldownTimer_timeout():
 	on_cooldown = false
 	
 	for peer in network.map_peers:
 		rpc_id(peer, "remote_cooldown_timeout")
+		
+	if mode == 2:
+		activated = false
+		emit_signal("on_deactivate")
+		update_remote("disable_remote")
+		$Sprite.frame_coords.x = 0
+		pass
 
 func update_remote(function: String):
 	for peer in network.map_peers:
