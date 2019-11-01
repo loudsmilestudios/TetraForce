@@ -64,6 +64,7 @@ func clear():
 	current_players.clear()
 	map_owners.clear()
 	map_peers.clear()
+	player_data.clear()
 
 func check_dupe_name(player_name):
 	for value in player_data.values():
