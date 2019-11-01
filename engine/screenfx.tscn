@@ -83,6 +83,7 @@ anims/fadewhite = SubResource( 3 )
 layer = 100
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+visible = false
 margin_right = 256.0
 margin_bottom = 144.0
 __meta__ = {

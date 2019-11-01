@@ -5,15 +5,27 @@ onready var ray = $RayCast2D
 var action_cooldown = 0
 var push_target = null
 
+var inventory_node = preload("res://ui/inventory.tscn").instance()
+var MAX_ITEMS = 35
+var has_item = []
+var equip_slot = {"X": -1, "Y": -1, "A": -1, "B": 0}
+
+var item_resources = ["res://items/sword.tscn"]
+
 var spinAtk = false
 onready var holdTimer = $HoldTimer
 
-var inventory_node = preload("res://ui/inventory.tscn").instance()
 
 func _ready():
 	puppet_pos = position
 	puppet_spritedir = "Down"
 	puppet_anim = "idleDown"
+	
+	for i in range(MAX_ITEMS+1):
+		has_item.append(false)
+	has_item[0] = true
+	
+	inventory_node.MAX_SELECT = MAX_ITEMS
 	
 	add_to_group("player")
 	ray.add_exception(hitbox)
@@ -66,14 +78,14 @@ func _physics_process(delta):
 	#	$Sprite.global_position = global_position.snapped(Vector2(1,1))
 
 func show_inventory():
-	print_debug("Inventory pressed")
-	get_parent().add_child(inventory_node)
 	action_cooldown = 5
 	state = "inventory"
+	inventory_node.scroll_down(self)
 	
 func hide_inventory():
-	get_parent().remove_child(inventory_node)
-	state = "default"
+	inventory_node.scroll_up(self);
+	#get_parent().remove_child(inventory_node)
+	#state = "default"
 	
 func state_inventory():
 	if Input.is_action_just_pressed("ui_select"):
@@ -96,10 +108,26 @@ func state_default():
 	else:
 		anim_switch("walk")
 	
-	if Input.is_action_just_pressed("B") && action_cooldown == 0:
-		use_item("res://items/sword.tscn", "B")
+	if Input.is_action_just_pressed("B") && action_cooldown == 0 && equip_slot["B"] >= 0:
+		use_item(item_resources[equip_slot["B"]], "B")
 		for peer in network.map_peers:
-			rpc_id(peer, "use_item", "res://items/sword.tscn", "B")
+			rpc_id(peer, "use_item", item_resources[equip_slot["B"]], "B")
+			
+	elif Input.is_action_just_pressed("A") && action_cooldown == 0 && equip_slot["A"] >= 0:
+		use_item(item_resources[equip_slot["A"]], "A")
+		for peer in network.map_peers:
+			rpc_id(peer, "use_item", item_resources[equip_slot["A"]], "A")
+			
+	elif Input.is_action_just_pressed("X") && action_cooldown == 0 && equip_slot["X"] >= 0:
+		use_item(item_resources[equip_slot["X"]], "X")
+		for peer in network.map_peers:
+			rpc_id(peer, "use_item", item_resources[equip_slot["X"]], "X")
+			
+	elif Input.is_action_just_pressed("Y") && action_cooldown == 0 && equip_slot["Y"] >= 0:
+		use_item(item_resources[equip_slot["Y"]], "Y")
+		for peer in network.map_peers:
+			rpc_id(peer, "use_item", item_resources[equip_slot["Y"]], "Y")
+			
 	elif Input.is_action_just_pressed("ui_select") && action_cooldown == 0:
 		show_inventory()
 
@@ -157,6 +185,7 @@ func loop_interact():
 		var collider = ray.get_collider()
 		if collider.is_in_group("interact") && Input.is_action_just_pressed("A") && action_cooldown == 0:
 			collider.interact(self)
+			action_cooldown = 3
 		elif collider.is_in_group("cliff") && spritedir == "Down":
 			position.y += 2
 			sfx.play(preload("res://player/player_jump.wav"), 20)
