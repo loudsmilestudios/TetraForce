@@ -9,13 +9,7 @@ func _init():
 
 func _ready():
 	spritedir = direction
-	if spritedir == "Left":
-		$AnimatedSprite.set_animation(spritedir.to_lower())
-	if spritedir == "Up":
-		$AnimatedSprite.set_animation(spritedir.to_lower())
-	if spritedir == "Right":
-		$AnimatedSprite.set_animation(spritedir.to_lower())
-	if spritedir == "Down":
+	if ["Left", "Up", "Right", "Down"].has(spritedir):
 		$AnimatedSprite.set_animation(spritedir.to_lower())
 func _physics_process(delta):
 	if movetimer >= 0:
