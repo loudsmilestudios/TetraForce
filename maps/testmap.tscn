@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://game.gd" type="Script" id=1]
 [ext_resource path="res://engine/camera.tscn" type="PackedScene" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://tiles/door.tscn" type="PackedScene" id=7]
 [ext_resource path="res://engine/events/event_unlock.tscn" type="PackedScene" id=8]
 [ext_resource path="res://tiles/pushable.tscn" type="PackedScene" id=9]
+[ext_resource path="res://tiles/sword_switch.tscn" type="PackedScene" id=10]
 
 [node name="testmap" type="Node2D"]
 script = ExtResource( 1 )
@@ -84,3 +85,19 @@ position = Vector2( 392, 136 )
 is_listener = true
 listen_function = "attempt_unlock"
 event_key_id = 1
+
+[node name="SwordTrigger" parent="." instance=ExtResource( 10 )]
+position = Vector2( 344, 184 )
+
+[node name="EventUnlock" parent="SwordTrigger" instance=ExtResource( 8 )]
+is_sender = true
+trigger_signal = "on_activate"
+event_key_id = 2
+
+[node name="Door4" parent="." instance=ExtResource( 7 )]
+position = Vector2( 392, 200 )
+
+[node name="EventUnlock" parent="Door4" instance=ExtResource( 8 )]
+is_listener = true
+listen_function = "attempt_unlock"
+event_key_id = 2

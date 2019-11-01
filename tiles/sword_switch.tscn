@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://tiles/sword_switch.png" type="Texture" id=1]
+[ext_resource path="res://tiles/sword_switch.gd" type="Script" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 2, 7 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 3, 8 )
+
+[node name="SwordSwitch" type="StaticBody2D"]
+script = ExtResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+offset = Vector2( 0, -4 )
+hframes = 2
+region_rect = Rect2( 0, 0, 16, 16 )
+
+[node name="HitBox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+position = Vector2( 0, -4 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, -4 )
+shape = SubResource( 2 )
+
+[node name="CooldownTimer" type="Timer" parent="."]
+wait_time = 0.25
+one_shot = true
+[connection signal="area_entered" from="HitBox" to="." method="_on_HitBox_area_entered"]
+[connection signal="timeout" from="CooldownTimer" to="." method="_on_CooldownTimer_timeout"]
