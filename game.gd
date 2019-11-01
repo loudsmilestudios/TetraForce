@@ -74,7 +74,8 @@ func update_players():
 		if !player_names.has(id):
 			add_new_player(id)
 
-
-
-
-
+remote func spawn_subitem(dropped, pos, subitem_name):
+	var drop_instance = load(dropped).instance()
+	drop_instance.name = subitem_name
+	add_child(drop_instance)
+	drop_instance.global_position = pos

@@ -180,24 +180,27 @@ sync func use_item(item, input):
 	newitem.input = input
 	newitem.start()
 
-func drop_subitem(possible_drops, drop_chance):
+func choose_subitem(possible_drops, drop_chance):
 	randomize()
 	var will_drop = randi() % 100 + 1
 	if will_drop <= drop_chance:
 		var dropped = possible_drops[randi() % possible_drops.size()]
-		var drop_instance = 0
+		var drop_choice = 0
 		match dropped:
 			"HEALTH":
-				drop_instance = preload("res://objects/heart_pickup.tscn").instance()
+				drop_choice = "res://objects/heart.tscn"
 			"RUPEE":
-				drop_instance = preload("res://objects/rupee.tscn").instance()
+				drop_choice = "res://objects/rupee.tscn"
 		
-		if typeof(drop_instance) != TYPE_INT:
-			drop_instance.global_position = global_position
-			get_parent().add_child(drop_instance)
+		if typeof(drop_choice) != TYPE_INT:
+			var subitem_name = str(randi()) # we need to sync names to ensure the subitem can rpc to the same thing for others
+			network.current_map.spawn_subitem(drop_choice, global_position, subitem_name) # has to be from game.gd bc the node might have been freed beforehand
+			for peer in network.map_peers:
+				network.current_map.rpc_id(peer, "spawn_subitem", drop_choice, global_position, subitem_name)
 
 sync func enemy_death():
-	drop_subitem(["HEALTH", "RUPEE"], 10) #Drop possible rupee or heart, 10% chance
+	if is_scene_owner():
+		choose_subitem(["HEALTH", "RUPEE"], 100)
 	var death_animation = preload("res://enemies/enemy_death.tscn").instance()
 	death_animation.global_position = global_position
 	get_parent().add_child(death_animation)
