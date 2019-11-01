@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://game.gd" type="Script" id=1]
 [ext_resource path="res://engine/camera.tscn" type="PackedScene" id=2]
@@ -7,9 +7,7 @@
 [ext_resource path="res://tiles/sign.tscn" type="PackedScene" id=5]
 [ext_resource path="res://tiles/exit.tscn" type="PackedScene" id=6]
 [ext_resource path="res://tiles/door.tscn" type="PackedScene" id=7]
-[ext_resource path="res://engine/events/event_unlock.tscn" type="PackedScene" id=8]
-[ext_resource path="res://tiles/pushable.tscn" type="PackedScene" id=9]
-[ext_resource path="res://tiles/sword_switch.tscn" type="PackedScene" id=10]
+[ext_resource path="res://tiles/pushable.tscn" type="PackedScene" id=8]
 
 [node name="testmap" type="Node2D"]
 script = ExtResource( 1 )
@@ -48,56 +46,20 @@ map = "res://maps/overworld.tscn"
 [node name="Door" parent="." instance=ExtResource( 7 )]
 position = Vector2( 264, 72 )
 
-[node name="EventUnlock" parent="Door" instance=ExtResource( 8 )]
-is_listener = true
-listen_function = "attempt_unlock"
-
-[node name="Pushable" parent="." instance=ExtResource( 9 )]
+[node name="Pushable" parent="." instance=ExtResource( 8 )]
 position = Vector2( 296, 40 )
 is_one_shot = true
 direction_limits = [ Vector2( -1, 0 ) ]
 
-[node name="EventUnlock" parent="Pushable" instance=ExtResource( 8 )]
-is_sender = true
-trigger_signal = "on_done_moving"
-
-[node name="Pushable2" parent="." instance=ExtResource( 9 )]
+[node name="Pushable2" parent="." instance=ExtResource( 8 )]
 position = Vector2( 472, 104 )
 direction_limits = [ Vector2( -1, 0 ) ]
-
-[node name="EventUnlock" parent="Pushable2" instance=ExtResource( 8 )]
-is_sender = true
-trigger_signal = "on_done_moving"
-event_key_id = 1
 
 [node name="Door2" parent="." instance=ExtResource( 7 )]
 position = Vector2( 376, 136 )
 
-[node name="EventUnlock" parent="Door2" instance=ExtResource( 8 )]
-is_listener = true
-listen_function = "attempt_unlock"
-event_key_id = 1
-
 [node name="Door3" parent="." instance=ExtResource( 7 )]
 position = Vector2( 392, 136 )
-
-[node name="EventUnlock" parent="Door3" instance=ExtResource( 8 )]
-is_listener = true
-listen_function = "attempt_unlock"
-event_key_id = 1
-
-[node name="SwordTrigger" parent="." instance=ExtResource( 10 )]
-position = Vector2( 344, 184 )
-
-[node name="EventUnlock" parent="SwordTrigger" instance=ExtResource( 8 )]
-is_sender = true
-trigger_signal = "on_activate"
-event_key_id = 2
-
-[node name="Door4" parent="." instance=ExtResource( 7 )]
-position = Vector2( 392, 200 )
-
-[node name="EventUnlock" parent="Door4" instance=ExtResource( 8 )]
-is_listener = true
-listen_function = "attempt_unlock"
-event_key_id = 2
+[connection signal="on_done_moving" from="Pushable" to="Door" method="unlock"]
+[connection signal="on_done_moving" from="Pushable2" to="Door2" method="unlock"]
+[connection signal="on_done_moving" from="Pushable2" to="Door3" method="unlock"]

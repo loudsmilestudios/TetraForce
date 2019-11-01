@@ -3,7 +3,7 @@ extends KinematicBody2D
 class_name Entity
 
 # ATTRIBUTES
-export(String, "ENEMY", "PLAYER") var TYPE = "ENEMY"
+export(String, "ENEMY", "PLAYER", "TRAP") var TYPE = "ENEMY"
 export(float, 0.5, 20, 0.5) var MAX_HEALTH = 1
 export(int) var SPEED = 70
 export(float, 0, 20, 0.5) var DAMAGE = 0.5
@@ -61,6 +61,7 @@ func _ready():
 func create_hitbox():
 	var new_hitbox = Area2D.new()
 	add_child(new_hitbox)
+	new_hitbox.name = "Hitbox"
 	
 	var new_collision = CollisionShape2D.new()
 	new_hitbox.add_child(new_collision)
@@ -141,6 +142,8 @@ func loop_damage():
 			rpc("enemy_death")
 	
 	for area in hitbox.get_overlapping_areas():
+		if area.name != "Hitbox":
+			continue
 		var body = area.get_parent()
 		if !body.get_groups().has("entity") && !body.get_groups().has("item"):
 			continue
@@ -185,7 +188,27 @@ sync func use_item(item, input):
 	newitem.input = input
 	newitem.start()
 
+func choose_subitem(possible_drops, drop_chance):
+	randomize()
+	var will_drop = randi() % 100 + 1
+	if will_drop <= drop_chance:
+		var dropped = possible_drops[randi() % possible_drops.size()]
+		var drop_choice = 0
+		match dropped:
+			"HEALTH":
+				drop_choice = "res://objects/heart.tscn"
+			"RUPEE":
+				drop_choice = "res://objects/rupee.tscn"
+		
+		if typeof(drop_choice) != TYPE_INT:
+			var subitem_name = str(randi()) # we need to sync names to ensure the subitem can rpc to the same thing for others
+			network.current_map.spawn_subitem(drop_choice, global_position, subitem_name) # has to be from game.gd bc the node might have been freed beforehand
+			for peer in network.map_peers:
+				network.current_map.rpc_id(peer, "spawn_subitem", drop_choice, global_position, subitem_name)
+
 sync func enemy_death():
+	if is_scene_owner():
+		choose_subitem(["HEALTH", "RUPEE"], 100)
 	var death_animation = preload("res://enemies/enemy_death.tscn").instance()
 	death_animation.global_position = global_position
 	get_parent().add_child(death_animation)
