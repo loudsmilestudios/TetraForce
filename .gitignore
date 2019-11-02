@@ -4,9 +4,14 @@
 export.cfg
 export_presets.cfg
 *.import
+*.TMP
 
 # Mono-specific ignores
 .mono/
 
+# VS Ignores
+*.csproj
+*.sln
+.vs
 # Mac-specific ignores
 .DS_Store

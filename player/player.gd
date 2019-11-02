@@ -5,13 +5,28 @@ onready var ray = $RayCast2D
 var action_cooldown = 0
 var push_target = null
 
+var inventory_node = preload("res://ui/inventory.tscn").instance()
+var MAX_ITEMS = 35
+var has_item = []
+var equip_slot = {"X": -1, "Y": -1, "A": -1, "B": 0}
+
+var item_resources = ["res://items/sword.tscn"]
+
 var spinAtk = false
 onready var holdTimer = $HoldTimer
+
 
 func _ready():
 	puppet_pos = position
 	puppet_spritedir = "Down"
 	puppet_anim = "idleDown"
+	
+	for i in range(MAX_ITEMS+1):
+		has_item.append(false)
+	has_item[0] = true
+	has_item[1] = true  #Not a real item, use at own risk
+	
+	inventory_node.MAX_SELECT = MAX_ITEMS
 	
 	add_to_group("player")
 	ray.add_exception(hitbox)
@@ -57,6 +72,8 @@ func _physics_process(delta):
 			state_spin()
 		"fall":
 			state_fall()
+		"inventory":
+			state_inventory()
 	
 	if action_cooldown > 0:
 		action_cooldown -= 1
@@ -70,6 +87,7 @@ func state_default():
 	loop_damage()
 	loop_spritedir()
 	loop_interact()
+	loop_inventory()
 	
 	if movedir.length() == 1:
 		ray.cast_to = movedir * 8
@@ -80,11 +98,6 @@ func state_default():
 		anim_switch("push")
 	else:
 		anim_switch("walk")
-	
-	if Input.is_action_just_pressed("B") && action_cooldown == 0:
-		use_item("res://items/sword.tscn", "B")
-		for peer in network.map_peers:
-			rpc_id(peer, "use_item", "res://items/sword.tscn", "B")
 
 func state_swing():
 	anim_switch("swing")
@@ -140,6 +153,7 @@ func loop_interact():
 		var collider = ray.get_collider()
 		if collider.is_in_group("interact") && Input.is_action_just_pressed("A") && action_cooldown == 0:
 			collider.interact(self)
+			action_cooldown = 3
 		elif collider.is_in_group("cliff") && spritedir == "Down":
 			position.y += 2
 			sfx.play(preload("res://player/player_jump.wav"), 20)
@@ -155,7 +169,42 @@ func loop_interact():
 	elif push_target:
 		push_target.stop_interact()
 		push_target = null
-
+		
+func loop_inventory():
+	if Input.is_action_just_pressed("B") && action_cooldown == 0 && equip_slot["B"] >= 0:
+		use_item(item_resources[equip_slot["B"]], "B")
+		for peer in network.map_peers:
+			rpc_id(peer, "use_item", item_resources[equip_slot["B"]], "B")
+			
+	elif Input.is_action_just_pressed("A") && action_cooldown == 0 && equip_slot["A"] >= 0:
+		use_item(item_resources[equip_slot["A"]], "A")
+		for peer in network.map_peers:
+			rpc_id(peer, "use_item", item_resources[equip_slot["A"]], "A")
+			
+	elif Input.is_action_just_pressed("X") && action_cooldown == 0 && equip_slot["X"] >= 0:
+		use_item(item_resources[equip_slot["X"]], "X")
+		for peer in network.map_peers:
+			rpc_id(peer, "use_item", item_resources[equip_slot["X"]], "X")
+			
+	elif Input.is_action_just_pressed("Y") && action_cooldown == 0 && equip_slot["Y"] >= 0:
+		use_item(item_resources[equip_slot["Y"]], "Y")
+		for peer in network.map_peers:
+			rpc_id(peer, "use_item", item_resources[equip_slot["Y"]], "Y")
+			
+	elif Input.is_action_just_pressed("ui_select") && action_cooldown == 0:
+		show_inventory()
+		
+func show_inventory():
+	action_cooldown = 5
+	state = "inventory"
+	inventory_node.scroll_down(self)
+	
+func hide_inventory():
+	inventory_node.scroll_up(self);
+	
+func state_inventory():
+	if Input.is_action_just_pressed("ui_select"):
+		hide_inventory()
 func connect_camera():
 	camera.connect("screen_change_started", self, "screen_change_started")
 	camera.connect("screen_change_completed", self, "screen_change_completed")
