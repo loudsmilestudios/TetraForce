@@ -81,20 +81,6 @@ func _physics_process(delta):
 	#if movedir.length() > 1:
 	#	$Sprite.global_position = global_position.snapped(Vector2(1,1))
 
-func show_inventory():
-	action_cooldown = 5
-	state = "inventory"
-	inventory_node.scroll_down(self)
-	
-func hide_inventory():
-	inventory_node.scroll_up(self);
-	#get_parent().remove_child(inventory_node)
-	#state = "default"
-	
-func state_inventory():
-	if Input.is_action_just_pressed("ui_select"):
-		hide_inventory()
-
 func state_default():
 	loop_controls()
 	loop_movement()
@@ -207,7 +193,18 @@ func loop_inventory():
 			
 	elif Input.is_action_just_pressed("ui_select") && action_cooldown == 0:
 		show_inventory()
-
+		
+func show_inventory():
+	action_cooldown = 5
+	state = "inventory"
+	inventory_node.scroll_down(self)
+	
+func hide_inventory():
+	inventory_node.scroll_up(self);
+	
+func state_inventory():
+	if Input.is_action_just_pressed("ui_select"):
+		hide_inventory()
 func connect_camera():
 	camera.connect("screen_change_started", self, "screen_change_started")
 	camera.connect("screen_change_completed", self, "screen_change_completed")
