@@ -18,6 +18,7 @@ var last_movedir = Vector2(0,1)
 # COMBAT
 var health = MAX_HEALTH
 signal health_changed
+signal hitstun_end
 var hitstun = 0
 
 # NETWORK
@@ -129,6 +130,7 @@ func loop_damage():
 		rpc_unreliable("hurt_texture")
 	elif hitstun == 1:
 		rpc("default_texture")
+		emit_signal("hitstun_end")
 		hitstun -= 1
 	
 	for area in hitbox.get_overlapping_areas():

@@ -9,7 +9,7 @@ func _ready():
 	set_collision_layer_bit(1,1)
 	set_collision_mask_bit(1,1)
 	
-	connect("health_changed", self, "check_for_death")
+	connect("hitstun_end", self, "check_for_death")
 
 func check_for_death():
 	print("checking for death ", health)
