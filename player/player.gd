@@ -10,7 +10,7 @@ var MAX_ITEMS = 35
 var has_item = []
 var equip_slot = {"X": -1, "Y": -1, "A": -1, "B": 0}
 
-var item_resources = ["res://items/sword.tscn"]
+var item_resources = ["res://items/sword.tscn", "res://items/arrow.tscn"]
 
 var spinAtk = false
 onready var holdTimer = $HoldTimer
