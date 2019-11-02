@@ -1,4 +1,4 @@
-extends Entity
+extends Enemy
 
 enum SpikeState {shown, hidden}
 var spike_state = SpikeState.hidden

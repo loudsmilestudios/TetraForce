@@ -7,14 +7,18 @@ const HEART_SIZE = 8
 
 onready var hearts = $Hearts
 
+
 func initialize():
+	player.connect("health_changed", self, "update_hearts")
+	
 	for i in player.MAX_HEALTH:
 		var newheart = Sprite.new()
 		newheart.texture = hearts.texture
 		newheart.hframes = hearts.hframes
 		hearts.add_child(newheart)
+		update_hearts()
 
-func _process(delta):
+func update_hearts():
 	for heart in hearts.get_children():
 		var index = heart.get_index()
 		

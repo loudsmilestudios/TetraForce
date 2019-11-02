@@ -17,6 +17,7 @@ var last_movedir = Vector2(0,1)
 
 # COMBAT
 var health = MAX_HEALTH
+signal health_changed
 var hitstun = 0
 
 # NETWORK
@@ -50,13 +51,6 @@ func _ready():
 	health = MAX_HEALTH
 	home_position = position
 	create_hitbox()
-	
-	if TYPE == "ENEMY":
-		add_to_group("enemy")
-		set_collision_layer_bit(0,0)
-		set_collision_mask_bit(0,0)
-		set_collision_layer_bit(1,1)
-		set_collision_mask_bit(1,1)
 
 func create_hitbox():
 	var new_hitbox = Area2D.new()
@@ -127,7 +121,6 @@ func loop_spritedir():
 		sprite.flip_h = flip
 
 func loop_damage():
-	health = min(health, MAX_HEALTH)
 	sprite.texture = texture_default
 	sprite.scale.x = 1
 	
@@ -137,9 +130,6 @@ func loop_damage():
 	elif hitstun == 1:
 		rpc("default_texture")
 		hitstun -= 1
-	else:
-		if TYPE == "ENEMY" && health <= 0:
-			rpc("enemy_death")
 	
 	for area in hitbox.get_overlapping_areas():
 		if area.name != "Hitbox":
@@ -148,7 +138,7 @@ func loop_damage():
 		if !body.get_groups().has("entity") && !body.get_groups().has("item"):
 			continue
 		if hitstun == 0 && body.get("DAMAGE") > 0 && body.get("TYPE") != TYPE:
-			health -= body.DAMAGE
+			update_health(-body.DAMAGE)
 			hitstun = 10
 			knockdir = global_position - body.global_position
 			sfx.play(load(HURT_SOUND))
@@ -156,6 +146,10 @@ func loop_damage():
 			if body.has_method("hit"):
 				body.rpc("hit")
 				body.hit()
+
+func update_health(delta):
+	health = max(min(health + delta, MAX_HEALTH), 0)
+	emit_signal("health_changed")
 
 sync func hurt_texture():
 	sprite.material.set_shader_param("is_hurt", true)
