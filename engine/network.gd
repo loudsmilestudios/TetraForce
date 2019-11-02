@@ -54,6 +54,17 @@ func get_player_name(player_name, collision_count):
 		return player_name
 	else:
 		return player_name + "%d" % collision_count
+	
+func clear():
+	if is_instance_valid(current_map):
+		current_map.free()
+	if is_instance_valid(clock):
+		clock.stop()
+	active_maps.clear()
+	current_players.clear()
+	map_owners.clear()
+	map_peers.clear()
+	player_data.clear()
 
 func check_dupe_name(player_name):
 	for value in player_data.values():
