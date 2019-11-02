@@ -1,0 +1,61 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://ui/TetraForce.tres" type="Theme" id=1]
+[ext_resource path="res://ui/esc_menu.gd" type="Script" id=2]
+
+[node name="esc_menu" type="Popup"]
+visible = true
+margin_left = 90.7272
+margin_top = 11.2967
+margin_right = 164.727
+margin_bottom = 101.296
+mouse_filter = 2
+theme = ExtResource( 1 )
+popup_exclusive = true
+script = ExtResource( 2 )
+
+[node name="background" type="ColorRect" parent="."]
+margin_left = -11.0
+margin_right = 98.0
+margin_bottom = 82.0
+color = Color( 0, 0, 0, 0.294118 )
+
+[node name="resume" type="Button" parent="."]
+margin_left = 16.0513
+margin_top = 62.6147
+margin_right = 66.0513
+margin_bottom = 77.6147
+size_flags_horizontal = 2
+size_flags_vertical = 2
+text = "Resume"
+
+[node name="quit_game" type="Button" parent="."]
+margin_left = 12.1026
+margin_top = 4.05827
+margin_right = 71.1026
+margin_bottom = 20.0583
+size_flags_horizontal = 2
+size_flags_vertical = 2
+text = "Quit Game"
+
+[node name="options" type="Button" parent="."]
+margin_left = 16.0513
+margin_top = 42.6007
+margin_right = 66.0513
+margin_bottom = 57.6007
+size_flags_horizontal = 2
+disabled = true
+text = "Options"
+
+[node name="goto_lobby" type="Button" parent="."]
+margin_left = -7.21912
+margin_top = 23.7226
+margin_right = 92.7809
+margin_bottom = 38.7226
+size_flags_horizontal = 2
+disabled = true
+text = "Return to Lobby"
+[connection signal="pressed" from="resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="quit_game" to="." method="_on_quit_game_pressed"]
+[connection signal="pressed" from="options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="goto_lobby" to="." method="_on_goto_lobby_pressed"]
