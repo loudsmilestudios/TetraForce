@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://game.gd" type="Script" id=1]
 [ext_resource path="res://engine/camera.tscn" type="PackedScene" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://tiles/exit.tscn" type="PackedScene" id=6]
 [ext_resource path="res://tiles/door.tscn" type="PackedScene" id=7]
 [ext_resource path="res://tiles/pushable.tscn" type="PackedScene" id=8]
+[ext_resource path="res://enemies/arrowtrap/arrow_trap.tscn" type="PackedScene" id=9]
 
 [node name="testmap" type="Node2D"]
 script = ExtResource( 1 )
@@ -30,7 +31,7 @@ __meta__ = {
 [node name="ObjectPlacer" parent="." instance=ExtResource( 4 )]
 position = Vector2( 1, 0 )
 z_index = 100
-tile_data = PoolIntArray( 262149, 0, 0, 262169, 1, 0, 262170, 1, 0, 262171, 1, 0, 262172, 1, 0, 327699, 2, 0 )
+tile_data = PoolIntArray( 65537, 5, 0, 65550, 5, 0, 65553, 5, 0, 131081, 0, 0, 131082, 0, 0, 196617, 0, 0, 196618, 0, 0, 262169, 1, 0, 262170, 1, 0, 262171, 1, 0, 262172, 1, 0, 327689, 2, 0, 327690, 2, 0, 327699, 2, 0, 393225, 2, 0, 393226, 2, 0, 458753, 5, 0, 458766, 5, 0, 458769, 5, 0, 655377, 5, 0, 655390, 5, 0, 720915, 2, 0, 720924, 2, 0, 786455, 0, 0, 786456, 0, 0, 851985, 5, 0, 851988, 5, 0, 851991, 0, 0, 851992, 0, 0, 851996, 5, 0, 851998, 5, 0, 983059, 2, 0, 983068, 2, 0, 1048593, 5, 0, 1048598, 5, 0, 1048601, 5, 0, 1048606, 5, 0 )
 
 [node name="Sign" parent="." instance=ExtResource( 5 )]
 position = Vector2( 184, 23 )
@@ -60,6 +61,26 @@ position = Vector2( 376, 136 )
 
 [node name="Door3" parent="." instance=ExtResource( 7 )]
 position = Vector2( 392, 136 )
+
+[node name="arrowtrap" parent="." instance=ExtResource( 9 )]
+position = Vector2( 328, 24 )
+timer = 100.0
+direction = "Down"
+
+[node name="arrowtrap2" parent="." instance=ExtResource( 9 )]
+position = Vector2( 360, 88 )
+timer = 75.0
+direction = "Left"
+
+[node name="arrowtrap3" parent="." instance=ExtResource( 9 )]
+position = Vector2( 424, 168 )
+timer = 100.0
+direction = "Down"
+
+[node name="arrowtrap4" parent="." instance=ExtResource( 9 )]
+position = Vector2( 344, 168 )
+timer = 100.0
+direction = "Down"
 [connection signal="on_done_moving" from="Pushable" to="Door" method="unlock"]
-[connection signal="on_done_moving" from="Pushable2" to="Door2" method="unlock"]
 [connection signal="on_done_moving" from="Pushable2" to="Door3" method="unlock"]
+[connection signal="on_done_moving" from="Pushable2" to="Door2" method="unlock"]
