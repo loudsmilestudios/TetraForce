@@ -101,6 +101,7 @@ func state_default():
 	loop_damage()
 	loop_spritedir()
 	loop_interact()
+	loop_inventory()
 	
 	if movedir.length() == 1:
 		ray.cast_to = movedir * 8
@@ -111,29 +112,6 @@ func state_default():
 		anim_switch("push")
 	else:
 		anim_switch("walk")
-	
-	if Input.is_action_just_pressed("B") && action_cooldown == 0 && equip_slot["B"] >= 0:
-		use_item(item_resources[equip_slot["B"]], "B")
-		for peer in network.map_peers:
-			rpc_id(peer, "use_item", item_resources[equip_slot["B"]], "B")
-			
-	elif Input.is_action_just_pressed("A") && action_cooldown == 0 && equip_slot["A"] >= 0:
-		use_item(item_resources[equip_slot["A"]], "A")
-		for peer in network.map_peers:
-			rpc_id(peer, "use_item", item_resources[equip_slot["A"]], "A")
-			
-	elif Input.is_action_just_pressed("X") && action_cooldown == 0 && equip_slot["X"] >= 0:
-		use_item(item_resources[equip_slot["X"]], "X")
-		for peer in network.map_peers:
-			rpc_id(peer, "use_item", item_resources[equip_slot["X"]], "X")
-			
-	elif Input.is_action_just_pressed("Y") && action_cooldown == 0 && equip_slot["Y"] >= 0:
-		use_item(item_resources[equip_slot["Y"]], "Y")
-		for peer in network.map_peers:
-			rpc_id(peer, "use_item", item_resources[equip_slot["Y"]], "Y")
-			
-	elif Input.is_action_just_pressed("ui_select") && action_cooldown == 0:
-		show_inventory()
 
 func state_swing():
 	anim_switch("swing")
@@ -205,6 +183,30 @@ func loop_interact():
 	elif push_target:
 		push_target.stop_interact()
 		push_target = null
+		
+func loop_inventory():
+	if Input.is_action_just_pressed("B") && action_cooldown == 0 && equip_slot["B"] >= 0:
+		use_item(item_resources[equip_slot["B"]], "B")
+		for peer in network.map_peers:
+			rpc_id(peer, "use_item", item_resources[equip_slot["B"]], "B")
+			
+	elif Input.is_action_just_pressed("A") && action_cooldown == 0 && equip_slot["A"] >= 0:
+		use_item(item_resources[equip_slot["A"]], "A")
+		for peer in network.map_peers:
+			rpc_id(peer, "use_item", item_resources[equip_slot["A"]], "A")
+			
+	elif Input.is_action_just_pressed("X") && action_cooldown == 0 && equip_slot["X"] >= 0:
+		use_item(item_resources[equip_slot["X"]], "X")
+		for peer in network.map_peers:
+			rpc_id(peer, "use_item", item_resources[equip_slot["X"]], "X")
+			
+	elif Input.is_action_just_pressed("Y") && action_cooldown == 0 && equip_slot["Y"] >= 0:
+		use_item(item_resources[equip_slot["Y"]], "Y")
+		for peer in network.map_peers:
+			rpc_id(peer, "use_item", item_resources[equip_slot["Y"]], "Y")
+			
+	elif Input.is_action_just_pressed("ui_select") && action_cooldown == 0:
+		show_inventory()
 
 func connect_camera():
 	camera.connect("screen_change_started", self, "screen_change_started")
