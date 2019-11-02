@@ -82,7 +82,7 @@ func update_equipment(slot):
 			equip_slot[equip_slot.keys()[cur_node]] = -1
 		cur_node += 1
 	
-func _process(delta):
+func _input(event):
 	if Input.is_action_just_pressed("RIGHT"):
 		cursor_position = min(cursor_position + 1, MAX_SELECT)
 		update_cursor_loc()
