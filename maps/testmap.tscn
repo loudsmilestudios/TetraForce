@@ -68,7 +68,6 @@ position = Vector2( 536, 72 )
 [node name="SwordSwitch" parent="." instance=ExtResource( 9 )]
 position = Vector2( 552, 119 )
 mode = 1
-cooldown = 5.0
 [connection signal="on_done_moving" from="Pushable" to="Door" method="unlock"]
 [connection signal="on_done_moving" from="Pushable2" to="Door3" method="unlock"]
 [connection signal="on_done_moving" from="Pushable2" to="Door2" method="unlock"]
