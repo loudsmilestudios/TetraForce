@@ -42,9 +42,8 @@ func _server_disconnected():
 ##### Game creation functions ######
 
 func _end_game(with_error=""):
-	if (has_node("/root/game")):
-		get_node("/root/game").free() # erase immediately, otherwise network might show errors (this is why we connected deferred above)
-		show()
+	network.clear() # handle clearing out the network immediately (this is why we connected deferred above)
+	show()
 	
 	get_tree().set_network_peer(null) #remove peer
 	
