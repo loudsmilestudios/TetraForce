@@ -64,10 +64,7 @@ func _load_from_preferences() -> void:
 	var saved = File.new()
 		
 	if !saved.file_exists(_get_save_file()):
-		printerr("File not found! Aborting...")
 		_save_to_preferences()
-		
-		return
 
 	saved.open(_get_save_file(), File.READ)
 	
