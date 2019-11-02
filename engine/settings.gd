@@ -19,7 +19,8 @@ var _user_controls: Dictionary = {
 		"LEFT": KEY_LEFT,
 		"RIGHT": KEY_RIGHT,
 		"A": KEY_C,
-		"B": KEY_X
+		"B": KEY_X,
+		"PLAYERNAMES": KEY_N
 	},
 	"input.axes": {
 		"UP": [JOY_ANALOG_LY, -1.0],
@@ -122,6 +123,13 @@ func set_pref(key: String, value) -> void:
 		
 		_save_to_preferences()
 		
+
+func toggle_pref(key: String) -> void:
+	if _user_prefs.has(key):
+		if _user_prefs[key] is bool:
+			_user_prefs[key] = !_user_prefs[key]
+			_save_to_preferences()
+
 func save_input_map(new_map: Dictionary) -> void:
 	_user_controls = new_map
 	set_pref("controls", _user_controls)

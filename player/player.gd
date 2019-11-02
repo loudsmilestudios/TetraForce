@@ -146,9 +146,13 @@ func loop_controls():
 	var RIGHT = Input.is_action_pressed("RIGHT")
 	var UP = Input.is_action_pressed("UP")
 	var DOWN = Input.is_action_pressed("DOWN")
-	
+
 	movedir.x = -int(LEFT) + int(RIGHT)
 	movedir.y = -int(UP) + int(DOWN)
+
+	if Input.is_action_just_pressed("ui_togglenames"):
+		settings.toggle_pref("show_name_tags")
+		$PlayerName.visible = settings.get_pref("show_name_tags")
 
 func loop_interact():
 	if ray.is_colliding():
