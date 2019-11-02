@@ -173,27 +173,13 @@ func loop_interact():
 		push_target = null
 		
 func loop_inventory():
-	if Input.is_action_just_pressed("B") && action_cooldown == 0 && equip_slot["B"] >= 0:
-		use_item(item_resources[equip_slot["B"]], "B")
-		for peer in network.map_peers:
-			rpc_id(peer, "use_item", item_resources[equip_slot["B"]], "B")
-			
-	elif Input.is_action_just_pressed("A") && action_cooldown == 0 && equip_slot["A"] >= 0:
-		use_item(item_resources[equip_slot["A"]], "A")
-		for peer in network.map_peers:
-			rpc_id(peer, "use_item", item_resources[equip_slot["A"]], "A")
-			
-	elif Input.is_action_just_pressed("X") && action_cooldown == 0 && equip_slot["X"] >= 0:
-		use_item(item_resources[equip_slot["X"]], "X")
-		for peer in network.map_peers:
-			rpc_id(peer, "use_item", item_resources[equip_slot["X"]], "X")
-			
-	elif Input.is_action_just_pressed("Y") && action_cooldown == 0 && equip_slot["Y"] >= 0:
-		use_item(item_resources[equip_slot["Y"]], "Y")
-		for peer in network.map_peers:
-			rpc_id(peer, "use_item", item_resources[equip_slot["Y"]], "Y")
-			
-	elif Input.is_action_just_pressed("ui_select") && action_cooldown == 0:
+	for btn in ["B", "A", "X", "Y"]:
+		if Input.is_action_just_pressed(btn) && action_cooldown == 0 && equip_slot[btn] >= 0:
+			use_item(item_resources[equip_slot[btn]], btn)
+			for peer in network.map_peers:
+				rpc_id(peer, "use_item", item_resources[equip_slot[btn]], btn)
+				
+	if Input.is_action_just_pressed("ui_select") && action_cooldown == 0:
 		show_inventory()
 		
 func show_inventory():
