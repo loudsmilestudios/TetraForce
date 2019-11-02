@@ -136,7 +136,7 @@ func state_fall():
 			colliding = true
 	if !colliding:
 		$CollisionShape2D.disabled = false
-		sfx.play(preload("res://player/player_land.wav"), 20)
+		sfx.play(preload("res://player/player_land.wav"))
 		state = "default"
 
 func loop_controls():
@@ -158,7 +158,7 @@ func loop_interact():
 			action_cooldown = 3
 		elif collider.is_in_group("cliff") && spritedir == "Down":
 			position.y += 2
-			sfx.play(preload("res://player/player_jump.wav"), 20)
+			sfx.play(preload("res://player/player_jump.wav"))
 			state = "fall"
 		elif collider.is_in_group("subitem"):
 			collider.on_pickup(self)
@@ -206,4 +206,4 @@ func screen_change_completed():
 
 func _on_HoldTimer_timeout():
 	spinAtk = true
-	sfx.play(preload("res://items/tink.wav"), 20) # get better sfx
+	sfx.play(preload("res://items/tink.wav")) # get better sfx
