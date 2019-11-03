@@ -8,8 +8,8 @@ extends Node
 
 var player # this client's player
 
-var health = 3
-var max_health = 3
+var health = 5
+var max_health = 5
 var equip_slot = {"B": "Sword", "X": "", "Y": ""}
 var items = ["Sword", "Bow"]
 

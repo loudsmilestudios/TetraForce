@@ -16,11 +16,10 @@ onready var holdTimer = $HoldTimer
 
 func _ready():
 	if is_network_master():
-		var hud = get_parent().get_node("HUD")
-		hud.player = self
-		hud.initialize()
 		global.player = self
 		global.set_player_state()
+		var hud = get_parent().get_node("HUD")
+		hud.initialize()
 	
 	puppet_pos = position
 	puppet_spritedir = "Down"
@@ -158,8 +157,6 @@ func loop_interact():
 			position.y += 2
 			sfx.play(preload("res://player/player_jump.wav"), 20)
 			state = "fall"
-		elif collider.is_in_group("subitem"):
-			collider.on_pickup(self)
 		elif movedir != Vector2.ZERO && is_on_wall() && collider.is_in_group("pushable"):
 			collider.interact(self)
 			push_target = collider
