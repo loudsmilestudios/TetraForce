@@ -1,12 +1,12 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://objects/heart.png" type="Texture" id=1]
-[ext_resource path="res://objects/heart.gd" type="Script" id=2]
+[ext_resource path="res://droppables/heart.png" type="Texture" id=1]
+[ext_resource path="res://droppables/heart.gd" type="Script" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 8.47137, 8.96962 )
+extents = Vector2( 4, 4 )
 
-[node name="Heart" type="StaticBody2D"]
+[node name="Heart" type="Area2D"]
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
@@ -14,5 +14,4 @@ texture = ExtResource( 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
-one_way_collision = true
 one_way_collision_margin = 0.0

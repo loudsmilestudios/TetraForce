@@ -9,6 +9,16 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Area2D",
+"class": "Droppable",
+"language": "GDScript",
+"path": "res://droppables/droppable.gd"
+}, {
+"base": "Entity",
+"class": "Enemy",
+"language": "GDScript",
+"path": "res://enemies/enemy.gd"
+}, {
 "base": "KinematicBody2D",
 "class": "Entity",
 "language": "GDScript",
@@ -35,6 +45,8 @@ _global_script_classes=[ {
 "path": "res://engine/helper_scipts/entity_helper.gd"
 } ]
 _global_script_class_icons={
+"Droppable": "",
+"Enemy": "",
 "Entity": "",
 "Item": "",
 "Subitem": "",
@@ -136,3 +148,4 @@ quality/2d/gles2_use_nvidia_rect_flicker_workaround=true
 quality/intended_usage/framebuffer_allocation=0
 quality/intended_usage/framebuffer_allocation.mobile=0
 quality/2d/use_pixel_snap=true
+vram_compression/import_etc=true

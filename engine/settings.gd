@@ -18,8 +18,10 @@ var _user_controls: Dictionary = {
 		"DOWN": KEY_DOWN,
 		"LEFT": KEY_LEFT,
 		"RIGHT": KEY_RIGHT,
-		"A": KEY_C,
-		"B": KEY_X
+		"A": KEY_X,
+		"B": KEY_C,
+		"X": KEY_V,
+		"Y": KEY_B,
 	},
 	"input.axes": {
 		"UP": [JOY_ANALOG_LY, -1.0],
@@ -33,7 +35,9 @@ var _user_controls: Dictionary = {
 		"LEFT": JOY_DPAD_LEFT,
 		"RIGHT": JOY_DPAD_RIGHT,
 		"A": JOY_DS_A,
-		"B": JOY_DS_B
+		"B": JOY_DS_B,
+		"X": JOY_DS_X,
+		"Y": JOY_DS_Y,
 	}
 }
 

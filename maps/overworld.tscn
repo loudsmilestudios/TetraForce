@@ -3,8 +3,8 @@
 [ext_resource path="res://game.gd" type="Script" id=1]
 [ext_resource path="res://maps/overworld.tres" type="TileSet" id=2]
 [ext_resource path="res://tiles/sign.tscn" type="PackedScene" id=3]
+[ext_resource path="res://tiles/exit.tscn" type="PackedScene" id=4]
 [ext_resource path="res://engine/object_placer.tscn" type="PackedScene" id=5]
-[ext_resource path="res://tiles/exit.tscn" type="PackedScene" id=6]
 
 [node name="overworld" type="Node2D"]
 script = ExtResource( 1 )
@@ -30,11 +30,12 @@ tile_data = PoolIntArray( -655345, 6, 0, -655343, 6, 0, -655341, 6, 0, -655339, 
 [node name="ObjectPlacer" parent="." instance=ExtResource( 5 )]
 position = Vector2( 1, 0 )
 z_index = 100
+tile_data = PoolIntArray( 262154, 2, 0 )
 
 [node name="Spawn" type="Position2D" parent="."]
 position = Vector2( 56, 136 )
 
-[node name="Exit" parent="." instance=ExtResource( 6 )]
+[node name="Exit" parent="." instance=ExtResource( 4 )]
 position = Vector2( 56, 148 )
 map = "res://maps/testmap.tscn"
 
