@@ -5,10 +5,9 @@ onready var ray = $RayCast2D
 var action_cooldown = 0
 var push_target = null
 
-var MAX_ITEMS = 35
-var equip_slot = {"B": "", "X": "", "Y": ""}
-
-var items = ["Sword", "Bow"]
+# synced from engine/global.gd
+var equip_slot
+var items
 var item_resources
 
 var spinAtk = false
@@ -16,23 +15,24 @@ onready var holdTimer = $HoldTimer
 
 
 func _ready():
-	puppet_pos = position
-	puppet_spritedir = "Down"
-	puppet_anim = "idleDown"
-	
-	update_item_resources()
-	
-	add_to_group("player")
-	ray.add_exception(hitbox)
-	
-	connect_camera()
-	
-	$PlayerName.visible = settings.get_pref("show_name_tags")
-	
 	if is_network_master():
 		var hud = get_parent().get_node("HUD")
 		hud.player = self
 		hud.initialize()
+		global.player = self
+		global.set_player_state()
+	
+	puppet_pos = position
+	puppet_spritedir = "Down"
+	puppet_anim = "idleDown"
+	
+	add_to_group("player")
+	ray.add_exception(hitbox)
+	
+	update_item_resources()
+	connect_camera()
+	
+	$PlayerName.visible = settings.get_pref("show_name_tags")
 
 func initialize():
 	if is_network_master():
@@ -175,7 +175,7 @@ func loop_inventory():
 		if Input.is_action_just_pressed(btn) && action_cooldown == 0 && equip_slot[btn] != "":
 			use_item(global.get_item_path(equip_slot[btn]), btn)
 			for peer in network.map_peers:
-				rpc_id(peer, "use_item", item_resources[equip_slot[btn]], btn)
+				rpc_id(peer, "use_item", global.get_item_path(equip_slot[btn]), btn)
 				
 	if Input.is_action_just_pressed("ui_select") && action_cooldown == 0:
 		show_inventory()
