@@ -204,9 +204,12 @@ func connect_camera():
 
 func screen_change_started():
 	set_physics_process(false)
+	room.remove_entity(self)
 
 func screen_change_completed():
 	set_physics_process(true)
+	room = network.get_room(position)
+	room.add_entity(self)
 
 func _on_HoldTimer_timeout():
 	spinAtk = true
