@@ -14,6 +14,7 @@ func _ready():
 			tile_path = "res://enemies/"+tile_name+".tscn"
 		
 		var node = load(tile_path).instance()
+		node.name = tile_name + str(tile)
 		node.global_position = map_to_world(tile) + Vector2(8,8) + get_tileset().tile_get_texture_offset(get_cellv(tile))
 		get_parent().call_deferred("add_child", node)
 	clear()

@@ -87,6 +87,8 @@ func puppet_update():
 	pass
 
 func is_scene_owner():
+	if !network.map_owners.keys().has(network.current_map.name):
+		return false
 	if network.map_owners[network.current_map.name] == get_tree().get_network_unique_id():
 		return true
 	return false
