@@ -13,6 +13,8 @@ var item_resources
 var spinAtk = false
 onready var holdTimer = $HoldTimer
 
+onready var chatBox = preload("res://ui/chat/chat.tscn").instance()
+
 
 func _ready():
 	if is_network_master():
@@ -32,6 +34,9 @@ func _ready():
 	connect_camera()
 	
 	$PlayerName.visible = settings.get_pref("show_name_tags")
+	
+	network.current_map.get_node("HUD").add_child(chatBox)
+	chatBox.hide_all()
 
 func initialize():
 	if is_network_master():
@@ -133,7 +138,7 @@ func state_fall():
 		state = "default"
 
 func state_inventory():
-	if Input.is_action_just_pressed("ui_select"):
+	if Input.is_action_just_pressed("ui_select") && !chatBox.is_typing():
 		hide_inventory()
 
 func loop_controls():
@@ -184,9 +189,11 @@ func show_inventory():
 	network.current_map.get_node("HUD").add_child(inventory)
 	inventory.player = self
 	inventory.start()
+	chatBox.show_all()
 	
 func hide_inventory():
 	network.current_map.get_node("HUD/Inventory").queue_free()
+	chatBox.hide_all()
 	state = "default"
 
 func update_item_resources():

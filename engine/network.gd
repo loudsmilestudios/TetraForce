@@ -145,6 +145,11 @@ func _player_disconnected(id):
 	if get_tree().is_network_server():
 		active_maps.erase(id)
 	update_maps()
+	
+remote func _receive_chat_message(source, text):
+	print_debug("Polo")
+	if global.player:
+		global.player.chatBox.add_new_message(source, text)
 
 class Room :
 	
