@@ -110,7 +110,7 @@ func state_hold():
 	else:
 		anim_switch("idle")
 	
-	if !Input.is_action_pressed("A") && !Input.is_action_pressed("B"):
+	if !Input.is_action_pressed(controller.A) && !Input.is_action_pressed(controller.B):
 		state = "default"
 
 func state_spin():
@@ -134,16 +134,16 @@ func state_fall():
 		state = "default"
 
 func state_inventory():
-	if Input.is_action_just_pressed("SELECT"):
+	if Input.is_action_just_pressed(controller.SELECT):
 		hide_inventory()
 
 func loop_controls():
 	movedir = Vector2.ZERO
 	
-	var LEFT = Input.is_action_pressed("LEFT")
-	var RIGHT = Input.is_action_pressed("RIGHT")
-	var UP = Input.is_action_pressed("UP")
-	var DOWN = Input.is_action_pressed("DOWN")
+	var LEFT = Input.is_action_pressed(controller.LEFT)
+	var RIGHT = Input.is_action_pressed(controller.RIGHT)
+	var UP = Input.is_action_pressed(controller.UP)
+	var DOWN = Input.is_action_pressed(controller.DOWN)
 	
 	movedir.x = -int(LEFT) + int(RIGHT)
 	movedir.y = -int(UP) + int(DOWN)
@@ -151,7 +151,7 @@ func loop_controls():
 func loop_interact():
 	if ray.is_colliding():
 		var collider = ray.get_collider()
-		if collider.is_in_group("interact") && Input.is_action_just_pressed("A") && action_cooldown == 0:
+		if collider.is_in_group("interact") && Input.is_action_just_pressed(controller.A) && action_cooldown == 0:
 			collider.interact(self)
 			action_cooldown = 3
 		elif collider.is_in_group("cliff") && spritedir == "Down":
@@ -171,13 +171,13 @@ func loop_interact():
 		push_target = null
 		
 func loop_inventory():
-	for btn in ["B", "X", "Y"]:
+	for btn in [controller.B, controller.X, controller.Y]:
 		if Input.is_action_just_pressed(btn) && action_cooldown == 0 && equip_slot[btn] != "":
 			use_item(global.get_item_path(equip_slot[btn]), btn)
 			for peer in network.map_peers:
 				rpc_id(peer, "use_item", global.get_item_path(equip_slot[btn]), btn)
 				
-	if Input.is_action_just_pressed("SELECT") && action_cooldown == 0:
+	if Input.is_action_just_pressed(controller.SELECT) && action_cooldown == 0:
 		show_inventory()
 		
 func show_inventory():

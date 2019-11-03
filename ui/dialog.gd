@@ -52,11 +52,11 @@ func write_line(l):
 		$Text.text += character
 		sfx.play(preload("res://ui/dialog_character.wav"), 15)
 		var speed = TEXT_SPEED
-		if Input.is_action_pressed("B"):
+		if Input.is_action_pressed(controller.B):
 			speed = TEXT_SPEED / 2
 		yield(get_tree().create_timer(speed), "timeout")
 	emit_signal("line_end")
 
 func _input(event):
-	if event.is_action_pressed("A") || event.is_action_pressed("B"):
+	if event.is_action_pressed(controller.A) || event.is_action_pressed(controller.B):
 		emit_signal("advance_text")
