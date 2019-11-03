@@ -5,12 +5,11 @@ onready var ray = $RayCast2D
 var action_cooldown = 0
 var push_target = null
 
-var inventory_node = preload("res://ui/inventory.tscn").instance()
 var MAX_ITEMS = 35
-var has_item = []
-var equip_slot = {"X": -1, "Y": -1, "A": -1, "B": 0}
+var equip_slot = {"B": "", "X": "", "Y": ""}
 
-var item_resources = ["res://items/sword.tscn", "res://items/arrow.tscn"]
+var items = ["Sword", "Bow"]
+var item_resources
 
 var spinAtk = false
 onready var holdTimer = $HoldTimer
@@ -21,12 +20,7 @@ func _ready():
 	puppet_spritedir = "Down"
 	puppet_anim = "idleDown"
 	
-	for i in range(MAX_ITEMS+1):
-		has_item.append(false)
-	has_item[0] = true
-	has_item[1] = true  #Not a real item, use at own risk
-	
-	inventory_node.MAX_SELECT = MAX_ITEMS
+	update_item_resources()
 	
 	add_to_group("player")
 	ray.add_exception(hitbox)
@@ -139,6 +133,10 @@ func state_fall():
 		sfx.play(preload("res://player/player_land.wav"), 20)
 		state = "default"
 
+func state_inventory():
+	if Input.is_action_just_pressed("ui_select"):
+		hide_inventory()
+
 func loop_controls():
 	movedir = Vector2.ZERO
 	
@@ -173,9 +171,9 @@ func loop_interact():
 		push_target = null
 		
 func loop_inventory():
-	for btn in ["B", "A", "X", "Y"]:
-		if Input.is_action_just_pressed(btn) && action_cooldown == 0 && equip_slot[btn] >= 0:
-			use_item(item_resources[equip_slot[btn]], btn)
+	for btn in ["B", "X", "Y"]:
+		if Input.is_action_just_pressed(btn) && action_cooldown == 0 && equip_slot[btn] != "":
+			use_item(global.get_item_path(equip_slot[btn]), btn)
 			for peer in network.map_peers:
 				rpc_id(peer, "use_item", item_resources[equip_slot[btn]], btn)
 				
@@ -185,14 +183,21 @@ func loop_inventory():
 func show_inventory():
 	action_cooldown = 5
 	state = "inventory"
-	inventory_node.scroll_down(self)
+	var inventory = preload("res://ui/inventory/inventory.tscn").instance()
+	network.current_map.get_node("HUD").add_child(inventory)
+	inventory.player = self
+	inventory.start()
 	
 func hide_inventory():
-	inventory_node.scroll_up(self);
-	
-func state_inventory():
-	if Input.is_action_just_pressed("ui_select"):
-		hide_inventory()
+	network.current_map.get_node("HUD/Inventory").queue_free()
+	state = "default"
+
+func update_item_resources():
+	item_resources = []
+	for item in items:
+		item_resources.append(global.get_item_path(item))
+	print(item_resources)
+
 func connect_camera():
 	camera.connect("screen_change_started", self, "screen_change_started")
 	camera.connect("screen_change_completed", self, "screen_change_completed")
@@ -202,7 +207,6 @@ func screen_change_started():
 
 func screen_change_completed():
 	set_physics_process(true)
-
 
 func _on_HoldTimer_timeout():
 	spinAtk = true

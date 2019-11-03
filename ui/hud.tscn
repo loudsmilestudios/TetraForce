@@ -4,7 +4,6 @@
 [ext_resource path="res://ui/hearts.png" type="Texture" id=2]
 [ext_resource path="res://ui/esc_menu.tscn" type="PackedScene" id=3]
 
-
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource( 1 )
 
@@ -14,3 +13,4 @@ texture = ExtResource( 2 )
 hframes = 5
 
 [node name="pause_menu" parent="." instance=ExtResource( 3 )]
+visible = false

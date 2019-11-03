@@ -1,0 +1,52 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://ui/monogram.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://ui/TetraForce.tres" type="Theme" id=2]
+[ext_resource path="res://ui/inventory/inventory.gd" type="Script" id=3]
+
+[sub_resource type="DynamicFont" id=1]
+size = 32
+font_data = ExtResource( 1 )
+
+[sub_resource type="Theme" id=2]
+default_font = SubResource( 1 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 32
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 1 )
+
+[node name="Inventory" type="Panel"]
+margin_left = 185.0
+margin_top = 68.0
+margin_right = 327.0
+margin_bottom = 220.0
+rect_scale = Vector2( 0.5, 0.5 )
+theme = ExtResource( 2 )
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+margin_left = 14.0
+margin_top = 12.0
+margin_right = 128.0
+margin_bottom = 138.0
+scroll_horizontal_enabled = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Items" type="VBoxContainer" parent="ScrollContainer"]
+theme = SubResource( 2 )
+custom_constants/separation = -4
+
+[node name="Equipped" type="Label" parent="."]
+margin_left = -368.0
+margin_top = 124.0
+margin_right = -328.0
+margin_bottom = 150.0
+custom_fonts/font = SubResource( 3 )
