@@ -134,7 +134,7 @@ func state_fall():
 		state = "default"
 
 func state_inventory():
-	if Input.is_action_just_pressed("ui_select"):
+	if Input.is_action_just_pressed("SELECT"):
 		hide_inventory()
 
 func loop_controls():
@@ -177,7 +177,7 @@ func loop_inventory():
 			for peer in network.map_peers:
 				rpc_id(peer, "use_item", global.get_item_path(equip_slot[btn]), btn)
 				
-	if Input.is_action_just_pressed("ui_select") && action_cooldown == 0:
+	if Input.is_action_just_pressed("SELECT") && action_cooldown == 0:
 		show_inventory()
 		
 func show_inventory():
