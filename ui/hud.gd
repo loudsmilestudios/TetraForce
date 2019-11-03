@@ -9,6 +9,7 @@ onready var hearts = $Hearts
 
 
 func initialize():
+	player = global.player
 	player.connect("health_changed", self, "update_hearts")
 	
 	for i in player.MAX_HEALTH:

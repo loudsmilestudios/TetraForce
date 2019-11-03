@@ -16,11 +16,10 @@ onready var holdTimer = $HoldTimer
 
 func _ready():
 	if is_network_master():
-		var hud = get_parent().get_node("HUD")
-		hud.player = self
-		hud.initialize()
 		global.player = self
 		global.set_player_state()
+		var hud = get_parent().get_node("HUD")
+		hud.initialize()
 	
 	puppet_pos = position
 	puppet_spritedir = "Down"
