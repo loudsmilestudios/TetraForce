@@ -9,8 +9,6 @@ func _ready():
 	add_new_player(get_tree().get_network_unique_id())
 	
 	network.update_maps()
-	
-	yield(get_tree().create_timer(0.25), "timeout")
 	screenfx.play("fadein")
 
 func _process(delta):
