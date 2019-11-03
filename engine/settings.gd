@@ -7,8 +7,7 @@ const schema_version: String = "0"
 const server_version: String = "0"
 
 const _user_dir: String = "user://"
-const _save_location: String = "tetraforce"
-const _preference_file: String = "preferences.tf"
+const _preference_file: String = "preferences.json"
 
 const default_host: String = "127.0.0.1"
 
@@ -59,10 +58,10 @@ func _ready() -> void:
 	_load_from_preferences()
 		
 func _get_save_file() -> String:
-	return _user_dir + _save_location + _preference_file
+	return _user_dir + _preference_file
 	
 func _get_save_dir() -> String:
-	return _user_dir + _save_location
+	return _user_dir
 
 func _load_from_preferences() -> void:
 	var saved = File.new()
