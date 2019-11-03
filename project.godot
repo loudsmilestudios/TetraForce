@@ -29,11 +29,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://engine/item.gd"
 }, {
-"base": "StaticBody2D",
-"class": "Subitem",
-"language": "GDScript",
-"path": "res://engine/subitem.gd"
-}, {
 "base": "Node2D",
 "class": "Switch",
 "language": "GDScript",
@@ -49,7 +44,6 @@ _global_script_class_icons={
 "Enemy": "",
 "Entity": "",
 "Item": "",
-"Subitem": "",
 "Switch": "",
 "entity_helper": ""
 }
