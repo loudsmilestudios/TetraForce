@@ -6,17 +6,14 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if Input.is_action_just_pressed("B"):
+	if Input.is_action_just_pressed(controller.START):
 		self.popup()
-
 
 func _on_resume_pressed():
 	self.hide()
 
-
 func _on_quit_game_pressed():
 	get_tree().quit()
-
 
 func _on_goto_lobby_pressed():
 	# Currently disabled because it does not work properly
@@ -25,7 +22,6 @@ func _on_goto_lobby_pressed():
 		get_tree().set_network_peer(null)
 	get_tree().change_scene("res://engine/lobby.tscn")
 	self.hide()
-
 
 func _on_options_pressed():
 	pass # Replace with function body.

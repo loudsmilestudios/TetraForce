@@ -55,6 +55,7 @@ global="*res://engine/global.gd"
 network="*res://engine/network.gd"
 screenfx="*res://engine/screenfx.tscn"
 settings="*res://engine/settings.gd"
+controller="*res://engine/controller.gd"
 
 [debug]
 

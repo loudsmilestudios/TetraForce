@@ -13,55 +13,14 @@ const _preference_file: String = "preferences.tf"
 
 const default_host: String = "127.0.0.1"
 
-var _default_controls: Dictionary = {
-	"schema": "0",
-	"input.keys": {
-		"UP": KEY_UP,
-		"DOWN": KEY_DOWN,
-		"LEFT": KEY_LEFT,
-		"RIGHT": KEY_RIGHT,
-		"A": KEY_X,
-		"B": KEY_C,
-		"X": KEY_V,
-		"Y": KEY_B,
-		"L": KEY_A,
-		"R": KEY_Z,
-		"ZL": KEY_S,
-		"ZR": KEY_D,
-		"START": KEY_SPACE,
-		"SELECT": KEY_Q
-	},
-	"input.axes": {
-		"UP": [JOY_ANALOG_LY, -1.0],
-		"DOWN": [JOY_ANALOG_LY, 1.0],
-		"LEFT": [JOY_ANALOG_LX, -1.0],
-		"RIGHT": [JOY_ANALOG_LX, 1.0]
-	},
-	"input.buttons": {
-		"UP": JOY_DPAD_UP,
-		"DOWN": JOY_DPAD_DOWN,
-		"LEFT": JOY_DPAD_LEFT,
-		"RIGHT": JOY_DPAD_RIGHT,
-		"A": JOY_DS_A,
-		"B": JOY_DS_B,
-		"X": JOY_DS_X,
-		"Y": JOY_DS_Y,
-		"L": JOY_L,
-		"ZL": JOY_L2,
-		"R": JOY_R,
-		"ZR": JOY_R2,
-		"START": JOY_START,
-		"SELECT": JOY_SELECT
-	}
-}
 
-var _user_prefs: Dictionary = {
+onready var _user_prefs: Dictionary = {
 	schema_version = "0",
 	show_name_tags = true,
 	host_address = default_host,
 	display_name = "",
 	skin = 0,
-	controls = _default_controls
+	controls = controller.default
 	}
 
 func _ready() -> void:
@@ -93,7 +52,7 @@ func _load_from_preferences() -> void:
 	
 	if loaded == null || loaded.empty():
 		_save_to_preferences()
-	elif loaded["schema"] != SCHEMA_VERSION:
+	elif !loaded.has("schema") || loaded["schema"] != SCHEMA_VERSION:
 		_migrate_save(loaded)
 	else:
 		_user_prefs = loaded
@@ -126,7 +85,7 @@ func _load_controls(loaded_controls) -> void:
 	
 	if !loaded_controls.has(schema_key) || loaded_controls[schema_key] != CONTROLS_SCHEMA_VERSION:
 		# migrate controller logic if needed
-		_user_prefs["controls"] =  _default_controls
+		_user_prefs["controls"] =  controller.default
 		_save_to_preferences()
 	
 	load_input_map(loaded_controls)
