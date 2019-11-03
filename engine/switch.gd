@@ -11,17 +11,16 @@ var activated: bool = false
 
 # Called in subclasses to update the state on the client or the server.
 func update_state():
-	var new_state = !activated
+	if is_scene_owner():
+		var new_state = !activated
 	
-	# Call the state change function locally then remotely.
-	change_state(new_state)
-	for peer in network.map_peers:
-		rpc_id(peer, "update_remote_state", new_state)
+		# Call the state change function locally then remotely.
+		change_state(new_state)
+		for peer in network.map_peers:
+			rpc_id(peer, "change_state", new_state)
 
-remote func update_remote_state(new_state: bool):
-	change_state(new_state)
-
-func change_state(new_state: bool):
+#Changing the state here.
+remote func change_state(new_state: bool):
 	
 	# Oneshot mode
 	if mode == 0:
@@ -56,6 +55,20 @@ func _update_sprite():
 
 # Deactivate the switch once the TimeoutTimer is finished.
 func finish_cooldown():
+	if is_scene_owner():
+		timeout()
+	
+		for peer in network.map_peers:
+			rpc_id(peer, "timeout")
+
+remote func timeout():
 	activated = false
 	emit_signal("on_deactivate")
 	_update_sprite()
+
+func is_scene_owner() -> bool:
+	if !network.map_owners.keys().has(network.current_map.name):
+		return false
+	if network.map_owners[network.current_map.name] == get_tree().get_network_unique_id():
+		return true
+	return false
