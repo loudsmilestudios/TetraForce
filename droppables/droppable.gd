@@ -1,15 +1,16 @@
-extends StaticBody2D
+extends Area2D
 
-class_name Subitem
+class_name Droppable
 
 func _ready():
 	add_to_group("subitem")
 	add_to_group("nopush")
+	connect("body_entered", self, "body_entered")
 	pass
 
-func on_pickup(player):
-	if get_tree().get_network_unique_id() == int(player.name):
-		pickup(player)
+func body_entered(body):
+	if body.get_tree().get_network_unique_id() == int(body.name):
+		pickup(body)
 
 func pickup(player):
 	pass

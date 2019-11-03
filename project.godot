@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Area2D",
+"class": "Droppable",
+"language": "GDScript",
+"path": "res://droppables/droppable.gd"
+}, {
 "base": "Entity",
 "class": "Enemy",
 "language": "GDScript",
@@ -24,21 +29,16 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://engine/item.gd"
 }, {
-"base": "StaticBody2D",
-"class": "Subitem",
-"language": "GDScript",
-"path": "res://engine/subitem.gd"
-}, {
 "base": "Reference",
 "class": "entity_helper",
 "language": "GDScript",
 "path": "res://engine/helper_scipts/entity_helper.gd"
 } ]
 _global_script_class_icons={
+"Droppable": "",
 "Enemy": "",
 "Entity": "",
 "Item": "",
-"Subitem": "",
 "entity_helper": ""
 }
 

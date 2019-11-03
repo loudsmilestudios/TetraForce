@@ -197,9 +197,9 @@ func choose_subitem(possible_drops, drop_chance):
 		var drop_choice = 0
 		match dropped:
 			"HEALTH":
-				drop_choice = "res://objects/heart.tscn"
+				drop_choice = "res://droppables/heart.tscn"
 			"RUPEE":
-				drop_choice = "res://objects/rupee.tscn"
+				drop_choice = "res://droppables/rupee.tscn"
 		
 		if typeof(drop_choice) != TYPE_INT:
 			var subitem_name = str(randi()) # we need to sync names to ensure the subitem can rpc to the same thing for others
