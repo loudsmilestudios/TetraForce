@@ -1,3 +1,4 @@
+tool
 extends Node
 
 # This script will keep track of player information and other things that need to be recorded between scenes
