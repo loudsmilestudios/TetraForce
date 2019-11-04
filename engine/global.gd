@@ -8,9 +8,10 @@ extends Node
 
 var player # this client's player
 
-var health = 3
-var max_health = 3
+var health = 5
+var max_health = 5
 onready var equip_slot = {controller.B: "Sword", controller.X: "", controller.Y: ""}
+
 var items = ["Sword", "Bow"]
 
 var item_dict = {

@@ -1,5 +1,7 @@
 extends Node
 
+signal player_entered
+
 func _ready():
 	network.current_map = self
 	add_child(preload("res://engine/camera.tscn").instance())
@@ -7,7 +9,6 @@ func _ready():
 	add_new_player(get_tree().get_network_unique_id())
 	
 	network.update_maps()
-	
 	screenfx.play("fadein")
 
 func _process(delta):
@@ -46,6 +47,8 @@ func add_new_player(id):
 		new_player.get_node("Sprite").texture = load(network.player_data.get(id).skin)
 		new_player.texture_default = load(network.player_data.get(id).skin)
 		new_player.set_player_label(network.player_data.get(id).name)
+	
+	emit_signal("player_entered", id)
 
 func remove_player(id):
 	get_node(str(id)).queue_free()

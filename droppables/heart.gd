@@ -1,4 +1,4 @@
-extends Subitem
+extends Droppable
 
 func pickup(player):
 	print_debug("Got a heart!")
