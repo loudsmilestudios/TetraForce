@@ -52,7 +52,7 @@ func _load_from_preferences() -> void:
 	
 	if loaded == null || loaded.empty():
 		_save_to_preferences()
-	elif loaded["schema"] != SCHEMA_VERSION:
+	elif !loaded.has("schema") || loaded["schema"] != SCHEMA_VERSION:
 		_migrate_save(loaded)
 	else:
 		_user_prefs = loaded
