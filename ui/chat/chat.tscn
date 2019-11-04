@@ -30,10 +30,10 @@ margin_right = 4.0
 margin_top = 4.07814
 margin_bottom = 4.07814
 
-[sub_resource type="StyleBoxFlat" id=7]
+[sub_resource type="StyleBoxFlat" id=4]
 bg_color = Color( 0, 0, 0, 0 )
 
-[sub_resource type="StyleBoxFlat" id=4]
+[sub_resource type="StyleBoxFlat" id=5]
 bg_color = Color( 0, 0, 0, 0.313726 )
 
 [sub_resource type="DynamicFont" id=6]
@@ -42,7 +42,7 @@ outline_color = Color( 0, 0, 0, 0.839216 )
 extra_spacing_char = 1
 font_data = ExtResource( 5 )
 
-[sub_resource type="Theme" id=5]
+[sub_resource type="Theme" id=7]
 default_font = SubResource( 6 )
 Button/colors/font_color = Color( 0.88, 0.88, 0.88, 1 )
 Button/colors/font_color_disabled = Color( 0.9, 0.9, 0.9, 0.2 )
@@ -55,8 +55,8 @@ Button/styles/focus = null
 Button/styles/hover = SubResource( 1 )
 Button/styles/normal = SubResource( 2 )
 Button/styles/pressed = SubResource( 3 )
-LineEdit/styles/normal = SubResource( 7 )
-Panel/styles/panel = SubResource( 4 )
+LineEdit/styles/normal = SubResource( 4 )
+Panel/styles/panel = SubResource( 5 )
 VScrollBar/icons/decrement = null
 VScrollBar/icons/decrement_highlight = null
 VScrollBar/icons/increment = null
@@ -71,7 +71,7 @@ VScrollBar/styles/scroll_focus = null
 margin_top = 80.0
 margin_right = 100.0
 margin_bottom = 126.0
-theme = SubResource( 5 )
+theme = SubResource( 7 )
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -84,8 +84,6 @@ size_flags_horizontal = 0
 size_flags_vertical = 0
 bbcode_enabled = true
 bbcode_text = "[color=yellow]Welcome to TetraForce![/color]
-asd"
-text = "Welcome to TetraForce!
 asd"
 scroll_active = false
 __meta__ = {

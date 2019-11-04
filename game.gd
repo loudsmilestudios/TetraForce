@@ -78,3 +78,10 @@ remote func spawn_subitem(dropped, pos, subitem_name):
 	drop_instance.name = subitem_name
 	add_child(drop_instance)
 	drop_instance.global_position = pos
+
+remote func receive_chat_message(source, text):
+	print_debug("Polo")
+	global.player.chat_messages.append({"source": source, "message": text})
+	var chatBox = get_node("HUD/Chat")
+	if chatBox:
+		chatBox.add_new_message(source, text)

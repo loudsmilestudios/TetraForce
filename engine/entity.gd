@@ -207,6 +207,11 @@ func choose_subitem(possible_drops, drop_chance):
 			for peer in network.map_peers:
 				network.current_map.rpc_id(peer, "spawn_subitem", drop_choice, global_position, subitem_name)
 
+func send_chat_message(source, text):
+	network.current_map.receive_chat_message(source, text)
+	for peer in network.map_peers:
+		network.current_map.rpc_id(peer, "receive_chat_message", source, text)
+
 sync func enemy_death():
 	if is_scene_owner():
 		choose_subitem(["HEALTH", "RUPEE"], 100)
