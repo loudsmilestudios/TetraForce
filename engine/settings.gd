@@ -1,53 +1,25 @@
 extends Node
 
-# Update this whenever the _user_prefs or _user_controls dictionary are updated
-const schema_version: String = "0"
-
 # Update this for each release
-const server_version: String = "0"
+const SERVER_VERSION: String = "0"
+
+# Update this whenever the _user_prefs or _user_controls dictionary are updated
+const SCHEMA_VERSION: String = "1"
+const CONTROLS_SCHEMA_VERSION: String = "2"
 
 const _user_dir: String = "user://"
-const _save_location: String = "tetraforce"
-const _preference_file: String = "preferences.tf"
+const _preference_file: String = "preferences.json"
 
 const default_host: String = "127.0.0.1"
 
-var _user_controls: Dictionary = {
-	"input.keys": {
-		"UP": KEY_UP,
-		"DOWN": KEY_DOWN,
-		"LEFT": KEY_LEFT,
-		"RIGHT": KEY_RIGHT,
-		"A": KEY_X,
-		"B": KEY_C,
-		"X": KEY_V,
-		"Y": KEY_B,
-	},
-	"input.axes": {
-		"UP": [JOY_ANALOG_LY, -1.0],
-		"DOWN": [JOY_ANALOG_LY, 1.0],
-		"LEFT": [JOY_ANALOG_LX, -1.0],
-		"RIGHT": [JOY_ANALOG_LX, 1.0]
-	},
-	"input.buttons": {
-		"UP": JOY_DPAD_UP,
-		"DOWN": JOY_DPAD_DOWN,
-		"LEFT": JOY_DPAD_LEFT,
-		"RIGHT": JOY_DPAD_RIGHT,
-		"A": JOY_DS_A,
-		"B": JOY_DS_B,
-		"X": JOY_DS_X,
-		"Y": JOY_DS_Y,
-	}
-}
 
-var _user_prefs: Dictionary = {
+onready var _user_prefs: Dictionary = {
 	schema_version = "0",
 	show_name_tags = true,
 	host_address = default_host,
 	display_name = "",
 	skin = 0,
-	controls = _user_controls
+	controls = controller.default
 	}
 
 func _ready() -> void:
@@ -59,10 +31,10 @@ func _ready() -> void:
 	_load_from_preferences()
 		
 func _get_save_file() -> String:
-	return _user_dir + _save_location + _preference_file
+	return _user_dir + _preference_file
 	
 func _get_save_dir() -> String:
-	return _user_dir + _save_location
+	return _user_dir
 
 func _load_from_preferences() -> void:
 	var saved = File.new()
@@ -79,20 +51,14 @@ func _load_from_preferences() -> void:
 	
 	if loaded == null || loaded.empty():
 		_save_to_preferences()
-	elif loaded.schema_version != schema_version:
+	elif !loaded.has("schema") || loaded["schema"] != SCHEMA_VERSION:
 		_migrate_save(loaded)
-
 	else:
 		_user_prefs = loaded
 	
-	# uncomment this line if you updated the controls for testing
-#	_user_prefs["controls"] = _user_controls
-	
-	_user_controls = _user_prefs["controls"]
+	_load_controls(_user_prefs["controls"])
 		
 	saved.close()
-	
-	load_input_map()
 	
 func _save_to_preferences() -> void:
 	var saveGame = File.new()
@@ -109,8 +75,19 @@ func _migrate_save(loaded_save) -> void:
 	for key in _user_prefs.keys():
 		if loaded_save.has(key):
 			_user_prefs[key] = loaded_save[key]
-	
+		
+	_user_prefs["schema"] = SCHEMA_VERSION
 	_save_to_preferences()
+	
+func _load_controls(loaded_controls) -> void:
+	var schema_key = "schema"
+	
+	if !loaded_controls.has(schema_key) || loaded_controls[schema_key] != CONTROLS_SCHEMA_VERSION:
+		# migrate controller logic if needed
+		_user_prefs["controls"] =  controller.default
+		_save_to_preferences()
+	
+	load_input_map(loaded_controls)
 
 func get_pref(key: String):
 	if _user_prefs.has(key):
@@ -127,15 +104,14 @@ func set_pref(key: String, value) -> void:
 		_save_to_preferences()
 		
 func save_input_map(new_map: Dictionary) -> void:
-	_user_controls = new_map
-	set_pref("controls", _user_controls)
+	set_pref("controls", new_map)
 	
-	load_input_map()
+	load_input_map(new_map)
 		
-func load_input_map() -> void:
+func load_input_map(loaded_controls) -> void:
 	InputMap.load_from_globals()
 	
-	var input_keys = _user_controls["input.keys"]
+	var input_keys = loaded_controls["input.keys"]
 	
 	for key in input_keys:
 		if InputMap.has_action(key):
@@ -146,7 +122,7 @@ func load_input_map() -> void:
 		else:
 			printerr("Settings Error: Invalid input action '%s'" % key)
 
-	var input_axes = _user_controls["input.axes"]
+	var input_axes = loaded_controls["input.axes"]
 	for key in input_axes.keys():
 		if InputMap.has_action(key):
 			var value = input_axes[key]
@@ -160,7 +136,7 @@ func load_input_map() -> void:
 		else:
 			printerr("Settings Error: Invalid input action '%s'" % key)
 
-	var input_buttons = _user_controls["input.buttons"]
+	var input_buttons = loaded_controls["input.buttons"]
 	for key in input_buttons.keys():
 		if InputMap.has_action(key):
 			var value = input_buttons[key]

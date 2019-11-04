@@ -26,16 +26,16 @@ func add_items():
 	item_list.get_child(0).add_child(arrow)
 
 func _input(event):
-	if Input.is_action_just_pressed("UP"):
+	if Input.is_action_just_pressed(controller.UP):
 		move_arrow(-1)
-	if Input.is_action_just_pressed("DOWN"):
+	if Input.is_action_just_pressed(controller.DOWN):
 		move_arrow(1)
-	if Input.is_action_just_pressed("B"):
-		set_item("B")
-	if Input.is_action_just_pressed("X"):
-		set_item("X")
-	if Input.is_action_just_pressed("Y"):
-		set_item("Y")
+	if Input.is_action_just_pressed(controller.B):
+		set_item(controller.B)
+	if Input.is_action_just_pressed(controller.X):
+		set_item(controller.X)
+	if Input.is_action_just_pressed(controller.Y):
+		set_item(controller.Y)
 
 func set_item(button):
 	player.equip_slot[button] = arrow.get_parent().name

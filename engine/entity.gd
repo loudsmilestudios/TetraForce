@@ -55,6 +55,8 @@ func _ready():
 	home_position = position
 	create_hitbox()
 	
+	network.current_map.connect("player_entered", self, "player_entered")
+	
 	room = network.get_room(position)
 	room.add_entity(self)
 
@@ -85,7 +87,14 @@ func puppet_update():
 	pass
 
 func is_scene_owner():
+	if !network.map_owners.keys().has(network.current_map.name):
+		return false
 	if network.map_owners[network.current_map.name] == get_tree().get_network_unique_id():
+		return true
+	return false
+
+func is_dead():
+	if health <= 0 && hitstun == 0:
 		return true
 	return false
 
@@ -219,7 +228,16 @@ sync func enemy_death():
 	var death_animation = preload("res://enemies/enemy_death.tscn").instance()
 	death_animation.global_position = global_position
 	get_parent().add_child(death_animation)
-	queue_free()
+	
+	set_dead()
+
+remote func set_dead():
+	hide()
+	set_physics_process(false)
+	set_process(false)
+	home_position = Vector2(0,0)
+	position = Vector2(0,0)
+	health = -1
 
 func rset_map(property, value):
 	for peer in network.map_peers:
@@ -246,3 +264,7 @@ func sync_property_unreliable(property, value):
 		if !is_scene_owner():
 			return
 	rset_unreliable_map(property, value)
+
+func player_entered(id):
+	if is_scene_owner() && is_dead():
+		rpc_id(id, "set_dead")

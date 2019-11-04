@@ -10,7 +10,8 @@ var player # this client's player
 
 var health = 5
 var max_health = 5
-var equip_slot = {"B": "Sword", "X": "", "Y": ""}
+onready var equip_slot = {controller.B: "Sword", controller.X: "", controller.Y: ""}
+
 var items = ["Sword", "Bow"]
 
 var item_dict = {
