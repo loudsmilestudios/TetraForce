@@ -4,10 +4,10 @@ extends Popup
 func _ready():
 	pass
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	if Input.is_action_just_pressed(controller.START):
-		self.popup()
+func _input(event):
+	if event is InputEventKey:
+		if event.pressed && event.scancode == KEY_ESCAPE:
+			self.popup()
 
 func _on_resume_pressed():
 	self.hide()

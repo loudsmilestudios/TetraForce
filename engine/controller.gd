@@ -33,8 +33,8 @@ var default: Dictionary = {
 		R: KEY_Z,
 		ZL: KEY_S,
 		ZR: KEY_D,
-		START: KEY_SPACE,
-		SELECT: KEY_Q
+		START: KEY_ENTER,
+		SELECT: KEY_SHIFT
 	},
 	"input.axes": {
 		UP: [JOY_ANALOG_LY, -1.0],
