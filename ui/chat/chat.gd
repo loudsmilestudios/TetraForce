@@ -9,6 +9,7 @@ func start():
 	for entry in message_log:
 		add_new_message(entry["source"], entry["message"])
 	$IncomingMessages.scroll_to_line($IncomingMessages.get_line_count()-1)
+	$EditMessage.grab_focus()
 
 func add_new_message(source, text):
 	$IncomingMessages.newline()

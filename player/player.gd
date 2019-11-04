@@ -185,7 +185,7 @@ func loop_action_button():
 		if Input.is_action_just_pressed("ui_select"):
 			show_inventory()
 			state = "menu"
-		elif Input.is_action_just_pressed("TOGGLE_CHAT"):
+		elif Input.is_action_just_pressed("TOGGLE_CHAT") || Input.is_action_just_pressed("ui_accept"):
 			show_chat()
 			state = "menu"
 		

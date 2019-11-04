@@ -78,13 +78,12 @@ __meta__ = {
 }
 
 [node name="IncomingMessages" type="RichTextLabel" parent="."]
-margin_right = 100.0
+margin_left = -0.237823
+margin_right = 99.7622
 margin_bottom = 40.0
 size_flags_horizontal = 0
 size_flags_vertical = 0
 bbcode_enabled = true
-bbcode_text = "[color=yellow]Welcome to TetraForce![/color]
-asd"
 scroll_active = false
 __meta__ = {
 "_edit_use_anchors_": false
