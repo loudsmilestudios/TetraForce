@@ -55,6 +55,7 @@ global="*res://engine/global.gd"
 network="*res://engine/network.gd"
 screenfx="*res://engine/screenfx.tscn"
 settings="*res://engine/settings.gd"
+controller="*res://engine/controller.gd"
 
 [debug]
 
@@ -120,13 +121,35 @@ B={
 }
 X={
 "deadzone": 0.5,
-"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":86,"unicode":0,"echo":false,"script":null)
- ]
+"events": [  ]
 }
 Y={
 "deadzone": 0.5,
-"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":66,"unicode":0,"echo":false,"script":null)
- ]
+"events": [  ]
+}
+L={
+"deadzone": 0.5,
+"events": [  ]
+}
+R={
+"deadzone": 0.5,
+"events": [  ]
+}
+ZL={
+"deadzone": 0.5,
+"events": [  ]
+}
+ZR={
+"deadzone": 0.5,
+"events": [  ]
+}
+START={
+"deadzone": 0.5,
+"events": [  ]
+}
+SELECT={
+"deadzone": 0.5,
+"events": [  ]
 }
 
 [rendering]
@@ -136,4 +159,3 @@ quality/2d/gles2_use_nvidia_rect_flicker_workaround=true
 quality/intended_usage/framebuffer_allocation=0
 quality/intended_usage/framebuffer_allocation.mobile=0
 quality/2d/use_pixel_snap=true
-vram_compression/import_etc=true
