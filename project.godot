@@ -70,10 +70,6 @@ window/size/test_height=720
 window/stretch/mode="2d"
 window/stretch/aspect="keep"
 
-[editor_plugins]
-
-enabled=PoolStringArray( "vnen.tiled_importer" )
-
 [importer_defaults]
 
 texture={
@@ -95,17 +91,6 @@ texture={
 "size_limit": 0,
 "stream": false,
 "svg/scale": 1.0
-}
-vnen.tiled_importer={
-"add_background": true,
-"collision_layer": 1,
-"custom_properties": true,
-"embed_internal_images": false,
-"image_flags": 7,
-"post_import_script": "res://tiled/import.gd",
-"save_tiled_properties": true,
-"tile_metadata": true,
-"uv_clip": true
 }
 
 [input]
@@ -186,7 +171,3 @@ quality/2d/gles2_use_nvidia_rect_flicker_workaround=true
 quality/intended_usage/framebuffer_allocation=0
 quality/intended_usage/framebuffer_allocation.mobile=0
 quality/2d/use_pixel_snap=true
-
-[tiled_importer]
-
-enable_json_format=true

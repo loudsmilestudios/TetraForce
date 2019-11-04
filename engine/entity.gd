@@ -55,7 +55,7 @@ func _ready():
 	home_position = position
 	create_hitbox()
 	
-	get_parent().connect("player_entered", self, "player_entered")
+	network.current_map.connect("player_entered", self, "player_entered")
 	
 	room = network.get_room(position)
 	room.add_entity(self)
