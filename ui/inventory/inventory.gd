@@ -16,8 +16,7 @@ func start():
 	add_items()
 
 func add_items():
-	for item in player.item_resources:
-		var item_name = global.get_item_name(item)
+	for item_name in player.items:
 		var new_label = Label.new()
 		item_list.add_child(new_label)
 		new_label.owner = self
