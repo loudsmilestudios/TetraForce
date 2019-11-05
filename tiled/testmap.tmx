@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.5" orientation="orthogonal" renderorder="right-down" width="128" height="72" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="32">
+<map version="1.2" tiledversion="1.2.5" orientation="orthogonal" renderorder="right-down" width="128" height="72" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="43">
  <tileset firstgid="1" source="debug.tsx"/>
  <tileset firstgid="2" source="objects.tsx"/>
  <imagelayer id="2" name="grid" locked="1">
@@ -85,15 +85,20 @@
   <object id="1" name="Spawn" x="23.3333" y="25">
    <point/>
   </object>
-  <object id="21" gid="3" x="144" y="80" width="16" height="16"/>
-  <object id="22" gid="3" x="80" y="80" width="16" height="16"/>
-  <object id="23" gid="3" x="176" y="112" width="16" height="16"/>
-  <object id="24" gid="4" x="80" y="224" width="16" height="16"/>
-  <object id="25" gid="4" x="144" y="256" width="16" height="16"/>
-  <object id="26" gid="4" x="368" y="208" width="16" height="16"/>
-  <object id="27" gid="4" x="432" y="256" width="16" height="16"/>
-  <object id="29" gid="3" x="320" y="256" width="16" height="16"/>
-  <object id="30" gid="3" x="432" y="208" width="16" height="16"/>
-  <object id="31" gid="3" x="336" y="176" width="16" height="16"/>
+  <object id="32" gid="3" x="176" y="80" width="16" height="16"/>
+  <object id="33" gid="3" x="80" y="112" width="16" height="16"/>
+  <object id="34" gid="3" x="176" y="240" width="16" height="16"/>
+  <object id="35" gid="3" x="80" y="208" width="16" height="16"/>
+  <object id="36" gid="3" x="368" y="240" width="16" height="16"/>
+  <object id="37" gid="3" x="432" y="192" width="16" height="16"/>
+  <object id="38" gid="3" x="464" y="240" width="16" height="16"/>
+  <object id="39" gid="4" x="320" y="208" width="16" height="16"/>
+  <object id="40" gid="4" x="304" y="240" width="16" height="16"/>
+  <object id="41" gid="4" x="128" y="240" width="16" height="16"/>
+  <object id="42" gid="5" x="144" y="32" width="16" height="16">
+   <properties>
+    <property name="text" value="test"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>
