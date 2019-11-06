@@ -5,19 +5,19 @@
   <properties>
    <property name="path" value="res://enemies/stalfos.tscn"/>
   </properties>
-  <image width="16" height="16" source="objects/stalfos.png"/>
+  <image width="16" height="16" source="images/objects/stalfos.png"/>
  </tile>
  <tile id="2">
   <properties>
    <property name="path" value="res://enemies/knawblin.tscn"/>
   </properties>
-  <image width="16" height="16" source="objects/knawblin.png"/>
+  <image width="16" height="16" source="images/objects/knawblin.png"/>
  </tile>
  <tile id="3">
   <properties>
    <property name="path" value="res://tiles/sign.tscn"/>
    <property name="text" value="I AM ERROR."/>
   </properties>
-  <image width="16" height="16" source="objects/sign.png"/>
+  <image width="16" height="16" source="images/objects/sign.png"/>
  </tile>
 </tileset>
