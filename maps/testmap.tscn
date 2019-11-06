@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://game.gd" type="Script" id=1]
 [ext_resource path="res://engine/camera.tscn" type="PackedScene" id=2]
@@ -10,7 +10,6 @@
 [ext_resource path="res://tiles/pushable.tscn" type="PackedScene" id=8]
 [ext_resource path="res://enemies/arrowtrap/arrow_trap.tscn" type="PackedScene" id=9]
 [ext_resource path="res://tiles/weapon_switch.tscn" type="PackedScene" id=10]
-
 
 [node name="testmap" type="Node2D"]
 script = ExtResource( 1 )
@@ -70,11 +69,7 @@ position = Vector2( 536, 72 )
 [node name="SwordSwitch" parent="." instance=ExtResource( 10 )]
 position = Vector2( 552, 119 )
 mode = 1
-[connection signal="on_done_moving" from="Pushable" to="Door" method="unlock"]
-[connection signal="on_done_moving" from="Pushable2" to="Door3" method="unlock"]
-[connection signal="on_done_moving" from="Pushable2" to="Door2" method="unlock"]
-[connection signal="on_activate" from="SwordSwitch" to="Door4" method="unlock"]
-[connection signal="on_deactivate" from="SwordSwitch" to="Door4" method="lock"]
+
 [node name="arrowtrap" parent="." instance=ExtResource( 9 )]
 position = Vector2( 328, 24 )
 timer = 100.0
@@ -95,5 +90,7 @@ position = Vector2( 344, 168 )
 timer = 100.0
 direction = "Down"
 [connection signal="on_done_moving" from="Pushable" to="Door" method="unlock"]
-[connection signal="on_done_moving" from="Pushable2" to="Door3" method="unlock"]
 [connection signal="on_done_moving" from="Pushable2" to="Door2" method="unlock"]
+[connection signal="on_done_moving" from="Pushable2" to="Door3" method="unlock"]
+[connection signal="on_activate" from="SwordSwitch" to="Door4" method="unlock"]
+[connection signal="on_deactivate" from="SwordSwitch" to="Door4" method="lock"]

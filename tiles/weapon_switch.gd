@@ -1,3 +1,4 @@
+tool
 extends "res://engine/switch.gd"
 
 func _update_sprite():
