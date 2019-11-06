@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.2" tiledversion="1.2.5" orientation="orthogonal" renderorder="right-down" width="128" height="72" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="43">
  <tileset firstgid="1" source="objects.tsx"/>
- <tileset firstgid="5" source="wall/dungeon_wall.tsx"/>
- <tileset firstgid="35" source="ground/dungeon_ground.tsx"/>
+ <tileset firstgid="5" source="dungeon/dungeon_wall.tsx"/>
+ <tileset firstgid="35" source="dungeon/dungeon_ground.tsx"/>
  <imagelayer id="2" name="grid" locked="1">
   <image source="gridtemplate.png" width="2048" height="1152"/>
  </imagelayer>
