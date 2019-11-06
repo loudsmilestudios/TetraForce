@@ -110,7 +110,7 @@ func state_hold():
 	else:
 		anim_switch("idle")
 	
-	if !Input.is_action_pressed(controller.A) && !Input.is_action_pressed(controller.B):
+	if !has_node("Sword"):
 		state = "default"
 
 func state_spin():
