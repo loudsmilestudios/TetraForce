@@ -1,3 +1,4 @@
+tool
 extends Node
 
 # This script will keep track of player information and other things that need to be recorded between scenes
@@ -10,7 +11,8 @@ var player # this client's player
 
 var health = 5
 var max_health = 5
-var equip_slot = {"B": "Sword", "X": "", "Y": ""}
+onready var equip_slot = {controller.B: "Sword", controller.X: "", controller.Y: ""}
+
 var items = ["Sword", "Bow"]
 
 var item_dict = {

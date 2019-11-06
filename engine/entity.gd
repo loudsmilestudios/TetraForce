@@ -55,7 +55,7 @@ func _ready():
 	home_position = position
 	create_hitbox()
 	
-	network.current_map.connect("player_entered", self, "player_entered")
+	get_parent().connect("player_entered", self, "player_entered")
 	
 	room = network.get_room(position)
 	room.add_entity(self)
@@ -215,6 +215,10 @@ func choose_subitem(possible_drops, drop_chance):
 			network.current_map.spawn_subitem(drop_choice, global_position, subitem_name) # has to be from game.gd bc the node might have been freed beforehand
 			for peer in network.map_peers:
 				network.current_map.rpc_id(peer, "spawn_subitem", drop_choice, global_position, subitem_name)
+
+func send_chat_message(source, text):
+	network.current_map.receive_chat_message(source, text)
+	rpc("receive_chat_message", source, text)
 
 sync func enemy_death():
 	if is_scene_owner():

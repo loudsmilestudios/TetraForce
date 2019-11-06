@@ -8,11 +8,11 @@ var push_target = null
 # synced from engine/global.gd
 var equip_slot
 var items
-var item_resources
 
 var spinAtk = false
 onready var holdTimer = $HoldTimer
 
+var chat_messages = [{"source": "Welcome to TetraForce!", "message": ""}]
 
 func _ready():
 	if is_network_master():
@@ -28,7 +28,6 @@ func _ready():
 	add_to_group("player")
 	ray.add_exception(hitbox)
 	
-	update_item_resources()
 	connect_camera()
 	
 	$PlayerName.visible = settings.get_pref("show_name_tags")
@@ -39,6 +38,8 @@ func initialize():
 		
 func set_player_label(player_name):
 	$PlayerName.text = player_name
+	
+
 
 func _physics_process(delta):
 	# puppet
@@ -67,8 +68,8 @@ func _physics_process(delta):
 			state_spin()
 		"fall":
 			state_fall()
-		"inventory":
-			state_inventory()
+		"menu":
+			state_menu()
 	
 	if action_cooldown > 0:
 		action_cooldown -= 1
@@ -82,7 +83,7 @@ func state_default():
 	loop_damage()
 	loop_spritedir()
 	loop_interact()
-	loop_inventory()
+	loop_action_button()
 	
 	if movedir.length() == 1:
 		ray.cast_to = movedir * 8
@@ -109,7 +110,7 @@ func state_hold():
 	else:
 		anim_switch("idle")
 	
-	if !Input.is_action_pressed("A") && !Input.is_action_pressed("B"):
+	if !has_node("Sword"):
 		state = "default"
 
 func state_spin():
@@ -132,17 +133,21 @@ func state_fall():
 		sfx.play(preload("res://player/player_land.wav"), 20)
 		state = "default"
 
-func state_inventory():
-	if Input.is_action_just_pressed("ui_select"):
-		hide_inventory()
+func state_menu():
+	if Input.is_action_just_pressed("ui_select") && network.current_map.get_node("HUD/Inventory"):
+		network.current_map.get_node("HUD/Inventory").queue_free()
+		state = "default"
+	elif Input.is_action_just_pressed("TOGGLE_CHAT") && network.current_map.get_node("HUD/Chat"):
+		network.current_map.get_node("HUD/Chat").queue_free()
+		state = "default"
 
 func loop_controls():
 	movedir = Vector2.ZERO
 	
-	var LEFT = Input.is_action_pressed("LEFT")
-	var RIGHT = Input.is_action_pressed("RIGHT")
-	var UP = Input.is_action_pressed("UP")
-	var DOWN = Input.is_action_pressed("DOWN")
+	var LEFT = Input.is_action_pressed(controller.LEFT)
+	var RIGHT = Input.is_action_pressed(controller.RIGHT)
+	var UP = Input.is_action_pressed(controller.UP)
+	var DOWN = Input.is_action_pressed(controller.DOWN)
 	
 	movedir.x = -int(LEFT) + int(RIGHT)
 	movedir.y = -int(UP) + int(DOWN)
@@ -150,7 +155,7 @@ func loop_controls():
 func loop_interact():
 	if ray.is_colliding():
 		var collider = ray.get_collider()
-		if collider.is_in_group("interact") && Input.is_action_just_pressed("A") && action_cooldown == 0:
+		if collider.is_in_group("interact") && Input.is_action_just_pressed(controller.A) && action_cooldown == 0:
 			collider.interact(self)
 			action_cooldown = 3
 		elif collider.is_in_group("cliff") && spritedir == "Down":
@@ -167,33 +172,32 @@ func loop_interact():
 		push_target.stop_interact()
 		push_target = null
 		
-func loop_inventory():
-	for btn in ["B", "X", "Y"]:
-		if Input.is_action_just_pressed(btn) && action_cooldown == 0 && equip_slot[btn] != "":
-			use_item(global.get_item_path(equip_slot[btn]), btn)
-			for peer in network.map_peers:
-				rpc_id(peer, "use_item", global.get_item_path(equip_slot[btn]), btn)
+func loop_action_button():
+	if action_cooldown == 0:
+		for btn in ["B", "X", "Y"]:
+			if Input.is_action_just_pressed(btn) && equip_slot[btn] != "":
+				use_item(global.get_item_path(equip_slot[btn]), btn)
+				for peer in network.map_peers:
+					rpc_id(peer, "use_item", global.get_item_path(equip_slot[btn]), btn)
 				
-	if Input.is_action_just_pressed("ui_select") && action_cooldown == 0:
-		show_inventory()
+		if Input.is_action_just_pressed("ui_select"):
+			show_inventory()
+			state = "menu"
+		elif Input.is_action_just_pressed("TOGGLE_CHAT") || Input.is_action_just_pressed("ui_accept"):
+			show_chat()
+			state = "menu"
 		
 func show_inventory():
-	action_cooldown = 5
-	state = "inventory"
 	var inventory = preload("res://ui/inventory/inventory.tscn").instance()
 	network.current_map.get_node("HUD").add_child(inventory)
 	inventory.player = self
 	inventory.start()
 	
-func hide_inventory():
-	network.current_map.get_node("HUD/Inventory").queue_free()
-	state = "default"
-
-func update_item_resources():
-	item_resources = []
-	for item in items:
-		item_resources.append(global.get_item_path(item))
-	print(item_resources)
+func show_chat():
+	var chat = preload("res://ui/chat/chat.tscn").instance()
+	network.current_map.get_node("HUD").add_child(chat)
+	chat.message_log = chat_messages
+	chat.start()
 
 func connect_camera():
 	camera.connect("screen_change_started", self, "screen_change_started")
