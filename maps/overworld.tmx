@@ -406,7 +406,8 @@
   </object>
   <object id="12" gid="65" x="368" y="208" width="16" height="16">
    <properties>
-    <property name="mode" type="int" value="1"/>
+    <property name="cooldown" type="float" value="2"/>
+    <property name="mode" type="int" value="2"/>
    </properties>
   </object>
  </objectgroup>
