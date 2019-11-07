@@ -7,4 +7,5 @@ func _update_sprite():
 		$Sprite.frame_coords.x = 0
 
 func _on_HitBox_area_entered(area: Area2D):
-	update_state()
+	if area.get_parent() is Item:
+		update_state()
