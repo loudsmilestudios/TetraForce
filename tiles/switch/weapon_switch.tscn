@@ -1,0 +1,29 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://engine/switch.tscn" type="PackedScene" id=1]
+[ext_resource path="res://tiles/switch/weapon_switch.png" type="Texture" id=2]
+[ext_resource path="res://tiles/switch/weapon_switch.gd" type="Script" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 3, 8 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 3, 8 )
+
+[node name="WeaponSwitch" instance=ExtResource( 1 )]
+script = ExtResource( 3 )
+
+[node name="Sprite" type="Sprite" parent="." index="1"]
+texture = ExtResource( 2 )
+hframes = 2
+
+[node name="HitBox" type="Area2D" parent="." index="2"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox" index="0"]
+shape = SubResource( 1 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." index="3"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" index="0"]
+shape = SubResource( 2 )
+[connection signal="area_entered" from="HitBox" to="." method="_on_HitBox_area_entered"]

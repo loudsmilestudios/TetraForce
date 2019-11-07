@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.5" orientation="orthogonal" renderorder="right-down" width="128" height="72" tilewidth="16" tileheight="16" infinite="0" nextlayerid="10" nextobjectid="11">
+<map version="1.2" tiledversion="1.2.5" orientation="orthogonal" renderorder="right-down" width="128" height="72" tilewidth="16" tileheight="16" infinite="0" nextlayerid="10" nextobjectid="14">
  <tileset firstgid="1" source="../tiled/overworld/overworld_wall.tsx"/>
  <tileset firstgid="26" source="../tiled/overworld/overworld_decor.tsx"/>
  <tileset firstgid="31" source="../tiled/overworld/overworld_ground.tsx"/>
@@ -402,6 +402,18 @@
   <object id="10" gid="64" x="688" y="32" width="16" height="16">
    <properties>
     <property name="text" value="hello"/>
+   </properties>
+  </object>
+  <object id="12" gid="65" x="16" y="32" width="16" height="16">
+   <properties>
+    <property name="cooldown" type="float" value="20"/>
+    <property name="mode" type="int" value="2"/>
+   </properties>
+  </object>
+  <object id="13" gid="66" x="64" y="32" width="16" height="16">
+   <properties>
+    <property name="cooldown" type="float" value="2"/>
+    <property name="mode" type="int" value="1"/>
    </properties>
   </object>
  </objectgroup>

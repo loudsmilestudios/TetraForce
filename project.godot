@@ -29,6 +29,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://engine/item.gd"
 }, {
+"base": "Node2D",
+"class": "Switch",
+"language": "GDScript",
+"path": "res://engine/switch.gd"
+}, {
 "base": "Reference",
 "class": "entity_helper",
 "language": "GDScript",
@@ -39,6 +44,7 @@ _global_script_class_icons={
 "Enemy": "",
 "Entity": "",
 "Item": "",
+"Switch": "",
 "entity_helper": ""
 }
 
