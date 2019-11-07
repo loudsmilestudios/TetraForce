@@ -404,13 +404,13 @@
     <property name="text" value="hello"/>
    </properties>
   </object>
-  <object id="12" gid="65" x="368" y="208" width="16" height="16">
+  <object id="12" gid="65" x="16" y="32" width="16" height="16">
    <properties>
-    <property name="cooldown" type="float" value="2"/>
+    <property name="cooldown" type="float" value="20"/>
     <property name="mode" type="int" value="2"/>
    </properties>
   </object>
-  <object id="13" gid="66" x="400" y="208" width="16" height="16">
+  <object id="13" gid="66" x="64" y="32" width="16" height="16">
    <properties>
     <property name="cooldown" type="float" value="2"/>
     <property name="mode" type="int" value="1"/>

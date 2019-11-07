@@ -10,6 +10,9 @@ export(float) var cooldown: float = 5
 var activated: bool = false
 var locked: bool = false
 
+func _ready():
+	get_parent().connect("player_entered", self, "sync_new_player")
+
 # Called in subclasses to update the state on the client or the server.
 func update_state():
 	if is_scene_owner():
@@ -28,6 +31,22 @@ func lock():
 func unlock():
 	locked = false
 	$CooldownTimer.paused = false
+
+func sync_new_player(id):
+	if is_scene_owner():
+		rpc_id(id, "sync_remote_state", activated, $CooldownTimer.time_left, locked)
+		
+
+remote func sync_remote_state(state: bool, time: float, should_lock: bool):
+	activated = state
+	_update_sprite()
+	if time > 0.0 && mode == 2:
+		$CooldownTimer.start(time)
+	
+	if should_lock:
+		lock()
+	else:
+		unlock()
 
 #Changing the state here.
 remote func change_state(new_state: bool):
