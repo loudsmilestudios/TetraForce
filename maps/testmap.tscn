@@ -93,5 +93,8 @@ direction = "Down"
 [connection signal="on_done_moving" from="Pushable" to="Door" method="unlock"]
 [connection signal="on_done_moving" from="Pushable2" to="Door2" method="unlock"]
 [connection signal="on_done_moving" from="Pushable2" to="Door3" method="unlock"]
+<<<<<<< HEAD
 [connection signal="on_activate" from="SwordSwitch" to="Door4" method="unlock"]
 [connection signal="on_deactivate" from="SwordSwitch" to="Door4" method="lock"]
+=======
+>>>>>>> added lighting effects

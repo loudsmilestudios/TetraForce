@@ -47,7 +47,7 @@ func _load_from_preferences() -> void:
 	var loaded = parse_json(saved.get_as_text())
 	
 	# Debugging loaded saves
-	print("loaded save: ", saved.get_as_text())
+	print_debug("loaded save: ", saved.get_as_text())
 	
 	if loaded == null || loaded.empty():
 		_save_to_preferences()
