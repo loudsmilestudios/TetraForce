@@ -5,7 +5,7 @@
 [ext_resource path="res://tiles/switch/pressure_plate.gd" type="Script" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 7, 6 )
+extents = Vector2( 7, 1.5 )
 
 [node name="PressurePlate" index="0" instance=ExtResource( 1 )]
 script = ExtResource( 3 )
@@ -17,7 +17,7 @@ hframes = 2
 [node name="HitBox" type="Area2D" parent="." index="2"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox" index="0"]
-position = Vector2( 0, -1 )
+position = Vector2( 0, -5 )
 shape = SubResource( 1 )
 [connection signal="body_entered" from="HitBox" to="." method="_on_HitBox_body_entered"]
 [connection signal="body_exited" from="HitBox" to="." method="_on_HitBox_body_exited"]
