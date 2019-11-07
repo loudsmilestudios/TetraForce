@@ -12,6 +12,7 @@ var locked: bool = false
 
 func _ready():
 	get_parent().connect("player_entered", self, "sync_new_player")
+	z_index = -10
 
 # Called in subclasses to update the state on the client or the server.
 func update_state():

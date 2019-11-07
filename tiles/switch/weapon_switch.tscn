@@ -10,7 +10,7 @@ extents = Vector2( 3, 8 )
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 3, 8 )
 
-[node name="WeaponSwitch" index="0" instance=ExtResource( 1 )]
+[node name="WeaponSwitch" instance=ExtResource( 1 )]
 script = ExtResource( 3 )
 
 [node name="Sprite" type="Sprite" parent="." index="1"]

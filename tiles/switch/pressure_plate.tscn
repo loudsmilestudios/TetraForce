@@ -15,6 +15,7 @@ texture = ExtResource( 2 )
 hframes = 2
 
 [node name="HitBox" type="Area2D" parent="." index="2"]
+collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox" index="0"]
 position = Vector2( 0, -5 )
