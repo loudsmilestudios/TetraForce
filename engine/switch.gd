@@ -8,6 +8,7 @@ export(int, "one_shot", "toggle", "time_out") var mode: int = 0
 export(float) var cooldown: float = 5
 
 var activated: bool = false
+var locked: bool = false
 
 # Called in subclasses to update the state on the client or the server.
 func update_state():
@@ -18,30 +19,40 @@ func update_state():
 		change_state(new_state)
 		for peer in network.map_peers:
 			rpc_id(peer, "change_state", new_state)
+			
+
+func lock():
+	locked = true
+	$CooldownTimer.paused = true
+
+func unlock():
+	locked = false
+	$CooldownTimer.paused = false
 
 #Changing the state here.
 remote func change_state(new_state: bool):
 	
 	# Oneshot mode
 	if mode == 0:
-		if !activated:
+		if !activated && !locked:
 			activated = true
 			emit_signal("on_activate")
 	
 	# Toggle mode
 	elif mode == 1:
-		activated = new_state
-		# Test the new state then emit the appropriate signal.
-		if activated:
-			emit_signal("on_activate")
-		else:
-			emit_signal("on_deactivate")
+		if !locked:
+			activated = new_state
+			# Test the new state then emit the appropriate signal.
+			if activated:
+				emit_signal("on_activate")
+			else:
+				emit_signal("on_deactivate")
 	
 	# Timeout mode
 	elif mode == 2:
 		
 		# If not activated, activate then start the cooldown timer.
-		if !activated:
+		if !activated && !locked:
 			activated = true
 			emit_signal("on_activate")
 			$CooldownTimer.start(cooldown)
