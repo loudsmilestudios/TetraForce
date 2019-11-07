@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://engine/switch.tscn" type="PackedScene" id=1]
-[ext_resource path="res://tiles/weapon_switch.gd" type="Script" id=2]
-[ext_resource path="res://tiles/weapon_switch.png" type="Texture" id=3]
+[ext_resource path="res://tiles/switch/weapon_switch.png" type="Texture" id=2]
+[ext_resource path="res://tiles/switch/weapon_switch.gd" type="Script" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 3, 8 )
@@ -11,10 +11,10 @@ extents = Vector2( 3, 8 )
 extents = Vector2( 3, 8 )
 
 [node name="WeaponSwitch" index="0" instance=ExtResource( 1 )]
-script = ExtResource( 2 )
+script = ExtResource( 3 )
 
 [node name="Sprite" type="Sprite" parent="." index="1"]
-texture = ExtResource( 3 )
+texture = ExtResource( 2 )
 hframes = 2
 
 [node name="HitBox" type="Area2D" parent="." index="2"]

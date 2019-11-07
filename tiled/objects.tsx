@@ -22,7 +22,7 @@
  </tile>
  <tile id="4">
   <properties>
-   <property name="path" value="res://tiles/weapon_switch.tscn"/>
+   <property name="path" value="res://tiles/switch/weapon_switch.tscn"/>
   </properties>
   <image width="16" height="16" source="images/objects/weapon_switch.png"/>
  </tile>

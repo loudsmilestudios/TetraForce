@@ -1,4 +1,4 @@
-extends "res://engine/switch.gd"
+extends Switch
 
 var entities_on: int = 0
 

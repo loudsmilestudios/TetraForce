@@ -24,10 +24,12 @@ func update_state():
 			rpc_id(peer, "change_state", new_state)
 			
 
+# Locks the switch and prevents state change.
 func lock():
 	locked = true
 	$CooldownTimer.paused = true
 
+# Unlocks the switch and re-enables state change.
 func unlock():
 	locked = false
 	$CooldownTimer.paused = false

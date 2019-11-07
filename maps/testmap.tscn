@@ -9,7 +9,8 @@
 [ext_resource path="res://tiles/door.tscn" type="PackedScene" id=7]
 [ext_resource path="res://tiles/pushable.tscn" type="PackedScene" id=8]
 [ext_resource path="res://enemies/arrowtrap/arrow_trap.tscn" type="PackedScene" id=9]
-[ext_resource path="res://tiles/weapon_switch.tscn" type="PackedScene" id=10]
+[ext_resource path="res://tiles/switch/weapon_switch.tscn" type="PackedScene" id=10]
+
 
 [node name="testmap" type="Node2D"]
 script = ExtResource( 1 )

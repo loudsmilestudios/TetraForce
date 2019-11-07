@@ -1,4 +1,4 @@
-extends "res://engine/switch.gd"
+extends Switch
 
 func _update_sprite():
 	if activated:

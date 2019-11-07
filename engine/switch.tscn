@@ -5,9 +5,7 @@
 [node name="Switch" type="Node2D"]
 script = ExtResource( 1 )
 __meta__ = {
-"_editor_description_": "one_shot mode means that the switch can only be enabled.
-toggle mode means that the switch can be enabled or disabled.
-time_out mode is similar to one_shot but the switch disables itself after a cooldown period (determined by Cooldown)."
+"_editor_description_": ""
 }
 
 [node name="CooldownTimer" type="Timer" parent="."]
