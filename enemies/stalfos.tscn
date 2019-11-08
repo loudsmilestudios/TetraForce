@@ -34,6 +34,7 @@ playback_speed = 4.0
 anims/default = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
+z_as_relative = false
 texture = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

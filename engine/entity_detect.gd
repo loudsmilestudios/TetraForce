@@ -15,4 +15,5 @@ func _process(delta):
 func get_grid_pos(pos):
 	var x = floor(pos.x / 256)
 	var y = floor(pos.y / 144)
+	
 	return Vector2(x,y)

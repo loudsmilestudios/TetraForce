@@ -1,8 +1,9 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://player/player.gd" type="Script" id=1]
 [ext_resource path="res://player/player2.png" type="Texture" id=2]
 [ext_resource path="res://ui/monogram.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://player/player_lighting.png" type="Texture" id=4]
 
 [sub_resource type="Animation" id=1]
 resource_name = "idleDown"
@@ -330,6 +331,13 @@ tracks/0/keys = {
 [sub_resource type="RectangleShape2D" id=19]
 extents = Vector2( 4.5, 6 )
 
+[sub_resource type="Shader" id=21]
+code = "shader_type canvas_item;
+render_mode unshaded;"
+
+[sub_resource type="ShaderMaterial" id=22]
+shader = SubResource( 21 )
+
 [sub_resource type="DynamicFont" id=20]
 outline_size = 1
 outline_color = Color( 0, 0, 0, 1 )
@@ -385,8 +393,17 @@ collide_with_areas = true
 wait_time = 0.75
 one_shot = true
 
+[node name="Tween" type="Tween" parent="."]
+
+[node name="Light2D" type="Light2D" parent="."]
+z_index = 100
+z_as_relative = false
+texture = ExtResource( 4 )
+color = Color( 1, 1, 1, 0.498039 )
+
 [node name="PlayerName" type="Label" parent="."]
 modulate = Color( 1, 1, 1, 0.784314 )
+material = SubResource( 22 )
 anchor_left = 1.0
 anchor_right = 1.0
 margin_left = -16.2383
