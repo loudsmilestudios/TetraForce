@@ -13,6 +13,7 @@ func create_level():
 	network.set_process(true)
 	var level = load(map).instance()
 	get_tree().get_root().add_child(level)
+	music.play(preload("res://music/Overworldmaybe.ogg"))
 	hide()
 
 # callback from SceneTree
