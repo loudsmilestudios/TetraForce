@@ -11,7 +11,6 @@ func start():
 			get_parent().state = "swing"
 
 	anim.play(str("swing", get_parent().spritedir))
-	print('swing')
 	sfx.play(load(str("res://items/sword_swing",int(rand_range(1,5)),".wav")), .75, false)
 
 func destroy(animation):
