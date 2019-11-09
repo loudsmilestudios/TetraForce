@@ -175,6 +175,17 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="sound_test" type="Button" parent="TabContainer/Audio"]
+anchor_top = 0.749
+anchor_bottom = 0.749
+margin_top = 0.343002
+margin_right = 46.0
+margin_bottom = 21.5024
+text = "test"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Graphics" type="Tabs" parent="TabContainer"]
 visible = false
 anchor_right = 1.0
@@ -198,3 +209,4 @@ tab_close_display_policy = 1
 [connection signal="value_changed" from="TabContainer/Audio/effects_slider" to="TabContainer/Audio" method="_on_effects_slider_value_changed"]
 [connection signal="value_changed" from="TabContainer/Audio/music_slider" to="TabContainer/Audio" method="_on_music_slider_value_changed"]
 [connection signal="pressed" from="TabContainer/Audio/Button" to="." method="_on_Button_pressed"]
+[connection signal="pressed" from="TabContainer/Audio/sound_test" to="TabContainer/Audio" method="_on_sound_test_pressed"]
