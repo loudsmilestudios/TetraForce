@@ -32,7 +32,15 @@ func _ready():
 	queue_free()
 
 func process_string(s):
+	var lnbreak = s.find("\n")
+	if lnbreak > 0:
+		lines.append(s.left(lnbreak))
+		text = text.right(lnbreak+1)
+		process_string(text)
+		return
+		
 	if s.length() > LINE_LENGTH:
+		
 		var character = LINE_LENGTH
 		while s[character] != " " && character > 1:
 			character -= 1

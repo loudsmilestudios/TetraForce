@@ -32,9 +32,10 @@
   </properties>
   <image width="16" height="16" source="images/objects/pressure_plate.png"/>
  </tile>
- <tile id="7">
+ <tile id="9">
   <properties>
    <property name="item_name" value="moneyS"/>
+   <property name="message" value="You found $1!"/>
    <property name="path" value="res://tiles/chest.tscn"/>
   </properties>
   <image width="16" height="16" source="images/objects/chest5.png"/>

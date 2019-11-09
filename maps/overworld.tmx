@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.5" orientation="orthogonal" renderorder="right-down" width="128" height="72" tilewidth="16" tileheight="16" infinite="0" nextlayerid="9" nextobjectid="24">
+<map version="1.2" tiledversion="1.2.5" orientation="orthogonal" renderorder="right-down" width="128" height="72" tilewidth="16" tileheight="16" infinite="0" nextlayerid="9" nextobjectid="33">
  <tileset firstgid="1" source="../tiled/overworld/overworld_wall.tsx"/>
  <tileset firstgid="26" source="../tiled/overworld/overworld_decor.tsx"/>
  <tileset firstgid="31" source="../tiled/overworld/overworld_ground.tsx"/>
  <tileset firstgid="61" source="../tiled/objects.tsx"/>
+ <tileset firstgid="69" source="../tiled/objects.tsx"/>
  <layer id="1" name="ground" width="128" height="72">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -441,19 +442,16 @@
    <point/>
   </object>
   <object id="18" gid="63" x="688.256" y="62.9371" width="16" height="16"/>
-  <object id="21" gid="68" x="64" y="48" width="16" height="16">
+  <object id="30" gid="78" x="64" y="48" width="16" height="16">
    <properties>
     <property name="item_name" value="heart"/>
+    <property name="message" value="You found a heart!"/>
    </properties>
   </object>
-  <object id="22" gid="68" x="64" y="80" width="16" height="16">
+  <object id="31" gid="78" x="64" y="64" width="16" height="16"/>
+  <object id="32" gid="78" x="16" y="48" width="16" height="16">
    <properties>
-    <property name="item_name" value="moneyS"/>
-   </properties>
-  </object>
-  <object id="23" gid="68" x="16" y="48" width="16" height="16">
-   <properties>
-    <property name="item_name" value="fake_name"/>
+    <property name="item_name" value="fake"/>
    </properties>
   </object>
  </objectgroup>

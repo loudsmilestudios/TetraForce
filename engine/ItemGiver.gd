@@ -14,10 +14,8 @@ func give_item(player_node, item_name):
 	var item = _find_item(item_name)
 	if !player_node || !item:
 		return false
-	print_debug(player_node,item)
 	
-	write_dialog(player_node, "Chest contained " + item.text_name + "!\nBetter than nothing!")
-	return true
+	return item
 
 func _find_item(item_name):
 	if item_dictionary.has(item_name):
