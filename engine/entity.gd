@@ -134,6 +134,21 @@ func loop_spritedir():
 	var flip = spritedir == "Left"
 	if sprite.flip_h != flip:
 		sprite.flip_h = flip
+		
+func loop_lightdir():
+	var light_rot = 0
+	
+	match spritedir:
+		"Left":
+			light_rot = 90
+		"Right":
+			light_rot = 270
+		"Up":
+			light_rot = 180
+		"Down":
+			light_rot = 0
+	
+	$Light2D.rotation_degrees = light_rot
 
 func loop_damage():
 	sprite.texture = texture_default
