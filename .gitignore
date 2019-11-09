@@ -15,5 +15,3 @@ export_presets.cfg
 .vs
 # Mac-specific ignores
 .DS_Store
-*.import
-*.import
