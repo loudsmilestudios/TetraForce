@@ -36,9 +36,6 @@ func forward_pressed():
 func _on_name_text_changed(new_name: String):
 	if new_name.length() == 0:
 		player_name = options.keys()[selected]
-	elif new_name.length() > 8:
-		new_name = new_name.substr(0,8) + "+"
-		player_name = new_name
 	else:
 		player_name = new_name
 		
