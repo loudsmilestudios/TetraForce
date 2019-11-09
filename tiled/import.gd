@@ -30,7 +30,7 @@ func import_tilemap(tilemap):
 func spawn_object(object):
 	if object.has_meta("path"):
 		var path = object.get_meta("path")
-		
+		print_debug("path",path)
 		var node = load(path).instance()
 		scene.add_child(node)
 		node.set_owner(scene)
@@ -39,6 +39,7 @@ func spawn_object(object):
 		for meta in object.get_meta_list():
 			if meta in default_meta:
 				continue
+			print_debug(meta)
 			node.set(meta, object.get_meta(meta))
 	
 	else:
