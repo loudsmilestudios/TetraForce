@@ -16,6 +16,7 @@ func play(sound, volume_modifier=0, modify_increase = true):
 		else:
 			play_volume = -abs(play_volume * linear2db(volume_modifier))
 	
+	print("Play volume: " + str(play_volume))
 	var sfx = AudioStreamPlayer.new()
 	get_tree().get_root().add_child(sfx)
 	sfx.set_stream(sound)

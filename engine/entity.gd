@@ -157,7 +157,7 @@ func loop_damage():
 			update_health(-body.DAMAGE)
 			hitstun = 10
 			knockdir = global_position - body.global_position
-			sfx.play(load(HURT_SOUND))
+			sfx.play(load(HURT_SOUND), .85, false)
 			
 			if body.has_method("hit"):
 				body.rpc("hit")
