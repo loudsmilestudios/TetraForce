@@ -1,61 +1,79 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://ui/TetraForce.tres" type="Theme" id=1]
 [ext_resource path="res://ui/esc_menu.gd" type="Script" id=2]
+[ext_resource path="res://ui/options/options.tscn" type="PackedScene" id=3]
 
 [node name="esc_menu" type="Popup"]
-visible = true
-margin_left = 90.7272
-margin_top = 11.2967
-margin_right = 164.727
-margin_bottom = 101.296
+anchor_left = 0.016
+anchor_top = 0.035
+anchor_right = 0.98
+anchor_bottom = 0.972
+margin_left = -0.0960002
+margin_top = -0.04
+margin_right = 0.119995
+margin_bottom = 0.0319977
 mouse_filter = 2
 theme = ExtResource( 1 )
 popup_exclusive = true
 script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="background" type="ColorRect" parent="."]
-margin_left = -11.0
-margin_right = 98.0
-margin_bottom = 82.0
-color = Color( 0, 0, 0, 0.294118 )
+[node name="background" type="Panel" parent="."]
+margin_left = 72.676
+margin_top = 17.0303
+margin_right = 181.676
+margin_bottom = 107.03
 
-[node name="resume" type="Button" parent="."]
-margin_left = 16.0513
-margin_top = 62.6147
-margin_right = 66.0513
-margin_bottom = 77.6147
+[node name="resume_btn" type="Button" parent="."]
+margin_left = 100.863
+margin_top = 80.1041
+margin_right = 150.863
+margin_bottom = 101.264
 size_flags_horizontal = 2
 size_flags_vertical = 2
 text = "Resume"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="quit_game" type="Button" parent="."]
-margin_left = 12.1026
-margin_top = 4.05827
-margin_right = 71.1026
-margin_bottom = 20.0583
+[node name="quit_game_btn" type="Button" parent="."]
+margin_left = 96.9144
+margin_top = 21.5477
+margin_right = 159.069
+margin_bottom = 42.7071
 size_flags_horizontal = 2
 size_flags_vertical = 2
 text = "Quit Game"
 
-[node name="options" type="Button" parent="."]
-margin_left = 16.0513
-margin_top = 42.6007
-margin_right = 66.0513
-margin_bottom = 57.6007
+[node name="options_btn" type="Button" parent="."]
+margin_left = 100.863
+margin_top = 60.0901
+margin_right = 151.018
+margin_bottom = 81.2495
 size_flags_horizontal = 2
-disabled = true
 text = "Options"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="goto_lobby" type="Button" parent="."]
-margin_left = -7.21912
-margin_top = 23.7226
-margin_right = 92.7809
-margin_bottom = 38.7226
+[node name="goto_lobby_btn" type="Button" parent="."]
+margin_left = 77.5927
+margin_top = 41.212
+margin_right = 177.593
+margin_bottom = 62.3714
 size_flags_horizontal = 2
 disabled = true
 text = "Return to Lobby"
-[connection signal="pressed" from="resume" to="." method="_on_resume_pressed"]
-[connection signal="pressed" from="quit_game" to="." method="_on_quit_game_pressed"]
-[connection signal="pressed" from="options" to="." method="_on_options_pressed"]
-[connection signal="pressed" from="goto_lobby" to="." method="_on_goto_lobby_pressed"]
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="options" parent="." instance=ExtResource( 3 )]
+visible = false
+[connection signal="pressed" from="resume_btn" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="quit_game_btn" to="." method="_on_quit_game_pressed"]
+[connection signal="pressed" from="options_btn" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="goto_lobby_btn" to="." method="_on_goto_lobby_pressed"]

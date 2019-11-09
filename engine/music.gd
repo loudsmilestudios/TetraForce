@@ -12,3 +12,6 @@ func play(audio):
 	music.set_volume_db(volume)
 	music.connect("finished",music,"queue_free")
 	music.play()
+
+func change_volume(volume):
+	music.set_volume_db(linear2db(volume))

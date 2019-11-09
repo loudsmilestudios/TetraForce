@@ -1,20 +1,28 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://ui/TetraForce.tres" type="Theme" id=1]
-[ext_resource path="res://ui/options/Audio.gd" type="Script" id=2]
+[ext_resource path="res://ui/options/audio_options.gd" type="Script" id=2]
+[ext_resource path="res://ui/options/options_panel.gd" type="Script" id=3]
 
-[node name="options" type="Panel"]
+[node name="options_panel" type="Panel"]
 anchor_right = 0.996
 anchor_bottom = 1.0
 margin_right = 0.0239868
 theme = ExtResource( 1 )
+script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="TabContainer" type="TabContainer" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchor_left = 0.027
+anchor_top = 0.056
+anchor_right = 0.969
+anchor_bottom = 0.944
+margin_left = 0.115
+margin_top = -0.0640001
+margin_right = -0.0950012
+margin_bottom = 0.0639954
 theme = ExtResource( 1 )
 tab_align = 0
 __meta__ = {
@@ -28,6 +36,7 @@ margin_left = 4.0
 margin_top = 31.0
 margin_right = -4.0
 margin_bottom = -4.0
+tab_close_display_policy = 1
 script = ExtResource( 2 )
 
 [node name="master_slider" type="HSlider" parent="TabContainer/Audio"]
@@ -161,7 +170,7 @@ margin_left = -0.0460205
 margin_top = 0.0419998
 margin_right = 0.0319977
 margin_bottom = -0.840569
-text = "Apply"
+text = "Close"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -174,6 +183,7 @@ margin_left = 4.0
 margin_top = 31.0
 margin_right = -4.0
 margin_bottom = -4.0
+tab_close_display_policy = 1
 
 [node name="Input" type="Tabs" parent="TabContainer"]
 visible = false
@@ -183,6 +193,8 @@ margin_left = 4.0
 margin_top = 31.0
 margin_right = -4.0
 margin_bottom = -4.0
+tab_close_display_policy = 1
 [connection signal="value_changed" from="TabContainer/Audio/master_slider" to="TabContainer/Audio" method="_on_master_slider_value_changed"]
 [connection signal="value_changed" from="TabContainer/Audio/effects_slider" to="TabContainer/Audio" method="_on_effects_slider_value_changed"]
 [connection signal="value_changed" from="TabContainer/Audio/music_slider" to="TabContainer/Audio" method="_on_music_slider_value_changed"]
+[connection signal="pressed" from="TabContainer/Audio/Button" to="." method="_on_Button_pressed"]

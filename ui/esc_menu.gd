@@ -9,13 +9,13 @@ func _input(event):
 		if event.pressed && event.scancode == KEY_ESCAPE:
 			self.popup()
 
-func _on_resume_pressed():
+func _on_resume_btn_pressed():
 	self.hide()
 
-func _on_quit_game_pressed():
+func _on_quit_game_btn_pressed():
 	get_tree().quit()
 
-func _on_goto_lobby_pressed():
+func _on_goto_lobby_btn_pressed():
 	# Currently disabled because it does not work properly
 	# Needs to properly shut down and restart if running as server
 	if get_tree().is_network_server():
@@ -24,4 +24,4 @@ func _on_goto_lobby_pressed():
 	self.hide()
 
 func _on_options_pressed():
-	pass # Replace with function body.
+	$options.visible = true
