@@ -1,20 +1,20 @@
 extends Entity
 
-onready var ray = $RayCast2D
+onready var ray: RayCast2D = $RayCast2D
 
 var action_cooldown = 0
 var push_target = null
 
 # synced from engine/global.gd
-var equip_slot
-var items
+var equip_slot: Dictionary
+var items: Array
 
-var spinAtk = false
-onready var holdTimer = $HoldTimer
+var spinAtk: bool = false
+onready var holdTimer: Timer = $HoldTimer
 
-var chat_messages = [{"source": "Welcome to TetraForce!", "message": ""}]
+var chat_messages: Array = [{"source": "Welcome to TetraForce!", "message": ""}]
 
-func _ready():
+func _ready() -> void:
 	if is_network_master():
 		global.player = self
 		global.set_player_state()
@@ -32,14 +32,14 @@ func _ready():
 	
 	$PlayerName.visible = settings.get_pref("show_name_tags")
 
-func initialize():
+func initialize() -> void:
 	if is_network_master():
 		camera.initialize(self)
 		
-func set_player_label(player_name):
+func set_player_label(player_name: String):
 	$PlayerName.text = player_name
 
-func _physics_process(delta):
+func _physics_process(delta: float) -> void:
 	# puppet
 	if !is_network_master():
 		position = puppet_pos
@@ -49,7 +49,7 @@ func _physics_process(delta):
 		if anim.current_animation != puppet_anim:
 			anim.play(puppet_anim)
 		
-		var flip = (spritedir == "Left")
+		var flip: bool = (spritedir == "Left")
 		if sprite.flip_h != flip:
 			sprite.flip_h = flip
 		
@@ -75,7 +75,7 @@ func _physics_process(delta):
 	#if movedir.length() > 1:
 	#	$Sprite.global_position = global_position.snapped(Vector2(1,1))
 
-func state_default():
+func state_default() -> void:
 	loop_controls()
 	loop_movement()
 	loop_damage()
@@ -93,17 +93,17 @@ func state_default():
 	else:
 		anim_switch("walk")
 
-func state_swing():
+func state_swing() -> void:
 	anim_switch("swing")
 	loop_movement()
 	loop_damage()
 	movedir = Vector2.ZERO
 
-func state_hold():
+func state_hold() -> void:
 	loop_controls()
 	loop_movement()
 	loop_damage()
-	if movedir != Vector2(0,0):
+	if movedir != Vector2(0, 0):
 		anim_switch("walk")
 	else:
 		anim_switch("idle")
@@ -111,18 +111,18 @@ func state_hold():
 	if !has_node("Sword"):
 		state = "default"
 
-func state_spin():
+func state_spin() -> void:
 	anim_switch("spin")
 	loop_movement()
 	loop_damage()
 	movedir = Vector2.ZERO
 
-func state_fall():
+func state_fall() -> void:
 	anim_switch("jump")
 	position.y += 100 * get_physics_process_delta_time()
 	
 	$CollisionShape2D.disabled = true
-	var colliding = false
+	var colliding: bool = false
 	for body in hitbox.get_overlapping_bodies():
 		if body is TileMap:
 			colliding = true
@@ -131,7 +131,7 @@ func state_fall():
 		sfx.play(preload("res://player/player_land.wav"), 20)
 		state = "default"
 
-func state_menu():
+func state_menu() -> void:
 	if Input.is_action_just_pressed("ui_select") && network.current_map.get_node("HUD/Inventory"):
 		network.current_map.get_node("HUD/Inventory").queue_free()
 		state = "default"
@@ -139,18 +139,18 @@ func state_menu():
 		network.current_map.get_node("HUD/Chat").queue_free()
 		state = "default"
 
-func loop_controls():
+func loop_controls() -> void:
 	movedir = Vector2.ZERO
 	
-	var LEFT = Input.is_action_pressed(controller.LEFT)
-	var RIGHT = Input.is_action_pressed(controller.RIGHT)
-	var UP = Input.is_action_pressed(controller.UP)
-	var DOWN = Input.is_action_pressed(controller.DOWN)
+	var LEFT: bool = Input.is_action_pressed(controller.LEFT)
+	var RIGHT: bool = Input.is_action_pressed(controller.RIGHT)
+	var UP: bool = Input.is_action_pressed(controller.UP)
+	var DOWN: bool = Input.is_action_pressed(controller.DOWN)
 	
 	movedir.x = -int(LEFT) + int(RIGHT)
 	movedir.y = -int(UP) + int(DOWN)
 
-func loop_interact():
+func loop_interact() -> void:
 	if ray.is_colliding():
 		var collider = ray.get_collider()
 		if collider.is_in_group("interact") && Input.is_action_just_pressed(controller.A) && action_cooldown == 0:
@@ -170,7 +170,7 @@ func loop_interact():
 		push_target.stop_interact()
 		push_target = null
 		
-func loop_action_button():
+func loop_action_button() -> void:
 	if action_cooldown == 0:
 		for btn in ["B", "X", "Y"]:
 			if Input.is_action_just_pressed(btn) && equip_slot[btn] != "":
@@ -185,37 +185,36 @@ func loop_action_button():
 			show_chat()
 			state = "menu"
 		
-func show_inventory():
+func show_inventory() -> void:
 	var inventory = preload("res://ui/inventory/inventory.tscn").instance()
 	network.current_map.get_node("HUD").add_child(inventory)
 	inventory.player = self
 	inventory.start()
 	
-func show_chat():
+func show_chat() -> void:
 	var chat = preload("res://ui/chat/chat.tscn").instance()
 	network.current_map.get_node("HUD").add_child(chat)
 	chat.message_log = chat_messages
 	chat.start()
 
-func connect_camera():
+func connect_camera() -> void:
 	camera.connect("screen_change_started", self, "screen_change_started")
 	camera.connect("screen_change_completed", self, "screen_change_completed")
 	camera.connect("lighting_mode_changed", self, "lighting_mode_changed")
 
-func screen_change_started():
+func screen_change_started() -> void:
 	set_physics_process(false)
 	room.remove_entity(self)
 
-func screen_change_completed():
-	
+func screen_change_completed() -> void:
 	set_physics_process(true)
 	room = network.get_room(position)
 	room.add_entity(self)
 	
-func lighting_mode_changed(energy):
+func lighting_mode_changed(energy: float) -> void:
 	$Tween.interpolate_property($Light2D, "energy", $Light2D.energy, energy, 0.2, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT, 0.2)
 	$Tween.start()
 
-func _on_HoldTimer_timeout():
+func _on_HoldTimer_timeout() -> void:
 	spinAtk = true
 	sfx.play(preload("res://items/tink.wav"), 20) # get better sfx
