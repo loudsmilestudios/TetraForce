@@ -11,7 +11,8 @@ func start():
 			get_parent().state = "swing"
 
 	anim.play(str("swing", get_parent().spritedir))
-	sfx.play(load(str("res://items/sword_swing",int(rand_range(1,5)),".wav")))
+	print('swing')
+	sfx.play(load(str("res://items/sword_swing",int(rand_range(1,5)),".wav")), .75, false)
 
 func destroy(animation):
 	# If this is true, spinAtk animation is done, so delete stuff (no need to check inputs)
@@ -94,7 +95,7 @@ func _physics_process(delta):
 			
 			get_parent().anim.connect("animation_finished", self, "destroy")
 			get_parent().anim.connect("animation_changed", self, "destroy")
-			sfx.play(load(str("res://items/sword_swing",int(rand_range(1,5)),".wav"))) # get beter sfx
+			sfx.play(load(str("res://items/sword_swing",int(rand_range(1,5)),".wav")), .25, false) # get beter sfx
 		else:
 			if get_parent().get("holdTimer"):
 				get_parent().holdTimer.stop()

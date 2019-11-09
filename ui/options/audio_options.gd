@@ -28,4 +28,4 @@ func _on_music_slider_value_changed(value):
 
 
 func _on_sound_test_pressed():
-	sfx.play(preload("res://droppables/get_rupee.wav"), .15)
+	sfx.play(preload("res://droppables/get_rupee.wav"), .5)
