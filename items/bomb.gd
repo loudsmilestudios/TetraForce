@@ -18,7 +18,10 @@ func start():
 	
 	#Set damage to 0
 	DAMAGE = 0
-	
+	$AnimationPlayer.play("default")
+	#can't seem to get this working. 
+	#Using the timer set up below as a workaround for now
+	#$AnimationPlayer.connect("animation_finished",self,"_on_timeout")
 	set_physics_process(true)
 	$Hitbox.connect("body_entered", self, "body_entered")
 	
@@ -55,7 +58,7 @@ func _on_timeout():
 			body.blast()
 			
 	#attach the explode animation
-	var death_animation = preload("res://enemies/enemy_death.tscn").instance()
+	var death_animation = preload("res://items/bomb_explode.tscn").instance()
 	death_animation.global_position = global_position
 	get_parent().add_child(death_animation)
 	
