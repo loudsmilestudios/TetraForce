@@ -10,6 +10,25 @@ func _ready():
 	add_to_group("interact")
 	add_to_group("nopush")
 
+func open_chest(texture_path, doanim = false):
+	$Sprite.region_rect = Rect2(16, 0, 16, 16)
+	opened = true
+	if doanim:
+		play_anim(texture_path)
+	
+func play_anim(texture):
+	var item_spr = Sprite.new()
+	item_spr.texture = load(texture)
+	global.player.get_parent().add_child(item_spr)
+	item_spr.position = self.position + Vector2(0, -8)
+	
+	var float_anim = Tween.new()
+	float_anim.interpolate_property(item_spr, "position", self.position + Vector2(0, 0), self.position + Vector2(0, -16), .6, Tween.TRANS_QUAD, Tween.EASE_OUT)
+	float_anim.connect("tween_all_completed", item_spr, "queue_free")
+	
+	global.player.get_parent().add_child(float_anim)
+	float_anim.start()
+	
 func interact(node):
 	if opened:
 		return
@@ -19,22 +38,12 @@ func interact(node):
 
 	var item_instance = giver.give_item(node, item_name)
 	if !item_instance:
-		giver.write_dialog(node, "The lid is stuck")
+		giver.write_dialog(node, "The lid is stuck.")
 		return
-	$Sprite.region_rect = Rect2(16, 0, 16, 16)
-	opened = true
-	
-	var item_spr = Sprite.new()
-	item_spr.texture = item_instance.get_child(0).texture
-	node.get_parent().add_child(item_spr)
-	item_spr.position = self.position + Vector2(0, -8)
-	
-	var float_anim = Tween.new()
-	float_anim.interpolate_property(item_spr, "position", self.position + Vector2(0, 0), self.position + Vector2(0, -16), .6, Tween.TRANS_QUAD, Tween.EASE_OUT)
-	float_anim.connect("tween_all_completed", item_spr, "queue_free")
-	
-	node.get_parent().add_child(float_anim)
-	float_anim.start()
+		
+	print_debug("path", get_path())
+	open_chest(item_instance.get_child(0).texture.resource_path, true)
+	network.current_map.rpc("net_open_chest", get_path(), item_instance.get_child(0).texture.resource_path, true)
 	
 	item_instance.pickup(node)
 	giver.write_dialog(node, message)
