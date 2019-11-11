@@ -80,6 +80,7 @@ func state_default():
 	loop_movement()
 	loop_damage()
 	loop_spritedir()
+	loop_lightdir()
 	loop_interact()
 	loop_action_button()
 	
@@ -215,6 +216,11 @@ func screen_change_completed():
 func lighting_mode_changed(energy):
 	$Tween.interpolate_property($Light2D, "energy", $Light2D.energy, energy, 0.2, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT, 0.2)
 	$Tween.start()
+	
+	if energy > 0:
+		$LightAnimation.play("Flicker")
+		
+	#TOOD add any other lighting effects here
 
 func _on_HoldTimer_timeout():
 	spinAtk = true
