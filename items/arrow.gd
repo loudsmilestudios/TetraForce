@@ -1,13 +1,13 @@
 extends Item
 
-const SPEED = 150
-var movedir = Vector2(0,0)
+const SPEED: int = 150
+var movedir: Vector2 = Vector2(0,0)
 
-var shooter
+var shooter: Entity
 
 puppet var puppet_pos = position
 
-func start():
+func start() -> void:
 	shooter = get_parent()
 	$Hitbox.connect("body_entered", self, "body_entered")
 	add_to_group("projectile")
@@ -34,12 +34,12 @@ func start():
 	
 	set_physics_process(true)
 
-func _physics_process(delta):
+func _physics_process(delta) -> void:
 	position += movedir * SPEED * delta
 
-func body_entered(body):
+func body_entered(body) -> void:
 	if body.get("TYPE") != TYPE:
 		delete()
 
-sync func delete():
+sync func delete() -> void:
 	queue_free()
