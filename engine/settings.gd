@@ -50,7 +50,7 @@ func _load_from_preferences() -> void:
 	var loaded = parse_json(saved.get_as_text())
 	
 	# Debugging loaded saves
-	print("loaded save: ", saved.get_as_text())
+	print_debug("loaded save: ", saved.get_as_text())
 	
 	if loaded == null || loaded.empty():
 		_save_to_preferences()
@@ -74,7 +74,7 @@ func _save_to_preferences() -> void:
 # Using simple migration for now
 # If we remove a key, currently that data is lost
 # When needed, we can start migrating using the schema numbers to do more complicated migrations
-func _migrate_save(loaded_save) -> void:
+func _migrate_save(loaded_save: Dictionary) -> void:
 	for key in _user_prefs.keys():
 		if loaded_save.has(key):
 			_user_prefs[key] = loaded_save[key]
@@ -82,7 +82,7 @@ func _migrate_save(loaded_save) -> void:
 	_user_prefs["schema"] = SCHEMA_VERSION
 	_save_to_preferences()
 	
-func _load_controls(loaded_controls) -> void:
+func _load_controls(loaded_controls: Dictionary) -> void:
 	var schema_key = "schema"
 	
 	if !loaded_controls.has(schema_key) || loaded_controls[schema_key] != CONTROLS_SCHEMA_VERSION:
@@ -113,26 +113,26 @@ func save_input_map(new_map: Dictionary) -> void:
 	
 	load_input_map(new_map)
 		
-func load_input_map(loaded_controls) -> void:
+func load_input_map(loaded_controls: Dictionary) -> void:
 	InputMap.load_from_globals()
 	
-	var input_keys = loaded_controls["input.keys"]
+	var input_keys: Dictionary = loaded_controls["input.keys"]
 	
 	for key in input_keys:
 		if InputMap.has_action(key):
 			var value = input_keys[key]
-			var input_event = InputEventKey.new()
+			var input_event: InputEventKey = InputEventKey.new()
 			input_event.scancode = value
 			InputMap.action_add_event(key, input_event)
 		else:
 			printerr("Settings Error: Invalid input action '%s'" % key)
 
-	var input_axes = loaded_controls["input.axes"]
+	var input_axes: Dictionary = loaded_controls["input.axes"]
 	for key in input_axes.keys():
 		if InputMap.has_action(key):
 			var value = input_axes[key]
 			if value is Array and value.size() == 2:
-				var input_event = InputEventJoypadMotion.new()
+				var input_event: InputEventJoypadMotion = InputEventJoypadMotion.new()
 				input_event.axis = value[0]
 				input_event.axis_value = value[1]
 				InputMap.action_add_event(key, input_event)
@@ -141,11 +141,11 @@ func load_input_map(loaded_controls) -> void:
 		else:
 			printerr("Settings Error: Invalid input action '%s'" % key)
 
-	var input_buttons = loaded_controls["input.buttons"]
+	var input_buttons: Dictionary = loaded_controls["input.buttons"]
 	for key in input_buttons.keys():
 		if InputMap.has_action(key):
 			var value = input_buttons[key]
-			var input_event = InputEventJoypadButton.new()
+			var input_event: InputEventJoypadButton = InputEventJoypadButton.new()
 			input_event.button_index = value
 			InputMap.action_add_event(key, input_event)
 		else:

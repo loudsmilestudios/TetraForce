@@ -9,36 +9,36 @@ extends Node
 
 var player # this client's player
 
-var health = 5
-var max_health = 5
-onready var equip_slot = {controller.B: "Sword", controller.X: "", controller.Y: ""}
+var health: float = 5
+var max_health: float = 5
+onready var equip_slot: Dictionary = {controller.B: "Sword", controller.X: "", controller.Y: ""}
 
-var items = ["Sword", "Bow"]
+var items: Array = ["Sword", "Bow"]
 
-var item_dict = {
+var item_dict: Dictionary = {
 	"Sword": "res://items/sword.tscn",
 	"Bow": "res://items/arrow.tscn",
 }
 
-var enemy_dict = {
+var enemy_dict: Dictionary = {
 	"Stalfos": "res://enemies/stalfos.tscn",
 	"Knawblin": "res://enemies/knawblin.tscn",
 }
 
-func set_player_state():
+func set_player_state() -> void:
 	player.health = health
 	player.MAX_HEALTH = max_health
 	player.equip_slot = equip_slot
 	player.items = items
 
-func get_player_state():
+func get_player_state() -> void:
 	health = player.health
 	max_health = player.MAX_HEALTH
 	equip_slot = player.equip_slot
 	items = player.items
 
-func get_item_name(item_path):
+func get_item_name(item_path: String) -> String:
 	return item_dict.keys()[item_dict.values().find(item_path)]
 
-func get_item_path(item_name):
+func get_item_path(item_name: String) -> String:
 	return item_dict[item_name]

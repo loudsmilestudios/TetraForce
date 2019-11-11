@@ -1,15 +1,15 @@
 extends Enemy
 
-var movetimer_length = 15
-var movetimer = 0
+var movetimer_length: int = 15
+var movetimer: int = 0
 
-func _ready():
+func _ready() -> void:
 	puppet_pos = position
 	
 	anim.play("default")
 	movedir = entity_helper.rand_direction()
 
-func _physics_process(delta):
+func _physics_process(delta: float) -> void:
 	if !is_scene_owner() || is_dead():
 		return
 	
@@ -22,8 +22,8 @@ func _physics_process(delta):
 		movedir = entity_helper.rand_direction()
 		movetimer = movetimer_length
 
-func puppet_update():
+func puppet_update() -> void:
 	position = puppet_pos
 
-func _process(delta):
+func _process(delta: float) -> void:
 	loop_network()

@@ -7,7 +7,7 @@ func _ready():
 
 # Volume modifier allows individual sounds to have custom volume, 
 # regardless of audio volume settings
-func play(sound, volume_modifier=0, modify_increase = true):
+func play(sound, volume_modifier=0, modify_increase = true) -> void:
 	var play_volume = sfx_volume
 	
 	if volume_modifier != 0:

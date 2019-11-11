@@ -3,7 +3,14 @@
 [ext_resource path="res://engine/camera.gd" type="Script" id=1]
 
 [node name="Camera" type="Camera2D"]
+z_index = 1000
+z_as_relative = false
 anchor_mode = 0
 script = ExtResource( 1 )
 
 [node name="Tween" type="Tween" parent="."]
+
+[node name="ModulateTween" type="Tween" parent="."]
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color( 0, 0, 0, 1 )
