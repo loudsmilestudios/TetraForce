@@ -24,4 +24,4 @@ func _on_goto_lobby_pressed() -> void:
 	self.hide()
 
 func _on_options_pressed() -> void:
-	pass # Replace with function body.
+	$options.visible = true

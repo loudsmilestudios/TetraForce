@@ -4,7 +4,7 @@ extends Node
 const SERVER_VERSION: String = "0"
 
 # Update this whenever the _user_prefs or _user_controls dictionary are updated
-const SCHEMA_VERSION: String = "1"
+const SCHEMA_VERSION: String = "2"
 const CONTROLS_SCHEMA_VERSION: String = "2"
 
 const _user_dir: String = "user://"
@@ -14,12 +14,15 @@ const default_host: String = "127.0.0.1"
 
 
 onready var _user_prefs: Dictionary = {
-	schema_version = "0",
+	schema_version = "2",
 	show_name_tags = true,
 	host_address = default_host,
 	display_name = "",
 	skin = 0,
-	controls = controller.default
+	controls = controller.default,
+	volume_master = .75,
+	volume_effects = .75,
+	volume_music = .75
 	}
 
 func _ready() -> void:
@@ -102,6 +105,8 @@ func set_pref(key: String, value) -> void:
 		_user_prefs[key] = value
 		
 		_save_to_preferences()
+	else:
+		print("Key: " + key + " not found")
 		
 func save_input_map(new_map: Dictionary) -> void:
 	set_pref("controls", new_map)

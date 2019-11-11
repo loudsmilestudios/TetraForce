@@ -26,7 +26,7 @@ func _ready() -> void:
 			line += 1
 		
 		yield(self, "advance_text")
-		sfx.play(preload("res://ui/dialog_line.wav"), 15)
+		sfx.play(preload("res://ui/dialog_line.wav"))
 		$Text.newline()
 	emit_signal("finished")
 	queue_free()
@@ -49,7 +49,7 @@ func process_string(s: String) -> void:
 func write_line(l: int) -> void:
 	for character in lines[l]:
 		$Text.text += character
-		sfx.play(preload("res://ui/dialog_character.wav"), 15)
+		sfx.play(preload("res://ui/dialog_character.wav"))
 		var speed = TEXT_SPEED
 		if Input.is_action_pressed(controller.B):
 			speed = TEXT_SPEED / 2

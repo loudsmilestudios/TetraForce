@@ -62,6 +62,7 @@ network="*res://engine/network.gd"
 screenfx="*res://engine/screenfx.tscn"
 settings="*res://engine/settings.gd"
 controller="*res://engine/controller.gd"
+music="*res://engine/music.gd"
 
 [debug]
 
