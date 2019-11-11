@@ -1,22 +1,22 @@
 extends Node
 
-const UP = "UP"
-const DOWN = "DOWN"
-const LEFT = "LEFT"
-const RIGHT = "RIGHT"
+const UP: String = "UP"
+const DOWN: String = "DOWN"
+const LEFT: String = "LEFT"
+const RIGHT: String = "RIGHT"
 
-const A = "A"
-const B = "B"
-const X = "X"
-const Y = "Y"
+const A: String = "A"
+const B: String = "B"
+const X: String = "X"
+const Y: String = "Y"
 
-const L = "L"
-const ZL = "ZL"
-const R = "R"
-const ZR = "ZR"
+const L: String = "L"
+const ZL: String = "ZL"
+const R: String = "R"
+const ZR: String = "ZR"
 
-const START = "START"
-const SELECT = "SELECT"
+const START: String = "START"
+const SELECT: String = "SELECT"
 
 var default: Dictionary = {
 	"schema": "0",

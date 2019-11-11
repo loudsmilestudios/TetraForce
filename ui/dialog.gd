@@ -1,19 +1,19 @@
 extends CanvasLayer
 
-var text = "Bees range in size from tiny stingless bee species whose workers are less than 2 millimetres (0.08 in) long, to Megachile pluto, the largest species of leafcutter bee, whose females can attain a length of 39 millimetres (1.54 in). The most common bees in the Northern Hemisphere are the Halictidae, or sweat bees, but they are small and often mistaken for wasps or flies. Vertebrate predators of bees include birds such as be... END"
+var text: String = "Bees range in size from tiny stingless bee species whose workers are less than 2 millimetres (0.08 in) long, to Megachile pluto, the largest species of leafcutter bee, whose females can attain a length of 39 millimetres (1.54 in). The most common bees in the Northern Hemisphere are the Halictidae, or sweat bees, but they are small and often mistaken for wasps or flies. Vertebrate predators of bees include birds such as be... END"
 
-const LINE_LENGTH = 38
-const TEXT_SPEED = 0.02
+const LINE_LENGTH: int = 38
+const TEXT_SPEED: float = 0.02
 
-var lines = []
+var lines: Array = []
 
 signal line_end
 signal advance_text
 signal finished
 
-func _ready():
+func _ready() -> void:
 	process_string(text)
-	var line = 0
+	var line: int = 0
 	while line < lines.size():
 		write_line(line)
 		yield(self, "line_end")
@@ -26,14 +26,14 @@ func _ready():
 			line += 1
 		
 		yield(self, "advance_text")
-		sfx.play(preload("res://ui/dialog_line.wav"), 15)
+		sfx.play(preload("res://ui/dialog_line.wav"))
 		$Text.newline()
 	emit_signal("finished")
 	queue_free()
 
-func process_string(s):
+func process_string(s: String) -> void:
 	if s.length() > LINE_LENGTH:
-		var character = LINE_LENGTH
+		var character: int = LINE_LENGTH
 		while s[character] != " " && character > 1:
 			character -= 1
 		lines.append(s.left(character))
@@ -46,17 +46,16 @@ func process_string(s):
 	else:
 		lines.append(text)
 
-func write_line(l):
-	var line_text = lines[l]
+func write_line(l: int) -> void:
 	for character in lines[l]:
 		$Text.text += character
-		sfx.play(preload("res://ui/dialog_character.wav"), 15)
+		sfx.play(preload("res://ui/dialog_character.wav"))
 		var speed = TEXT_SPEED
 		if Input.is_action_pressed(controller.B):
 			speed = TEXT_SPEED / 2
 		yield(get_tree().create_timer(speed), "timeout")
 	emit_signal("line_end")
 
-func _input(event):
+func _input(event) -> void:
 	if event.is_action_pressed(controller.A) || event.is_action_pressed(controller.B):
 		emit_signal("advance_text")

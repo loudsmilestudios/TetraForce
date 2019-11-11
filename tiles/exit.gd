@@ -1,11 +1,11 @@
 extends Area2D
 
-export(String, FILE, "*.tscn") var map
+export(String, FILE, "*.tscn") var map: String
 
-func _ready():
+func _ready() -> void:
 	connect("body_entered", self, "body_entered")
 
-func body_entered(body):
+func body_entered(body) -> void:
 	if body.is_in_group("player") && body.is_network_master():
 		body.state = "interact"
 		screenfx.play("fadewhite")
