@@ -345,17 +345,17 @@ tracks/0/keys = {
 "values": [ ExtResource( 5 ), ExtResource( 4 ) ]
 }
 
-[sub_resource type="RectangleShape2D" id=21]
+[sub_resource type="RectangleShape2D" id=20]
 extents = Vector2( 4.5, 6 )
 
-[sub_resource type="Shader" id=22]
+[sub_resource type="Shader" id=21]
 code = "shader_type canvas_item;
 render_mode unshaded;"
 
-[sub_resource type="ShaderMaterial" id=23]
-shader = SubResource( 22 )
+[sub_resource type="ShaderMaterial" id=22]
+shader = SubResource( 21 )
 
-[sub_resource type="DynamicFont" id=24]
+[sub_resource type="DynamicFont" id=23]
 outline_size = 1
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 3 )
@@ -402,7 +402,7 @@ frame = 1
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
 position = Vector2( 0, 1 )
-shape = SubResource( 21 )
+shape = SubResource( 20 )
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
 visible = false
@@ -425,7 +425,7 @@ color = Color( 1, 1, 1, 0.498039 )
 
 [node name="PlayerName" type="Label" parent="."]
 modulate = Color( 1, 1, 1, 0.784314 )
-material = SubResource( 23 )
+material = SubResource( 22 )
 anchor_left = 1.0
 anchor_right = 1.0
 margin_left = -16.2383
@@ -435,7 +435,7 @@ margin_bottom = -2.31442
 grow_horizontal = 2
 grow_vertical = 2
 rect_scale = Vector2( 0.6, 0.6 )
-custom_fonts/font = SubResource( 24 )
+custom_fonts/font = SubResource( 23 )
 text = "Some Name"
 align = 1
 valign = 1

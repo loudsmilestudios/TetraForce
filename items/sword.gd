@@ -24,6 +24,7 @@ func destroy(animation) -> void:
 	if input != null && Input.is_action_pressed(input):
 		set_physics_process(true)
 		delete_on_hit = true
+		get_parent().holdTimer.stop()
 		match get_parent().spritedir:
 			"Left":
 				position.x += 3
@@ -56,12 +57,14 @@ remote func spin(p_adv) -> void:
 sync func delete() -> void:
 	get_parent().state = "default"
 	get_parent().spinAtk = false
+	get_parent().holdTimer.stop()
 	queue_free()
 
 func _physics_process(delta) -> void:
 	if get_parent().has_method("state_hold") and get_parent().state != "spin":
 		get_parent().state = "hold"
 		if get_parent().holdTimer.is_stopped() and !get_parent().spinAtk:
+			get_parent().holdTimer.wait_time = 0.75
 			get_parent().holdTimer.start()
 	
 	if get_parent().spinAtk && get_parent().state != "spin" && anim.current_animation != "flash":
