@@ -11,13 +11,14 @@ var player # this client's player
 
 var health: float = 5
 var max_health: float = 5
-onready var equip_slot: Dictionary = {controller.B: "Sword", controller.X: "", controller.Y: ""}
+onready var equip_slot = {controller.B: "Sword", controller.X: "Bomb", controller.Y: ""}
 
-var items: Array = ["Sword", "Bow"]
+var items = ["Sword", "Bow", "Bomb"]
 
 var item_dict: Dictionary = {
 	"Sword": "res://items/sword.tscn",
 	"Bow": "res://items/arrow.tscn",
+	"Bomb": "res://items/bomb.tscn",
 }
 
 var enemy_dict: Dictionary = {
