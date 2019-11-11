@@ -91,5 +91,3 @@ remote func receive_chat_message(source, text):
 	if chatBox:
 		chatBox.add_new_message(source, text)
 		
-remote func net_open_chest(chest_id, texture, doanim):
-	get_node(chest_id).open_chest(texture, doanim)

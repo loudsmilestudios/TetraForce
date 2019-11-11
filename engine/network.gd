@@ -9,6 +9,8 @@ var map_peers = []
 
 var player_data = {}
 
+var server_object_data = {}
+
 var my_player_data = {
 	skin ="res://player/player.png",
 	name = "", 
@@ -226,3 +228,9 @@ func _on_room_empty(room):
 	# free the room once it's clear
 	print(room.get_class())
 	rooms.erase(room)
+	
+remote func update_server_object_flag(object_id, flag_name, flag_val):
+	server_object_data[object_id][flag_name] = flag_val
+	
+remote func update_object_flag(object_id, flag_name, flag_val):
+	print("a")

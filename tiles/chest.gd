@@ -30,6 +30,7 @@ func play_anim(texture):
 	float_anim.start()
 	
 func interact(node):
+	print_debug("ID:", get_name(), get_parent().get_name())
 	if opened:
 		return
 
@@ -41,7 +42,6 @@ func interact(node):
 		giver.write_dialog(node, "The lid is stuck.")
 		return
 		
-	print_debug("path", get_path())
 	open_chest(item_instance.get_child(0).texture.resource_path, true)
 	network.current_map.rpc("net_open_chest", get_path(), item_instance.get_child(0).texture.resource_path, true)
 	
