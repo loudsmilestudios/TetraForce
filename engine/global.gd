@@ -26,6 +26,9 @@ var enemy_dict: Dictionary = {
 	"Knawblin": "res://enemies/knawblin.tscn",
 }
 
+var next_map: String = "overworld"
+var next_entrance: String = "cave1"
+
 func set_player_state() -> void:
 	player.health = health
 	player.MAX_HEALTH = max_health

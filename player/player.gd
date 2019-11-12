@@ -20,6 +20,22 @@ func _ready() -> void:
 		global.set_player_state()
 		var hud = get_parent().get_node("HUD")
 		hud.initialize()
+		
+		position = get_parent().get_node(global.next_entrance).position
+		var offset = get_parent().get_node(global.next_entrance).player_position
+		match offset:
+			"up":
+				position.y -= 16
+				spritedir = "Up"
+			"down":
+				position.y += 16
+				spritedir = "Down"
+			"left":
+				position.x -= 16
+				spritedir = "Left"
+			"right":
+				position.x += 16
+				spritedir = "Right"
 	
 	puppet_pos = position
 	puppet_spritedir = "Down"
@@ -52,6 +68,8 @@ func _physics_process(delta: float) -> void:
 		var flip: bool = (spritedir == "Left")
 		if sprite.flip_h != flip:
 			sprite.flip_h = flip
+		
+		loop_lightdir()
 		
 		return
 	
@@ -133,7 +151,7 @@ func state_fall() -> void:
 		state = "default"
 
 func state_menu() -> void:
-	if Input.is_action_just_pressed("ui_select") && network.current_map.get_node("HUD/Inventory"):
+	if Input.is_action_just_pressed(controller.SELECT) && network.current_map.get_node("HUD/Inventory"):
 		network.current_map.get_node("HUD/Inventory").queue_free()
 		state = "default"
 	elif Input.is_action_just_pressed("TOGGLE_CHAT") && network.current_map.get_node("HUD/Chat"):
@@ -213,14 +231,27 @@ func screen_change_completed() -> void:
 	room.add_entity(self)
 	
 func lighting_mode_changed(energy: float) -> void:
+	if !is_network_master():
+		return
+	
 	$Tween.interpolate_property($Light2D, "energy", $Light2D.energy, energy, 0.2, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT, 0.2)
 	$Tween.start()
 	
-	if energy > 0:
-		$LightAnimation.play("Flicker")
-		
+	yield($Tween, "tween_all_completed")
+	
+	for peer in network.map_peers:
+		rpc_id(peer, "update_light_energy", energy)
+	
 	#TOOD add any other lighting effects here
+
+remote func update_light_energy(energy: float) -> void:
+	$Light2D.energy = energy
 
 func _on_HoldTimer_timeout() -> void:
 	spinAtk = true
 	sfx.play(preload("res://items/tink.wav")) # get better sfx
+
+func player_entered(id) -> void:
+	if is_network_master():
+		rset_id(id, "puppet_spritedir", spritedir)
+		rpc_id(id, "update_light_energy", $Light2D.energy)

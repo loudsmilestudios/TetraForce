@@ -27,6 +27,8 @@ func initialize(node: Node) -> void:
 	
 	set_process(true)
 	
+	yield(get_tree().create_timer(0.1), "timeout")
+	
 	update_lighting(get_grid_pos(target.position))
 
 func _process(delta: float) -> void:

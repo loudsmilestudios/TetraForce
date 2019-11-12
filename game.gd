@@ -38,7 +38,6 @@ func add_new_player(id: int) -> void:
 	add_child(entity_detect)
 	
 	add_child(new_player)
-	new_player.position = get_node("Spawn").position
 	new_player.initialize()
 	
 	if id == get_tree().get_network_unique_id():

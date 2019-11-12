@@ -16,7 +16,8 @@ var my_player_data: Dictionary = {
 
 var clock: Timer
 
-var rooms: Dictionary = {} #{Vector2: Room}
+
+var rooms: Dictionary = {}
 
 func _ready() -> void:
 	set_process(false)
@@ -146,52 +147,6 @@ func _player_disconnected(id) -> void:
 		active_maps.erase(id)
 	update_maps()
 
-class Room :
-	
-	#var map 
-	var tile_rect = Rect2(0, 0, 16, 9)
-	var entities = []
-	var enemies = {}
-	var players = {}
-	
-	signal player_entered()
-	signal first_player_entered()
-	signal player_exited()
-	signal last_player_exited()
-	signal enemies_defeated()
-	signal empty()
-	
-	func add_entity(entity):
-		entities.append(entity)
-		
-		if entity.get("TYPE") == "ENEMY":
-			enemies[entity.get_instance_id()] = true
-		
-		if entity.get("TYPE") == "PLAYER":
-			if players.size() == 0:
-				emit_signal("first_player_entered")
-			players[entity.get_instance_id()] = true
-			emit_signal("player_entered")
-
-	func remove_entity(entity):
-		entities.erase(entity)
-		
-		if entity.get("TYPE") == "ENEMY":
-			enemies.erase(entity.get_instance_id())
-			
-			if enemies.empty():
-				emit_signal("enemies_defeated")
-		
-		if entity.get("TYPE") == "PLAYER":
-			players.erase(entity.get_instance_id())
-			if players.size() == 0:
-				emit_signal("last_player_exited")
-			emit_signal("player_exited")
-		
-		if entities.empty():
-			emit_signal("empty")
-	
-
 func get_room_screen(pos: Vector2) -> Vector2:
 	return Vector2(floor(pos.x / 16 / 16), floor(pos.y / 9 / 16))
 
@@ -199,7 +154,7 @@ func get_room(pos):
 	var screen: Vector2 = get_room_screen(pos)
 	if rooms.has(screen) :
 		return rooms[screen]
-		
+	
 	else :
 		# create room
 		var r = Room.new()
@@ -226,3 +181,10 @@ func _on_room_empty(room: Room) -> void:
 	# free the room once it's clear
 	print(room.get_class())
 	rooms.erase(room)
+
+func is_scene_owner() -> bool:
+	if map_owners.keys().has(current_map.name):
+		return false
+	if map_owners[current_map.name] == get_tree().get_network_unique_id():
+		return true
+	return false

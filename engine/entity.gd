@@ -39,7 +39,7 @@ onready var camera = get_parent().get_node("Camera")
 var texture_default = null
 var entity_shader = preload("res://engine/entity.shader")
 
-var room: network.Room
+var room: Room
 
 func _ready() -> void:
 	
