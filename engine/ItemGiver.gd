@@ -15,6 +15,7 @@ func give_item(player_node, item_name):
 	if !player_node || !item:
 		return false
 	
+	item.pickup(player_node)
 	return item
 
 func _find_item(item_name):

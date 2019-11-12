@@ -148,6 +148,37 @@ func _player_disconnected(id):
 		active_maps.erase(id)
 	update_maps()
 
+func sync_server_flags(map_name):
+	for nplayer_id in active_maps.keys():
+		for obj in server_object_data.get(active_maps[nplayer_id], []):
+			for flag in server_object_data[active_maps[nplayer_id]][obj].keys():
+				if nplayer_id != 1:
+					rpc_id(nplayer_id, "update_object_flag", active_maps[nplayer_id] + "|" + obj, flag, server_object_data[active_maps[nplayer_id]][obj][flag])
+				else:
+					update_object_flag(active_maps[nplayer_id] + "|" + obj, flag, server_object_data[active_maps[nplayer_id]][obj][flag])
+		
+remote func update_server_object_flag(object_id, flag_name, flag_val):
+	var split_pos = object_id.find("|")
+	var obj_map = object_id.left(split_pos)
+	var obj_id = object_id.right(split_pos+1)
+	
+	if !server_object_data.has(obj_map):
+		server_object_data[obj_map] = {}
+	
+	if !server_object_data[obj_map].has(obj_id):
+		server_object_data[obj_map][obj_id] = {}
+		
+	server_object_data[obj_map][obj_id][flag_name] = flag_val
+	
+	sync_server_flags(obj_map)
+	
+	
+remote func update_object_flag(object_id, flag_name, flag_val):
+	var obj = get_tree().get_root().find_node(object_id, true, false)
+	if obj:
+		obj._received_flag_update(flag_name, flag_val)
+		obj.flag_list[flag_name] = flag_val
+	
 class Room :
 	
 	#var map 
@@ -228,9 +259,3 @@ func _on_room_empty(room):
 	# free the room once it's clear
 	print(room.get_class())
 	rooms.erase(room)
-	
-remote func update_server_object_flag(object_id, flag_name, flag_val):
-	server_object_data[object_id][flag_name] = flag_val
-	
-remote func update_object_flag(object_id, flag_name, flag_val):
-	print("a")

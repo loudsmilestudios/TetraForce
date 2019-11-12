@@ -33,7 +33,7 @@ func spawn_object(object):
 		var node = load(path).instance()
 		scene.add_child(node)
 		node.set_owner(scene)
-		node.set_name(scene.get_name() + " " + object.get_name())
+		node.set_name(scene.get_name() + "|" + object.get_name())
 		node.position = object.position + Vector2(8,-8)
 		
 		for meta in object.get_meta_list():

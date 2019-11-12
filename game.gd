@@ -90,4 +90,3 @@ remote func receive_chat_message(source, text):
 	var chatBox = get_node("HUD/Chat")
 	if chatBox:
 		chatBox.add_new_message(source, text)
-		
