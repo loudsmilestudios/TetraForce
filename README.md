@@ -12,12 +12,15 @@ We are currently trying to build a solid Zelda-like engine that can run online s
 - Online multiplayer
 - Screen transitions
 - Dialog boxes
+- Chat
+- Inventory
+- Lighting
 
-As of right now we have player and enemy synchronization finished. If players are in separate scenes, they will be running that scene client side with no network traffic. When a player enters a scene that another player is in, the first player will host that scene for the other player (and only that player). If the host leaves, it will be given to another player in that scene.
+If players are in separate scenes, they will be running that scene client side with no network traffic. When a player enters a scene that another player is in, the first player will host that scene for the other player (and only that player). If the host leaves, it will be given to another player in that scene.
 
 This should keep the networking light. If players are exploring different parts of the world, very little synchronization will be necessary. If they decide the join up, they will seamlessly connect.
 
-No builds are out yet. In the meantime, feel free to download the source and play around with it. Current build is on Godot Engine 3.2 alpha 3.
+No builds are out yet. In the meantime, feel free to download the source and play around with it. Current build is on Godot Engine 3.2 beta 1.
 
 ##### The Team
 - [fornclake](https://twitter.com/_fornclake "fornclake") - Project lead, programmer
