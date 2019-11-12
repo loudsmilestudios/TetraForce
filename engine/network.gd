@@ -181,3 +181,10 @@ func _on_room_empty(room: Room) -> void:
 	# free the room once it's clear
 	print(room.get_class())
 	rooms.erase(room)
+
+func is_scene_owner() -> bool:
+	if map_owners.keys().has(current_map.name):
+		return false
+	if map_owners[current_map.name] == get_tree().get_network_unique_id():
+		return true
+	return false

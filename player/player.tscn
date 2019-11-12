@@ -391,6 +391,7 @@ anims/walkUp = SubResource( 18 )
 
 [node name="LightAnimation" type="AnimationPlayer" parent="."]
 root_node = NodePath("../Light2D")
+autoplay = "Flicker"
 anims/Flicker = SubResource( 19 )
 
 [node name="Sprite" type="Sprite" parent="."]
@@ -422,6 +423,7 @@ z_as_relative = false
 texture = ExtResource( 5 )
 offset = Vector2( 0, 22 )
 color = Color( 1, 1, 1, 0.498039 )
+energy = 0.0
 
 [node name="PlayerName" type="Label" parent="."]
 modulate = Color( 1, 1, 1, 0.784314 )
