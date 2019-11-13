@@ -32,7 +32,7 @@
   </properties>
   <image width="16" height="16" source="images/objects/pressure_plate.png"/>
  </tile>
- <tile id="6">https://github.com/rmgr/TetraForce.git
+ <tile id="6">
   <properties>
    <property name="patchdirection" value=""/>
    <property name="path" value="res://tiles/blastable_wall.tscn"/>
