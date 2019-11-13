@@ -10,7 +10,7 @@ extents = Vector2( 5.84588, 6.94796 )
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 7.92965, 8.05113 )
 
-[node name="GlobalSwitch" index="0" instance=ExtResource( 2 )]
+[node name="GlobalSwitch" instance=ExtResource( 2 )]
 script = ExtResource( 3 )
 
 [node name="CooldownTimer" parent="." index="0"]

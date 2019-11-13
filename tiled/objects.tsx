@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tileset version="1.2" tiledversion="1.2.5" name="objects" tilewidth="16" tileheight="16" tilecount="7" columns="0">
+<tileset name="objects" tilewidth="16" tileheight="16" tilecount="10" columns="0">
  <grid orientation="orthogonal" width="1" height="1"/>
  <tile id="1">
   <properties>
@@ -47,5 +47,14 @@
    <property name="player_position" value="down"/>
   </properties>
   <image width="16" height="16" source="images/objects/exit.png"/>
+ </tile>
+ <tile id="8">
+  <image width="16" height="16" source="images/objects/toggle_on.png"/>
+ </tile>
+ <tile id="9">
+  <image width="16" height="16" source="images/objects/toggle_block_a_on.png"/>
+ </tile>
+ <tile id="10">
+  <image width="16" height="16" source="images/objects/toggle_block_b_off.png"/>
  </tile>
 </tileset>

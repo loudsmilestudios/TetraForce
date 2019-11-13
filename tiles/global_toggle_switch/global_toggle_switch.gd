@@ -1,12 +1,10 @@
 extends Switch
 
-var _is_on = true
-
 func _ready():
 	z_index = -10
+	network.connect("on_switch_toggled", self, "_toggle_switch")
 
 func _physics_process(delta):
-	
 	if $CooldownTimer.is_stopped():
 		for area in $HitBox.get_overlapping_areas():
 			if area.name != "Hitbox":
@@ -19,17 +17,10 @@ func _physics_process(delta):
 				$CooldownTimer.start()
 				print("hit the switch!")
 				
-				if _is_on:
-					rpc("turn_off_switch")
-					turn_off_switch()
-				else:
-					rpc("turn_on_switch")
-					turn_on_switch()
+				network.toggle_global_switch()
 				
-func turn_off_switch():
-	_is_on = false
-	$Sprite.frame_coords.x = 1
-	
-func turn_on_switch():
-	_is_on = true
-	$Sprite.frame_coords.x = 0
+func _toggle_switch():
+	if network.toggle_block_state:
+		$Sprite.frame_coords.x = 0
+	else:
+		$Sprite.frame_coords.x = 1

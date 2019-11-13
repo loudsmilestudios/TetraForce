@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="128" height="72" tilewidth="16" tileheight="16" infinite="0" nextobjectid="39">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="128" height="72" tilewidth="16" tileheight="16" infinite="0" nextobjectid="53">
  <tileset firstgid="1" source="../tiled/overworld/overworld_wall.tsx"/>
  <tileset firstgid="26" source="../tiled/decor.tsx"/>
  <tileset firstgid="31" source="../tiled/overworld/overworld_ground.tsx"/>
@@ -482,7 +482,105 @@
     <property name="map" value="cave"/>
    </properties>
   </object>
-  <object id="38" gid="69" x="159.659" y="96.5936" width="16" height="16">
+  <object id="38" gid="69" x="560" y="256" width="16" height="16">
+   <properties>
+    <property name="cooldown" type="float" value="20"/>
+    <property name="mode" type="int" value="2"/>
+    <property name="path" value="res://tiles/global_toggle_switch/global_toggle_switch.tscn"/>
+   </properties>
+  </object>
+  <object id="39" gid="69" x="192" y="80" width="16" height="16">
+   <properties>
+    <property name="cooldown" type="float" value="20"/>
+    <property name="mode" type="int" value="2"/>
+    <property name="path" value="res://tiles/global_toggle_switch/global_toggle_switch.tscn"/>
+   </properties>
+  </object>
+  <object id="40" gid="71" x="560" y="192" width="16" height="16">
+   <properties>
+    <property name="cooldown" type="float" value="20"/>
+    <property name="mode" type="int" value="2"/>
+    <property name="path" value="res://tiles/global_toggle_switch/toggle_block_b.tscn"/>
+   </properties>
+  </object>
+  <object id="41" gid="70" x="656" y="176" width="16" height="16">
+   <properties>
+    <property name="cooldown" type="float" value="20"/>
+    <property name="mode" type="int" value="2"/>
+    <property name="path" value="res://tiles/global_toggle_switch/toggle_block_a.tscn"/>
+   </properties>
+  </object>
+  <object id="42" gid="71" x="544" y="176" width="16" height="16">
+   <properties>
+    <property name="cooldown" type="float" value="20"/>
+    <property name="mode" type="int" value="2"/>
+    <property name="path" value="res://tiles/global_toggle_switch/toggle_block_b.tscn"/>
+   </properties>
+  </object>
+  <object id="43" gid="71" x="576" y="192" width="16" height="16">
+   <properties>
+    <property name="cooldown" type="float" value="20"/>
+    <property name="mode" type="int" value="2"/>
+    <property name="path" value="res://tiles/global_toggle_switch/toggle_block_b.tscn"/>
+   </properties>
+  </object>
+  <object id="44" gid="71" x="608" y="176" width="16" height="16">
+   <properties>
+    <property name="cooldown" type="float" value="20"/>
+    <property name="mode" type="int" value="2"/>
+    <property name="path" value="res://tiles/global_toggle_switch/toggle_block_b.tscn"/>
+   </properties>
+  </object>
+  <object id="45" gid="71" x="592" y="192" width="16" height="16">
+   <properties>
+    <property name="cooldown" type="float" value="20"/>
+    <property name="mode" type="int" value="2"/>
+    <property name="path" value="res://tiles/global_toggle_switch/toggle_block_b.tscn"/>
+   </properties>
+  </object>
+  <object id="46" gid="70" x="656" y="208" width="16" height="16">
+   <properties>
+    <property name="cooldown" type="float" value="20"/>
+    <property name="mode" type="int" value="2"/>
+    <property name="path" value="res://tiles/global_toggle_switch/toggle_block_a.tscn"/>
+   </properties>
+  </object>
+  <object id="47" gid="70" x="656" y="192" width="16" height="16">
+   <properties>
+    <property name="cooldown" type="float" value="20"/>
+    <property name="mode" type="int" value="2"/>
+    <property name="path" value="res://tiles/global_toggle_switch/toggle_block_a.tscn"/>
+   </properties>
+  </object>
+  <object id="48" gid="70" x="656" y="224" width="16" height="16">
+   <properties>
+    <property name="cooldown" type="float" value="20"/>
+    <property name="mode" type="int" value="2"/>
+    <property name="path" value="res://tiles/global_toggle_switch/toggle_block_a.tscn"/>
+   </properties>
+  </object>
+  <object id="49" gid="70" x="656" y="240" width="16" height="16">
+   <properties>
+    <property name="cooldown" type="float" value="20"/>
+    <property name="mode" type="int" value="2"/>
+    <property name="path" value="res://tiles/global_toggle_switch/toggle_block_a.tscn"/>
+   </properties>
+  </object>
+  <object id="50" gid="70" x="656" y="256" width="16" height="16">
+   <properties>
+    <property name="cooldown" type="float" value="20"/>
+    <property name="mode" type="int" value="2"/>
+    <property name="path" value="res://tiles/global_toggle_switch/toggle_block_a.tscn"/>
+   </properties>
+  </object>
+  <object id="51" gid="70" x="656" y="272" width="16" height="16">
+   <properties>
+    <property name="cooldown" type="float" value="20"/>
+    <property name="mode" type="int" value="2"/>
+    <property name="path" value="res://tiles/global_toggle_switch/toggle_block_a.tscn"/>
+   </properties>
+  </object>
+  <object id="52" gid="69" x="720" y="256" width="16" height="16">
    <properties>
     <property name="cooldown" type="float" value="20"/>
     <property name="mode" type="int" value="2"/>

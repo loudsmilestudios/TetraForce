@@ -1,5 +1,7 @@
 extends Node
 
+signal on_switch_toggled
+
 var current_map = null
 
 var active_maps: Dictionary = {}
@@ -16,8 +18,9 @@ var my_player_data: Dictionary = {
 
 var clock: Timer
 
-
 var rooms: Dictionary = {}
+
+var toggle_block_state = true
 
 func _ready() -> void:
 	set_process(false)
@@ -188,3 +191,19 @@ func is_scene_owner() -> bool:
 	if map_owners[current_map.name] == get_tree().get_network_unique_id():
 		return true
 	return false
+	
+func toggle_global_switch() -> void:
+	var new_state = !toggle_block_state
+	
+	rpc("_set_global_switch", new_state)
+	_set_global_switch(new_state)
+	
+func _set_global_switch(state: bool) -> void:
+	toggle_block_state = state
+	
+	if state == true:
+		sfx.play(preload("res://tiles/global_toggle_switch/toggle_on.wav"), .5)
+	else:
+		sfx.play(preload("res://tiles/global_toggle_switch/toggle_off.wav"), .5)
+	
+	emit_signal("on_switch_toggled")
