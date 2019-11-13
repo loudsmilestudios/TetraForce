@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.5" orientation="orthogonal" renderorder="right-down" width="128" height="72" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="38">
+<map version="1.2" tiledversion="1.2.5" orientation="orthogonal" renderorder="right-down" width="128" height="72" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="42">
  <tileset firstgid="1" source="../tiled/overworld/overworld_wall.tsx"/>
  <tileset firstgid="26" source="../tiled/decor.tsx"/>
  <tileset firstgid="31" source="../tiled/overworld/overworld_ground.tsx"/>
  <tileset firstgid="61" source="../tiled/objects.tsx"/>
- <tileset firstgid="69" source="../tiled/objects.tsx"/>
  <layer id="1" name="ground" width="128" height="72">
   <data encoding="csv">
 0,0,52,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -471,18 +470,26 @@
    </properties>
    <point/>
   </object>
-  <object id="36" name="cave1" gid="76" x="32" y="16" width="16" height="16">
+  <object id="36" name="cave1" gid="68" x="32" y="16" width="16" height="16">
    <properties>
     <property name="entrance" value="overworld1"/>
     <property name="map" value="cave"/>
    </properties>
   </object>
-  <object id="37" name="cave2" gid="76" x="608" y="64" width="16" height="16">
+  <object id="37" name="cave2" gid="68" x="608" y="64" width="16" height="16">
    <properties>
     <property name="entrance" value="overworld2"/>
     <property name="map" value="cave"/>
    </properties>
   </object>
+  <object id="38" gid="69" x="144" y="80" width="16" height="16"/>
+  <object id="39" gid="69" x="160" y="80" width="16" height="16">
+   <properties>
+    <property name="item_name" value="heart"/>
+    <property name="message" value="You found a heart!"/>
+   </properties>
+  </object>
+  <object id="40" gid="69" x="176" y="80" width="16" height="16"/>
  </objectgroup>
  <imagelayer id="7" name="grid">
   <image source="../tiled/gridtemplate.png" width="2048" height="1152"/>
