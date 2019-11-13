@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tileset version="1.2" tiledversion="1.2.5" name="objects" tilewidth="16" tileheight="16" tilecount="6" columns="0">
+<tileset version="1.2" tiledversion="1.2.5" name="objects" tilewidth="16" tileheight="16" tilecount="7" columns="0">
  <grid orientation="orthogonal" width="1" height="1"/>
  <tile id="1">
   <properties>
@@ -32,12 +32,20 @@
   </properties>
   <image width="16" height="16" source="images/objects/pressure_plate.png"/>
  </tile>
- <tile id="9">
+ <tile id="6">
   <properties>
-   <property name="item_name" value="moneyS"/>
-   <property name="message" value="You found $1!"/>
-   <property name="path" value="res://tiles/chest.tscn"/>
+   <property name="patchdirection" value=""/>
+   <property name="path" value="res://tiles/blastable_wall.tscn"/>
   </properties>
-  <image width="16" height="16" source="images/objects/chest5.png"/>
+  <image width="16" height="16" source="../tiles/cracked.png"/>
+ </tile>
+ <tile id="7">
+  <properties>
+   <property name="entrance" value="cave1"/>
+   <property name="map" value="overworld"/>
+   <property name="path" value="res://tiles/exit.tscn"/>
+   <property name="player_position" value="down"/>
+  </properties>
+  <image width="16" height="16" source="images/objects/exit.png"/>
  </tile>
 </tileset>
