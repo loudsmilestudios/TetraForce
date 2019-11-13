@@ -148,16 +148,25 @@ func _player_disconnected(id):
 		active_maps.erase(id)
 	update_maps()
 
-func sync_server_flags(map_name):
-	for nplayer_id in active_maps.keys():
-		for obj in server_object_data.get(active_maps[nplayer_id], []):
-			for flag in server_object_data[active_maps[nplayer_id]][obj].keys():
-				if nplayer_id != 1:
-					rpc_id(nplayer_id, "update_object_flag", active_maps[nplayer_id] + "|" + obj, flag, server_object_data[active_maps[nplayer_id]][obj][flag])
-				else:
-					update_object_flag(active_maps[nplayer_id] + "|" + obj, flag, server_object_data[active_maps[nplayer_id]][obj][flag])
-		
-remote func update_server_object_flag(object_id, flag_name, flag_val):
+func _send_flags_to_map(map_name):
+	var send_to = []
+	for pid in active_maps.keys():
+		if active_maps[pid] == map_name:
+			send_to.append(pid)
+	
+	for pid in send_to:
+		_send_flags_to_player(pid)
+
+func _send_flags_to_player(player_id):
+	var p_map = active_maps[player_id]
+	
+	for obj in server_object_data[p_map].keys():
+		for flag in server_object_data[p_map][obj].keys():
+			print_debug("SSF: ", p_map + "|" + obj)
+			rpc_id(player_id, "update_object_flag", p_map + "|" + obj, flag, server_object_data[p_map][obj][flag])
+
+master func update_server_object_flag(object_id, flag_name, flag_val):
+	print_debug("SDOF")
 	var split_pos = object_id.find("|")
 	var obj_map = object_id.left(split_pos)
 	var obj_id = object_id.right(split_pos+1)
@@ -170,14 +179,16 @@ remote func update_server_object_flag(object_id, flag_name, flag_val):
 		
 	server_object_data[obj_map][obj_id][flag_name] = flag_val
 	
-	sync_server_flags(obj_map)
+	_send_flags_to_map(obj_map)
 	
 	
-remote func update_object_flag(object_id, flag_name, flag_val):
+remotesync func update_object_flag(object_id, flag_name, flag_val):
 	var obj = get_tree().get_root().find_node(object_id, true, false)
 	if obj:
 		obj._received_flag_update(flag_name, flag_val)
 		obj.flag_list[flag_name] = flag_val
+	else:
+		print_debug("Could not find ", object_id)
 	
 class Room :
 	

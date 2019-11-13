@@ -22,7 +22,8 @@ func net_set_flag(flag_name, value):
 			if get_tree().is_network_server():
 				network.update_server_object_flag(get_name(), flag_name, value)
 			else:
-				rpc_id(global.player.get_network_master(), "update_server_object_flag", get_name(), flag_name, value)
+				print_debug("Sending USOF")
+				network.rpc_id(1, "update_server_object_flag", get_name(), flag_name, value)
 		else:
 			for peer in network.map_peers:
-				rpc_id(peer, "update_object_flag", get_name(), flag_name, value)
+				network.rpc_id(peer, "update_object_flag", get_name(), flag_name, value)
