@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://tiles/global_toggle_switch/toggle_switch.png" type="Texture" id=1]
+[ext_resource path="res://engine/switch.tscn" type="PackedScene" id=2]
+[ext_resource path="res://tiles/global_toggle_switch/global_toggle_switch.gd" type="Script" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 5.84588, 6.94796 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 7.92965, 8.05113 )
+
+[node name="GlobalSwitch" index="0" instance=ExtResource( 2 )]
+script = ExtResource( 3 )
+
+[node name="CooldownTimer" parent="." index="0"]
+wait_time = 0.5
+
+[node name="Sprite" type="Sprite" parent="." index="1"]
+texture = ExtResource( 1 )
+hframes = 2
+
+[node name="HitBox" type="Area2D" parent="." index="2"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox" index="0"]
+shape = SubResource( 1 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." index="3"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" index="0"]
+shape = SubResource( 2 )
