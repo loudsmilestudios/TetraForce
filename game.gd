@@ -12,6 +12,11 @@ func _ready() -> void:
 	
 	network.update_maps()
 	screenfx.play("fadein")
+	
+	if get_tree().is_network_server():
+		network._send_flags_to_player(1)
+	else:
+		network.rpc_id(1, "_request_map_flags", get_tree().get_network_unique_id())
 		
 
 func _process(delta: float) -> void:
@@ -53,7 +58,9 @@ func add_new_player(id: int) -> void:
 	emit_signal("player_entered", id)
 
 func remove_player(id: int) -> void:
-	get_node(str(id)).queue_free()
+	var r_node = get_node(str(id))
+	if r_node:
+		r_node.queue_free()
 	for node in get_tree().get_nodes_in_group(str(id)):
 		node.queue_free()
 

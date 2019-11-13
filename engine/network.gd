@@ -150,19 +150,19 @@ func _player_disconnected(id) -> void:
 	update_maps()
 
 func _send_flags_to_map(map_name):
-	var send_to = []
 	for pid in active_maps.keys():
 		if active_maps[pid] == map_name:
-			send_to.append(pid)
-	
-	for pid in send_to:
-		_send_flags_to_player(pid)
+			_send_flags_to_player(pid)
+			
+remote func _request_map_flags(player_id):
+	_send_flags_to_player(player_id)
 
 func _send_flags_to_player(player_id):
 	var p_map = active_maps[player_id]
-	
-	for obj in server_object_data[p_map].keys():
-		for flag in server_object_data[p_map][obj].keys():
+	var map_flag_data = server_object_data.get(p_map, {})
+
+	for obj in map_flag_data.keys():
+		for flag in map_flag_data[obj].keys():
 			print_debug("SSF: ", p_map + "|" + obj)
 			rpc_id(player_id, "update_object_flag", p_map + "|" + obj, flag, server_object_data[p_map][obj][flag])
 
