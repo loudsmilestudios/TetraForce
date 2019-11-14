@@ -10,7 +10,7 @@ extents = Vector2( 6, 6 )
 collision_layer = 2
 collision_mask = 2
 script = ExtResource( 2 )
-SPEED = 65
+SPEED = 30
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 
