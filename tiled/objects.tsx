@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tileset version="1.2" tiledversion="1.2.5" name="objects" tilewidth="16" tileheight="16" tilecount="7" columns="0">
+<tileset version="1.2" tiledversion="1.2.5" name="objects" tilewidth="16" tileheight="16" tilecount="8" columns="0">
  <grid orientation="orthogonal" width="1" height="1"/>
  <tile id="1">
   <properties>
@@ -47,5 +47,11 @@
    <property name="player_position" value="down"/>
   </properties>
   <image width="16" height="16" source="images/objects/exit.png"/>
+ </tile>
+ <tile id="8">
+  <properties>
+   <property name="path" value="res://enemies/chaser.tscn"/>
+  </properties>
+  <image width="16" height="16" source="images/objects/chaser.png"/>
  </tile>
 </tileset>

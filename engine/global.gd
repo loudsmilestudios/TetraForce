@@ -24,6 +24,7 @@ var item_dict: Dictionary = {
 var enemy_dict: Dictionary = {
 	"Stalfos": "res://enemies/stalfos.tscn",
 	"Knawblin": "res://enemies/knawblin.tscn",
+	"Chaser": "res://enemies/chaser.tscn"
 }
 
 var next_map: String = "overworld"
