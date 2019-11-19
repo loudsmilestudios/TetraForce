@@ -1,9 +1,9 @@
 tool
 extends StaticBody2D
 
-export(String, MULTILINE) var text = ""
+export(String, MULTILINE) var text: String = ""
 
-func _ready():
+func _ready() -> void:
 	add_to_group("interact")
 	add_to_group("nopush")
 

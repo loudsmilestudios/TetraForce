@@ -45,3 +45,4 @@ func spawn_object(object):
 		object.get_parent().remove_child(object)
 		scene.add_child(object)
 		object.set_owner(scene)
+		

@@ -1,19 +1,19 @@
 extends Entity
 
-export (float) var timer
-export (String) var direction
-var shoottimer = 0
+export (float) var timer: float
+export (String) var direction: String
+var shoottimer: int = 0
 
-func _init():
+func _init() -> void:
 	TYPE = "TRAP"
 
-func _ready():
+func _ready() -> void:
 	spritedir = direction
 	if ["Left", "Up", "Right", "Down"].has(spritedir):
 		$AnimatedSprite.set_animation(spritedir.to_lower())
 	hitbox.queue_free()
 
-func _physics_process(delta):
+func _physics_process(delta: float) -> void:
 	if !is_scene_owner():
 		return
 	

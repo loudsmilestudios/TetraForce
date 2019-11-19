@@ -1,8 +1,10 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://player/player.gd" type="Script" id=1]
 [ext_resource path="res://player/player2.png" type="Texture" id=2]
 [ext_resource path="res://ui/monogram.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://player/light.png" type="Texture" id=4]
+[ext_resource path="res://player/lightsm.png" type="Texture" id=5]
 
 [sub_resource type="Animation" id=1]
 resource_name = "idleDown"
@@ -327,10 +329,33 @@ tracks/0/keys = {
 "values": [ 4, 5 ]
 }
 
-[sub_resource type="RectangleShape2D" id=19]
+[sub_resource type="Animation" id=19]
+resource_name = "Flicker"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ ExtResource( 5 ), ExtResource( 4 ) ]
+}
+
+[sub_resource type="RectangleShape2D" id=20]
 extents = Vector2( 4.5, 6 )
 
-[sub_resource type="DynamicFont" id=20]
+[sub_resource type="Shader" id=21]
+code = "shader_type canvas_item;
+render_mode unshaded;"
+
+[sub_resource type="ShaderMaterial" id=22]
+shader = SubResource( 21 )
+
+[sub_resource type="DynamicFont" id=23]
 outline_size = 1
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 3 )
@@ -364,6 +389,11 @@ anims/walkDown = SubResource( 16 )
 anims/walkSide = SubResource( 17 )
 anims/walkUp = SubResource( 18 )
 
+[node name="LightAnimation" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Light2D")
+autoplay = "Flicker"
+anims/Flicker = SubResource( 19 )
+
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 2 )
 vframes = 7
@@ -373,7 +403,7 @@ frame = 1
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
 position = Vector2( 0, 1 )
-shape = SubResource( 19 )
+shape = SubResource( 20 )
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
 visible = false
@@ -385,8 +415,19 @@ collide_with_areas = true
 wait_time = 0.75
 one_shot = true
 
+[node name="Tween" type="Tween" parent="."]
+
+[node name="Light2D" type="Light2D" parent="."]
+z_index = 100
+z_as_relative = false
+texture = ExtResource( 5 )
+offset = Vector2( 0, 22 )
+color = Color( 1, 1, 1, 0.498039 )
+energy = 0.0
+
 [node name="PlayerName" type="Label" parent="."]
 modulate = Color( 1, 1, 1, 0.784314 )
+material = SubResource( 22 )
 anchor_left = 1.0
 anchor_right = 1.0
 margin_left = -16.2383
@@ -396,12 +437,13 @@ margin_bottom = -2.31442
 grow_horizontal = 2
 grow_vertical = 2
 rect_scale = Vector2( 0.6, 0.6 )
-custom_fonts/font = SubResource( 20 )
+custom_fonts/font = SubResource( 23 )
 text = "Some Name"
 align = 1
 valign = 1
 clip_text = true
 __meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 [connection signal="timeout" from="HoldTimer" to="." method="_on_HoldTimer_timeout"]
