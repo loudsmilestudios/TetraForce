@@ -398,7 +398,7 @@ anims/Flicker = SubResource( 19 )
 texture = ExtResource( 2 )
 vframes = 7
 hframes = 6
-frame = 1
+frame = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
