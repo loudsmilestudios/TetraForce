@@ -53,6 +53,7 @@ func target_direction():
 			distance_from_closest = position.distance_to(closest_player.position)
 	if distance_from_closest < 64:
 		movedir = (closest_player.position - position).normalized()
+		movedir = movedir.round()
 		match movedir.round():
 			Vector2.LEFT:
 				spritedir = "Left"

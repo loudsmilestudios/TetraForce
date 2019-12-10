@@ -106,7 +106,7 @@ extents = Vector2( 6, 6 )
 collision_layer = 2
 collision_mask = 2
 script = ExtResource( 2 )
-SPEED = 30
+SPEED = 40
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "idleDown"
@@ -121,7 +121,7 @@ anims/walkUp = SubResource( 6 )
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )
 hframes = 6
-frame = 5
+frame = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
