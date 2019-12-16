@@ -3,13 +3,13 @@
  <grid orientation="orthogonal" width="1" height="1"/>
  <tile id="1">
   <properties>
-   <property name="path" value="res://enemies/stalfos.tscn"/>
+   <property name="path" value="res://enemies/stalfos/stalfos.tscn"/>
   </properties>
   <image width="16" height="16" source="images/objects/stalfos.png"/>
  </tile>
  <tile id="2">
   <properties>
-   <property name="path" value="res://enemies/knawblin.tscn"/>
+   <property name="path" value="res://enemies/knawblin/knawblin.tscn"/>
   </properties>
   <image width="16" height="16" source="images/objects/knawblin.png"/>
  </tile>
