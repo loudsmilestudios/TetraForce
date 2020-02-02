@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.5" orientation="orthogonal" renderorder="right-down" width="128" height="72" tilewidth="16" tileheight="16" infinite="0" nextlayerid="5" nextobjectid="15">
+<map version="1.2" tiledversion="1.2.5" orientation="orthogonal" renderorder="right-down" width="128" height="72" tilewidth="16" tileheight="16" infinite="0" nextlayerid="5" nextobjectid="23">
  <tileset firstgid="1" source="../tiled/cave/cave_ground.tsx"/>
  <tileset firstgid="6" source="../tiled/cave/cave_wall.tsx"/>
  <tileset firstgid="21" source="../tiled/objects.tsx"/>
+ <tileset firstgid="30" source="../tiled/objects.tsx"/>
  <layer id="3" name="floor" width="128" height="72">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -194,13 +195,13 @@
     <property name="player_position" value="up"/>
    </properties>
   </object>
-  <object id="7" gid="22" x="80" y="368" width="16" height="16"/>
-  <object id="8" gid="22" x="144" y="336" width="16" height="16"/>
-  <object id="9" gid="22" x="128" y="256" width="16" height="16"/>
-  <object id="10" gid="22" x="192" y="224" width="16" height="16"/>
-  <object id="11" gid="22" x="352" y="256" width="16" height="16"/>
-  <object id="12" gid="22" x="304" y="224" width="16" height="16"/>
-  <object id="13" gid="22" x="416" y="336" width="16" height="16"/>
-  <object id="14" gid="22" x="384" y="368" width="16" height="16"/>
+  <object id="15" gid="31" x="80" y="368" width="16" height="16"/>
+  <object id="16" gid="31" x="176" y="384" width="16" height="16"/>
+  <object id="17" gid="31" x="128" y="256" width="16" height="16"/>
+  <object id="18" gid="31" x="192" y="208" width="16" height="16"/>
+  <object id="19" gid="31" x="304" y="256" width="16" height="16"/>
+  <object id="20" gid="31" x="400" y="256" width="16" height="16"/>
+  <object id="21" gid="31" x="400" y="368" width="16" height="16"/>
+  <object id="22" gid="31" x="448" y="320" width="16" height="16"/>
  </objectgroup>
 </map>
