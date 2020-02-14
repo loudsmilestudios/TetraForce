@@ -21,8 +21,10 @@ func _ready() -> void:
 		var hud = get_parent().get_node("HUD")
 		hud.initialize()
 		
-		position = get_parent().get_node(global.next_entrance).position
-		var offset = get_parent().get_node(global.next_entrance).player_position
+		# position = get_parent().get_node(global.next_entrance).position
+		# var offset = get_parent().get_node(global.next_entrance).player_position
+		position = Vector2(1104, 1088)
+		var offset = "right"
 		match offset:
 			"up":
 				position.y -= 16
