@@ -3,7 +3,7 @@ extends Control
 
 const DEFAULT_PORT: int = 4564 # some random number, pick your port properly
 
-var map: String = "res://maps/overworld.tmx"
+var map: String = "res://maps/demo_overworld.tmx"
 onready var host = settings.get_pref("host_address")
 
 #### Network callbacks from SceneTree ####
