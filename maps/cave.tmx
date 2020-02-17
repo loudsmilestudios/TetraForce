@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.3.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="128" height="72" tilewidth="16" tileheight="16" infinite="0" nextlayerid="5" nextobjectid="25">
+<map version="1.2" tiledversion="1.3.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="128" height="72" tilewidth="16" tileheight="16" infinite="0" nextlayerid="5" nextobjectid="26">
  <tileset firstgid="1" source="../tiled/cave/cave_ground.tsx"/>
  <tileset firstgid="6" source="../tiled/cave/cave_wall.tsx"/>
  <tileset firstgid="21" source="../tiled/objects.tsx"/>
@@ -211,6 +211,12 @@
   <object id="24" gid="24" x="640" y="368" width="16" height="16">
    <properties>
     <property name="text" value="It's dangerous to go alone...that's why we added multiplayer!"/>
+   </properties>
+  </object>
+  <object id="25" name="overworld3" gid="28" x="640" y="432" width="16" height="16">
+   <properties>
+    <property name="entrance" value="cave3"/>
+    <property name="player_position" value="up"/>
    </properties>
   </object>
  </objectgroup>
