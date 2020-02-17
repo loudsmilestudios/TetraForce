@@ -183,7 +183,7 @@
    </properties>
    <point/>
   </object>
-  <object id="5" name="overworld1" gid="28" x="640" y="432" width="16" height="16">
+  <object id="5" name="overworld1" gid="28" x="112" y="448" width="16" height="16">
    <properties>
     <property name="player_position" value="up"/>
    </properties>
