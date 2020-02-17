@@ -431,10 +431,10 @@
    </properties>
    <point/>
   </object>
-  <object id="88" name="cave3" gid="68" x="1104" y="1040" width="16" height="16">
+  <object id="88" name="cave1" gid="68" x="1104" y="1040" width="16" height="16">
    <properties>
-    <property name="entrance" value="overworld3"/>
-    <property name="map" value="cave"/>
+    <property name="entrance" value="overworld1"/>
+    <property name="map" value="cave_demo"/>
    </properties>
   </object>
   <object id="89" gid="62" x="1376" y="1088" width="16" height="16"/>

@@ -183,8 +183,9 @@
    </properties>
    <point/>
   </object>
-  <object id="5" name="overworld1" gid="28" x="112" y="448" width="16" height="16">
+  <object id="5" name="overworld1" gid="28" x="640" y="432" width="16" height="16">
    <properties>
+    <property name="map" value="overworld_demo"/>
     <property name="player_position" value="up"/>
    </properties>
   </object>
@@ -213,7 +214,7 @@
     <property name="text" value="It's dangerous to go alone...that's why we added multiplayer!"/>
    </properties>
   </object>
-  <object id="25" name="overworld3" gid="28" x="640" y="432" width="16" height="16">
+  <object id="25" name="overworld3" gid="28" x="112" y="432" width="16" height="16">
    <properties>
     <property name="entrance" value="cave3"/>
     <property name="map" value="overworld_demo"/>
