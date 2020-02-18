@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.5" orientation="orthogonal" renderorder="right-down" width="128" height="72" tilewidth="16" tileheight="16" infinite="0" nextlayerid="15" nextobjectid="116">
+<map version="1.2" tiledversion="1.2.5" orientation="orthogonal" renderorder="right-down" width="128" height="72" tilewidth="16" tileheight="16" infinite="0" nextlayerid="15" nextobjectid="122">
  <tileset firstgid="1" source="../tiled/overworld/overworld_wall.tsx"/>
  <tileset firstgid="26" source="../tiled/decor.tsx"/>
  <tileset firstgid="31" source="../tiled/overworld/overworld_ground.tsx"/>
@@ -573,6 +573,18 @@
   <object id="113" gid="62" x="1632" y="944" width="16" height="16"/>
   <object id="114" gid="63" x="1664" y="960" width="16" height="16"/>
   <object id="115" name="room53" x="1360" y="480">
+   <properties>
+    <property name="light_data" value="day"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="120" name="room54" x="1328" y="640">
+   <properties>
+    <property name="light_data" value="day"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="121" name="room55" x="1328" y="768">
    <properties>
     <property name="light_data" value="day"/>
    </properties>
