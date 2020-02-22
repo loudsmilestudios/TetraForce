@@ -4,7 +4,7 @@
 [ext_resource path="res://tiles/cracked.png" type="Texture" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 8, 8 )
+extents = Vector2( 7, 7 )
 
 [node name="Blastable_Wall" type="StaticBody2D"]
 collision_layer = 3
