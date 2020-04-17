@@ -1,14 +1,14 @@
-extends Entity
+extends Enemy
 
 enum SpikeState {shown, hidden}
 var spike_state = SpikeState.hidden
-var colliding_ids = {}
+var colliding_ids: Dictionary = {}
 
-func _init():
+func _init() -> void:
 	TYPE = "TRAP"
 	spritedir = ""
 
-func _ready():
+func _ready() -> void:
 	$detectionbox.connect("area_entered", self, "show_spikes")
 	$detectionbox.connect("area_exited", self, "hide_spikes")
 	puppet_anim = "idle"
@@ -16,17 +16,17 @@ func _ready():
 	anim.connect("animation_finished", self, "to_steady_state")
 	connect("update_animation", self, "_on_update_animation")
 
-func _on_update_animation(value):
+func _on_update_animation(value) -> void:
 	rset_map("puppet_anim", value)
 
-func puppet_update():
+func puppet_update() -> void:
 	if anim.current_animation != puppet_anim:
 		anim.play(puppet_anim)
 
-func _process(delta):
+func _process(delta: float) -> void:
 	loop_network()
 
-func show_spikes(area):
+func show_spikes(area) -> void:
 	if !is_actionable_collision(area):
 		return
 	colliding_ids[area.get_instance_id()] = true
@@ -34,7 +34,7 @@ func show_spikes(area):
 		spike_state = SpikeState.shown
 		anim_switch("showSpikes")
 
-func hide_spikes(area):
+func hide_spikes(area) -> void:
 	if !is_actionable_collision(area):
 		return
 	if colliding_ids.erase(area.get_instance_id()):
@@ -42,13 +42,13 @@ func hide_spikes(area):
 			spike_state = SpikeState.hidden
 			anim_switch("hideSpikes")
 
-func to_steady_state(anim_name):
+func to_steady_state(anim_name: String) -> void:
 	if anim_name == "showSpikes":
 		anim_switch("active")
 	elif anim_name == "hideSpikes":
 		anim_switch("idle")
 
-func is_actionable_collision(area):
+func is_actionable_collision(area) -> bool:
 	if area.name != "Hitbox":
 		return false
 	var body = area.get_parent()

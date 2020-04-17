@@ -1,0 +1,96 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://ui/chat/chat.gd" type="Script" id=1]
+[ext_resource path="res://ui/buttonpush.png" type="Texture" id=2]
+[ext_resource path="res://ui/button.png" type="Texture" id=3]
+[ext_resource path="res://ui/buttonhover.png" type="Texture" id=4]
+[ext_resource path="res://ui/monogram.ttf" type="DynamicFontData" id=5]
+
+[sub_resource type="StyleBoxTexture" id=1]
+texture = ExtResource( 4 )
+region_rect = Rect2( 0, 0, 64, 64 )
+margin_left = 3.95062
+margin_right = 3.95062
+margin_top = 3.95062
+margin_bottom = 3.95062
+
+[sub_resource type="StyleBoxTexture" id=2]
+texture = ExtResource( 3 )
+region_rect = Rect2( 0, 0, 64, 64 )
+margin_left = 3.87855
+margin_right = 4.27625
+margin_top = 4.15466
+margin_bottom = 4.00477
+
+[sub_resource type="StyleBoxTexture" id=3]
+texture = ExtResource( 2 )
+region_rect = Rect2( 0, 0, 64, 64 )
+margin_left = 4.07814
+margin_right = 4.0
+margin_top = 4.07814
+margin_bottom = 4.07814
+
+[sub_resource type="StyleBoxFlat" id=4]
+bg_color = Color( 0, 0, 0, 0 )
+
+[sub_resource type="StyleBoxFlat" id=5]
+bg_color = Color( 0, 0, 0, 0.313726 )
+
+[sub_resource type="DynamicFont" id=6]
+size = 7
+outline_color = Color( 0, 0, 0, 0.839216 )
+extra_spacing_char = 1
+font_data = ExtResource( 5 )
+
+[sub_resource type="Theme" id=7]
+default_font = SubResource( 6 )
+Button/colors/font_color = Color( 0.88, 0.88, 0.88, 1 )
+Button/colors/font_color_disabled = Color( 0.9, 0.9, 0.9, 0.2 )
+Button/colors/font_color_hover = Color( 0.94, 0.94, 0.94, 1 )
+Button/colors/font_color_pressed = Color( 1, 1, 1, 1 )
+Button/constants/hseparation = 2
+Button/fonts/font = null
+Button/styles/disabled = null
+Button/styles/focus = null
+Button/styles/hover = SubResource( 1 )
+Button/styles/normal = SubResource( 2 )
+Button/styles/pressed = SubResource( 3 )
+LineEdit/styles/normal = SubResource( 4 )
+Panel/styles/panel = SubResource( 5 )
+VScrollBar/icons/decrement = null
+VScrollBar/icons/decrement_highlight = null
+VScrollBar/icons/increment = null
+VScrollBar/icons/increment_highlight = null
+VScrollBar/styles/grabber = null
+VScrollBar/styles/grabber_highlight = null
+VScrollBar/styles/grabber_pressed = null
+VScrollBar/styles/scroll = null
+VScrollBar/styles/scroll_focus = null
+
+[node name="Chat" type="Panel"]
+margin_top = 80.0
+margin_right = 100.0
+margin_bottom = 126.0
+theme = SubResource( 7 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="IncomingMessages" type="RichTextLabel" parent="."]
+margin_left = -0.237823
+margin_right = 99.7622
+margin_bottom = 40.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+bbcode_enabled = true
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="EditMessage" type="LineEdit" parent="."]
+margin_top = 40.0
+margin_right = 100.0
+margin_bottom = 46.0
+mouse_filter = 2

@@ -51,9 +51,14 @@ __meta__ = {
 
 [node name="panel" type="Panel" parent="."]
 margin_left = 389.61
-margin_top = 245.0
+margin_top = 235.0
 margin_right = 609.61
-margin_bottom = 306.0
+margin_bottom = 296.0
+focus_neighbour_left = NodePath("host")
+focus_neighbour_top = NodePath("host")
+focus_neighbour_right = NodePath("host")
+focus_neighbour_bottom = NodePath("host")
+focus_mode = 2
 size_flags_horizontal = 2
 size_flags_vertical = 2
 theme = ExtResource( 2 )
@@ -69,15 +74,22 @@ margin_bottom = 54.2467
 size_flags_horizontal = 2
 size_flags_vertical = 2
 text = "127.0.0.1"
+placeholder_text = "127.0.0.1"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="host" type="Button" parent="panel"]
+anchor_left = -0.00197026
+anchor_top = -0.00710534
+anchor_right = -0.00197026
+anchor_bottom = 0.011901
 margin_left = 72.4255
-margin_top = 4.70076
+margin_top = 5.13419
 margin_right = 152.425
-margin_bottom = 24.7008
+margin_bottom = 25.1342
+focus_neighbour_bottom = NodePath("../join")
+focus_previous = NodePath("../join")
 size_flags_horizontal = 2
 size_flags_vertical = 2
 text = "New Game"
@@ -86,10 +98,12 @@ __meta__ = {
 }
 
 [node name="join" type="Button" parent="panel"]
-margin_left = 131.14
+margin_left = 131.573
 margin_top = 33.4906
-margin_right = 211.14
-margin_bottom = 53.4906
+margin_right = 211.573
+margin_bottom = 54.65
+focus_neighbour_top = NodePath("../host")
+focus_neighbour_bottom = NodePath("../../characterselect/back")
 size_flags_horizontal = 2
 size_flags_vertical = 2
 text = "Join"
@@ -142,7 +156,6 @@ margin_right = 125.0
 margin_bottom = 80.0
 size_flags_horizontal = 2
 size_flags_vertical = 2
-text = "Greg"
 placeholder_text = "Display Name"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -159,13 +172,14 @@ scale = Vector2( 2, 2 )
 texture = ExtResource( 4 )
 vframes = 7
 hframes = 6
-frame = 1
 
 [node name="back" type="Button" parent="characterselect"]
 margin_left = 11.8569
 margin_top = 20.0
 margin_right = 33.8569
 margin_bottom = 38.0
+focus_neighbour_top = NodePath("../../panel/join")
+focus_neighbour_right = NodePath("../forward")
 text = "<"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -175,10 +189,13 @@ __meta__ = {
 margin_left = 96.0
 margin_top = 20.0
 margin_right = 118.0
-margin_bottom = 38.0
+margin_bottom = 41.1594
+focus_neighbour_left = NodePath("../back")
+focus_neighbour_top = NodePath("../../panel/join")
 text = ">"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 [connection signal="pressed" from="panel/host" to="." method="_on_host_pressed"]
 [connection signal="pressed" from="panel/join" to="." method="_on_join_pressed"]
+[connection signal="text_changed" from="characterselect/name" to="characterselect" method="_on_name_text_changed"]

@@ -1,0 +1,213 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://ui/TetraForce.tres" type="Theme" id=1]
+[ext_resource path="res://ui/options/audio_options.gd" type="Script" id=2]
+[ext_resource path="res://ui/options/options_panel.gd" type="Script" id=3]
+
+[node name="options_panel" type="Panel"]
+anchor_right = 0.996
+anchor_bottom = 1.0
+margin_right = 0.0239868
+theme = ExtResource( 1 )
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TabContainer" type="TabContainer" parent="."]
+anchor_left = 0.027
+anchor_top = 0.056
+anchor_right = 0.969
+anchor_bottom = 0.944
+margin_left = 0.115
+margin_top = -0.0640001
+margin_right = -0.0950012
+margin_bottom = 0.0639954
+theme = ExtResource( 1 )
+tab_align = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Audio" type="Tabs" parent="TabContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 31.0
+margin_right = -4.0
+margin_bottom = -4.0
+tab_close_display_policy = 1
+script = ExtResource( 2 )
+
+[node name="master_slider" type="HSlider" parent="TabContainer/Audio"]
+anchor_top = 0.05
+anchor_right = 0.61
+anchor_bottom = 0.2
+margin_right = -0.0599976
+margin_bottom = -0.0499992
+max_value = 1.0
+step = 0.01
+value = 0.5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="effects_slider" type="HSlider" parent="TabContainer/Audio"]
+anchor_top = 0.25
+anchor_right = 0.61
+anchor_bottom = 0.396
+margin_top = -0.364
+margin_right = -0.0599976
+margin_bottom = 0.0139999
+max_value = 1.0
+step = 0.01
+value = 0.75
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="music_slider" type="HSlider" parent="TabContainer/Audio"]
+anchor_top = 0.45
+anchor_right = 0.61
+anchor_bottom = 0.594
+margin_top = -0.57
+margin_right = -0.0599976
+margin_bottom = 0.0219917
+max_value = 1.0
+step = 0.01
+value = 0.75
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="effects" type="Label" parent="TabContainer/Audio"]
+anchor_left = 0.65
+anchor_top = 0.25
+anchor_right = 0.845
+anchor_bottom = 0.367
+margin_left = -0.0755157
+margin_top = -0.463003
+margin_right = -2.03352
+margin_bottom = 0.0179977
+text = "Effects:"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="music" type="Label" parent="TabContainer/Audio"]
+anchor_left = 0.65
+anchor_top = 0.45
+anchor_right = 0.795
+anchor_bottom = 0.575
+margin_left = -0.339035
+margin_top = 0.420002
+margin_right = -0.00904846
+margin_bottom = 0.0449944
+text = "Music:"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="master" type="Label" parent="TabContainer/Audio"]
+anchor_left = 0.65
+anchor_top = 0.05
+anchor_right = 0.822
+anchor_bottom = 0.171
+margin_left = 0.291992
+margin_right = -17.112
+margin_bottom = 0.0529995
+text = "Master:"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="master_pct" type="Label" parent="TabContainer/Audio"]
+anchor_left = 0.85
+anchor_top = 0.05
+anchor_right = 1.0
+anchor_bottom = 0.178
+margin_left = -0.100006
+margin_top = -0.35
+margin_bottom = -0.0459995
+text = "100%"
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="effect_pct" type="Label" parent="TabContainer/Audio"]
+anchor_left = 0.833
+anchor_top = 0.25
+anchor_right = 1.0
+anchor_bottom = 0.374
+margin_left = 0.0819855
+margin_top = 0.25
+margin_bottom = -0.0180016
+text = "100%"
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="music_pct" type="Label" parent="TabContainer/Audio"]
+anchor_left = 0.8
+anchor_top = 0.45
+anchor_right = 1.0
+anchor_bottom = 0.571
+margin_bottom = 0.0529938
+text = "100%"
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="TabContainer/Audio"]
+anchor_left = 0.8
+anchor_top = 0.8
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -0.0460205
+margin_top = 0.0419998
+margin_right = 0.0319977
+text = "Close"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="save_btn" type="Button" parent="TabContainer/Audio"]
+anchor_left = 0.581
+anchor_top = 0.8
+anchor_right = 0.779
+anchor_bottom = 1.0
+margin_top = 0.343002
+margin_right = 0.0639801
+margin_bottom = 0.0194321
+text = "Save"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Graphics" type="Tabs" parent="TabContainer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 31.0
+margin_right = -4.0
+margin_bottom = -4.0
+tab_close_display_policy = 1
+
+[node name="Input" type="Tabs" parent="TabContainer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 31.0
+margin_right = -4.0
+margin_bottom = -4.0
+tab_close_display_policy = 1
+[connection signal="value_changed" from="TabContainer/Audio/master_slider" to="TabContainer/Audio" method="_on_master_slider_value_changed"]
+[connection signal="value_changed" from="TabContainer/Audio/effects_slider" to="TabContainer/Audio" method="_on_effects_slider_value_changed"]
+[connection signal="value_changed" from="TabContainer/Audio/music_slider" to="TabContainer/Audio" method="_on_music_slider_value_changed"]
+[connection signal="pressed" from="TabContainer/Audio/Button" to="." method="_on_Button_pressed"]
+[connection signal="pressed" from="TabContainer/Audio/save_btn" to="TabContainer/Audio" method="_on_save_btn_pressed"]
