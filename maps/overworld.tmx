@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.5" orientation="orthogonal" renderorder="right-down" width="128" height="72" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="70">
+<map version="1.2" tiledversion="1.3.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="128" height="72" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="76">
  <tileset firstgid="1" source="../tiled/overworld/overworld_wall.tsx"/>
  <tileset firstgid="26" source="../tiled/decor.tsx"/>
  <tileset firstgid="31" source="../tiled/overworld/overworld_ground.tsx"/>
@@ -453,6 +453,12 @@
     <property name="entrance" value="overworld2"/>
     <property name="map" value="cave"/>
    </properties>
+  </object>
+  <object id="40" name="room12" x="304" y="352">
+   <properties>
+    <property name="light_data" value="day"/>
+   </properties>
+   <point/>
   </object>
  </objectgroup>
  <imagelayer id="7" name="grid">
