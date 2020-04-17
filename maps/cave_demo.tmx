@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.5" orientation="orthogonal" renderorder="right-down" width="128" height="72" tilewidth="16" tileheight="16" infinite="0" nextlayerid="5" nextobjectid="31">
+<map version="1.2" tiledversion="1.2.5" orientation="orthogonal" renderorder="right-down" width="128" height="72" tilewidth="16" tileheight="16" infinite="0" nextlayerid="5" nextobjectid="32">
  <tileset firstgid="1" source="../tiled/cave/cave_ground.tsx"/>
  <tileset firstgid="6" source="../tiled/cave/cave_wall.tsx"/>
  <tileset firstgid="21" source="../tiled/objects.tsx"/>
@@ -206,6 +206,13 @@
     <property name="light_data" value="dark"/>
    </properties>
    <point/>
+  </object>
+  <object id="31" name="overworld3" gid="28" x="768" y="272" width="16" height="16">
+   <properties>
+    <property name="entrance" value="cave3"/>
+    <property name="map" value="overworld_demo"/>
+    <property name="player_position" value="left"/>
+   </properties>
   </object>
  </objectgroup>
 </map>
