@@ -733,13 +733,13 @@
   </object>
   <object id="120" name="room54" x="1328" y="640">
    <properties>
-    <property name="light_data" value="day"/>
+    <property name="light_data" value="dusk"/>
    </properties>
    <point/>
   </object>
   <object id="121" name="room55" x="1328" y="768">
    <properties>
-    <property name="light_data" value="day"/>
+    <property name="light_data" value="dusk"/>
    </properties>
    <point/>
   </object>
