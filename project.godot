@@ -9,49 +9,13 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "Area2D",
-"class": "Droppable",
-"language": "GDScript",
-"path": "res://droppables/droppable.gd"
-}, {
-"base": "Entity",
-"class": "Enemy",
-"language": "GDScript",
-"path": "res://enemies/enemy.gd"
-}, {
 "base": "KinematicBody2D",
 "class": "Entity",
 "language": "GDScript",
 "path": "res://engine/entity.gd"
-}, {
-"base": "Node2D",
-"class": "Item",
-"language": "GDScript",
-"path": "res://engine/item.gd"
-}, {
-"base": "Node",
-"class": "Room",
-"language": "GDScript",
-"path": "res://engine/room.gd"
-}, {
-"base": "Node2D",
-"class": "Switch",
-"language": "GDScript",
-"path": "res://engine/switch.gd"
-}, {
-"base": "Reference",
-"class": "entity_helper",
-"language": "GDScript",
-"path": "res://engine/helper_scipts/entity_helper.gd"
 } ]
 _global_script_class_icons={
-"Droppable": "",
-"Enemy": "",
-"Entity": "",
-"Item": "",
-"Room": "",
-"Switch": "",
-"entity_helper": ""
+"Entity": ""
 }
 
 [application]
@@ -62,13 +26,10 @@ config/icon="res://icon.png"
 
 [autoload]
 
-sfx="*res://engine/sound.gd"
-global="*res://engine/global.gd"
 network="*res://engine/network.gd"
+debug="*res://engine/debug.tscn"
+global="*res://engine/global.gd"
 screenfx="*res://engine/screenfx.tscn"
-settings="*res://engine/settings.gd"
-controller="*res://engine/controller.gd"
-music="*res://engine/music.gd"
 
 [debug]
 
@@ -82,10 +43,6 @@ window/size/test_width=1280
 window/size/test_height=720
 window/stretch/mode="2d"
 window/stretch/aspect="keep"
-
-[editor_plugins]
-
-enabled=PoolStringArray( "vnen.tiled_importer" )
 
 [importer_defaults]
 
@@ -109,74 +66,38 @@ texture={
 "stream": false,
 "svg/scale": 1.0
 }
-vnen.tiled_importer={
-"add_background": true,
-"collision_layer": 1,
-"custom_properties": true,
-"embed_internal_images": false,
-"image_flags": 7,
-"post_import_script": "res://tiled/import.gd",
-"save_tiled_properties": true,
-"tile_metadata": true,
-"uv_clip": true
-}
 
 [input]
 
-ui_accept={
+LEFT={
 "deadzone": 0.5,
-"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777221,"unicode":0,"echo":false,"script":null)
-, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777222,"unicode":0,"echo":false,"script":null)
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777231,"unicode":0,"echo":false,"script":null)
  ]
 }
-ui_select={
-"deadzone": 0.5,
-"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":32,"unicode":0,"echo":false,"script":null)
- ]
-}
-ui_cancel={
-"deadzone": 0.5,
-"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777217,"unicode":0,"echo":false,"script":null)
- ]
-}
-ui_right={
+RIGHT={
 "deadzone": 0.5,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777233,"unicode":0,"echo":false,"script":null)
  ]
 }
-ui_up={
+UP={
 "deadzone": 0.5,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777232,"unicode":0,"echo":false,"script":null)
  ]
 }
-ui_down={
+DOWN={
 "deadzone": 0.5,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777234,"unicode":0,"echo":false,"script":null)
  ]
 }
-LEFT={
-"deadzone": 0.5,
-"events": [  ]
-}
-RIGHT={
-"deadzone": 0.5,
-"events": [  ]
-}
-UP={
-"deadzone": 0.5,
-"events": [  ]
-}
-DOWN={
-"deadzone": 0.5,
-"events": [  ]
-}
 A={
 "deadzone": 0.5,
-"events": [  ]
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":88,"unicode":0,"echo":false,"script":null)
+ ]
 }
 B={
 "deadzone": 0.5,
-"events": [  ]
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":90,"unicode":0,"echo":false,"script":null)
+ ]
 }
 X={
 "deadzone": 0.5,
@@ -210,21 +131,10 @@ SELECT={
 "deadzone": 0.5,
 "events": [  ]
 }
-TOGGLE_CHAT={
-"deadzone": 0.5,
-"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777218,"unicode":0,"echo":false,"script":null)
- ]
-}
 
 [rendering]
 
 quality/driver/driver_name="GLES2"
-quality/2d/gles2_use_nvidia_rect_flicker_workaround=true
-quality/intended_usage/framebuffer_allocation=0
-quality/intended_usage/framebuffer_allocation.mobile=0
-quality/2d/use_pixel_snap=true
 vram_compression/import_etc=true
-
-[tiled_importer]
-
-enable_json_format=true
+vram_compression/import_etc2=false
+environment/default_environment="res://default_env.tres"

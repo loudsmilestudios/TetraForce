@@ -1,31 +1,12 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=2 format=2]
 
 [ext_resource path="res://engine/lobby.gd" type="Script" id=1]
-[ext_resource path="res://ui/TetraForce.tres" type="Theme" id=2]
-[ext_resource path="res://engine/characterselect.gd" type="Script" id=3]
-[ext_resource path="res://player/player.png" type="Texture" id=4]
-
-[sub_resource type="Animation" id=1]
-resource_name = "animation"
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath("preview:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ 0, 1 ]
-}
 
 [node name="lobby" type="Control"]
-margin_left = -120.805
-margin_top = -65.401
-margin_right = -80.8054
-margin_bottom = -25.4011
+margin_left = 61.5164
+margin_top = -8.20218
+margin_right = 101.516
+margin_bottom = 31.7978
 rect_scale = Vector2( 0.5, 0.5 )
 size_flags_horizontal = 2
 size_flags_vertical = 2
@@ -35,14 +16,13 @@ __meta__ = {
 }
 
 [node name="title" type="Label" parent="."]
-margin_left = 393.514
-margin_top = 162.774
-margin_right = 613.514
-margin_bottom = 202.774
+margin_left = 18.0289
+margin_top = 55.8707
+margin_right = 238.029
+margin_bottom = 95.8707
 size_flags_horizontal = 2
 size_flags_vertical = 0
-theme = ExtResource( 2 )
-text = "TetraForce"
+text = "Untitled"
 align = 1
 valign = 1
 __meta__ = {
@@ -50,152 +30,88 @@ __meta__ = {
 }
 
 [node name="panel" type="Panel" parent="."]
-margin_left = 389.61
-margin_top = 235.0
-margin_right = 609.61
-margin_bottom = 296.0
-focus_neighbour_left = NodePath("host")
-focus_neighbour_top = NodePath("host")
-focus_neighbour_right = NodePath("host")
-focus_neighbour_bottom = NodePath("host")
-focus_mode = 2
+margin_left = 21.6589
+margin_top = 154.147
+margin_right = 241.659
+margin_bottom = 264.147
 size_flags_horizontal = 2
 size_flags_vertical = 2
-theme = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
+}
+
+[node name="address_label" type="Label" parent="panel"]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 62.0
+margin_bottom = 24.0
+size_flags_horizontal = 2
+size_flags_vertical = 0
+text = "Address"
+__meta__ = {
+"_edit_lock_": true
 }
 
 [node name="address" type="LineEdit" parent="panel"]
-margin_left = 10.2468
-margin_top = 30.2467
-margin_right = 125.247
-margin_bottom = 54.2467
+margin_left = 10.0
+margin_top = 30.0
+margin_right = 210.0
+margin_bottom = 54.0
 size_flags_horizontal = 2
 size_flags_vertical = 2
 text = "127.0.0.1"
-placeholder_text = "127.0.0.1"
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_lock_": true
 }
 
 [node name="host" type="Button" parent="panel"]
-anchor_left = -0.00197026
-anchor_top = -0.00710534
-anchor_right = -0.00197026
-anchor_bottom = 0.011901
-margin_left = 72.4255
-margin_top = 5.13419
-margin_right = 152.425
-margin_bottom = 25.1342
-focus_neighbour_bottom = NodePath("../join")
-focus_previous = NodePath("../join")
+margin_left = 10.0
+margin_top = 60.0
+margin_right = 90.0
+margin_bottom = 80.0
 size_flags_horizontal = 2
 size_flags_vertical = 2
-text = "New Game"
+text = "Host"
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_lock_": true
 }
 
 [node name="join" type="Button" parent="panel"]
-margin_left = 131.573
-margin_top = 33.4906
-margin_right = 211.573
-margin_bottom = 54.65
-focus_neighbour_top = NodePath("../host")
-focus_neighbour_bottom = NodePath("../../characterselect/back")
+margin_left = 130.0
+margin_top = 60.0
+margin_right = 210.0
+margin_bottom = 80.0
 size_flags_horizontal = 2
 size_flags_vertical = 2
 text = "Join"
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_lock_": true
 }
 
 [node name="status_ok" type="Label" parent="panel"]
 margin_left = 10.0
-margin_top = 64.0
+margin_top = 90.0
 margin_right = 210.0
-margin_bottom = 78.0
+margin_bottom = 104.0
 size_flags_horizontal = 2
 size_flags_vertical = 0
 custom_colors/font_color = Color( 0, 1, 0.015625, 1 )
 align = 1
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_lock_": true
 }
 
 [node name="status_fail" type="Label" parent="panel"]
 margin_left = 10.0
-margin_top = 64.0
+margin_top = 90.0
 margin_right = 210.0
-margin_bottom = 78.0
+margin_bottom = 104.0
 size_flags_horizontal = 2
 size_flags_vertical = 0
 custom_colors/font_color = Color( 1, 0, 0, 1 )
 align = 1
 __meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="characterselect" type="Panel" parent="."]
-margin_left = 435.363
-margin_top = 318.247
-margin_right = 567.363
-margin_bottom = 405.247
-rect_pivot_offset = Vector2( 50.0191, 75.2492 )
-theme = ExtResource( 2 )
-script = ExtResource( 3 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="name" type="LineEdit" parent="characterselect"]
-margin_left = 6.0
-margin_top = 56.0
-margin_right = 125.0
-margin_bottom = 80.0
-size_flags_horizontal = 2
-size_flags_vertical = 2
-placeholder_text = "Display Name"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="characterselect"]
-autoplay = "animation"
-playback_speed = 4.0
-anims/animation = SubResource( 1 )
-
-[node name="preview" type="Sprite" parent="characterselect"]
-position = Vector2( 63.8569, 28 )
-scale = Vector2( 2, 2 )
-texture = ExtResource( 4 )
-vframes = 7
-hframes = 6
-
-[node name="back" type="Button" parent="characterselect"]
-margin_left = 11.8569
-margin_top = 20.0
-margin_right = 33.8569
-margin_bottom = 38.0
-focus_neighbour_top = NodePath("../../panel/join")
-focus_neighbour_right = NodePath("../forward")
-text = "<"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="forward" type="Button" parent="characterselect"]
-margin_left = 96.0
-margin_top = 20.0
-margin_right = 118.0
-margin_bottom = 41.1594
-focus_neighbour_left = NodePath("../back")
-focus_neighbour_top = NodePath("../../panel/join")
-text = ">"
-__meta__ = {
-"_edit_use_anchors_": false
+"_edit_lock_": true
 }
 [connection signal="pressed" from="panel/host" to="." method="_on_host_pressed"]
 [connection signal="pressed" from="panel/join" to="." method="_on_join_pressed"]
-[connection signal="text_changed" from="characterselect/name" to="characterselect" method="_on_name_text_changed"]

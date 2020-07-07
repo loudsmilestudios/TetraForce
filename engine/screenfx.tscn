@@ -18,7 +18,7 @@ tracks/0/keys = {
 [sub_resource type="Animation" id=2]
 resource_name = "fadein"
 length = 0.5
-step = 0.05
+step = 0.25
 tracks/0/type = "value"
 tracks/0/path = NodePath("screenfx/CanvasLayer/ColorRect:visible")
 tracks/0/interp = 1
@@ -47,7 +47,7 @@ tracks/1/keys = {
 [sub_resource type="Animation" id=3]
 resource_name = "fadewhite"
 length = 0.5
-step = 0.05
+step = 0.25
 tracks/0/type = "value"
 tracks/0/path = NodePath("screenfx/CanvasLayer/ColorRect:visible")
 tracks/0/interp = 1
@@ -80,13 +80,10 @@ anims/fadein = SubResource( 2 )
 anims/fadewhite = SubResource( 3 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-layer = 100
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
-visible = false
 margin_right = 256.0
 margin_bottom = 144.0
 __meta__ = {
-"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
