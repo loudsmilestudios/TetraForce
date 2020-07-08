@@ -1,17 +1,13 @@
 extends Entity
 
-func _ready():
-	set_physics_process(false)
-
 func initialize():
 	add_to_group("player")
 	if is_network_master():
+		set_physics_process(false)
 		state = "default"
 		puppet_pos = position
 		puppet_spritedir = "Down"
 		puppet_anim = "idleDown"
-		connect_camera()
-		camera.initialize(self)
 		
 		position = get_parent().get_node(global.next_entrance).position
 		var offset = get_parent().get_node(global.next_entrance).player_position
@@ -29,11 +25,14 @@ func initialize():
 				position.x += 16
 				spritedir = "Right"
 		
+		connect_camera()
+		camera.initialize(self)
+		
 		anim_switch("idle")
-	
-	yield(screenfx, "animation_finished")
-	
-	set_physics_process(true)
+		
+		yield(screenfx, "animation_finished")
+		
+		set_physics_process(true)
 
 func _physics_process(_delta):
 	if !is_network_master():
@@ -47,16 +46,44 @@ func _physics_process(_delta):
 	match state:
 		"default":
 			state_default()
+		"swing":
+			state_swing()
+		"hold":
+			state_hold()
+		"spin":
+			state_spin()
 
 func state_default():
 	loop_controls()
 	loop_movement()
 	loop_spritedir()
+	loop_action_button()
 	
 	if movedir == Vector2.ZERO:
 		anim_switch("idle")
 	else:
 		anim_switch("walk")
+
+func state_swing():
+	anim_switch("swing")
+	loop_movement()
+	movedir = Vector2.ZERO
+
+func state_hold():
+	loop_controls()
+	loop_movement()
+	if movedir == Vector2.ZERO:
+		anim_switch("idle")
+	else:
+		anim_switch("walk")
+	
+	if !has_node("Sword"):
+		state = "default"
+
+func state_spin():
+	anim_switch("spin")
+	loop_movement()
+	movedir = Vector2.ZERO
 
 func loop_controls():
 	movedir = Vector2.ZERO
@@ -68,6 +95,12 @@ func loop_controls():
 	
 	movedir.x = -int(LEFT) + int(RIGHT)
 	movedir.y = -int(UP) + int(DOWN)
+
+func loop_action_button():
+	if Input.is_action_pressed("B"):
+		use_item("res://items/sword.tscn", "B")
+		for peer in network.map_peers:
+			rpc_id(peer, "use_item", "res://items/sword.tscn", "B")
 
 func connect_camera():
 	camera.connect("screen_change_started", self, "screen_change_started")

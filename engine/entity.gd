@@ -87,6 +87,23 @@ func anim_switch(animation):
 		mset("puppet_anim", newanim)
 		anim.play(newanim)
 
+sync func use_item(item, input):
+	var newitem = load(item).instance()
+	var itemgroup = str(item, name)
+	newitem.add_to_group(itemgroup)
+	newitem.add_to_group(name)
+	add_child(newitem)
+	
+	if is_network_master():
+		newitem.set_network_master(get_tree().get_network_unique_id())
+	
+	if get_tree().get_nodes_in_group(itemgroup).size() > newitem.MAX_AMOUNT:
+		newitem.delete()
+		return
+	
+	newitem.input = input
+	newitem.start()
+
 func mset(property, value): # map rset, only rsets to map peers
 	for peer in network.map_peers:
 		rset_id(peer, property, value)

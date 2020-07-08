@@ -7,6 +7,7 @@ var camera = preload("res://engine/camera.tscn").instance()
 func _ready():
 	network.current_map = self
 	add_child(camera)
+	network.map_peers = []
 	add_new_player(get_tree().get_network_unique_id())
 	network.send_current_map() # starts player list updates
 	screenfx.play("fadein")
@@ -23,7 +24,8 @@ func add_new_player(id):
 	emit_signal("player_entered", id)
 
 func remove_player(id):
-	get_node(str(id)).queue_free()
+	if has_node(str(id)):
+		get_node(str(id)).queue_free()
 	for node in get_tree().get_nodes_in_group(str(id)):
 		node.queue_free()
 

@@ -17,15 +17,14 @@ func _ready():
 
 func initialize(node):
 	target = node
+	position = get_grid_pos(target.position) * SCREEN_SIZE
+	
 	$Tween.connect("tween_started", self, "screen_change_started")
 	$Tween.connect("tween_completed", self, "screen_change_completed")
-	current = true
 	
 	set_process(true)
 	
-	yield(get_tree(), "idle_frame")
-	
-	position = get_grid_pos(target.position) * SCREEN_SIZE
+	current = true
 
 func _process(_delta):
 	if target == null:
