@@ -2,10 +2,11 @@ extends Node
 
 var player
 
-var next_map = "dung1"
 var next_entrance = "a"
 
 signal map_change_acknowledged
+
+var unacknowledged_players = []
 
 func change_map(map, entrance):
 	screenfx.play("fadewhite")
@@ -17,20 +18,56 @@ func change_map(map, entrance):
 	var new_map_path = "res://maps/" + map + ".tscn"
 	var new_map = load(new_map_path).instance()
 	
-	for peer in network.map_peers:
-		rpc_id(peer, "_receive_map_change", get_tree().get_network_unique_id())
-		yield(self, "map_change_acknowledged")
-		network.map_peers.erase(peer)
+	if !get_tree().is_network_server():
+		while network.player_list[get_tree().get_network_unique_id()] != str(get_tree().get_network_unique_id()):
+			network.rpc_id(1, "_receive_current_map", get_tree().get_network_unique_id(), str(get_tree().get_network_unique_id()))
+			yield(get_tree().create_timer(0.25), "timeout")
+	else:
+		network._receive_current_map(1, "1")
+	
+	for peer in get_tree().get_network_connected_peers():
+		unacknowledged_players.append(peer)
+	
+	unacknowledged_players.erase(get_tree().get_network_unique_id())
+	
+	while unacknowledged_players.size() > 0:
+		print(unacknowledged_players)
+		var peers_processed = []
+		for peer in get_tree().get_network_connected_peers():
+			if peer == get_tree().get_network_unique_id():
+				peers_processed.append(peer)
+				continue
+			while peer in unacknowledged_players:
+				var connected_peers = []
+				for p in get_tree().get_network_connected_peers():
+					connected_peers.append(p)
+				if !connected_peers.has(peer):
+					unacknowledged_players.erase(peer)
+					print(str(peer, " disconnected before map change"))
+					continue
+				rpc_id(peer, "_check_player_list_status", get_tree().get_network_unique_id())
+				yield(get_tree().create_timer(0.25), "timeout")
+			peers_processed.append(peer)
+		for peer in unacknowledged_players:
+			if !peers_processed.has(peer):
+				print(str(peer, " disconnected before map change"))
+				unacknowledged_players.erase(peer)
+		yield(get_tree().create_timer(0.25), "timeout")
 	
 	old_map.queue_free()
+	next_entrance = entrance
 	root.add_child(new_map)
 
-remote func _receive_map_change(id):
-	network.map_peers.erase(id)
-	network.current_map.get_node(str(id)).remove_from_group("player")
-	network.current_map.get_node(str(id)).free()
-	rpc_id(id, "_acknowledge_map_change", get_tree().get_network_unique_id())
+remote func _check_player_list_status(id):
+	if str(network.player_list[id]) != str(network.current_map):
+		rpc_id(id, "_send_player_list_status_success", get_tree().get_network_unique_id())
+	else:
+		rpc_id(id, "_send_player_list_status_fail", get_tree().get_network_unique_id())
 
-remote func _acknowledge_map_change(id):
-	emit_signal("map_change_acknowledged", id)
+remote func _send_player_list_status_success(id):
+	if unacknowledged_players.has(id):
+		unacknowledged_players.erase(id)
+		print(str(id, " check succeeded"))
 
+remote func _send_player_list_status_fail(id):
+	print(str(id, " check failed"))

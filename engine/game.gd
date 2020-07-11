@@ -9,13 +9,36 @@ func _ready():
 	add_child(camera)
 	network.map_peers = []
 	add_new_player(get_tree().get_network_unique_id())
+	# force the server to acknowledge this player's presence
 	network.send_current_map() # starts player list updates
 	screenfx.play("fadein")
+
+func _process(delta): # can be on screen change instead of process
+	if !get_tree().is_network_server():
+		return
+	var visible_enemies: Array = []
+	for entity_detect in get_tree().get_nodes_in_group("entity_detect"):
+		if is_instance_valid(entity_detect):
+			for entity in entity_detect.get_overlapping_bodies():
+				if entity.is_in_group("enemy"):
+					visible_enemies.append(entity)
+	
+	for enemy in get_tree().get_nodes_in_group("enemy"):
+		if visible_enemies.has(enemy):
+			enemy.set_physics_process(true)
+		else:
+			enemy.set_physics_process(false)
+			enemy.position = enemy.home_position
 
 func add_new_player(id):
 	var new_player = preload("res://player/player.tscn").instance()
 	new_player.name = str(id)
 	new_player.set_network_master(id, true)
+	
+	var entity_detect = preload("res://engine/entity_detect.tscn").instance()
+	entity_detect.player = new_player
+	add_child(entity_detect)
+	entity_detect.add_to_group(str(id))
 	
 	add_child(new_player)
 	new_player.camera = camera
@@ -26,10 +49,13 @@ func add_new_player(id):
 func remove_player(id):
 	if has_node(str(id)):
 		get_node(str(id)).queue_free()
+		print(str(id, " removed"))
 	for node in get_tree().get_nodes_in_group(str(id)):
 		node.queue_free()
 
 func update_puppets():
+	if network.player_list[get_tree().get_network_unique_id()] == str(get_tree().get_network_unique_id()):
+		return
 	var player_nodes = get_tree().get_nodes_in_group("player")
 	var player_names = []
 	for player in player_nodes:
@@ -45,10 +71,3 @@ func update_puppets():
 	for id in network.map_peers:
 		if !player_names.has(id): # if there's fewer names than peers
 			add_new_player(id) # add a new node for that name
-
-
-
-
-
-
-

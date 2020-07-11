@@ -11,6 +11,7 @@ func create_level():
 	var level = load(map).instance()
 	#level.connect("game_finished",self,"_end_game",[],CONNECT_DEFERRED) # connect deferred so we can safely erase it from the callback
 	get_tree().get_root().add_child(level)
+	network.start_kicks()
 	hide()
 
 # callback from SceneTree
@@ -63,7 +64,6 @@ func _set_status(text,isok):
 		get_node("panel/status_fail").set_text(text)
 
 func _on_host_pressed():
-	
 	var host = NetworkedMultiplayerENet.new()
 	host.set_compression_mode(NetworkedMultiplayerENet.COMPRESS_RANGE_CODER)
 	var err = host.create_server(DEFAULT_PORT, 15) # max: 1 peer, since it's a 2 players game

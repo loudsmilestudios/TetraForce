@@ -21,6 +21,7 @@ func initialize():
 			"left":
 				position.x -= 16
 				spritedir = "Left"
+				sprite.flip_h = true
 			"right":
 				position.x += 16
 				spritedir = "Right"
@@ -57,6 +58,7 @@ func state_default():
 	loop_controls()
 	loop_movement()
 	loop_spritedir()
+	loop_damage()
 	loop_action_button()
 	
 	if movedir == Vector2.ZERO:
@@ -67,11 +69,13 @@ func state_default():
 func state_swing():
 	anim_switch("swing")
 	loop_movement()
+	loop_damage()
 	movedir = Vector2.ZERO
 
 func state_hold():
 	loop_controls()
 	loop_movement()
+	loop_damage()
 	if movedir == Vector2.ZERO:
 		anim_switch("idle")
 	else:
@@ -83,6 +87,7 @@ func state_hold():
 func state_spin():
 	anim_switch("spin")
 	loop_movement()
+	loop_damage()
 	movedir = Vector2.ZERO
 
 func loop_controls():

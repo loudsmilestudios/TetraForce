@@ -1,5 +1,7 @@
 extends Node
 
+var network_object
+
 var current_map = null
 var player_list = {} # player, map -- every active player and what map they're in
 var map_hosts = {} # map, player -- every active map and which player is hosting it
@@ -9,9 +11,45 @@ var map_peers = []
 
 signal received_player_list
 
+var kick_list = {}
+
 func _ready():
 	set_process(false)
 	get_tree().connect("network_peer_disconnected", self, "_player_disconnected")
+
+func start_kicks():
+	if !get_tree().is_network_server():
+		return
+	var kick_timer = Timer.new()
+	kick_timer.one_shot = false
+	kick_timer.wait_time = 5
+	add_child(kick_timer)
+	kick_timer.connect("timeout", self, "check_kicks")
+	kick_timer.start()
+
+func check_kicks():
+	for client in get_tree().get_network_connected_peers():
+		if client == get_tree().get_network_unique_id():
+			return
+		if !kick_list.keys().has(client):
+			kick_list[client] = false
+		if kick_list[client] == true:
+			print(client, " kicked due to inactivity")
+			
+			player_list.erase(client)
+			update_players()
+			update_map_hosts()
+			
+			network_object.disconnect_peer(client)
+		else:
+			kick_list[client] = true
+			rpc_id(client, "_request_presence")
+
+remote func _request_presence():
+	rpc_id(1, "_acknowledge_presence", get_tree().get_network_unique_id())
+
+remote func _acknowledge_presence(id):
+	kick_list[id] = false
 
 ### PLAYER LIST UPDATES ###
 # super important. list of every player in the game & what map they're in
@@ -39,12 +77,14 @@ remote func _receive_current_map(id, map): # server receives map from client
 	player_list[id] = map
 	update_players() # server updates its own map peers
 	update_map_hosts()
+	emit_signal("received_player_list")
 	rpc("_receive_player_list", player_list, map_hosts)
 
 remote func _receive_player_list(list, hosts): # client receives player list from server
 	player_list = list
 	map_hosts = hosts
 	update_players() # client updates map peers
+	emit_signal("received_player_list")
 
 func update_players(): # gets list of all players in map AND all other players
 	current_players = []
@@ -81,5 +121,12 @@ func update_map_hosts():
 func _player_disconnected(id): # remove disconnected players from player_list
 	if get_tree().is_network_server():
 		player_list.erase(id)
-		rpc("_receive_player_list", player_list)
+		rpc("_receive_player_list", player_list, map_hosts)
 		update_players()
+
+func is_map_host():
+	if !map_hosts.keys().has(current_map.name):
+		return false
+	if map_hosts[current_map.name] == get_tree().get_network_unique_id():
+		return true
+	return false

@@ -48,7 +48,7 @@ tracks/0/keys = {
 "values": [ 5 ]
 }
 
-[sub_resource type="Animation" id=11]
+[sub_resource type="Animation" id=4]
 resource_name = "spinDown"
 length = 1.6
 step = 0.33
@@ -77,7 +77,7 @@ tracks/1/keys = {
 "values": [ Vector2( 1, 1 ), Vector2( -1, 1 ), Vector2( 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=12]
+[sub_resource type="Animation" id=5]
 resource_name = "spinSide"
 length = 1.6
 step = 0.33
@@ -106,7 +106,7 @@ tracks/1/keys = {
 "values": [ Vector2( 1, 1 ), Vector2( -1, 1 ), Vector2( 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=13]
+[sub_resource type="Animation" id=6]
 resource_name = "spinUp"
 length = 1.6
 step = 0.33
@@ -135,7 +135,7 @@ tracks/1/keys = {
 "values": [ Vector2( 1, 1 ), Vector2( -1, 1 ), Vector2( 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=7]
 resource_name = "swingDown"
 length = 0.66
 step = 0.33
@@ -152,7 +152,7 @@ tracks/0/keys = {
 "values": [ 24, 25 ]
 }
 
-[sub_resource type="Animation" id=9]
+[sub_resource type="Animation" id=8]
 resource_name = "swingSide"
 length = 0.66
 step = 0.33
@@ -169,7 +169,7 @@ tracks/0/keys = {
 "values": [ 26, 27 ]
 }
 
-[sub_resource type="Animation" id=10]
+[sub_resource type="Animation" id=9]
 resource_name = "swingUp"
 length = 0.66
 step = 0.33
@@ -186,8 +186,7 @@ tracks/0/keys = {
 "values": [ 28, 29 ]
 }
 
-[sub_resource type="Animation" id=4]
-resource_name = "walkDown"
+[sub_resource type="Animation" id=10]
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -201,8 +200,7 @@ tracks/0/keys = {
 "values": [ 0, 1 ]
 }
 
-[sub_resource type="Animation" id=5]
-resource_name = "walkSide"
+[sub_resource type="Animation" id=11]
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -216,8 +214,7 @@ tracks/0/keys = {
 "values": [ 2, 3 ]
 }
 
-[sub_resource type="Animation" id=6]
-resource_name = "walkUp"
+[sub_resource type="Animation" id=12]
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -231,27 +228,29 @@ tracks/0/keys = {
 "values": [ 4, 5 ]
 }
 
-[sub_resource type="RectangleShape2D" id=7]
+[sub_resource type="RectangleShape2D" id=13]
 extents = Vector2( 4.5, 6 )
 
 [node name="player" type="KinematicBody2D"]
 z_index = 100
 script = ExtResource( 2 )
+TYPE = "PLAYER"
+DAMAGE = 0.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 playback_speed = 4.0
 anims/idleDown = SubResource( 1 )
 anims/idleSide = SubResource( 2 )
 anims/idleUp = SubResource( 3 )
-anims/spinDown = SubResource( 11 )
-anims/spinSide = SubResource( 12 )
-anims/spinUp = SubResource( 13 )
-anims/swingDown = SubResource( 8 )
-anims/swingSide = SubResource( 9 )
-anims/swingUp = SubResource( 10 )
-anims/walkDown = SubResource( 4 )
-anims/walkSide = SubResource( 5 )
-anims/walkUp = SubResource( 6 )
+anims/spinDown = SubResource( 4 )
+anims/spinSide = SubResource( 5 )
+anims/spinUp = SubResource( 6 )
+anims/swingDown = SubResource( 7 )
+anims/swingSide = SubResource( 8 )
+anims/swingUp = SubResource( 9 )
+anims/walkDown = SubResource( 10 )
+anims/walkSide = SubResource( 11 )
+anims/walkUp = SubResource( 12 )
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )
@@ -261,4 +260,4 @@ frame = 29
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
-shape = SubResource( 7 )
+shape = SubResource( 13 )
