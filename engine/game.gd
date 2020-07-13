@@ -9,12 +9,16 @@ func _ready():
 	add_child(camera)
 	network.map_peers = []
 	add_new_player(get_tree().get_network_unique_id())
+	for player in network.player_list.keys():
+		if network.player_list[player] == name:
+			add_new_player(player)
 	# force the server to acknowledge this player's presence
 	network.send_current_map() # starts player list updates
 	screenfx.play("fadein")
+	connect("player_entered", self, "player_entered")
 
 func _process(delta): # can be on screen change instead of process
-	if !get_tree().is_network_server():
+	if !network.is_map_host():
 		return
 	var visible_enemies: Array = []
 	for entity_detect in get_tree().get_nodes_in_group("entity_detect"):
@@ -43,19 +47,14 @@ func add_new_player(id):
 	add_child(new_player)
 	new_player.camera = camera
 	new_player.initialize()
-	
-	emit_signal("player_entered", id)
 
 func remove_player(id):
 	if has_node(str(id)):
 		get_node(str(id)).queue_free()
-		print(str(id, " removed"))
 	for node in get_tree().get_nodes_in_group(str(id)):
 		node.queue_free()
 
 func update_puppets():
-	if network.player_list[get_tree().get_network_unique_id()] == str(get_tree().get_network_unique_id()):
-		return
 	var player_nodes = get_tree().get_nodes_in_group("player")
 	var player_names = []
 	for player in player_nodes:
@@ -71,3 +70,7 @@ func update_puppets():
 	for id in network.map_peers:
 		if !player_names.has(id): # if there's fewer names than peers
 			add_new_player(id) # add a new node for that name
+
+func player_entered(id):
+	if id != get_tree().get_network_unique_id():
+		print("player ", id, " entered")

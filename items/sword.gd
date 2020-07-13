@@ -17,8 +17,7 @@ func start():
 func destroy(animation):
 	# If this is true, spin_attack animation is done, so delete stuff (no need to check inputs)
 	if spin_attack: 
-		for peer in network.map_peers:
-			rpc_id(peer, "delete")
+		network.peer_call(self, "delete")
 		delete()
 		
 	if input != null && Input.is_action_pressed(input):
@@ -35,12 +34,10 @@ func destroy(animation):
 				z_index -= 1
 			"Down":
 				position.y -= 3
-		for peer in network.map_peers:
-			rpc_id(peer, "set_pos", position)
+		network.peer_call(self, "set_pos", [position])
 		return
 	
-	for peer in network.map_peers:
-		rpc_id(peer, "delete")
+	network.peer_call(self, "delete")
 	delete()
 
 remote func set_pos(p_pos) -> void:
@@ -69,8 +66,7 @@ func _physics_process(delta) -> void:
 	
 	if spin_attack && get_parent().state != "spin" && anim.current_animation != "flash":
 		anim.play("flash")
-		for peer in network.map_peers:
-			rpc_id(peer, "flash")
+		network.peer_call(self, "flash")
 	
 	if !Input.is_action_pressed(input):
 		# Spin attack
@@ -94,8 +90,7 @@ func _physics_process(delta) -> void:
 			
 			DAMAGE *= 2
 			
-			for peer in network.map_peers:
-				rpc_id(peer, "spin", anim.current_animation_position)
+			network.peer_call(self, "spin", [anim.current_animation_position])
 			
 			get_parent().anim.connect("animation_finished", self, "destroy")
 			get_parent().anim.connect("animation_changed", self, "destroy")

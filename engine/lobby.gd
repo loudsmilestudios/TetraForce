@@ -11,7 +11,7 @@ func create_level():
 	var level = load(map).instance()
 	#level.connect("game_finished",self,"_end_game",[],CONNECT_DEFERRED) # connect deferred so we can safely erase it from the callback
 	get_tree().get_root().add_child(level)
-	network.start_kicks()
+	#network.start_kicks()
 	hide()
 
 # callback from SceneTree

@@ -5,9 +5,6 @@ func initialize():
 	if is_network_master():
 		set_physics_process(false)
 		state = "default"
-		puppet_pos = position
-		puppet_spritedir = "Down"
-		puppet_anim = "idleDown"
 		
 		position = get_parent().get_node(global.next_entrance).position
 		var offset = get_parent().get_node(global.next_entrance).player_position
@@ -34,14 +31,10 @@ func initialize():
 		yield(screenfx, "animation_finished")
 		
 		set_physics_process(true)
+	network.current_map.emit_signal("player_entered", int(name))
 
 func _physics_process(_delta):
 	if !is_network_master():
-		position = puppet_pos
-		spritedir = puppet_spritedir
-		if anim.current_animation != puppet_anim:
-			anim.play(puppet_anim)
-		sprite.flip_h = (spritedir == "Left")
 		return
 		
 	match state:
@@ -53,6 +46,8 @@ func _physics_process(_delta):
 			state_hold()
 		"spin":
 			state_spin()
+	
+	network.peer_call_unreliable(self, "_player_puppet_sync", [position, spritedir, anim.current_animation])
 
 func state_default():
 	loop_controls()
@@ -104,12 +99,18 @@ func loop_controls():
 func loop_action_button():
 	if Input.is_action_pressed("B"):
 		use_item("res://items/sword.tscn", "B")
-		for peer in network.map_peers:
-			rpc_id(peer, "use_item", "res://items/sword.tscn", "B")
+		network.peer_call(self, "use_item", ["res://items/sword.tscn", "B"])
 
 func connect_camera():
 	camera.connect("screen_change_started", self, "screen_change_started")
 	camera.connect("screen_change_completed", self, "screen_change_completed")
+
+func _player_puppet_sync(pos, sdir, animation):
+	position = pos
+	spritedir = sdir
+	if !anim.current_animation == animation:
+		anim.play(animation)
+	sprite.flip_h = (spritedir == "Left")
 
 func screen_change_started():
 	set_physics_process(false)

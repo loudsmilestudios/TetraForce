@@ -178,6 +178,8 @@ map = "dung2"
 player_position = "right"
 entrance = "b"
 
-[node name="Stalfos5" parent="." instance=ExtResource( 4 )]
-position = Vector2( 90, 232 )
-[connection signal="player_entered" from="." to="Stalfos5" method="_on_dung3_player_entered"]
+[node name="Stalfos" parent="." instance=ExtResource( 4 )]
+position = Vector2( 95, 209 )
+
+[node name="Stalfos2" parent="." instance=ExtResource( 4 )]
+position = Vector2( 155, 223 )

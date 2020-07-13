@@ -1,7 +1,5 @@
 extends Node
 
-var network_object
-
 var current_map = null
 var player_list = {} # player, map -- every active player and what map they're in
 var map_hosts = {} # map, player -- every active map and which player is hosting it
@@ -11,45 +9,9 @@ var map_peers = []
 
 signal received_player_list
 
-var kick_list = {}
-
 func _ready():
 	set_process(false)
 	get_tree().connect("network_peer_disconnected", self, "_player_disconnected")
-
-func start_kicks():
-	if !get_tree().is_network_server():
-		return
-	var kick_timer = Timer.new()
-	kick_timer.one_shot = false
-	kick_timer.wait_time = 5
-	add_child(kick_timer)
-	kick_timer.connect("timeout", self, "check_kicks")
-	kick_timer.start()
-
-func check_kicks():
-	for client in get_tree().get_network_connected_peers():
-		if client == get_tree().get_network_unique_id():
-			return
-		if !kick_list.keys().has(client):
-			kick_list[client] = false
-		if kick_list[client] == true:
-			print(client, " kicked due to inactivity")
-			
-			player_list.erase(client)
-			update_players()
-			update_map_hosts()
-			
-			network_object.disconnect_peer(client)
-		else:
-			kick_list[client] = true
-			rpc_id(client, "_request_presence")
-
-remote func _request_presence():
-	rpc_id(1, "_acknowledge_presence", get_tree().get_network_unique_id())
-
-remote func _acknowledge_presence(id):
-	kick_list[id] = false
 
 ### PLAYER LIST UPDATES ###
 # super important. list of every player in the game & what map they're in
@@ -63,7 +25,6 @@ remote func _acknowledge_presence(id):
 # 6) game.gd then takes this list of players, compares it to the player nodes
 #    it has in the room, removes the ones that are no longer there, and adds
 #    the ones that have just entered
-#
 
 func send_current_map(): # called when a player enters a new map
 	if get_tree().is_network_server():
@@ -101,6 +62,10 @@ func update_players(): # gets list of all players in map AND all other players
 	# *** IMPORTANT *** #
 	# this is where game.gd gets that information and updates the puppets
 	current_map.update_puppets()
+	
+	# set network masters
+	for node in get_tree().get_nodes_in_group("maphost"):
+		node.set_network_master(map_hosts.get(network.current_map.name, get_tree().get_network_unique_id()))
 
 func update_map_hosts():
 	for map in player_list.values():
@@ -127,6 +92,24 @@ func _player_disconnected(id): # remove disconnected players from player_list
 func is_map_host():
 	if !map_hosts.keys().has(current_map.name):
 		return false
-	if map_hosts[current_map.name] == get_tree().get_network_unique_id():
+	if map_hosts.get(current_map.name) == get_tree().get_network_unique_id():
 		return true
 	return false
+
+func peer_call(object, function, arguments = []):
+	for peer in map_peers:
+		rpc_id(peer, "_pc", object.get_path(), function, arguments)
+
+func peer_call_unreliable(object, function, arguments = []):
+	for peer in map_peers:
+		rpc_unreliable_id(peer, "_pc", object.get_path(), function, arguments)
+
+func peer_call_id(id, object, function, arguments = []):
+	rpc_id(id, "_pc", object.get_path(), function, arguments)
+
+remote func _pc(object, function, arguments):
+	if has_node(object):
+		if get_node(object).has_method(function):
+			get_node(object).callv(function, arguments)
+		else:
+			print("object ", get_node(object).name, " does not have method ", function)
