@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://enemies/stalfos/stalfos.gd" type="Script" id=1]
 [ext_resource path="res://enemies/stalfos/stalfos.png" type="Texture" id=2]
+[ext_resource path="res://engine/network_object.tscn" type="PackedScene" id=3]
 
 [sub_resource type="Animation" id=1]
 resource_name = "default"
@@ -40,3 +41,11 @@ texture = ExtResource( 2 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
 shape = SubResource( 2 )
+
+[node name="NetworkObject" parent="." instance=ExtResource( 3 )]
+update_properties = {
+"pos": Vector2( 0, 0 )
+}
+enter_properties = {
+"health": 100
+}

@@ -35,6 +35,7 @@ func initialize():
 
 func _physics_process(_delta):
 	if !is_network_master():
+		sprite.flip_h = (spritedir == "Left")
 		return
 		
 	match state:
@@ -46,8 +47,6 @@ func _physics_process(_delta):
 			state_hold()
 		"spin":
 			state_spin()
-	
-	network.peer_call_unreliable(self, "_player_puppet_sync", [position, spritedir, anim.current_animation])
 
 func state_default():
 	loop_controls()
@@ -104,13 +103,6 @@ func loop_action_button():
 func connect_camera():
 	camera.connect("screen_change_started", self, "screen_change_started")
 	camera.connect("screen_change_completed", self, "screen_change_completed")
-
-func _player_puppet_sync(pos, sdir, animation):
-	position = pos
-	spritedir = sdir
-	if !anim.current_animation == animation:
-		anim.play(animation)
-	sprite.flip_h = (spritedir == "Left")
 
 func screen_change_started():
 	set_physics_process(false)

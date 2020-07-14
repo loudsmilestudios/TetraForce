@@ -19,8 +19,3 @@ func _physics_process(delta):
 	if movetimer == 0 || is_on_wall():
 		movedir = rand_direction()
 		movetimer = movetimer_length
-	
-	network.peer_call_unreliable(self, "_stalfos_puppet_sync", [position])
-
-func _stalfos_puppet_sync(pos):
-	position = pos

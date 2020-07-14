@@ -15,7 +15,7 @@ var spritedir = "Down"
 var last_movedir = Vector2(0,1)
 
 # COMBAT
-var health = MAX_HEALTH
+var health = MAX_HEALTH setget set_health
 var hitstun = 0
 signal health_changed
 signal hitstun_end
@@ -27,6 +27,10 @@ onready var anim = $AnimationPlayer
 onready var sprite = $Sprite
 var hitbox : Area2D
 var camera
+var tween
+
+var pos = Vector2(0,0) setget position_changed
+var animation = "idleDown" setget animation_changed
 
 func _ready():
 	add_to_group("entity")
@@ -36,9 +40,10 @@ func _ready():
 	health = MAX_HEALTH
 	home_position = position
 	create_hitbox()
-	get_parent().connect("player_entered", self, "player_entered")
+	create_tween()
+	#get_parent().connect("player_entered", self, "player_entered")
 
-func create_hitbox() -> void:
+func create_hitbox():
 	var new_hitbox = Area2D.new()
 	add_child(new_hitbox)
 	new_hitbox.name = "Hitbox"
@@ -52,6 +57,11 @@ func create_hitbox() -> void:
 	
 	hitbox = new_hitbox
 
+func create_tween():
+	var new_tween = Tween.new()
+	add_child(new_tween)
+	tween = new_tween
+
 func loop_movement():
 	var motion
 	if hitstun == 0:
@@ -60,6 +70,8 @@ func loop_movement():
 		motion = knockdir.normalized() * 125
 	
 	move_and_slide(motion)
+	
+	pos = position
 	
 	if movedir != Vector2.ZERO:
 		last_movedir = movedir
@@ -84,9 +96,11 @@ func loop_damage():
 		hitstun -= 1
 		if sprite.material.get_shader_param("is_hurt") == false:
 			set_hurt_texture(true)
+			network.peer_call(self, "set_hurt_texture", [true])
 	elif hitstun == 1:
 		if sprite.material.get_shader_param("is_hurt") == true:
 			set_hurt_texture(false)
+			network.peer_call(self, "set_hurt_texture", [false])
 		emit_signal("hitstun_end")
 		hitstun -= 1
 	
@@ -108,12 +122,13 @@ func update_health(amount):
 remote func set_hurt_texture(h):
 	sprite.material.set_shader_param("is_hurt", h)
 
-func anim_switch(animation):
-	var newanim: String = str(animation, spritedir)
+func anim_switch(a):
+	var newanim: String = str(a, spritedir)
 	if ["Left","Right"].has(spritedir):
-		newanim = str(animation, "Side")
+		newanim = str(a, "Side")
 	if anim.current_animation != newanim:
 		anim.play(newanim)
+	animation = newanim
 
 sync func use_item(item, input):
 	var newitem = load(item).instance()
@@ -132,8 +147,15 @@ sync func use_item(item, input):
 	newitem.input = input
 	newitem.start()
 
-remote func set_health(amount):
-	health = amount
+func position_changed(value):
+	pos = value
+	tween.interpolate_property(self, "position", position, pos, network.tick_time, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	tween.start()
 
-func player_entered(id):
-	pass
+func animation_changed(value):
+	animation = value
+	if anim.current_animation != value:
+		anim.play(value)
+
+func set_health(value):
+	health = value

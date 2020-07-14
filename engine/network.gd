@@ -7,11 +7,19 @@ var map_hosts = {} # map, player -- every active map and which player is hosting
 var current_players = []
 var map_peers = []
 
+var tick
+var tick_time = 0.05
+
 signal received_player_list
 
 func _ready():
 	set_process(false)
 	get_tree().connect("network_peer_disconnected", self, "_player_disconnected")
+	tick = Timer.new()
+	add_child(tick)
+	tick.wait_time = tick_time # 1/20 of a second
+	tick.one_shot = false
+	tick.start()
 
 ### PLAYER LIST UPDATES ###
 # super important. list of every player in the game & what map they're in
@@ -80,12 +88,17 @@ func update_map_hosts():
 	# reassign owners
 	for map in map_hosts.keys():
 		var map_host = map_hosts.get(map)
-		if player_list[map_host] != map:
+		if player_list[map_host] != map || !player_list.keys().has(map_host):
 			map_hosts[map] = player_list.keys()[player_list.values().find(map)]
 
 func _player_disconnected(id): # remove disconnected players from player_list
 	if get_tree().is_network_server():
 		player_list.erase(id)
+		for map in map_hosts.keys():
+			var map_host = map_hosts.get(map)
+			if map_host == id:
+				map_hosts[map] = player_list.keys()[player_list.values().find(map)]
+		update_map_hosts()
 		rpc("_receive_player_list", player_list, map_hosts)
 		update_players()
 

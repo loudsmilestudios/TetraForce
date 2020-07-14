@@ -11,7 +11,6 @@ func _ready():
 	set_collision_mask_bit(1, 1)
 	
 	connect("hitstun_end", self, "check_for_death")
-	#network.current_map.connect("player_entered", self, "player_entered")
 
 func check_for_death():
 	if health <= 0:
@@ -24,20 +23,17 @@ remote func enemy_death():
 	get_parent().add_child(death_animation)
 	set_dead()
 
+func set_health(value):
+	health = value
+	if health <= 0:
+		set_dead()
+
 remote func set_dead():
 	hide()
 	set_physics_process(false)
 	home_position = Vector2(0,0)
 	position = Vector2(0,0)
 	health = -1
-
-func player_entered(id):
-	if id == get_tree().get_network_unique_id() || !network.is_map_host():
-		return
-	#print(str(self, " recognizes player entry of ", id))
-	network.peer_call_id(id, self, "set_health", [health])
-	if health <= 0:
-		network.peer_call_id(id, self, "set_dead")
 
 func is_dead():
 	if health <= 0 && hitstun == 0:

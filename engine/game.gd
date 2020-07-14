@@ -72,5 +72,6 @@ func update_puppets():
 			add_new_player(id) # add a new node for that name
 
 func player_entered(id):
+	return
 	if id != get_tree().get_network_unique_id():
 		print("player ", id, " entered")
