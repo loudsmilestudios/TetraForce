@@ -1,0 +1,22 @@
+[remap]
+
+importer="vnen.tiled_importer"
+type="PackedScene"
+path="res://.import/overworld.tmx-5ffbd7edf7f9abeb7cdf963a2fc49216.scn"
+
+[deps]
+
+source_file="res://maps/overworld.tmx"
+dest_files=[ "res://.import/overworld.tmx-5ffbd7edf7f9abeb7cdf963a2fc49216.scn" ]
+
+[params]
+
+custom_properties=true
+tile_metadata=true
+uv_clip=true
+image_flags=3
+collision_layer=1
+embed_internal_images=false
+save_tiled_properties=true
+add_background=true
+post_import_script="res://tiled/import.gd"
