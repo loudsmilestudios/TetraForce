@@ -11,7 +11,7 @@ func change_map(map, entrance):
 	var old_map = network.current_map
 	var root = old_map.get_parent()
 	
-	var new_map_path = "res://maps/" + map + ".tscn"
+	var new_map_path = "res://maps/" + map + ".tmx"
 	var new_map = load(new_map_path).instance()
 	
 	old_map.queue_free()

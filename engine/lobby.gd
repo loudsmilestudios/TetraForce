@@ -3,7 +3,7 @@ extends Control
 
 const DEFAULT_PORT = 4564 # some random number, pick your port properly
 
-var map = "res://maps/dung1.tscn"
+var map = "res://maps/dungeon.tmx"
 
 #### Network callbacks from SceneTree ####
 

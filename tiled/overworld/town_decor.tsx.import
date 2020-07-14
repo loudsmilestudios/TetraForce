@@ -1,0 +1,20 @@
+[remap]
+
+importer="vnen.tiled_tileset_importer"
+type="TileSet"
+path="res://.import/town_decor.tsx-0a12d9b9d0b707a0308972e1dff34fbd.res"
+
+[deps]
+
+source_file="res://tiled/overworld/town_decor.tsx"
+dest_files=[ "res://.import/town_decor.tsx-0a12d9b9d0b707a0308972e1dff34fbd.res" ]
+
+[params]
+
+custom_properties=true
+tile_metadata=false
+image_flags=7
+embed_internal_images=false
+save_tiled_properties=false
+apply_offset=false
+post_import_script=""
