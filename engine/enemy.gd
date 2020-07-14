@@ -32,6 +32,7 @@ remote func set_dead():
 	hide()
 	set_physics_process(false)
 	home_position = Vector2(0,0)
+	pos = Vector2(0,0)
 	position = Vector2(0,0)
 	health = -1
 
