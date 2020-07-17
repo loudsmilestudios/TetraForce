@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tileset version="1.2" tiledversion="1.2.5" name="overworld_objects" tilewidth="16" tileheight="16" tilecount="50" columns="5">
+<tileset version="1.4" tiledversion="1.4.1" name="overworld_objects" tilewidth="16" tileheight="16" tilecount="50" columns="5">
  <image source="../images/objects/overworld_objects.png" width="80" height="160"/>
  <terraintypes>
   <terrain name="Grass" tile="11"/>
@@ -47,17 +47,74 @@
  <tile id="30" terrain=",1,,"/>
  <tile id="31" terrain="1,1,,"/>
  <tile id="32" terrain="1,,,"/>
- <tile id="35" terrain="2,2,2,"/>
- <tile id="36" terrain="2,2,,2"/>
- <tile id="37" terrain=",,,2"/>
- <tile id="38" terrain=",,2,2"/>
- <tile id="39" terrain=",,2,"/>
- <tile id="40" terrain="2,,2,2"/>
- <tile id="41" terrain=",2,2,2"/>
- <tile id="42" terrain=",2,,2"/>
- <tile id="43" terrain="2,2,2,2"/>
- <tile id="44" terrain="2,,2,"/>
- <tile id="47" terrain=",2,,"/>
- <tile id="48" terrain="2,2,,"/>
- <tile id="49" terrain="2,,,"/>
+ <tile id="35" terrain="2,2,2,">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="36" terrain="2,2,,2">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="37" terrain=",,,2">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="38" terrain=",,2,2">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="39" terrain=",,2,">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="40" terrain="2,,2,2">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="41" terrain=",2,2,2">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="42" terrain=",2,,2">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="43" terrain="2,2,2,2">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="44" terrain="2,,2,">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="46">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="47" terrain=",2,,">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="48" terrain="2,2,,">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="49" terrain="2,,,">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
+ </tile>
 </tileset>
