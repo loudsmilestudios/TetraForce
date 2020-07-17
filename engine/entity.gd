@@ -51,9 +51,10 @@ func create_hitbox():
 	var new_collision = CollisionShape2D.new()
 	new_hitbox.add_child(new_collision)
 	
-	var new_shape = RectangleShape2D.new()
+	var new_shape = CapsuleShape2D.new()
 	new_collision.shape = new_shape
-	new_shape.extents = $CollisionShape2D.shape.extents + Vector2(1,1)
+	new_shape.radius = $CollisionShape2D.shape.radius + 1
+	new_shape.height = $CollisionShape2D.shape.height + 1
 	
 	hitbox = new_hitbox
 

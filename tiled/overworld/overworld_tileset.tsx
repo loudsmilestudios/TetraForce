@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tileset version="1.2" tiledversion="1.3.4" name="overworld_tileset" tilewidth="16" tileheight="16" tilecount="70" columns="5">
+<tileset version="1.2" tiledversion="1.2.5" name="overworld_tileset" tilewidth="16" tileheight="16" tilecount="70" columns="5">
  <image source="../images/tilesets/overworld_tileset.png" width="80" height="224"/>
  <terraintypes>
   <terrain name="Mountain Wall" tile="0"/>
@@ -98,13 +98,17 @@
   </objectgroup>
  </tile>
  <tile id="18">
-  <objectgroup draworder="index" id="2">
-   <object id="1" x="0" y="0" width="16" height="16"/>
+  <objectgroup draworder="index">
+   <object id="1" x="8" y="0">
+    <polygon points="0,0 -8,8 -8,16 8,16 8,0"/>
+   </object>
   </objectgroup>
  </tile>
  <tile id="19">
-  <objectgroup draworder="index" id="2">
-   <object id="1" x="0" y="0" width="16" height="16"/>
+  <objectgroup draworder="index">
+   <object id="1" x="0" y="0">
+    <polygon points="0,0 8,0 16,8 16,16 0,16"/>
+   </object>
   </objectgroup>
  </tile>
  <tile id="20">
@@ -123,13 +127,17 @@
   </objectgroup>
  </tile>
  <tile id="23">
-  <objectgroup draworder="index" id="2">
-   <object id="1" x="0" y="0" width="16" height="16"/>
+  <objectgroup draworder="index">
+   <object id="2" x="0" y="0">
+    <polygon points="0,0 0,8 8,16 16,16 16,0"/>
+   </object>
   </objectgroup>
  </tile>
  <tile id="24">
-  <objectgroup draworder="index" id="2">
-   <object id="1" x="0" y="0" width="16" height="16"/>
+  <objectgroup draworder="index">
+   <object id="1" x="16" y="0">
+    <polygon points="0,0 0,8 -8,16 -16,16 -16,0"/>
+   </object>
   </objectgroup>
  </tile>
  <tile id="25" terrain=",,,1"/>

@@ -229,8 +229,9 @@ tracks/0/keys = {
 "values": [ 4, 5 ]
 }
 
-[sub_resource type="RectangleShape2D" id=13]
-extents = Vector2( 4.5, 6 )
+[sub_resource type="CapsuleShape2D" id=13]
+radius = 4.5
+height = 6.0
 
 [node name="player" type="KinematicBody2D"]
 z_index = 100
@@ -260,7 +261,6 @@ hframes = 6
 frame = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 shape = SubResource( 13 )
 
 [node name="NetworkObject" parent="." instance=ExtResource( 3 )]
