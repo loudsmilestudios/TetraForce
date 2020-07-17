@@ -14,18 +14,10 @@ func _ready():
 	add_to_group("item")
 	set_physics_process(false)
 
-sync func hit():
+func hit():
 	if delete_on_hit:
-		for peer in network.map_peers:
-			rpc_id(peer, "delete")
+		network.peer_call(self, "delete")
+		delete()
 
-sync func delete():
+func delete():
 	queue_free()
-
-func mset(property, value): # map rset, only rsets to map peers
-	for peer in network.map_peers:
-		rset_id(peer, property, value)
-
-func mset_unreliable(property, value): # same but unreliable
-	for peer in network.map_peers:
-		rset_unreliable_id(peer, property, value)

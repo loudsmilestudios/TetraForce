@@ -114,6 +114,8 @@ func loop_damage():
 			update_health(-body.DAMAGE)
 			hitstun = 10
 			knockdir = global_position - body.global_position
+			if body.has_method("hit"):
+				body.hit()
 
 func update_health(amount):
 	health = max(min(health + amount, MAX_HEALTH), 0)

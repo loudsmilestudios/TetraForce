@@ -96,7 +96,7 @@ func loop_controls():
 	movedir.y = -int(UP) + int(DOWN)
 
 func loop_action_button():
-	if Input.is_action_pressed("B"):
+	if Input.is_action_just_pressed("B"):
 		use_item("res://items/sword.tscn", "B")
 		network.peer_call(self, "use_item", ["res://items/sword.tscn", "B"])
 
