@@ -150,6 +150,14 @@ SELECT={
 "events": [  ]
 }
 
+[layer_names]
+
+2d_physics/layer_1="entity"
+2d_physics/layer_2="enemy"
+2d_physics/layer_3="projectile"
+2d_physics/layer_6="tall_grass"
+2d_physics/layer_7="water"
+
 [rendering]
 
 quality/driver/driver_name="GLES2"
