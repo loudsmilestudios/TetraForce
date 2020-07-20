@@ -6,12 +6,13 @@ onready var holdTimer = $HoldTimer
 var spin_attack = false
 var spin_multiplier = 2 # damage *= 2
 
+
 func start():
 	if get_parent().is_network_master():
 		anim.connect("animation_finished", self, "destroy")
 		if get_parent().has_method("state_swing"):
 			get_parent().state = "swing"
-
+	
 	anim.play(str("swing", get_parent().spritedir))
 
 func destroy(animation):
@@ -19,7 +20,7 @@ func destroy(animation):
 	if spin_attack: 
 		network.peer_call(self, "delete")
 		delete()
-		
+	
 	if input != null && Input.is_action_pressed(input):
 		set_physics_process(true)
 		delete_on_hit = true
@@ -104,3 +105,18 @@ func _physics_process(delta) -> void:
 
 func _on_HoldTimer_timeout():
 	spin_attack = true
+
+func cut():
+	for body in $Hitbox.get_overlapping_bodies():
+		if body is TileMap && body.name == "tall_grass":
+			var tile = body.world_to_map($Hitbox.global_position)
+			if body.get_cellv(tile) == -1:
+				return
+			body.set_cellv(tile, -1)
+			body.update_bitmask_region()
+			var grass_cut = preload("res://effects/grass_cut.tscn").instance()
+			network.current_map.add_child(grass_cut)
+			grass_cut.global_position = body.map_to_world(tile) + Vector2(8,6)
+
+
+

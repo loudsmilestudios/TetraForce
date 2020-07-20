@@ -26,13 +26,16 @@ var home_position = Vector2(0,0)
 onready var anim = $AnimationPlayer
 onready var sprite = $Sprite
 var hitbox : Area2D
+var center : Area2D
 var camera
 var tween
+var grass_movement
 
 var pos = Vector2(0,0) setget position_changed
 var animation = "idleDown" setget animation_changed
 
 func _ready():
+	set_process(false)
 	add_to_group("entity")
 	if !sprite.material:
 		sprite.material = ShaderMaterial.new()
@@ -40,8 +43,20 @@ func _ready():
 	health = MAX_HEALTH
 	home_position = position
 	create_hitbox()
+	create_center()
 	create_tween()
+	grass_movement = preload("res://effects/grass_movement.tscn").instance()
+	add_child(grass_movement)
 	#get_parent().connect("player_entered", self, "player_entered")
+	set_process(true)
+
+func _process(delta):
+	grass_movement.hide()
+	for body in center.get_overlapping_bodies():
+		if body.name == "tall_grass":
+			grass_movement.show()
+			grass_movement.frame = sprite.frame % 2
+			#grass_movement.global_position = sprite.global_position.snapped(Vector2(1,1))
 
 func create_hitbox():
 	var new_hitbox = Area2D.new()
@@ -57,6 +72,28 @@ func create_hitbox():
 	new_shape.height = $CollisionShape2D.shape.height + 1
 	
 	hitbox = new_hitbox
+
+func create_center():
+	var new_center = Area2D.new()
+	add_child(new_center)
+	new_center.name = "Center"
+	
+	var new_collision = CollisionShape2D.new()
+	new_center.add_child(new_collision)
+	
+	var new_shape = RectangleShape2D.new()
+	new_collision.shape = new_shape
+	new_shape.extents = Vector2(1,1)
+	
+	# tall_grass
+	new_center.set_collision_layer_bit(0,1)
+	new_center.set_collision_mask_bit(0,1)
+	new_center.set_collision_layer_bit(5,1)
+	new_center.set_collision_mask_bit(5,1)
+	
+	new_center.position.y += 6
+	
+	center = new_center
 
 func create_tween():
 	var new_tween = Tween.new()

@@ -2,6 +2,9 @@ extends CanvasLayer
 
 onready var text = $Control/Label
 
+func _ready():
+	queue_free()
+
 func _process(delta):
 	text.text = str(
 		"Player List: ", network.player_list,

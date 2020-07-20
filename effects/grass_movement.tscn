@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://effects/grass_movement.png" type="Texture" id=1]
+
+[node name="grass_movement" type="Sprite"]
+z_index = 1000
+texture = ExtResource( 1 )
+offset = Vector2( 0, 3 )
+hframes = 2

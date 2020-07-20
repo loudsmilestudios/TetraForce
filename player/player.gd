@@ -37,7 +37,7 @@ func _physics_process(_delta):
 	if !is_network_master():
 		sprite.flip_h = (spritedir == "Left")
 		return
-		
+	
 	match state:
 		"default":
 			state_default()

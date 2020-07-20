@@ -97,9 +97,47 @@ tracks/5/keys = {
 "update": 0,
 "values": [ Color( 1, 1, 1, 1 ) ]
 }
+tracks/6/type = "method"
+tracks/6/path = NodePath(".")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0, 0.33, 0.66, 0.99, 1.32, 1.65, 1.98, 2.31, 2.64 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "cut"
+}, {
+"args": [  ],
+"method": "cut"
+}, {
+"args": [  ],
+"method": "cut"
+}, {
+"args": [  ],
+"method": "cut"
+}, {
+"args": [  ],
+"method": "cut"
+}, {
+"args": [  ],
+"method": "cut"
+}, {
+"args": [  ],
+"method": "cut"
+}, {
+"args": [  ],
+"method": "cut"
+}, {
+"args": [  ],
+"method": "cut"
+} ]
+}
 
 [sub_resource type="Animation" id=3]
-step = 0.0333333
+step = 0.33
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -160,8 +198,23 @@ tracks/4/keys = {
 "update": 1,
 "values": [ Vector2( -12, 3 ), Vector2( -9, 10 ), Vector2( 4, 14 ) ]
 }
+tracks/5/type = "method"
+tracks/5/path = NodePath(".")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0.66 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "cut"
+} ]
+}
 
 [sub_resource type="Animation" id=4]
+step = 0.33
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -221,6 +274,20 @@ tracks/4/keys = {
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
 "values": [ Vector2( -3, -15 ), Vector2( -13, -8 ), Vector2( -15, 4 ) ]
+}
+tracks/5/type = "method"
+tracks/5/path = NodePath(".")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0.66 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "cut"
+} ]
 }
 
 [sub_resource type="Animation" id=5]
@@ -285,6 +352,20 @@ tracks/4/keys = {
 "update": 1,
 "values": [ Vector2( 3, -15 ), Vector2( 13, -8 ), Vector2( 15, 4 ) ]
 }
+tracks/5/type = "method"
+tracks/5/path = NodePath(".")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0.66 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "cut"
+} ]
+}
 
 [sub_resource type="Animation" id=6]
 step = 0.33
@@ -348,6 +429,20 @@ tracks/4/keys = {
 "update": 1,
 "values": [ Vector2( 14, -1 ), Vector2( 12, -7 ), Vector2( -4, -15 ) ]
 }
+tracks/5/type = "method"
+tracks/5/path = NodePath(".")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0.66 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "cut"
+} ]
+}
 
 [sub_resource type="RectangleShape2D" id=7]
 extents = Vector2( 8, 8 )
@@ -373,6 +468,8 @@ hframes = 2
 visible = false
 position = Vector2( -3, -15 )
 scale = Vector2( 0.25, 1 )
+collision_layer = 33
+collision_mask = 33
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 shape = SubResource( 7 )
