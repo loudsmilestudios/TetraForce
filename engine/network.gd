@@ -120,7 +120,14 @@ func peer_call_unreliable(object, function, arguments = []):
 func peer_call_id(id, object, function, arguments = []):
 	rpc_id(id, "_pc", object.get_path(), function, arguments)
 
-remote func _pc(object, function, arguments):
+func validate_object_id(id, object, question, function):
+	rpc_id(id, "_check_object", object.get_path(), question, function)
+
+remote func _check_object(object, question, function):
+	if has_node(object) == question:
+		rpc_id(get_tree().get_rpc_sender_id(), "_pc", object, function)
+
+remote func _pc(object, function, arguments = []):
 	if has_node(object):
 		if get_node(object).has_method(function):
 			get_node(object).callv(function, arguments)

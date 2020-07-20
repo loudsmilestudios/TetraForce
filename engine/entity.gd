@@ -177,8 +177,7 @@ sync func use_item(item, input):
 	newitem.add_to_group(name)
 	add_child(newitem)
 	
-	if is_network_master():
-		newitem.set_network_master(get_tree().get_network_unique_id())
+	newitem.set_network_master(get_network_master())
 	
 	if get_tree().get_nodes_in_group(itemgroup).size() > newitem.MAX_AMOUNT:
 		newitem.delete()

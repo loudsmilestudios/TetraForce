@@ -1,110 +1,74 @@
 extends Item
 
 onready var anim = $AnimationPlayer
-onready var holdTimer = $HoldTimer
 
+const SPIN_HOLD_LENGTH = 0.75
+var hold_time = 0
 var spin_attack = false
-var spin_multiplier = 2 # damage *= 2
-
+var spin_multiplier = 2
 
 func start():
-	if get_parent().is_network_master():
-		anim.connect("animation_finished", self, "destroy")
+	if is_network_master():
+		anim.connect("animation_finished", self, "swing_ended")
 		if get_parent().has_method("state_swing"):
 			get_parent().state = "swing"
-	
 	anim.play(str("swing", get_parent().spritedir))
 
-func destroy(animation):
-	# If this is true, spin_attack animation is done, so delete stuff (no need to check inputs)
-	if spin_attack: 
-		network.peer_call(self, "delete")
-		delete()
-	
-	if input != null && Input.is_action_pressed(input):
+func swing_ended(animation):
+	anim.disconnect("animation_finished", self, "swing_ended")
+	if input != null && Input.is_action_pressed(input): # if still holding sword button
 		set_physics_process(true)
 		delete_on_hit = true
-		holdTimer.stop()
-		match get_parent().spritedir:
-			"Left":
-				position.x += 3
-			"Right":
-				position.x -= 3
-			"Up":
-				position.y += 4
-				z_index -= 1
-			"Down":
-				position.y -= 3
 		network.peer_call(self, "set_pos", [position])
-		return
-	
-	network.peer_call(self, "delete")
-	delete()
+	else:
+		network.peer_call(self, "delete")
+		delete()
 
-remote func set_pos(p_pos) -> void:
+func _physics_process(delta):
+	if get_parent().has_method("state_hold") && !spin_attack:
+		get_parent().state = "hold"
+	
+	if hold_time < SPIN_HOLD_LENGTH:
+		hold_time += delta
+	elif !spin_attack:
+		ready_spin_attack()
+	
+	if !Input.is_action_pressed(input): # on input release
+		if spin_attack:
+			if !anim.assigned_animation.begins_with("spin"):
+				delete_on_hit = false
+				if get_parent().has_method("state_spin"):
+					get_parent().state = "spin"
+				anim.connect("animation_finished", self, "end_spin_attack")
+				spin_attack(get_parent().spritedir)
+				network.peer_call(self, "spin_attack", [get_parent().spritedir])
+		else:
+			network.peer_call(self, "delete")
+			delete()
+
+func ready_spin_attack():
+	spin_attack = true
+	$Flash.play("flash")
+	network.peer_call($Flash, "play", ["flash"])
+
+func end_spin_attack(_a=null):
+	delete()
+	network.peer_call(self, "delete")
+
+func spin_attack(dir):
+	DAMAGE *= spin_multiplier
+	$Flash.play("default")
+	anim.playback_speed = 8
+	position = Vector2(0,0)
+	anim.play(str("spin", dir))
+
+func set_pos(p_pos):
 	position = p_pos
 
-remote func flash() -> void:
-	anim.play("flash")
-
-remote func spin(p_adv) -> void:
-	anim.play("spin")
-	anim.advance(p_adv)
-	DAMAGE *= 2
-
-sync func delete() -> void:
+func delete():
 	get_parent().state = "default"
-	spin_attack = false
-	holdTimer.stop()
+	get_parent().sprite.scale = Vector2(1,1)
 	queue_free()
-
-func _physics_process(delta) -> void:
-	if get_parent().has_method("state_hold") and get_parent().state != "spin":
-		get_parent().state = "hold"
-		if holdTimer.is_stopped() and !spin_attack:
-			holdTimer.wait_time = 0.75
-			holdTimer.start()
-	
-	if spin_attack && get_parent().state != "spin" && anim.current_animation != "flash":
-		anim.play("flash")
-		network.peer_call(self, "flash")
-	
-	if !Input.is_action_pressed(input):
-		# Spin attack
-		if get_parent().has_method("state_spin") and spin_attack and get_parent().state != "spin":
-			delete_on_hit = false
-			get_parent().state = "spin"
-			anim.play("spin")
-			match get_parent().spritedir:
-				"Left":
-					anim.advance(0.2)
-					position.x -= 4
-				"Right":
-					anim.advance(0.2)
-					position.x += 4
-					scale.x = -1
-				"Up":
-					anim.advance(0.08)
-					position.y -= 3
-				"Down":
-					anim.advance(0.3)
-			
-			DAMAGE *= 2
-			
-			network.peer_call(self, "spin", [anim.current_animation_position])
-			
-			get_parent().anim.connect("animation_finished", self, "destroy")
-			get_parent().anim.connect("animation_changed", self, "destroy")
-		else:
-			if get("holdTimer"):
-				holdTimer.stop()
-				if not spin_attack:
-					destroy(null)
-			else:
-				destroy(null)
-
-func _on_HoldTimer_timeout():
-	spin_attack = true
 
 func cut():
 	for body in $Hitbox.get_overlapping_bodies():

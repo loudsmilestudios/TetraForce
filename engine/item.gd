@@ -13,11 +13,13 @@ func _ready():
 	TYPE = get_parent().TYPE
 	add_to_group("item")
 	set_physics_process(false)
+	set_network_master(get_parent().get_network_master())
 
 func hit():
 	if delete_on_hit:
-		network.peer_call(self, "delete")
 		delete()
 
 func delete():
+	if is_network_master():
+		network.peer_call(self, "queue_free")
 	queue_free()
