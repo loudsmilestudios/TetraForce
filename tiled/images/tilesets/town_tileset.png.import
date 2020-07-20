@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/overworld_objects.png-3b7cbe52164980d831b0b99f20d78872.stex"
+path="res://.import/town_tileset.png-bddf48fcaf328d748128ab1b8dbf58c1.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://tiled/images/objects/overworld_objects.png"
-dest_files=[ "res://.import/overworld_objects.png-3b7cbe52164980d831b0b99f20d78872.stex" ]
+source_file="res://tiled/images/tilesets/town_tileset.png"
+dest_files=[ "res://.import/town_tileset.png-bddf48fcaf328d748128ab1b8dbf58c1.stex" ]
 
 [params]
 

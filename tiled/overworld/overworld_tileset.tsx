@@ -1,11 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tileset version="1.2" tiledversion="1.2.5" name="overworld_tileset" tilewidth="16" tileheight="16" tilecount="70" columns="5">
- <image source="../images/tilesets/overworld_tileset.png" width="80" height="224"/>
+<tileset version="1.4" tiledversion="1.4.1" name="overworld_tileset" tilewidth="16" tileheight="16" tilecount="250" columns="5">
+ <image source="../images/tilesets/overworld_tileset.png" width="80" height="800"/>
  <terraintypes>
   <terrain name="Mountain Wall" tile="0"/>
   <terrain name="Light Grass" tile="27"/>
   <terrain name="Dead Grass" tile="42"/>
   <terrain name="Path" tile="61"/>
+  <terrain name="Brick Path" tile="76"/>
+  <terrain name="Tall Grass" tile="91"/>
+  <terrain name="Dead Tall Grass" tile="91"/>
+  <terrain name="Hole" tile="163"/>
+  <terrain name="Hole Island" tile="163"/>
+  <terrain name="Shallow Water" tile="186"/>
+  <terrain name="Deep Water" tile="186"/>
+  <terrain name="Shore Water" tile="223"/>
  </terraintypes>
  <tile id="0" terrain=",,,0">
   <objectgroup draworder="index" id="2">
@@ -179,4 +187,108 @@
  <tile id="65" terrain=",3,,"/>
  <tile id="66" terrain="3,3,,"/>
  <tile id="67" terrain="3,,,"/>
+ <tile id="70" terrain=",,,4"/>
+ <tile id="71" terrain=",,4,4"/>
+ <tile id="72" terrain=",,4,"/>
+ <tile id="73" terrain="4,4,4,"/>
+ <tile id="74" terrain="4,4,,4"/>
+ <tile id="75" terrain=",4,,4"/>
+ <tile id="76" terrain="4,4,4,4"/>
+ <tile id="77" terrain="4,,4,"/>
+ <tile id="78" terrain="4,,4,4"/>
+ <tile id="79" terrain=",4,4,4"/>
+ <tile id="80" terrain=",4,,"/>
+ <tile id="81" terrain="4,4,,"/>
+ <tile id="82" terrain="4,,,"/>
+ <tile id="85" terrain=",,,5"/>
+ <tile id="86" terrain=",,5,5"/>
+ <tile id="87" terrain=",,5,"/>
+ <tile id="88" terrain="5,5,5,"/>
+ <tile id="89" terrain="5,5,,5"/>
+ <tile id="90" terrain=",5,,5"/>
+ <tile id="91" terrain="5,5,5,5"/>
+ <tile id="92" terrain="5,,5,"/>
+ <tile id="93" terrain="5,,5,5"/>
+ <tile id="94" terrain=",5,5,5"/>
+ <tile id="95" terrain=",5,,"/>
+ <tile id="96" terrain="5,5,,"/>
+ <tile id="97" terrain="5,,,"/>
+ <tile id="100" terrain=",,,6"/>
+ <tile id="101" terrain=",,6,6"/>
+ <tile id="102" terrain=",,6,"/>
+ <tile id="103" terrain="6,6,6,"/>
+ <tile id="104" terrain="6,6,,6"/>
+ <tile id="105" terrain=",6,,6"/>
+ <tile id="106" terrain="6,6,6,6"/>
+ <tile id="107" terrain="6,,6,"/>
+ <tile id="108" terrain="6,,6,6"/>
+ <tile id="109" terrain=",6,6,6"/>
+ <tile id="110" terrain=",6,,"/>
+ <tile id="111" terrain="6,6,,"/>
+ <tile id="112" terrain="6,,,"/>
+ <tile id="150" terrain=",,,7"/>
+ <tile id="151" terrain=",,7,7"/>
+ <tile id="152" terrain=",,7,"/>
+ <tile id="153" terrain="7,7,7,"/>
+ <tile id="154" terrain="7,7,,7"/>
+ <tile id="155" terrain=",7,,7"/>
+ <tile id="156" terrain="7,7,7,7"/>
+ <tile id="157" terrain="7,,7,"/>
+ <tile id="158" terrain="7,,7,7"/>
+ <tile id="159" terrain=",7,7,7"/>
+ <tile id="160" terrain=",7,,"/>
+ <tile id="161" terrain="7,7,,"/>
+ <tile id="162" terrain="7,,,"/>
+ <tile id="165" terrain=",,,8"/>
+ <tile id="166" terrain=",,8,8"/>
+ <tile id="167" terrain=",,8,"/>
+ <tile id="168" terrain="8,8,8,"/>
+ <tile id="169" terrain="8,8,,8"/>
+ <tile id="170" terrain=",8,,8"/>
+ <tile id="171" terrain="8,8,8,8"/>
+ <tile id="172" terrain="8,,8,"/>
+ <tile id="173" terrain="8,,8,8"/>
+ <tile id="174" terrain=",8,8,8"/>
+ <tile id="175" terrain=",8,,"/>
+ <tile id="176" terrain="8,8,,"/>
+ <tile id="177" terrain="8,,,"/>
+ <tile id="180" terrain=",,,9"/>
+ <tile id="181" terrain=",,9,9"/>
+ <tile id="182" terrain=",,9,"/>
+ <tile id="183" terrain="9,9,9,"/>
+ <tile id="184" terrain="9,9,,9"/>
+ <tile id="185" terrain=",9,,9"/>
+ <tile id="186" terrain="9,9,9,9"/>
+ <tile id="187" terrain="9,,9,"/>
+ <tile id="188" terrain="9,,9,9"/>
+ <tile id="189" terrain=",9,9,9"/>
+ <tile id="190" terrain=",9,,"/>
+ <tile id="191" terrain="9,9,,"/>
+ <tile id="192" terrain="9,,,"/>
+ <tile id="195" terrain=",,,10"/>
+ <tile id="196" terrain=",,10,10"/>
+ <tile id="197" terrain=",,10,"/>
+ <tile id="198" terrain="10,10,10,"/>
+ <tile id="199" terrain="10,10,,10"/>
+ <tile id="200" terrain=",10,,10"/>
+ <tile id="201" terrain="10,10,10,10"/>
+ <tile id="202" terrain="10,,10,"/>
+ <tile id="203" terrain="10,,10,10"/>
+ <tile id="204" terrain=",10,10,10"/>
+ <tile id="205" terrain=",10,,"/>
+ <tile id="206" terrain="10,10,,"/>
+ <tile id="207" terrain="10,,,"/>
+ <tile id="210" terrain=",,,11"/>
+ <tile id="211" terrain=",,11,11"/>
+ <tile id="212" terrain=",,11,"/>
+ <tile id="213" terrain="11,11,11,"/>
+ <tile id="214" terrain="11,11,,11"/>
+ <tile id="215" terrain=",11,,11"/>
+ <tile id="216" terrain="11,11,11,11"/>
+ <tile id="217" terrain="11,,11,"/>
+ <tile id="218" terrain="11,,11,11"/>
+ <tile id="219" terrain=",11,11,11"/>
+ <tile id="220" terrain=",11,,"/>
+ <tile id="221" terrain="11,11,,"/>
+ <tile id="222" terrain="11,,,"/>
 </tileset>

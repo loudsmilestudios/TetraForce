@@ -2,12 +2,12 @@
 
 importer="vnen.tiled_tileset_importer"
 type="TileSet"
-path="res://.import/town_decor.tsx-0a12d9b9d0b707a0308972e1dff34fbd.res"
+path="res://.import/town_tileset.tsx-b74ecb0b4037fc7c50137dca3571a084.res"
 
 [deps]
 
-source_file="res://tiled/overworld/town_decor.tsx"
-dest_files=[ "res://.import/town_decor.tsx-0a12d9b9d0b707a0308972e1dff34fbd.res" ]
+source_file="res://tiled/town/town_tileset.tsx"
+dest_files=[ "res://.import/town_tileset.tsx-b74ecb0b4037fc7c50137dca3571a084.res" ]
 
 [params]
 
