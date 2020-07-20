@@ -108,7 +108,7 @@ func _on_HoldTimer_timeout():
 
 func cut():
 	for body in $Hitbox.get_overlapping_bodies():
-		if body is TileMap && body.name == "tall_grass":
+		if body is TileMap && (body.name == "tall_grass" || body.name == "bush"):
 			var tile = body.world_to_map($Hitbox.global_position)
 			if body.get_cellv(tile) == -1:
 				return
@@ -117,6 +117,5 @@ func cut():
 			var grass_cut = preload("res://effects/grass_cut.tscn").instance()
 			network.current_map.add_child(grass_cut)
 			grass_cut.global_position = body.map_to_world(tile) + Vector2(8,6)
-
 
 
