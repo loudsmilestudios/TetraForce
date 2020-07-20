@@ -34,7 +34,8 @@ func import_tilemap(tilemap):
 		for cell in used_cells:
 			new_grass.set_cellv(cell, 0)
 			new_grass.update_bitmask_region()
-		
+	elif tilemap.name == "bush":
+		tilemap.set_script(preload("res://tiles/tall_grass.gd"))
 		
 	else:
 		tilemap.set_collision_layer_bit(1,1)

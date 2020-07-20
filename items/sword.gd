@@ -71,15 +71,8 @@ func delete():
 	queue_free()
 
 func cut():
+	if !is_network_master():
+		return
 	for body in $Hitbox.get_overlapping_bodies():
-		if body is TileMap && (body.name == "tall_grass" || body.name == "bush"):
-			var tile = body.world_to_map($Hitbox.global_position)
-			if body.get_cellv(tile) == -1:
-				return
-			body.set_cellv(tile, -1)
-			body.update_bitmask_region()
-			var grass_cut = preload("res://effects/grass_cut.tscn").instance()
-			network.current_map.add_child(grass_cut)
-			grass_cut.global_position = body.map_to_world(tile) + Vector2(8,6)
-
-
+		if body.has_method("cut"):
+			body.cut($Hitbox)
