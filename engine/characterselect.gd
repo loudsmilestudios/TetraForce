@@ -20,6 +20,7 @@ func update_skin(i):
 	
 	if options.keys().has($name.text):
 		$name.text = options.keys()[selected]
+		network.my_player_data.name = $name.text
 	
 	network.my_player_data.skin = options.values()[selected]
 
