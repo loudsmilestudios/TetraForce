@@ -20,8 +20,7 @@ func enter_cut_cells(value):
 func process_tile(tile):
 	if get_cellv(tile) == -1:
 		return
-	if network.is_map_host():
-		cut_cells.append(tile)
+	cut_cells.append(tile)
 	set_cellv(tile, -1)
 	update_bitmask_region()
 	var grass_cut = preload("res://effects/grass_cut.tscn").instance()
