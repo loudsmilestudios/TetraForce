@@ -1,5 +1,7 @@
 extends Entity
 
+onready var nametag = $nametag
+
 func initialize():
 	add_to_group("player")
 	if is_network_master():

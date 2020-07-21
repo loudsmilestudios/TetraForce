@@ -1,8 +1,9 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://player/player.png" type="Texture" id=1]
 [ext_resource path="res://player/player.gd" type="Script" id=2]
 [ext_resource path="res://engine/network_object.tscn" type="PackedScene" id=3]
+[ext_resource path="res://ui/monogram.ttf" type="DynamicFontData" id=4]
 
 [sub_resource type="Animation" id=1]
 resource_name = "idleDown"
@@ -233,6 +234,11 @@ tracks/0/keys = {
 radius = 4.5
 height = 6.0
 
+[sub_resource type="DynamicFont" id=14]
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 4 )
+
 [node name="player" type="KinematicBody2D"]
 z_index = 100
 script = ExtResource( 2 )
@@ -261,6 +267,7 @@ hframes = 6
 frame = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource( 13 )
 
 [node name="NetworkObject" parent="." instance=ExtResource( 3 )]
@@ -269,4 +276,18 @@ update_properties = {
 "animation": "idleDown",
 "pos": Vector2( 0, 0 ),
 "spritedir": "Down"
+}
+
+[node name="nametag" type="Label" parent="."]
+modulate = Color( 1, 1, 1, 0.686275 )
+margin_left = -48.0
+margin_top = -18.0
+margin_right = 112.0
+margin_bottom = -4.0
+rect_scale = Vector2( 0.6, 0.6 )
+custom_fonts/font = SubResource( 14 )
+text = "Chain"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
 }

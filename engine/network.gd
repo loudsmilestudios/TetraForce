@@ -12,14 +12,35 @@ var tick_time = 0.05
 
 signal received_player_list
 
+var player_data = {}
+var my_player_data = {
+	skin="res://player/player.png",
+	name="Chain",
+}
+
 func _ready():
 	set_process(false)
 	get_tree().connect("network_peer_disconnected", self, "_player_disconnected")
+
+func initialize():
 	tick = Timer.new()
 	add_child(tick)
 	tick.wait_time = tick_time # 1/20 of a second
 	tick.one_shot = false
 	tick.start()
+	
+	if get_tree().is_network_server():
+		player_data[1] = my_player_data
+	else:
+		rpc_id(1, "_receive_my_player_data", my_player_data)
+
+remote func _receive_my_player_data(data):
+	var player_name = data.name
+	player_data[get_tree().get_rpc_sender_id()] = data
+	rpc("_receive_player_data", player_data)
+
+remote func _receive_player_data(data):
+	player_data = data
 
 ### PLAYER LIST UPDATES ###
 # super important. list of every player in the game & what map they're in

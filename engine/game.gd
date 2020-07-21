@@ -47,6 +47,13 @@ func add_new_player(id):
 	add_child(new_player)
 	new_player.camera = camera
 	new_player.initialize()
+	
+	if id == get_tree().get_network_unique_id():
+		new_player.sprite.texture = load(network.my_player_data.skin)
+		new_player.nametag.text = network.my_player_data.name
+	else:
+		new_player.sprite.texture = load(network.player_data.get(id).skin)
+		new_player.nametag.text = network.player_data.get(id).name
 
 func remove_player(id):
 	if has_node(str(id)):
