@@ -1,6 +1,7 @@
 extends Entity
 
 onready var nametag = $nametag
+onready var ray = $RayCast2D
 
 func initialize():
 	add_to_group("player")
@@ -57,8 +58,13 @@ func state_default():
 	loop_damage()
 	loop_action_button()
 	
+	if movedir.length() == 1:
+		ray.cast_to = movedir * 8
+	
 	if movedir == Vector2.ZERO:
 		anim_switch("idle")
+	elif is_on_wall() && ray.is_colliding() && !ray.get_collider().is_in_group("nopush"):
+		anim_switch("push")
 	else:
 		anim_switch("walk")
 
