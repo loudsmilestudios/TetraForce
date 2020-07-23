@@ -42,6 +42,7 @@ func _ready():
 		sprite.material.set_shader(preload("res://engine/entity.shader"))
 	health = MAX_HEALTH
 	home_position = position
+	pos = position
 	create_hitbox()
 	create_center()
 	create_tween()
@@ -142,18 +143,22 @@ func loop_damage():
 		emit_signal("hitstun_end")
 		hitstun -= 1
 	
+	if !hitbox.monitoring:
+		return
 	for area in hitbox.get_overlapping_areas():
 		if area.name != "Hitbox":
 			continue
 		var body = area.get_parent()
-		if !body.get_groups().has("entity") && !body.get_groups().has("item"):
+		if !body.get_groups().has("entity"):
 			continue
-		if hitstun == 0 && body.get("DAMAGE") > 0 && body.get("TYPE") != TYPE:
-			update_health(-body.DAMAGE)
-			hitstun = 10
-			knockdir = global_position - body.global_position
-			if body.has_method("hit"):
-				body.hit()
+		if body.get("DAMAGE") > 0 && body.get("TYPE") != TYPE:
+			damage(body.DAMAGE, global_position - body.global_position)
+
+func damage(amount, dir):
+	if hitstun == 0:
+		hitstun = 10
+		update_health(-amount)
+		knockdir = dir
 
 func update_health(amount):
 	health = max(min(health + amount, MAX_HEALTH), 0)

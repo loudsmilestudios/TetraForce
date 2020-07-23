@@ -8,6 +8,7 @@ var spin_attack = false
 var spin_multiplier = 2
 
 func start():
+	$Hitbox.connect("body_entered", self, "body_entered")
 	if is_network_master():
 		anim.connect("animation_finished", self, "swing_ended")
 		if get_parent().has_method("state_swing"):
@@ -70,9 +71,22 @@ func delete():
 	get_parent().sprite.scale = Vector2(1,1)
 	queue_free()
 
+func body_entered(body):
+	if body is Entity && body != get_parent():
+		if network.is_map_host():
+			if body is Player:
+				network.peer_call_id(int(body.name), body, "damage", [DAMAGE, body.global_position - global_position])
+			else:
+				body.damage(DAMAGE, body.global_position - global_position)
+		else:
+			body.set_hurt_texture(true)
+			network.peer_call_id(network.get_map_host(), body, "damage", [DAMAGE, body.global_position - global_position])
+		if delete_on_hit:
+			network.peer_call(self, "delete")
+			delete()
+
 func cut():
-	if !is_network_master():
-		return
-	for body in $Hitbox.get_overlapping_bodies():
-		if body.has_method("cut"):
-			body.cut($Hitbox)
+	if is_network_master():
+		for body in $Hitbox.get_overlapping_bodies():
+			if body.has_method("cut"):
+				body.cut($Hitbox)

@@ -1,5 +1,7 @@
 extends Entity
 
+class_name Player
+
 onready var nametag = $nametag
 onready var ray = $RayCast2D
 

@@ -14,12 +14,12 @@ func _ready():
 
 func check_for_death():
 	if health <= 0:
-		network.peer_call(self, "enemy_death")
-		enemy_death()
+		network.peer_call(self, "enemy_death", [global_position])
+		enemy_death(global_position)
 
-remote func enemy_death():
+remote func enemy_death(pos):
 	var death_animation = preload("res://enemies/enemy_death.tscn").instance()
-	death_animation.global_position = global_position
+	death_animation.global_position = pos
 	get_parent().add_child(death_animation)
 	set_dead()
 
@@ -32,8 +32,9 @@ remote func set_dead():
 	hide()
 	set_physics_process(false)
 	home_position = Vector2(0,0)
-	pos = Vector2(0,0)
-	position = Vector2(0,0)
+	hitbox.monitoring = false
+	hitbox.monitorable = false
+	$CollisionShape2D.disabled = true
 	health = -1
 
 func is_dead():

@@ -23,11 +23,17 @@ _global_script_classes=[ {
 "class": "Item",
 "language": "GDScript",
 "path": "res://engine/item.gd"
+}, {
+"base": "Entity",
+"class": "Player",
+"language": "GDScript",
+"path": "res://player/player.gd"
 } ]
 _global_script_class_icons={
 "Enemy": "",
 "Entity": "",
-"Item": ""
+"Item": "",
+"Player": ""
 }
 
 [application]

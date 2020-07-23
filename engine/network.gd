@@ -132,6 +132,9 @@ func is_map_host():
 		return true
 	return false
 
+func get_map_host():
+	return map_hosts.get(current_map.name)
+
 func peer_call(object, function, arguments = []):
 	for peer in map_peers:
 		rpc_id(peer, "_pc", object.get_path(), function, arguments)
