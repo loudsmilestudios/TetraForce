@@ -133,9 +133,6 @@ func loop_spritedir():
 func loop_damage():
 	if hitstun > 1:
 		hitstun -= 1
-		if sprite.material.get_shader_param("is_hurt") == false:
-			set_hurt_texture(true)
-			network.peer_call(self, "set_hurt_texture", [true])
 	elif hitstun == 1:
 		if sprite.material.get_shader_param("is_hurt") == true:
 			set_hurt_texture(false)
@@ -156,6 +153,8 @@ func loop_damage():
 
 func damage(amount, dir):
 	if hitstun == 0:
+		set_hurt_texture(true)
+		network.peer_call(self, "set_hurt_texture", [true])
 		hitstun = 10
 		update_health(-amount)
 		knockdir = dir
