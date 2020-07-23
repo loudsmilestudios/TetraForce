@@ -3,7 +3,8 @@
 [ext_resource path="res://player/player.png" type="Texture" id=1]
 [ext_resource path="res://player/player.gd" type="Script" id=2]
 [ext_resource path="res://engine/network_object.tscn" type="PackedScene" id=3]
-[ext_resource path="res://ui/monogram.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://ui/theme/font.ttf" type="DynamicFontData" id=4]
+
 
 [sub_resource type="Animation" id=1]
 resource_name = "idleDown"
