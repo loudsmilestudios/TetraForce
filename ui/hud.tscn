@@ -1,0 +1,54 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://ui/hearts.png" type="Texture" id=1]
+[ext_resource path="res://ui/hud.gd" type="Script" id=2]
+[ext_resource path="res://ui/upperhud.png" type="Texture" id=3]
+[ext_resource path="res://ui/button_ui.png" type="Texture" id=4]
+
+[node name="hud" type="CanvasLayer"]
+script = ExtResource( 2 )
+
+[node name="hearts" type="Sprite" parent="."]
+modulate = Color( 1, 1, 1, 0.921569 )
+position = Vector2( 6, 6 )
+texture = ExtResource( 1 )
+hframes = 5
+
+[node name="upperhud" type="Sprite" parent="."]
+visible = false
+modulate = Color( 1, 1, 1, 0.882353 )
+position = Vector2( 236, 10 )
+texture = ExtResource( 3 )
+
+[node name="buttons" type="Node2D" parent="."]
+visible = false
+position = Vector2( 71, 1 )
+
+[node name="b" type="Sprite" parent="buttons"]
+modulate = Color( 1, 1, 1, 0.882353 )
+position = Vector2( 8.5, 9 )
+texture = ExtResource( 4 )
+hframes = 3
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="x" type="Sprite" parent="buttons"]
+modulate = Color( 1, 1, 1, 0.882353 )
+position = Vector2( 30, 9 )
+texture = ExtResource( 4 )
+hframes = 3
+frame = 1
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="y" type="Sprite" parent="buttons"]
+modulate = Color( 1, 1, 1, 0.882353 )
+position = Vector2( 51, 9 )
+texture = ExtResource( 4 )
+hframes = 3
+frame = 2
+__meta__ = {
+"_edit_lock_": true
+}

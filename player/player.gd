@@ -8,6 +8,7 @@ onready var ray = $RayCast2D
 func initialize():
 	add_to_group("player")
 	if is_network_master():
+		global.player = self
 		set_physics_process(false)
 		state = "default"
 		
@@ -32,6 +33,10 @@ func initialize():
 		camera.initialize(self)
 		
 		anim_switch("idle")
+		
+		var hud = preload("res://ui/hud.tscn").instance()
+		add_child(hud)
+		hud.initialize(self)
 		
 		yield(screenfx, "animation_finished")
 		

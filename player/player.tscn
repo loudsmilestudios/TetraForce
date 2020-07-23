@@ -5,7 +5,6 @@
 [ext_resource path="res://engine/network_object.tscn" type="PackedScene" id=3]
 [ext_resource path="res://ui/theme/font.ttf" type="DynamicFontData" id=4]
 
-
 [sub_resource type="Animation" id=1]
 resource_name = "idleDown"
 tracks/0/type = "value"
@@ -283,6 +282,7 @@ font_data = ExtResource( 4 )
 z_index = 100
 script = ExtResource( 2 )
 TYPE = "PLAYER"
+MAX_HEALTH = 7.0
 DAMAGE = 0.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

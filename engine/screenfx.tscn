@@ -80,6 +80,7 @@ anims/fadein = SubResource( 2 )
 anims/fadewhite = SubResource( 3 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 128
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
 margin_right = 256.0
