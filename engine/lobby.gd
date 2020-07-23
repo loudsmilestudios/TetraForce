@@ -8,6 +8,8 @@ var map = "res://maps/overworld.tmx"
 #### Network callbacks from SceneTree ####
 
 func create_level():
+	if !get_tree().is_network_server():
+		network.pid = get_tree().get_network_unique_id()
 	network.initialize()
 	var level = load(map).instance()
 	#level.connect("game_finished",self,"_end_game",[],CONNECT_DEFERRED) # connect deferred so we can safely erase it from the callback

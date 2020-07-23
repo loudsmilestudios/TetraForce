@@ -8,7 +8,7 @@ func _ready():
 	network.current_map = self
 	add_child(camera)
 	network.map_peers = []
-	add_new_player(get_tree().get_network_unique_id())
+	add_new_player(network.pid)
 	for player in network.player_list.keys():
 		if network.player_list[player] == name:
 			add_new_player(player)
@@ -48,7 +48,7 @@ func add_new_player(id):
 	new_player.camera = camera
 	new_player.initialize()
 	
-	if id == get_tree().get_network_unique_id():
+	if id == network.pid:
 		new_player.sprite.texture = load(network.my_player_data.skin)
 		new_player.nametag.text = network.my_player_data.name
 	else:
@@ -67,7 +67,7 @@ func update_puppets():
 	for player in player_nodes:
 		# first remove old players
 		var id = int(player.name)
-		if !network.map_peers.has(int(id)) && id != get_tree().get_network_unique_id():
+		if !network.map_peers.has(int(id)) && id != network.pid:
 			remove_player(id)
 		
 		# add player names to array
@@ -80,5 +80,5 @@ func update_puppets():
 
 func player_entered(id):
 	return
-	if id != get_tree().get_network_unique_id():
+	if id != network.pid:
 		print("player ", id, " entered")

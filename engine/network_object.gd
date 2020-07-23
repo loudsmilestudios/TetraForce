@@ -18,7 +18,7 @@ func player_entered(id):
 	#print(id)
 	if require_map_host && !network.is_map_host():
 		return
-	if id == get_tree().get_network_unique_id():
+	if id == network.pid:
 		return
 	for key in enter_properties.keys():
 		enter_properties[key] = get_parent().get(str(key))

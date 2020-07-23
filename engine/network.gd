@@ -1,5 +1,7 @@
 extends Node
 
+var pid = 1
+
 var current_map = null
 var player_list = {} # player, map -- every active player and what map they're in
 var map_hosts = {} # map, player -- every active map and which player is hosting it
@@ -61,7 +63,7 @@ func send_current_map(): # called when a player enters a new map
 		_receive_current_map(1, current_map.name)
 	else:
 		# every one else first sends their information to the server, and then it updates everyone
-		rpc_id(1, "_receive_current_map", get_tree().get_network_unique_id(), current_map.name)
+		rpc_id(1, "_receive_current_map", pid, current_map.name)
 
 remote func _receive_current_map(id, map): # server receives map from client
 	player_list[id] = map
@@ -81,11 +83,11 @@ func update_players(): # gets list of all players in map AND all other players
 	map_peers = []
 	# get all players in current_map
 	for id in player_list:
-		if player_list[id] == player_list[get_tree().get_network_unique_id()]:
+		if player_list[id] == player_list[pid]:
 			current_players.append(id)
 	# get all players besides self in current_map
 	for player in current_players:
-		if player != get_tree().get_network_unique_id():
+		if player != pid:
 			map_peers.append(player)
 	
 	# *** IMPORTANT *** #
@@ -94,7 +96,7 @@ func update_players(): # gets list of all players in map AND all other players
 	
 	# set network masters
 	for node in get_tree().get_nodes_in_group("maphost"):
-		node.set_network_master(map_hosts.get(network.current_map.name, get_tree().get_network_unique_id()))
+		node.set_network_master(map_hosts.get(network.current_map.name, pid))
 
 func update_map_hosts():
 	for map in player_list.values():
@@ -126,7 +128,7 @@ func _player_disconnected(id): # remove disconnected players from player_list
 func is_map_host():
 	if !map_hosts.keys().has(current_map.name):
 		return false
-	if map_hosts.get(current_map.name) == get_tree().get_network_unique_id():
+	if map_hosts.get(current_map.name) == pid:
 		return true
 	return false
 
