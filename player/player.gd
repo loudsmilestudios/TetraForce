@@ -29,6 +29,8 @@ func initialize():
 				position.x += 16
 				spritedir = "Right"
 		
+		home_position = position
+		
 		connect_camera()
 		camera.initialize(self)
 		
@@ -41,6 +43,8 @@ func initialize():
 		yield(screenfx, "animation_finished")
 		
 		set_physics_process(true)
+		
+		connect("hitstun_end", self, "check_for_death")
 	network.current_map.emit_signal("player_entered", int(name))
 
 func _physics_process(_delta):
@@ -57,6 +61,8 @@ func _physics_process(_delta):
 			state_hold()
 		"spin":
 			state_spin()
+		"die":
+			state_die()
 
 func state_default():
 	loop_controls()
@@ -98,6 +104,23 @@ func state_spin():
 	loop_movement()
 	loop_damage()
 	movedir = Vector2.ZERO
+
+func state_die():
+	if anim.assigned_animation != "die":
+		animation = "die"
+		anim.play("die")
+
+func respawn():
+	if is_network_master():
+		knockdir = Vector2(0,0)
+		position = home_position
+		set_health(MAX_HEALTH)
+		emit_signal("health_changed")
+		state = "default"
+
+func check_for_death():
+	if health <= 0:
+		state = "die"
 
 func loop_controls():
 	movedir = Vector2.ZERO

@@ -34,6 +34,8 @@ var grass_movement
 var pos = Vector2(0,0) setget position_changed
 var animation = "idleDown" setget animation_changed
 
+signal update_persistent_state
+
 func _ready():
 	set_process(false)
 	add_to_group("entity")

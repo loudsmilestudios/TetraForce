@@ -20,6 +20,8 @@ var my_player_data = {
 	name="Chain",
 }
 
+var states = {} # states[nodepath] = properties
+
 func _ready():
 	set_process(false)
 	get_tree().connect("network_peer_disconnected", self, "_player_disconnected")
@@ -134,6 +136,35 @@ func is_map_host():
 
 func get_map_host():
 	return map_hosts.get(current_map.name)
+
+func set_state(object, properties):
+	var nodepath = object.get_path()
+	if pid == 1:
+		states[nodepath] = properties
+	else:
+		rpc_id(1, "_receive_state_change", nodepath, properties)
+
+remote func _receive_state_change(nodepath, properties):
+	states[nodepath] = properties
+
+func request_persistent_state(object):
+	var nodepath = object.get_path()
+	if pid == 1:
+		var properties = states.get(nodepath, {})
+		update_state(nodepath, properties)
+	else:
+		rpc_id(1, "_receive_state_request", nodepath)
+
+remote func _receive_state_request(nodepath):
+	var properties = states.get(nodepath, {})
+	rpc_id(get_tree().get_rpc_sender_id(), "_receive_state", nodepath, properties)
+
+remote func _receive_state(nodepath, properties):
+	update_state(nodepath, properties)
+
+func update_state(nodepath, properties):
+	for property in properties.keys():
+		get_node(nodepath).set(property, properties[property])
 
 func peer_call(object, function, arguments = []):
 	for peer in map_peers:

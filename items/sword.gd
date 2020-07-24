@@ -34,6 +34,10 @@ func _physics_process(delta):
 	elif !spin_attack:
 		ready_spin_attack()
 	
+	if get_parent().health <= 0 || get_parent().hitstun > 0 && !anim.assigned_animation.begins_with("spin"):
+		network.peer_call(self, "delete")
+		delete()
+	
 	if !Input.is_action_pressed(input): # on input release
 		if spin_attack:
 			if !anim.assigned_animation.begins_with("spin"):
