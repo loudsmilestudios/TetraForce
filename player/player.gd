@@ -101,8 +101,13 @@ func state_hold():
 	loop_damage()
 	if movedir == Vector2.ZERO:
 		anim_switch("idle")
+		push_counter = 0
+	elif is_on_wall() && ray.is_colliding():
+		anim_switch("walk")
+		push_counter += get_physics_process_delta_time()
 	else:
 		anim_switch("walk")
+		push_counter = 0
 	
 	if !has_node("Sword"):
 		state = "default"

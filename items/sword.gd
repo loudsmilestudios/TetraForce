@@ -38,6 +38,11 @@ func _physics_process(delta):
 		network.peer_call(self, "delete")
 		delete()
 	
+	if get_parent().get("push_counter") >= 0.25:
+		cut()
+		network.peer_call(self, "delete")
+		delete()
+	
 	if !Input.is_action_pressed(input): # on input release
 		if spin_attack:
 			if !anim.assigned_animation.begins_with("spin"):
