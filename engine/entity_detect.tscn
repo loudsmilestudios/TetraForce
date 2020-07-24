@@ -28,17 +28,17 @@ collision_layer = 6
 collision_mask = 6
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="cage"]
-position = Vector2( -4, 72 )
+position = Vector2( 4, 72 )
 shape = SubResource( 2 )
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="cage"]
-position = Vector2( 260, 72 )
+position = Vector2( 252, 72 )
 shape = SubResource( 2 )
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="cage"]
-position = Vector2( 128, -4 )
+position = Vector2( 128, 4 )
 shape = SubResource( 3 )
 
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="cage"]
-position = Vector2( 128, 148 )
+position = Vector2( 128, 140 )
 shape = SubResource( 3 )

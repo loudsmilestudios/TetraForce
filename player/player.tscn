@@ -316,6 +316,7 @@ MAX_HEALTH = 3.0
 DAMAGE = 0.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "idleDown"
 playback_speed = 4.0
 anims/die = SubResource( 18 )
 anims/idleDown = SubResource( 1 )
@@ -338,7 +339,7 @@ anims/walkUp = SubResource( 15 )
 texture = ExtResource( 1 )
 vframes = 7
 hframes = 6
-frame = 37
+frame = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false

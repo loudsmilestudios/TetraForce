@@ -5,6 +5,8 @@ class_name Player
 onready var nametag = $nametag
 onready var ray = $RayCast2D
 
+var push_counter = 0
+
 func initialize():
 	add_to_group("player")
 	if is_network_master():
@@ -28,22 +30,22 @@ func initialize():
 			"right":
 				position.x += 16
 				spritedir = "Right"
-		
+
 		home_position = position
-		
+
 		connect_camera()
 		camera.initialize(self)
-		
+
 		anim_switch("idle")
-		
+
 		var hud = preload("res://ui/hud.tscn").instance()
 		add_child(hud)
 		hud.initialize(self)
-		
+
 		yield(screenfx, "animation_finished")
-		
+
 		set_physics_process(true)
-		
+
 		connect("hitstun_end", self, "check_for_death")
 	network.current_map.emit_signal("player_entered", int(name))
 
@@ -51,7 +53,7 @@ func _physics_process(_delta):
 	if !is_network_master():
 		sprite.flip_h = (spritedir == "Left")
 		return
-	
+
 	match state:
 		"default":
 			state_default()
@@ -70,6 +72,7 @@ func state_default():
 	loop_spritedir()
 	loop_damage()
 	loop_action_button()
+	loop_interact()
 	
 	if movedir.length() == 1:
 		ray.cast_to = movedir * 8
@@ -78,10 +81,13 @@ func state_default():
 	
 	if movedir == Vector2.ZERO:
 		anim_switch("idle")
-	elif is_on_wall() && ray.is_colliding() && !ray.get_collider().is_in_group("nopush"):
+		push_counter = 0
+	elif is_on_wall() && ray.is_colliding() && !ray.get_collider().is_in_group("nopush") && movedir != Vector2.ZERO:
 		anim_switch("push")
+		push_counter += get_physics_process_delta_time()
 	else:
 		anim_switch("walk")
+		push_counter = 0
 
 func state_swing():
 	anim_switch("swing")
@@ -139,6 +145,13 @@ func loop_action_button():
 	if Input.is_action_just_pressed("B"):
 		use_item("res://items/sword.tscn", "B")
 		network.peer_call(self, "use_item", ["res://items/sword.tscn", "B"])
+
+func loop_interact():
+	if ray.is_colliding():
+		var collider = ray.get_collider()
+		if is_on_wall() && collider.is_in_group("pushable") && push_counter >= 0.75:
+			collider.interact(self)
+			push_counter = 0
 
 func connect_camera():
 	camera.connect("screen_change_started", self, "screen_change_started")
