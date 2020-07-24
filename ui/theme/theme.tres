@@ -7,7 +7,7 @@
 [ext_resource path="res://ui/theme/button.png" type="Texture" id=5]
 [ext_resource path="res://ui/theme/panel.png" type="Texture" id=6]
 
-[sub_resource type="StyleBoxTexture" id=6]
+[sub_resource type="StyleBoxTexture" id=1]
 texture = ExtResource( 4 )
 region_rect = Rect2( 0, 0, 64, 64 )
 margin_left = 4.19579
@@ -15,7 +15,7 @@ margin_right = 4.37062
 margin_top = 3.84614
 margin_bottom = 4.37062
 
-[sub_resource type="StyleBoxTexture" id=7]
+[sub_resource type="StyleBoxTexture" id=2]
 texture = ExtResource( 5 )
 region_rect = Rect2( 0, 0, 64, 64 )
 margin_left = 4.16426
@@ -23,7 +23,7 @@ margin_right = 4.29142
 margin_top = 4.03168
 margin_bottom = 4.72205
 
-[sub_resource type="StyleBoxTexture" id=5]
+[sub_resource type="StyleBoxTexture" id=3]
 texture = ExtResource( 3 )
 region_rect = Rect2( 0, 0, 64, 64 )
 margin_left = 4.16426
@@ -31,7 +31,7 @@ margin_right = 4.29142
 margin_top = 4.03168
 margin_bottom = 4.72205
 
-[sub_resource type="StyleBoxTexture" id=8]
+[sub_resource type="StyleBoxTexture" id=4]
 texture = ExtResource( 2 )
 region_rect = Rect2( 0, 0, 32, 32 )
 margin_left = 9.78231
@@ -39,7 +39,7 @@ margin_right = 9.62453
 margin_top = 9.78231
 margin_bottom = 9.62453
 
-[sub_resource type="StyleBoxTexture" id=2]
+[sub_resource type="StyleBoxTexture" id=5]
 texture = ExtResource( 6 )
 region_rect = Rect2( 0, 0, 32, 32 )
 margin_left = 8.99585
@@ -47,12 +47,12 @@ margin_right = 9.51308
 margin_top = 8.99585
 margin_bottom = 9.11333
 
-[sub_resource type="DynamicFont" id=3]
+[sub_resource type="DynamicFont" id=6]
 extra_spacing_char = 1
 font_data = ExtResource( 1 )
 
 [resource]
-default_font = SubResource( 3 )
+default_font = SubResource( 6 )
 Button/colors/font_color = Color( 0.88, 0.88, 0.88, 1 )
 Button/colors/font_color_disabled = Color( 0.9, 0.9, 0.9, 0.2 )
 Button/colors/font_color_hover = Color( 0.94, 0.94, 0.94, 1 )
@@ -61,9 +61,9 @@ Button/constants/hseparation = 2
 Button/fonts/font = null
 Button/styles/disabled = null
 Button/styles/focus = null
-Button/styles/hover = SubResource( 6 )
-Button/styles/normal = SubResource( 7 )
-Button/styles/pressed = SubResource( 5 )
+Button/styles/hover = SubResource( 1 )
+Button/styles/normal = SubResource( 2 )
+Button/styles/pressed = SubResource( 3 )
 LineEdit/colors/clear_button_color = Color( 0.88, 0.88, 0.88, 1 )
 LineEdit/colors/clear_button_color_pressed = Color( 1, 1, 1, 1 )
 LineEdit/colors/cursor_color = Color( 0.94, 0.94, 0.94, 1 )
@@ -75,6 +75,6 @@ LineEdit/constants/minimum_spaces = 12
 LineEdit/fonts/font = null
 LineEdit/icons/clear = null
 LineEdit/styles/focus = null
-LineEdit/styles/normal = SubResource( 8 )
+LineEdit/styles/normal = SubResource( 4 )
 LineEdit/styles/read_only = null
-Panel/styles/panel = SubResource( 2 )
+Panel/styles/panel = SubResource( 5 )

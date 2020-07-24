@@ -45,8 +45,6 @@ func initialize():
 		yield(screenfx, "animation_finished")
 
 		set_physics_process(true)
-
-		connect("hitstun_end", self, "check_for_death")
 	network.current_map.emit_signal("player_entered", int(name))
 
 func _physics_process(_delta):
@@ -76,8 +74,6 @@ func state_default():
 	
 	if movedir.length() == 1:
 		ray.cast_to = movedir * 8
-	
-	check_for_death()
 	
 	if movedir == Vector2.ZERO:
 		anim_switch("idle")

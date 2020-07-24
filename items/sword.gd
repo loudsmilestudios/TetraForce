@@ -39,9 +39,9 @@ func _physics_process(delta):
 		delete()
 	
 	if get_parent().get("push_counter") >= 0.25:
-		cut()
-		network.peer_call(self, "delete")
-		delete()
+		if cut():
+			network.peer_call(self, "delete")
+			delete()
 	
 	if !Input.is_action_pressed(input): # on input release
 		if spin_attack:
@@ -106,3 +106,6 @@ func cut():
 		for body in $Hitbox.get_overlapping_bodies():
 			if body.has_method("cut"):
 				body.cut($Hitbox)
+				return true
+		return false
+	return false

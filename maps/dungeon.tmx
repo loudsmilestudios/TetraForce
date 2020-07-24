@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.5" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="16" tileheight="16" infinite="1" nextlayerid="5" nextobjectid="31">
+<map version="1.2" tiledversion="1.2.5" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="16" tileheight="16" infinite="1" nextlayerid="5" nextobjectid="32">
  <tileset firstgid="1" source="../tiled/dungeon/dungeon_ground.tsx"/>
  <tileset firstgid="3" source="../tiled/dungeon/dungeon_wall.tsx"/>
  <tileset firstgid="33" source="../tiled/objects.tsx"/>

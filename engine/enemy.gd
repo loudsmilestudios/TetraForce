@@ -9,8 +9,6 @@ func _ready():
 	set_collision_mask_bit(0, 0)
 	set_collision_layer_bit(1, 1)
 	set_collision_mask_bit(1, 1)
-	
-	connect("hitstun_end", self, "check_for_death")
 
 func check_for_death():
 	if health <= 0:

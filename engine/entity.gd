@@ -18,7 +18,6 @@ var last_movedir = Vector2(0,1)
 var health = MAX_HEALTH setget set_health
 var hitstun = 0
 signal health_changed
-signal hitstun_end
 
 var state = "default"
 var home_position = Vector2(0,0)
@@ -139,7 +138,7 @@ func loop_damage():
 		if sprite.material.get_shader_param("is_hurt") == true:
 			set_hurt_texture(false)
 			network.peer_call(self, "set_hurt_texture", [false])
-		emit_signal("hitstun_end")
+		check_for_death()
 		hitstun -= 1
 	
 	if !hitbox.monitoring:
@@ -164,6 +163,9 @@ func damage(amount, dir):
 func update_health(amount):
 	health = max(min(health + amount, MAX_HEALTH), 0)
 	emit_signal("health_changed")
+
+func check_for_death():
+	pass
 
 remote func set_hurt_texture(h):
 	sprite.material.set_shader_param("is_hurt", h)
