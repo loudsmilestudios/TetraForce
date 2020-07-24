@@ -74,6 +74,8 @@ func state_default():
 	if movedir.length() == 1:
 		ray.cast_to = movedir * 8
 	
+	check_for_death()
+	
 	if movedir == Vector2.ZERO:
 		anim_switch("idle")
 	elif is_on_wall() && ray.is_colliding() && !ray.get_collider().is_in_group("nopush"):
