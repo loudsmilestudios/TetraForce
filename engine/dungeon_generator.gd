@@ -26,7 +26,9 @@ var ROOMS = {
 		WALL_DOWN = preload("res://maps/dungeon_prefabs/walls/wall_down.tscn"),
 		WALL_UP = preload("res://maps/dungeon_prefabs/walls/wall_up.tscn"),	
 		WALL_LEFT = preload("res://maps/dungeon_prefabs/walls/wall_left.tscn"),
-		WALL_RIGHT = preload("res://maps/dungeon_prefabs/walls/wall_right.tscn")
+		WALL_RIGHT = preload("res://maps/dungeon_prefabs/walls/wall_right.tscn"),
+		
+		FLOOR = preload("res://maps/dungeon_prefabs/floor.tscn")
 	
 	}
 
@@ -239,6 +241,10 @@ func setup_room_layout(current: Room, taken_rooms: Dictionary, starting_position
 	return false
 
 func generate_room_chunk(room : Room, pos):
+	
+	var dungeon_floor = ROOMS.FLOOR.instance()
+	add_child(dungeon_floor)
+	dungeon_floor.position = pos
 	
 	if(room._connected_to[DIRECTIONS.UP]):
 		var wall = ROOMS.DOOR_UP.instance()
