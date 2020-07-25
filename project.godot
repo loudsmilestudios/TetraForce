@@ -64,7 +64,7 @@ window/stretch/aspect="keep"
 
 [editor_plugins]
 
-enabled=PoolStringArray( "vnen.tiled_importer" )
+enabled=PoolStringArray( ".", "vnen.tiled_importer" )
 
 [importer_defaults]
 

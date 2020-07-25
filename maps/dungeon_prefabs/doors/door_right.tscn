@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://tiled/dungeon/dungeon_wall.tsx" type="TileSet" id=1]
+
+[node name="wall_left" type="TileMap"]
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 16, 16 )
+format = 1
+tile_data = PoolIntArray( 14, 9, 0, 15, 8, 0, 65550, 4, 0, 65551, 3, 0, 131086, 10, 0, 131087, 12, 0, 393230, 0, 0, 393231, 2, 0, 458766, 9, 0, 458767, 8, 0, 524302, 4, 0, 524303, 3, 0 )
