@@ -47,14 +47,16 @@ func create_dungeon() -> Room:
 	for child in get_children():
 		child.queue_free()
 	var exceptions = {}
-	var d = setup_room_layout(generate_segments().turn_to_dungeon(), exceptions, Vector2(0,0), WIDTH, HEIGHT, true)
+	var entrance_segments = generate_segments()
+	var d = setup_room_layout(entrance_segments.turn_to_dungeon(), exceptions, Vector2(0,0), WIDTH, HEIGHT, true)
 	while(d):
 		print("tried again")
 		for child in get_children():
 			child.queue_free()		
 		exceptions = {}
-		d = setup_room_layout(generate_segments().turn_to_dungeon(), exceptions, Vector2(0,0), WIDTH, HEIGHT, true)
-		
+		entrance_segments = generate_segments()
+		d = setup_room_layout(entrance_segments.turn_to_dungeon(), exceptions, Vector2(0,0), WIDTH, HEIGHT, true)
+	pprint_tree(entrance_segments)
 	return d
 
 
@@ -242,10 +244,12 @@ func setup_room_layout(current: Room, taken_rooms: Dictionary, starting_position
 
 func generate_room_chunk(room : Room, pos):
 	
+	# Create dungeon floor
 	var dungeon_floor = ROOMS.FLOOR.instance()
 	add_child(dungeon_floor)
 	dungeon_floor.position = pos
 	
+	# Used for dungeon walls / doors / locked doors (locked doors to be implemented)
 	if(room._connected_to[DIRECTIONS.UP]):
 		var wall = ROOMS.DOOR_UP.instance()
 		add_child(wall)
@@ -281,7 +285,8 @@ func generate_room_chunk(room : Room, pos):
 		var wall = ROOMS.WALL_RIGHT.instance()
 		add_child(wall)
 		wall.position = pos
-
+		
+	# Draws Labels for Room types
 	var label = Label.new()
 	label.text = SEGMENTS.keys()[room._type]
 	add_child(label)
@@ -290,13 +295,12 @@ func generate_room_chunk(room : Room, pos):
 	label.rect_size = Vector2(WIDTH/2, HEIGHT/2)
 	label.valign = Label.VALIGN_CENTER
 	label.align = Label.ALIGN_CENTER
+
 # just returns a random item in an array
 func choose(options: Array, print_choice: bool = false):
 	var value = randi()%len(options)
 	if(print_choice): print(value)
 	return options[value]
-
-
 
 
 func generate_segments() -> Segment:
@@ -319,11 +323,11 @@ func generate_segments() -> Segment:
 				dungeon_lock().add_to_end(
 						boss_door()
 						))),
-		 two_key_lock().add_to_end(
+		 lock().add_to_end(lock()).add_to_end(
 			dungeon_item().add_to_end(
 				dungeon_lock().add_to_end([
 					two_extra_keys(),
-					two_key_lock().add_to_end(
+					lock().add_to_end(lock()).add_to_end(
 						boss_key()
 					)
 				])
@@ -336,11 +340,11 @@ func generate_segments() -> Segment:
 					boss_door()
 				)
 			),
-			two_key_lock().add_to_end(
+			lock().add_to_end(lock()).add_to_end(
 				dungeon_item().add_to_end(
 					dungeon_lock().add_to_end([
 						two_extra_keys(),
-						two_key_lock().add_to_end(boss_key())
+						lock().add_to_end(lock()).add_to_end(boss_key())
 					])
 				)
 			)
@@ -364,23 +368,21 @@ func generate_segments() -> Segment:
 	]))
 	
 	options.append(Segment.new().add_segments([
-		key(),
-		lock().add_to_end([
-			key(),
-			lock().add_to_end([
-				key(),
+		key().add_to_end(
+			dungeon_lock().add_to_end(
+				boss_key()
+			)
+		),
+		regular_segment().add_to_end([
+			two_extra_keys().add_to_end(
+				boss_door()
+			),
+			lock().add_to_end(
 				lock().add_to_end(
 					dungeon_item()
-				),
-				dungeon_lock().add_to_end(
-					boss_key())	
-			])
-		]),
-		two_extra_keys().add_to_end(
-			two_key_lock().add_to_end(
-				boss_door()
+				)
 			)
-		)
+		])
 	]))
 	
 	# Hella backtracking, might be unfun. But I had fun planning this
@@ -398,7 +400,7 @@ func generate_segments() -> Segment:
 			regular_segment().add_to_end(
 				two_extra_keys()
 			),
-			two_key_lock().add_to_end(
+			lock().add_to_end(lock()).add_to_end(
 				boss_door()
 			)
 		]),
@@ -426,7 +428,7 @@ func generate_segments() -> Segment:
 			regular_segment().add_to_end(
 				two_extra_keys()
 			),
-			two_key_lock().add_to_end(
+			lock().add_to_end(lock()).add_to_end(
 				boss_door()
 			),
 			# Segment with Dungeon Item
@@ -456,7 +458,7 @@ func generate_segments() -> Segment:
 			regular_segment().add_to_end(
 				two_extra_keys()
 			),
-			two_key_lock().add_to_end(
+			lock().add_to_end(lock()).add_to_end(
 				boss_door()
 			)
 		]),
@@ -484,7 +486,7 @@ func generate_segments() -> Segment:
 			regular_segment().add_to_end(
 				two_extra_keys()
 			),
-			two_key_lock().add_to_end(
+			lock().add_to_end(lock()).add_to_end(
 				boss_door()
 			),
 			# Segment with Dungeon Item
@@ -518,18 +520,6 @@ func generate_segments() -> Segment:
 		# This is so unbelievably hard to read, but if I try making it any more readable makes it infinitely longer (if i were to use variables)
 	
 	return choose(options, true)
-#	return options[1]
-
-
-# Two consecutive keys
-func two_key_lock() -> Segment:
-	var options = []
-	options.append(
-		Segment.new(SEGMENTS.LOCK).set_start().add_segment(Segment.new(SEGMENTS.LOCK).set_end())
-	)
-	options.append(Segment.new(SEGMENTS.LOCK).set_start().add_segment(regular_segment().add_to_end(lock().set_end())))
-	return choose(options)
-
 
 func key() -> Segment:
 	var options = []
@@ -579,8 +569,7 @@ func key_and_lock() -> Segment:
 	options.append(
 		regular_segment().set_start().add_segments([
 			key(),
-			lock(),
-			regular_segment().set_end()
+			regular_segment().add_to_end(lock())
 		])
 	)
 	
@@ -592,7 +581,7 @@ func boss_key() -> Segment:
 	options.append(
 		regular_segment().set_start().add_to_end([
 			regular_segment().add_to_end(two_extra_keys()),
-			two_key_lock().add_to_end(Segment.new(SEGMENTS.BOSS_KEY).set_end())
+			lock().add_to_end(lock()).add_to_end(Segment.new(SEGMENTS.BOSS_KEY).set_end())
 		]))
 	options.append(regular_segment().set_start().add_to_end(Segment.new(SEGMENTS.BOSS_KEY).set_end()))
 	return choose(options)
