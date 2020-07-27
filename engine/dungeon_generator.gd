@@ -9,6 +9,11 @@ extends Node2D
 # Downside is that it's much less procedural, but it's easier to create hand crafted dungeons with different layouts
 # But, it would still allow control over backtracking, linearity, etc once I bother implementing it
 
+# TO DO:
+# Add more dungeon start variation
+# Clean Code
+# Add support for locks and keys once implemented
+
 enum SEGMENTS {START, LOCK, KEY, DUNGEON_ITEM, DUNGEON_LOCK, MINIBOSS, BOSS_KEY, BOSS_DOOR, REWARD, COMBAT, TRAVERSAL, PUZZLE, EMPTY}
 enum DIRECTIONS {LEFT, RIGHT, UP, DOWN}
 
@@ -33,7 +38,7 @@ var ROOMS = {
 	}
 
 func _ready():
-	randomize()
+	randomize() # Sets a random seed
 	create_dungeon()
 
 func _process(delta):
@@ -42,7 +47,7 @@ func _process(delta):
 		create_dungeon()
 #
 
-# Reset Room layout
+# Reset Room layout if previous one exists
 func create_dungeon() -> Room:
 	for child in get_children():
 		child.queue_free()
@@ -56,10 +61,10 @@ func create_dungeon() -> Room:
 		exceptions = {}
 		entrance_segments = generate_segments()
 		d = setup_room_layout(entrance_segments.turn_to_dungeon(), exceptions, Vector2(0,0), WIDTH, HEIGHT, true)
-	pprint_tree(entrance_segments)
+#	pprint_tree(entrance_segments)
 	return d
 
-
+# Used for testing room "depth"
 func pprint_tree(node : Segment, prefix="", last=true):
 	print(prefix, "`-" if last else "|- ", SEGMENTS.keys()[node._type])
 	prefix += "\t" if last else "|   "
@@ -68,6 +73,7 @@ func pprint_tree(node : Segment, prefix="", last=true):
 		last = i == (child_count - 1)
 		pprint_tree(node._segments[i], prefix, last)
 
+# Defines a single room as a node that can have other nodes connected to it
 class Segment:
 	var _type : int = SEGMENTS.START;
 	var _segments : Array = [];
@@ -147,6 +153,7 @@ class Segment:
 		return output
 	
 
+# Defines a room similary to a Segment, but includes the direction of where rooms are
 class Room:
 	var _type : int;
 	var _child_rooms = []
@@ -190,6 +197,7 @@ func setup_room_layout(current: Room, taken_rooms: Dictionary, starting_position
 	for room in current._child_rooms:
 		# Set random directions
 		var direction = (available_directions[randi()% available_directions.size()])
+
 		# To make the space a little longer, and reduce the chance of big rooms being too close, I add a big chance that rooms are in a straight line (75 vs 25 percent)
 		if(current._parent):
 			var direction_from_parent = current._parent._position - current._position
@@ -200,8 +208,7 @@ func setup_room_layout(current: Room, taken_rooms: Dictionary, starting_position
 		var test_position = starting_position + Vector2(direction.x, direction.y)
 		
 		# Check position is not taken
-		
-		var attempt = 10
+		var attempt = 6
 		while taken_rooms.keys().has(test_position):
 			direction = (available_directions[randi()% available_directions.size()])
 			test_position = starting_position + Vector2(direction.x, direction.y)
@@ -212,6 +219,7 @@ func setup_room_layout(current: Room, taken_rooms: Dictionary, starting_position
 		var dir_enum;
 		var opposite_dir_enum;
 		
+		# Godot is weird with match statements, values to compare cannot be constants or variables, or anything fancy
 		match(Vector2(direction.x/WIDTH, direction.y/HEIGHT )):
 			Vector2(0,-1):
 				dir_enum = DIRECTIONS.UP
@@ -234,12 +242,14 @@ func setup_room_layout(current: Room, taken_rooms: Dictionary, starting_position
 		current._connected_to[dir_enum] = room
 		room._connected_to[opposite_dir_enum] = current 
 
+		# If recursion breaks unexpectedly, it will force create_dungeon() to restart
 		var is_broken = setup_room_layout(room, taken_rooms, starting_position, width_offset, height_offset)
-		if is_broken == true:
-			return true
-		starting_position = previous_position
-		generate_room_chunk(room, room._position)
-	if(is_entrance):  generate_room_chunk(current, Vector2(0,0))
+		if is_broken == true: return true
+		
+		starting_position = previous_position # Resets the position to the parent room
+		generate_room_chunk(room, room._position) # Handles what's in the room, the walls, and whatnot
+		
+	if(is_entrance):  generate_room_chunk(current, Vector2(0,0)) # Will skip the start room if not done
 	return false
 
 func generate_room_chunk(room : Room, pos):
@@ -521,6 +531,8 @@ func generate_segments() -> Segment:
 	
 	return choose(options, true)
 
+# These are used to add variety but currently only reduce the repeated use of Segment.new(ROOMS.___) 
+
 func key() -> Segment:
 	var options = []
 	
@@ -603,9 +615,9 @@ func boss_door() -> Segment:
 	options.append(Segment.new(SEGMENTS.BOSS_DOOR).set_start().set_end())
 	return choose(options)
 
+# Mini boss unimplemented, is not used
 func miniboss() -> Segment:
 	var options = []
-#	options.append(Segment.new(SEGMENTS.MINIBOSS).set_start().set_end())
 	options.append(regular_segment().set_start().add_to_end(Segment.new(SEGMENTS.MINIBOSS)).set_end())
 	options.append(regular_segment().set_start().add_to_end([
 		regular_segment().add_to_end(key()),
@@ -635,7 +647,7 @@ func dungeon_item() -> Segment:
 	return choose(options)
 
 func regular_segment() -> Segment:
-	var options = [SEGMENTS.COMBAT, SEGMENTS.TRAVERSAL, SEGMENTS.PUZZLE]
+	var options = [SEGMENTS.COMBAT]
 	return Segment.new(choose(options)).set_start().set_end()
 
 
