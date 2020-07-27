@@ -88,7 +88,7 @@ func _on_join_pressed():
 	
 	var host = NetworkedMultiplayerENet.new()
 	host.set_compression_mode(NetworkedMultiplayerENet.COMPRESS_RANGE_CODER)
-	host.create_client(ip,DEFAULT_PORT)
+	host.create_client(ip,default_port)
 	get_tree().set_network_peer(host)
 	
 	_set_status("Connecting..",true)

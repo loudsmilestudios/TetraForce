@@ -44,7 +44,7 @@ jobs:
         env:
           USERNAME: ${{ github.actor }}
           PASSWORD: ${{ secrets.GITHUB_TOKEN }}
-          REGISTRY: "docker.pkg.github.com"
+          REGISTRY: "docker.pkg.github.com/josephbmanley/tetraforce"
           BUILD_PATH: "."
           DOCKERFILE: "Dockerfile"
           IMAGE_NAME: "tetraforce"
