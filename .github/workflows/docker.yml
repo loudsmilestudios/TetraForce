@@ -47,7 +47,7 @@ jobs:
           REGISTRY: "docker.pkg.github.com"
           BUILD_PATH: "."
           DOCKERFILE: "Dockerfile"
-          IMAGE_NAME: "TetraForce"
+          IMAGE_NAME: "tetraforce"
           TAG_NAME: ${{ steps.get_tag.outputs.TAG }}
           LATEST: "false"
       - name: Push Latest to GitHub Package
@@ -57,9 +57,9 @@ jobs:
         env:
           USERNAME: ${{ github.actor }}
           PASSWORD: ${{ secrets.GITHUB_TOKEN }}
-          REGISTRY: "docker.pkg.github.com"
+          REGISTRY: "docker.pkg.github.com/josephbmanley/tetraforce"
           BUILD_PATH: "."
           DOCKERFILE: "Dockerfile"
-          IMAGE_NAME: "TetraForce"
+          IMAGE_NAME: "tetraforce"
           TAG_NAME: ${{ steps.get_tag.outputs.TAG }}
           LATEST: "true"
