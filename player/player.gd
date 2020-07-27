@@ -150,7 +150,9 @@ func loop_action_button():
 func loop_interact():
 	if ray.is_colliding():
 		var collider = ray.get_collider()
-		if is_on_wall() && collider.is_in_group("pushable") && push_counter >= 0.75:
+		if collider.is_in_group("interactable") && Input.is_action_just_pressed("A"):
+			collider.interact(self)
+		elif is_on_wall() && collider.is_in_group("pushable") && push_counter >= 0.75:
 			collider.interact(self)
 			push_counter = 0
 

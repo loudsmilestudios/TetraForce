@@ -2,11 +2,8 @@ extends TileMap
 
 var cut_cells = [] setget enter_cut_cells
 
-signal update_persistent_state
-
 func _ready():
 	var network_object = preload("res://engine/network_object.tscn").instance()
-	network_object.persistent = true
 	network_object.enter_properties = {"cut_cells":[]}
 	add_child(network_object)
 
@@ -24,7 +21,6 @@ func process_tile(tile):
 	if get_cellv(tile) == -1:
 		return
 	cut_cells.append(tile)
-	emit_signal("update_persistent_state")
 	set_cellv(tile, -1)
 	update_bitmask_region()
 	var grass_cut = preload("res://effects/grass_cut.tscn").instance()

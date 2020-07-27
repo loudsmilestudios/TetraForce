@@ -24,6 +24,8 @@ func player_entered(id):
 		return
 	if id == network.pid:
 		return
+	if persistent:
+		return
 	for key in enter_properties.keys():
 		enter_properties[key] = get_parent().get(str(key))
 	network.peer_call_id(id, self, "_receive_update", [enter_properties])

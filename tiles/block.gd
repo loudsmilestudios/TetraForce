@@ -3,7 +3,7 @@ extends StaticBody2D
 onready var ray = $RayCast2D
 onready var tween = $Tween
 
-var target_position = Vector2(0,0) setget set_position
+onready var target_position = position setget set_position
 
 signal update_persistent_state
 
