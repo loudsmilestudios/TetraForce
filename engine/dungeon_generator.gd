@@ -14,7 +14,7 @@ extends Node2D
 # Clean Code
 # Add support for locks and keys once implemented
 
-enum SEGMENTS {START, LOCK, KEY, DUNGEON_ITEM, DUNGEON_LOCK, MINIBOSS, BOSS_KEY, BOSS_DOOR, REWARD, COMBAT, TRAVERSAL, PUZZLE, EMPTY}
+enum SEGMENTS {START, LOCK, KEY, DUNGEON_ITEM, DUNGEON_LOCK, MINIBOSS, BOSS_KEY, BOSS_DOOR, REWARD, COMBAT, TRAVERSAL, PUZZLE, ENTRANCE}
 enum DIRECTIONS {LEFT, RIGHT, UP, DOWN}
 
 const WIDTH = 256 * 14/16;
@@ -48,7 +48,7 @@ func _process(delta):
 #
 
 # Reset Room layout if previous one exists
-func create_dungeon() -> Room:
+func create_dungeon(entrance_direction = DIRECTIONS.DOWN) -> Room:
 	for child in get_children():
 		child.queue_free()
 	var exceptions = {}
@@ -175,9 +175,24 @@ class Room:
 		_child_rooms.append(new_room)
 		new_room._parent = self
 	
-func setup_room_layout(current: Room, taken_rooms: Dictionary, starting_position = Vector2(0,0), width_offset= WIDTH, height_offset=HEIGHT, is_entrance = false):
+func setup_room_layout(current: Room, taken_rooms: Dictionary, starting_position = Vector2(0,0), width_offset= WIDTH, height_offset=HEIGHT, is_entrance = false, door_direction = DIRECTIONS.DOWN):
 	
-	if(is_entrance): taken_rooms[Vector2(0,0)] = current
+	if(is_entrance): 
+		taken_rooms[Vector2(0,0)] = current
+		var position;
+		match(door_direction):
+			DIRECTIONS.UP:
+				position = Vector2(WIDTH/2, -HEIGHT + 16)
+			DIRECTIONS.DOWN:
+				position = Vector2(WIDTH/2, HEIGHT - 16)
+			DIRECTIONS.LEFT:
+				position = Vector2(-WIDTH + 16, HEIGHT/2)
+			DIRECTIONS.RIGHT:
+				position = Vector2(WIDTH - 16, HEIGHT/2)
+		taken_rooms[position] = 0 # Used so that the value is not null, and therefore cannot be valid spot for another room
+		
+		var exit = get_parent().get_node("exit")
+		exit.position = position + Vector2(-WIDTH/2, -HEIGHT/2)
 	
 	var available_directions = [Vector2(-WIDTH,0),
 								Vector2(WIDTH, 0),
