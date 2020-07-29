@@ -1,0 +1,33 @@
+name: Build Stage Image
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Build Godot Project
+        id: build
+        uses: josephbmanley/build-godot-action@v1.4.0
+        with:
+          name: TetraForce
+          preset: linux
+          projectDir: '.'
+      - name: Push Tag to GitHub Package
+        uses: opspresso/action-docker@master
+        with:
+          args: --docker
+        env:
+          USERNAME: ${{ github.actor }}
+          PASSWORD: ${{ secrets.GITHUB_TOKEN }}
+          REGISTRY: "docker.pkg.github.com/fornclake/tetraforce"
+          BUILD_PATH: "."
+          DOCKERFILE: "Dockerfile"
+          IMAGE_NAME: "tetraforce"
+          TAG_NAME: stage
+          LATEST: "false"
