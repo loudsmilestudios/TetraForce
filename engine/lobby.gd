@@ -81,14 +81,18 @@ func _on_host_pressed(port=default_port):
 
 func _on_join_pressed():
 	
-	var ip = get_node("panel/address").get_text()
+	var ipport = get_node("panel/address").get_text().rsplit(":")
+	var ip = ipport[0]
+	var port = int(ipport[1])
+	
+	
 	if (not ip.is_valid_ip_address()):
 		_set_status("IP address is invalid",false)
 		return
 	
 	var host = NetworkedMultiplayerENet.new()
 	host.set_compression_mode(NetworkedMultiplayerENet.COMPRESS_RANGE_CODER)
-	host.create_client(ip,default_port)
+	host.create_client(ip,port)
 	get_tree().set_network_peer(host)
 	
 	_set_status("Connecting..",true)
