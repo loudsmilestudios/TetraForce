@@ -2,8 +2,8 @@
 
 [ext_resource path="res://tiled/dungeon/dungeon_wall.tsx" type="TileSet" id=1]
 
-[node name="wall_left" type="TileMap"]
+[node name="door_up" type="TileMap"]
 tile_set = ExtResource( 1 )
 cell_size = Vector2( 16, 16 )
 format = 1
-tile_data = PoolIntArray( 0, 5, 0, 1, 8, 0, 2, 1, 0, 3, 1, 0, 4, 1, 0, 5, 2, 0, 10, 0, 0, 11, 1, 0, 12, 1, 0, 13, 1, 0, 14, 9, 0, 15, 7, 0, 65536, 10, 0, 65537, 11, 0, 65538, 11, 0, 65539, 11, 0, 65540, 11, 0, 65541, 12, 0, 65546, 10, 0, 65547, 11, 0, 65548, 11, 0, 65549, 11, 0, 65550, 11, 0, 65551, 12, 0 )
+tile_data = PoolIntArray( 0, 3, 0, 1, 11, 0, 2, 11, 0, 3, 11, 0, 4, 11, 0, 5, 12, 0, 10, 10, 0, 11, 11, 0, 12, 11, 0, 13, 11, 0, 14, 11, 0, 15, 4, 0 )

@@ -1,55 +1,22 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://engine/dungeon_generator.gd" type="Script" id=1]
-[ext_resource path="res://tiles/exit.tscn" type="PackedScene" id=2]
-
-[sub_resource type="GDScript" id=1]
-script/source = "extends Camera2D
-
-
-# Declare member variables here. Examples:
-# var a = 2
-# var b = \"text\"
-
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	if(Input.is_action_pressed(\"LEFT\")):
-		global_position.x -= 5
-
-	if(Input.is_action_pressed(\"RIGHT\")):
-		global_position.x += 5
-
-	if(Input.is_action_pressed(\"UP\")):
-		global_position.y -= 5
-
-	if(Input.is_action_pressed(\"DOWN\")):
-		global_position.y += 5
-	
-	if(Input.is_action_pressed(\"X\")):
-		zoom.x += 3 * delta
-		zoom.y += 3 * delta
-	if(Input.is_action_pressed(\"Y\")):
-		zoom.x -= 3 * delta
-		zoom.y -= 3 * delta
-"
+[ext_resource path="res://engine/game.gd" type="Script" id=2]
+[ext_resource path="res://tiles/exit.tscn" type="PackedScene" id=3]
+[ext_resource path="res://engine/network_object.tscn" type="PackedScene" id=4]
 
 [node name="Node2D" type="Node2D"]
-
-[node name="Camera2D" type="Camera2D" parent="."]
-current = true
-zoom = Vector2( 12, 12 )
-script = SubResource( 1 )
+script = ExtResource( 2 )
 
 [node name="dungeon_generator" type="Node2D" parent="."]
 script = ExtResource( 1 )
 
-[node name="exit" parent="." instance=ExtResource( 2 )]
+[node name="NetworkObject" parent="dungeon_generator" instance=ExtResource( 4 )]
+enter_properties = {
+"entrance": null
+}
+
+[node name="a" parent="." instance=ExtResource( 3 )]
 position = Vector2( 128, 77 )
 map = "overworld"
 player_position = "up"

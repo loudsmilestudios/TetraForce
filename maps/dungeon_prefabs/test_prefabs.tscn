@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://maps/dungeon_prefabs/doors/door_up.tscn" type="PackedScene" id=1]
+[ext_resource path="res://maps/dungeon_prefabs/doors/door_down.tscn" type="PackedScene" id=2]
+[ext_resource path="res://maps/dungeon_prefabs/doors/door_left.tscn" type="PackedScene" id=3]
+[ext_resource path="res://maps/dungeon_prefabs/doors/door_right.tscn" type="PackedScene" id=4]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="wall_left" parent="." instance=ExtResource( 2 )]
+position = Vector2( 0, 0 )
+
+[node name="wall_left2" parent="." instance=ExtResource( 1 )]
+position = Vector2( 0, 144 )
+
+[node name="wall_left3" parent="." instance=ExtResource( 3 )]
+
+[node name="wall_left4" parent="." instance=ExtResource( 4 )]
+position = Vector2( -256, 0 )

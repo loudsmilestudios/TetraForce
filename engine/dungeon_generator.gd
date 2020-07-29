@@ -17,8 +17,8 @@ extends Node2D
 enum SEGMENTS {START, LOCK, KEY, DUNGEON_ITEM, DUNGEON_LOCK, MINIBOSS, BOSS_KEY, BOSS_DOOR, REWARD, COMBAT, TRAVERSAL, PUZZLE, ENTRANCE}
 enum DIRECTIONS {LEFT, RIGHT, UP, DOWN}
 
-const WIDTH = 256 * 14/16;
-const HEIGHT = 144 * 7/9;
+const WIDTH = 256;
+const HEIGHT = 144;
 
 var room_counter = 0
 var ROOMS = {
@@ -38,13 +38,26 @@ var ROOMS = {
 	}
 
 func _ready():
-	randomize() # Sets a random seed
-	create_dungeon()
+#	rand_seed(1)
+#	var dungeon = create_dungeon()
+	if $NetworkObject.enter_properties.entrance == null:
+		var dungeon = create_dungeon()
+		$NetworkObject.enter_properties = {"entrance" : dungeon}
+	else:
+		print("enter properties worked")
+		build_dungeon_from_entrance($NetworkObject.enter_properties.entrance)
+		pass
 
-func _process(delta):
+# Creates the room ba
+func build_dungeon_from_entrance(current: Room) -> void:
+	for room in current._child_rooms:
+		generate_room_chunk(room, room._position)
+		build_dungeon_from_entrance(room)
+	
+#func _process(delta):
 	# Resets Room layout
-	if(Input.is_action_just_pressed("A")):
-		create_dungeon()
+#	if(Input.is_action_just_pressed("A")):
+#		create_dungeon()
 #
 
 # Reset Room layout if previous one exists
@@ -54,6 +67,8 @@ func create_dungeon(entrance_direction = DIRECTIONS.DOWN) -> Room:
 	var exceptions = {}
 	var entrance_segments = generate_segments()
 	var d = setup_room_layout(entrance_segments.turn_to_dungeon(), exceptions, Vector2(0,0), WIDTH, HEIGHT, true)
+	
+	# While room is unmakeable (-1) try again
 	while(d):
 		print("tried again")
 		for child in get_children():
@@ -179,20 +194,20 @@ func setup_room_layout(current: Room, taken_rooms: Dictionary, starting_position
 	
 	if(is_entrance): 
 		taken_rooms[Vector2(0,0)] = current
-		var position;
-		match(door_direction):
-			DIRECTIONS.UP:
-				position = Vector2(WIDTH/2, -HEIGHT + 16)
-			DIRECTIONS.DOWN:
-				position = Vector2(WIDTH/2, HEIGHT - 16)
-			DIRECTIONS.LEFT:
-				position = Vector2(-WIDTH + 16, HEIGHT/2)
-			DIRECTIONS.RIGHT:
-				position = Vector2(WIDTH - 16, HEIGHT/2)
-		taken_rooms[position] = 0 # Used so that the value is not null, and therefore cannot be valid spot for another room
-		
-		var exit = get_parent().get_node("exit")
-		exit.position = position + Vector2(-WIDTH/2, -HEIGHT/2)
+#		var position;
+#		match(door_direction):
+#			DIRECTIONS.UP:
+#				position = Vector2(WIDTH/2, -HEIGHT + 16)
+#			DIRECTIONS.DOWN:
+#				position = Vector2(WIDTH/2, HEIGHT - 16)
+#			DIRECTIONS.LEFT:
+#				position = Vector2(-WIDTH + 16, HEIGHT/2)
+#			DIRECTIONS.RIGHT:
+#				position = Vector2(WIDTH - 16, HEIGHT/2)
+#		taken_rooms[position] = 0 # Used so that the value is not null, and therefore cannot be valid spot for another room
+#
+#		var exit = get_parent().get_node("exit")
+#		exit.position = position + Vector2(-WIDTH/2, -HEIGHT/2)
 	
 	var available_directions = [Vector2(-WIDTH,0),
 								Vector2(WIDTH, 0),
@@ -352,8 +367,10 @@ func generate_segments() -> Segment:
 			dungeon_item().add_to_end(
 				dungeon_lock().add_to_end([
 					two_extra_keys(),
-					lock().add_to_end(lock()).add_to_end(
-						boss_key()
+					lock().add_to_end(
+						lock().add_to_end(
+							boss_key()
+						)
 					)
 				])
 			)
