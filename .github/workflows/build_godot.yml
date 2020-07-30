@@ -2,6 +2,7 @@ name: Build Godot Project
 
 on:
   push: {}
+  pull_request: {}
 
 jobs:
   godot:
