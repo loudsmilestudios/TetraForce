@@ -1,8 +1,8 @@
-name: Build Project
+name: Build Godot Project
 
 on:
   push: {}
-  workflow_dispatch: {}
+  pull_request: {}
 
 jobs:
   godot:
