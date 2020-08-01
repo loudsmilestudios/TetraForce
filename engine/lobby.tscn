@@ -78,7 +78,7 @@ margin_right = 136.0
 margin_bottom = 72.4068
 size_flags_horizontal = 2
 size_flags_vertical = 2
-text = "127.0.0.1"
+text = "127.0.0.1:7777"
 __meta__ = {
 "_edit_use_anchors_": false
 }
