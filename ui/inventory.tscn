@@ -1,0 +1,37 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://ui/theme/theme.tres" type="Theme" id=1]
+[ext_resource path="res://ui/inventory.gd" type="Script" id=2]
+[ext_resource path="res://ui/inv_arrow.png" type="Texture" id=3]
+
+[node name="inventory" type="Panel"]
+margin_left = 192.0
+margin_top = 64.0
+margin_right = 256.0
+margin_bottom = 144.0
+theme = ExtResource( 1 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="scroll" type="ScrollContainer" parent="."]
+margin_left = 4.0
+margin_top = 4.0
+margin_right = 60.0
+margin_bottom = 76.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="items" type="VBoxContainer" parent="scroll"]
+
+[node name="equipped" type="Label" parent="."]
+margin_left = -188.0
+margin_top = 64.0
+margin_right = -148.0
+margin_bottom = 77.0
+
+[node name="arrow" type="Sprite" parent="."]
+position = Vector2( 5, 7 )
+texture = ExtResource( 3 )

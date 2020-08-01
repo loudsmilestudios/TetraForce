@@ -34,3 +34,15 @@ func update_hearts():
 			heart.frame = (player.health - lastheart) * 4
 		if index < lastheart:
 			heart.frame = 4
+
+func show_inventory():
+	var inventory = preload("res://ui/inventory.tscn").instance()
+	add_child(inventory)
+	inventory.start()
+
+
+
+
+
+
+

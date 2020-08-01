@@ -4,8 +4,10 @@ class_name Player
 
 onready var nametag = $nametag
 onready var ray = $RayCast2D
+var hud
 
 var push_counter = 0
+var action_cooldown = 0
 
 func initialize():
 	add_to_group("player")
@@ -38,7 +40,7 @@ func initialize():
 
 		anim_switch("idle")
 
-		var hud = preload("res://ui/hud.tscn").instance()
+		hud = preload("res://ui/hud.tscn").instance()
 		add_child(hud)
 		hud.initialize(self)
 
@@ -61,8 +63,13 @@ func _physics_process(_delta):
 			state_hold()
 		"spin":
 			state_spin()
+		"menu":
+			state_menu()
 		"die":
 			state_die()
+	
+	if action_cooldown > 0:
+		action_cooldown -= 1
 
 func state_default():
 	loop_controls()
@@ -105,7 +112,7 @@ func state_hold():
 		anim_switch("walk")
 		push_counter = 0
 	
-	if !has_node("Sword"):
+	if !has_node("sword"):
 		state = "default"
 
 func state_spin():
@@ -113,6 +120,9 @@ func state_spin():
 	loop_movement()
 	loop_damage()
 	movedir = Vector2.ZERO
+
+func state_menu():
+	anim_switch("idle")
 
 func state_die():
 	if anim.assigned_animation != "die":
@@ -143,9 +153,17 @@ func loop_controls():
 	movedir.y = -int(UP) + int(DOWN)
 
 func loop_action_button():
-	if Input.is_action_just_pressed("B"):
-		use_item("res://items/sword.tscn", "B")
-		network.peer_call(self, "use_item", ["res://items/sword.tscn", "B"])
+	if action_cooldown > 0:
+		return
+	for btn in ["B", "X", "Y"]:
+		if Input.is_action_just_pressed(btn) && global.equips[btn] != "":
+			var item_path = global.get_item_path(global.equips[btn])
+			use_item(item_path, btn)
+			network.peer_call(self, "use_item", [item_path, btn])
+	if Input.is_action_just_pressed("START"):
+		hud.show_inventory()
+		state = "menu"
+		action_cooldown = 10
 
 func loop_interact():
 	if ray.is_colliding():
