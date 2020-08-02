@@ -120,6 +120,8 @@ func state_spin():
 	loop_movement()
 	loop_damage()
 	movedir = Vector2.ZERO
+	if hitstun != 0:
+		state = "default"
 
 func state_menu():
 	anim_switch("idle")

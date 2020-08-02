@@ -2,6 +2,8 @@ extends Panel
 
 onready var anim = $AnimationPlayer
 onready var item_list = $scroll/items
+onready var selected_icon = $display/selected_icon
+
 var selected = 0
 
 func _ready():
@@ -34,6 +36,11 @@ func change_selection(amt):
 	for entry in item_list.get_children():
 		entry.selected = false
 	item_list.get_child(selected).selected = true
+	if item_list.get_child(selected).text == "------":
+		selected_icon.texture = null
+	else:
+		selected_icon.texture = global.item_icons[item_list.get_child(selected).text]
+	
 
 func add_items():
 	for child in item_list.get_children():

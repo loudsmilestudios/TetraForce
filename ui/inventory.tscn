@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://ui/theme/theme.tres" type="Theme" id=1]
 [ext_resource path="res://ui/inventory.gd" type="Script" id=2]
+[ext_resource path="res://ui/theme/panel2.png" type="Texture" id=3]
 [ext_resource path="res://ui/inventorydecor.png" type="Texture" id=4]
 
 [sub_resource type="Animation" id=2]
@@ -68,9 +69,9 @@ tracks/1/keys = {
 
 [node name="inventory" type="Panel"]
 margin_left = 177.0
-margin_top = 42.0
+margin_top = 144.0
 margin_right = 256.0
-margin_bottom = 143.999
+margin_bottom = 245.999
 theme = ExtResource( 1 )
 script = ExtResource( 2 )
 __meta__ = {
@@ -85,6 +86,7 @@ margin_bottom = 90.0
 follow_focus = true
 scroll_horizontal_enabled = false
 __meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
@@ -105,6 +107,15 @@ position = Vector2( 71, 94 )
 texture = ExtResource( 4 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-playback_speed = 3.0
+playback_speed = 2.0
 anims/slidedown = SubResource( 2 )
 anims/slideup = SubResource( 1 )
+
+[node name="display" type="Sprite" parent="."]
+position = Vector2( -19, 86 )
+texture = ExtResource( 3 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="selected_icon" type="Sprite" parent="display"]

@@ -11,6 +11,11 @@ var item_dict = {
 	"Bow": "res://items/arrow.tscn",
 }
 
+var item_icons = {
+	"Sword": preload("res://ui/items/sword.png"),
+	"Bow": preload("res://ui/items/bow.png"),
+}
+
 var next_entrance = "a"
 
 func change_map(map, entrance):
