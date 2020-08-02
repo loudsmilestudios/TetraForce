@@ -1,10 +1,14 @@
 extends Panel
 
+onready var anim = $AnimationPlayer
 onready var item_list = $scroll/items
 var selected = 0
 
-func start():
+func _ready():
 	update_equipped()
+	anim.play("slideup")
+
+func start():
 	add_items()
 	yield(get_tree(), "physics_frame")
 	change_selection(0)
@@ -23,7 +27,7 @@ func _input(event):
 	if Input.is_action_just_pressed("START"):
 		get_parent().player.state = "default"
 		get_parent().player.action_cooldown = 10
-		queue_free()
+		anim.play("slidedown")
 
 func change_selection(amt):
 	selected = wrapi(selected + amt, 0, item_list.get_child_count())
@@ -42,7 +46,6 @@ func add_items():
 		var new_entry = preload("res://ui/entry.tscn").instance()
 		item_list.add_child(new_entry)
 		new_entry.text = "------"
-	item_list.get_child(0).set_selected(true)
 
 func set_item(btn):
 	var old_selection = global.equips[btn]

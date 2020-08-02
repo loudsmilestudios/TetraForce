@@ -15,13 +15,11 @@ texture = ExtResource( 1 )
 hframes = 5
 
 [node name="upperhud" type="Sprite" parent="."]
-visible = false
 modulate = Color( 1, 1, 1, 0.882353 )
 position = Vector2( 236, 10 )
 texture = ExtResource( 3 )
 
 [node name="buttons" type="Node2D" parent="."]
-visible = false
 position = Vector2( 71, 1 )
 
 [node name="b" type="Sprite" parent="buttons"]

@@ -5,7 +5,7 @@
 [ext_resource path="res://engine/network_object.tscn" type="PackedScene" id=3]
 [ext_resource path="res://ui/theme/font.ttf" type="DynamicFontData" id=4]
 
-[sub_resource type="Animation" id=18]
+[sub_resource type="Animation" id=1]
 resource_name = "die"
 length = 12.0
 tracks/0/type = "value"
@@ -35,8 +35,7 @@ tracks/1/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=1]
-resource_name = "idleDown"
+[sub_resource type="Animation" id=2]
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -50,8 +49,7 @@ tracks/0/keys = {
 "values": [ 1 ]
 }
 
-[sub_resource type="Animation" id=2]
-resource_name = "idleSide"
+[sub_resource type="Animation" id=3]
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -65,8 +63,7 @@ tracks/0/keys = {
 "values": [ 3 ]
 }
 
-[sub_resource type="Animation" id=3]
-resource_name = "idleUp"
+[sub_resource type="Animation" id=4]
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -80,8 +77,7 @@ tracks/0/keys = {
 "values": [ 5 ]
 }
 
-[sub_resource type="Animation" id=4]
-resource_name = "pushDown"
+[sub_resource type="Animation" id=5]
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -95,8 +91,7 @@ tracks/0/keys = {
 "values": [ 6, 7 ]
 }
 
-[sub_resource type="Animation" id=5]
-resource_name = "pushSide"
+[sub_resource type="Animation" id=6]
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -110,8 +105,7 @@ tracks/0/keys = {
 "values": [ 8, 9 ]
 }
 
-[sub_resource type="Animation" id=6]
-resource_name = "pushUp"
+[sub_resource type="Animation" id=7]
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -125,7 +119,7 @@ tracks/0/keys = {
 "values": [ 10, 11 ]
 }
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=8]
 length = 1.6
 step = 0.33
 tracks/0/type = "value"
@@ -153,7 +147,7 @@ tracks/1/keys = {
 "values": [ Vector2( 1, 1 ), Vector2( -1, 1 ), Vector2( 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=9]
 length = 1.6
 step = 0.33
 tracks/0/type = "value"
@@ -181,7 +175,7 @@ tracks/1/keys = {
 "values": [ Vector2( 1, 1 ), Vector2( -1, 1 ), Vector2( 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=9]
+[sub_resource type="Animation" id=10]
 length = 1.6
 step = 0.33
 tracks/0/type = "value"
@@ -209,7 +203,7 @@ tracks/1/keys = {
 "values": [ Vector2( 1, 1 ), Vector2( -1, 1 ), Vector2( 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=10]
+[sub_resource type="Animation" id=11]
 length = 0.66
 step = 0.33
 tracks/0/type = "value"
@@ -225,7 +219,7 @@ tracks/0/keys = {
 "values": [ 24, 25 ]
 }
 
-[sub_resource type="Animation" id=11]
+[sub_resource type="Animation" id=12]
 length = 0.66
 step = 0.33
 tracks/0/type = "value"
@@ -241,7 +235,7 @@ tracks/0/keys = {
 "values": [ 26, 27 ]
 }
 
-[sub_resource type="Animation" id=12]
+[sub_resource type="Animation" id=13]
 length = 0.66
 step = 0.33
 tracks/0/type = "value"
@@ -257,7 +251,7 @@ tracks/0/keys = {
 "values": [ 28, 29 ]
 }
 
-[sub_resource type="Animation" id=13]
+[sub_resource type="Animation" id=14]
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -271,7 +265,7 @@ tracks/0/keys = {
 "values": [ 0, 1 ]
 }
 
-[sub_resource type="Animation" id=14]
+[sub_resource type="Animation" id=15]
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -285,7 +279,7 @@ tracks/0/keys = {
 "values": [ 2, 3 ]
 }
 
-[sub_resource type="Animation" id=15]
+[sub_resource type="Animation" id=16]
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -299,11 +293,11 @@ tracks/0/keys = {
 "values": [ 4, 5 ]
 }
 
-[sub_resource type="CapsuleShape2D" id=16]
+[sub_resource type="CapsuleShape2D" id=17]
 radius = 4.5
 height = 6.0
 
-[sub_resource type="DynamicFont" id=17]
+[sub_resource type="DynamicFont" id=18]
 outline_size = 1
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 4 )
@@ -312,28 +306,28 @@ font_data = ExtResource( 4 )
 z_index = 100
 script = ExtResource( 2 )
 TYPE = "PLAYER"
-MAX_HEALTH = 3.0
+MAX_HEALTH = 14.0
 DAMAGE = 0.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "idleDown"
 playback_speed = 4.0
-anims/die = SubResource( 18 )
-anims/idleDown = SubResource( 1 )
-anims/idleSide = SubResource( 2 )
-anims/idleUp = SubResource( 3 )
-anims/pushDown = SubResource( 4 )
-anims/pushSide = SubResource( 5 )
-anims/pushUp = SubResource( 6 )
-anims/spinDown = SubResource( 7 )
-anims/spinSide = SubResource( 8 )
-anims/spinUp = SubResource( 9 )
-anims/swingDown = SubResource( 10 )
-anims/swingSide = SubResource( 11 )
-anims/swingUp = SubResource( 12 )
-anims/walkDown = SubResource( 13 )
-anims/walkSide = SubResource( 14 )
-anims/walkUp = SubResource( 15 )
+anims/die = SubResource( 1 )
+anims/idleDown = SubResource( 2 )
+anims/idleSide = SubResource( 3 )
+anims/idleUp = SubResource( 4 )
+anims/pushDown = SubResource( 5 )
+anims/pushSide = SubResource( 6 )
+anims/pushUp = SubResource( 7 )
+anims/spinDown = SubResource( 8 )
+anims/spinSide = SubResource( 9 )
+anims/spinUp = SubResource( 10 )
+anims/swingDown = SubResource( 11 )
+anims/swingSide = SubResource( 12 )
+anims/swingUp = SubResource( 13 )
+anims/walkDown = SubResource( 14 )
+anims/walkSide = SubResource( 15 )
+anims/walkUp = SubResource( 16 )
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )
@@ -343,7 +337,7 @@ frame = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
-shape = SubResource( 16 )
+shape = SubResource( 17 )
 
 [node name="NetworkObject" parent="." instance=ExtResource( 3 )]
 require_map_host = false
@@ -360,7 +354,7 @@ margin_top = -18.0
 margin_right = 112.0
 margin_bottom = -4.0
 rect_scale = Vector2( 0.6, 0.6 )
-custom_fonts/font = SubResource( 17 )
+custom_fonts/font = SubResource( 18 )
 text = "Chain"
 align = 1
 __meta__ = {

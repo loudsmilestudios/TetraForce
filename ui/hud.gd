@@ -38,7 +38,7 @@ func update_hearts():
 func show_inventory():
 	var inventory = preload("res://ui/inventory.tscn").instance()
 	add_child(inventory)
-	inventory.start()
+	#inventory.start()
 
 
 
