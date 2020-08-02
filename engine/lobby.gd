@@ -66,9 +66,8 @@ func _set_status(text,isok):
 	else:
 		get_node("panel/status_ok").set_text("")
 		get_node("panel/status_fail").set_text(text)
-func _on_host_pressed():
-	startserver()
-func startserver(port=default_port):
+		
+func _on_host_pressed(port=default_port):
 	var host = NetworkedMultiplayerENet.new()
 	host.set_compression_mode(NetworkedMultiplayerENet.COMPRESS_RANGE_CODER)
 	var err = host.create_server(int(port), 15) # max: 1 peer, since it's a 2 players game
@@ -80,11 +79,10 @@ func startserver(port=default_port):
 	get_tree().set_network_peer(host)
 	get_node("panel/join").set_disabled(true)
 	get_node("panel/host").set_disabled(true)
+	#Added to make it clear to those who run in dedicated server that the server is running
 	get_node("panel/status_ok").set_text("Server Started")
 	create_level()
 	
-
-
 func _on_join_pressed():
 	
 	var ipport = get_node("panel/address").get_text().rsplit(":")
@@ -140,7 +138,7 @@ func _ready():
 		if((arguments.get("autostart")) == "false"):
 			pass
 		else:
-			startserver()
+			call_deferred("_on_host_pressed", default_port)
 	#autostarts based on it being named Server, then with command line arguments
 	if OS.get_name() == "Server":
 		var args = OS.get_cmdline_args()
