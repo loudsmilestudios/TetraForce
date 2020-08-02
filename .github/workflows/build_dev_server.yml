@@ -1,0 +1,50 @@
+name: Build Dev Image
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "Version to tag onto Docker image"
+        default: "dev"
+
+jobs:
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - id: get_tag
+        name: Get Tag
+        env:
+          GITHUB_HEAD_REF: $${{ github.head_ref }}
+          GITHUB_BASE_REF: ${{ github.base_ref }}
+        run: |
+          if [ "${{ github.event.inputs.version }}" = "" ]
+          then
+            TAG=$(jq --raw-output '.release.tag_name' $GITHUB_EVENT_PATH)
+          else
+            TAG=${{ github.event.inputs.version }}
+          fi
+          
+          echo ::set-output name=TAG::$TAG
+      - name: Build Godot Project
+        id: build
+        uses: josephbmanley/build-godot-action@v1.4.0
+        with:
+          name: TetraForce
+          preset: linux
+          projectDir: '.'
+          debugMode: 'true'
+      - name: Push Tag to GitHub Package
+        uses: opspresso/action-docker@master
+        with:
+          args: --docker
+        env:
+          USERNAME: ${{ github.actor }}
+          PASSWORD: ${{ secrets.GITHUB_TOKEN }}
+          REGISTRY: "docker.pkg.github.com/fornclake/tetraforce"
+          BUILD_PATH: "."
+          DOCKERFILE: "Dockerfile"
+          IMAGE_NAME: "tetraforce"
+          TAG_NAME: ${{ steps.get_tag.outputs.TAG }}
+          LATEST: "false"

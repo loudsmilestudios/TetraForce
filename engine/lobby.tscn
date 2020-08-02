@@ -47,9 +47,9 @@ __meta__ = {
 }
 
 [node name="title" type="Label" parent="."]
-margin_left = 52.9672
+margin_left = 28.9672
 margin_top = 32.4044
-margin_right = 260.967
+margin_right = 236.967
 margin_bottom = 72.4044
 size_flags_horizontal = 2
 size_flags_vertical = 0
@@ -61,10 +61,10 @@ __meta__ = {
 }
 
 [node name="panel" type="Panel" parent="."]
-margin_left = -91.0328
-margin_top = 80.4044
-margin_right = 132.967
-margin_bottom = 208.404
+margin_left = 20.9672
+margin_top = 88.4044
+margin_right = 244.967
+margin_bottom = 168.404
 size_flags_horizontal = 2
 size_flags_vertical = 2
 __meta__ = {
@@ -74,21 +74,11 @@ __meta__ = {
 [node name="address" type="LineEdit" parent="panel"]
 margin_left = 16.0
 margin_top = 40.0
-margin_right = 128.0
+margin_right = 136.0
 margin_bottom = 72.4068
 size_flags_horizontal = 2
 size_flags_vertical = 2
-text = "127.0.0.1"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="port" type="LineEdit" parent="panel"]
-margin_left = 16.0
-margin_top = 80.0
-margin_right = 128.0
-margin_bottom = 112.407
-text = "7777"
+text = "127.0.0.1:7777"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -118,10 +108,10 @@ __meta__ = {
 }
 
 [node name="status_ok" type="Label" parent="panel"]
-margin_left = 7.62939e-06
-margin_top = 144.0
-margin_right = 200.0
-margin_bottom = 158.0
+margin_left = 10.0
+margin_top = 90.0
+margin_right = 210.0
+margin_bottom = 104.0
 size_flags_horizontal = 2
 size_flags_vertical = 0
 custom_colors/font_color = Color( 0, 1, 0.015625, 1 )
@@ -131,10 +121,10 @@ __meta__ = {
 }
 
 [node name="status_fail" type="Label" parent="panel"]
-margin_left = 7.62939e-06
-margin_top = 144.0
-margin_right = 200.0
-margin_bottom = 158.0
+margin_left = 10.0
+margin_top = 90.0
+margin_right = 210.0
+margin_bottom = 104.0
 size_flags_horizontal = 2
 size_flags_vertical = 0
 custom_colors/font_color = Color( 1, 0, 0, 1 )
@@ -144,10 +134,10 @@ __meta__ = {
 }
 
 [node name="characterselect" type="Panel" parent="."]
-margin_left = 180.967
-margin_top = 80.4044
-margin_right = 356.967
-margin_bottom = 176.404
+margin_left = 44.9672
+margin_top = 184.404
+margin_right = 220.967
+margin_bottom = 280.404
 script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false

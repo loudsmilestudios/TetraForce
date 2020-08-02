@@ -1,0 +1,35 @@
+name: Build Godot Project
+
+on:
+  push: {}
+  pull_request: {}
+
+jobs:
+  godot:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        platform: [linux, osx, win32, win64]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Configure
+        env:
+          PLATFORM: ${{ matrix.platform }}
+        run: |
+          if [ "$PLATFORM" = "win32" ] || [ "$PLATFORM" = "win64" ] ; then
+            echo "::set-env name=EXPORT_SUFFIX::.exe"
+          fi
+      - name: Build
+        id: build
+        uses: josephbmanley/build-godot-action@v1.4.0
+        with:
+          name: TetraForce${{ env.EXPORT_SUFFIX }}
+          preset: ${{ matrix.platform }}
+          projectDir: '.'
+          debugMode: 'true'
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: Client - ${{ matrix.platform }}
+          path: ${{ github.workspace }}/${{ steps.build.outputs.build }}

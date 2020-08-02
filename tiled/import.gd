@@ -36,7 +36,16 @@ func import_tilemap(tilemap):
 			new_grass.update_bitmask_region()
 	elif tilemap.name == "bush":
 		tilemap.set_script(preload("res://tiles/tall_grass.gd"))
-		
+	elif tilemap.name == "water":
+		var used_cells = tilemap.get_used_cells()
+		tilemap.free()
+		var new_water = preload("res://tiles/water.tscn").instance()
+		scene.add_child(new_water)
+		new_water.set_owner(scene)
+		for cell in used_cells:
+			new_water.set_cellv(cell, 0)
+			new_water.update_bitmask_region()
+	
 	else:
 		tilemap.set_collision_layer_bit(1,1)
 		tilemap.set_collision_mask_bit(1,1)
