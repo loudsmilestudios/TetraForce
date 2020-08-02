@@ -1,18 +1,19 @@
 extends Panel
 
 onready var item_list = $scroll/items
-onready var arrow = $arrow
+var selected = 0
 
 func start():
 	update_equipped()
-	remove_child(arrow)
 	add_items()
+	yield(get_tree(), "physics_frame")
+	change_selection(0)
 
 func _input(event):
 	if Input.is_action_just_pressed("UP"):
-		move_arrow(-1)
+		change_selection(-1)
 	if Input.is_action_just_pressed("DOWN"):
-		move_arrow(1)
+		change_selection(1)
 	if Input.is_action_just_pressed("B"):
 		set_item("B")
 	if Input.is_action_just_pressed("X"):
@@ -24,22 +25,35 @@ func _input(event):
 		get_parent().player.action_cooldown = 10
 		queue_free()
 
+func change_selection(amt):
+	selected = wrapi(selected + amt, 0, item_list.get_child_count())
+	for entry in item_list.get_children():
+		entry.selected = false
+	item_list.get_child(selected).selected = true
+
 func add_items():
+	for child in item_list.get_children():
+		child.queue_free()
 	for item_name in global.items:
-		var new_label = Label.new()
-		item_list.add_child(new_label)
-		new_label.owner = self
-		new_label.text = "  " + item_name
-		new_label.name = item_name
-	item_list.get_child(0).add_child(arrow)
+		var new_entry = preload("res://ui/entry.tscn").instance()
+		item_list.add_child(new_entry)
+		new_entry.text = item_name
+	while item_list.get_child_count() < 10:
+		var new_entry = preload("res://ui/entry.tscn").instance()
+		item_list.add_child(new_entry)
+		new_entry.text = "------"
+	item_list.get_child(0).set_selected(true)
 
 func set_item(btn):
 	var old_selection = global.equips[btn]
-	var new_selection = arrow.get_parent().name
+	var new_selection = item_list.get_child(selected).text
 	
-	for key in global.equips.keys():
-		if global.equips[key] == new_selection:
-			global.equips[key] = old_selection
+	if item_list.get_child(selected).text == "------":
+		new_selection = ""
+	else:
+		for key in global.equips.keys():
+			if global.equips[key] == new_selection:
+				global.equips[key] = old_selection
 	
 	global.equips[btn] = new_selection
 	
@@ -47,9 +61,3 @@ func set_item(btn):
 
 func update_equipped():
 	$equipped.text = str(global.equips)
-
-func move_arrow(dir):
-	var current_label = item_list.get_children().find(arrow.get_parent())
-	var new_label = wrapi(current_label + dir, 0, item_list.get_child_count())
-	item_list.get_child(current_label).remove_child(arrow)
-	item_list.get_child(new_label).add_child(arrow)

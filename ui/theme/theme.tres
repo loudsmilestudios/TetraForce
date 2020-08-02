@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=13 format=2]
+[gd_resource type="Theme" load_steps=17 format=2]
 
 [ext_resource path="res://ui/theme/font.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://ui/theme/panel2.png" type="Texture" id=2]
@@ -6,6 +6,8 @@
 [ext_resource path="res://ui/theme/button_hover.png" type="Texture" id=4]
 [ext_resource path="res://ui/theme/button.png" type="Texture" id=5]
 [ext_resource path="res://ui/theme/panel.png" type="Texture" id=6]
+[ext_resource path="res://ui/theme/listhover.png" type="Texture" id=7]
+[ext_resource path="res://ui/theme/scrollbar.png" type="Texture" id=8]
 
 [sub_resource type="StyleBoxTexture" id=1]
 texture = ExtResource( 4 )
@@ -47,8 +49,19 @@ margin_right = 9.51308
 margin_top = 8.99585
 margin_bottom = 9.11333
 
+[sub_resource type="StyleBoxTexture" id=7]
+texture = ExtResource( 8 )
+region_rect = Rect2( 0, 0, 6, 6 )
+margin_left = 2.0
+margin_right = 2.0
+margin_top = 2.0
+margin_bottom = 2.0
+
+[sub_resource type="StyleBoxTexture" id=8]
+texture = ExtResource( 7 )
+region_rect = Rect2( 0, 0, 8, 8 )
+
 [sub_resource type="DynamicFont" id=6]
-extra_spacing_char = 1
 font_data = ExtResource( 1 )
 
 [resource]
@@ -78,3 +91,12 @@ LineEdit/styles/focus = null
 LineEdit/styles/normal = SubResource( 4 )
 LineEdit/styles/read_only = null
 Panel/styles/panel = SubResource( 5 )
+VScrollBar/icons/decrement = null
+VScrollBar/icons/decrement_highlight = null
+VScrollBar/icons/increment = null
+VScrollBar/icons/increment_highlight = null
+VScrollBar/styles/grabber = SubResource( 7 )
+VScrollBar/styles/grabber_highlight = SubResource( 7 )
+VScrollBar/styles/grabber_pressed = SubResource( 7 )
+VScrollBar/styles/scroll = SubResource( 8 )
+VScrollBar/styles/scroll_focus = null
