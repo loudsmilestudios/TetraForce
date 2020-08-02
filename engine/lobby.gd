@@ -66,7 +66,8 @@ func _set_status(text,isok):
 	else:
 		get_node("panel/status_ok").set_text("")
 		get_node("panel/status_fail").set_text(text)
-
+func _on_host_pressed():
+	startserver()
 func startserver(port=default_port):
 	var host = NetworkedMultiplayerENet.new()
 	host.set_compression_mode(NetworkedMultiplayerENet.COMPRESS_RANGE_CODER)
@@ -82,8 +83,7 @@ func startserver(port=default_port):
 	get_node("panel/status_ok").set_text("Server Started")
 	create_level()
 	
-func _on_host_pressed():
-	startserver()
+
 
 func _on_join_pressed():
 	
