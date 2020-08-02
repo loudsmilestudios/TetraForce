@@ -34,7 +34,15 @@ func add_items():
 	item_list.get_child(0).add_child(arrow)
 
 func set_item(btn):
-	global.equips[btn] = arrow.get_parent().name
+	var old_selection = global.equips[btn]
+	var new_selection = arrow.get_parent().name
+	
+	for key in global.equips.keys():
+		if global.equips[key] == new_selection:
+			global.equips[key] = old_selection
+	
+	global.equips[btn] = new_selection
+	
 	update_equipped()
 
 func update_equipped():
