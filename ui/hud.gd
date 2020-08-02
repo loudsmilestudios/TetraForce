@@ -5,7 +5,9 @@ var player
 const HEART_ROW_SIZE = 8
 const HEART_SIZE = 8
 
-onready var hearts = $hearts
+onready var hud2d = $hud2d
+onready var hearts = $hud2d/hearts
+onready var buttons = $hud2d/buttons
 
 func initialize(p):
 	player = p
@@ -34,6 +36,18 @@ func update_hearts():
 			heart.frame = (player.health - lastheart) * 4
 		if index < lastheart:
 			heart.frame = 4
+
+func show_hearts():
+	hearts.modulate = lerp(hearts.modulate, Color(1,1,1,1), 0.1)
+
+func hide_hearts():
+	hearts.modulate = lerp(hearts.modulate, Color(1,1,1,0.33), 0.2)
+
+func show_buttons():
+	buttons.modulate = lerp(buttons.modulate, Color(1,1,1,1), 0.1)
+
+func hide_buttons():
+	buttons.modulate = lerp(buttons.modulate, Color(1,1,1,0.33), 0.2)
 
 func show_inventory():
 	var inventory = preload("res://ui/inventory.tscn").instance()

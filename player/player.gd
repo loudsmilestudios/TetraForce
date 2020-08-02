@@ -8,6 +8,7 @@ var hud
 
 var push_counter = 0
 var action_cooldown = 0
+var screen_position = Vector2(0,0)
 
 func initialize():
 	add_to_group("player")
@@ -67,6 +68,18 @@ func _physics_process(_delta):
 			state_menu()
 		"die":
 			state_die()
+	
+	screen_position = position - camera.position
+	
+	if Rect2(Vector2(0,0), Vector2(72, 22)).has_point(screen_position) && state != "menu":
+		hud.hide_hearts()
+	else:
+		hud.show_hearts()
+	
+	if Rect2(Vector2(192, 0), Vector2(64, 30)).has_point(screen_position) && state != "menu":
+		hud.hide_buttons()
+	else:
+		hud.show_buttons()
 	
 	if action_cooldown > 0:
 		action_cooldown -= 1

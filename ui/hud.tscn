@@ -8,23 +8,27 @@
 [node name="hud" type="CanvasLayer"]
 script = ExtResource( 2 )
 
-[node name="hearts" type="Sprite" parent="."]
+[node name="hud2d" type="Node2D" parent="."]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="hearts" type="Sprite" parent="hud2d"]
 modulate = Color( 1, 1, 1, 0.921569 )
 position = Vector2( 6, 6 )
 texture = ExtResource( 1 )
 hframes = 5
 
-[node name="upperhud" type="Sprite" parent="."]
+[node name="upperhud" type="Sprite" parent="hud2d"]
 visible = false
 modulate = Color( 1, 1, 1, 0.882353 )
 position = Vector2( 236, 10 )
 texture = ExtResource( 3 )
 
-[node name="buttons" type="Node2D" parent="."]
-visible = false
-position = Vector2( 71, 1 )
+[node name="buttons" type="Node2D" parent="hud2d"]
+position = Vector2( 195, 1 )
 
-[node name="b" type="Sprite" parent="buttons"]
+[node name="b" type="Sprite" parent="hud2d/buttons"]
 modulate = Color( 1, 1, 1, 0.882353 )
 position = Vector2( 8.5, 9 )
 texture = ExtResource( 4 )
@@ -33,7 +37,7 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="x" type="Sprite" parent="buttons"]
+[node name="x" type="Sprite" parent="hud2d/buttons"]
 modulate = Color( 1, 1, 1, 0.882353 )
 position = Vector2( 30, 9 )
 texture = ExtResource( 4 )
@@ -43,7 +47,7 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="y" type="Sprite" parent="buttons"]
+[node name="y" type="Sprite" parent="hud2d/buttons"]
 modulate = Color( 1, 1, 1, 0.882353 )
 position = Vector2( 51, 9 )
 texture = ExtResource( 4 )
