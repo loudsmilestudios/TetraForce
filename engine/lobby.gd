@@ -68,8 +68,8 @@ func _set_status(text,isok):
 	else:
 		get_node("panel/status_ok").set_text("")
 		get_node("panel/status_fail").set_text(text)
-
-func _on_host_pressed():
+		
+func startserver():
 	var host = NetworkedMultiplayerENet.new()
 	host.set_compression_mode(NetworkedMultiplayerENet.COMPRESS_RANGE_CODER)
 	var port = int(get_node("panel/port").get_text())
@@ -84,6 +84,8 @@ func _on_host_pressed():
 	get_node("panel/host").set_disabled(true)
 	get_node("panel/status_ok").set_text("Server Started")
 	create_level()
+func _on_host_pressed():
+	startserver()
 
 func _on_join_pressed():
 	
@@ -134,7 +136,11 @@ func _ready():
 	if("debug" in arguments):
 		if ((arguments.get("debug")) == "true"):
 			print("DEBUG ENABLED")
-	
+	if ("autostart" in arguments):
+		if((arguments.get("autostart")) == "false"):
+			print("The server will not run automatically. To make it run automatically, remove [--autostart=false]")
+		else:
+			startserver()
 	
 func _notification(n):
 	if (n == MainLoop.NOTIFICATION_WM_QUIT_REQUEST):
