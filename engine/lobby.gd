@@ -70,7 +70,7 @@ func _set_status(text,isok):
 func startserver(port=default_port):
 	var host = NetworkedMultiplayerENet.new()
 	host.set_compression_mode(NetworkedMultiplayerENet.COMPRESS_RANGE_CODER)
-	var err = host.create_server(port, 15) # max: 1 peer, since it's a 2 players game
+	var err = host.create_server(int(port), 15) # max: 1 peer, since it's a 2 players game
 	if (err!=OK):
 		#is another server running?
 		_set_status("Can't host, address in use.",false)
@@ -133,7 +133,8 @@ func _ready():
 			get_node("panel/host").set_text("Start Server")
 	#this overrides the default port of 7777
 	if("port" in arguments):
-		get_node("panel/port").set_text(arguments["port"])
+		default_port = arguments["port"]
+		get_node("panel/address").set_text("127.0.0.1:" + arguments["port"])
 	#autostarts based on command line arguments
 	if ("autostart" in arguments):
 		if((arguments.get("autostart")) == "false"):
