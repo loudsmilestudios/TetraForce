@@ -1,6 +1,7 @@
 extends Node
 
 var pid = 1
+var dedicated = false
 
 var current_map = null
 var player_list = {} # player, map -- every active player and what map they're in
@@ -33,7 +34,7 @@ func initialize():
 	tick.one_shot = false
 	tick.start()
 	
-	if get_tree().is_network_server():
+	if get_tree().is_network_server() && !dedicated:
 		player_data[1] = my_player_data
 	else:
 		rpc_id(1, "_receive_my_player_data", my_player_data)
@@ -61,8 +62,9 @@ remote func _receive_player_data(data):
 
 func send_current_map(): # called when a player enters a new map
 	if get_tree().is_network_server():
-		# server adds itself to the list and updates everyone
-		_receive_current_map(1, current_map.name)
+		if !dedicated:
+			# server adds itself to the list and updates everyone
+			_receive_current_map(1, current_map.name)
 	else:
 		# every one else first sends their information to the server, and then it updates everyone
 		rpc_id(1, "_receive_current_map", pid, current_map.name)
@@ -81,11 +83,13 @@ remote func _receive_player_list(list, hosts): # client receives player list fro
 	emit_signal("received_player_list")
 
 func update_players(): # gets list of all players in map AND all other players
+	if dedicated:
+		return
 	current_players = []
 	map_peers = []
 	# get all players in current_map
 	for id in player_list:
-		if player_list[id] == player_list[pid]:
+		if player_list.get(id) == player_list.get(id):
 			current_players.append(id)
 	# get all players besides self in current_map
 	for player in current_players:

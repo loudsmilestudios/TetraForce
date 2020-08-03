@@ -13,6 +13,7 @@ func create_level():
 		network.pid = get_tree().get_network_unique_id()
 	network.initialize()
 	if(is_server):
+		network.dedicated = true
 		print("This is a server and will not load the game.")
 	else:
 		var level = load(map).instance()
@@ -114,14 +115,6 @@ func _ready():
 	get_tree().connect("server_disconnected",self,"_server_disconnected")
 	
 	get_tree().set_auto_accept_quit(false)
-
-	if OS.get_name() == "Server":
-		var args = OS.get_cmdline_args()
-		var port = default_port
-		if args.size() >= 1:
-			port = int(args[0])
-
-		call_deferred("_on_host_pressed", port)
 	
 	#For server commandline arguments. Searches for ones passed, then tries to set ones that exist.
 	#Puts arguments passed as "--example=value" in a dictionary.
@@ -150,14 +143,6 @@ func _ready():
 			pass
 		else:
 			call_deferred("_on_host_pressed", default_port)
-	#autostarts based on it being named Server, then with command line arguments
-	if OS.get_name() == "Server":
-		var args = OS.get_cmdline_args()
-		var port = default_port
-		if args.size() >= 1:
-			port = int(args[0])
-
-		call_deferred("_on_host_pressed", port)
 	
 func _notification(n):
 	if (n == MainLoop.NOTIFICATION_WM_QUIT_REQUEST):
