@@ -69,7 +69,7 @@ func _set_status(text,isok):
 
 func _on_host_pressed(port=default_port):
 	var host = NetworkedMultiplayerENet.new()
-	host.set_compression_mode(NetworkedMultiplayerENet.COMPRESS_RANGE_CODER)	
+	host.set_compression_mode(NetworkedMultiplayerENet.COMPRESS_RANGE_CODER)
 	var err = host.create_server(port, 15) # max: 1 peer, since it's a 2 players game
 	if (err!=OK):
 		#is another server running?
@@ -112,6 +112,14 @@ func _ready():
 	get_tree().connect("server_disconnected",self,"_server_disconnected")
 	
 	get_tree().set_auto_accept_quit(false)
+
+	if OS.get_name() == "Server":
+		var args = OS.get_cmdline_args()
+		var port = default_port
+		if args.size() >= 1:
+			port = int(args[0])
+
+		call_deferred("_on_host_pressed", port)
 	
 	#For server commandline arguments. Searches for ones passed, then tries to set ones that exist.
 	#Puts arguments passed as "--example=value" in a dictionary.
