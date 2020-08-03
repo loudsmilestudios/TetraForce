@@ -67,10 +67,6 @@ func _set_status(text,isok):
 		get_node("panel/status_ok").set_text("")
 		get_node("panel/status_fail").set_text(text)
 		
-func _on_host_pressed(port=default_port):
-	var host = NetworkedMultiplayerENet.new()
-	host.set_compression_mode(NetworkedMultiplayerENet.COMPRESS_RANGE_CODER)
-	
 	var err = host.create_server(port, 15) # max: 1 peer, since it's a 2 players game
 	if (err!=OK):
 		#is another server running?
