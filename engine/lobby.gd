@@ -68,9 +68,6 @@ func _set_status(text,isok):
 		get_node("panel/status_fail").set_text(text)
 		
 func _on_host_pressed(port=default_port):
-	var ipport = get_node("panel/address").get_text().rsplit(":")
-	port = int(ipport[1])
-	
 	var host = NetworkedMultiplayerENet.new()
 	host.set_compression_mode(NetworkedMultiplayerENet.COMPRESS_RANGE_CODER)
 	
