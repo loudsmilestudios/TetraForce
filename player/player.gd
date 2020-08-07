@@ -133,7 +133,7 @@ func state_spin():
 	loop_movement()
 	loop_damage()
 	movedir = Vector2.ZERO
-	if hitstun != 0:
+	if hitstun != 0 || !has_node("sword"):
 		state = "default"
 
 func state_menu():
