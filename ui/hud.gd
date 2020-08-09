@@ -1,6 +1,7 @@
 extends CanvasLayer
 
 var player
+var dialogue
 
 const HEART_ROW_SIZE = 8
 const HEART_SIZE = 8
@@ -10,6 +11,9 @@ onready var hearts = $hud2d/hearts
 onready var buttons = $hud2d/buttons
 
 func initialize(p):
+	dialogue = preload("res://ui/dialogue_manager.tscn").instance()
+	get_parent().add_child(dialogue)
+	
 	player = p
 	player.connect("health_changed", self, "update_hearts")
 	
