@@ -27,11 +27,7 @@ onready var tween = $DialogueUI/Tween
 onready var dialogueButtons = [$DialogueUI/ChoiceBox/Button1,$DialogueUI/ChoiceBox/Button2]
 
 
-func _ready():
-	global.dialogueWindow = self
-	
-func _physics_process(_delta):
-	$"DialogueUI/next-indicator".visible = finished
+func _input(event):
 	if Input.is_action_pressed("B"):
 		tween.set_speed_scale(2.0)
 	else:
@@ -133,15 +129,16 @@ func UpdateUI():
 			dialogueButtons[0].connect("pressed",self,"_on_Button_Pressed", [curent_node_next_id])
 
 	else:
-		dialoguePanel.hide()
 		get_parent().action_cooldown = 10
 		get_parent().state = "default"
 		dialogueText.percent_visible = 0
+		queue_free()
 		
 
 #-----Text Animation-----#
 func Dialogue_Anim():
 	finished = false
+	$"DialogueUI/next-indicator".hide()
 	var line_speed = (curent_node_text.length() * 0.02)
 	tween.interpolate_property(dialogueText,"percent_visible",0,1,line_speed, Tween.TRANS_LINEAR)
 	tween.start()
@@ -160,6 +157,7 @@ func Begin_Dialogue():
 #-----Prompt Once Text Complete-----#
 func _on_Tween_tween_all_completed():
 	finished = true
+	$"DialogueUI/next-indicator".show()
 	if curent_node_choices.size() != null:
 		choiceBox.show()
 		dialogueButtons[0].grab_focus()

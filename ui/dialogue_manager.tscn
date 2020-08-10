@@ -8,7 +8,6 @@
 [ext_resource path="res://ui/theme/dogicapixelbold.ttf" type="DynamicFontData" id=6]
 [ext_resource path="res://ui/theme/focus.png" type="Texture" id=7]
 
-
 [sub_resource type="DynamicFont" id=1]
 size = 8
 extra_spacing_bottom = 1
@@ -19,7 +18,7 @@ font_data = ExtResource( 4 )
 size = 8
 font_data = ExtResource( 6 )
 
-[sub_resource type="StyleBoxTexture" id=6]
+[sub_resource type="StyleBoxTexture" id=3]
 texture = ExtResource( 7 )
 region_rect = Rect2( 0, 0, 16, 16 )
 margin_left = 1.0
@@ -36,7 +35,7 @@ extra_spacing_bottom = -2
 extra_spacing_char = -1
 font_data = ExtResource( 4 )
 
-[sub_resource type="StyleBoxTexture" id=7]
+[sub_resource type="StyleBoxTexture" id=5]
 texture = ExtResource( 7 )
 region_rect = Rect2( 0, 0, 16, 16 )
 margin_left = 1.0
@@ -44,7 +43,7 @@ margin_right = 1.0
 margin_top = 1.0
 margin_bottom = 1.0
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=6]
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:position")
@@ -136,7 +135,7 @@ margin_right = 59.691
 margin_bottom = 15.6765
 size_flags_horizontal = 0
 size_flags_vertical = 0
-custom_styles/focus = SubResource( 6 )
+custom_styles/focus = SubResource( 3 )
 custom_fonts/font = SubResource( 4 )
 button_mask = 0
 text = "Continue"
@@ -152,7 +151,7 @@ margin_right = 59.691
 margin_bottom = 25.6765
 size_flags_horizontal = 0
 size_flags_vertical = 0
-custom_styles/focus = SubResource( 7 )
+custom_styles/focus = SubResource( 5 )
 custom_fonts/font = SubResource( 4 )
 button_mask = 0
 text = "Continue"
@@ -167,7 +166,7 @@ texture = ExtResource( 5 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="DialogueUI/next-indicator"]
 autoplay = "next-indicator"
-anims/next-indicator = SubResource( 5 )
+anims/next-indicator = SubResource( 6 )
 
 [node name="Tween" type="Tween" parent="DialogueUI"]
 [connection signal="tween_all_completed" from="DialogueUI/Tween" to="." method="_on_Tween_tween_all_completed"]

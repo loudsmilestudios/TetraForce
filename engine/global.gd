@@ -1,7 +1,6 @@
 extends Node
 
 var player
-var dialogueWindow = null
 
 onready var equips = {"B": "Sword", "X": "", "Y": ""}
 

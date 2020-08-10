@@ -200,4 +200,4 @@ environment/default_environment="res://default_env.tres"
 
 [tiled_importer]
 
-enable_json_format=true
+enable_json_format=false

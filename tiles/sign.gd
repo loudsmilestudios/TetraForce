@@ -6,11 +6,14 @@ signal begin_dialogue
 
 func _ready():
 	add_to_group("interactable")
-	yield(get_tree().create_timer(1),"timeout")
-	connect("begin_dialogue", global.dialogueWindow, "Begin_Dialogue")
+	
 
 func interact(node):
+	var dialogue = preload("res://ui/dialogue_manager.tscn").instance()
+	node.add_child(dialogue)
+	connect("begin_dialogue", dialogue, "Begin_Dialogue")
+	
 	if file_name != "":
-		global.dialogueWindow.file_name = file_name
+		dialogue.file_name = file_name
 		emit_signal("begin_dialogue")
 
