@@ -1,7 +1,6 @@
 extends CanvasLayer
 
 var player
-var dialogue
 
 const HEART_ROW_SIZE = 8
 const HEART_SIZE = 8
