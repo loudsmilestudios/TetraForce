@@ -5,17 +5,21 @@ export var default_port = 7777 # some random number, pick your port properly
 
 var map = "res://maps/overworld.tmx"
 
+var is_server = false
 #### Network callbacks from SceneTree ####
 
 func create_level():
 	if !get_tree().is_network_server():
 		network.pid = get_tree().get_network_unique_id()
 	network.initialize()
-	var level = load(map).instance()
-	#level.connect("game_finished",self,"_end_game",[],CONNECT_DEFERRED) # connect deferred so we can safely erase it from the callback
-	get_tree().get_root().add_child(level)
-	hide()
-
+	if(is_server):
+		network.dedicated = true
+		print("This is a server and will not load the game.")
+	else:
+		var level = load(map).instance()
+		#level.connect("game_finished",self,"_end_game",[],CONNECT_DEFERRED) # connect deferred so we can safely erase it from the callback
+		get_tree().get_root().add_child(level)
+		hide()
 # callback from SceneTree
 func _player_connected(id):
 	return
@@ -65,6 +69,8 @@ func _set_status(text,isok):
 		get_node("panel/status_fail").set_text(text)
 
 func _on_host_pressed(port=default_port):
+	var ipport = get_node("panel/address").get_text().rsplit(":")
+	port = int(ipport[1])
 	var host = NetworkedMultiplayerENet.new()
 	host.set_compression_mode(NetworkedMultiplayerENet.COMPRESS_RANGE_CODER)
 	var err = host.create_server(port, 15) # max: 1 peer, since it's a 2 players game
@@ -76,9 +82,11 @@ func _on_host_pressed(port=default_port):
 	get_tree().set_network_peer(host)
 	get_node("panel/join").set_disabled(true)
 	get_node("panel/host").set_disabled(true)
+	#Added to make it clear to those who run in dedicated server that the server is running
+	get_node("panel/status_ok").set_text("Server Started")
 	
 	create_level()
-
+	
 func _on_join_pressed():
 	
 	var ipport = get_node("panel/address").get_text().rsplit(":")
@@ -107,15 +115,44 @@ func _ready():
 	get_tree().connect("server_disconnected",self,"_server_disconnected")
 	
 	get_tree().set_auto_accept_quit(false)
-
-	if OS.get_name() == "Server":
-		var args = OS.get_cmdline_args()
-		var port = default_port
-		if args.size() >= 1:
-			port = int(args[0])
-
-		call_deferred("_on_host_pressed", port)
 	
+	# we'll have to update this for non-AWS server builds
+	if OS.get_name() == "Server":
+		# we didn't need the port stuff for AWS right?
+		set_dedicated_server()
+		call_deferred("_on_host_pressed", default_port)
+	
+	#For server commandline arguments. Searches for ones passed, then tries to set ones that exist.
+	#Puts arguments passed as "--example=value" in a dictionary.
+	var arguments = {}
+	for argument in OS.get_cmdline_args():
+		if argument.find("=") > -1:
+			var key_value = argument.split("=")
+			arguments[key_value[0].lstrip("--")] = key_value[1]
+	#Checks if debug is true and exists as a passed command
+	if("dedicatedserver" in arguments):
+		if ((arguments.get("dedicatedserver")) == "true"):
+			set_dedicated_server()
+	#this overrides the default port of 7777
+	if("port" in arguments):
+		default_port = int(arguments["port"])
+		get_node("panel/address").set_text("127.0.0.1:" + arguments["port"])
+	#autostarts based on command line arguments
+	if ("autostart" in arguments):
+		if((arguments.get("autostart")) == "false"):
+			pass
+		else:
+			call_deferred("_on_host_pressed", default_port)
+
+func set_dedicated_server():
+	#Sets to true for other function
+	is_server = true
+	#Some cosmedic surgery on the lobby page.
+	get_node("panel/join").hide()
+	get_node("characterselect").hide()
+	get_node("title").set_text("Tetra Force Server")
+	get_node("panel/host").set_text("Start Server")
+
 func _notification(n):
 	if (n == MainLoop.NOTIFICATION_WM_QUIT_REQUEST):
 		get_tree().set_network_peer(null)
