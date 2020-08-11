@@ -116,6 +116,12 @@ func _ready():
 	
 	get_tree().set_auto_accept_quit(false)
 	
+	# we'll have to update this for non-AWS server builds
+	if OS.get_name() == "Server":
+		# we didn't need the port stuff for AWS right?
+		set_dedicated_server()
+		call_deferred("_on_host_pressed", default_port)
+	
 	#For server commandline arguments. Searches for ones passed, then tries to set ones that exist.
 	#Puts arguments passed as "--example=value" in a dictionary.
 	var arguments = {}
@@ -126,13 +132,7 @@ func _ready():
 	#Checks if debug is true and exists as a passed command
 	if("dedicatedserver" in arguments):
 		if ((arguments.get("dedicatedserver")) == "true"):
-			#Sets to true for other function
-			is_server = true
-			#Some cosmedic surgery on the lobby page.
-			get_node("panel/join").hide()
-			get_node("characterselect").hide()
-			get_node("title").set_text("Tetra Force Server")
-			get_node("panel/host").set_text("Start Server")
+			set_dedicated_server()
 	#this overrides the default port of 7777
 	if("port" in arguments):
 		default_port = int(arguments["port"])
@@ -143,7 +143,16 @@ func _ready():
 			pass
 		else:
 			call_deferred("_on_host_pressed", default_port)
-	
+
+func set_dedicated_server():
+	#Sets to true for other function
+	is_server = true
+	#Some cosmedic surgery on the lobby page.
+	get_node("panel/join").hide()
+	get_node("characterselect").hide()
+	get_node("title").set_text("Tetra Force Server")
+	get_node("panel/host").set_text("Start Server")
+
 func _notification(n):
 	if (n == MainLoop.NOTIFICATION_WM_QUIT_REQUEST):
 		get_tree().set_network_peer(null)
