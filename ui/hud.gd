@@ -10,6 +10,7 @@ onready var hearts = $hud2d/hearts
 onready var buttons = $hud2d/buttons
 
 func initialize(p):
+	
 	player = p
 	player.connect("health_changed", self, "update_hearts")
 	
