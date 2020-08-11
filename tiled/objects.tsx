@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tileset version="1.4" tiledversion="1.4.1" name="objects" tilewidth="16" tileheight="16" tilecount="6" columns="0">
+<tileset version="1.2" tiledversion="1.2.5" name="objects" tilewidth="16" tileheight="16" tilecount="8" columns="0">
  <grid orientation="orthogonal" width="1" height="1"/>
  <tile id="0">
   <properties>
@@ -36,12 +36,19 @@
  </tile>
  <tile id="5">
   <properties>
-   <property name="file_name" value=""/>
-   <property name="path" value="res://tiles/sign.tscn"/>
+   <property name="color" value="green"/>
+   <property name="path" value="res://enemies/slime/slime.tscn"/>
   </properties>
-  <image width="16" height="16" source="../../TetraForce/tiled/images/objects/sign.png"/>
-  <objectgroup draworder="index" id="2">
-   <object id="1" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
+  <image width="16" height="16" source="images/objects/greenslime.png"/>
+ </tile>
+ <tile id="6">
+  <properties>
+   <property name="color" value="red"/>
+   <property name="path" value="res://enemies/slime/slime.tscn"/>
+  </properties>
+  <image width="16" height="16" source="images/objects/redslime.png"/>
+ </tile>
+ <tile id="7">
+  <image width="16" height="16" source="images/objects/blueslime.png"/>
  </tile>
 </tileset>
