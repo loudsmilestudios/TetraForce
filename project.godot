@@ -39,7 +39,7 @@ _global_script_class_icons={
 [application]
 
 config/name="TetraForce"
-run/main_scene="res://engine/lobby.tscn"
+run/main_scene="res://engine/main.tscn"
 config/icon="res://icon.png"
 
 [autoload]

@@ -1,9 +1,9 @@
 [gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://engine/lobby.gd" type="Script" id=1]
+[ext_resource path="res://ui/theme/theme.tres" type="Theme" id=1]
 [ext_resource path="res://player/player.png" type="Texture" id=2]
-[ext_resource path="res://engine/characterselect.gd" type="Script" id=3]
-[ext_resource path="res://ui/theme/theme.tres" type="Theme" id=4]
+[ext_resource path="res://engine/main.gd" type="Script" id=3]
+[ext_resource path="res://engine/characterselect.gd" type="Script" id=4]
 
 [sub_resource type="Animation" id=1]
 resource_name = "default"
@@ -21,7 +21,7 @@ tracks/0/keys = {
 "values": [ 0, 1 ]
 }
 
-[node name="lobby" type="Control"]
+[node name="main" type="Control"]
 margin_left = 61.5164
 margin_top = -8.20218
 margin_right = 101.516
@@ -29,8 +29,8 @@ margin_bottom = 31.7978
 rect_scale = Vector2( 0.5, 0.5 )
 size_flags_horizontal = 2
 size_flags_vertical = 2
-theme = ExtResource( 4 )
-script = ExtResource( 1 )
+theme = ExtResource( 1 )
+script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -96,10 +96,10 @@ __meta__ = {
 }
 
 [node name="join" type="Button" parent="panel"]
-margin_left = 152.0
-margin_top = 40.0
-margin_right = 200.0
-margin_bottom = 64.0
+margin_left = 152.475
+margin_top = 43.4397
+margin_right = 200.475
+margin_bottom = 67.4397
 size_flags_horizontal = 2
 size_flags_vertical = 2
 text = "Join"
@@ -107,38 +107,12 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="status_ok" type="Label" parent="panel"]
-margin_left = 10.0
-margin_top = 90.0
-margin_right = 210.0
-margin_bottom = 104.0
-size_flags_horizontal = 2
-size_flags_vertical = 0
-custom_colors/font_color = Color( 0, 1, 0.015625, 1 )
-align = 1
-__meta__ = {
-"_edit_lock_": true
-}
-
-[node name="status_fail" type="Label" parent="panel"]
-margin_left = 10.0
-margin_top = 90.0
-margin_right = 210.0
-margin_bottom = 104.0
-size_flags_horizontal = 2
-size_flags_vertical = 0
-custom_colors/font_color = Color( 1, 0, 0, 1 )
-align = 1
-__meta__ = {
-"_edit_lock_": true
-}
-
 [node name="characterselect" type="Panel" parent="."]
 margin_left = 186.251
 margin_top = 126.965
 margin_right = 362.251
 margin_bottom = 222.965
-script = ExtResource( 3 )
+script = ExtResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
