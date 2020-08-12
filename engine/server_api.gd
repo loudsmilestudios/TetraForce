@@ -1,6 +1,6 @@
 extends Node
 
-export(String) var api_endpoint = ""
+export(String) var api_endpoint = "0gkwawuufd.execute-api.us-east-2.amazonaws.com"
 
 var _http_client : HTTPRequest
 
@@ -40,7 +40,7 @@ func get_servers(page : int = 0) -> Dictionary:
 # Requests API for creating a server
 # Returns: {"message": [MESSAGE], "success" : [SUCCESS] }
 func create_server(lobby : String = "") -> Dictionary:
-	_http_client.request("https://" + api_endpoint + "/create_server", [], true, HTTPClient.METHOD_POST)
+	_http_client.request("https://" + api_endpoint + "/create_server?server=" + str(lobby), [], true, HTTPClient.METHOD_POST)
 	var result = yield(_http_client, "request_completed")
 	if len(result) > 3 and result[1] == 200:
 		var json : JSONParseResult = JSON.parse(result[3].get_string_from_utf8())

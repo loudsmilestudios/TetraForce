@@ -61,10 +61,10 @@ __meta__ = {
 }
 
 [node name="panel" type="Panel" parent="."]
-margin_left = 20.9672
-margin_top = 88.4044
-margin_right = 244.967
-margin_bottom = 168.404
+margin_left = -85.5076
+margin_top = 94.9647
+margin_right = 138.492
+margin_bottom = 174.964
 size_flags_horizontal = 2
 size_flags_vertical = 2
 __meta__ = {
@@ -134,10 +134,10 @@ __meta__ = {
 }
 
 [node name="characterselect" type="Panel" parent="."]
-margin_left = 44.9672
-margin_top = 184.404
-margin_right = 220.967
-margin_bottom = 280.404
+margin_left = 186.251
+margin_top = 126.965
+margin_right = 362.251
+margin_bottom = 222.965
 script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -183,6 +183,33 @@ text = ">"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="aws" type="Panel" parent="."]
+margin_left = -64.0547
+margin_top = 183.64
+margin_right = 111.945
+margin_bottom = 255.64
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="lobby" type="LineEdit" parent="aws"]
+margin_left = 6.0
+margin_top = 6.0
+margin_right = 171.0
+margin_bottom = 38.4068
+
+[node name="connect" type="Button" parent="aws"]
+margin_left = 60.9977
+margin_top = 42.6674
+margin_right = 119.998
+margin_bottom = 64.6674
+text = "Connect"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 [connection signal="pressed" from="panel/host" to="." method="_on_host_pressed"]
 [connection signal="pressed" from="panel/join" to="." method="_on_join_pressed"]
 [connection signal="text_changed" from="characterselect/name" to="characterselect" method="_on_name_text_changed"]
+[connection signal="pressed" from="aws/connect" to="." method="_on_connect_pressed"]
