@@ -121,18 +121,11 @@ func _ready():
 	
 	# we'll have to update this for non-AWS server builds
 	if OS.get_name() == "Server":
-		var args = OS.get_cmdline_args()
-		var port = default_port
-		if args.size() >= 1:
-			port = int(args[0])
-	
-		call_deferred("_on_host_pressed", port)
+		# we didn't need the port stuff for AWS right?
+		set_dedicated_server()
+		call_deferred("_on_host_pressed", default_port)
 	
 	add_child(server_api)
-
-	# we didn't need the port stuff for AWS right?
-	set_dedicated_server()
-	call_deferred("_on_host_pressed", default_port)
 	
 	#For server commandline arguments. Searches for ones passed, then tries to set ones that exist.
 	#Puts arguments passed as "--example=value" in a dictionary.
