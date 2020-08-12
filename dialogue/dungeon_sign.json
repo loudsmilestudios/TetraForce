@@ -1,0 +1,45 @@
+{
+	"Force" : 0,
+	"Random": 0,
+	"Nodes" :
+	 [
+		{
+			"id"      : 0,
+			"name"    : "Sign:",
+			"text"    : "Can you read this sign?",
+			"next_id" : 1,
+			"choices" : [
+				
+				{
+					"text"    : "Yes",
+					"next_id" : 1
+				},
+
+				{
+					"text"    : "No",
+					"next_id" : 2
+				}
+			]
+		},
+
+		{
+			"id"      : 1,
+			"name"    : "Sign:",
+			"text"    : "Congratulations, now move along.",
+			"next_id" : -1,
+			"choices" : []
+		},
+
+		{
+			"id"      : 2,
+			"name"    : "Sign:",
+			"text"    : "That's a shame. I had something really important to tell you.",
+			"next_id" : -1,
+			"choices" : []
+		}
+
+
+
+	]
+
+}
