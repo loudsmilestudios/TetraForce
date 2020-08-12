@@ -1,11 +1,14 @@
-
 extends Control
 
 export var default_port = 7777 # some random number, pick your port properly
 
 var map = "res://maps/overworld.tmx"
 
+var server_api = preload("res://engine/server_api.gd").new()
+onready var lobby_line = $aws/lobby
+
 var is_server = false
+
 #### Network callbacks from SceneTree ####
 
 func create_level():
@@ -122,6 +125,8 @@ func _ready():
 		set_dedicated_server()
 		call_deferred("_on_host_pressed", default_port)
 	
+	add_child(server_api)
+	
 	#For server commandline arguments. Searches for ones passed, then tries to set ones that exist.
 	#Puts arguments passed as "--example=value" in a dictionary.
 	var arguments = {}
@@ -157,3 +162,21 @@ func _notification(n):
 	if (n == MainLoop.NOTIFICATION_WM_QUIT_REQUEST):
 		get_tree().set_network_peer(null)
 		get_tree().quit()
+
+func _on_connect_pressed():
+	var lobby_name = str(lobby_line.text)
+	#print(yield(server_api.stop_server(lobby_name), "completed"))
+	connect_to_lobby(lobby_name)
+
+func connect_to_lobby(lobby_name : String):
+	var lobby = yield(server_api.get_server(lobby_name), "completed")
+	if lobby.success == true:
+		var ip = str(lobby.data.ip, ":", lobby.data.port)
+		$panel/address.text = ip
+		call_deferred("_on_join_pressed")
+	else:
+		var new_lobby = yield(server_api.create_server(lobby_name), "completed")
+		if new_lobby.success == true:
+			connect_to_lobby(lobby_name)
+		else:
+			print(new_lobby.message)
