@@ -306,6 +306,16 @@ text = "Character skin and player name"
 align = 1
 autowrap = true
 
+[node name="save" type="Button" parent="options"]
+margin_left = 320.0
+margin_top = 160.0
+margin_right = 368.0
+margin_bottom = 182.0
+text = "Save"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="back" type="Button" parent="." groups=[
 "menu",
 ]]
@@ -325,4 +335,5 @@ __meta__ = {
 [connection signal="pressed" from="multiplayer/Manual/host" to="." method="_on_host_pressed"]
 [connection signal="pressed" from="multiplayer/Manual/join" to="." method="_on_join_pressed"]
 [connection signal="text_changed" from="options/scroll/vbox/characterselect/name" to="options/scroll/vbox/characterselect" method="_on_name_text_changed"]
+[connection signal="pressed" from="options/save" to="." method="_on_save_pressed"]
 [connection signal="pressed" from="back" to="." method="_on_back_pressed"]

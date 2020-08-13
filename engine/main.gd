@@ -8,6 +8,7 @@ onready var address_line = $multiplayer/Manual/address
 onready var lobby_line = $multiplayer/Automatic/lobby
 
 func _ready():
+	global.load_options()
 	hide_menus()
 	$top.show()
 	
@@ -39,7 +40,7 @@ func _ready():
 	if OS.get_name() == "Server":
 		set_dedicated_server()
 	
-	print(yield(server_api.get_servers(), "completed"))
+	#print(yield(server_api.get_servers(), "completed"))
 
 func start_game(dedicated = false):
 	network.initialize()
@@ -78,7 +79,6 @@ func join_aws(lobby_name):
 	var lobby = yield(server_api.get_server(lobby_name), "completed")
 	if lobby.success == true:
 		join_server(lobby.data.ip, lobby.data.port)
-		network.lobby_name = lobby_name
 	else:
 		var new_lobby = yield(server_api.create_server(lobby_name), "completed")
 		join_aws(lobby_name)
@@ -147,3 +147,6 @@ func _on_options_pressed():
 func _on_back_pressed():
 	hide_menus()
 	$top.show()
+
+func _on_save_pressed():
+	global.save_options()
