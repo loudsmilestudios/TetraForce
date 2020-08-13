@@ -49,8 +49,8 @@ func add_new_player(id):
 	new_player.initialize()
 	
 	if id == network.pid:
-		new_player.sprite.texture = load(network.my_player_data.skin)
-		new_player.nametag.text = network.my_player_data.name
+		new_player.sprite.texture = load(global.options.player_data.skin)
+		new_player.nametag.text = global.options.player_data.name
 	else:
 		new_player.sprite.texture = load(network.player_data.get(id).skin)
 		new_player.nametag.text = network.player_data.get(id).name

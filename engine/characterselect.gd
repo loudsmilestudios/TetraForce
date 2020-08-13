@@ -2,27 +2,32 @@ extends Panel
 
 var selected = 0
 
-var options = {
+var skins = {
 	"Chain": "res://player/player.png",
 	"Knot": "res://player/knot.png",
 	"Key": "res://player/key.png",
 }
 
 func _ready():
+	global.connect("options_loaded", self, "update_options")
 	update_skin(0)
 	$back.connect("pressed", self, "update_skin", [-1])
 	$forward.connect("pressed", self, "update_skin", [1])
 
+func update_options():
+	$name.text = global.options.player_data.name
+	$preview.texture = load(global.options.player_data.skin)
+
 func update_skin(i):
-	selected = wrapi(selected + i, 0, options.size())
+	selected = wrapi(selected + i, 0, skins.size())
 	
-	$preview.texture = load(options.values()[selected])
+	$preview.texture = load(skins.values()[selected])
 	
-	if options.keys().has($name.text):
-		$name.text = options.keys()[selected]
-		network.my_player_data.name = $name.text
+	if skins.keys().has($name.text):
+		$name.text = skins.keys()[selected]
+		global.options.player_data.name = $name.text
 	
-	network.my_player_data.skin = options.values()[selected]
+	global.options.player_data.skin = skins.values()[selected]
 
 func _on_name_text_changed(new_text):
-	network.my_player_data.name = new_text
+	global.options.player_data.name = new_text

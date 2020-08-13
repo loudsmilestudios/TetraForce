@@ -3,8 +3,6 @@ extends Node
 var pid = 1
 
 var dedicated = false
-var lobby_name = null
-var was_populated = false # turned true when a player joins
 
 var current_map = null
 var player_list = {} # player, map -- every active player and what map they're in
@@ -20,10 +18,6 @@ signal end_aws_task
 signal received_player_list
 
 var player_data = {}
-var my_player_data = {
-	skin="res://player/player.png",
-	name="Chain",
-}
 
 var states = {} # states[nodepath] = properties
 
@@ -40,10 +34,10 @@ func initialize():
 	tick.start()
 	
 	if get_tree().is_network_server() && !dedicated:
-		player_data[1] = my_player_data
+		player_data[1] = global.options.player_data
 	else:
 		pid = get_tree().get_network_unique_id()
-		rpc_id(1, "_receive_my_player_data", my_player_data)
+		rpc_id(1, "_receive_my_player_data", global.options.player_data)
 
 remote func _receive_my_player_data(data):
 	var player_name = data.name
@@ -51,11 +45,6 @@ remote func _receive_my_player_data(data):
 	player_data[player_id] = data
 	rpc("_receive_player_data", player_data)
 	print(str(get_player_tag(player_id), " joined the game."))
-	
-	if !was_populated:
-		print("Requesting lobby name")
-		rpc_id(player_id, "_request_lobby_name")
-		was_populated = true
 
 remote func _receive_player_data(data):
 	player_data = data
@@ -136,18 +125,9 @@ func update_map_hosts():
 		if player_list[map_host] != map || !player_list.keys().has(map_host):
 			map_hosts[map] = player_list.keys()[player_list.values().find(map)]
 
-remote func _request_lobby_name():
-	rpc_id(1, "_receive_lobby_name", lobby_name)
-
-remote func _receive_lobby_name(n):
-	if n != null:
-		print("Received lobby name: ", n)
-		lobby_name = n
-
 func _player_disconnected(id): # remove disconnected players from player_list
 	if get_tree().is_network_server():
 		print(str(get_player_tag(id), " left the game."))
-		emit_signal("end_aws_task", lobby_name)
 		player_list.erase(id)
 		for map in map_hosts.keys():
 			var map_host = map_hosts.get(map)
