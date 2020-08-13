@@ -51,6 +51,11 @@ remote func _receive_my_player_data(data):
 	player_data[player_id] = data
 	rpc("_receive_player_data", player_data)
 	print(str(get_player_tag(player_id), " joined the game."))
+	
+	if !was_populated:
+		print("Requesting lobby name")
+		rpc_id(player_id, "_request_lobby_name")
+		was_populated = true
 
 remote func _receive_player_data(data):
 	player_data = data
@@ -131,18 +136,13 @@ func update_map_hosts():
 		if player_list[map_host] != map || !player_list.keys().has(map_host):
 			map_hosts[map] = player_list.keys()[player_list.values().find(map)]
 
-func _player_connected(id):
-	if id != 1 && !was_populated:
-		# idk if the server has the lobby name anywhere
-		# I'm just asking the first player :/
-		rpc_id(id, "_request_lobby_name")
-		was_populated = true
-
 remote func _request_lobby_name():
 	rpc_id(1, "_receive_lobby_name", lobby_name)
 
 remote func _receive_lobby_name(n):
-	lobby_name = n
+	if n != null:
+		print("Received lobby name: ", n)
+		lobby_name = n
 
 func _player_disconnected(id): # remove disconnected players from player_list
 	if get_tree().is_network_server():
@@ -155,7 +155,9 @@ func _player_disconnected(id): # remove disconnected players from player_list
 		update_map_hosts()
 		rpc("_receive_player_list", player_list, map_hosts)
 		update_players()
+		printt(lobby_name, player_list.size(), was_populated)
 		if lobby_name != null && player_list.size() == 1 && was_populated:
+			print("Emitting AWS task end signal")
 			emit_signal("end_aws_task", lobby_name)
 
 func is_map_host():
