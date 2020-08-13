@@ -119,8 +119,8 @@ func _notification(n):
 		quit_program()
 
 func _on_connect_pressed():
-	print(yield(server_api.stop_server(lobby_line.text), "completed"))
-	#join_aws(lobby_line.text)
+	#print(yield(server_api.stop_server(lobby_line.text), "completed"))
+	join_aws(lobby_line.text)
 
 func _on_host_pressed():
 	host_server(true)
