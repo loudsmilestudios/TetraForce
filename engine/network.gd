@@ -1,7 +1,10 @@
 extends Node
 
 var pid = 1
+
 var dedicated = false
+var lobby_name = null
+var was_populated = false # turned true when a player joins
 
 var current_map = null
 var player_list = {} # player, map -- every active player and what map they're in
@@ -13,6 +16,7 @@ var map_peers = []
 var tick
 var tick_time = 0.05
 
+signal end_aws_task
 signal received_player_list
 
 var player_data = {}
@@ -25,6 +29,7 @@ var states = {} # states[nodepath] = properties
 
 func _ready():
 	set_process(false)
+	get_tree().connect("network_peer_connected", self, "_player_connected")
 	get_tree().connect("network_peer_disconnected", self, "_player_disconnected")
 
 func initialize():
@@ -121,6 +126,19 @@ func update_map_hosts():
 		if player_list[map_host] != map || !player_list.keys().has(map_host):
 			map_hosts[map] = player_list.keys()[player_list.values().find(map)]
 
+func _player_connected(id):
+	if id != 1 && !was_populated:
+		# idk if the server has the lobby name anywhere
+		# I'm just asking the first player :/
+		rpc_id(id, "_request_lobby_name")
+		was_populated = true
+
+remote func _request_lobby_name():
+	rpc_id(1, "_receive_lobby_name", lobby_name)
+
+remote func _receive_lobby_name(n):
+	lobby_name = n
+
 func _player_disconnected(id): # remove disconnected players from player_list
 	if get_tree().is_network_server():
 		player_list.erase(id)
@@ -131,6 +149,8 @@ func _player_disconnected(id): # remove disconnected players from player_list
 		update_map_hosts()
 		rpc("_receive_player_list", player_list, map_hosts)
 		update_players()
+		if lobby_name != null && player_list.size() == 0 && was_populated:
+			emit_signal("end_aws_task", lobby_name)
 
 func is_map_host():
 	if !map_hosts.keys().has(current_map.name):
