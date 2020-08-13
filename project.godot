@@ -45,9 +45,8 @@ config/icon="res://icon.png"
 [autoload]
 
 network="*res://engine/network.gd"
-debug="*res://engine/debug.tscn"
-global="*res://engine/global.gd"
 screenfx="*res://engine/screenfx.tscn"
+global="*res://engine/global.gd"
 
 [debug]
 
@@ -185,9 +184,11 @@ SELECT={
 [rendering]
 
 quality/driver/driver_name="GLES2"
+quality/2d/use_pixel_snap=true
 vram_compression/import_etc=true
 vram_compression/import_etc2=false
 environment/default_environment="res://default_env.tres"
+quality/dynamic_fonts/use_oversampling=false
 
 [tiled_importer]
 

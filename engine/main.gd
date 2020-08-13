@@ -1,12 +1,16 @@
 extends Control
 
-export var default_port = 7777 # some random number, pick your port properly
-
-var map = "res://maps/overworld.tmx"
-
+var default_map = "res://maps/overworld.tmx"
+export var default_port = 7777
 var server_api = preload("res://engine/server_api.gd").new()
 
+onready var address_line = $multiplayer/Manual/address
+onready var lobby_line = $multiplayer/Automatic/lobby
+
 func _ready():
+	hide_menus()
+	$top.show()
+	
 	get_tree().connect("connected_to_server", self, "_client_connect_ok")
 	get_tree().connect("connection_failed", self, "_client_connect_fail")
 	get_tree().connect("server_disconnected", self, "_client_disconnect")
@@ -39,14 +43,14 @@ func start_game(dedicated = false):
 	if dedicated:
 		network.dedicated = true
 	else:
-		var level = load(map).instance()
+		var level = load(default_map).instance()
 		get_tree().get_root().add_child(level)
 		hide()
 
-func host_server(dedicated = false, port = default_port):
+func host_server(dedicated = false, port = default_port, max_players = 16):
 	var enet = NetworkedMultiplayerENet.new()
 	enet.set_compression_mode(NetworkedMultiplayerENet.COMPRESS_RANGE_CODER)
-	var err = enet.create_server(port, 16)
+	var err = enet.create_server(port, max_players)
 	if err != OK:
 		print("Port in use")
 		return
@@ -89,23 +93,50 @@ func end_game():
 	show()
 	get_tree().set_network_peer(null) #remove peer
 
+func quit_program():
+	get_tree().set_network_peer(null)
+	get_tree().quit()
+
 func set_dedicated_server():
 	host_server(true)
 
+func get_ipport():
+	return address_line.text.rsplit(":")
+
+func hide_menus():
+	for node in get_tree().get_nodes_in_group("menu"):
+		node.hide()
+
 func _notification(n):
 	if (n == MainLoop.NOTIFICATION_WM_QUIT_REQUEST):
-		get_tree().set_network_peer(null)
-		get_tree().quit()
+		quit_program()
 
 func _on_connect_pressed():
 	#print(yield(server_api.stop_server(lobby_name), "completed"))
-	join_aws($aws/lobby.text)
+	join_aws(lobby_line.text)
 
 func _on_host_pressed():
-	host_server()
+	host_server(true)
 
 func _on_join_pressed():
 	join_server(get_ipport()[0], int(get_ipport()[1]))
 
-func get_ipport():
-	return get_node("panel/address").get_text().rsplit(":")
+func _on_quit_pressed():
+	quit_program()
+
+func _on_singleplayer_pressed():
+	host_server(false, 0, 1)
+
+func _on_multiplayer_pressed():
+	hide_menus()
+	$multiplayer.show()
+	$back.show()
+
+func _on_options_pressed():
+	hide_menus()
+	$options.show()
+	$back.show()
+
+func _on_back_pressed():
+	hide_menus()
+	$top.show()

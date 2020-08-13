@@ -22,24 +22,23 @@ tracks/0/keys = {
 }
 
 [node name="main" type="Control"]
-margin_left = 61.5164
-margin_top = -8.20218
-margin_right = 101.516
-margin_bottom = 31.7978
+margin_right = 39.9996
+margin_bottom = 40.0
 rect_scale = Vector2( 0.5, 0.5 )
 size_flags_horizontal = 2
 size_flags_vertical = 2
 theme = ExtResource( 1 )
 script = ExtResource( 3 )
 __meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
 [node name="bg" type="ColorRect" parent="."]
-margin_left = -131.0
-margin_top = 8.0
-margin_right = 397.0
-margin_bottom = 312.0
+margin_left = -16.0
+margin_top = -16.0
+margin_right = 528.0
+margin_bottom = 304.0
 color = Color( 0, 0, 0, 1 )
 __meta__ = {
 "_edit_lock_": true,
@@ -47,10 +46,10 @@ __meta__ = {
 }
 
 [node name="title" type="Label" parent="."]
-margin_left = 28.9672
-margin_top = 32.4044
-margin_right = 236.967
-margin_bottom = 72.4044
+margin_left = 208.0
+margin_top = 48.0
+margin_right = 304.0
+margin_bottom = 64.0
 size_flags_horizontal = 2
 size_flags_vertical = 0
 text = "TetraForce"
@@ -60,22 +59,137 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="panel" type="Panel" parent="."]
-margin_left = -85.5076
-margin_top = 94.9647
-margin_right = 138.492
-margin_bottom = 174.964
-size_flags_horizontal = 2
-size_flags_vertical = 2
+[node name="top" type="Panel" parent="." groups=[
+"menu",
+]]
+visible = false
+margin_left = 176.0
+margin_top = 96.0
+margin_right = 336.0
+margin_bottom = 248.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="address" type="LineEdit" parent="panel"]
+[node name="singleplayer" type="Button" parent="top"]
 margin_left = 16.0
-margin_top = 40.0
+margin_top = 16.0
+margin_right = 144.0
+margin_bottom = 38.0
+text = "Singleplayer"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="multiplayer" type="Button" parent="top"]
+margin_left = 16.0
+margin_top = 48.0
+margin_right = 144.0
+margin_bottom = 70.0
+text = "Multiplayer"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="options" type="Button" parent="top"]
+margin_left = 16.0
+margin_top = 80.4044
+margin_right = 144.0
+margin_bottom = 102.404
+text = "Options"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="quit" type="Button" parent="top"]
+margin_left = 16.0
+margin_top = 112.0
+margin_right = 144.0
+margin_bottom = 134.0
+text = "Quit"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="multiplayer" type="TabContainer" parent="." groups=[
+"menu",
+]]
+visible = false
+margin_left = 144.0
+margin_top = 80.0
+margin_right = 368.0
+margin_bottom = 272.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Automatic" type="Control" parent="multiplayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 8.99585
+margin_top = 29.9958
+margin_right = -9.51308
+margin_bottom = -9.11333
+
+[node name="lobby" type="LineEdit" parent="multiplayer/Automatic"]
+margin_left = 23.0042
+margin_top = 82.0042
+margin_right = 183.004
+margin_bottom = 114.411
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="connect" type="Button" parent="multiplayer/Automatic"]
+margin_left = 71.0042
+margin_top = 130.004
+margin_right = 135.004
+margin_bottom = 152.004
+text = "Connect"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="multiplayer/Automatic"]
+margin_right = 199.0
+margin_bottom = 50.0
+text = "Enter any lobby name below to create a new server hosted by us. Enter the same lobby name as someone else to join their server."
+align = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Manual" type="Control" parent="multiplayer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 8.99585
+margin_top = 29.9958
+margin_right = -9.51308
+margin_bottom = -9.11333
+size_flags_horizontal = 2
+size_flags_vertical = 2
+
+[node name="Label" type="Label" parent="multiplayer/Manual"]
+margin_right = 199.0
+margin_bottom = 146.0
+text = "Host a server on this machine by pressing the button below.
+Play on LAN with your local IP or online by port forwarding 7777.
+
+
+Connect to a server with IP:Port"
+align = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="address" type="LineEdit" parent="multiplayer/Manual"]
+margin_left = 8.0
+margin_top = 114.0
 margin_right = 136.0
-margin_bottom = 72.4068
+margin_bottom = 146.407
 size_flags_horizontal = 2
 size_flags_vertical = 2
 text = "127.0.0.1:7777"
@@ -83,23 +197,23 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="host" type="Button" parent="panel"]
-margin_left = 56.0
-margin_top = 8.0
-margin_right = 160.0
-margin_bottom = 32.0
+[node name="host" type="Button" parent="multiplayer/Manual"]
+margin_left = 71.0042
+margin_top = 66.0042
+margin_right = 135.004
+margin_bottom = 90.0042
 size_flags_horizontal = 2
 size_flags_vertical = 2
-text = "New Game"
+text = "Host"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="join" type="Button" parent="panel"]
-margin_left = 152.475
-margin_top = 43.4397
-margin_right = 200.475
-margin_bottom = 67.4397
+[node name="join" type="Button" parent="multiplayer/Manual"]
+margin_left = 142.0
+margin_top = 120.0
+margin_right = 206.0
+margin_bottom = 142.0
 size_flags_horizontal = 2
 size_flags_vertical = 2
 text = "Join"
@@ -107,33 +221,58 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="characterselect" type="Panel" parent="."]
-margin_left = 186.251
-margin_top = 126.965
-margin_right = 362.251
-margin_bottom = 222.965
+[node name="options" type="Panel" parent="." groups=[
+"menu",
+]]
+margin_left = 128.0
+margin_top = 96.0
+margin_right = 384.0
+margin_bottom = 272.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="scroll" type="ScrollContainer" parent="options"]
+margin_right = 256.0
+margin_bottom = 176.0
+follow_focus = true
+scroll_horizontal_enabled = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="vbox" type="Control" parent="options/scroll"]
+margin_bottom = 240.0
+rect_min_size = Vector2( 0, 240 )
+
+[node name="characterselect" type="Panel" parent="options/scroll/vbox"]
+margin_left = 16.0
+margin_top = 16.0
+margin_right = 240.0
+margin_bottom = 156.0
+rect_min_size = Vector2( 160, 114 )
 script = ExtResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="characterselect"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="options/scroll/vbox/characterselect"]
 autoplay = "default"
 playback_speed = 4.0
 anims/default = SubResource( 1 )
 
-[node name="preview" type="Sprite" parent="characterselect"]
-position = Vector2( 88, 32 )
+[node name="preview" type="Sprite" parent="options/scroll/vbox/characterselect"]
+position = Vector2( 112, 60 )
 scale = Vector2( 1.75, 1.75 )
 texture = ExtResource( 2 )
 vframes = 7
 hframes = 6
 
-[node name="name" type="LineEdit" parent="characterselect"]
-margin_left = 32.0
-margin_top = 56.0
-margin_right = 144.0
-margin_bottom = 88.4068
+[node name="name" type="LineEdit" parent="options/scroll/vbox/characterselect"]
+margin_left = 48.0
+margin_top = 92.0
+margin_right = 176.0
+margin_bottom = 124.407
 text = "Chain"
 align = 1
 max_length = 10
@@ -141,49 +280,49 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="back" type="Button" parent="characterselect"]
-margin_left = 24.0
-margin_top = 24.0
-margin_right = 48.0
-margin_bottom = 44.0
+[node name="back" type="Button" parent="options/scroll/vbox/characterselect"]
+margin_left = 48.0
+margin_top = 44.0
+margin_right = 64.0
+margin_bottom = 66.0
 text = "<"
 
-[node name="forward" type="Button" parent="characterselect"]
-margin_left = 128.0
-margin_top = 24.0
-margin_right = 152.0
-margin_bottom = 44.0
+[node name="forward" type="Button" parent="options/scroll/vbox/characterselect"]
+margin_left = 160.0
+margin_top = 44.0
+margin_right = 176.0
+margin_bottom = 66.0
 text = ">"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="aws" type="Panel" parent="."]
-margin_left = -64.0547
-margin_top = 183.64
-margin_right = 111.945
-margin_bottom = 255.64
-__meta__ = {
-"_edit_group_": true,
-"_edit_use_anchors_": false
-}
+[node name="Label" type="Label" parent="options/scroll/vbox/characterselect"]
+margin_left = 16.0
+margin_top = 12.0
+margin_right = 208.0
+margin_bottom = 28.0
+text = "Character skin and player name"
+align = 1
+autowrap = true
 
-[node name="lobby" type="LineEdit" parent="aws"]
-margin_left = 6.0
-margin_top = 6.0
-margin_right = 171.0
-margin_bottom = 38.4068
-
-[node name="connect" type="Button" parent="aws"]
-margin_left = 60.9977
-margin_top = 42.6674
-margin_right = 119.998
-margin_bottom = 64.6674
-text = "Connect"
+[node name="back" type="Button" parent="." groups=[
+"menu",
+]]
+margin_left = 16.0
+margin_top = 256.0
+margin_right = 64.0
+margin_bottom = 278.0
+text = "Back"
 __meta__ = {
 "_edit_use_anchors_": false
 }
-[connection signal="pressed" from="panel/host" to="." method="_on_host_pressed"]
-[connection signal="pressed" from="panel/join" to="." method="_on_join_pressed"]
-[connection signal="text_changed" from="characterselect/name" to="characterselect" method="_on_name_text_changed"]
-[connection signal="pressed" from="aws/connect" to="." method="_on_connect_pressed"]
+[connection signal="pressed" from="top/singleplayer" to="." method="_on_singleplayer_pressed"]
+[connection signal="pressed" from="top/multiplayer" to="." method="_on_multiplayer_pressed"]
+[connection signal="pressed" from="top/options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="top/quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="multiplayer/Automatic/connect" to="." method="_on_connect_pressed"]
+[connection signal="pressed" from="multiplayer/Manual/host" to="." method="_on_host_pressed"]
+[connection signal="pressed" from="multiplayer/Manual/join" to="." method="_on_join_pressed"]
+[connection signal="text_changed" from="options/scroll/vbox/characterselect/name" to="options/scroll/vbox/characterselect" method="_on_name_text_changed"]
+[connection signal="pressed" from="back" to="." method="_on_back_pressed"]
