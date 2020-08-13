@@ -56,8 +56,7 @@ func loop_ranged_attack():
 		if dir_to_player.y < 0:
 			direction.y = -1
 		else:
-			direction.y = 1;	
-	print(direction)
+			direction.y = 1;
 	spritedir = direction
 	# Throw projectile
 	use_item("res://enemy_items/javelin.tscn", direction)

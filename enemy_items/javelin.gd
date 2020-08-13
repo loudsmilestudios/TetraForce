@@ -5,6 +5,11 @@ var movedir = Vector2(0,0)
 var shooter
 var received_sync = false
 
+const KNOCKBACK = 5
+
+func _init():
+	DAMAGE = .5
+
 func start():
 	shooter = get_parent()
 	$Hitbox.connect("body_entered", self, "body_entered")
@@ -14,7 +19,6 @@ func start():
 
 	movedir = input
 	rotation_degrees = rad2deg(movedir.angle())
-	print(rotation_degrees)
 	
 	get_parent().remove_child(self)
 	shooter.get_parent().add_child(self)
@@ -35,12 +39,13 @@ func _physics_process(delta):
 	position += movedir * SPEED * delta
 
 func body_entered(body):
-	print(!is_network_master())
-	if !received_sync && !is_network_master() && body != shooter:
-		queue_free()
-		print('sync')
+	if !received_sync && is_network_master() && body != shooter:
+		if body is Entity:
+			body.damage(DAMAGE, KNOCKBACK * movedir)
+		else:
+			queue_free()
 	elif body is Entity && body != shooter:
-		damage(body)
+		body.damage(DAMAGE, KNOCKBACK * movedir)
 	elif body != shooter:
 		delete()
 		network.peer_call(self, "delete")
