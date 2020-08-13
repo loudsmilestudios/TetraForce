@@ -29,7 +29,7 @@ var states = {} # states[nodepath] = properties
 
 func _ready():
 	set_process(false)
-	get_tree().connect("network_peer_connected", self, "_player_connected")
+	#get_tree().connect("network_peer_connected", self, "_player_connected")
 	get_tree().connect("network_peer_disconnected", self, "_player_disconnected")
 
 func initialize():
@@ -147,6 +147,7 @@ remote func _receive_lobby_name(n):
 func _player_disconnected(id): # remove disconnected players from player_list
 	if get_tree().is_network_server():
 		print(str(get_player_tag(id), " left the game."))
+		emit_signal("end_aws_task", lobby_name)
 		player_list.erase(id)
 		for map in map_hosts.keys():
 			var map_host = map_hosts.get(map)
@@ -155,10 +156,6 @@ func _player_disconnected(id): # remove disconnected players from player_list
 		update_map_hosts()
 		rpc("_receive_player_list", player_list, map_hosts)
 		update_players()
-		printt(lobby_name, player_list.size(), was_populated)
-		if lobby_name != null && player_list.size() == 1 && was_populated:
-			print("Emitting AWS task end signal")
-			emit_signal("end_aws_task", lobby_name)
 
 func is_map_host():
 	if !map_hosts.keys().has(current_map.name):

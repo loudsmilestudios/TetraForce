@@ -84,7 +84,7 @@ func join_aws(lobby_name):
 		join_aws(lobby_name)
 
 func end_aws_task(task_name):
-	yield(server_api.stop_server(task_name), "completed")
+	print(yield(server_api.stop_server(task_name), "completed"))
 
 func _client_connect_ok():
 	start_game()
