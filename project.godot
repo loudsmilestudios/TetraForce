@@ -28,12 +28,18 @@ _global_script_classes=[ {
 "class": "Player",
 "language": "GDScript",
 "path": "res://player/player.gd"
+}, {
+"base": "Area2D",
+"class": "collectable",
+"language": "GDScript",
+"path": "res://engine/collectable.gd"
 } ]
 _global_script_class_icons={
 "Enemy": "",
 "Entity": "",
 "Item": "",
-"Player": ""
+"Player": "",
+"collectable": ""
 }
 
 [application]
