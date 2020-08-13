@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.5" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="16" tileheight="16" infinite="1" nextlayerid="5" nextobjectid="32">
+<map version="1.2" tiledversion="1.3.4" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="16" tileheight="16" infinite="1" nextlayerid="5" nextobjectid="39">
  <tileset firstgid="1" source="../tiled/dungeon/dungeon_ground.tsx"/>
  <tileset firstgid="3" source="../tiled/dungeon/dungeon_wall.tsx"/>
  <tileset firstgid="33" source="../tiled/objects.tsx"/>
@@ -307,9 +307,6 @@
     <property name="player_position" value="up"/>
    </properties>
   </object>
-  <object id="18" gid="33" x="160" y="80" width="16" height="16"/>
-  <object id="19" gid="33" x="96" y="64" width="16" height="16"/>
-  <object id="20" gid="33" x="160" y="48" width="16" height="16"/>
   <object id="21" gid="33" x="368" y="64" width="16" height="16"/>
   <object id="22" gid="33" x="448" y="96" width="16" height="16"/>
   <object id="23" gid="33" x="304" y="96" width="16" height="16"/>
@@ -319,6 +316,9 @@
   <object id="28" gid="35" x="128" y="208" width="16" height="16"/>
   <object id="29" gid="35" x="80" y="224" width="16" height="16"/>
   <object id="30" gid="35" x="176" y="240" width="16" height="16"/>
+  <object id="36" gid="41" x="96" y="80" width="16" height="16"/>
+  <object id="37" gid="41" x="176" y="112" width="16" height="16"/>
+  <object id="38" gid="41" x="176" y="48" width="16" height="16"/>
  </objectgroup>
  <imagelayer id="2" name="grid">
   <image source="../tiled/gridtemplate.png" width="2048" height="1152"/>
