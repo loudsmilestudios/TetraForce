@@ -37,6 +37,7 @@ func initialize():
 	if get_tree().is_network_server() && !dedicated:
 		player_data[1] = my_player_data
 	else:
+		pid = get_tree().get_network_unique_id()
 		rpc_id(1, "_receive_my_player_data", my_player_data)
 
 remote func _receive_my_player_data(data):
