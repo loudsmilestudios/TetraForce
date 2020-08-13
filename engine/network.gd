@@ -47,11 +47,16 @@ func initialize():
 
 remote func _receive_my_player_data(data):
 	var player_name = data.name
-	player_data[get_tree().get_rpc_sender_id()] = data
+	var player_id = get_tree().get_rpc_sender_id()
+	player_data[player_id] = data
 	rpc("_receive_player_data", player_data)
+	print(str(get_player_tag(player_id), " joined the game."))
 
 remote func _receive_player_data(data):
 	player_data = data
+
+func get_player_tag(id):
+	return str(player_data[id].name, " (", id, ")")
 
 ### PLAYER LIST UPDATES ###
 # super important. list of every player in the game & what map they're in
@@ -141,6 +146,7 @@ remote func _receive_lobby_name(n):
 
 func _player_disconnected(id): # remove disconnected players from player_list
 	if get_tree().is_network_server():
+		print(str(get_player_tag(id), " left the game."))
 		player_list.erase(id)
 		for map in map_hosts.keys():
 			var map_host = map_hosts.get(map)
@@ -149,7 +155,7 @@ func _player_disconnected(id): # remove disconnected players from player_list
 		update_map_hosts()
 		rpc("_receive_player_list", player_list, map_hosts)
 		update_players()
-		if lobby_name != null && player_list.size() == 0 && was_populated:
+		if lobby_name != null && player_list.size() == 1 && was_populated:
 			emit_signal("end_aws_task", lobby_name)
 
 func is_map_host():
