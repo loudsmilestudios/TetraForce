@@ -28,6 +28,10 @@ func _physics_process(delta):
 	
 	anim_switch("walk")
 	
+	if !is_network_master():
+		sprite.flip_h = (spritedir == "Left")
+		return
+
 	if movetimer > 0:
 		movetimer -= 1
 	

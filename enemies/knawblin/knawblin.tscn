@@ -129,12 +129,16 @@ anims/walkUp = SubResource( 6 )
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 2 )
 hframes = 8
-frame = 4
+frame = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 7 )
 
 [node name="NetworkObject" parent="." instance=ExtResource( 3 )]
+update_properties = {
+"animation": "",
+"pos": Vector2( 0, 0 )
+}
 
 [node name="Area2D" type="Area2D" parent="."]
 
