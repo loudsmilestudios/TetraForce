@@ -24,6 +24,8 @@ jobs:
             TAG=${{ github.event.inputs.version }}
           fi
           
+          echo $TAG > semantic.version
+          
           echo ::set-output name=TAG::$TAG
       - name: Build Godot Project
         id: build
