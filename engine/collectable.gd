@@ -5,10 +5,10 @@ class_name collectable
 export(float) var timer_till_self_destruct
 export(float) var time_till_flashing = 3 # Is the time till the collectable starts flashing, in seconds
 
-const TOTAL_FLASH_COUNT = 5;
-const FLASH_TIME_VISIBLE = .5;
-const FLASH_TIME_NOT_VISIBLE = .3;
-var flash_count = 0;
+const TOTAL_FLASH_COUNT = 5; # Total amount of flashes 
+const FLASH_TIME_VISIBLE = .5; # Time when collectables are invisible while flashing
+const FLASH_TIME_NOT_VISIBLE = .3; # Time when collectables are visible while flashing
+var flash_count = 0; # Current counter of flashes
 
 
 
@@ -21,7 +21,6 @@ func _ready():
 	timer.connect("timeout", self, "_flash")
 	timer.name = "Timer"
 	if time_till_flashing > 0: timer.start()
-	timer.one_shot = true
 
 func _flash():
 	flash_count+=1
@@ -30,7 +29,7 @@ func _flash():
 
 	if($Sprite.visible):
 		$Timer.wait_time = FLASH_TIME_NOT_VISIBLE
-	if(!$Sprite.visible):
+	else:
 		$Timer.wait_time = FLASH_TIME_VISIBLE
 	$Sprite.visible = !$Sprite.visible
 
