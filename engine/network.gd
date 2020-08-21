@@ -94,7 +94,7 @@ func update_players(): # gets list of all players in map AND all other players
 	map_peers = []
 	# get all players in current_map
 	for id in player_list:
-		if player_list.get(id) == player_list.get(id):
+		if player_list.get(id) == player_list.get(pid):
 			current_players.append(id)
 	# get all players besides self in current_map
 	for player in current_players:
