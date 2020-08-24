@@ -9,7 +9,9 @@ It is built with the open source [Godot Engine](https://godotengine.org/)
 ## Links
 
 [Website](https://tetraforce.io/)
+
 [Discord server](https://discord.gg/cxTBVCZ)
+
 [Patreon](https://www.patreon.com/tetraforce)
 
 ## Contributing
