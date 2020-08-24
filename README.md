@@ -2,25 +2,15 @@
 
 ![Build Godot Project](https://github.com/fornclake/TetraForce/workflows/Build%20Godot%20Project/badge.svg?branch=master)
 
+TetraForce is an action adventure game inspired by the top-down Legend of Zelda games. It is designed to be very replayable for casual players and Zelda enthusiasts. The three features it will have to reach that goal is multiplayer, item randomizer, and moddability. Without these elements we will have a solid Zelda-inspired adventure. With all three added, it is a brand new Zelda experience.
 
-TetraForce is a GBC Zelda-inspired game featuring online multiplayer. It is built with the open source [Godot Engine](https://godotengine.org/), and is currently in development.
+It is built with the open source [Godot Engine](https://godotengine.org/)
 
-[Download the latest demo build](https://github.com/fornclake/TetraForce/actions/runs/206551568)
+## Links
 
-## Community
-
-Visit our [discord server]() to join the community
-
-## Features
-
-### Monsters Planned
-Name|Status|Description
---|--|--
-Ocotorok|WIP|Slowly creeps around in random directions - every so often shoots a projectile in a random direction
-Keese|WIP|Waits until a player is within striking distance and then flies in a curved arc in the general direction of them
-Slimes|WIP|Slime ball that pops out of the ground when player gets near and then slowly moves closer to the player
-Many More!!!
-
+[Website](https://tetraforce.io/)
+[Discord server](https://discord.gg/cxTBVCZ)
+[Patreon](https://www.patreon.com/tetraforce)
 
 ## Contributing
 
