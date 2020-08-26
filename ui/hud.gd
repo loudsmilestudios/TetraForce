@@ -46,14 +46,12 @@ func update_items():
 		button.get_node("count").text = ""
 		
 		if global.equips[button.name] == "":
-			return
+			continue
 		
 		var info = global.item_list[global.equips[button.name]]
 		button.get_node("item").texture = info.icon
 		if info.ammo_type != "":
 			button.get_node("count").text = str(global.ammo[info.ammo_type])
-
-
 
 func show_hearts():
 	hearts.modulate = lerp(hearts.modulate, Color(1,1,1,1), 0.1)
