@@ -1,17 +1,17 @@
 extends Panel
 
 onready var anim = $AnimationPlayer
-onready var item_list = $scroll/items
+onready var weapon_list = $scroll/weapons
 onready var selected_icon = $display/selected_icon
 
 var selected = 0
 
 func _ready():
-	update_equipped()
+	get_parent().update_weapons()
 	anim.play("slideup")
 
 func start():
-	add_items()
+	add_weapons()
 	yield(get_tree(), "physics_frame")
 	change_selection(0)
 
@@ -21,44 +21,43 @@ func _input(event):
 	if Input.is_action_just_pressed("DOWN"):
 		change_selection(1)
 	if Input.is_action_just_pressed("B"):
-		set_item("B")
+		set_weapon("B")
 	if Input.is_action_just_pressed("X"):
-		set_item("X")
+		set_weapon("X")
 	if Input.is_action_just_pressed("Y"):
-		set_item("Y")
+		set_weapon("Y")
 	if Input.is_action_just_pressed("START"):
 		get_parent().player.state = "default"
 		get_parent().player.action_cooldown = 10
 		anim.play("slidedown")
 
 func change_selection(amt):
-	selected = wrapi(selected + amt, 0, item_list.get_child_count())
-	for entry in item_list.get_children():
+	selected = wrapi(selected + amt, 0, weapon_list.get_child_count())
+	for entry in weapon_list.get_children():
 		entry.selected = false
-	item_list.get_child(selected).selected = true
-	if item_list.get_child(selected).text == "------":
+	weapon_list.get_child(selected).selected = true
+	if weapon_list.get_child(selected).text == "------":
 		selected_icon.texture = null
 	else:
-		selected_icon.texture = global.item_list[item_list.get_child(selected).text].icon
-	
+		selected_icon.texture = global.weapon_list[weapon_list.get_child(selected).text].icon
 
-func add_items():
-	for child in item_list.get_children():
+func add_weapons():
+	for child in weapon_list.get_children():
 		child.queue_free()
-	for item_name in global.items:
+	for weapon_name in global.weapons:
 		var new_entry = preload("res://ui/entry.tscn").instance()
-		item_list.add_child(new_entry)
-		new_entry.text = item_name
-	while item_list.get_child_count() < 10:
+		weapon_list.add_child(new_entry)
+		new_entry.text = weapon_name
+	while weapon_list.get_child_count() < 10:
 		var new_entry = preload("res://ui/entry.tscn").instance()
-		item_list.add_child(new_entry)
+		weapon_list.add_child(new_entry)
 		new_entry.text = "------"
 
-func set_item(btn):
+func set_weapon(btn):
 	var old_selection = global.equips[btn]
-	var new_selection = item_list.get_child(selected).text
+	var new_selection = weapon_list.get_child(selected).text
 	
-	if item_list.get_child(selected).text == "------":
+	if weapon_list.get_child(selected).text == "------":
 		new_selection = ""
 	else:
 		for key in global.equips.keys():
@@ -67,8 +66,4 @@ func set_item(btn):
 	
 	global.equips[btn] = new_selection
 	
-	update_equipped()
-
-func update_equipped():
-	$equipped.text = str(global.equips)
-	get_parent().update_items()
+	get_parent().update_weapons()

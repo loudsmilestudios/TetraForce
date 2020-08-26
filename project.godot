@@ -12,28 +12,28 @@ _global_script_classes=[ {
 "base": "Entity",
 "class": "Enemy",
 "language": "GDScript",
-"path": "res://engine/enemy.gd"
+"path": "res://entities/enemies/enemy.gd"
 }, {
 "base": "KinematicBody2D",
 "class": "Entity",
 "language": "GDScript",
-"path": "res://engine/entity.gd"
-}, {
-"base": "Node2D",
-"class": "Item",
-"language": "GDScript",
-"path": "res://engine/item.gd"
+"path": "res://entities/entity.gd"
 }, {
 "base": "Entity",
 "class": "Player",
 "language": "GDScript",
-"path": "res://player/player.gd"
+"path": "res://entities/player/player.gd"
+}, {
+"base": "Node2D",
+"class": "Weapon",
+"language": "GDScript",
+"path": "res://entities/weapons/weapon.gd"
 } ]
 _global_script_class_icons={
 "Enemy": "",
 "Entity": "",
-"Item": "",
-"Player": ""
+"Player": "",
+"Weapon": ""
 }
 
 [application]
@@ -45,7 +45,7 @@ config/icon="res://icon.png"
 [autoload]
 
 network="*res://engine/network.gd"
-screenfx="*res://engine/screenfx.tscn"
+screenfx="*res://effects/screenfx.tscn"
 global="*res://engine/global.gd"
 
 [debug]

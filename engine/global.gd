@@ -2,9 +2,9 @@ extends Node
 
 var player
 var equips = {"B": "Sword", "X": "", "Y": ""}
-var items = ["Sword", "Bow"]
+var weapons = ["Sword", "Bow"]
 
-class ItemInfo:
+class WeaponInfo:
 	var path : String
 	var icon : Texture
 	var ammo_type : String = ""
@@ -14,7 +14,7 @@ class ItemInfo:
 		icon = i
 		ammo_type = a
 
-var item_list = {}
+var weapon_list = {}
 
 var ammo = {
 	"arrow": 30,
@@ -27,7 +27,7 @@ signal options_loaded
 var options = {
 	player_data = {
 		name="Chain",
-		skin="res://player/player.png",
+		skin="res://entities/player/chain.png",
 	}
 }
 
@@ -35,8 +35,8 @@ func _ready():
 	define_items()
 
 func define_items():
-	item_list["Sword"] = ItemInfo.new("res://items/sword.tscn", preload("res://ui/items/sword.png"), "")
-	item_list["Bow"] = ItemInfo.new("res://items/arrow.tscn", preload("res://ui/items/bow.png"), "arrow")
+	weapon_list["Sword"] = WeaponInfo.new("res://entities/weapons/sword.tscn", preload("res://ui/weapons/sword.png"), "")
+	weapon_list["Bow"] = WeaponInfo.new("res://entities/weapons/arrow.tscn", preload("res://ui/weapons/bow.png"), "arrow")
 
 func save_options():
 	var save_options = File.new()

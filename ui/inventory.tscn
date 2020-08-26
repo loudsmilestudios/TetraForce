@@ -89,17 +89,8 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="items" type="VBoxContainer" parent="scroll"]
+[node name="weapons" type="VBoxContainer" parent="scroll"]
 custom_constants/separation = 1
-
-[node name="equipped" type="Label" parent="."]
-margin_left = -165.0
-margin_top = 90.0
-margin_right = -125.0
-margin_bottom = 103.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="inventorydecor" type="Sprite" parent="."]
 position = Vector2( 71, 94 )

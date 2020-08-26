@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://entities/weapons/arrow.gd" type="Script" id=1]
+[ext_resource path="res://entities/weapons/arrow.png" type="Texture" id=2]
+
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 4, 4 )
+
+[node name="arrow" type="Node2D"]
+script = ExtResource( 1 )
+MAX_AMOUNT = 3
+delete_on_hit = true
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+
+[node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource( 1 )

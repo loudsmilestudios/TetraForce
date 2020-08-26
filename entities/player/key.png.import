@@ -1,0 +1,34 @@
+[remap]
+
+importer="texture"
+type="StreamTexture"
+path="res://.import/key.png-c8c60dc7721d1b467ceb4abd709f2d08.stex"
+metadata={
+"vram_texture": false
+}
+
+[deps]
+
+source_file="res://entities/player/key.png"
+dest_files=[ "res://.import/key.png-c8c60dc7721d1b467ceb4abd709f2d08.stex" ]
+
+[params]
+
+compress/mode=0
+compress/lossy_quality=0.7
+compress/hdr_mode=0
+compress/bptc_ldr=0
+compress/normal_map=0
+flags/repeat=0
+flags/filter=false
+flags/mipmaps=false
+flags/anisotropic=false
+flags/srgb=2
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/HDR_as_SRGB=false
+process/invert_color=false
+stream=false
+size_limit=0
+detect_3d=false
+svg/scale=1.0

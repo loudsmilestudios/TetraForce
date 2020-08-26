@@ -41,7 +41,7 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="item" type="Sprite" parent="hud2d/buttons/B"]
+[node name="icon" type="Sprite" parent="hud2d/buttons/B"]
 
 [node name="count" type="Label" parent="hud2d/buttons/B"]
 margin_left = -9.0
@@ -64,7 +64,7 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="item" type="Sprite" parent="hud2d/buttons/X"]
+[node name="icon" type="Sprite" parent="hud2d/buttons/X"]
 
 [node name="count" type="Label" parent="hud2d/buttons/X"]
 margin_left = -9.0
@@ -87,7 +87,7 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="item" type="Sprite" parent="hud2d/buttons/Y"]
+[node name="icon" type="Sprite" parent="hud2d/buttons/Y"]
 
 [node name="count" type="Label" parent="hud2d/buttons/Y"]
 margin_left = -9.0

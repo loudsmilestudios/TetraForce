@@ -1,9 +1,9 @@
 [gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://ui/theme/theme.tres" type="Theme" id=1]
-[ext_resource path="res://player/player.png" type="Texture" id=2]
+[ext_resource path="res://entities/player/chain.png" type="Texture" id=2]
 [ext_resource path="res://engine/main.gd" type="Script" id=3]
-[ext_resource path="res://engine/characterselect.gd" type="Script" id=4]
+[ext_resource path="res://ui/characterselect.gd" type="Script" id=4]
 
 [sub_resource type="Animation" id=1]
 resource_name = "default"

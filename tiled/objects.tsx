@@ -3,7 +3,7 @@
  <grid orientation="orthogonal" width="1" height="1"/>
  <tile id="0">
   <properties>
-   <property name="path" value="res://enemies/stalfos/stalfos.tscn"/>
+   <property name="path" value="res://entities/enemies/stalfos/stalfos.tscn"/>
   </properties>
   <image width="16" height="16" source="images/objects/stalfos.png"/>
  </tile>
@@ -37,14 +37,14 @@
  <tile id="5">
   <properties>
    <property name="color" value="green"/>
-   <property name="path" value="res://enemies/slime/slime.tscn"/>
+   <property name="path" value="res://entities/enemies/slime/slime.tscn"/>
   </properties>
   <image width="16" height="16" source="images/objects/greenslime.png"/>
  </tile>
  <tile id="6">
   <properties>
    <property name="color" value="red"/>
-   <property name="path" value="res://enemies/slime/slime.tscn"/>
+   <property name="path" value="res://entities/enemies/slime/slime.tscn"/>
   </properties>
   <image width="16" height="16" source="images/objects/redslime.png"/>
  </tile>

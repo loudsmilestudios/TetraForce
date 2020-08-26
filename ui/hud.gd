@@ -20,7 +20,7 @@ func initialize(p):
 		newheart.hframes = hearts.hframes
 		hearts.add_child(newheart)
 	update_hearts()
-	update_items()
+	update_weapons()
 	
 
 func update_hearts():
@@ -40,16 +40,16 @@ func update_hearts():
 		if index < lastheart:
 			heart.frame = 4
 
-func update_items():
+func update_weapons():
 	for button in buttons.get_children():
-		button.get_node("item").texture = null
+		button.get_node("icon").texture = null
 		button.get_node("count").text = ""
 		
 		if global.equips[button.name] == "":
 			continue
 		
-		var info = global.item_list[global.equips[button.name]]
-		button.get_node("item").texture = info.icon
+		var info = global.weapon_list[global.equips[button.name]]
+		button.get_node("icon").texture = info.icon
 		if info.ammo_type != "":
 			button.get_node("count").text = str(global.ammo[info.ammo_type])
 

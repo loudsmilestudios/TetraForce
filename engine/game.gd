@@ -2,7 +2,7 @@ extends Node
 
 signal player_entered
 
-var camera = preload("res://engine/camera.tscn").instance()
+var camera = preload("res://entities/player/camera.tscn").instance()
 
 func _ready():
 	network.current_map = self
@@ -35,11 +35,11 @@ func _process(delta): # can be on screen change instead of process
 			enemy.position = enemy.home_position
 
 func add_new_player(id):
-	var new_player = preload("res://player/player.tscn").instance()
+	var new_player = preload("res://entities/player/player.tscn").instance()
 	new_player.name = str(id)
 	new_player.set_network_master(id, true)
 	
-	var entity_detect = preload("res://engine/entity_detect.tscn").instance()
+	var entity_detect = preload("res://entities/player/entity_detect.tscn").instance()
 	entity_detect.player = new_player
 	add_child(entity_detect)
 	entity_detect.add_to_group(str(id))

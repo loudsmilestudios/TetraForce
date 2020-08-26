@@ -1,0 +1,44 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://entities/player/entity_detect.gd" type="Script" id=1]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 128, 72 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 4, 72 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 128, 4 )
+
+[node name="entity_detect" type="Area2D"]
+collision_layer = 3
+collision_mask = 3
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 128, 72 )
+shape = SubResource( 1 )
+
+[node name="cage" type="StaticBody2D" parent="."]
+collision_layer = 6
+collision_mask = 6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="cage"]
+position = Vector2( -4, 72 )
+shape = SubResource( 2 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="cage"]
+position = Vector2( 260, 72 )
+shape = SubResource( 2 )
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="cage"]
+position = Vector2( 128, -4 )
+shape = SubResource( 3 )
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="cage"]
+position = Vector2( 128, 148 )
+shape = SubResource( 3 )
