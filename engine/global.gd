@@ -2,21 +2,37 @@ extends Node
 
 var player
 var equips = {"B": "Sword", "X": "", "Y": ""}
-var weapons = ["Sword", "Bow"]
+var weapons = ["Sword"]
 
 class WeaponInfo:
 	var path : String
 	var icon : Texture
-	var ammo_type : String = ""
+	var ammo_type : String
+	var acquire : String
 	
-	func _init(p,i,a):
-		path = p
-		icon = i
-		ammo_type = a
+	func _init(use_path,icon_texture,ammo="",acquire_path=""):
+		path = use_path
+		icon = icon_texture
+		ammo_type = ammo
+		acquire = acquire_path
 
 var weapon_def = {
-	"Sword": WeaponInfo.new("res://entities/weapons/sword.tscn", preload("res://entities/weapons/icons/sword.png"), ""),
-	"Bow": WeaponInfo.new("res://entities/weapons/arrow.tscn", preload("res://entities/weapons/icons/bow.png"), "arrow"),
+	# "WeaponName": WeaponInfo.new(
+	# "path/to/weapon.tscn",
+	# preload("path/to/icon.png"),
+	# "ammo_type"
+	# "acquire_dialogue"),
+	
+	"Sword": WeaponInfo.new(
+		"res://entities/weapons/sword.tscn",
+		preload("res://entities/weapons/icons/sword.png"),
+		"",
+		""),
+	"Bow": WeaponInfo.new(
+		"res://entities/weapons/arrow.tscn",
+		preload("res://entities/weapons/icons/bow.png"),
+		"arrow",
+		"acquire_bow"),
 }
 
 var ammo = {

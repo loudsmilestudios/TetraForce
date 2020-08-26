@@ -8,8 +8,6 @@
 [ext_resource path="res://ui/theme/dogicapixelbold.ttf" type="DynamicFontData" id=6]
 [ext_resource path="res://ui/theme/focus.png" type="Texture" id=7]
 
-
-
 [sub_resource type="DynamicFont" id=1]
 size = 8
 extra_spacing_bottom = 1

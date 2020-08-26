@@ -1,14 +1,74 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://tiles/chest.png" type="Texture" id=1]
 [ext_resource path="res://tiles/chest.gd" type="Script" id=2]
 [ext_resource path="res://engine/network_object.tscn" type="PackedScene" id=3]
+[ext_resource path="res://entities/weapons/icons/bow.png" type="Texture" id=4]
+
+[sub_resource type="Animation" id=3]
+resource_name = "default"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Item:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, -4 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Item:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "open"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Item:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, -4 ), Vector2( 0, -12 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Item:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 8, 8 )
 
 [node name="chest" type="StaticBody2D"]
 script = ExtResource( 2 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "default"
+anims/default = SubResource( 3 )
+anims/open = SubResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )
@@ -23,3 +83,7 @@ persistent = true
 enter_properties = {
 "opened": false
 }
+
+[node name="Item" type="Sprite" parent="."]
+position = Vector2( 0, -8 )
+texture = ExtResource( 4 )

@@ -1,7 +1,7 @@
 extends CanvasLayer
 
 #---File---#
-var file_name: String = "dialogue_1.json" # File Name Imported from Tiled
+var file_name: String = "dialogue_1" # File Name Imported from Tiled
 var nodes # contains all the nodes of the current dialogue
 
 #----DATA (from file)-----#
@@ -26,6 +26,7 @@ onready var dialogueName = $DialogueUI/DialogueName
 onready var tween = $DialogueUI/Tween
 onready var dialogueButtons = [$DialogueUI/ChoiceBox/Button1,$DialogueUI/ChoiceBox/Button2]
 
+signal finished
 
 func _input(event):
 	if Input.is_action_pressed("B"):
@@ -41,8 +42,8 @@ func _input(event):
 func LoadFile(fname):
 	file_name = fname
 	var file = File.new()
-	if file.file_exists("res://dialogue/"+file_name):
-		file.open("res://dialogue/" + file_name, file.READ)
+	if file.file_exists("res://dialogue/"+file_name+".json"):
+		file.open("res://dialogue/" + file_name + ".json", file.READ)
 		var json_result = parse_json(file.get_as_text())
 		force = bool(json_result["Force"])
 		random = bool(json_result["Random"])
@@ -132,6 +133,7 @@ func UpdateUI():
 		get_parent().action_cooldown = 10
 		get_parent().state = "default"
 		dialogueText.percent_visible = 0
+		emit_signal("finished")
 		queue_free()
 		
 
@@ -151,7 +153,6 @@ func _on_Button_Pressed(id):
 func Begin_Dialogue():
 	choiceBox.rect_position.y = -33
 	LoadFile(file_name)
-	get_parent().state = "menu"
 	StartDialogue()
 
 #-----Prompt Once Text Complete-----#

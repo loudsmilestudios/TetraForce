@@ -2926,6 +2926,8 @@
   <object id="50" gid="5" x="1296" y="672" width="16" height="16"/>
   <object id="51" x="176" y="112">
    <properties>
+    <property name="def" value="weapon_def"/>
+    <property name="item" value="Bow"/>
     <property name="path" value="res://tiles/chest.tscn"/>
    </properties>
    <point/>

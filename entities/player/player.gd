@@ -67,6 +67,8 @@ func _physics_process(_delta):
 			state_spin()
 		"menu":
 			state_menu()
+		"acquire":
+			state_acquire()
 		"die":
 			state_die()
 	
@@ -139,6 +141,10 @@ func state_spin():
 
 func state_menu():
 	anim_switch("idle")
+
+func state_acquire():
+	animation = "acquire"
+	anim.play("acquire")
 
 func state_die():
 	if anim.assigned_animation != "die":
