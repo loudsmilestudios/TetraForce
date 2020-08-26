@@ -41,7 +41,7 @@ func initialize():
 
 		anim_switch("idle")
 
-		hud = preload("res://ui/hud.tscn").instance()
+		hud = preload("res://ui/hud/hud.tscn").instance()
 		add_child(hud)
 		hud.initialize(self)
 		connect("update_count", hud, "update_weapons")

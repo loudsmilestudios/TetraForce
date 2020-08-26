@@ -1,0 +1,111 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://ui/theme/theme.tres" type="Theme" id=1]
+[ext_resource path="res://ui/theme/panel2.png" type="Texture" id=2]
+[ext_resource path="res://ui/inventory/inventory.gd" type="Script" id=3]
+[ext_resource path="res://ui/inventory/inventorydecor.png" type="Texture" id=4]
+
+[sub_resource type="Animation" id=1]
+resource_name = "slidedown"
+length = 0.25
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 177, 42 ), Vector2( 177, 144 ) ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.25 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "queue_free"
+} ]
+}
+
+[sub_resource type="Animation" id=2]
+length = 0.25
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 177, 144 ), Vector2( 177, 42 ) ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "start"
+} ]
+}
+
+[node name="inventory" type="Panel"]
+margin_left = 177.0
+margin_top = 144.0
+margin_right = 256.0
+margin_bottom = 245.999
+theme = ExtResource( 1 )
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="scroll" type="ScrollContainer" parent="."]
+margin_left = 5.0
+margin_top = 12.0
+margin_right = 75.0
+margin_bottom = 90.0
+follow_focus = true
+scroll_horizontal_enabled = false
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="weapons" type="VBoxContainer" parent="scroll"]
+custom_constants/separation = 1
+
+[node name="inventorydecor" type="Sprite" parent="."]
+position = Vector2( 71, 94 )
+texture = ExtResource( 4 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+playback_speed = 2.0
+anims/slidedown = SubResource( 1 )
+anims/slideup = SubResource( 2 )
+
+[node name="display" type="Sprite" parent="."]
+position = Vector2( -19, 86 )
+texture = ExtResource( 2 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="selected_icon" type="Sprite" parent="display"]

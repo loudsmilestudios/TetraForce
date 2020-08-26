@@ -14,7 +14,10 @@ class WeaponInfo:
 		icon = i
 		ammo_type = a
 
-var weapon_list = {}
+var weapon_def = {
+	"Sword": WeaponInfo.new("res://entities/weapons/sword.tscn", preload("res://entities/weapons/icons/sword.png"), ""),
+	"Bow": WeaponInfo.new("res://entities/weapons/arrow.tscn", preload("res://entities/weapons/icons/bow.png"), "arrow"),
+}
 
 var ammo = {
 	"arrow": 30,
@@ -30,13 +33,6 @@ var options = {
 		skin="res://entities/player/chain.png",
 	}
 }
-
-func _ready():
-	define_items()
-
-func define_items():
-	weapon_list["Sword"] = WeaponInfo.new("res://entities/weapons/sword.tscn", preload("res://ui/weapons/sword.png"), "")
-	weapon_list["Bow"] = WeaponInfo.new("res://entities/weapons/arrow.tscn", preload("res://ui/weapons/bow.png"), "arrow")
 
 func save_options():
 	var save_options = File.new()

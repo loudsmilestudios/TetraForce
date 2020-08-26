@@ -1,0 +1,101 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://ui/theme/font.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://ui/hud/hearts.png" type="Texture" id=2]
+[ext_resource path="res://ui/hud/hud.gd" type="Script" id=3]
+[ext_resource path="res://ui/hud/upperhud.png" type="Texture" id=4]
+[ext_resource path="res://ui/hud/button_ui.png" type="Texture" id=5]
+
+[sub_resource type="DynamicFont" id=1]
+font_data = ExtResource( 1 )
+
+[node name="hud" type="CanvasLayer"]
+script = ExtResource( 3 )
+
+[node name="hud2d" type="Node2D" parent="."]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="hearts" type="Sprite" parent="hud2d"]
+modulate = Color( 1, 1, 1, 0.921569 )
+position = Vector2( 6, 6 )
+texture = ExtResource( 2 )
+hframes = 5
+
+[node name="upperhud" type="Sprite" parent="hud2d"]
+visible = false
+modulate = Color( 1, 1, 1, 0.882353 )
+position = Vector2( 236, 10 )
+texture = ExtResource( 4 )
+
+[node name="buttons" type="Node2D" parent="hud2d"]
+position = Vector2( 195, 1 )
+
+[node name="B" type="Sprite" parent="hud2d/buttons"]
+modulate = Color( 1, 1, 1, 0.882353 )
+position = Vector2( 8.5, 9 )
+texture = ExtResource( 5 )
+hframes = 3
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="icon" type="Sprite" parent="hud2d/buttons/B"]
+
+[node name="count" type="Label" parent="hud2d/buttons/B"]
+margin_left = -9.0
+margin_top = 6.0
+margin_right = 9.0
+margin_bottom = 20.0
+custom_fonts/font = SubResource( 1 )
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="X" type="Sprite" parent="hud2d/buttons"]
+modulate = Color( 1, 1, 1, 0.882353 )
+position = Vector2( 30, 9 )
+texture = ExtResource( 5 )
+hframes = 3
+frame = 1
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="icon" type="Sprite" parent="hud2d/buttons/X"]
+
+[node name="count" type="Label" parent="hud2d/buttons/X"]
+margin_left = -9.0
+margin_top = 6.0
+margin_right = 10.0
+margin_bottom = 20.0
+custom_fonts/font = SubResource( 1 )
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Y" type="Sprite" parent="hud2d/buttons"]
+modulate = Color( 1, 1, 1, 0.882353 )
+position = Vector2( 51, 9 )
+texture = ExtResource( 5 )
+hframes = 3
+frame = 2
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="icon" type="Sprite" parent="hud2d/buttons/Y"]
+
+[node name="count" type="Label" parent="hud2d/buttons/Y"]
+margin_left = -9.0
+margin_top = 6.0
+margin_right = 9.0
+margin_bottom = 20.0
+custom_fonts/font = SubResource( 1 )
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
