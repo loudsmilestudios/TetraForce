@@ -5,7 +5,7 @@
 [ext_resource path="res://ui/theme/panel2.png" type="Texture" id=3]
 [ext_resource path="res://ui/inventorydecor.png" type="Texture" id=4]
 
-[sub_resource type="Animation" id=2]
+[sub_resource type="Animation" id=1]
 resource_name = "slidedown"
 length = 0.25
 step = 0.05
@@ -36,8 +36,7 @@ tracks/1/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=1]
-resource_name = "slideup"
+[sub_resource type="Animation" id=2]
 length = 0.25
 step = 0.05
 tracks/0/type = "value"
@@ -108,8 +107,8 @@ texture = ExtResource( 4 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 playback_speed = 2.0
-anims/slidedown = SubResource( 2 )
-anims/slideup = SubResource( 1 )
+anims/slidedown = SubResource( 1 )
+anims/slideup = SubResource( 2 )
 
 [node name="display" type="Sprite" parent="."]
 position = Vector2( -19, 86 )

@@ -39,7 +39,7 @@ func change_selection(amt):
 	if item_list.get_child(selected).text == "------":
 		selected_icon.texture = null
 	else:
-		selected_icon.texture = global.item_icons[item_list.get_child(selected).text]
+		selected_icon.texture = global.item_list[item_list.get_child(selected).text].icon
 	
 
 func add_items():
@@ -71,3 +71,4 @@ func set_item(btn):
 
 func update_equipped():
 	$equipped.text = str(global.equips)
+	get_parent().update_items()

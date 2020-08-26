@@ -1,6 +1,6 @@
 extends Node
 
-export(String) var api_endpoint = "0gkwawuufd.execute-api.us-east-2.amazonaws.com"
+export(String) var api_endpoint = "stage.api.tetraforce.io"
 
 var _http_client : HTTPRequest
 

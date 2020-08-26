@@ -123,7 +123,7 @@ func _on_connect_pressed():
 	join_aws(lobby_line.text)
 
 func _on_host_pressed():
-	host_server(true)
+	host_server(false)
 
 func _on_join_pressed():
 	join_server(get_ipport()[0], int(get_ipport()[1]))

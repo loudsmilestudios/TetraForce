@@ -1,19 +1,23 @@
 extends Node
 
 var player
-
-onready var equips = {"B": "Sword", "X": "", "Y": ""}
-
+var equips = {"B": "Sword", "X": "", "Y": ""}
 var items = ["Sword", "Bow"]
 
-var item_dict = {
-	"Sword": "res://items/sword.tscn",
-	"Bow": "res://items/arrow.tscn",
-}
+class ItemInfo:
+	var path : String
+	var icon : Texture
+	var ammo_type : String = ""
+	
+	func _init(p,i,a):
+		path = p
+		icon = i
+		ammo_type = a
 
-var item_icons = {
-	"Sword": preload("res://ui/items/sword.png"),
-	"Bow": preload("res://ui/items/bow.png"),
+var item_list = {}
+
+var ammo = {
+	"arrow": 30,
 }
 
 var next_entrance = "a"
@@ -26,6 +30,13 @@ var options = {
 		skin="res://player/player.png",
 	}
 }
+
+func _ready():
+	define_items()
+
+func define_items():
+	item_list["Sword"] = ItemInfo.new("res://items/sword.tscn", preload("res://ui/items/sword.png"), "")
+	item_list["Bow"] = ItemInfo.new("res://items/arrow.tscn", preload("res://ui/items/bow.png"), "arrow")
 
 func save_options():
 	var save_options = File.new()
@@ -57,9 +68,3 @@ func change_map(map, entrance):
 	old_map.queue_free()
 	next_entrance = entrance
 	root.add_child(new_map)
-
-func get_item_name(item_path):
-	return item_dict.keys()[item_dict.values().find(item_path)]
-
-func get_item_path(item_name):
-	return item_dict[item_name]

@@ -44,6 +44,7 @@ func initialize():
 		hud = preload("res://ui/hud.tscn").instance()
 		add_child(hud)
 		hud.initialize(self)
+		connect("update_count", hud, "update_items")
 
 		yield(screenfx, "animation_finished")
 
@@ -172,9 +173,9 @@ func loop_action_button():
 		return
 	for btn in ["B", "X", "Y"]:
 		if Input.is_action_just_pressed(btn) && global.equips[btn] != "":
-			var item_path = global.get_item_path(global.equips[btn])
-			use_item(item_path, btn)
-			network.peer_call(self, "use_item", [item_path, btn])
+			var item_name = global.equips[btn]
+			use_item(item_name, btn)
+			network.peer_call(self, "use_item", [item_name, btn])
 	if Input.is_action_just_pressed("START"):
 		hud.show_inventory()
 		state = "menu"

@@ -11,8 +11,12 @@ func post_import(imported_scene):
 	# add game.gd script
 	scene.set_script(preload("res://engine/game.gd"))
 	
-	for child in scene.get_children():
+	var z = 0
+	var children = scene.get_children()
+	for child in children:
 		if child is TileMap:
+			child.z_index = z
+			z += 1
 			import_tilemap(child)
 		elif child is Node2D:
 			for object in child.get_children():
@@ -24,6 +28,7 @@ func post_import(imported_scene):
 func import_tilemap(tilemap):
 	tilemap.position.y += 16
 	tilemap.z_index -= 10
+	var z = tilemap.z_index
 	
 	if tilemap.name == "tall_grass":
 		var used_cells = tilemap.get_used_cells()
@@ -42,6 +47,7 @@ func import_tilemap(tilemap):
 		var new_water = preload("res://tiles/water.tscn").instance()
 		scene.add_child(new_water)
 		new_water.set_owner(scene)
+		new_water.z_index = z
 		for cell in used_cells:
 			new_water.set_cellv(cell, 0)
 			new_water.update_bitmask_region()

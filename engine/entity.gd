@@ -18,6 +18,7 @@ var last_movedir = Vector2(0,1)
 var health = MAX_HEALTH setget set_health
 var hitstun = 0
 signal health_changed
+signal update_count
 
 var state = "default"
 var home_position = Vector2(0,0)
@@ -178,9 +179,10 @@ func anim_switch(a):
 		anim.play(newanim)
 	animation = newanim
 
-sync func use_item(item, input):
-	var newitem = load(item).instance()
-	var itemgroup = str(item, name)
+sync func use_item(item_name, input):
+	var item = global.item_list[item_name]
+	var newitem = load(item.path).instance()
+	var itemgroup = str(item_name, name)
 	newitem.add_to_group(itemgroup)
 	newitem.add_to_group(name)
 	add_child(newitem)
@@ -191,8 +193,20 @@ sync func use_item(item, input):
 		newitem.delete()
 		return
 	
+	if is_network_master() && is_in_group("player") && item.ammo_type != "":
+		if global.ammo[item.ammo_type] <= 0:
+			newitem.delete()
+			yield(get_tree().create_timer(0.05), "timeout") # hacky
+			network.peer_call(self, "remove_last_item", [itemgroup])
+			return
+		global.ammo[item.ammo_type] -= 1
+		emit_signal("update_count")
+	
 	newitem.input = input
 	newitem.start()
+
+func remove_last_item(group):
+	get_tree().get_nodes_in_group(group).back().queue_free()
 
 func position_changed(value):
 	pos = value

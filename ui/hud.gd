@@ -19,7 +19,9 @@ func initialize(p):
 		newheart.texture = hearts.texture
 		newheart.hframes = hearts.hframes
 		hearts.add_child(newheart)
-		update_hearts()
+	update_hearts()
+	update_items()
+	
 
 func update_hearts():
 	for heart in hearts.get_children():
@@ -37,6 +39,21 @@ func update_hearts():
 			heart.frame = (player.health - lastheart) * 4
 		if index < lastheart:
 			heart.frame = 4
+
+func update_items():
+	for button in buttons.get_children():
+		button.get_node("item").texture = null
+		button.get_node("count").text = ""
+		
+		if global.equips[button.name] == "":
+			return
+		
+		var info = global.item_list[global.equips[button.name]]
+		button.get_node("item").texture = info.icon
+		if info.ammo_type != "":
+			button.get_node("count").text = str(global.ammo[info.ammo_type])
+
+
 
 func show_hearts():
 	hearts.modulate = lerp(hearts.modulate, Color(1,1,1,1), 0.1)
