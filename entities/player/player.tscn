@@ -346,7 +346,7 @@ anims/walkUp = SubResource( 17 )
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 4 )
-vframes = 7
+vframes = 8
 hframes = 6
 frame = 36
 

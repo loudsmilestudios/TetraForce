@@ -1,0 +1,20 @@
+[remap]
+
+importer="vnen.tiled_tileset_importer"
+type="TileSet"
+path="res://.import/shipwreck_entrance.tsx-440c70e5d4d5d61921f7a236b672d3f1.res"
+
+[deps]
+
+source_file="res://tiled/dungeon/shipwreck_entrance.tsx"
+dest_files=[ "res://.import/shipwreck_entrance.tsx-440c70e5d4d5d61921f7a236b672d3f1.res" ]
+
+[params]
+
+custom_properties=true
+tile_metadata=false
+image_flags=7
+embed_internal_images=false
+save_tiled_properties=false
+apply_offset=false
+post_import_script=""
