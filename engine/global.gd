@@ -4,35 +4,21 @@ var player
 var equips = {"B": "Sword", "X": "", "Y": ""}
 var weapons = ["Sword"]
 
-class WeaponInfo:
-	var path : String
-	var icon : Texture
-	var ammo_type : String
-	var acquire : String
-	
-	func _init(use_path,icon_texture,ammo="",acquire_path=""):
-		path = use_path
-		icon = icon_texture
-		ammo_type = ammo
-		acquire = acquire_path
-
 var weapon_def = {
-	# "WeaponName": WeaponInfo.new(
-	# "path/to/weapon.tscn",
-	# preload("path/to/icon.png"),
-	# "ammo_type"
-	# "acquire_dialogue"),
+	"Sword": {
+		path = "res://entities/weapons/sword.tscn",
+		icon = preload("res://entities/weapons/icons/sword.png"),
+		ammo_type = "",
+		acquire_dialogue = ""},
+	"Bow": {
+		path = "res://entities/weapons/arrow.tscn",
+		icon = preload("res://entities/weapons/icons/bow.png"),
+		ammo_type = "arrow",
+		acquire_dialogue = "acquire_bow"},
+}
+
+var item_def = {
 	
-	"Sword": WeaponInfo.new(
-		"res://entities/weapons/sword.tscn",
-		preload("res://entities/weapons/icons/sword.png"),
-		"",
-		""),
-	"Bow": WeaponInfo.new(
-		"res://entities/weapons/arrow.tscn",
-		preload("res://entities/weapons/icons/bow.png"),
-		"arrow",
-		"acquire_bow"),
 }
 
 var ammo = {

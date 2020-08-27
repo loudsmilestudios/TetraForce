@@ -28,16 +28,16 @@ func interact(node):
 	show_item()
 	network.peer_call(self, "show_item")
 	
-	global.weapons.append(item)
+	network.add_weapon(item)
 	
 	yield(get_tree().create_timer(1), "timeout")
 	
-	if global.get(def)[item].acquire != "":
+	if global.get(def)[item].acquire_dialogue != "":
 		var dialogue = preload("res://ui/dialogue/dialogue_manager.tscn").instance()
 		node.add_child(dialogue)
 		connect("begin_dialogue", dialogue, "Begin_Dialogue")
 		
-		dialogue.file_name = global.get(def)[item].acquire
+		dialogue.file_name = global.get(def)[item].acquire_dialogue
 		emit_signal("begin_dialogue")
 		yield(dialogue, "finished")
 	

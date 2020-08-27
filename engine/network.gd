@@ -19,7 +19,11 @@ signal received_player_list
 
 var player_data = {}
 
-var states = {} # states[nodepath] = properties
+# save stuff
+# states[nodepath] = properties
+var states = {
+	weapons = ["Sword"]
+}
 
 func _ready():
 	set_process(false)
@@ -45,6 +49,7 @@ remote func _receive_my_player_data(data):
 	player_data[player_id] = data
 	rpc("_receive_player_data", player_data)
 	print(str(get_player_tag(player_id), " joined the game."))
+	rpc_id(player_id, "receive_weapons", states.weapons)
 
 remote func _receive_player_data(data):
 	player_data = data
@@ -175,6 +180,18 @@ remote func _receive_state(nodepath, properties):
 func update_state(nodepath, properties):
 	for property in properties.keys():
 		get_node(nodepath).set(property, properties[property])
+
+remote func add_weapon(weapon):
+	if pid == 1:
+		if !states.weapons.has(weapon):
+			states.weapons.append(weapon)
+			global.weapons = states.weapons
+			rpc("receive_weapons", states.weapons)
+	else:
+		rpc_id(1, "add_weapon", weapon)
+
+remote func receive_weapons(weapons):
+	global.weapons = weapons
 
 func peer_call(object, function, arguments = []):
 	for peer in map_peers:
