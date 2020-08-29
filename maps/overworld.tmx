@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.1" orientation="orthogonal" renderorder="right-down" width="80" height="80" tilewidth="16" tileheight="16" infinite="1" nextlayerid="12" nextobjectid="70">
+<map version="1.4" tiledversion="1.4.1" orientation="orthogonal" renderorder="right-down" width="80" height="80" tilewidth="16" tileheight="16" infinite="1" nextlayerid="12" nextobjectid="70">
  <tileset firstgid="1" source="../tiled/objects.tsx"/>
  <tileset firstgid="9" source="../tiled/overworld/overworld_tileset.tsx"/>
  <tileset firstgid="279" source="../tiled/town/town_tileset.tsx"/>
- <tileset firstgid="409" source="../tiled/beach/beach_tileset.tsx"/>
  <layer id="1" name="ground" width="80" height="80">
   <data encoding="csv">
    <chunk x="0" y="0" width="16" height="16">
@@ -2429,8 +2428,8 @@
 146,147,0,0,0,0,0,0,0,129,130,0,0,0,242,0,
 151,152,242,0,0,0,0,0,0,134,135,0,132,0,0,0,
 156,157,0,0,217,0,242,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,364,0,0,0,0,0,
-0,218,0,202,0,2147483865,0,0,0,0,0,0,0,0,0,0
+0,0,207,215,208,0,0,0,0,0,364,0,0,0,0,0,
+0,218,211,202,209,2147483865,0,0,0,0,0,0,0,0,0,0
 </chunk>
    <chunk x="80" y="0" width="16" height="16">
 150,151,150,151,150,151,152,0,0,242,0,129,130,0,144,145,
@@ -2559,7 +2558,7 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </chunk>
    <chunk x="64" y="16" width="16" height="16">
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,212,205,213,0,0,0,0,0,0,0,0,0,0,0,
 130,0,0,0,0,0,0,0,0,148,0,0,0,0,0,0,
 135,0,242,0,0,242,0,0,0,0,0,0,0,0,0,0,
 130,0,242,129,130,242,0,0,0,0,0,0,0,0,0,0,
@@ -2729,7 +2728,7 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,129,130,0,0,0,139,140,
 0,0,0,0,0,0,0,0,242,134,135,0,0,0,144,145,
-0,0,0,0,0,0,0,129,130,432,0,0,0,0,149,150,
+0,0,0,0,0,0,0,129,130,0,0,0,0,0,149,150,
 0,0,0,0,0,0,0,134,135,242,0,0,0,148,154,155,
 0,0,0,0,0,0,0,0,0,242,0,0,0,129,130,0,
 0,0,0,0,242,129,130,0,0,0,0,242,0,134,135,0,
