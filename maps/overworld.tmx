@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.5" orientation="orthogonal" renderorder="right-down" width="80" height="80" tilewidth="16" tileheight="16" infinite="1" nextlayerid="12" nextobjectid="70">
+<map version="1.2" tiledversion="1.2.1" orientation="orthogonal" renderorder="right-down" width="80" height="80" tilewidth="16" tileheight="16" infinite="1" nextlayerid="12" nextobjectid="70">
  <tileset firstgid="1" source="../tiled/objects.tsx"/>
  <tileset firstgid="9" source="../tiled/overworld/overworld_tileset.tsx"/>
  <tileset firstgid="279" source="../tiled/town/town_tileset.tsx"/>
- <tileset firstgid="409" source="../../TetraForce_Dialogue/tiled/beach/beach_tileset.tsx"/>
+ <tileset firstgid="409" source="../tiled/beach/beach_tileset.tsx"/>
  <layer id="1" name="ground" width="80" height="80">
   <data encoding="csv">
    <chunk x="0" y="0" width="16" height="16">

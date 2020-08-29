@@ -2,13 +2,11 @@
 
 importer="vnen.tiled_importer"
 type="PackedScene"
-path="res://.import/overworld.tmx-5ffbd7edf7f9abeb7cdf963a2fc49216.scn"
+valid=false
 
 [deps]
 
 source_file="res://maps/overworld.tmx"
-dest_files=[ "res://.import/overworld.tmx-5ffbd7edf7f9abeb7cdf963a2fc49216.scn" ]
-
 [params]
 
 custom_properties=true
