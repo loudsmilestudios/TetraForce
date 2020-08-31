@@ -30,6 +30,10 @@ func _process(_delta):
 	if target == null:
 		return
 	
+	position = target.position - (Vector2(128, 72))
+	
+	return
+	
 	target_grid_pos = get_grid_pos(target.position)
 	
 	camera_rect = Rect2(position, SCREEN_SIZE)
