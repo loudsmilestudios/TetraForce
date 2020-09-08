@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://ui/theme/font.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://engine/network_object.tscn" type="PackedScene" id=2]
@@ -89,6 +89,60 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ 5 ]
+}
+
+[sub_resource type="Animation" id=20]
+resource_name = "jumpDown"
+length = 1.2
+loop = true
+step = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 30, 31, 32 ]
+}
+
+[sub_resource type="Animation" id=21]
+resource_name = "jumpSide"
+length = 1.2
+loop = true
+step = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 33, 34, 35 ]
+}
+
+[sub_resource type="Animation" id=22]
+resource_name = "jumpUp"
+length = 1.2
+loop = true
+step = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 30, 31, 32 ]
 }
 
 [sub_resource type="Animation" id=6]
@@ -331,6 +385,9 @@ anims/die = SubResource( 2 )
 anims/idleDown = SubResource( 3 )
 anims/idleSide = SubResource( 4 )
 anims/idleUp = SubResource( 5 )
+anims/jumpDown = SubResource( 20 )
+anims/jumpSide = SubResource( 21 )
+anims/jumpUp = SubResource( 22 )
 anims/pushDown = SubResource( 6 )
 anims/pushSide = SubResource( 7 )
 anims/pushUp = SubResource( 8 )

@@ -65,6 +65,8 @@ func _physics_process(_delta):
 			state_hold()
 		"spin":
 			state_spin()
+		"fall":
+			state_fall()
 		"menu":
 			state_menu()
 		"acquire":
@@ -139,6 +141,19 @@ func state_spin():
 	if hitstun != 0 || !has_node("sword"):
 		state = "default"
 
+func state_fall():
+	anim_switch("jump")
+	position.y += 100 * get_physics_process_delta_time()
+	
+	$CollisionShape2D.disabled = true
+	var colliding = false
+	for body in hitbox.get_overlapping_bodies():
+		if body is TileMap || body is StaticBody2D:
+			colliding = true
+	if !colliding:
+		$CollisionShape2D.disabled = false
+		state = "default"
+
 func state_menu():
 	anim_switch("idle")
 
@@ -192,6 +207,9 @@ func loop_interact():
 		var collider = ray.get_collider()
 		if collider.is_in_group("interactable") && Input.is_action_just_pressed("A"):
 			collider.interact(self)
+		elif collider.is_in_group("cliff") && spritedir == "Down":
+			position.y += 2
+			state = "fall"
 		elif is_on_wall() && collider.is_in_group("pushable") && push_counter >= 0.75:
 			collider.interact(self)
 			push_counter = 0
