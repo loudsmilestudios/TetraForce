@@ -437,3 +437,4 @@ __meta__ = {
 visible = false
 enabled = true
 cast_to = Vector2( 0, 0 )
+collide_with_areas = true
