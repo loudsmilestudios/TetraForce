@@ -10,6 +10,7 @@ extents = Vector2( 8, 8 )
 ]]
 
 [node name="Sprite" type="Sprite" parent="."]
+visible = false
 texture = ExtResource( 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
