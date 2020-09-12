@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.4" tiledversion="1.4.1" orientation="orthogonal" renderorder="right-down" width="96" height="54" tilewidth="8" tileheight="8" infinite="0" nextlayerid="7" nextobjectid="1">
+ <tileset firstgid="1" source="../TetraForceRoughMap.tsx"/>
+ <layer id="1" name="Ground" width="96" height="54">
+  <data encoding="base64" compression="zstd">
+   KLUv/WAAUF0OAFLFCgqghwH/EFm+p3sH5Pq1P+5xjxt3T5cEu9QuwQiA1iBpXVZlmrSruEuiJBGBIKjx9gLxBodBUCEAEuASJCBBQxI0HEFDESQUQQARNAxBRYAEzCiFmWoXAI0Ar7q0qNB2XUqbdCyb3V8dr9YWHmWMu6WODnbUL/hsZCf3QXFQ8tBZ1oVmE8OHtQAuzWYb23noem3vi9yeqnPFyhqgOfEMFPDBsM/A89eMVTYmq7FGTB70KOaJ+acMRlCnL46Ph7X9HMrk8mb2XdgWqJPZFSjzDPIdPs81Dl8s4EEcZI1RgoRYvkD4XVq2tEeZxCnv4haONOzmoOCGujKCa0m05yh8PBqgTPQRvo/ARUBIL0cWNLAPmobGqEQUjooe9sMrd+ykNTWaMtLLSA6ec8QX9JxMajMQbwmOMLydFroTK7SD5PDZJYTePCmW25IWdUewm0SsH5uRVRIrj10Km1I9LTxhRJe4imEKYstlZlX34KQ3OKLgVkknjyPbmyVwlQNHlLsaAbv10W908mr7mWdRQilAKy+ighy+TojBKhuHcIQLYVBhHKQ/+Fvyc3xWnJT141hxPVD/3HgOugaoDrK1vMGYXzaCSr/180z5Bw==
+  </data>
+ </layer>
+ <layer id="4" name="Ship" width="96" height="54">
+  <data encoding="base64" compression="zstd">
+   KLUv/WAAUBUCAGAAABoAAAAXFxcZGAAUoHCtNTADzHEDjR4+p45qbtHfq3m480OoQ8HKsboOozWnzkWgMavHo2NUxaNiVJWP5shf7Q==
+  </data>
+ </layer>
+ <layer id="3" name="Trees" width="96" height="54">
+  <data encoding="base64" compression="zstd">
+   KLUv/WAAUK0RADQDAAAHAAAACAAHAABACAAAQAAkAAAAIwoAAAAJCiQLAAsLCgcHCgAqAAAAByoqKioqKgoHgPGooEcABaCCEQGYYwESoBA0SAABBhI0LEFAIgQIBQAQCBAAEBEgARIooAhCzPMCjeweNQ4VKXMpjubfid3T5muR7E8Y5H1WAMT6GzFntI2Y8rVbxZpcnQWkKbALXnX++fLZyZ1Ae8QJC8hflYnhvH2DMxZoYQGcVH5eeQtFOz9KAibCLTTRvxBu++jK2n+1X0jYvQZ31M4lYkJ5jbxbZh0rr7Ok+AferpbHs4ZrtfUtKNhNDpDPXY2+SCqCrj7AeXfoI+zuOqj8d2gYHL6p3k/hzb0Pit6PgsqA8p9BDADSyCsBr3dNws8FRKa3qUrL4/tgyC8dakhF/MF4AF7kplE1iEkGtieAtw5jIN7A85C3PzvW4ZFeoWLU09nNIKw9y3WmkxyNYXTEayBhLrK9hk1zR4QWt9LqYVb8r2fOQTFr7Lp/fbQJ7i0W8I0QaMtZUsfvbELo0TCmo2o4kmXPtEoKIX3scod1fB/fK96kaT54LkZxh2EcHh/9t17bAAcuYxfjg00g/bfVA73xtfzIf71SHSKu6pEyuNIhpAH/NP+Z3Eq8upZLNx/S9R95n9kYfz43HvvWQ0rp1SdPtm4GATcOIk52phwhNdOTIIFPg/eaS0arfiK9IOb32qBR0eJlbGQvX/79rkWieNFwn/tfI8ouWvncQF/Q2X1XmP8KD34=
+  </data>
+ </layer>
+ <layer id="6" name="Icons" width="96" height="54">
+  <data encoding="base64" compression="zstd">
+   KLUv/WAAUGUCAEAAACsALCsrKxSgcPnggokb0gMRgx8luR6Jqnnf6lyXvAqRcj2sCiStNCkqjc7ZHzpVHFD1n6HVAPDfxR78YwT34qpzNPU2qznq3uw=
+  </data>
+ </layer>
+ <layer id="5" name="Doors" width="96" height="54">
+  <data encoding="base64" compression="zstd">
+   KLUv/WAAUH0BAFAAAA4AEAAQEhEcCqCA6gOQ8zQPbdgjgA/XKl/VnJzDf9fh18eg3z3VlPo79D4G
+  </data>
+ </layer>
+ <imagelayer id="2" name="CameraGrid">
+  <image source="../TetraForceScreens.png" width="768" height="432"/>
+ </imagelayer>
+</map>
