@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/dungeon_ground.png-bea23ed0898da3da7f414257b1e8eb16.stex"
+path="res://.import/TetraForceRoughMap.png-a0887b502f074a1773bfaa24ef2e2a35.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://tiled/images/ground/dungeon_ground.png"
-dest_files=[ "res://.import/dungeon_ground.png-bea23ed0898da3da7f414257b1e8eb16.stex" ]
+source_file="res://tiled/roughmapper/TetraForceRoughMap.png"
+dest_files=[ "res://.import/TetraForceRoughMap.png-a0887b502f074a1773bfaa24ef2e2a35.stex" ]
 
 [params]
 

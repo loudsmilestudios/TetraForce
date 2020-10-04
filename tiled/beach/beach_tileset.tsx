@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <tileset version="1.4" tiledversion="1.4.1" name="beach_tileset" tilewidth="16" tileheight="16" tilecount="255" columns="5">
- <image source="../../../TetraForce/tiled/images/tilesets/beach_tileset.png" width="80" height="816"/>
+ <image source="../images/tilesets/beach_tileset.png" width="80" height="816"/>
  <terraintypes>
   <terrain name="Grass" tile="31"/>
   <terrain name="Dead Grass" tile="46"/>
@@ -13,68 +13,69 @@
   <terrain name="Shallow to Deep" tile="146"/>
   <terrain name="Waters Edge" tile="161"/>
   <terrain name="Hole" tile="181"/>
+  <terrain name="UpperGround" tile="11"/>
  </terraintypes>
- <tile id="0">
+ <tile id="0" terrain=",,,11">
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="16" height="16"/>
   </objectgroup>
  </tile>
- <tile id="1">
+ <tile id="1" terrain=",,11,11">
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="16" height="16"/>
   </objectgroup>
  </tile>
- <tile id="2">
+ <tile id="2" terrain=",,11,">
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="16" height="16"/>
   </objectgroup>
  </tile>
- <tile id="3">
+ <tile id="3" terrain="11,11,11,">
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="16" height="16"/>
   </objectgroup>
  </tile>
- <tile id="4">
+ <tile id="4" terrain="11,11,,11">
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="16" height="16"/>
   </objectgroup>
  </tile>
- <tile id="5">
+ <tile id="5" terrain=",11,,11">
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="16" height="16"/>
   </objectgroup>
  </tile>
- <tile id="6">
+ <tile id="6" terrain="11,11,11,11">
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="16" height="16"/>
   </objectgroup>
  </tile>
- <tile id="7">
+ <tile id="7" terrain="11,,11,">
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="16" height="16"/>
   </objectgroup>
  </tile>
- <tile id="8">
+ <tile id="8" terrain="11,,11,11">
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="16" height="16"/>
   </objectgroup>
  </tile>
- <tile id="9">
+ <tile id="9" terrain=",11,11,11">
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="16" height="16"/>
   </objectgroup>
  </tile>
- <tile id="10">
+ <tile id="10" terrain=",11,,">
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="16" height="16"/>
   </objectgroup>
  </tile>
- <tile id="11">
+ <tile id="11" terrain="11,11,,">
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="16" height="16"/>
   </objectgroup>
  </tile>
- <tile id="12">
+ <tile id="12" terrain="11,,,">
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="16" height="16"/>
   </objectgroup>
@@ -295,6 +296,11 @@
  <tile id="140" terrain=",7,,"/>
  <tile id="141" terrain="7,7,,"/>
  <tile id="142" terrain="7,,,"/>
+ <tile id="143">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
+ </tile>
  <tile id="144">
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="16" height="16"/>
@@ -330,7 +336,11 @@
    <object id="1" x="0" y="0" width="16" height="16"/>
   </objectgroup>
  </tile>
- <tile id="151" terrain="8,8,8,8"/>
+ <tile id="151" terrain="8,8,8,8">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
+ </tile>
  <tile id="152" terrain="8,,8,">
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="16" height="16"/>
@@ -351,7 +361,11 @@
    <object id="1" x="0" y="0" width="16" height="16"/>
   </objectgroup>
  </tile>
- <tile id="156" terrain="8,8,,"/>
+ <tile id="156" terrain="8,8,,">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
+ </tile>
  <tile id="157" terrain="8,,,">
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="16" height="16"/>

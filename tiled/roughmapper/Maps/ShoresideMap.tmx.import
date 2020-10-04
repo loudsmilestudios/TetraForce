@@ -1,0 +1,22 @@
+[remap]
+
+importer="vnen.tiled_importer"
+type="PackedScene"
+path="res://.import/ShoresideMap.tmx-39db913266fd56a67f01b1d777bc4838.scn"
+
+[deps]
+
+source_file="res://tiled/roughmapper/Maps/ShoresideMap.tmx"
+dest_files=[ "res://.import/ShoresideMap.tmx-39db913266fd56a67f01b1d777bc4838.scn" ]
+
+[params]
+
+custom_properties=true
+tile_metadata=true
+uv_clip=true
+image_flags=7
+collision_layer=1
+embed_internal_images=false
+save_tiled_properties=true
+add_background=true
+post_import_script="res://tiled/import.gd"

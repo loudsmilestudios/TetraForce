@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <tileset version="1.4" tiledversion="1.4.1" name="shipwreck_entrance" tilewidth="16" tileheight="16" tilecount="220" columns="22">
- <image source="../../../TetraForce/tiled/images/tilesets/Shipwreck.png" width="352" height="160"/>
+ <image source="../images/tilesets/Shipwreck.png" width="352" height="160"/>
  <tile id="113">
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="16" height="16"/>
@@ -27,6 +27,21 @@
   </objectgroup>
  </tile>
  <tile id="159">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="164">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="165">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="166">
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="16" height="16"/>
   </objectgroup>

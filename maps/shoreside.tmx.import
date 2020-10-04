@@ -1,0 +1,22 @@
+[remap]
+
+importer="vnen.tiled_importer"
+type="PackedScene"
+path="res://.import/shoreside.tmx-28165245f4b5f58e0a4e4848db275a97.scn"
+
+[deps]
+
+source_file="res://maps/shoreside.tmx"
+dest_files=[ "res://.import/shoreside.tmx-28165245f4b5f58e0a4e4848db275a97.scn" ]
+
+[params]
+
+custom_properties=true
+tile_metadata=true
+uv_clip=true
+image_flags=7
+collision_layer=1
+embed_internal_images=false
+save_tiled_properties=true
+add_background=true
+post_import_script="res://tiled/import.gd"

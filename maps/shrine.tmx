@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.4" tiledversion="1.4.1" orientation="orthogonal" renderorder="right-down" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="1">
+ <tileset firstgid="1" source="../tiled/dungeon/dungeon_tileset.tsx"/>
+ <layer id="2" name="floor" width="40" height="40">
+  <data encoding="base64" compression="zstd">
+   KLUv/WAAGH0FANQCAAB3AAAAbGt4ampsaHAAAAByc2lvcHEAb2l4aHdwdAAAAG5tAAAAdgB1dnh3PaAwVzWQgiNAxBAADJoDwVqBHkFUKL3GjIqZOo3tg9PnFvm7yT7UcAL8B2YXdDRw0TxikYg7rhqD8hlU1RhX/T0S98QRDHgIPad/4p6ij6T7no0RU8Qn+lNJnziNQQfO/vvhPq5yctN2DfQGxEmkxa3JBM6R8egcc3ONTB7Gdzs=
+  </data>
+ </layer>
+ <layer id="3" name="water" width="40" height="40">
+  <data encoding="base64" compression="zstd">
+   KLUv/WAAGF0CAAQCAADMvwAAAMAAAADBAMQAAADFAAAAxgDJAAAAygAAAMsQoHC37A5w08I6NfwGxRENgLTb0Q8UaO4kKI5ofzbwSu45yZpOF+OrHw==
+  </data>
+ </layer>
+ <layer id="1" name="walls" width="40" height="40">
+  <data encoding="base64" compression="zstd">
+   KLUv/WAAGK0DACQCAAAQAAAAERIAFQAAABYXABMAAAAbFBwAGhcAFRgZFxocGx6gENPqQAIpnBd1a+9kOCg67/48KgwscIA+PiMlH4EOhrh7ojh9wVHwocg6mNgN5Cgc7f9AZeT8VNgj+rjKI9HTUTVHVyMR+NKRWHzTrfG7Fg==
+  </data>
+ </layer>
+ <layer id="4" name="decor" width="40" height="40">
+  <data encoding="base64" compression="zstd">
+   KLUv/WAAGF0DAGQDAADdAAAA3gAAAOcAAADo4gAAAOMAAADsAAAA7d8AAADgAOkAAADqAOQAAADlAO4AAADvAPQAEqAAa+K2ByCDCWxxcQ24ygOSmQTub+yDZGqOEIHoe9DfU2pBHulDa6k0YwXTToM+4wMW
+  </data>
+ </layer>
+ <layer id="6" name="pots" width="40" height="40">
+  <data encoding="base64" compression="zstd">
+   KLUv/WAAGKUAABgAAPIFAPFAhZ4yAWDYxffVeoAF
+  </data>
+ </layer>
+</map>

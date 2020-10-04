@@ -2,12 +2,12 @@
 
 importer="vnen.tiled_tileset_importer"
 type="TileSet"
-path="res://.import/dungeon_ground.tsx-f75b5cfbed3f69dc9a85c4f69f8bd710.res"
+path="res://.import/TetraForceRoughMap.tsx-9171ae3b05072ddb1b67ea5e331bfc26.res"
 
 [deps]
 
-source_file="res://tiled/dungeon/dungeon_ground.tsx"
-dest_files=[ "res://.import/dungeon_ground.tsx-f75b5cfbed3f69dc9a85c4f69f8bd710.res" ]
+source_file="res://tiled/roughmapper/TetraForceRoughMap.tsx"
+dest_files=[ "res://.import/TetraForceRoughMap.tsx-9171ae3b05072ddb1b67ea5e331bfc26.res" ]
 
 [params]
 
