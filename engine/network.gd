@@ -14,6 +14,9 @@ var map_peers = []
 var tick
 var tick_time = 0.05
 
+var empty_timeout = 0
+var empty_timeout_timer
+
 signal end_aws_task
 signal received_player_list
 
@@ -39,9 +42,11 @@ func initialize():
 	
 	if get_tree().is_network_server() && !dedicated:
 		player_data[1] = global.options.player_data
-	else:
+	elif !dedicated:
 		pid = get_tree().get_network_unique_id()
 		rpc_id(1, "_receive_my_player_data", global.options.player_data)
+	
+	start_empty_timeout()
 
 remote func _receive_my_player_data(data):
 	var player_name = data.name
@@ -81,6 +86,7 @@ func send_current_map(): # called when a player enters a new map
 
 remote func _receive_current_map(id, map): # server receives map from client
 	player_list[id] = map
+	stop_empty_timeout()
 	update_players() # server updates its own map peers
 	update_map_hosts()
 	emit_signal("received_player_list")
@@ -134,6 +140,7 @@ func _player_disconnected(id): # remove disconnected players from player_list
 	if get_tree().is_network_server():
 		print(str(get_player_tag(id), " left the game."))
 		player_list.erase(id)
+		start_empty_timeout()
 		for map in map_hosts.keys():
 			var map_host = map_hosts.get(map)
 			if map_host == id:
@@ -217,3 +224,36 @@ remote func _pc(object, function, arguments = []):
 			get_node(object).callv(function, arguments)
 		else:
 			print("object ", get_node(object).name, " does not have method ", function)
+
+func start_empty_timeout():
+	if empty_timeout == 0 || player_list.size() > 0 || empty_timeout_timer:
+		print("not starting empty_timeout timer")
+		return
+	
+	print("starting empty_timeout timer")
+
+	empty_timeout_timer = Timer.new()
+	add_child(empty_timeout_timer)
+	empty_timeout_timer.wait_time = empty_timeout
+	empty_timeout_timer.connect("timeout", self, "_empty_timeout")
+	empty_timeout_timer.start()
+
+func stop_empty_timeout():
+	if !empty_timeout_timer:
+		print("not stopping empty_timeout timer")
+		return
+
+	print("stopping empty_timeout timer")
+	
+	empty_timeout_timer.stop()
+	remove_child(empty_timeout_timer)
+	empty_timeout_timer = null
+
+func _empty_timeout():
+	print("empty_timeout timer timed out")
+	if player_list.size() > 0:
+		stop_empty_timeout()
+		return
+	
+	print("no players after empty-server-timeout=%d, stopping server" % empty_timeout)
+	get_tree().quit()
