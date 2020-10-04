@@ -1,0 +1,20 @@
+[remap]
+
+importer="vnen.tiled_tileset_importer"
+type="TileSet"
+path="res://.import/TetraForceRoughMap.tsx-9171ae3b05072ddb1b67ea5e331bfc26.res"
+
+[deps]
+
+source_file="res://tiled/roughmapper/TetraForceRoughMap.tsx"
+dest_files=[ "res://.import/TetraForceRoughMap.tsx-9171ae3b05072ddb1b67ea5e331bfc26.res" ]
+
+[params]
+
+custom_properties=true
+tile_metadata=false
+image_flags=7
+embed_internal_images=false
+save_tiled_properties=false
+apply_offset=false
+post_import_script=""
