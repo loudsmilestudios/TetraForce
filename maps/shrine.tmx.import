@@ -2,12 +2,12 @@
 
 importer="vnen.tiled_importer"
 type="PackedScene"
-path="res://.import/TetraForceTown.tmx-1a7cc3154a0b1052ef8e940f8467fa3a.scn"
+path="res://.import/shrine.tmx-47699928e63fd816f62a4506e91731bd.scn"
 
 [deps]
 
-source_file="res://tiled/roughmapper/Maps/TetraForceTown.tmx"
-dest_files=[ "res://.import/TetraForceTown.tmx-1a7cc3154a0b1052ef8e940f8467fa3a.scn" ]
+source_file="res://maps/shrine.tmx"
+dest_files=[ "res://.import/shrine.tmx-47699928e63fd816f62a4506e91731bd.scn" ]
 
 [params]
 

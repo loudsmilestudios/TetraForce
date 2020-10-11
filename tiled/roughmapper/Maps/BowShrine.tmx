@@ -234,6 +234,6 @@
 </data>
  </layer>
  <imagelayer id="2" name="CameraGrid" visible="0">
-  <image source="TetraForceScreens.png"/>
+  <image source="../TetraForceScreens.png" width="768" height="432"/>
  </imagelayer>
 </map>

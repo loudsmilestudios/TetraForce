@@ -2,12 +2,12 @@
 
 importer="vnen.tiled_importer"
 type="PackedScene"
-path="res://.import/TetraForceTown.tmx-1a7cc3154a0b1052ef8e940f8467fa3a.scn"
+path="res://.import/overworld_caves.tmx-b878468c9460a4b166ce8ce284dbed36.scn"
 
 [deps]
 
-source_file="res://tiled/roughmapper/Maps/TetraForceTown.tmx"
-dest_files=[ "res://.import/TetraForceTown.tmx-1a7cc3154a0b1052ef8e940f8467fa3a.scn" ]
+source_file="res://maps/overworld_caves/overworld_caves.tmx"
+dest_files=[ "res://.import/overworld_caves.tmx-b878468c9460a4b166ce8ce284dbed36.scn" ]
 
 [params]
 
