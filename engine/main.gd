@@ -28,30 +28,36 @@ func _ready():
 		if argument.find("=") > -1:
 			var key_value = argument.split("=")
 			arguments[key_value[0].lstrip("--")] = key_value[1]
-	#Checks if debug is true and exists as a passed command
-	if("dedicatedserver" in arguments):
-		if ((arguments.get("dedicatedserver")) == "true"):
-			set_dedicated_server()
+
 	#this overrides the default port of 7777
 	if("port" in arguments):
 		default_port = int(arguments["port"])
 		get_node("panel/address").set_text("127.0.0.1:" + arguments["port"])
 	
-	if OS.get_name() == "Server":
-		set_dedicated_server()
+	if OS.get_name() == "Server" || arguments.get("dedicatedserver") == "true":
+		var empty_timeout = 0
+		var empty_timeout_arg = arguments.get("empty-server-timeout")
+		if empty_timeout_arg.is_valid_integer():
+			var empty_timeout_arg_int = int(empty_timeout_arg)
+			if empty_timeout_arg_int > 0:
+				empty_timeout = empty_timeout_arg_int
+		set_dedicated_server(empty_timeout)
 	
 	#print(yield(server_api.get_servers(), "completed"))
 
-func start_game(dedicated = false):
-	network.initialize()
+func start_game(dedicated = false, empty_timeout = 0):
 	if dedicated:
 		network.dedicated = true
-	else:
+		network.empty_timeout = empty_timeout
+	
+	network.initialize()
+	
+	if !dedicated:
 		var level = load(default_map).instance()
 		get_tree().get_root().add_child(level)
 		hide()
 
-func host_server(dedicated = false, port = default_port, max_players = 16):
+func host_server(dedicated = false, empty_timeout = 0, port = default_port, max_players = 16):
 	var enet = NetworkedMultiplayerENet.new()
 	enet.set_compression_mode(NetworkedMultiplayerENet.COMPRESS_RANGE_CODER)
 	var err = enet.create_server(port, max_players)
@@ -60,7 +66,7 @@ func host_server(dedicated = false, port = default_port, max_players = 16):
 		return
 	get_tree().set_network_peer(enet)
 	
-	start_game(dedicated)
+	start_game(dedicated, empty_timeout)
 
 func join_server(ip, port):
 	if !ip.is_valid_ip_address():
@@ -104,8 +110,8 @@ func quit_program():
 	get_tree().set_network_peer(null)
 	get_tree().quit()
 
-func set_dedicated_server():
-	host_server(true)
+func set_dedicated_server(empty_timeout):
+	host_server(true, empty_timeout)
 
 func get_ipport():
 	return address_line.text.rsplit(":")
@@ -132,7 +138,7 @@ func _on_quit_pressed():
 	quit_program()
 
 func _on_singleplayer_pressed():
-	host_server(false, 0, 1)
+	host_server(false, 0, 0, 1)
 
 func _on_multiplayer_pressed():
 	hide_menus()
