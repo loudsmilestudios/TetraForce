@@ -708,11 +708,6 @@
    <object id="1" x="0" y="0" width="16" height="16"/>
   </objectgroup>
  </tile>
- <tile id="236">
-  <objectgroup draworder="index" id="2">
-   <object id="1" x="0" y="8" width="16" height="8"/>
-  </objectgroup>
- </tile>
  <tile id="237">
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="16" height="16"/>

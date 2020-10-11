@@ -2,13 +2,11 @@
 
 importer="vnen.tiled_importer"
 type="PackedScene"
-path="res://.import/TemplateBase.tmx-fb68e5024895ce275ab83ba70cbef4a9.scn"
+valid=false
 
 [deps]
 
 source_file="res://tiled/roughmapper/TemplateBase.tmx"
-dest_files=[ "res://.import/TemplateBase.tmx-fb68e5024895ce275ab83ba70cbef4a9.scn" ]
-
 [params]
 
 custom_properties=true

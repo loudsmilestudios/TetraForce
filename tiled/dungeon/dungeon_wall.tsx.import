@@ -1,0 +1,20 @@
+[remap]
+
+importer="vnen.tiled_tileset_importer"
+type="TileSet"
+path="res://.import/dungeon_wall.tsx-c20876290e169c55a4d560ee5a5836dd.res"
+
+[deps]
+
+source_file="res://tiled/dungeon/dungeon_wall.tsx"
+dest_files=[ "res://.import/dungeon_wall.tsx-c20876290e169c55a4d560ee5a5836dd.res" ]
+
+[params]
+
+custom_properties=true
+tile_metadata=false
+image_flags=7
+embed_internal_images=false
+save_tiled_properties=false
+apply_offset=false
+post_import_script=""

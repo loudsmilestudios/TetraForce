@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.4" tiledversion="1.4.1" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="8" tileheight="8" infinite="1" nextlayerid="6" nextobjectid="1">
- <tileset firstgid="1" source="../TetraForceRoughMap.tsx"/>
+ <tileset firstgid="1" source="TetraForceRoughMap.tsx"/>
  <layer id="1" name="Ground" width="100" height="100">
   <data encoding="csv">
    <chunk x="0" y="0" width="16" height="16">
@@ -1112,6 +1112,6 @@
   </data>
  </layer>
  <imagelayer id="5" name="Image Layer 1">
-  <image source="../TetraForceScreens.png" width="768" height="432"/>
+  <image source="TetraForceScreens.png" width="768" height="432"/>
  </imagelayer>
 </map>
