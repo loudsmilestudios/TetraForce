@@ -3,6 +3,8 @@ extends Node
 signal player_entered
 
 var camera = preload("res://entities/player/camera.tscn").instance()
+onready var music = AudioStreamPlayer.new()
+export var current_song = "res://sound/music/overworld.ogg"
 
 func _ready():
 	network.current_map = self
@@ -16,6 +18,11 @@ func _ready():
 	network.send_current_map() # starts player list updates
 	screenfx.play("fadein")
 	connect("player_entered", self, "player_entered")
+	add_child(music)
+	music.volume_db = -20
+	music.stream = load(current_song)
+	music.play()
+
 
 func _process(delta): # can be on screen change instead of process
 	if !network.is_map_host():
@@ -82,3 +89,9 @@ func player_entered(id):
 	return
 	if id != network.pid:
 		print("player ", id, " entered")
+
+func set_music(song):
+	if song != current_song:
+		current_song = song
+		music.stream = load(current_song)
+		music.play()
