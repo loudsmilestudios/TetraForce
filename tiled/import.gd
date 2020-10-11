@@ -19,6 +19,14 @@ func post_import(imported_scene):
 			z += 1
 			import_tilemap(child)
 		elif child is Node2D:
+			if child.name == "zones":
+				for zone in child.get_children():
+					zone.position -= Vector2(16,16)
+					zone.set_collision_layer_bit(1, 0)
+					zone.set_collision_mask_bit(1, 0)
+					zone.set_collision_layer_bit(10, 1)
+					zone.set_collision_mask_bit(10, 1)
+				continue
 			for object in child.get_children():
 				spawn_object(object)
 			child.free()
