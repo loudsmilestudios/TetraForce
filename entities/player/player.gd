@@ -45,9 +45,7 @@ func initialize():
 		add_child(hud)
 		hud.initialize(self)
 		connect("update_count", hud, "update_weapons")
-		
-		$ZoneHandler.connect("area_entered", self, "zone_changed")
-		
+
 		yield(screenfx, "animation_finished")
 
 		set_physics_process(true)
@@ -77,13 +75,6 @@ func _physics_process(_delta):
 			state_die()
 	
 	screen_position = position - camera.position
-	
-	var zone = $ZoneHandler.get_overlapping_areas()[0]
-	var zone_size = zone.get_node("CollisionShape2D").shape.extents * 2
-	camera.limit_left = zone.position.x
-	camera.limit_right = zone.position.x + zone_size.x
-	camera.limit_top = zone.position.y
-	camera.limit_bottom = zone.position.y + zone_size.y
 	
 	if Rect2(Vector2(0,0), Vector2(72, 22)).has_point(screen_position) && state != "menu":
 		hud.hide_hearts()
