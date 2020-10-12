@@ -6,8 +6,8 @@
 extents = Vector2( 144, 88 )
 
 [node name="entity_detect" type="Area2D"]
-collision_layer = 3
-collision_mask = 3
+collision_layer = 2
+collision_mask = 2
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_lock_": true

@@ -23,12 +23,12 @@ func post_import(imported_scene):
 			if child.name == "zones":
 				for zone in child.get_children():
 					zone.position -= Vector2(16,16)
-					zone.set_collision_layer_bit(1, 0)
-					zone.set_collision_mask_bit(1, 0)
+					zone.set_collision_layer_bit(0, 0)
+					zone.set_collision_mask_bit(0, 0)
 					zone.set_collision_layer_bit(10, 1)
 					zone.set_collision_mask_bit(10, 1)
 					zone.set_script(preload("res://engine/zone.gd"))
-					set_meta(zone, zone)
+					set_properties(zone, zone)
 				continue
 			for object in child.get_children():
 				spawn_object(object)
@@ -76,14 +76,14 @@ func spawn_object(object):
 		node.set_owner(scene)
 		node.position = object.position + Vector2(8,-8)
 		
-		set_meta(object, node)
+		set_properties(object, node)
 	
 	else:
 		object.get_parent().remove_child(object)
 		scene.add_child(object)
 		object.set_owner(scene)
 
-func set_meta(object, node):
+func set_properties(object, node):
 	for meta in object.get_meta_list():
 		if meta in default_meta:
 			continue

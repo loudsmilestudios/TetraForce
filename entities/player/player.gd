@@ -35,7 +35,7 @@ func initialize():
 				spritedir = "Right"
 
 		home_position = position
-
+		
 		connect_camera()
 		camera.initialize(self)
 
@@ -47,6 +47,8 @@ func initialize():
 		connect("update_count", hud, "update_weapons")
 		
 		#$ZoneHandler.connect("area_entered", self, "zone_changed")
+		ray.add_exception($ZoneHandler)
+		ray.add_exception(hitbox)
 		
 		yield(screenfx, "animation_finished")
 
