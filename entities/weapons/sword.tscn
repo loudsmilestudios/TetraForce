@@ -3,8 +3,6 @@
 [ext_resource path="res://entities/weapons/sword.gd" type="Script" id=1]
 [ext_resource path="res://entities/weapons/sword.png" type="Texture" id=2]
 
-
-
 [sub_resource type="Animation" id=1]
 length = 2.64
 loop = true

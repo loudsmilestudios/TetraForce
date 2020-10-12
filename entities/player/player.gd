@@ -11,6 +11,7 @@ var action_cooldown = 0
 var screen_position = Vector2(0,0)
 
 func initialize():
+	hurt_sfx = "hurt"
 	add_to_group("player")
 	if is_network_master():
 		global.player = self
@@ -218,6 +219,7 @@ func loop_interact():
 		elif collider.is_in_group("cliff") && spritedir == "Down":
 			position.y += 2
 			state = "fall"
+			sfx.play("fall2")
 		elif is_on_wall() && collider.is_in_group("pushable") && push_counter >= 0.75:
 			collider.interact(self)
 			push_counter = 0

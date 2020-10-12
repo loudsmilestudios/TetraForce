@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/sword1.ogg-d4fa022e12cfb9c81f2e43e36dac8a61.oggstr"
+
+[deps]
+
+source_file="res://sound/sfx/sword1.ogg"
+dest_files=[ "res://.import/sword1.ogg-d4fa022e12cfb9c81f2e43e36dac8a61.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

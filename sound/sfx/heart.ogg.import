@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/heart.ogg-7b81bfc6461ffc0ef63793fb276fc123.oggstr"
+
+[deps]
+
+source_file="res://sound/sfx/heart.ogg"
+dest_files=[ "res://.import/heart.ogg-7b81bfc6461ffc0ef63793fb276fc123.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0
