@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tileset version="1.4" tiledversion="1.4.1" name="objects" tilewidth="16" tileheight="16" tilecount="10" columns="0">
+<tileset version="1.4" tiledversion="1.4.1" name="objects" tilewidth="16" tileheight="16" tilecount="11" columns="0">
  <grid orientation="orthogonal" width="1" height="1"/>
+ <properties>
+  <property name="path" value=""/>
+ </properties>
  <tile id="0">
   <properties>
    <property name="path" value="res://entities/enemies/stalfos/stalfos.tscn"/>
@@ -59,5 +62,11 @@
    <property name="path" value="res://tiles/cliff.tscn"/>
   </properties>
   <image width="16" height="16" source="images/objects/cliff.png"/>
+ </tile>
+ <tile id="10">
+  <properties>
+   <property name="path" value="res://entities/enemies/knawblin/knawblin.tscn"/>
+  </properties>
+  <image width="16" height="16" source="images/objects/knawblin.png"/>
  </tile>
 </tileset>
