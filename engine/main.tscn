@@ -265,7 +265,7 @@ anims/default = SubResource( 1 )
 position = Vector2( 112, 60 )
 scale = Vector2( 1.75, 1.75 )
 texture = ExtResource( 2 )
-vframes = 8
+vframes = 7
 hframes = 6
 
 [node name="name" type="LineEdit" parent="options/scroll/vbox/characterselect"]

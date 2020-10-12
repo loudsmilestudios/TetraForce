@@ -443,8 +443,10 @@ cast_to = Vector2( 0, 0 )
 collide_with_areas = true
 
 [node name="ZoneHandler" type="Area2D" parent="."]
+visible = false
 collision_layer = 1024
 collision_mask = 1024
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ZoneHandler"]
+position = Vector2( -8, 8 )
 shape = SubResource( 23 )
