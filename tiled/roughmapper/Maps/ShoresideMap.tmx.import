@@ -2,11 +2,13 @@
 
 importer="vnen.tiled_importer"
 type="PackedScene"
-valid=false
+path="res://.import/ShoresideMap.tmx-39db913266fd56a67f01b1d777bc4838.scn"
 
 [deps]
 
 source_file="res://tiled/roughmapper/Maps/ShoresideMap.tmx"
+dest_files=[ "res://.import/ShoresideMap.tmx-39db913266fd56a67f01b1d777bc4838.scn" ]
+
 [params]
 
 custom_properties=true

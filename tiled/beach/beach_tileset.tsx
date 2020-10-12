@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <tileset version="1.4" tiledversion="1.4.1" name="beach_tileset" tilewidth="16" tileheight="16" tilecount="255" columns="5">
- <image source="../../../TetraForce/tiled/images/tilesets/beach_tileset.png" width="80" height="816"/>
+ <image source="../images/tilesets/beach_tileset.png" width="80" height="816"/>
  <terraintypes>
   <terrain name="Grass" tile="31"/>
   <terrain name="Dead Grass" tile="46"/>
@@ -330,7 +330,11 @@
    <object id="1" x="0" y="0" width="16" height="16"/>
   </objectgroup>
  </tile>
- <tile id="151" terrain="8,8,8,8"/>
+ <tile id="151" terrain="8,8,8,8">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
+ </tile>
  <tile id="152" terrain="8,,8,">
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="16" height="16"/>
@@ -351,7 +355,11 @@
    <object id="1" x="0" y="0" width="16" height="16"/>
   </objectgroup>
  </tile>
- <tile id="156" terrain="8,8,,"/>
+ <tile id="156" terrain="8,8,,">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
+ </tile>
  <tile id="157" terrain="8,,,">
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="16" height="16"/>
