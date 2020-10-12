@@ -1,3 +1,7 @@
 extends Area2D
 
-export var music = "res://sound/music/overworld.ogg"
+export var music = ""
+
+func _ready():
+	if music == "":
+		music = get_parent().get_parent().default_song

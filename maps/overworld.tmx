@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.1" orientation="orthogonal" renderorder="right-down" width="80" height="80" tilewidth="16" tileheight="16" infinite="1" nextlayerid="19" nextobjectid="137">
+<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" width="80" height="80" tilewidth="16" tileheight="16" infinite="1" nextlayerid="19" nextobjectid="142">
  <properties>
   <property name="music" value="res://sound/music/overworld.ogg"/>
  </properties>
@@ -4442,21 +4442,12 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup id="18" name="zones" locked="1">
-  <object id="125" type="area" x="-80" y="448" width="848" height="704"/>
-  <object id="126" type="area" x="-80" y="-112" width="832" height="560"/>
-  <object id="127" type="area" x="768" y="800" width="512" height="352"/>
-  <object id="128" type="area" x="1280" y="400" width="416" height="752"/>
-  <object id="129" type="area" x="768" y="400" width="512" height="400">
-   <properties>
-    <property name="music" value="res://sound/music/town.ogg"/>
-   </properties>
-  </object>
-  <object id="131" type="area" x="752" y="-112" width="944" height="512">
-   <properties>
-    <property name="music" value="res://sound/music/town.ogg"/>
-   </properties>
-  </object>
+ <objectgroup id="18" name="zones">
+  <object id="137" type="area" x="-64" y="-96" width="848" height="544"/>
+  <object id="138" type="area" x="-64" y="448" width="848" height="576"/>
+  <object id="139" type="area" x="784" y="384" width="480" height="640"/>
+  <object id="140" type="area" x="784" y="-16" width="816" height="400"/>
+  <object id="141" type="area" x="1264" y="384" width="368" height="464"/>
  </objectgroup>
  <imagelayer id="2" name="grid" visible="0" locked="1">
   <image source="../tiled/gridtemplate.png" width="2048" height="1152"/>

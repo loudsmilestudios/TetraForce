@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.1" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="16" tileheight="16" infinite="1" nextlayerid="5" nextobjectid="32">
+<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="16" tileheight="16" infinite="1" nextlayerid="6" nextobjectid="36">
  <properties>
   <property name="music" value="res://sound/music/dungeon.ogg"/>
  </properties>
@@ -322,7 +322,13 @@
   <object id="29" gid="3" x="80" y="224" width="16" height="16"/>
   <object id="30" gid="3" x="176" y="240" width="16" height="16"/>
  </objectgroup>
- <imagelayer id="2" name="grid">
+ <objectgroup id="5" name="zones">
+  <object id="32" type="area" x="0" y="144" width="240" height="160"/>
+  <object id="33" type="area" x="-16" y="-16" width="272" height="160"/>
+  <object id="34" type="area" x="256" y="-16" width="272" height="160"/>
+  <object id="35" type="area" x="240" y="144" width="288" height="192"/>
+ </objectgroup>
+ <imagelayer id="2" name="grid" visible="0">
   <image source="../tiled/gridtemplate.png" width="2048" height="1152"/>
  </imagelayer>
 </map>

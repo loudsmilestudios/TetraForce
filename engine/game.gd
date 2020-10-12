@@ -4,7 +4,8 @@ signal player_entered
 
 var camera = preload("res://entities/player/camera.tscn").instance()
 onready var music = AudioStreamPlayer.new()
-export var current_song = "res://sound/music/overworld.ogg"
+export var default_song = "res://sound/music/overworld.ogg"
+var current_song = ""
 
 func _ready():
 	network.current_map = self
@@ -20,7 +21,8 @@ func _ready():
 	connect("player_entered", self, "player_entered")
 	add_child(music)
 	music.volume_db = -20
-	music.stream = load(current_song)
+	current_song = default_song
+	music.stream = load(default_song)
 	music.play()
 
 

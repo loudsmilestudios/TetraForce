@@ -371,7 +371,7 @@ outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 1 )
 
 [sub_resource type="RectangleShape2D" id=23]
-extents = Vector2( 8, 8 )
+extents = Vector2( 4, 4 )
 
 [node name="player" type="KinematicBody2D"]
 z_index = 100
@@ -443,7 +443,7 @@ cast_to = Vector2( 0, 0 )
 collide_with_areas = true
 
 [node name="ZoneHandler" type="Area2D" parent="."]
-visible = false
+position = Vector2( 8, -8 )
 collision_layer = 1024
 collision_mask = 1024
 

@@ -10,7 +10,7 @@ func post_import(imported_scene):
 	
 	# add game.gd script
 	scene.set_script(preload("res://engine/game.gd"))
-	scene.current_song = scene.get_meta("music") 
+	scene.default_song = scene.get_meta("music") 
 	
 	var z = 0
 	var children = scene.get_children()
@@ -22,7 +22,7 @@ func post_import(imported_scene):
 		elif child is Node2D:
 			if child.name == "zones":
 				for zone in child.get_children():
-					zone.position -= Vector2(16,16)
+					zone.get_node("CollisionShape2D").shape.extents -= Vector2(8,8)
 					zone.set_collision_layer_bit(0, 0)
 					zone.set_collision_mask_bit(0, 0)
 					zone.set_collision_layer_bit(10, 1)
