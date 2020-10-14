@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/shore.ogg-bf073bfe551b2bead73e49e6768cbfc2.oggstr"
+
+[deps]
+
+source_file="res://sound/music/shore.ogg"
+dest_files=[ "res://.import/shore.ogg-bf073bfe551b2bead73e49e6768cbfc2.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

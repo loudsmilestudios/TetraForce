@@ -19,6 +19,8 @@ func initialize(node):
 	target = node
 	position = get_grid_pos(target.position) * SCREEN_SIZE
 	
+	smoothing_enabled = false
+	
 	$Tween.connect("tween_started", self, "screen_change_started")
 	$Tween.connect("tween_completed", self, "screen_change_completed")
 	

@@ -17,6 +17,7 @@ var last_movedir = Vector2(0,1)
 # COMBAT
 var health = MAX_HEALTH setget set_health
 var hitstun = 0
+var hurt_sfx = "hit_hurt"
 signal health_changed
 signal update_count
 
@@ -155,6 +156,7 @@ func loop_damage():
 
 func damage(amount, dir):
 	if hitstun == 0:
+		sfx.play(hurt_sfx)
 		set_hurt_texture(true)
 		network.peer_call(self, "set_hurt_texture", [true])
 		hitstun = 10

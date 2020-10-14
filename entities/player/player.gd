@@ -11,6 +11,7 @@ var action_cooldown = 0
 var screen_position = Vector2(0,0)
 
 func initialize():
+	hurt_sfx = "hurt"
 	add_to_group("player")
 	if is_network_master():
 		global.player = self
@@ -35,8 +36,9 @@ func initialize():
 				spritedir = "Right"
 
 		home_position = position
-
+		
 		connect_camera()
+		check_zone()
 		camera.initialize(self)
 
 		anim_switch("idle")
@@ -45,8 +47,13 @@ func initialize():
 		add_child(hud)
 		hud.initialize(self)
 		connect("update_count", hud, "update_weapons")
-
+		
+		#$ZoneHandler.connect("area_entered", self, "zone_changed")
+		ray.add_exception($ZoneHandler)
+		ray.add_exception(hitbox)
+		
 		yield(screenfx, "animation_finished")
+		camera.smoothing_enabled = true
 
 		set_physics_process(true)
 	network.current_map.emit_signal("player_entered", int(name))
@@ -75,6 +82,8 @@ func _physics_process(_delta):
 			state_die()
 	
 	screen_position = position - camera.position
+	
+	check_zone()
 	
 	if Rect2(Vector2(0,0), Vector2(72, 22)).has_point(screen_position) && state != "menu":
 		hud.hide_hearts()
@@ -210,6 +219,7 @@ func loop_interact():
 		elif collider.is_in_group("cliff") && spritedir == "Down":
 			position.y += 2
 			state = "fall"
+			sfx.play("fall2")
 		elif is_on_wall() && collider.is_in_group("pushable") && push_counter >= 0.75:
 			collider.interact(self)
 			push_counter = 0
@@ -217,6 +227,16 @@ func loop_interact():
 func connect_camera():
 	camera.connect("screen_change_started", self, "screen_change_started")
 	camera.connect("screen_change_completed", self, "screen_change_completed")
+
+func check_zone():
+	if $ZoneHandler.get_overlapping_areas().size() > 0:
+		var zone = $ZoneHandler.get_overlapping_areas()[0]
+		var zone_size = zone.get_node("CollisionShape2D").shape.extents * 2
+		camera.limit_left = zone.position.x
+		camera.limit_right = zone.position.x + zone_size.x + 16
+		camera.limit_top = zone.position.y
+		camera.limit_bottom = zone.position.y + zone_size.y + 16
+		network.current_map.set_music(zone.music)
 
 func screen_change_started():
 	set_physics_process(false)

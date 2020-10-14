@@ -62,6 +62,9 @@
    <property name="path" value="res://tiles/cliff.tscn"/>
   </properties>
   <image width="16" height="16" source="images/objects/cliff.png"/>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="4" width="16" height="12"/>
+  </objectgroup>
  </tile>
  <tile id="10">
   <properties>

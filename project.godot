@@ -47,6 +47,7 @@ config/icon="res://icon.png"
 network="*res://engine/network.gd"
 screenfx="*res://effects/screenfx.tscn"
 global="*res://engine/global.gd"
+sfx="*res://sound/sound.gd"
 
 [debug]
 

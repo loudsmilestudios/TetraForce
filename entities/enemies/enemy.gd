@@ -20,6 +20,7 @@ func enemy_death(pos):
 	var death_animation = preload("res://effects/enemy_death.tscn").instance()
 	death_animation.global_position = pos
 	get_parent().add_child(death_animation)
+	sfx.play("death")
 	set_dead()
 
 func set_health(value):
