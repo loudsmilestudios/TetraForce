@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" width="80" height="80" tilewidth="16" tileheight="16" infinite="1" nextlayerid="19" nextobjectid="142">
+<map version="1.4" tiledversion="1.4.1" orientation="orthogonal" renderorder="right-down" width="80" height="80" tilewidth="16" tileheight="16" infinite="1" nextlayerid="19" nextobjectid="153">
  <properties>
   <property name="music" value="res://sound/music/overworld.ogg"/>
  </properties>
@@ -2976,11 +2976,11 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,145,0,0,306,307,307,386,308,0,141,142,
 244,0,0,0,0,237,238,239,326,327,327,327,328,0,146,147,
-244,0,0,0,0,0,695,0,371,374,374,374,375,0,151,152,
-244,0,0,0,0,159,700,0,0,0,0,0,0,0,244,157,
+244,0,0,0,0,0,700,0,371,374,374,374,375,0,151,152,
+244,0,0,0,0,159,705,0,0,0,0,0,0,0,244,157,
 131,132,0,0,0,131,132,131,132,405,0,391,401,0,244,131,
 136,137,245,0,0,136,152,153,137,415,0,0,244,244,244,157,
-0,0,0,0,0,0,136,137,695,0,0,0,395,0,245,146,
+0,0,0,0,0,0,136,137,700,0,0,0,395,0,245,146,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,245,151
 </chunk>
    <chunk x="80" y="0" width="16" height="16">
@@ -3095,9 +3095,9 @@
 0,0,0,0,243,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,700,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,704,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,722,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,709,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,704,0,326,0,0,0,328,392,0,0,0,0,0,
+0,0,0,722,0,326,0,0,0,328,392,0,0,0,0,0,
 0,0,0,0,241,721,0,0,0,721,0,0,0,0,0,0,
 0,0,244,0,242,726,0,0,0,726,0,0,0,0,0,0,
 0,244,131,132,243,0,0,0,0,0,0,0,0,133,150,244,
@@ -3868,7 +3868,7 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,155,0,
 0,0,0,0,0,0,0,0,0,0,0,155,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,155,155,155,0,0,155,
+0,0,0,0,0,0,0,0,0,0,155,0,155,0,0,155,
 0,0,0,0,0,0,0,0,0,0,0,155,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,155,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -4441,15 +4441,78 @@
     <property name="player_position" value="left"/>
    </properties>
   </object>
+  <object id="143" name="town_house1" gid="2" x="1200" y="320" width="16" height="16">
+   <properties>
+    <property name="entrance" value="town_house1"/>
+    <property name="map" value="town/house1"/>
+    <property name="player_position" value="down"/>
+   </properties>
+  </object>
+  <object id="144" name="town_house2" gid="2" x="1120" y="320" width="16" height="16">
+   <properties>
+    <property name="entrance" value="town_house2"/>
+    <property name="map" value="town/house2"/>
+    <property name="player_position" value="down"/>
+   </properties>
+  </object>
+  <object id="145" name="town_inn_rightdoor" gid="2" x="896" y="352" width="16" height="16">
+   <properties>
+    <property name="entrance" value="town_inn_rightdoor"/>
+    <property name="map" value="town/inn"/>
+    <property name="player_position" value="down"/>
+   </properties>
+  </object>
+  <object id="146" name="town_inn_leftdoor" gid="2" x="864" y="352" width="16" height="16">
+   <properties>
+    <property name="entrance" value="town_inn_leftdoor"/>
+    <property name="map" value="town/inn"/>
+    <property name="player_position" value="down"/>
+   </properties>
+  </object>
+  <object id="147" name="blacksmith" gid="2" x="1440" y="224" width="16" height="16">
+   <properties>
+    <property name="entrance" value="blacksmith"/>
+    <property name="map" value="town/blacksmith"/>
+    <property name="player_position" value="down"/>
+   </properties>
+  </object>
+  <object id="148" name="blacksmith_cellar" gid="2" x="1392" y="240" width="16" height="16">
+   <properties>
+    <property name="entrance" value="blacksmith_cellar"/>
+    <property name="map" value="overworld_caves/overworld_caves"/>
+    <property name="player_position" value="down"/>
+   </properties>
+  </object>
+  <object id="149" name="waterfallcave_right" gid="2" x="848" y="80" width="16" height="16">
+   <properties>
+    <property name="entrance" value="waterfallcave_right"/>
+    <property name="map" value="overworld_caves/overworld_caves"/>
+    <property name="player_position" value="down"/>
+   </properties>
+  </object>
+  <object id="150" name="waterfalcave_left" gid="2" x="656" y="80" width="16" height="16">
+   <properties>
+    <property name="entrance" value="waterfallcave_left"/>
+    <property name="map" value="overworld_caves/overworld_caves"/>
+    <property name="player_position" value="down"/>
+   </properties>
+  </object>
+  <object id="152" name="blacksmith_cellar_drop" gid="2" x="1456" y="144" width="16" height="16">
+   <properties>
+    <property name="entrance" value="blacksmith_cellar_drop"/>
+    <property name="map" value="overworld_caves/overworld_caves"/>
+    <property name="player_position" value="down"/>
+   </properties>
+  </object>
  </objectgroup>
- <objectgroup id="18" name="zones">
+ <objectgroup id="18" name="zones" visible="0" locked="1">
   <object id="137" type="area" x="-64" y="-96" width="848" height="544"/>
   <object id="138" type="area" x="-64" y="448" width="848" height="576"/>
   <object id="139" type="area" x="784" y="384" width="480" height="640"/>
   <object id="140" type="area" x="784" y="-16" width="816" height="400"/>
   <object id="141" type="area" x="1264" y="384" width="368" height="464"/>
  </objectgroup>
- <imagelayer id="2" name="grid" visible="0" locked="1">
+ <imagelayer id="2" name="grid" locked="1">
   <image source="../tiled/gridtemplate.png" width="2048" height="1152"/>
  </imagelayer>
 </map>

@@ -1,0 +1,22 @@
+[remap]
+
+importer="vnen.tiled_importer"
+type="PackedScene"
+path="res://.import/inn.tmx-bdf601d7b8f05ce47fc2c90698d17dde.scn"
+
+[deps]
+
+source_file="res://maps/town/inn.tmx"
+dest_files=[ "res://.import/inn.tmx-bdf601d7b8f05ce47fc2c90698d17dde.scn" ]
+
+[params]
+
+custom_properties=true
+tile_metadata=true
+uv_clip=true
+image_flags=7
+collision_layer=1
+embed_internal_images=false
+save_tiled_properties=true
+add_background=true
+post_import_script="res://tiled/import.gd"
