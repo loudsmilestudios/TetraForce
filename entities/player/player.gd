@@ -38,9 +38,8 @@ func initialize():
 		home_position = position
 		
 		connect_camera()
-		check_zone()
 		camera.initialize(self)
-
+		
 		anim_switch("idle")
 
 		hud = preload("res://ui/hud/hud.tscn").instance()
@@ -51,6 +50,10 @@ func initialize():
 		#$ZoneHandler.connect("area_entered", self, "zone_changed")
 		ray.add_exception($ZoneHandler)
 		ray.add_exception(hitbox)
+		
+		yield(get_tree(), "idle_frame")
+		
+		check_zone()
 		
 		yield(screenfx, "animation_finished")
 		camera.smoothing_enabled = true
