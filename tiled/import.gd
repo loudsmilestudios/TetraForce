@@ -38,8 +38,8 @@ func post_import(imported_scene):
 
 func import_tilemap(tilemap):
 	tilemap.position.y += 16
+	set_properties(tilemap, tilemap)
 	tilemap.z_index -= 10
-	var z = tilemap.z_index
 	
 	if tilemap.name == "tall_grass":
 		var used_cells = tilemap.get_used_cells()
@@ -58,7 +58,7 @@ func import_tilemap(tilemap):
 		var new_water = preload("res://tiles/water.tscn").instance()
 		scene.add_child(new_water)
 		new_water.set_owner(scene)
-		new_water.z_index = z
+		#new_water.z_index = z
 		for cell in used_cells:
 			new_water.set_cellv(cell, 0)
 			new_water.update_bitmask_region()

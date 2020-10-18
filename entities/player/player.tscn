@@ -365,13 +365,13 @@ tracks/0/keys = {
 radius = 4.5
 height = 6.0
 
+[sub_resource type="RectangleShape2D" id=23]
+extents = Vector2( 4, 4 )
+
 [sub_resource type="DynamicFont" id=22]
 outline_size = 1
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 1 )
-
-[sub_resource type="RectangleShape2D" id=23]
-extents = Vector2( 4, 4 )
 
 [node name="player" type="KinematicBody2D"]
 z_index = 100
@@ -422,20 +422,6 @@ update_properties = {
 "spritedir": "Down"
 }
 
-[node name="nametag" type="Label" parent="."]
-modulate = Color( 1, 1, 1, 0.686275 )
-margin_left = -48.0
-margin_top = -18.0
-margin_right = 112.0
-margin_bottom = -4.0
-rect_scale = Vector2( 0.6, 0.6 )
-custom_fonts/font = SubResource( 22 )
-text = "Chain"
-align = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="RayCast2D" type="RayCast2D" parent="."]
 visible = false
 enabled = true
@@ -450,3 +436,21 @@ collision_mask = 1024
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ZoneHandler"]
 position = Vector2( -8, 8 )
 shape = SubResource( 23 )
+
+[node name="name" type="Node2D" parent="."]
+z_index = 4096
+z_as_relative = false
+
+[node name="nametag" type="Label" parent="name"]
+modulate = Color( 1, 1, 1, 0.686275 )
+margin_left = -48.0
+margin_top = -18.0
+margin_right = 112.0
+margin_bottom = -4.0
+rect_scale = Vector2( 0.6, 0.6 )
+custom_fonts/font = SubResource( 22 )
+text = "Chain"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
