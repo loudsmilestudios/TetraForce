@@ -4454,7 +4454,7 @@
     <property name="player_position" value="down"/>
    </properties>
   </object>
-  <object id="150" name="waterfalcave_left" gid="2" x="656" y="80" width="16" height="16">
+  <object id="150" name="waterfallcave_left" gid="2" x="656" y="80" width="16" height="16">
    <properties>
     <property name="entrance" value="waterfallcave_left"/>
     <property name="map" value="overworld_caves/overworld_caves"/>
@@ -4487,7 +4487,7 @@
   <object id="158" name="block" gid="3" x="1424" y="112" width="16" height="16"/>
   <object id="159" name="block" gid="3" x="1424" y="160" width="16" height="16"/>
  </objectgroup>
- <objectgroup id="18" name="zones">
+ <objectgroup id="18" name="zones" visible="0">
   <object id="137" type="area" x="-64" y="-96" width="816" height="544"/>
   <object id="138" type="area" x="-64" y="448" width="848" height="576"/>
   <object id="139" type="area" x="784" y="384" width="496" height="640"/>
