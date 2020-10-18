@@ -70,9 +70,11 @@ func end_spin_attack(_a=null):
 func spin_attack(dir):
 	DAMAGE *= spin_multiplier
 	$Flash.play("default")
+	sfx.play("swordspin")
 	anim.playback_speed = 8
 	position = Vector2(0,0)
 	anim.play(str("spin", dir))
+	
 
 func set_pos(p_pos):
 	position = p_pos

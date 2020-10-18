@@ -9,6 +9,7 @@ var selected = 0
 func _ready():
 	get_parent().update_weapons()
 	anim.play("slideup")
+	sfx.play("inventory_open")
 
 func start():
 	add_weapons()
@@ -17,16 +18,22 @@ func start():
 
 func _input(event):
 	if Input.is_action_just_pressed("UP"):
+		sfx.play("item_select")
 		change_selection(-1)
 	if Input.is_action_just_pressed("DOWN"):
+		sfx.play("item_select")
 		change_selection(1)
 	if Input.is_action_just_pressed("B"):
+		sfx.play("inventory_equip")
 		set_weapon("B")
 	if Input.is_action_just_pressed("X"):
+		sfx.play("inventory_equip")
 		set_weapon("X")
 	if Input.is_action_just_pressed("Y"):
+		sfx.play("inventory_equip")
 		set_weapon("Y")
 	if Input.is_action_just_pressed("START"):
+		sfx.play("inventory_close")
 		get_parent().player.state = "default"
 		get_parent().player.action_cooldown = 10
 		anim.play("slidedown")

@@ -965,14 +965,13 @@ anims/default = SubResource( 10 )
 anims/flash = SubResource( 11 )
 
 [node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 15, -1 )
-rotation = 1.5708
+position = Vector2( -3, -16 )
 texture = ExtResource( 2 )
 hframes = 2
 
 [node name="Hitbox" type="Area2D" parent="."]
-position = Vector2( 14, -1 )
-scale = Vector2( 1, 0.25 )
+position = Vector2( -3, -15 )
+scale = Vector2( 0.25, 1 )
 collision_layer = 35
 collision_mask = 35
 
