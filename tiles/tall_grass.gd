@@ -1,5 +1,7 @@
 extends TileMap
 
+class_name TallGrass
+
 var cut_cells = [] setget enter_cut_cells
 
 func _ready():

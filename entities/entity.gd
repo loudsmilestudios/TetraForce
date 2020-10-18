@@ -57,7 +57,7 @@ func _ready():
 func _process(delta):
 	grass_movement.hide()
 	for body in center.get_overlapping_bodies():
-		if body.name == "tall_grass":
+		if body is TallGrass:
 			grass_movement.show()
 			grass_movement.frame = sprite.frame % 2
 			#grass_movement.global_position = sprite.global_position.snapped(Vector2(1,1))

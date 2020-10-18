@@ -37,35 +37,15 @@ func post_import(imported_scene):
 	return scene
 
 func import_tilemap(tilemap):
-	tilemap.position.y += 16
 	set_properties(tilemap, tilemap)
+	tilemap.set_collision_layer_bit(1,1)
+	tilemap.set_collision_mask_bit(1,1)
+	tilemap.position.y += 16
 	tilemap.z_index -= 10
-	
-	if tilemap.name == "tall_grass":
-		var used_cells = tilemap.get_used_cells()
-		tilemap.free()
-		var new_grass = preload("res://tiles/tall_grass.tscn").instance()
-		scene.add_child(new_grass)
-		new_grass.set_owner(scene)
-		for cell in used_cells:
-			new_grass.set_cellv(cell, 0)
-			new_grass.update_bitmask_region()
-	elif tilemap.name == "bush":
-		tilemap.set_script(preload("res://tiles/tall_grass.gd"))
-	elif tilemap.name == "water":
-		var used_cells = tilemap.get_used_cells()
-		tilemap.free()
-		var new_water = preload("res://tiles/water.tscn").instance()
-		scene.add_child(new_water)
-		new_water.set_owner(scene)
-		#new_water.z_index = z
-		for cell in used_cells:
-			new_water.set_cellv(cell, 0)
-			new_water.update_bitmask_region()
-	
-	else:
-		tilemap.set_collision_layer_bit(1,1)
-		tilemap.set_collision_mask_bit(1,1)
+	if tilemap.has_meta("script"):
+		tilemap.set_script(load(tilemap.get_meta("script")))
+	if tilemap.has_meta("replace"):
+		replace_tilemap(tilemap, tilemap.get_meta("replace"))
 
 func spawn_object(object):
 	if object.has_meta("path"):
@@ -82,6 +62,17 @@ func spawn_object(object):
 		object.get_parent().remove_child(object)
 		scene.add_child(object)
 		object.set_owner(scene)
+
+func replace_tilemap(tilemap, replace):
+	var used_cells = tilemap.get_used_cells()
+	var replacement = load(replace).instance()
+	tilemap.free()
+	scene.add_child(replacement)
+	replacement.set_owner(scene)
+	for cell in used_cells:
+		replacement.set_cellv(cell, 0)
+		replacement.update_bitmask_region()
+	#set_properties(tilemap, replacement)
 
 func set_properties(object, node):
 	for meta in object.get_meta_list():
