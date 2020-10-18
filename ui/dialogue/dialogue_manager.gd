@@ -147,6 +147,7 @@ func Dialogue_Anim():
 
 #-----On Button Pressed-----#
 func _on_Button_Pressed(id):
+	sfx.play("item_select")
 	NextNode(id)
 
 #-----Initiate Dialogue-----#
@@ -162,3 +163,7 @@ func _on_Tween_tween_all_completed():
 	if curent_node_choices.size() != null:
 		choiceBox.show()
 		dialogueButtons[0].grab_focus()
+
+#-----Text Tween Sound Effect----#
+func _on_Tween_tween_step(object, key, elapsed, value):
+	sfx.play("dialogue")

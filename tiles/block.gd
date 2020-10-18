@@ -33,3 +33,4 @@ func set_position(value):
 func move_to(current_pos, target_pos):
 	tween.interpolate_property(self, "position", current_pos, target_pos, 1.0, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	tween.start()
+	sfx.play("push")

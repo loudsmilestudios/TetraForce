@@ -34,6 +34,7 @@ func _physics_process(delta):
 	if hold_time < SPIN_HOLD_LENGTH:
 		hold_time += delta
 	elif !spin_attack:
+		sfx.play("swordcharge")
 		ready_spin_attack()
 	
 	if get_parent().health <= 0 || get_parent().hitstun > 0 && !anim.assigned_animation.begins_with("spin"):
@@ -62,6 +63,7 @@ func ready_spin_attack():
 	spin_attack = true
 	$Flash.play("flash")
 	network.peer_call($Flash, "play", ["flash"])
+	
 
 func end_spin_attack(_a=null):
 	delete()
