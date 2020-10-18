@@ -14,8 +14,8 @@ func start():
 		if get_parent().has_method("state_swing"):
 			get_parent().state = "swing"
 	anim.play(str("swing", get_parent().spritedir))
-	sfx.play("sword0")
-	#sfx.play(str("sword", randi() % 3 + 1))
+	#sfx.play("sword0")
+	sfx.play(str("sword", randi() % 4))
 
 func swing_ended(animation):
 	anim.disconnect("animation_finished", self, "swing_ended")

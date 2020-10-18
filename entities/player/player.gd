@@ -239,7 +239,7 @@ func check_zone():
 		camera.limit_right = zone.position.x + zone_size.x + 16
 		camera.limit_top = zone.position.y
 		camera.limit_bottom = zone.position.y + zone_size.y + 16
-		network.current_map.set_music(zone.music)
+		sfx.set_music(zone.music, zone.musicfx)
 
 func screen_change_started():
 	set_physics_process(false)

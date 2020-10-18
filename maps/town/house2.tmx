@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.1" orientation="orthogonal" renderorder="right-down" width="19" height="12" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="5">
+<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" width="19" height="12" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="5">
  <properties>
-  <property name="music" value="res://sound/music/town.ogg"/>
+  <property name="music" value="town"/>
+  <property name="musicfx" value="quiet"/>
  </properties>
  <tileset firstgid="1" source="../../tiled/town/town_interior.tsx"/>
  <tileset firstgid="181" source="../../tiled/objects.tsx"/>

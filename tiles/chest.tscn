@@ -5,7 +5,7 @@
 [ext_resource path="res://engine/network_object.tscn" type="PackedScene" id=3]
 [ext_resource path="res://entities/weapons/icons/bow.png" type="Texture" id=4]
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=1]
 resource_name = "default"
 tracks/0/type = "value"
 tracks/0/path = NodePath("Item:position")
@@ -59,7 +59,7 @@ tracks/1/keys = {
 "values": [ true ]
 }
 
-[sub_resource type="RectangleShape2D" id=1]
+[sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 8, 8 )
 
 [node name="chest" type="StaticBody2D"]
@@ -67,7 +67,7 @@ script = ExtResource( 2 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "default"
-anims/default = SubResource( 3 )
+anims/default = SubResource( 1 )
 anims/open = SubResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
@@ -76,7 +76,7 @@ hframes = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
-shape = SubResource( 1 )
+shape = SubResource( 3 )
 
 [node name="NetworkObject" parent="." instance=ExtResource( 3 )]
 persistent = true

@@ -10,7 +10,7 @@ func post_import(imported_scene):
 	
 	# add game.gd script
 	scene.set_script(preload("res://engine/game.gd"))
-	scene.default_song = scene.get_meta("music") 
+	set_properties(scene, scene)
 	
 	var z = 0
 	var children = scene.get_children()

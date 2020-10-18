@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="16" tileheight="16" infinite="1" nextlayerid="6" nextobjectid="36">
  <properties>
-  <property name="music" value="res://sound/music/dungeon.ogg"/>
+  <property name="music" value="dungeon"/>
  </properties>
  <tileset firstgid="1" source="../tiled/objects.tsx"/>
  <tileset firstgid="11" source="../tiled/dungeon/dungeon_tileset.tsx"/>
