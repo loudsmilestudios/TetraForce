@@ -25,7 +25,7 @@ var ammo = {
 	"arrow": 30,
 }
 
-var next_entrance = "a"
+var next_entrance = ""
 
 signal options_loaded
 

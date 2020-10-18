@@ -1,6 +1,7 @@
 extends Control
 
 var default_map = "res://maps/overworld.tmx"
+var default_entrance = "a"
 export var default_port = 7777
 var server_api = preload("res://engine/server_api.gd").new()
 
@@ -28,7 +29,16 @@ func _ready():
 		if argument.find("=") > -1:
 			var key_value = argument.split("=")
 			arguments[key_value[0].lstrip("--")] = key_value[1]
-
+	
+	if "map" in arguments:
+		var map_arg = arguments.get("map").rsplit("/maps/")[1]
+		var map_path = str("res://maps/", map_arg)
+		default_map = map_path
+		default_entrance = ""
+		yield(get_tree(), "idle_frame")
+		host_server(false, 0, 0, 1)
+		
+	
 	#this overrides the default port of 7777
 	if("port" in arguments):
 		default_port = int(arguments["port"])
@@ -36,11 +46,12 @@ func _ready():
 	
 	if OS.get_name() == "Server" || arguments.get("dedicatedserver") == "true":
 		var empty_timeout = 0
-		var empty_timeout_arg = arguments.get("empty-server-timeout")
-		if empty_timeout_arg.is_valid_integer():
-			var empty_timeout_arg_int = int(empty_timeout_arg)
-			if empty_timeout_arg_int > 0:
-				empty_timeout = empty_timeout_arg_int
+		var empty_timeout_arg = arguments.get("empty-server-timeout", 60)
+		#if empty_timeout_arg.is_valid_integer():
+		#	var empty_timeout_arg_int = int(empty_timeout_arg)
+		#	if empty_timeout_arg_int > 0:
+		#		empty_timeout = empty_timeout_arg_int
+		print(empty_timeout_arg)
 		set_dedicated_server(empty_timeout)
 	
 	#print(yield(server_api.get_servers(), "completed"))
@@ -53,6 +64,7 @@ func start_game(dedicated = false, empty_timeout = 0):
 	network.initialize()
 	
 	if !dedicated:
+		global.next_entrance = default_entrance
 		var level = load(default_map).instance()
 		get_tree().get_root().add_child(level)
 		hide()
@@ -111,6 +123,7 @@ func quit_program():
 	get_tree().quit()
 
 func set_dedicated_server(empty_timeout):
+	hide_menus()
 	host_server(true, empty_timeout)
 
 func get_ipport():

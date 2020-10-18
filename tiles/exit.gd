@@ -5,6 +5,7 @@ export(String) var player_position
 export(String) var entrance
 
 func _ready():
+	add_to_group("entrances")
 	connect("body_entered", self, "body_entered")
 
 func body_entered(body):

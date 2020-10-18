@@ -10,6 +10,16 @@ func _ready():
 	network.current_map = self
 	add_child(camera)
 	network.map_peers = []
+	
+	if global.next_entrance == "":
+		screenfx.play("fadewhite")
+		screenfx.seek(10)
+		var entrance_picker = preload("res://ui/main/entrances.tscn").instance()
+		add_child(entrance_picker)
+		entrance_picker.get_entrances(get_tree().get_nodes_in_group("entrances"))
+		yield(entrance_picker, "entrance_chosen")
+		entrance_picker.queue_free()
+	
 	add_new_player(network.pid)
 	for player in network.player_list.keys():
 		if network.player_list[player] == name:
