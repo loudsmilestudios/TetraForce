@@ -227,7 +227,7 @@ remote func _pc(object, function, arguments = []):
 
 func start_empty_timeout():
 	if empty_timeout == 0 || player_list.size() > 0 || empty_timeout_timer:
-		print("not starting empty_timeout timer")
+		#print("not starting empty_timeout timer")
 		return
 	
 	print("starting empty_timeout timer")
@@ -240,7 +240,7 @@ func start_empty_timeout():
 
 func stop_empty_timeout():
 	if !empty_timeout_timer:
-		print("not stopping empty_timeout timer")
+		#print("not stopping empty_timeout timer")
 		return
 
 	print("stopping empty_timeout timer")

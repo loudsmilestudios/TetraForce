@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/itemfanfare.ogg-09b8e1ecc296a5b0b77f988c1784445b.oggstr"
+
+[deps]
+
+source_file="res://sound/sfx/itemfanfare.ogg"
+dest_files=[ "res://.import/itemfanfare.ogg-09b8e1ecc296a5b0b77f988c1784445b.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

@@ -19,6 +19,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://entities/entity.gd"
 }, {
+"base": "KinematicBody2D",
+"class": "NPC",
+"language": "GDScript",
+"path": "res://entities/npcs/npc.gd"
+}, {
 "base": "Entity",
 "class": "Player",
 "language": "GDScript",
@@ -37,6 +42,7 @@ _global_script_classes=[ {
 _global_script_class_icons={
 "Enemy": "",
 "Entity": "",
+"NPC": "",
 "Player": "",
 "TallGrass": "",
 "Weapon": ""

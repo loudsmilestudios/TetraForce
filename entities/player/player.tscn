@@ -365,10 +365,10 @@ tracks/0/keys = {
 radius = 4.5
 height = 6.0
 
-[sub_resource type="RectangleShape2D" id=23]
+[sub_resource type="RectangleShape2D" id=22]
 extents = Vector2( 4, 4 )
 
-[sub_resource type="DynamicFont" id=22]
+[sub_resource type="DynamicFont" id=23]
 outline_size = 1
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 1 )
@@ -435,9 +435,10 @@ collision_mask = 1024
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ZoneHandler"]
 position = Vector2( -8, 8 )
-shape = SubResource( 23 )
+shape = SubResource( 22 )
 
 [node name="name" type="Node2D" parent="."]
+visible = false
 z_index = 4096
 z_as_relative = false
 
@@ -448,7 +449,7 @@ margin_top = -18.0
 margin_right = 112.0
 margin_bottom = -4.0
 rect_scale = Vector2( 0.6, 0.6 )
-custom_fonts/font = SubResource( 22 )
+custom_fonts/font = SubResource( 23 )
 text = "Chain"
 align = 1
 __meta__ = {

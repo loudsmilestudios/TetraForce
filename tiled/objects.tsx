@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tileset version="1.4" tiledversion="1.4.1" name="objects" tilewidth="16" tileheight="16" tilecount="10" columns="0">
+<tileset version="1.4" tiledversion="1.4.2" name="objects" tilewidth="16" tileheight="16" tilecount="13" columns="0">
  <grid orientation="orthogonal" width="1" height="1"/>
  <tile id="0">
   <properties>
@@ -62,5 +62,29 @@
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="4" width="16" height="12"/>
   </objectgroup>
+ </tile>
+ <tile id="10">
+  <properties>
+   <property name="def" value="weapon_def"/>
+   <property name="item" value="Bow"/>
+   <property name="path" value="res://tiles/chest.tscn"/>
+  </properties>
+  <image width="16" height="16" source="images/objects/chest.png"/>
+ </tile>
+ <tile id="11">
+  <properties>
+   <property name="dialogue" value="npc"/>
+   <property name="direction" value="Down"/>
+   <property name="path" value="res://entities/npcs/npc.tscn"/>
+   <property name="texture" value="girl"/>
+  </properties>
+  <image width="16" height="16" source="images/objects/npc.png"/>
+ </tile>
+ <tile id="12">
+  <properties>
+   <property name="dialogue" value="dungeon_sign"/>
+   <property name="path" value="res://tiles/sign.tscn"/>
+  </properties>
+  <image width="16" height="16" source="images/objects/sign.png"/>
  </tile>
 </tileset>

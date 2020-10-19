@@ -33,19 +33,22 @@ func _ready():
 func _process(delta): # can be on screen change instead of process
 	if !network.is_map_host():
 		return
-	var visible_enemies: Array = []
+	var visible_entities: Array = []
 	for entity_detect in get_tree().get_nodes_in_group("entity_detect"):
 		if is_instance_valid(entity_detect):
 			for entity in entity_detect.get_overlapping_bodies():
-				if entity.is_in_group("enemy"):
-					visible_enemies.append(entity)
+				if entity is Enemy or entity is NPC:
+					visible_entities.append(entity)
 	
-	for enemy in get_tree().get_nodes_in_group("enemy"):
-		if visible_enemies.has(enemy):
-			enemy.set_physics_process(true)
+	for entity in get_tree().get_nodes_in_group("entity"):
+		if entity is Player:
+			continue
+		if visible_entities.has(entity):
+			entity.set_physics_process(true)
 		else:
-			enemy.set_physics_process(false)
-			enemy.position = enemy.home_position
+			entity.set_physics_process(false)
+			if entity is Enemy:
+				entity.position = entity.home_position
 
 func add_new_player(id):
 	var new_player = preload("res://entities/player/player.tscn").instance()

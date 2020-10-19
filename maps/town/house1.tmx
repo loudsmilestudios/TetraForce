@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" width="19" height="12" tilewidth="16" tileheight="16" infinite="0" nextlayerid="10" nextobjectid="3">
+<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" width="19" height="12" tilewidth="16" tileheight="16" infinite="0" nextlayerid="10" nextobjectid="6">
  <properties>
   <property name="music" value="town"/>
   <property name="musicfx" value="quiet"/>
@@ -108,6 +108,11 @@
     <property name="entrance" value="town_house1"/>
     <property name="map" value="overworld"/>
     <property name="player_position" value="up"/>
+   </properties>
+  </object>
+  <object id="3" gid="192" x="128" y="112" width="16" height="16">
+   <properties>
+    <property name="texture" value="boy"/>
    </properties>
   </object>
  </objectgroup>

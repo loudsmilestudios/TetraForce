@@ -50,6 +50,7 @@ func initialize():
 		#$ZoneHandler.connect("area_entered", self, "zone_changed")
 		ray.add_exception($ZoneHandler)
 		ray.add_exception(hitbox)
+		ray.add_exception(center)
 		
 		yield(get_tree(), "idle_frame")
 		
@@ -88,15 +89,15 @@ func _physics_process(_delta):
 	
 	check_zone()
 	
-	if Rect2(Vector2(0,0), Vector2(72, 22)).has_point(screen_position) && state != "menu":
-		hud.hide_hearts()
-	else:
-		hud.show_hearts()
+	#if Rect2(Vector2(0,0), Vector2(72, 22)).has_point(screen_position) && state != "menu":
+	#	hud.hide_hearts()
+	#else:
+	#	hud.show_hearts()
 	
-	if Rect2(Vector2(192, 0), Vector2(64, 30)).has_point(screen_position) && state != "menu":
-		hud.hide_buttons()
-	else:
-		hud.show_buttons()
+	#if Rect2(Vector2(192, 0), Vector2(64, 30)).has_point(screen_position) && state != "menu":
+	#	hud.hide_buttons()
+	#else:
+	#	hud.show_buttons()
 	
 	if action_cooldown > 0:
 		action_cooldown -= 1

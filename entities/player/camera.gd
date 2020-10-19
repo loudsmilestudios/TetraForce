@@ -32,7 +32,7 @@ func _process(_delta):
 	if target == null:
 		return
 	
-	position = target.position - (Vector2(128, 72))
+	position = target.position
 	
 	return
 	
