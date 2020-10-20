@@ -1169,6 +1169,9 @@
   </data>
  </layer>
  <layer id="14" name="tall_grass" width="96" height="54">
+  <properties>
+   <property name="replace" value="res://tiles/tall_grass.tscn"/>
+  </properties>
   <data encoding="csv">
    <chunk x="0" y="0" width="16" height="16">
 0,0,71,72,72,72,73,0,0,0,0,0,0,0,0,0,
@@ -2215,6 +2218,9 @@
   </data>
  </layer>
  <layer id="11" name="bush" width="96" height="54">
+  <properties>
+   <property name="script" value="res://tiles/tall_grass.gd"/>
+  </properties>
   <data encoding="csv">
    <chunk x="0" y="0" width="16" height="16">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,

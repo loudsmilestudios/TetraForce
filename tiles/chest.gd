@@ -21,7 +21,7 @@ func interact(node):
 	else:
 		network.peer_call_id(network.get_map_host(), self, "open", [])
 	
-	sfx.play("itemfanfare", -15)
+	sfx.play("itemfanfare", -5)
 	node.state = "acquire"
 	node.position = position + Vector2(0, 16)
 	node.pos = node.position
