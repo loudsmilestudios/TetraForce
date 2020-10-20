@@ -5,12 +5,11 @@
 	 [
 		{
 			"id"      : 0,
-			"name"    : "Villager",
-			"text"    : "Sup bro?",
+			"name"    : "Dog:",
+			"text"    : "Bark! Bark!",
 			"next_id" : -1,
 			"choices" : []
-		},
-
+		}
 	]
 
 }

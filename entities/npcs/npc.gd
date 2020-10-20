@@ -10,6 +10,7 @@ export var texture = "girl"
 
 func _ready():
 	$Sprite.texture = load(str("res://entities/npcs/", texture, ".png"))
+	spritedir = direction
 	add_to_group("nopush")
 	add_to_group("interactable")
 	anim_switch("idle")

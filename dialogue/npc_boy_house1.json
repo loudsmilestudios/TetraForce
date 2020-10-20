@@ -1,0 +1,43 @@
+{
+	"Force" : 0,
+	"Random": 0,
+	"Nodes" :
+	 [
+		{
+			"id"      : 0,
+			"name"    : "Villager:",
+			"text"    : "I've never seen you here before. Have you travelled far?",
+			"next_id" : 1,
+			"choices" : [
+				
+				{
+					"text"    : "Yes",
+					"next_id" : 1
+				},
+
+				{
+					"text"    : "No",
+					"next_id" : 2
+				}
+			]
+		},
+
+		{
+			"id"      : 1,
+			"name"    : "Villager:",
+			"text"    : "That's neat! You will have to tell me all about your home some time.",
+			"next_id" : -1,
+			"choices" : []
+		},
+
+		{
+			"id"      : 2,
+			"name"    : "Villager:",
+			"text"    : "Hmm. Well, either you have been living under a rock, or I have. But I'm pretty sure it's not me.",
+			"next_id" : -1,
+			"choices" : []
+		}
+
+	]
+
+}

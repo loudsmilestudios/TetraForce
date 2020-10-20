@@ -1,0 +1,17 @@
+{
+	"Force" : 0,
+	"Random": 0,
+	"Nodes" :
+	 [
+		{
+			"id"      : 0,
+			"name"    : "Villager:",
+			"text"    : "My wife gets very excited when she adds a new coin to her coin collection.",
+			"next_id" : -1,
+			"choices" : [
+			]
+		}
+
+	]
+
+}

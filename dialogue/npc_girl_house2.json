@@ -1,0 +1,44 @@
+{
+	"Force" : 0,
+	"Random": 0,
+	"Nodes" :
+	 [
+		{
+			"id"      : 0,
+			"name"    : "Villager:",
+			"text"    : "Oh, hello. Are you here to see my fantastic collection?",
+			"next_id" : 1,
+			"choices" : [
+			]
+		},
+
+		{
+			"id"      : 1,
+			"name"    : "Villager:",
+			"text"    : "See how beautiful this one is? It's minted in a far away land.",
+			"next_id" : 2,
+			"choices" : [
+			]
+		},
+
+		{
+			"id"      : 2,
+			"name"    : "Villager:",
+			"text"    : "And this one here, made from a rare alloy only found deep in the mountains north of here.",
+			"next_id" : 3,
+			"choices" : [
+			]
+		},
+
+		{
+			"id"      : 3,
+			"name"    : "Villager:",
+			"text"    : "Oh goodness, look at how long I kept you, I'm sorry. Thank you for listening!",
+			"next_id" : -1,
+			"choices" : [
+			]
+		},
+
+	]
+
+}

@@ -1,0 +1,24 @@
+{
+	"Force" : 0,
+	"Random": 0,
+	"Nodes" :
+	 [
+		{
+			"id"      : 0,
+			"name"    : "Old Man:",
+			"text"    : "My son is the Blacksmith. I'm sorry if you were looking for him, he's out at the moment.",
+			"next_id" : 1,
+			"choices" : []
+		},
+
+		{
+			"id"      : 1,
+			"name"    : "Old Man:",
+			"text"    : "Please try and come back later.",
+			"next_id" : -1,
+			"choices" : []
+		}
+
+	]
+
+}

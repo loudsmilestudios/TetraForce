@@ -1,0 +1,17 @@
+{
+	"Force" : 0,
+	"Random": 0,
+	"Nodes" :
+	 [
+		{
+			"id"      : 0,
+			"name"    : "Villager:",
+			"text"    : "Our shop isn't open yet, so you won't be able to purchase anything.",
+			"next_id" : -1,
+			"choices" : [
+			]
+		}
+
+	]
+
+}
