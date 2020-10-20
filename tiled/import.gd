@@ -78,4 +78,9 @@ func set_properties(object, node):
 	for meta in object.get_meta_list():
 		if meta in default_meta:
 			continue
-		node.set(meta, object.get_meta(meta))
+		if meta == "group":
+			node.add_to_group(object.get_meta(meta))
+			printt(node.name, object.get_meta(meta))
+			print(node.get_groups())
+		else:
+			node.set(meta, object.get_meta(meta))

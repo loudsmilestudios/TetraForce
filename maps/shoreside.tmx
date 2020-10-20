@@ -447,6 +447,9 @@
   <data encoding="csv"/>
  </layer>
  <layer id="9" name="holes" width="96" height="54">
+  <properties>
+   <property name="group" value="nopush"/>
+  </properties>
   <data encoding="csv">
    <chunk x="32" y="16" width="16" height="16">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -1594,6 +1597,9 @@
   </data>
  </layer>
  <layer id="4" name="deep_water" width="96" height="54">
+  <properties>
+   <property name="group" value="nopush"/>
+  </properties>
   <data encoding="csv">
    <chunk x="32" y="0" width="16" height="16">
 0,0,0,0,0,0,0,0,0,151,152,152,152,152,152,152,

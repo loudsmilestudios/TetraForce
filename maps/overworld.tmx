@@ -1712,6 +1712,9 @@
   </data>
  </layer>
  <layer id="12" name="holes" width="80" height="80">
+  <properties>
+   <property name="group" value="nopush"/>
+  </properties>
   <data encoding="csv">
    <chunk x="16" y="0" width="16" height="16">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
