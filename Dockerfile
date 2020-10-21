@@ -17,4 +17,4 @@ RUN useradd -d /tetra tetra
 # Add pck file
 ADD build/TetraForce.pck /tetra/TetraForce.pck
 
-CMD /usr/local/bin/godot --main-pack /tetra/TetraForce.pck
+CMD /usr/local/bin/godot --main-pack /tetra/TetraForce.pck --empty-server-timeout 300
