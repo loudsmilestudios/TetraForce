@@ -10,4 +10,4 @@ func _process(delta):
 		remove_from_group("entity_detect")
 		queue_free()
 	
-	position = player.position
+	position = player.camera.get_camera_screen_center()

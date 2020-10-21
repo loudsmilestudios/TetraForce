@@ -37,7 +37,6 @@ func initialize():
 
 		home_position = position
 		
-		connect_camera()
 		camera.initialize(self)
 		
 		anim_switch("idle")
@@ -52,12 +51,20 @@ func initialize():
 		ray.add_exception(hitbox)
 		ray.add_exception(center)
 		
+		$ZoneHandler.connect("area_entered", self, "change_zone")
 		yield(get_tree(), "idle_frame")
-		
-		check_zone()
+		camera.get_node("Tween").remove_all()
+		camera.position = position
+		var zone = $ZoneHandler.get_overlapping_areas()[0]
+		var zone_size = zone.get_node("CollisionShape2D").shape.extents * 2
+		var zone_rect = Rect2(zone.position, zone_size)
+		camera.set_limits(zone_rect)
+		camera.smoothing_enabled = true
+		yield(get_tree(), "idle_frame")
+		camera.reset_smoothing()
+		camera.set_process(true)
 		
 		yield(screenfx, "animation_finished")
-		camera.smoothing_enabled = true
 
 		set_physics_process(true)
 	network.current_map.emit_signal("player_entered", int(name))
@@ -86,8 +93,6 @@ func _physics_process(_delta):
 			state_die()
 	
 	screen_position = position - camera.position
-	
-	check_zone()
 	
 	#if Rect2(Vector2(0,0), Vector2(72, 22)).has_point(screen_position) && state != "menu":
 	#	hud.hide_hearts()
@@ -228,22 +233,8 @@ func loop_interact():
 			collider.interact(self)
 			push_counter = 0
 
-func connect_camera():
-	camera.connect("screen_change_started", self, "screen_change_started")
-	camera.connect("screen_change_completed", self, "screen_change_completed")
-
-func check_zone():
-	if $ZoneHandler.get_overlapping_areas().size() > 0:
-		var zone = $ZoneHandler.get_overlapping_areas()[0]
-		var zone_size = zone.get_node("CollisionShape2D").shape.extents * 2
-		camera.limit_left = zone.position.x
-		camera.limit_right = zone.position.x + zone_size.x + 16
-		camera.limit_top = zone.position.y
-		camera.limit_bottom = zone.position.y + zone_size.y + 16
-		sfx.set_music(zone.music, zone.musicfx)
-
-func screen_change_started():
-	set_physics_process(false)
-
-func screen_change_completed():
-	set_physics_process(true)
+func change_zone(zone):
+	var zone_size = zone.get_node("CollisionShape2D").shape.extents * 2
+	var zone_rect = Rect2(zone.position, zone_size)
+	camera.scroll_screen(zone_rect)
+	sfx.set_music(zone.music, zone.musicfx)
