@@ -430,6 +430,7 @@ collide_with_areas = true
 
 [node name="ZoneHandler" type="Area2D" parent="."]
 position = Vector2( 8, -8 )
+monitorable = false
 collision_layer = 1024
 collision_mask = 1024
 
@@ -438,7 +439,6 @@ position = Vector2( -8, 8 )
 shape = SubResource( 22 )
 
 [node name="name" type="Node2D" parent="."]
-visible = false
 z_index = 4096
 z_as_relative = false
 
