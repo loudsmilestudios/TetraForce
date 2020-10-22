@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tileset version="1.4" tiledversion="1.4.2" name="town_tileset" tilewidth="16" tileheight="16" tilecount="250" columns="10">
+<tileset version="1.4" tiledversion="1.4.1" name="town_tileset" tilewidth="16" tileheight="16" tilecount="250" columns="10">
  <image source="../images/tilesets/town_tileset.png" width="160" height="400"/>
  <terraintypes>
   <terrain name="Blue Roof" tile="11"/>
@@ -467,6 +467,16 @@
  <tile id="100">
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="101">
+  <objectgroup draworder="index" id="4">
+   <object id="3" x="6" y="14" width="4" height="2"/>
+  </objectgroup>
+ </tile>
+ <tile id="103">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="6" y="14" width="4" height="2"/>
   </objectgroup>
  </tile>
  <tile id="111">

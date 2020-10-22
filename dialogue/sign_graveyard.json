@@ -1,0 +1,16 @@
+{
+	"Force" : 0,
+	"Random": 0,
+	"Nodes" :
+	 [
+		{
+			"id"      : 0,
+			"name"    : "Sign:",
+			"text"    : "Do not push over gravestones.",
+			"next_id" : -1,
+			"choices" : []
+		}
+
+	]
+
+}

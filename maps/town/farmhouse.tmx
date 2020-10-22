@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" width="19" height="12" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="4">
+<map version="1.4" tiledversion="1.4.1" orientation="orthogonal" renderorder="right-down" width="19" height="12" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="5">
  <properties>
   <property name="music" value="town"/>
   <property name="musicfx" value="quiet"/>
@@ -15,7 +15,7 @@
 0,0,36,37,37,37,44,37,37,37,37,44,37,46,46,46,46,0,0,
 0,0,36,37,44,37,37,37,37,37,37,37,37,46,46,46,46,0,0,
 0,0,36,37,37,37,37,44,37,37,37,37,37,37,37,37,38,0,0,
-0,0,36,37,37,37,37,37,37,37,37,37,37,44,37,37,38,0,0,
+0,0,36,37,37,37,37,37,442,37,37,37,37,44,37,37,38,0,0,
 0,0,36,37,37,44,37,37,37,37,37,37,37,37,37,37,38,0,0,
 0,0,36,37,37,37,37,37,37,37,37,44,37,37,37,37,38,0,0,
 0,0,41,42,42,42,42,42,42,42,42,42,42,42,42,42,43,0,0,
@@ -77,6 +77,11 @@
     <property name="entrance" value="town_farmhouse"/>
     <property name="map" value="overworld"/>
     <property name="player_position" value="up"/>
+   </properties>
+  </object>
+  <object id="4" gid="442" x="128" y="96" width="16" height="16">
+   <properties>
+    <property name="dialogue" value="npc_girl_farmhouse"/>
    </properties>
   </object>
  </objectgroup>

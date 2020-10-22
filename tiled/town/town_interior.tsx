@@ -8,7 +8,7 @@
   <terrain name="Light Stone Floor" tile="51"/>
   <terrain name="Dark Stone Floor" tile="66"/>
   <terrain name="Red Carpet" tile="81"/>
-  <terrain name="Green Carpet" tile="81"/>
+  <terrain name="Green Carpet" tile="96"/>
  </terraintypes>
  <tile id="0" terrain=",,,0">
   <objectgroup draworder="index" id="2">

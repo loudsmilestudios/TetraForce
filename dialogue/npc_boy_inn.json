@@ -1,0 +1,43 @@
+{
+	"Force" : 0,
+	"Random": 0,
+	"Nodes" :
+	 [
+		{
+			"id"      : 0,
+			"name"    : "Villager:",
+			"text"    : "Have you seen how dark the cave is to the north of here?",
+			"next_id" : 1,
+			"choices" : [
+				
+				{
+					"text"    : "Yes",
+					"next_id" : 1
+				},
+
+				{
+					"text"    : "No",
+					"next_id" : 2
+				}
+			]
+		},
+
+		{
+			"id"      : 1,
+			"name"    : "Villager:",
+			"text"    : "Crazy, isn't it? I'd love to explore it, but I don't have a light bright enough.",
+			"next_id" : -1,
+			"choices" : []
+		},
+
+		{
+			"id"      : 2,
+			"name"    : "Villager:",
+			"text"    : "Well, if you do go, make sure you bring a bright light with you.",
+			"next_id" : -1,
+			"choices" : []
+		}
+
+	]
+
+}
