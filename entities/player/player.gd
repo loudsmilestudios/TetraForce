@@ -55,12 +55,6 @@ func initialize():
 		yield(get_tree(), "idle_frame")
 		camera.get_node("Tween").remove_all()
 		camera.position = position
-		var zone = $ZoneHandler.get_overlapping_areas()[0]
-		var zone_size = zone.get_node("CollisionShape2D").shape.extents * 2
-		var zone_rect = Rect2(zone.position, zone_size)
-		camera.set_limits(zone_rect)
-		camera.smoothing_enabled = true
-		yield(get_tree(), "idle_frame")
 		camera.reset_smoothing()
 		camera.set_process(true)
 		

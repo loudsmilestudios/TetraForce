@@ -7,6 +7,7 @@ var server_api = preload("res://engine/server_api.gd").new()
 
 onready var address_line = $multiplayer/Manual/address
 onready var lobby_line = $multiplayer/Automatic/lobby
+onready var endpoint_button = $options/scroll/vbox/endpoint
 
 func _ready():
 	global.load_options()
@@ -21,6 +22,10 @@ func _ready():
 	get_tree().set_auto_accept_quit(false)
 	
 	add_child(server_api)
+	
+	endpoint_button.add_item("Production")
+	endpoint_button.add_item("Stage")
+	_on_endpoint_item_selected(0)
 	
 	#For server commandline arguments. Searches for ones passed, then tries to set ones that exist.
 	#Puts arguments passed as "--example=value" in a dictionary.
@@ -169,3 +174,11 @@ func _on_back_pressed():
 
 func _on_save_pressed():
 	global.save_options()
+
+
+func _on_endpoint_item_selected(index):
+	match index:
+		0:
+			server_api.api_endpoint = "55uly5k4f0.execute-api.us-east-2.amazonaws.com"
+		1:
+			server_api.api_endpoint = "stage.api.tetraforce.io"

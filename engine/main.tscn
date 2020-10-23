@@ -306,6 +306,17 @@ text = "Character skin and player name"
 align = 1
 autowrap = true
 
+[node name="endpoint" type="OptionButton" parent="options/scroll/vbox"]
+margin_left = 64.0
+margin_top = 166.0
+margin_right = 194.0
+margin_bottom = 190.0
+text = "API Endpoint"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="save" type="Button" parent="options"]
 margin_left = 320.0
 margin_top = 160.0
@@ -335,5 +346,6 @@ __meta__ = {
 [connection signal="pressed" from="multiplayer/Manual/host" to="." method="_on_host_pressed"]
 [connection signal="pressed" from="multiplayer/Manual/join" to="." method="_on_join_pressed"]
 [connection signal="text_changed" from="options/scroll/vbox/characterselect/name" to="options/scroll/vbox/characterselect" method="_on_name_text_changed"]
+[connection signal="item_selected" from="options/scroll/vbox/endpoint" to="." method="_on_endpoint_item_selected"]
 [connection signal="pressed" from="options/save" to="." method="_on_save_pressed"]
 [connection signal="pressed" from="back" to="." method="_on_back_pressed"]

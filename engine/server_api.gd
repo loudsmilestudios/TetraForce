@@ -1,6 +1,6 @@
 extends Node
 
-export(String) var api_endpoint = "stage.api.tetraforce.io"
+export(String) var api_endpoint = "api.tetraforce.io"
 
 var _http_client : HTTPRequest
 
