@@ -4,6 +4,7 @@ on:
   release:
     types:
       - created
+  workflow_dispatch: {}
 
 jobs:
   docker:
@@ -75,4 +76,20 @@ jobs:
           name: TetraForce${{ env.EXPORT_SUFFIX }}
           preset: ${{ matrix.platform }}
           projectDir: '.'
-      # In the future a push to itch or other platform would go here
+      - name: Package
+        run: |
+          cd ${{ steps.build.outputs.build }}
+          mkdir -p ${{github.workspace}}/tetraforce
+          zip -r ${{github.workspace}}/tetraforce/TetraForce.zip .
+      - name: Ship to S3
+        uses: jakejarvis/s3-sync-action@master
+        with:
+          args: --acl public-read --follow-symlinks --delete
+        env:
+          AWS_S3_BUCKET: tetraforce-releases-production-us-east-2
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_REGION: us-east-2
+          SOURCE_DIR: ${{github.workspace}}/tetraforce
+          DEST_DIR: builds/master/latest/${{ matrix.platform }}
+
