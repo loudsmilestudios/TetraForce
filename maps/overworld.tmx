@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.1" orientation="orthogonal" renderorder="right-down" width="80" height="80" tilewidth="16" tileheight="16" infinite="1" nextlayerid="20" nextobjectid="170">
+<map version="1.2" tiledversion="1.2.1" orientation="orthogonal" renderorder="right-down" width="80" height="80" tilewidth="16" tileheight="16" infinite="1" nextlayerid="20" nextobjectid="170">
  <properties>
   <property name="music" value="overworld"/>
  </properties>
@@ -4425,37 +4425,18 @@
   <object id="116" name="cliffjump" gid="10" x="576" y="624" width="16" height="16"/>
   <object id="119" name="cliffjump" gid="10" x="704" y="528" width="16" height="16"/>
   <object id="121" name="cliffjump" gid="10" x="1152" y="864" width="16" height="16"/>
-  <object id="132" name="shore_ne_2" gid="2" x="1616" y="528" width="16" height="16">
+  <object id="133" name="shore_ne" gid="2" x="1616" y="544" width="16" height="32">
    <properties>
-    <property name="entrance" value="shore_ne_2"/>
+    <property name="collider_height" type="float" value="2"/>
+    <property name="entrance" value="shore_ne"/>
     <property name="map" value="shoreside"/>
     <property name="player_position" value="left"/>
    </properties>
   </object>
-  <object id="133" name="shore_ne_1" gid="2" x="1616" y="544" width="16" height="16">
+  <object id="134" name="shore_se" gid="2" x="1616" y="832" width="16" height="48">
    <properties>
-    <property name="entrance" value="shore_ne_2"/>
-    <property name="map" value="shoreside"/>
-    <property name="player_position" value="left"/>
-   </properties>
-  </object>
-  <object id="134" name="shore_se_1" gid="2" x="1616" y="800" width="16" height="16">
-   <properties>
-    <property name="entrance" value="shore_se_2"/>
-    <property name="map" value="shoreside"/>
-    <property name="player_position" value="left"/>
-   </properties>
-  </object>
-  <object id="135" name="shore_se_2" gid="2" x="1616" y="816" width="16" height="16">
-   <properties>
-    <property name="entrance" value="shore_se_2"/>
-    <property name="map" value="shoreside"/>
-    <property name="player_position" value="left"/>
-   </properties>
-  </object>
-  <object id="136" name="shore_se_3" gid="2" x="1616" y="832" width="16" height="16">
-   <properties>
-    <property name="entrance" value="shore_se_2"/>
+    <property name="collider_height" type="float" value="3"/>
+    <property name="entrance" value="shore_se"/>
     <property name="map" value="shoreside"/>
     <property name="player_position" value="left"/>
    </properties>

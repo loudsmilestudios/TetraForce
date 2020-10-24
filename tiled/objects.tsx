@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tileset version="1.4" tiledversion="1.4.2" name="objects" tilewidth="16" tileheight="16" tilecount="13" columns="0">
+<tileset version="1.2" tiledversion="1.2.1" name="objects" tilewidth="16" tileheight="16" tilecount="13" columns="0">
  <grid orientation="orthogonal" width="1" height="1"/>
  <tile id="0">
   <properties>
@@ -9,6 +9,8 @@
  </tile>
  <tile id="1">
   <properties>
+   <property name="collider_height" type="float" value="1"/>
+   <property name="collider_width" type="float" value="1"/>
    <property name="entrance" value=""/>
    <property name="map" value=""/>
    <property name="path" value="res://tiles/exit.tscn"/>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.1" orientation="orthogonal" renderorder="right-down" width="96" height="54" tilewidth="16" tileheight="16" infinite="1" nextlayerid="20" nextobjectid="55">
+<map version="1.2" tiledversion="1.2.1" orientation="orthogonal" renderorder="right-down" width="96" height="54" tilewidth="16" tileheight="16" infinite="1" nextlayerid="20" nextobjectid="55">
  <properties>
   <property name="music" value="shore"/>
  </properties>
@@ -2738,51 +2738,18 @@
   <object id="28" name="slime" gid="771" x="656" y="720" width="16" height="16"/>
   <object id="29" name="slime" gid="771" x="1184" y="656" width="16" height="16"/>
   <object id="39" name="cliff" gid="775" x="592" y="544" width="16" height="16"/>
-  <object id="40" name="shore_ne_1" gid="767" x="16" y="192" width="16" height="16">
+  <object id="40" name="shore_ne" gid="767" x="16" y="224" width="16" height="48">
    <properties>
-    <property name="entrance" value="shore_ne_1"/>
+    <property name="collider_height" type="float" value="3"/>
+    <property name="entrance" value="shore_ne"/>
     <property name="map" value="overworld"/>
     <property name="player_position" value="right"/>
    </properties>
   </object>
-  <object id="41" name="shore_ne_2" gid="767" x="16" y="208" width="16" height="16">
+  <object id="44" name="shore_se" gid="767" x="16" y="559.75" width="16" height="64">
    <properties>
-    <property name="entrance" value="shore_ne_1"/>
-    <property name="map" value="overworld"/>
-    <property name="player_position" value="right"/>
-   </properties>
-  </object>
-  <object id="42" name="shore_ne_3" gid="767" x="16" y="224" width="16" height="16">
-   <properties>
-    <property name="entrance" value="shore_ne_1"/>
-    <property name="map" value="overworld"/>
-    <property name="player_position" value="right"/>
-   </properties>
-  </object>
-  <object id="44" name="shore_se_1" gid="767" x="16" y="512" width="16" height="16">
-   <properties>
-    <property name="entrance" value="shore_se_2"/>
-    <property name="map" value="overworld"/>
-    <property name="player_position" value="right"/>
-   </properties>
-  </object>
-  <object id="45" name="shore_se_2" gid="767" x="16" y="528" width="16" height="16">
-   <properties>
-    <property name="entrance" value="shore_se_2"/>
-    <property name="map" value="overworld"/>
-    <property name="player_position" value="right"/>
-   </properties>
-  </object>
-  <object id="46" name="shore_se_3" gid="767" x="16" y="544" width="16" height="16">
-   <properties>
-    <property name="entrance" value="shore_se_2"/>
-    <property name="map" value="overworld"/>
-    <property name="player_position" value="right"/>
-   </properties>
-  </object>
-  <object id="47" name="shore_se_4" gid="767" x="16" y="560" width="16" height="16">
-   <properties>
-    <property name="entrance" value="shore_se_2"/>
+    <property name="collider_height" type="float" value="4"/>
+    <property name="entrance" value="shore_se"/>
     <property name="map" value="overworld"/>
     <property name="player_position" value="right"/>
    </properties>
