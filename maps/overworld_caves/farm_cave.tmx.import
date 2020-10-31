@@ -1,0 +1,22 @@
+[remap]
+
+importer="vnen.tiled_importer"
+type="PackedScene"
+path="res://.import/farm_cave.tmx-c57665ae2efa61afdf2166854463922e.scn"
+
+[deps]
+
+source_file="res://maps/overworld_caves/farm_cave.tmx"
+dest_files=[ "res://.import/farm_cave.tmx-c57665ae2efa61afdf2166854463922e.scn" ]
+
+[params]
+
+custom_properties=true
+tile_metadata=true
+uv_clip=true
+image_flags=7
+collision_layer=1
+embed_internal_images=false
+save_tiled_properties=true
+add_background=true
+post_import_script="res://tiled/import.gd"
