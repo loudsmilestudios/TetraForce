@@ -519,6 +519,39 @@
    <object id="1" x="0" y="0" width="16" height="16"/>
   </objectgroup>
  </tile>
+ <tile id="120">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="16" y="16">
+    <polygon points="0,0 0.0434783,-6.26087 -6.30435,0"/>
+   </object>
+  </objectgroup>
+ </tile>
+ <tile id="121">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="16" y="16">
+    <polygon points="0,0 -16,0 -16.0435,-6.91304 -0.0434783,-14.087"/>
+   </object>
+  </objectgroup>
+ </tile>
+ <tile id="122">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="123">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="16">
+    <polygon points="0,0 16,0 16.087,-6.47826 0,-13.8696"/>
+   </object>
+  </objectgroup>
+ </tile>
+ <tile id="124">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="16">
+    <polygon points="0,0 -0.0434783,-5.69565 5.78261,0"/>
+   </object>
+  </objectgroup>
+ </tile>
  <tile id="125" terrain=",,,4"/>
  <tile id="126" terrain=",,4,4"/>
  <tile id="127" terrain=",,4,"/>
