@@ -1,7 +1,7 @@
 extends Control
 
-var default_map = "res://maps/overworld.tmx"
-var default_entrance = "a"
+var default_map = "res://maps/shrine.tmx"
+var default_entrance = "player_start"
 export var default_port = 7777
 var server_api = preload("res://engine/server_api.gd").new()
 
