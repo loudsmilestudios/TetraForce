@@ -3,30 +3,30 @@
 [ext_resource path="res://tiles/decor/flower_blue.png" type="Texture" id=1]
 [ext_resource path="res://tiles/decor/flower_white.png" type="Texture" id=2]
 
-[sub_resource type="AtlasTexture" id=519]
+[sub_resource type="AtlasTexture" id=565]
 atlas = ExtResource( 1 )
 region = Rect2( 0, 0, 16, 16 )
 
-[sub_resource type="AtlasTexture" id=520]
+[sub_resource type="AtlasTexture" id=566]
 atlas = ExtResource( 1 )
 region = Rect2( 16, 0, 16, 16 )
 
-[sub_resource type="AtlasTexture" id=521]
+[sub_resource type="AtlasTexture" id=567]
 atlas = ExtResource( 2 )
 region = Rect2( 0, 0, 16, 16 )
 
-[sub_resource type="AtlasTexture" id=522]
+[sub_resource type="AtlasTexture" id=568]
 atlas = ExtResource( 2 )
 region = Rect2( 16, 0, 16, 16 )
 
-[sub_resource type="SpriteFrames" id=523]
+[sub_resource type="SpriteFrames" id=569]
 animations = [ {
-"frames": [ SubResource( 519 ), SubResource( 520 ) ],
+"frames": [ SubResource( 565 ), SubResource( 566 ) ],
 "loop": true,
 "name": "blue",
 "speed": 5.0
 }, {
-"frames": [ SubResource( 521 ), SubResource( 522 ) ],
+"frames": [ SubResource( 567 ), SubResource( 568 ) ],
 "loop": true,
 "name": "white",
 "speed": 5.0
@@ -34,7 +34,7 @@ animations = [ {
 
 [node name="flower_white" type="AnimatedSprite"]
 z_index = -1
-frames = SubResource( 523 )
+frames = SubResource( 569 )
 animation = "white"
 frame = 1
 speed_scale = 0.25
