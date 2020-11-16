@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.1" orientation="orthogonal" renderorder="right-down" width="80" height="80" tilewidth="16" tileheight="16" infinite="1" nextlayerid="20" nextobjectid="182">
+<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" width="80" height="80" tilewidth="16" tileheight="16" infinite="1" nextlayerid="20" nextobjectid="182">
  <properties>
   <property name="music" value="overworld"/>
  </properties>
@@ -1713,7 +1713,7 @@
  </layer>
  <layer id="12" name="holes" width="80" height="80">
   <properties>
-   <property name="group" value="nopush"/>
+   <property name="script" value="res://tiles/holes.gd"/>
   </properties>
   <data encoding="csv">
    <chunk x="16" y="0" width="16" height="16">

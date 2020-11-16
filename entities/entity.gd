@@ -13,6 +13,7 @@ var movedir = Vector2(0,0)
 var knockdir = Vector2(0,0)
 var spritedir = "Down"
 var last_movedir = Vector2(0,1)
+var last_safe_pos = position
 
 # COMBAT
 var health = MAX_HEALTH setget set_health
@@ -75,6 +76,9 @@ func create_hitbox():
 	new_shape.radius = $CollisionShape2D.shape.radius + 1
 	new_shape.height = $CollisionShape2D.shape.height + 1
 	
+	new_hitbox.set_collision_layer_bit(7,1)
+	new_hitbox.set_collision_mask_bit(7,1)
+	
 	hitbox = new_hitbox
 
 func create_center():
@@ -90,10 +94,12 @@ func create_center():
 	new_shape.extents = Vector2(1,1)
 	
 	# tall_grass
-	new_center.set_collision_layer_bit(0,1)
-	new_center.set_collision_mask_bit(0,1)
+	new_center.set_collision_layer_bit(0,0)
+	new_center.set_collision_mask_bit(0,0)
 	new_center.set_collision_layer_bit(5,1)
 	new_center.set_collision_mask_bit(5,1)
+	new_center.set_collision_layer_bit(7,1)
+	new_center.set_collision_mask_bit(7,1)
 	
 	new_center.position.y += 6
 	
@@ -153,6 +159,33 @@ func loop_damage():
 			continue
 		if body.get("DAMAGE") > 0 && body.get("TYPE") != TYPE:
 			damage(body.DAMAGE, global_position - body.global_position)
+
+func loop_holes():
+	var safe = true
+	for body in center.get_overlapping_bodies():
+		if body is Holes:
+			safe = false
+			var hole_origin = body.map_to_world(body.world_to_map(position + Vector2(0,6))) + Vector2(8,8)
+			var hole_hitbox = Rect2(hole_origin - Vector2(5,5), Vector2(10,10))
+			position = position.linear_interpolate(hole_origin, 0.075) # there's a way to lerp w/ delta time i forgot it tho
+			position += Vector2(0, rand_range(-1,0))
+			if hole_hitbox.has_point(position):
+				create_hole_fx(hole_origin)
+				network.peer_call(self, "create_hole_fx", [hole_origin])
+				hide()
+				state = "hole"
+				yield(get_tree().create_timer(1.5), "timeout")
+				position = last_safe_pos
+				show()
+				state = "default"
+	if safe:
+		last_safe_pos = position - movedir * 2
+
+func create_hole_fx(pos):
+	var hole_fx = preload("res://effects/hole_falling.tscn").instance()
+	get_parent().add_child(hole_fx)
+	hole_fx.position = pos
+	sfx.play("fall")
 
 func damage(amount, dir):
 	if hitstun == 0:

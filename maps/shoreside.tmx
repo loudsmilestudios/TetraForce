@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.1" orientation="orthogonal" renderorder="right-down" width="96" height="54" tilewidth="16" tileheight="16" infinite="1" nextlayerid="20" nextobjectid="176">
+<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" width="96" height="54" tilewidth="16" tileheight="16" infinite="1" nextlayerid="20" nextobjectid="176">
  <properties>
   <property name="music" value="shore"/>
  </properties>
@@ -448,7 +448,7 @@
  </layer>
  <layer id="9" name="holes" width="96" height="54">
   <properties>
-   <property name="group" value="nopush"/>
+   <property name="script" value="res://tiles/holes.gd"/>
   </properties>
   <data encoding="csv">
    <chunk x="32" y="16" width="16" height="16">

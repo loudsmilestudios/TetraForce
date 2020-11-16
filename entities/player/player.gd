@@ -104,6 +104,8 @@ func _physics_process(_delta):
 	#else:
 	#	hud.show_buttons()
 	
+	
+	
 	if action_cooldown > 0:
 		action_cooldown -= 1
 
@@ -114,6 +116,7 @@ func state_default():
 	loop_damage()
 	loop_action_button()
 	loop_interact()
+	loop_holes()
 	
 	if movedir.length() == 1:
 		ray.cast_to = movedir * 8
@@ -132,12 +135,14 @@ func state_swing():
 	anim_switch("swing")
 	loop_movement()
 	loop_damage()
+	loop_holes()
 	movedir = Vector2.ZERO
 
 func state_hold():
 	loop_controls()
 	loop_movement()
 	loop_damage()
+	loop_holes()
 	if movedir == Vector2.ZERO:
 		anim_switch("idle")
 		push_counter = 0
