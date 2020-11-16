@@ -25,6 +25,7 @@ func _physics_process(delta):
 	loop_movement()
 	loop_spritedir()
 	loop_damage()
+	loop_holes()
 	
 	anim_switch("walk")
 	

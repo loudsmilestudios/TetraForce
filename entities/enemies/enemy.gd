@@ -10,6 +10,13 @@ func _ready():
 	set_collision_layer_bit(1, 1)
 	set_collision_mask_bit(1, 1)
 
+func _process(delta):
+	set_hole_bit(hitstun == 0)
+
+func set_hole_bit(bit):
+	set_collision_layer_bit(7, bit)
+	set_collision_mask_bit(7, bit)
+
 func check_for_death():
 	if health <= 0:
 		emit_signal("update_persistent_state")
@@ -27,6 +34,10 @@ func set_health(value):
 	health = value
 	if health <= 0:
 		set_dead()
+
+func hole_fall():
+	set_dead()
+	network.peer_call(self, "set_dead")
 
 remote func set_dead():
 	hide()

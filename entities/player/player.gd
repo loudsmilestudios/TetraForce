@@ -238,6 +238,18 @@ func loop_interact():
 			collider.interact(self)
 			push_counter = 0
 
+func hole_fall():
+	hide()
+	for child in get_children():
+		if child.is_in_group("item"):
+			child.queue_free()
+	state = "hole"
+	yield(get_tree().create_timer(1.5), "timeout")
+	position = last_safe_pos
+	show()
+	damage(1, Vector2(0,0))
+	state = "default"
+
 func change_zone(zone):
 	var zone_size = zone.get_node("CollisionShape2D").shape.extents * 2
 	var zone_rect = Rect2(zone.position, zone_size)

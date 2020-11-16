@@ -161,25 +161,25 @@ func loop_damage():
 			damage(body.DAMAGE, global_position - body.global_position)
 
 func loop_holes():
+	if get_collision_layer_bit(7) == true:
+		return
 	var safe = true
 	for body in center.get_overlapping_bodies():
 		if body is Holes:
 			safe = false
 			var hole_origin = body.map_to_world(body.world_to_map(position + Vector2(0,6))) + Vector2(8,8)
 			var hole_hitbox = Rect2(hole_origin - Vector2(5,5), Vector2(10,10))
-			position = position.linear_interpolate(hole_origin, 0.075) # there's a way to lerp w/ delta time i forgot it tho
+			position = position.linear_interpolate(hole_origin, 0.1) # there's a way to lerp w/ delta time i forgot it tho
 			position += Vector2(0, rand_range(-1,0))
-			if hole_hitbox.has_point(position):
+			if hole_hitbox.has_point(position + Vector2(0,4)):
 				create_hole_fx(hole_origin)
 				network.peer_call(self, "create_hole_fx", [hole_origin])
-				hide()
-				state = "hole"
-				yield(get_tree().create_timer(1.5), "timeout")
-				position = last_safe_pos
-				show()
-				state = "default"
+				hole_fall()
 	if safe:
 		last_safe_pos = position - movedir * 2
+
+func hole_fall():
+	pass
 
 func create_hole_fx(pos):
 	var hole_fx = preload("res://effects/hole_falling.tscn").instance()

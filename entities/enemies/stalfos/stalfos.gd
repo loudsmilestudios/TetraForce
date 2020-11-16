@@ -13,6 +13,7 @@ func _physics_process(delta):
 	
 	loop_movement()
 	loop_damage()
+	loop_holes()
 	
 	if movetimer > 0:
 		movetimer -= 1
