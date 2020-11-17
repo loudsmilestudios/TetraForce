@@ -209,7 +209,10 @@ func peer_call_unreliable(object, function, arguments = []):
 		rpc_unreliable_id(peer, "_pc", object.get_path(), function, arguments)
 
 func peer_call_id(id, object, function, arguments = []):
-	rpc_id(id, "_pc", object.get_path(), function, arguments)
+	if id == get_tree().get_network_unique_id():
+		_pc(object.get_path(), function, arguments)
+	else:
+		rpc_id(id, "_pc", object.get_path(), function, arguments)
 
 func validate_object_id(id, object, question, function):
 	rpc_id(id, "_check_object", object.get_path(), question, function)
