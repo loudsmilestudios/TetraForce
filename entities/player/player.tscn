@@ -377,7 +377,7 @@ font_data = ExtResource( 1 )
 z_index = 100
 script = ExtResource( 3 )
 TYPE = "PLAYER"
-MAX_HEALTH = 14.0
+MAX_HEALTH = 7.0
 DAMAGE = 0.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

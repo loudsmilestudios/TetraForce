@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" width="96" height="54" tilewidth="16" tileheight="16" infinite="1" nextlayerid="20" nextobjectid="176">
+<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" width="96" height="54" tilewidth="16" tileheight="16" infinite="1" nextlayerid="21" nextobjectid="385">
  <properties>
   <property name="music" value="shore"/>
  </properties>
@@ -525,7 +525,10 @@
 </chunk>
   </data>
  </layer>
- <layer id="12" name="sand_shallow" width="96" height="54">
+ <layer id="12" name="shallow_shore" width="96" height="54">
+  <properties>
+   <property name="replace" value="res://tiles/shallow_shore.tscn"/>
+  </properties>
   <data encoding="csv">
    <chunk x="16" y="16" width="16" height="16">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -619,7 +622,10 @@
 </chunk>
   </data>
  </layer>
- <layer id="13" name="grass_shallow" width="96" height="54">
+ <layer id="13" name="shallow_grass" width="96" height="54">
+  <properties>
+   <property name="replace" value="res://tiles/shallow_grass.tscn"/>
+  </properties>
   <data encoding="csv">
    <chunk x="16" y="16" width="16" height="16">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -1376,7 +1382,10 @@
 </chunk>
   </data>
  </layer>
- <layer id="3" name="ocean" width="96" height="54">
+ <layer id="3" name="beach" width="96" height="54">
+  <properties>
+   <property name="replace" value="res://tiles/beach.tscn"/>
+  </properties>
   <data encoding="csv">
    <chunk x="32" y="0" width="16" height="16">
 0,0,0,0,136,137,137,137,137,137,137,137,137,137,137,137,
@@ -1596,9 +1605,9 @@
 </chunk>
   </data>
  </layer>
- <layer id="4" name="deep_water" width="96" height="54">
+ <layer id="4" name="shallow_deep" width="96" height="54">
   <properties>
-   <property name="group" value="nopush"/>
+   <property name="replace" value="res://tiles/shallow_deep.tscn"/>
   </properties>
   <data encoding="csv">
    <chunk x="32" y="0" width="16" height="16">
@@ -1787,7 +1796,10 @@
 </chunk>
   </data>
  </layer>
- <layer id="8" name="decor" width="96" height="54">
+ <layer id="8" name="decor" width="96" height="54" locked="1">
+  <properties>
+   <property name="z_index" type="int" value="0"/>
+  </properties>
   <data encoding="csv">
    <chunk x="0" y="0" width="16" height="16">
 0,0,0,0,0,0,0,0,0,196,197,252,202,203,252,206,
@@ -2723,20 +2735,6 @@
   <object id="35" name="white_flower" gid="769" x="256" y="784" width="16" height="16"/>
   <object id="36" name="white_flower" gid="769" x="64" y="48" width="16" height="16"/>
   <object id="38" name="white_flower" gid="769" x="160" y="64" width="16" height="16"/>
-  <object id="16" name="stalfaux" gid="766" x="848" y="320" width="16" height="16"/>
-  <object id="17" name="stalfaux" gid="766" x="848" y="352" width="16" height="16"/>
-  <object id="18" name="stalfaux" gid="766" x="896" y="320" width="16" height="16"/>
-  <object id="19" name="stalfaux" gid="766" x="848" y="400" width="16" height="16"/>
-  <object id="20" name="stalfaux" gid="766" x="896" y="368" width="16" height="16"/>
-  <object id="21" name="stalfaux" gid="766" x="1152" y="640" width="16" height="16"/>
-  <object id="22" name="stalfaux" gid="766" x="1168" y="688" width="16" height="16"/>
-  <object id="23" name="slime" gid="772" x="544" y="704" width="16" height="16"/>
-  <object id="24" name="slime" gid="772" x="688" y="720" width="16" height="16"/>
-  <object id="25" name="slime" gid="771" x="592" y="736" width="16" height="16"/>
-  <object id="26" name="slime" gid="771" x="416" y="704" width="16" height="16"/>
-  <object id="27" name="slime" gid="771" x="432" y="672" width="16" height="16"/>
-  <object id="28" name="slime" gid="771" x="656" y="720" width="16" height="16"/>
-  <object id="29" name="slime" gid="771" x="1184" y="656" width="16" height="16"/>
   <object id="39" name="cliff" gid="775" x="592" y="544" width="16" height="16"/>
   <object id="40" name="shore_ne_1" gid="767" x="16" y="192" width="16" height="16">
    <properties>
@@ -2912,6 +2910,22 @@
   <object id="173" gid="782" x="1392" y="768" width="16" height="16"/>
   <object id="174" gid="782" x="1392" y="848" width="16" height="16"/>
   <object id="175" gid="782" x="1344" y="384" width="16" height="16"/>
+ </objectgroup>
+ <objectgroup id="20" name="enemies">
+  <object id="371" name="stalfaux" gid="766" x="849.333" y="321.333" width="16" height="16"/>
+  <object id="372" name="stalfaux" gid="766" x="849.333" y="353.333" width="16" height="16"/>
+  <object id="373" name="stalfaux" gid="766" x="897.333" y="321.333" width="16" height="16"/>
+  <object id="374" name="stalfaux" gid="766" x="849.333" y="401.333" width="16" height="16"/>
+  <object id="375" name="stalfaux" gid="766" x="897.333" y="369.333" width="16" height="16"/>
+  <object id="376" name="stalfaux" gid="766" x="1153.33" y="641.333" width="16" height="16"/>
+  <object id="377" name="stalfaux" gid="766" x="1169.33" y="689.333" width="16" height="16"/>
+  <object id="378" name="slime" gid="772" x="545.333" y="705.333" width="16" height="16"/>
+  <object id="379" name="slime" gid="772" x="689.333" y="721.333" width="16" height="16"/>
+  <object id="380" name="slime" gid="771" x="593.333" y="737.333" width="16" height="16"/>
+  <object id="381" name="slime" gid="771" x="417.333" y="705.333" width="16" height="16"/>
+  <object id="382" name="slime" gid="771" x="433.333" y="673.333" width="16" height="16"/>
+  <object id="383" name="slime" gid="771" x="657.333" y="721.333" width="16" height="16"/>
+  <object id="384" name="slime" gid="771" x="1185.33" y="657.333" width="16" height="16"/>
  </objectgroup>
  <objectgroup id="19" name="zones" visible="0" locked="1">
   <object id="51" type="area" x="16" y="0" width="752" height="864"/>

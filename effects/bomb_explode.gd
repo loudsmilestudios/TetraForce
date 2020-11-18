@@ -9,6 +9,5 @@ func start():
 	TYPE = "BOMB"
 
 func body_entered(body):
-	print(body.name)
 	if body is Entity:
 		damage(body)

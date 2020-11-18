@@ -1,6 +1,6 @@
 [gd_scene load_steps=52 format=2]
 
-[ext_resource path="res://tiles/shallow_shore_anim.tres" type="Texture" id=1]
+[ext_resource path="res://tiles/shallow_dead_grass_anim.tres" type="Texture" id=1]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
@@ -150,7 +150,7 @@ points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 
 [sub_resource type="TileSet" id=50]
-0/name = "shallow_shore_anim.tres 0"
+0/name = "shallow_dead_grass_anim.tres 0"
 0/texture = ExtResource( 1 )
 0/tex_offset = Vector2( 0, 0 )
 0/modulate = Color( 1, 1, 1, 1 )
@@ -469,12 +469,12 @@ points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 } ]
 0/z_index = 0
 
-[node name="shallow_shore" type="TileMap" groups=[
+[node name="shallow_dead_grass" type="TileMap" groups=[
 "nopush",
 ]]
 z_index = -1
 tile_set = SubResource( 50 )
 cell_size = Vector2( 16, 16 )
-collision_layer = 2147483648
-collision_mask = 0
+collision_layer = 2147483651
+collision_mask = 3
 format = 1

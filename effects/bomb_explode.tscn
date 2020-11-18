@@ -70,6 +70,7 @@ playback_speed = 2.0
 anims/default = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 0, -8 )
 texture = ExtResource( 1 )
 hframes = 8
 frame = 2
@@ -81,4 +82,5 @@ collision_layer = 3
 collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2( 0, -4 )
 shape = SubResource( 2 )

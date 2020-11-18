@@ -22,7 +22,7 @@ func hit():
 func damage(body):
 	var knockdir = body.global_position - global_position
 	if is_network_master() && network.is_map_host():
-		if body is Player:
+		if body is Player && body.name != str(network.pid):
 			network.peer_call_id(int(body.name), body, "damage", [DAMAGE, knockdir])
 		else:
 			body.damage(DAMAGE, knockdir)

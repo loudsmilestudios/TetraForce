@@ -104,7 +104,7 @@ func _physics_process(_delta):
 	#else:
 	#	hud.show_buttons()
 	
-	
+	check_for_death()
 	
 	if action_cooldown > 0:
 		action_cooldown -= 1
