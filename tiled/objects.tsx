@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tileset version="1.4" tiledversion="1.4.1" name="objects" tilewidth="16" tileheight="16" tilecount="22" columns="0">
+<tileset version="1.4" tiledversion="1.4.2" name="objects" tilewidth="16" tileheight="16" tilecount="22" columns="0">
  <grid orientation="orthogonal" width="1" height="1"/>
  <tile id="0">
   <properties>
@@ -52,6 +52,9 @@
   <image width="16" height="16" source="images/objects/blueslime.png"/>
  </tile>
  <tile id="8">
+  <properties>
+   <property name="path" value="res://tiles/bombable_rock.tscn"/>
+  </properties>
   <image width="16" height="16" source="images/objects/bombable_rock.png"/>
  </tile>
  <tile id="9">
