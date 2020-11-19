@@ -34,20 +34,10 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://entities/player/player.gd"
 }, {
-"base": "TileMap",
-"class": "TallGrass",
-"language": "GDScript",
-"path": "res://tiles/tall_grass.gd"
-}, {
 "base": "Node2D",
 "class": "Weapon",
 "language": "GDScript",
 "path": "res://entities/weapons/weapon.gd"
-}, {
-"base": "TileMap",
-"class": "Wheat",
-"language": "GDScript",
-"path": "res://tiles/wheat.gd"
 } ]
 _global_script_class_icons={
 "Enemy": "",
@@ -55,9 +45,7 @@ _global_script_class_icons={
 "Holes": "",
 "NPC": "",
 "Player": "",
-"TallGrass": "",
-"Weapon": "",
-"Wheat": ""
+"Weapon": ""
 }
 
 [application]
@@ -218,7 +206,7 @@ SELECT={
 2d_physics/layer_1="entity"
 2d_physics/layer_2="enemy"
 2d_physics/layer_3="projectile"
-2d_physics/layer_6="tall_grass"
+2d_physics/layer_6="walkfx"
 2d_physics/layer_7="water"
 2d_physics/layer_8="holes"
 

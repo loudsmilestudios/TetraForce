@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" width="96" height="54" tilewidth="16" tileheight="16" infinite="1" nextlayerid="21" nextobjectid="385">
+<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" width="96" height="54" tilewidth="16" tileheight="16" infinite="1" nextlayerid="21" nextobjectid="389">
  <properties>
   <property name="music" value="shore"/>
  </properties>
@@ -1796,7 +1796,7 @@
 </chunk>
   </data>
  </layer>
- <layer id="8" name="decor" width="96" height="54" locked="1">
+ <layer id="8" name="decor" width="96" height="54">
   <properties>
    <property name="z_index" type="int" value="0"/>
   </properties>
@@ -1832,8 +1832,8 @@
 0,206,207,208,209,0,191,192,0,0,0,0,0,0,0,0,
 0,211,212,213,208,192,196,208,192,191,192,0,0,0,0,0,
 246,252,217,218,196,197,252,196,197,196,197,246,0,0,0,0,
-0,0,0,0,0,0,0,774,100,0,0,0,0,0,0,243,
-0,0,0,0,0,0,0,774,0,190,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,100,0,0,0,0,0,0,243,
+0,0,0,0,0,0,0,0,0,190,0,0,0,0,0,0,
 0,0,220,201,202,203,204,252,0,0,0,0,0,0,0,0,
 0,191,192,206,207,208,209,0,0,0,0,0,0,0,0,0
 </chunk>
@@ -1975,7 +1975,7 @@
 0,0,0,0,0,0,0,100,0,0,0,196,197,0,100,0,
 0,610,0,0,0,0,0,191,192,0,0,0,0,114,191,192,
 203,204,0,0,610,202,203,196,197,0,114,202,203,246,196,197,
-208,209,0,774,206,207,208,209,202,203,206,207,208,209,246,0,
+208,209,0,0,206,207,208,209,202,203,206,207,208,209,246,0,
 213,214,0,0,211,212,213,212,207,208,213,212,213,214,202,203,
 218,0,0,0,610,217,218,211,212,213,214,217,218,206,207,208,
 0,0,0,0,0,705,705,705,217,218,705,705,705,211,212,213,
@@ -2910,6 +2910,9 @@
   <object id="173" gid="782" x="1392" y="768" width="16" height="16"/>
   <object id="174" gid="782" x="1392" y="848" width="16" height="16"/>
   <object id="175" gid="782" x="1344" y="384" width="16" height="16"/>
+  <object id="386" gid="774" x="368" y="208" width="16" height="16"/>
+  <object id="387" gid="774" x="368" y="224" width="16" height="16"/>
+  <object id="388" gid="774" x="816" y="448" width="16" height="16"/>
  </objectgroup>
  <objectgroup id="20" name="enemies">
   <object id="371" name="stalfaux" gid="766" x="849.333" y="321.333" width="16" height="16"/>

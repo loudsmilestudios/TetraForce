@@ -240,7 +240,7 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup id="10" name="zones">
+ <objectgroup id="10" name="zones" visible="0">
   <object id="10" type="area" x="16" y="0" width="464" height="480"/>
  </objectgroup>
  <imagelayer id="3" name="Grid" visible="0">
