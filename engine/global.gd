@@ -3,7 +3,8 @@ extends Node
 var player
 var equips = {"B": "Sword", "X": "", "Y": ""}
 var weapons = ["Sword", "Bomb"]
-
+var SFX_volume = 0;
+var music_volume = 0;
 var weapon_def = {
 	"Sword": {
 		path = "res://entities/weapons/sword.tscn",

@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://ui/theme/theme.tres" type="Theme" id=1]
 [ext_resource path="res://entities/player/chain.png" type="Texture" id=2]
 [ext_resource path="res://engine/main.gd" type="Script" id=3]
 [ext_resource path="res://ui/main/characterselect.gd" type="Script" id=4]
+[ext_resource path="res://engine/volume_slider.gd" type="Script" id=5]
 
 [sub_resource type="Animation" id=1]
 resource_name = "default"
@@ -302,17 +303,41 @@ margin_left = 16.0
 margin_top = 12.0
 margin_right = 208.0
 margin_bottom = 28.0
-text = "Character skin and player name"
+text = "Character skin and player name and volume"
 align = 1
 autowrap = true
 
 [node name="endpoint" type="OptionButton" parent="options/scroll/vbox"]
-margin_left = 64.0
-margin_top = 166.0
-margin_right = 194.0
-margin_bottom = 190.0
+margin_left = 63.4698
+margin_top = 168.024
+margin_right = 193.47
+margin_bottom = 192.024
 text = "API Endpoint"
 align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HSlider" type="HSlider" parent="options/scroll/vbox"]
+margin_left = 59.0147
+margin_top = 137.689
+margin_right = 210.015
+margin_bottom = 153.689
+rect_pivot_offset = Vector2( -853.093, 314.98 )
+min_value = -40.0
+max_value = 0.0
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HSlider2" type="HSlider" parent="options/scroll/vbox"]
+margin_left = 61.0
+margin_top = 91.0
+margin_right = 211.0
+margin_bottom = 107.0
+min_value = -40.0
+max_value = 0.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -348,4 +373,5 @@ __meta__ = {
 [connection signal="text_changed" from="options/scroll/vbox/characterselect/name" to="options/scroll/vbox/characterselect" method="_on_name_text_changed"]
 [connection signal="item_selected" from="options/scroll/vbox/endpoint" to="." method="_on_endpoint_item_selected"]
 [connection signal="pressed" from="options/save" to="." method="_on_save_pressed"]
+[connection signal="pressed" from="options/save" to="options/scroll/vbox/HSlider" method="_on_save_pressed"]
 [connection signal="pressed" from="back" to="." method="_on_back_pressed"]
