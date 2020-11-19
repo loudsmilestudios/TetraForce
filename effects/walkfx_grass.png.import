@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/wheat_movement.png-15c1b46ef3f92d70ba322703b98542f5.stex"
+path="res://.import/walkfx_grass.png-96f547f70d89c5f042dc7f6cb0c82be6.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://effects/wheat_movement.png"
-dest_files=[ "res://.import/wheat_movement.png-15c1b46ef3f92d70ba322703b98542f5.stex" ]
+source_file="res://effects/walkfx_grass.png"
+dest_files=[ "res://.import/walkfx_grass.png-96f547f70d89c5f042dc7f6cb0c82be6.stex" ]
 
 [params]
 

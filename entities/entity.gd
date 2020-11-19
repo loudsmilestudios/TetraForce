@@ -31,7 +31,7 @@ var hitbox : Area2D
 var center : Area2D
 var camera
 var tween
-var grass_movement
+var walkfx
 
 var pos = Vector2(0,0) setget position_changed
 var animation = "idleDown" setget animation_changed
@@ -50,18 +50,18 @@ func _ready():
 	create_hitbox()
 	create_center()
 	create_tween()
-	grass_movement = preload("res://effects/grass_movement.tscn").instance()
-	add_child(grass_movement)
+	walkfx = preload("res://effects/walkfx.tscn").instance()
+	add_child(walkfx)
 	#get_parent().connect("player_entered", self, "player_entered")
 	set_process(true)
 
 func _process(delta):
-	grass_movement.hide()
+	walkfx.hide()
 	for body in center.get_overlapping_bodies():
-		if body is TallGrass:
-			grass_movement.show()
-			grass_movement.frame = sprite.frame % 2
-			#grass_movement.global_position = sprite.global_position.snapped(Vector2(1,1))
+		if body.is_in_group("fxtile"):
+			walkfx.show()
+			walkfx.frame = sprite.frame % 2
+			walkfx.texture = body.walkfx_texture
 
 func create_hitbox():
 	var new_hitbox = Area2D.new()

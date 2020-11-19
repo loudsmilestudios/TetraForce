@@ -25,13 +25,14 @@ var player_data = {}
 # save stuff
 # states[nodepath] = properties
 var states = {
-	weapons = ["Sword"]
+	weapons = []
 }
 
 func _ready():
 	set_process(false)
 	#get_tree().connect("network_peer_connected", self, "_player_connected")
 	get_tree().connect("network_peer_disconnected", self, "_player_disconnected")
+	states.weapons = global.weapons
 
 func initialize():
 	tick = Timer.new()
