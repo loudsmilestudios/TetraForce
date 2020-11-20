@@ -55,6 +55,9 @@ func spawn_object(object):
 		scene.add_child(node)
 		node.set_owner(scene)
 		node.position = object.position + Vector2(8,-8)
+		node.scale.x = object.get_meta("width") / 16
+		node.scale.y = object.get_meta("height") / 16
+		node.position += Vector2((node.scale.x-1)*8, -(node.scale.y-1)*8)
 		
 		set_properties(object, node)
 	
