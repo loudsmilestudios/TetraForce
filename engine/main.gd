@@ -27,6 +27,9 @@ func _ready():
 	endpoint_button.add_item("Stage")
 	_on_endpoint_item_selected(0)
 	
+	if OS.get_name() == "HTML5":
+		$multiplayer/Manual/host.disabled = true
+	
 	#For server commandline arguments. Searches for ones passed, then tries to set ones that exist.
 	#Puts arguments passed as "--example=value" in a dictionary.
 	var arguments = {}
@@ -75,13 +78,13 @@ func start_game(dedicated = false, empty_timeout = 0):
 		hide()
 
 func host_server(dedicated = false, empty_timeout = 0, port = default_port, max_players = 16):
-	var enet = NetworkedMultiplayerENet.new()
-	enet.set_compression_mode(NetworkedMultiplayerENet.COMPRESS_RANGE_CODER)
-	var err = enet.create_server(port, max_players)
+	var ws = WebSocketServer.new()
+	var err = ws.listen(port, PoolStringArray(), true);
+	get_tree().set_network_peer(ws)
 	if err != OK:
 		print("Port in use")
 		return
-	get_tree().set_network_peer(enet)
+	get_tree().set_network_peer(ws)
 	
 	start_game(dedicated, empty_timeout)
 
@@ -90,10 +93,10 @@ func join_server(ip, port):
 		print("Invalid IP")
 		return
 	
-	var enet = NetworkedMultiplayerENet.new()
-	enet.set_compression_mode(NetworkedMultiplayerENet.COMPRESS_RANGE_CODER)
-	enet.create_client(ip, port)
-	get_tree().set_network_peer(enet)
+	var ws = WebSocketClient.new()
+	var url = "ws://%s:%s" % [ip, port]
+	ws.connect_to_url(url, PoolStringArray(), true);
+	get_tree().set_network_peer(ws)
 
 func join_aws(lobby_name):
 	if screenfx.assigned_animation != "fadewhite":
