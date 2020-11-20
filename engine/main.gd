@@ -27,6 +27,9 @@ func _ready():
 	endpoint_button.add_item("Stage")
 	_on_endpoint_item_selected(0)
 	
+	if OS.get_name() == "HTML5":
+		$multiplayer/Manual/host.disabled = true
+	
 	#For server commandline arguments. Searches for ones passed, then tries to set ones that exist.
 	#Puts arguments passed as "--example=value" in a dictionary.
 	var arguments = {}
