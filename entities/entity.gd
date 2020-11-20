@@ -13,6 +13,7 @@ var movedir = Vector2(0,0)
 var knockdir = Vector2(0,0)
 var spritedir = "Down"
 var last_movedir = Vector2(0,1)
+var last_safe_pos = position
 
 # COMBAT
 var health = MAX_HEALTH setget set_health
@@ -30,7 +31,7 @@ var hitbox : Area2D
 var center : Area2D
 var camera
 var tween
-var grass_movement
+var walkfx
 
 var pos = Vector2(0,0) setget position_changed
 var animation = "idleDown" setget animation_changed
@@ -49,18 +50,18 @@ func _ready():
 	create_hitbox()
 	create_center()
 	create_tween()
-	grass_movement = preload("res://effects/grass_movement.tscn").instance()
-	add_child(grass_movement)
+	walkfx = preload("res://effects/walkfx.tscn").instance()
+	add_child(walkfx)
 	#get_parent().connect("player_entered", self, "player_entered")
 	set_process(true)
 
 func _process(delta):
-	grass_movement.hide()
+	walkfx.hide()
 	for body in center.get_overlapping_bodies():
-		if body is TallGrass:
-			grass_movement.show()
-			grass_movement.frame = sprite.frame % 2
-			#grass_movement.global_position = sprite.global_position.snapped(Vector2(1,1))
+		if body.is_in_group("fxtile"):
+			walkfx.show()
+			walkfx.frame = sprite.frame % 2
+			walkfx.texture = body.walkfx_texture
 
 func create_hitbox():
 	var new_hitbox = Area2D.new()
@@ -74,6 +75,9 @@ func create_hitbox():
 	new_collision.shape = new_shape
 	new_shape.radius = $CollisionShape2D.shape.radius + 1
 	new_shape.height = $CollisionShape2D.shape.height + 1
+	
+	new_hitbox.set_collision_layer_bit(7,1)
+	new_hitbox.set_collision_mask_bit(7,1)
 	
 	hitbox = new_hitbox
 
@@ -90,10 +94,12 @@ func create_center():
 	new_shape.extents = Vector2(1,1)
 	
 	# tall_grass
-	new_center.set_collision_layer_bit(0,1)
-	new_center.set_collision_mask_bit(0,1)
+	new_center.set_collision_layer_bit(0,0)
+	new_center.set_collision_mask_bit(0,0)
 	new_center.set_collision_layer_bit(5,1)
 	new_center.set_collision_mask_bit(5,1)
+	new_center.set_collision_layer_bit(7,1)
+	new_center.set_collision_mask_bit(7,1)
 	
 	new_center.position.y += 6
 	
@@ -153,6 +159,33 @@ func loop_damage():
 			continue
 		if body.get("DAMAGE") > 0 && body.get("TYPE") != TYPE:
 			damage(body.DAMAGE, global_position - body.global_position)
+
+func loop_holes():
+	if get_collision_layer_bit(7) == true:
+		return
+	var safe = true
+	for body in center.get_overlapping_bodies():
+		if body is Holes:
+			safe = false
+			var hole_origin = body.map_to_world(body.world_to_map(position + Vector2(0,6))) + Vector2(8,8)
+			var hole_hitbox = Rect2(hole_origin - Vector2(5,5), Vector2(10,10))
+			position = position.linear_interpolate(hole_origin, 0.1) # there's a way to lerp w/ delta time i forgot it tho
+			position += Vector2(0, rand_range(-1,0))
+			if hole_hitbox.has_point(position + Vector2(0,4)):
+				create_hole_fx(hole_origin)
+				network.peer_call(self, "create_hole_fx", [hole_origin])
+				hole_fall()
+	if safe:
+		last_safe_pos = position - movedir * 2
+
+func hole_fall():
+	pass
+
+func create_hole_fx(pos):
+	var hole_fx = preload("res://effects/hole_falling.tscn").instance()
+	get_parent().add_child(hole_fx)
+	hole_fx.position = pos
+	sfx.play("fall")
 
 func damage(amount, dir):
 	if hitstun == 0:

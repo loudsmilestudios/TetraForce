@@ -1,0 +1,22 @@
+[remap]
+
+importer="vnen.tiled_importer"
+type="PackedScene"
+path="res://.import/graveyard_cave.tmx-734e145d8b55c7b0da31292ad820f1bd.scn"
+
+[deps]
+
+source_file="res://maps/overworld_caves/graveyard_cave.tmx"
+dest_files=[ "res://.import/graveyard_cave.tmx-734e145d8b55c7b0da31292ad820f1bd.scn" ]
+
+[params]
+
+custom_properties=true
+tile_metadata=true
+uv_clip=true
+image_flags=7
+collision_layer=1
+embed_internal_images=false
+save_tiled_properties=true
+add_background=true
+post_import_script="res://tiled/import.gd"

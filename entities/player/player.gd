@@ -54,6 +54,12 @@ func initialize():
 		$ZoneHandler.connect("area_entered", self, "change_zone")
 		yield(get_tree(), "idle_frame")
 		camera.get_node("Tween").remove_all()
+		var zone = $ZoneHandler.get_overlapping_areas()[0]
+		var zone_size = zone.get_node("CollisionShape2D").shape.extents * 2
+		var zone_rect = Rect2(zone.position, zone_size)
+		camera.set_limits(zone_rect)
+		camera.smoothing_enabled = true
+		yield(get_tree(), "idle_frame")
 		camera.position = position
 		camera.reset_smoothing()
 		camera.set_process(true)
@@ -98,6 +104,8 @@ func _physics_process(_delta):
 	#else:
 	#	hud.show_buttons()
 	
+	check_for_death()
+	
 	if action_cooldown > 0:
 		action_cooldown -= 1
 
@@ -108,6 +116,7 @@ func state_default():
 	loop_damage()
 	loop_action_button()
 	loop_interact()
+	loop_holes()
 	
 	if movedir.length() == 1:
 		ray.cast_to = movedir * 8
@@ -126,12 +135,14 @@ func state_swing():
 	anim_switch("swing")
 	loop_movement()
 	loop_damage()
+	loop_holes()
 	movedir = Vector2.ZERO
 
 func state_hold():
 	loop_controls()
 	loop_movement()
 	loop_damage()
+	loop_holes()
 	if movedir == Vector2.ZERO:
 		anim_switch("idle")
 		push_counter = 0
@@ -226,6 +237,18 @@ func loop_interact():
 		elif is_on_wall() && collider.is_in_group("pushable") && push_counter >= 0.75:
 			collider.interact(self)
 			push_counter = 0
+
+func hole_fall():
+	hide()
+	for child in get_children():
+		if child.is_in_group("item"):
+			child.queue_free()
+	state = "hole"
+	yield(get_tree().create_timer(1.5), "timeout")
+	position = last_safe_pos
+	show()
+	damage(1, Vector2(0,0))
+	state = "default"
 
 func change_zone(zone):
 	var zone_size = zone.get_node("CollisionShape2D").shape.extents * 2

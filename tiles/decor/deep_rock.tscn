@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://tiles/decor/deep_rock.png" type="Texture" id=1]
+
+[sub_resource type="AtlasTexture" id=1308]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=1309]
+atlas = ExtResource( 1 )
+region = Rect2( 16, 0, 16, 16 )
+
+[sub_resource type="SpriteFrames" id=1310]
+animations = [ {
+"frames": [ SubResource( 1308 ), SubResource( 1309 ) ],
+"loop": true,
+"name": "deep_rock",
+"speed": 5.0
+} ]
+
+[node name="deep_rock" type="AnimatedSprite"]
+z_index = 2
+frames = SubResource( 1310 )
+animation = "deep_rock"
+speed_scale = 0.25
+playing = true

@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://tiles/decor/tree_shallow.png" type="Texture" id=1]
+
+[sub_resource type="AtlasTexture" id=376]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=377]
+atlas = ExtResource( 1 )
+region = Rect2( 32, 0, 32, 32 )
+
+[sub_resource type="SpriteFrames" id=378]
+animations = [ {
+"frames": [ SubResource( 376 ), SubResource( 377 ) ],
+"loop": true,
+"name": "treeshallow",
+"speed": 5.0
+} ]
+
+[node name="tree_shallow" type="AnimatedSprite"]
+z_index = 5
+frames = SubResource( 378 )
+animation = "treeshallow"
+frame = 1
+speed_scale = 0.25
+playing = true
+centered = false
+offset = Vector2( -24, -24 )

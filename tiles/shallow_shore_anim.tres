@@ -1,0 +1,11 @@
+[gd_resource type="AnimatedTexture" load_steps=3 format=2]
+
+[ext_resource path="res://tiles/shallow_shore_autotile2.png" type="Texture" id=1]
+[ext_resource path="res://tiles/shallow_shore_autotile1.png" type="Texture" id=2]
+
+[resource]
+frames = 2
+fps = 1.0
+frame_0/texture = ExtResource( 2 )
+frame_1/texture = ExtResource( 1 )
+frame_1/delay_sec = 0.0
