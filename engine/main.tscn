@@ -286,6 +286,9 @@ margin_top = 44.0
 margin_right = 64.0
 margin_bottom = 66.0
 text = "<"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="forward" type="Button" parent="options/scroll/vbox/characterselect"]
 margin_left = 160.0
@@ -305,6 +308,9 @@ margin_bottom = 28.0
 text = "Character skin and player name"
 align = 1
 autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="endpoint" type="OptionButton" parent="options/scroll/vbox"]
 margin_left = 64.0

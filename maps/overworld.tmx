@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" width="80" height="80" tilewidth="16" tileheight="16" infinite="1" nextlayerid="20" nextobjectid="190">
+<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" width="80" height="80" tilewidth="16" tileheight="16" infinite="1" nextlayerid="20" nextobjectid="191">
  <properties>
   <property name="music" value="overworld"/>
  </properties>
@@ -4316,7 +4316,7 @@
   <object id="68" gid="7" x="592" y="224" width="16" height="16"/>
   <object id="70" x="112" y="768" rotation="180">
    <properties>
-    <property name="def" value="weapon_def"/>
+    <property name="def" value="weapons"/>
     <property name="item" value="Bow"/>
     <property name="path" value="res://tiles/chest.tscn"/>
    </properties>
@@ -4592,6 +4592,12 @@
   <object id="187" gid="9" x="624" y="304" width="16" height="16"/>
   <object id="188" gid="9" x="640" y="304" width="16" height="16"/>
   <object id="189" gid="9" x="1456" y="304" width="16" height="16"/>
+  <object id="190" gid="11" x="256" y="784" width="16" height="16">
+   <properties>
+    <property name="def" value="items"/>
+    <property name="item" value="Lantern"/>
+   </properties>
+  </object>
  </objectgroup>
  <objectgroup id="18" name="zones" visible="0">
   <object id="137" type="area" x="-64" y="-96" width="816" height="544"/>

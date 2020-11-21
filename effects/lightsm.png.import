@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/lantern.png-fe12aff643d9a4faaa8d64033a6214eb.stex"
+path="res://.import/lightsm.png-86d718d02c6dbbf1d4f1887f22373141.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://entities/weapons/icons/lantern.png"
-dest_files=[ "res://.import/lantern.png-fe12aff643d9a4faaa8d64033a6214eb.stex" ]
+source_file="res://effects/lightsm.png"
+dest_files=[ "res://.import/lightsm.png-86d718d02c6dbbf1d4f1887f22373141.stex" ]
 
 [params]
 

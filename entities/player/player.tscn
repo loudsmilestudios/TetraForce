@@ -1,9 +1,11 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=32 format=2]
 
 [ext_resource path="res://ui/theme/font.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://engine/network_object.tscn" type="PackedScene" id=2]
 [ext_resource path="res://entities/player/player.gd" type="Script" id=3]
 [ext_resource path="res://entities/player/chain.png" type="Texture" id=4]
+[ext_resource path="res://effects/light.png" type="Texture" id=5]
+[ext_resource path="res://effects/lightsm.png" type="Texture" id=6]
 
 [sub_resource type="Animation" id=1]
 resource_name = "acquire"
@@ -368,10 +370,29 @@ height = 6.0
 [sub_resource type="RectangleShape2D" id=22]
 extents = Vector2( 4, 4 )
 
+[sub_resource type="CanvasItemMaterial" id=26]
+light_mode = 1
+
 [sub_resource type="DynamicFont" id=23]
 outline_size = 1
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 1 )
+
+[sub_resource type="Animation" id=25]
+resource_name = "flicker"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 5 ), ExtResource( 6 ) ]
+}
 
 [node name="player" type="KinematicBody2D"]
 z_index = 100
@@ -439,11 +460,15 @@ position = Vector2( -8, 8 )
 shape = SubResource( 22 )
 
 [node name="name" type="Node2D" parent="."]
+light_mask = 0
+material = SubResource( 26 )
 z_index = 4096
 z_as_relative = false
 
 [node name="nametag" type="Label" parent="name"]
 modulate = Color( 1, 1, 1, 0.686275 )
+light_mask = 0
+use_parent_material = true
 margin_left = -48.0
 margin_top = -18.0
 margin_right = 112.0
@@ -455,3 +480,13 @@ align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Light2D" type="Light2D" parent="."]
+enabled = false
+texture = ExtResource( 6 )
+offset = Vector2( 0, 33 )
+
+[node name="Flicker" type="AnimationPlayer" parent="Light2D"]
+autoplay = "flicker"
+playback_speed = 0.5
+anims/flicker = SubResource( 25 )

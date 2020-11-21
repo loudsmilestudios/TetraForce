@@ -5,6 +5,7 @@ signal player_entered
 var camera = preload("res://entities/player/camera.tscn").instance()
 export var music = ""
 export var musicfx = ""
+export var light = "default"
 
 func _ready():
 	network.current_map = self

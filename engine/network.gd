@@ -25,7 +25,8 @@ var player_data = {}
 # save stuff
 # states[nodepath] = properties
 var states = {
-	weapons = []
+	weapons = [],
+	items = [],
 }
 
 func _ready():
@@ -189,17 +190,18 @@ func update_state(nodepath, properties):
 	for property in properties.keys():
 		get_node(nodepath).set(property, properties[property])
 
-remote func add_weapon(weapon):
+remote func add_to_state(state, value):
 	if pid == 1:
-		if !states.weapons.has(weapon):
-			states.weapons.append(weapon)
-			global.weapons = states.weapons
-			rpc("receive_weapons", states.weapons)
+		print(states.get(state))
+		if !states.get(state).has(value):
+			states.get(state).append(value)
+			global.set(state, states.get(state))
+			rpc("_receive_state_array", state, states.get(state))
 	else:
-		rpc_id(1, "add_weapon", weapon)
+		rpc_id(1, "add_to_state", state, value)
 
-remote func receive_weapons(weapons):
-	global.weapons = weapons
+remote func _receive_state_array(state, value):
+	global.set(state, value)
 
 func peer_call(object, function, arguments = []):
 	for peer in map_peers:

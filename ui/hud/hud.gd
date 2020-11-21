@@ -48,7 +48,7 @@ func update_weapons():
 		if global.equips[button.name] == "":
 			continue
 		
-		var info = global.weapon_def[global.equips[button.name]]
+		var info = global.weapons_def[global.equips[button.name]]
 		button.get_node("icon").texture = info.icon
 		if info.ammo_type != "":
 			button.get_node("count").text = str(global.ammo[info.ammo_type])

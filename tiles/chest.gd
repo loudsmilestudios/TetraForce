@@ -2,7 +2,7 @@ extends StaticBody2D
 
 var opened = false setget set_open
 
-export(String) var def = "weapon_def"
+export(String) var def = "weapon"
 export(String) var item = "Bow"
 
 signal update_persistent_state
@@ -29,16 +29,16 @@ func interact(node):
 	show_item()
 	network.peer_call(self, "show_item")
 	
-	network.add_weapon(item)
+	network.add_to_state(def, item)
 	
 	yield(get_tree().create_timer(1), "timeout")
 	
-	if global.get(def)[item].acquire_dialogue != "":
+	if global.get(str(def,"_def"))[item].acquire_dialogue != "":
 		var dialogue = preload("res://ui/dialogue/dialogue_manager.tscn").instance()
 		node.add_child(dialogue)
 		connect("begin_dialogue", dialogue, "Begin_Dialogue")
 		
-		dialogue.file_name = global.get(def)[item].acquire_dialogue
+		dialogue.file_name = global.get(str(def,"_def"))[item].acquire_dialogue
 		emit_signal("begin_dialogue")
 		yield(dialogue, "finished")
 	
@@ -49,7 +49,7 @@ func interact(node):
 	node.state = "default"
 
 func show_item():
-	$Item.texture = global.get(def)[item].icon
+	$Item.texture = global.get(str(def,"_def"))[item].icon
 	$AnimationPlayer.play("open")
 
 func hide_item():

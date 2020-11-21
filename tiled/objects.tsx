@@ -68,7 +68,7 @@
  </tile>
  <tile id="10">
   <properties>
-   <property name="def" value="weapon_def"/>
+   <property name="def" value="weapons"/>
    <property name="item" value="Bow"/>
    <property name="path" value="res://tiles/chest.tscn"/>
   </properties>

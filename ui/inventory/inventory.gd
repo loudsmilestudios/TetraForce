@@ -46,7 +46,7 @@ func change_selection(amt):
 	if weapon_list.get_child(selected).text == "------":
 		selected_icon.texture = null
 	else:
-		selected_icon.texture = global.weapon_def[weapon_list.get_child(selected).text].icon
+		selected_icon.texture = global.weapons_def[weapon_list.get_child(selected).text].icon
 
 func add_weapons():
 	for child in weapon_list.get_children():

@@ -3,8 +3,9 @@ extends Node
 var player
 var equips = {"B": "Sword", "X": "", "Y": ""}
 var weapons = ["Sword", "Bomb"]
+var items = []
 
-var weapon_def = {
+var weapons_def = {
 	"Sword": {
 		path = "res://entities/weapons/sword.tscn",
 		icon = preload("res://entities/weapons/icons/sword.png"),
@@ -18,16 +19,20 @@ var weapon_def = {
 	"Bomb": {
 		path = "res://entities/weapons/bomb.tscn",
 		icon = preload("res://entities/weapons/icons/bomb.png"),
-		ammo_type = "",
+		ammo_type = "bomb",
 		acquire_dialogue = ""}
 }
 
-var item_def = {
-	
+var items_def = {
+	"Lantern": {
+		icon = preload("res://entities/player/items/lantern.png"),
+		acquire_dialogue = "",
+	}
 }
 
 var ammo = {
 	"arrow": 30,
+	"bomb": 20,
 }
 
 var next_entrance = ""

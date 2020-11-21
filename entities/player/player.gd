@@ -64,6 +64,8 @@ func initialize():
 		camera.reset_smoothing()
 		camera.set_process(true)
 		
+		set_lightdir()
+		
 		yield(screenfx, "animation_finished")
 
 		set_physics_process(true)
@@ -103,6 +105,8 @@ func _physics_process(_delta):
 	#	hud.hide_buttons()
 	#else:
 	#	hud.show_buttons()
+	
+	set_lightdir()
 	
 	check_for_death()
 	
@@ -250,8 +254,20 @@ func hole_fall():
 	damage(1, Vector2(0,0))
 	state = "default"
 
+func set_lightdir():
+	match spritedir:
+		"Left":
+			$Light2D.rotation_degrees = 90
+		"Right":
+			$Light2D.rotation_degrees = 270
+		"Up":
+			$Light2D.rotation_degrees = 180
+		"Down":
+			$Light2D.rotation_degrees = 0
+
 func change_zone(zone):
 	var zone_size = zone.get_node("CollisionShape2D").shape.extents * 2
 	var zone_rect = Rect2(zone.position, zone_size)
 	camera.scroll_screen(zone_rect)
 	sfx.set_music(zone.music, zone.musicfx)
+	camera.set_light(zone.light)

@@ -59,3 +59,11 @@ func _process(_delta):
 	if target == null:
 		return
 	position = target.position
+
+func set_light(mode):
+	if mode == "dark":
+		$CanvasModulate.color = Color(0, 0, 0, 1.0)
+		target.get_node("Light2D").enabled = global.items.has("Lantern")
+	else:
+		$CanvasModulate.color = Color(1.0, 1.0, 1.0, 1.0)
+		target.get_node("Light2D").enabled = false
