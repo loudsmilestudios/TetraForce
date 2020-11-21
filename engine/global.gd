@@ -4,6 +4,8 @@ var player
 var equips = {"B": "Sword", "X": "", "Y": ""}
 var weapons = ["Sword", "Bomb"]
 var items = []
+var health = 5
+var max_health = 5
 
 var weapons_def = {
 	"Sword": {
@@ -31,6 +33,7 @@ var items_def = {
 }
 
 var ammo = {
+	"tetrans": 0,
 	"arrow": 30,
 	"bomb": 20,
 }

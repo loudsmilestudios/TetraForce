@@ -2,6 +2,7 @@ extends Node
 
 export(bool) var require_map_host = true
 export(bool) var persistent = false
+export(bool) var sync_creation = false
 export(Dictionary) var update_properties = {}
 export(Dictionary) var enter_properties = {}
 
@@ -26,6 +27,12 @@ func player_entered(id):
 		return
 	if persistent:
 		return
+	if sync_creation:
+		network.peer_create_id(id, get_parent().filename, get_parent().name, get_parent().get_parent())
+		return
+	update_enter_properties(id)
+
+func update_enter_properties(id):
 	for key in enter_properties.keys():
 		enter_properties[key] = get_parent().get(str(key))
 	network.peer_call_id(id, self, "_receive_update", [enter_properties])

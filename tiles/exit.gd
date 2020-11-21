@@ -10,5 +10,6 @@ func _ready():
 
 func body_entered(body):
 	if body.is_in_group("player") && body.is_network_master():
+		global.health = body.health
 		body.state = "interact"
 		global.change_map(map, entrance)

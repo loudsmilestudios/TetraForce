@@ -21,6 +21,7 @@ func initialize(p):
 		hearts.add_child(newheart)
 	update_hearts()
 	update_weapons()
+	update_tetrans()
 	
 
 func update_hearts():
@@ -52,6 +53,9 @@ func update_weapons():
 		button.get_node("icon").texture = info.icon
 		if info.ammo_type != "":
 			button.get_node("count").text = str(global.ammo[info.ammo_type])
+
+func update_tetrans():
+	$tetrans/tetrans.text = str(global.ammo.tetrans).pad_zeros(3)
 
 func show_hearts():
 	hearts.modulate = lerp(hearts.modulate, Color(1,1,1,1), 0.1)

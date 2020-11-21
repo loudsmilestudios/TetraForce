@@ -28,6 +28,7 @@ func enemy_death(pos):
 	death_animation.global_position = pos
 	get_parent().add_child(death_animation)
 	sfx.play("enemy_death")
+	network.current_map.spawn_collectable("tetran", pos, 4)
 	set_dead()
 
 func set_health(value):

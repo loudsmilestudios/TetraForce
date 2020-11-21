@@ -28,3 +28,5 @@ func process_tile(tile):
 	var grass_cut = preload("res://effects/grass_cut.tscn").instance()
 	network.current_map.add_child(grass_cut)
 	grass_cut.global_position = map_to_world(tile) + Vector2(8,6)
+	
+	network.current_map.spawn_collectable("tetran", tile * 16 + Vector2(8,8), 5)

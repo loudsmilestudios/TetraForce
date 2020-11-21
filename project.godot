@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Area2D",
+"class": "Collectable",
+"language": "GDScript",
+"path": "res://entities/collectables/collectable.gd"
+}, {
 "base": "Entity",
 "class": "Enemy",
 "language": "GDScript",
@@ -40,6 +45,7 @@ _global_script_classes=[ {
 "path": "res://entities/weapons/weapon.gd"
 } ]
 _global_script_class_icons={
+"Collectable": "",
 "Enemy": "",
 "Entity": "",
 "Holes": "",

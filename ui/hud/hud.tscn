@@ -1,10 +1,12 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://ui/theme/font.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://ui/hud/hearts.png" type="Texture" id=2]
 [ext_resource path="res://ui/hud/hud.gd" type="Script" id=3]
 [ext_resource path="res://ui/hud/upperhud.png" type="Texture" id=4]
 [ext_resource path="res://ui/hud/button_ui.png" type="Texture" id=5]
+[ext_resource path="res://ui/theme/theme.tres" type="Theme" id=6]
+[ext_resource path="res://ui/hud/tetran_count.png" type="Texture" id=7]
 
 [sub_resource type="DynamicFont" id=1]
 font_data = ExtResource( 1 )
@@ -106,5 +108,29 @@ margin_bottom = 20.0
 custom_fonts/font = SubResource( 1 )
 align = 1
 __meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="tetrans" type="Node2D" parent="."]
+position = Vector2( 9, 18 )
+
+[node name="tetran_icon" type="Sprite" parent="tetrans"]
+texture = ExtResource( 7 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="tetrans" type="Label" parent="tetrans"]
+margin_left = 8.0181
+margin_top = -9.13171
+margin_right = 26.0181
+margin_bottom = 3.86829
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme = ExtResource( 6 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+text = "000"
+__meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }

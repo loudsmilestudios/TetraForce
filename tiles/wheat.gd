@@ -29,3 +29,5 @@ func process_tile(tile):
 	var wheat_cut = preload("res://effects/wheat_cut.tscn").instance()
 	network.current_map.add_child(wheat_cut)
 	wheat_cut.global_position = map_to_world(tile) + Vector2(8,6)
+	
+	network.current_map.spawn_collectable("tetran", tile * 16 + Vector2(8,8), 5)

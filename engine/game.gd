@@ -99,3 +99,30 @@ func player_entered(id):
 	return
 	if id != network.pid:
 		print("player ", id, " entered")
+
+func pick_collectable():
+	var choice = randi() % 4
+	match choice:
+		0:
+			return "tetran"
+		1:
+			return "arrow"
+		2:
+			return "bomb"
+		3:
+			return "heart"
+
+func spawn_collectable(collectable, pos, chance):
+	if randi() % chance == 0:
+		var path = str("res://entities/collectables/", pick_collectable(), ".tscn")
+		var new_collectable = load(path).instance()
+		add_child(new_collectable)
+		new_collectable.position = pos
+
+
+
+
+
+
+
+

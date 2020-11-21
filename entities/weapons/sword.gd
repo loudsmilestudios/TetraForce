@@ -9,6 +9,7 @@ var spin_multiplier = 2
 
 func start():
 	$Hitbox.connect("body_entered", self, "body_entered")
+	$Hitbox.connect("area_entered", self, "area_entered")
 	if is_network_master():
 		anim.connect("animation_finished", self, "swing_ended")
 		if get_parent().has_method("state_swing"):
@@ -89,6 +90,10 @@ func delete():
 func body_entered(body):
 	if body is Entity && body != get_parent():
 		damage(body)
+
+func area_entered(area):
+	if area is Collectable:
+		area._collect(get_parent())
 
 func cut():
 	if is_network_master():

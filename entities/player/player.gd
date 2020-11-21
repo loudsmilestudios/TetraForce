@@ -17,6 +17,8 @@ func initialize():
 		global.player = self
 		set_physics_process(false)
 		state = "default"
+		health = global.health
+		MAX_HEALTH = global.max_health
 		
 		position = get_parent().get_node(global.next_entrance).position
 		var offset = get_parent().get_node(global.next_entrance).player_position

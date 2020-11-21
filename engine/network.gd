@@ -214,6 +214,15 @@ func peer_call_unreliable(object, function, arguments = []):
 func peer_call_id(id, object, function, arguments = []):
 	rpc_id(id, "_pc", object.get_path(), function, arguments)
 
+func peer_create_id(id, object_path, object_name, object_parent):
+	rpc_id(id, object_path, object_name, object_parent)
+
+func _create_object(object_path, object_name, object_parent):
+	var new_object = load(object_path).instance()
+	object_parent.add_child(new_object)
+	new_object.name = object_name
+	peer_call_id(get_tree().get_rpc_sender_id(), new_object.get_node("NetworkObject"), "update_enter_properties", [pid])
+
 func validate_object_id(id, object, question, function):
 	rpc_id(id, "_check_object", object.get_path(), question, function)
 
