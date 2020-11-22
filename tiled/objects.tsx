@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tileset version="1.4" tiledversion="1.4.2" name="objects" tilewidth="16" tileheight="16" tilecount="22" columns="0">
+<tileset version="1.4" tiledversion="1.4.2" name="objects" tilewidth="16" tileheight="16" tilecount="23" columns="0">
  <grid orientation="orthogonal" width="1" height="1"/>
  <tile id="0">
   <properties>
@@ -143,5 +143,11 @@
    <property name="path" value="res://tiles/decor/conch_shallow.tscn"/>
   </properties>
   <image width="16" height="16" source="images/objects/shallow_conch.png"/>
+ </tile>
+ <tile id="22">
+  <properties>
+   <property name="path" value="res://entities/enemies/smashroom/smashroom.tscn"/>
+  </properties>
+  <image width="16" height="16" source="images/objects/smashroom.png"/>
  </tile>
 </tileset>

@@ -4,12 +4,14 @@ class_name Weapon
 
 var TYPE = null
 var input = null
+var user = null
 
 export(float, 0, 20, 0.5) var DAMAGE = 0.5
 export(int, 1, 20) var MAX_AMOUNT = 1
 export(bool) var delete_on_hit = false
 
 func _ready():
+	user = get_parent()
 	TYPE = get_parent().TYPE
 	add_to_group("item")
 	set_physics_process(false)
@@ -25,9 +27,9 @@ func damage(body):
 		if body is Player && body.name != str(network.pid):
 			network.peer_call_id(int(body.name), body, "damage", [DAMAGE, knockdir])
 		else:
-			body.damage(DAMAGE, knockdir)
+			body.damage(DAMAGE, knockdir, user)
 	elif network.is_map_host():
-		body.damage(DAMAGE, knockdir)
+		body.damage(DAMAGE, knockdir, user)
 	elif is_network_master():
 		body.set_hurt_texture(true)
 		if body is Player:
