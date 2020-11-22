@@ -160,7 +160,7 @@ func loop_damage():
 		if !body.get_groups().has("entity"):
 			continue
 		if body.get("DAMAGE") > 0 && body.get("TYPE") != TYPE:
-			damage(DAMAGE, global_position - body.global_position, body)
+			damage(body.DAMAGE, global_position - body.global_position, body)
 
 func loop_holes():
 	if get_collision_layer_bit(7) == true:
@@ -191,7 +191,7 @@ func create_hole_fx(pos):
 
 func damage(amount, dir, body=null):
 	if hitstun == 0:
-		if amount > 0:
+		if amount != 0:
 			sfx.play(hurt_sfx)
 			set_hurt_texture(true)
 			network.peer_call(self, "set_hurt_texture", [true])
