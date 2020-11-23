@@ -13,20 +13,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - id: get_tag
-        name: Get Tag
-        env:
-          GITHUB_HEAD_REF: $${{ github.head_ref }}
-          GITHUB_BASE_REF: ${{ github.base_ref }}
-        run: |
-          if [ "${{ github.event.inputs.version }}" = "" ]
-          then
-            TAG=$(jq --raw-output '.release.tag_name' $GITHUB_EVENT_PATH)
-          else
-            TAG=${{ github.event.inputs.version }}
-          fi
-          
-          echo ::set-output name=TAG::$TAG
       - name: Build Godot Project
         id: build
         uses: josephbmanley/build-godot-action@v1.4.0
@@ -51,5 +37,5 @@ jobs:
           BUILD_PATH: "."
           DOCKERFILE: "Dockerfile"
           IMAGE_NAME: "tetraforce"
-          TAG_NAME: ${{ steps.get_tag.outputs.TAG }}
+          TAG_NAME: ${{ github.event.inputs.version }}
           LATEST: "false"
