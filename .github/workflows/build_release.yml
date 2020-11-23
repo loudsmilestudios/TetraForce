@@ -54,28 +54,61 @@ jobs:
           IMAGE_NAME: "tetraforce"
           TAG_NAME: ${{ steps.get_tag.outputs.TAG }}
           LATEST: "true"
-  godot:
+  linux:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        platform: [linux, osx, win32, win64]
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Configure
-        env:
-          PLATFORM: ${{ matrix.platform }}
-        run: |
-          if [ "$PLATFORM" = "win32" ] || [ "$PLATFORM" = "win64" ] ; then
-            echo "::set-env name=EXPORT_SUFFIX::.exe"
-          fi
       - name: Build
         id: build
         uses: josephbmanley/build-godot-action@v1.4.0
         with:
-          name: TetraForce${{ env.EXPORT_SUFFIX }}
+          name: TetraForce.x86_64
+          preset: linux
+          projectDir: '.'
+          debugMode: 'true'
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: Client - linux
+          path: ${{ github.workspace }}/${{ steps.build.outputs.build }}
+      - name: Package
+        run: |
+          cd ${{ steps.build.outputs.build }}
+          mkdir -p ${{github.workspace}}/tetraforce
+          zip -r ${{github.workspace}}/tetraforce/TetraForce.zip .
+      - name: Ship to S3
+        uses: jakejarvis/s3-sync-action@master
+        with:
+          args: --acl public-read --follow-symlinks --delete
+        env:
+          AWS_S3_BUCKET: tetraforce-releases-production-us-east-2
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_REGION: us-east-2
+          SOURCE_DIR: ${{github.workspace}}/tetraforce
+          DEST_DIR: builds/master/latest/linux
+  windows:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        platform: [win32, win64]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Build
+        id: build
+        uses: josephbmanley/build-godot-action@v1.4.0
+        with:
+          name: TetraForce.exe
           preset: ${{ matrix.platform }}
           projectDir: '.'
+          debugMode: 'true'
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: Client - ${{ matrix.platform }}
+          path: ${{ github.workspace }}/${{ steps.build.outputs.build }}
       - name: Package
         run: |
           cd ${{ steps.build.outputs.build }}
