@@ -3,7 +3,7 @@ extends Node
 var player
 var equips = {"B": "Sword", "X": "", "Y": ""}
 var weapons = ["Sword", "Bomb"]
-var items = ["Lantern"]
+var items = []
 var health = 5
 var max_health = 5
 
