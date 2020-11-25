@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://ui/theme/theme.tres" type="Theme" id=1]
 [ext_resource path="res://entities/player/chain.png" type="Texture" id=2]
 [ext_resource path="res://engine/main.gd" type="Script" id=3]
 [ext_resource path="res://ui/main/characterselect.gd" type="Script" id=4]
+[ext_resource path="res://engine/keybinds.gd" type="Script" id=5]
 
 [sub_resource type="Animation" id=1]
 resource_name = "default"
@@ -71,41 +72,65 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="singleplayer" type="Button" parent="top"]
-margin_left = 16.0
-margin_top = 16.0
+[node name="VBoxContainer" type="VBoxContainer" parent="top"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -72.0
+margin_top = -76.0
+margin_right = 72.0
+margin_bottom = 76.0
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="singleplayer" type="Button" parent="top/VBoxContainer"]
+margin_top = 15.0
 margin_right = 144.0
-margin_bottom = 38.0
+margin_bottom = 36.7537
+size_flags_stretch_ratio = 0.0
 text = "Singleplayer"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="multiplayer" type="Button" parent="top"]
-margin_left = 16.0
-margin_top = 48.0
+[node name="multiplayer" type="Button" parent="top/VBoxContainer"]
+margin_top = 40.0
 margin_right = 144.0
-margin_bottom = 70.0
+margin_bottom = 61.7537
+size_flags_stretch_ratio = 0.0
 text = "Multiplayer"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="options" type="Button" parent="top"]
-margin_left = 16.0
-margin_top = 80.4044
+[node name="options" type="Button" parent="top/VBoxContainer"]
+margin_top = 65.0
 margin_right = 144.0
-margin_bottom = 102.404
+margin_bottom = 86.7537
+size_flags_stretch_ratio = 0.0
 text = "Options"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="quit" type="Button" parent="top"]
-margin_left = 16.0
-margin_top = 112.0
+[node name="keybinds" type="Button" parent="top/VBoxContainer"]
+margin_top = 90.0
 margin_right = 144.0
-margin_bottom = 134.0
+margin_bottom = 111.754
+size_flags_stretch_ratio = 0.0
+text = "Keybinds"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="quit" type="Button" parent="top/VBoxContainer"]
+margin_top = 115.0
+margin_right = 144.0
+margin_bottom = 136.754
+size_flags_stretch_ratio = 0.0
 text = "Quit"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -224,6 +249,7 @@ __meta__ = {
 [node name="options" type="Panel" parent="." groups=[
 "menu",
 ]]
+visible = false
 margin_left = 128.0
 margin_top = 96.0
 margin_right = 384.0
@@ -333,6 +359,204 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="keybinds" type="Panel" parent="." groups=[
+"menu",
+]]
+margin_left = 128.0
+margin_top = 96.0
+margin_right = 384.0
+margin_bottom = 272.0
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="scroll" type="ScrollContainer" parent="keybinds"]
+margin_top = 10.0
+margin_right = 256.0
+margin_bottom = 176.0
+follow_focus = true
+scroll_horizontal_enabled = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="vbox" type="VBoxContainer" parent="keybinds/scroll"]
+margin_right = 248.0
+margin_bottom = 221.0
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="Action_UP" type="HBoxContainer" parent="keybinds/scroll/vbox"]
+margin_right = 248.0
+margin_bottom = 21.0
+alignment = 1
+
+[node name="Label" type="Label" parent="keybinds/scroll/vbox/Action_UP"]
+margin_left = 73.0
+margin_top = 4.0
+margin_right = 85.0
+margin_bottom = 17.0
+text = "A:"
+
+[node name="Button" type="Button" parent="keybinds/scroll/vbox/Action_UP"]
+margin_left = 89.0
+margin_right = 175.456
+margin_bottom = 21.7537
+text = "ActionKeybind"
+
+[node name="Action_DOWN" type="HBoxContainer" parent="keybinds/scroll/vbox"]
+margin_top = 25.0
+margin_right = 248.0
+margin_bottom = 46.0
+alignment = 1
+
+[node name="Label" type="Label" parent="keybinds/scroll/vbox/Action_DOWN"]
+margin_left = 73.0
+margin_top = 4.0
+margin_right = 85.0
+margin_bottom = 17.0
+text = "A:"
+
+[node name="Button" type="Button" parent="keybinds/scroll/vbox/Action_DOWN"]
+margin_left = 89.0
+margin_right = 175.456
+margin_bottom = 21.7537
+text = "ActionKeybind"
+
+[node name="Action_LEFT" type="HBoxContainer" parent="keybinds/scroll/vbox"]
+margin_top = 50.0
+margin_right = 248.0
+margin_bottom = 71.0
+alignment = 1
+
+[node name="Label" type="Label" parent="keybinds/scroll/vbox/Action_LEFT"]
+margin_left = 73.0
+margin_top = 4.0
+margin_right = 85.0
+margin_bottom = 17.0
+text = "A:"
+
+[node name="Button" type="Button" parent="keybinds/scroll/vbox/Action_LEFT"]
+margin_left = 89.0
+margin_right = 175.456
+margin_bottom = 21.7537
+text = "ActionKeybind"
+
+[node name="Action_RIGHT" type="HBoxContainer" parent="keybinds/scroll/vbox"]
+margin_top = 75.0
+margin_right = 248.0
+margin_bottom = 96.0
+alignment = 1
+
+[node name="Label" type="Label" parent="keybinds/scroll/vbox/Action_RIGHT"]
+margin_left = 73.0
+margin_top = 4.0
+margin_right = 85.0
+margin_bottom = 17.0
+text = "A:"
+
+[node name="Button" type="Button" parent="keybinds/scroll/vbox/Action_RIGHT"]
+margin_left = 89.0
+margin_right = 175.456
+margin_bottom = 21.7537
+text = "ActionKeybind"
+
+[node name="Action_A" type="HBoxContainer" parent="keybinds/scroll/vbox"]
+margin_top = 100.0
+margin_right = 248.0
+margin_bottom = 121.0
+alignment = 1
+
+[node name="Label" type="Label" parent="keybinds/scroll/vbox/Action_A"]
+margin_left = 73.0
+margin_top = 4.0
+margin_right = 85.0
+margin_bottom = 17.0
+text = "A:"
+
+[node name="Button" type="Button" parent="keybinds/scroll/vbox/Action_A"]
+margin_left = 89.0
+margin_right = 175.456
+margin_bottom = 21.7537
+text = "ActionKeybind"
+
+[node name="Action_B" type="HBoxContainer" parent="keybinds/scroll/vbox"]
+margin_top = 125.0
+margin_right = 248.0
+margin_bottom = 146.0
+alignment = 1
+
+[node name="Label" type="Label" parent="keybinds/scroll/vbox/Action_B"]
+margin_left = 73.0
+margin_top = 4.0
+margin_right = 85.0
+margin_bottom = 17.0
+text = "A:"
+
+[node name="Button" type="Button" parent="keybinds/scroll/vbox/Action_B"]
+margin_left = 89.0
+margin_right = 175.456
+margin_bottom = 21.7537
+text = "ActionKeybind"
+
+[node name="Action_X" type="HBoxContainer" parent="keybinds/scroll/vbox"]
+margin_top = 150.0
+margin_right = 248.0
+margin_bottom = 171.0
+alignment = 1
+
+[node name="Label" type="Label" parent="keybinds/scroll/vbox/Action_X"]
+margin_left = 73.0
+margin_top = 4.0
+margin_right = 85.0
+margin_bottom = 17.0
+text = "A:"
+
+[node name="Button" type="Button" parent="keybinds/scroll/vbox/Action_X"]
+margin_left = 89.0
+margin_right = 175.456
+margin_bottom = 21.7537
+text = "ActionKeybind"
+
+[node name="Action_Y" type="HBoxContainer" parent="keybinds/scroll/vbox"]
+margin_top = 175.0
+margin_right = 248.0
+margin_bottom = 196.0
+alignment = 1
+
+[node name="Label" type="Label" parent="keybinds/scroll/vbox/Action_Y"]
+margin_left = 73.0
+margin_top = 4.0
+margin_right = 85.0
+margin_bottom = 17.0
+text = "A:"
+
+[node name="Button" type="Button" parent="keybinds/scroll/vbox/Action_Y"]
+margin_left = 89.0
+margin_right = 175.456
+margin_bottom = 21.7537
+text = "ActionKeybind"
+
+[node name="Action_START" type="HBoxContainer" parent="keybinds/scroll/vbox"]
+margin_top = 200.0
+margin_right = 248.0
+margin_bottom = 221.0
+alignment = 1
+
+[node name="Label" type="Label" parent="keybinds/scroll/vbox/Action_START"]
+margin_left = 73.0
+margin_top = 4.0
+margin_right = 85.0
+margin_bottom = 17.0
+text = "A:"
+
+[node name="Button" type="Button" parent="keybinds/scroll/vbox/Action_START"]
+margin_left = 89.0
+margin_right = 175.456
+margin_bottom = 21.7537
+text = "ActionKeybind"
+
 [node name="back" type="Button" parent="." groups=[
 "menu",
 ]]
@@ -344,10 +568,11 @@ text = "Back"
 __meta__ = {
 "_edit_use_anchors_": false
 }
-[connection signal="pressed" from="top/singleplayer" to="." method="_on_singleplayer_pressed"]
-[connection signal="pressed" from="top/multiplayer" to="." method="_on_multiplayer_pressed"]
-[connection signal="pressed" from="top/options" to="." method="_on_options_pressed"]
-[connection signal="pressed" from="top/quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="top/VBoxContainer/singleplayer" to="." method="_on_singleplayer_pressed"]
+[connection signal="pressed" from="top/VBoxContainer/multiplayer" to="." method="_on_multiplayer_pressed"]
+[connection signal="pressed" from="top/VBoxContainer/options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="top/VBoxContainer/keybinds" to="." method="_on_keybinds_pressed"]
+[connection signal="pressed" from="top/VBoxContainer/quit" to="." method="_on_quit_pressed"]
 [connection signal="pressed" from="multiplayer/Automatic/connect" to="." method="_on_connect_pressed"]
 [connection signal="pressed" from="multiplayer/Manual/host" to="." method="_on_host_pressed"]
 [connection signal="pressed" from="multiplayer/Manual/join" to="." method="_on_join_pressed"]

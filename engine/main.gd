@@ -171,6 +171,11 @@ func _on_options_pressed():
 	$options.show()
 	$back.show()
 
+func _on_keybinds_pressed():
+	hide_menus()
+	$keybinds.show()
+	$back.show()
+
 func _on_back_pressed():
 	hide_menus()
 	$top.show()
