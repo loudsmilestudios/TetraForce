@@ -3,7 +3,7 @@ extends Panel
 var can_change_key = false
 var action_string
 
-enum ACTIONS {UP, DOWN, LEFT, RIGHT, A, B, X, Y}
+enum ACTIONS {UP, DOWN, LEFT, RIGHT, A, B, X, Y, START}
 
 func _ready():
 	_set_keys()
@@ -59,8 +59,8 @@ func _set_keys():
 		var action_button = get_node("scroll/vbox/Action_" + str(action) + "/Button")
 		var action_label = get_node("scroll/vbox/Action_" + str(action) + "/Label")
 
-		if !action_button.is_connected("pressed", self, "_button_pressed"):
-			action_button.connect("pressed", self, "_button_pressed", [str(action)])
+		if !action_button.is_connected("pressed", self, "_mark_button"):
+			action_button.connect("pressed", self, "_mark_button", [str(action)])
 
 		action_button.set_pressed(false)
 		action_label.set_text(str(action))
@@ -77,6 +77,3 @@ func _mark_button(target):
 	for action in ACTIONS:
 		if action != target:
 			get_node("scroll/vbox/Action_" + str(action) + "/Button").set_pressed(false)
-
-func _button_pressed(action_name):
-	_mark_button(action_name);

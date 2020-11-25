@@ -383,89 +383,13 @@ __meta__ = {
 
 [node name="vbox" type="VBoxContainer" parent="keybinds/scroll"]
 margin_right = 248.0
-margin_bottom = 196.0
+margin_bottom = 221.0
 size_flags_horizontal = 3
 alignment = 1
 
-[node name="Action_A" type="HBoxContainer" parent="keybinds/scroll/vbox"]
+[node name="Action_UP" type="HBoxContainer" parent="keybinds/scroll/vbox"]
 margin_right = 248.0
 margin_bottom = 21.0
-alignment = 1
-
-[node name="Label" type="Label" parent="keybinds/scroll/vbox/Action_A"]
-margin_left = 73.0
-margin_top = 4.0
-margin_right = 85.0
-margin_bottom = 17.0
-text = "A:"
-
-[node name="Button" type="Button" parent="keybinds/scroll/vbox/Action_A"]
-margin_left = 89.0
-margin_right = 175.456
-margin_bottom = 21.7537
-text = "ActionKeybind"
-
-[node name="Action_B" type="HBoxContainer" parent="keybinds/scroll/vbox"]
-margin_top = 25.0
-margin_right = 248.0
-margin_bottom = 46.0
-alignment = 1
-
-[node name="Label" type="Label" parent="keybinds/scroll/vbox/Action_B"]
-margin_left = 73.0
-margin_top = 4.0
-margin_right = 85.0
-margin_bottom = 17.0
-text = "A:"
-
-[node name="Button" type="Button" parent="keybinds/scroll/vbox/Action_B"]
-margin_left = 89.0
-margin_right = 175.456
-margin_bottom = 21.7537
-text = "ActionKeybind"
-
-[node name="Action_X" type="HBoxContainer" parent="keybinds/scroll/vbox"]
-margin_top = 50.0
-margin_right = 248.0
-margin_bottom = 71.0
-alignment = 1
-
-[node name="Label" type="Label" parent="keybinds/scroll/vbox/Action_X"]
-margin_left = 73.0
-margin_top = 4.0
-margin_right = 85.0
-margin_bottom = 17.0
-text = "A:"
-
-[node name="Button" type="Button" parent="keybinds/scroll/vbox/Action_X"]
-margin_left = 89.0
-margin_right = 175.456
-margin_bottom = 21.7537
-text = "ActionKeybind"
-
-[node name="Action_Y" type="HBoxContainer" parent="keybinds/scroll/vbox"]
-margin_top = 75.0
-margin_right = 248.0
-margin_bottom = 96.0
-alignment = 1
-
-[node name="Label" type="Label" parent="keybinds/scroll/vbox/Action_Y"]
-margin_left = 73.0
-margin_top = 4.0
-margin_right = 85.0
-margin_bottom = 17.0
-text = "A:"
-
-[node name="Button" type="Button" parent="keybinds/scroll/vbox/Action_Y"]
-margin_left = 89.0
-margin_right = 175.456
-margin_bottom = 21.7537
-text = "ActionKeybind"
-
-[node name="Action_UP" type="HBoxContainer" parent="keybinds/scroll/vbox"]
-margin_top = 100.0
-margin_right = 248.0
-margin_bottom = 121.0
 alignment = 1
 
 [node name="Label" type="Label" parent="keybinds/scroll/vbox/Action_UP"]
@@ -482,9 +406,9 @@ margin_bottom = 21.7537
 text = "ActionKeybind"
 
 [node name="Action_DOWN" type="HBoxContainer" parent="keybinds/scroll/vbox"]
-margin_top = 125.0
+margin_top = 25.0
 margin_right = 248.0
-margin_bottom = 146.0
+margin_bottom = 46.0
 alignment = 1
 
 [node name="Label" type="Label" parent="keybinds/scroll/vbox/Action_DOWN"]
@@ -501,9 +425,9 @@ margin_bottom = 21.7537
 text = "ActionKeybind"
 
 [node name="Action_LEFT" type="HBoxContainer" parent="keybinds/scroll/vbox"]
-margin_top = 150.0
+margin_top = 50.0
 margin_right = 248.0
-margin_bottom = 171.0
+margin_bottom = 71.0
 alignment = 1
 
 [node name="Label" type="Label" parent="keybinds/scroll/vbox/Action_LEFT"]
@@ -520,9 +444,9 @@ margin_bottom = 21.7537
 text = "ActionKeybind"
 
 [node name="Action_RIGHT" type="HBoxContainer" parent="keybinds/scroll/vbox"]
-margin_top = 175.0
+margin_top = 75.0
 margin_right = 248.0
-margin_bottom = 196.0
+margin_bottom = 96.0
 alignment = 1
 
 [node name="Label" type="Label" parent="keybinds/scroll/vbox/Action_RIGHT"]
@@ -533,6 +457,101 @@ margin_bottom = 17.0
 text = "A:"
 
 [node name="Button" type="Button" parent="keybinds/scroll/vbox/Action_RIGHT"]
+margin_left = 89.0
+margin_right = 175.456
+margin_bottom = 21.7537
+text = "ActionKeybind"
+
+[node name="Action_A" type="HBoxContainer" parent="keybinds/scroll/vbox"]
+margin_top = 100.0
+margin_right = 248.0
+margin_bottom = 121.0
+alignment = 1
+
+[node name="Label" type="Label" parent="keybinds/scroll/vbox/Action_A"]
+margin_left = 73.0
+margin_top = 4.0
+margin_right = 85.0
+margin_bottom = 17.0
+text = "A:"
+
+[node name="Button" type="Button" parent="keybinds/scroll/vbox/Action_A"]
+margin_left = 89.0
+margin_right = 175.456
+margin_bottom = 21.7537
+text = "ActionKeybind"
+
+[node name="Action_B" type="HBoxContainer" parent="keybinds/scroll/vbox"]
+margin_top = 125.0
+margin_right = 248.0
+margin_bottom = 146.0
+alignment = 1
+
+[node name="Label" type="Label" parent="keybinds/scroll/vbox/Action_B"]
+margin_left = 73.0
+margin_top = 4.0
+margin_right = 85.0
+margin_bottom = 17.0
+text = "A:"
+
+[node name="Button" type="Button" parent="keybinds/scroll/vbox/Action_B"]
+margin_left = 89.0
+margin_right = 175.456
+margin_bottom = 21.7537
+text = "ActionKeybind"
+
+[node name="Action_X" type="HBoxContainer" parent="keybinds/scroll/vbox"]
+margin_top = 150.0
+margin_right = 248.0
+margin_bottom = 171.0
+alignment = 1
+
+[node name="Label" type="Label" parent="keybinds/scroll/vbox/Action_X"]
+margin_left = 73.0
+margin_top = 4.0
+margin_right = 85.0
+margin_bottom = 17.0
+text = "A:"
+
+[node name="Button" type="Button" parent="keybinds/scroll/vbox/Action_X"]
+margin_left = 89.0
+margin_right = 175.456
+margin_bottom = 21.7537
+text = "ActionKeybind"
+
+[node name="Action_Y" type="HBoxContainer" parent="keybinds/scroll/vbox"]
+margin_top = 175.0
+margin_right = 248.0
+margin_bottom = 196.0
+alignment = 1
+
+[node name="Label" type="Label" parent="keybinds/scroll/vbox/Action_Y"]
+margin_left = 73.0
+margin_top = 4.0
+margin_right = 85.0
+margin_bottom = 17.0
+text = "A:"
+
+[node name="Button" type="Button" parent="keybinds/scroll/vbox/Action_Y"]
+margin_left = 89.0
+margin_right = 175.456
+margin_bottom = 21.7537
+text = "ActionKeybind"
+
+[node name="Action_START" type="HBoxContainer" parent="keybinds/scroll/vbox"]
+margin_top = 200.0
+margin_right = 248.0
+margin_bottom = 221.0
+alignment = 1
+
+[node name="Label" type="Label" parent="keybinds/scroll/vbox/Action_START"]
+margin_left = 73.0
+margin_top = 4.0
+margin_right = 85.0
+margin_bottom = 17.0
+text = "A:"
+
+[node name="Button" type="Button" parent="keybinds/scroll/vbox/Action_START"]
 margin_left = 89.0
 margin_right = 175.456
 margin_bottom = 21.7537
@@ -560,12 +579,4 @@ __meta__ = {
 [connection signal="text_changed" from="options/scroll/vbox/characterselect/name" to="options/scroll/vbox/characterselect" method="_on_name_text_changed"]
 [connection signal="item_selected" from="options/scroll/vbox/endpoint" to="." method="_on_endpoint_item_selected"]
 [connection signal="pressed" from="options/save" to="." method="_on_save_pressed"]
-[connection signal="pressed" from="keybinds/scroll/vbox/Action_A/Button" to="keybinds" method="_button_pressed" binds= [ "A" ]]
-[connection signal="pressed" from="keybinds/scroll/vbox/Action_B/Button" to="keybinds" method="button_change_key_B"]
-[connection signal="pressed" from="keybinds/scroll/vbox/Action_X/Button" to="keybinds" method="button_change_key_X"]
-[connection signal="pressed" from="keybinds/scroll/vbox/Action_Y/Button" to="keybinds" method="button_change_key_Y"]
-[connection signal="pressed" from="keybinds/scroll/vbox/Action_UP/Button" to="keybinds" method="button_change_key_UP"]
-[connection signal="pressed" from="keybinds/scroll/vbox/Action_DOWN/Button" to="keybinds" method="button_change_key_DOWN"]
-[connection signal="pressed" from="keybinds/scroll/vbox/Action_LEFT/Button" to="keybinds" method="button_change_key_LEFT"]
-[connection signal="pressed" from="keybinds/scroll/vbox/Action_RIGHT/Button" to="keybinds" method="button_change_key_RIGT"]
 [connection signal="pressed" from="back" to="." method="_on_back_pressed"]
