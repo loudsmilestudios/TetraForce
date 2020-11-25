@@ -10,9 +10,14 @@ func _ready():
 	add_to_group("fxtile")
 
 func cut(hitbox):
-	var tile = world_to_map(hitbox.global_position)
-	process_tile(tile)
-	network.peer_call(self, "process_tile", [tile])
+	var hitbox_width = hitbox.get_node("CollisionShape2D").shape.extents.x * hitbox.global_scale.x
+	var hitbox_height = hitbox.get_node("CollisionShape2D").shape.extents.y * hitbox.global_scale.y
+	var corners = [Vector2(hitbox_width, hitbox_height), Vector2(-hitbox_width, -hitbox_height), Vector2(-hitbox_width, hitbox_height), Vector2(hitbox_width, -hitbox_height)  ]
+
+	for offset in corners:
+		var tile = world_to_map(hitbox.global_position + offset)
+		process_tile(tile)
+		network.peer_call(self, "process_tile", [tile])
 
 func enter_cut_cells(value):
 	cut_cells = value
