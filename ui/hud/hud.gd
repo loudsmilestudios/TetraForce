@@ -10,7 +10,7 @@ onready var hearts = $hud2d/hearts
 onready var buttons = $hud2d/buttons
 
 func initialize(p):
-	
+	global.connect("debug_update", self, "debug_update")
 	player = p
 	player.connect("health_changed", self, "update_hearts")
 	
@@ -22,7 +22,6 @@ func initialize(p):
 	update_hearts()
 	update_weapons()
 	update_tetrans()
-	
 
 func update_hearts():
 	for heart in hearts.get_children():
@@ -74,9 +73,5 @@ func show_inventory():
 	add_child(inventory)
 	#inventory.start()
 
-
-
-
-
-
-
+func debug_update():
+	$debug/states.text = JSON.print(network.states, "    ")

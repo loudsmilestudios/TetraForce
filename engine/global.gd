@@ -3,9 +3,13 @@ extends Node
 var player
 var equips = {"B": "Sword", "X": "", "Y": ""}
 var weapons = ["Sword", "Bomb"]
-var items = []
+var items = ["Lantern"]
 var health = 5
 var max_health = 5
+
+var changing_map = false
+
+signal debug_update
 
 var weapons_def = {
 	"Sword": {
@@ -67,6 +71,9 @@ func load_options():
 	emit_signal("options_loaded")
 
 func change_map(map, entrance):
+	if changing_map:
+		return
+	changing_map = true
 	screenfx.play("fadewhite")
 	yield(screenfx, "animation_finished")
 	
@@ -79,3 +86,5 @@ func change_map(map, entrance):
 	old_map.queue_free()
 	next_entrance = entrance
 	root.add_child(new_map)
+	
+	emit_signal("debug_update")

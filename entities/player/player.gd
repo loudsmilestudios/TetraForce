@@ -71,6 +71,7 @@ func initialize():
 		yield(screenfx, "animation_finished")
 
 		set_physics_process(true)
+		global.changing_map = false
 	network.current_map.emit_signal("player_entered", int(name))
 
 func _physics_process(_delta):
@@ -184,6 +185,10 @@ func state_fall():
 		state = "default"
 
 func state_menu():
+	anim_switch("idle")
+
+func state_dialogue():
+	loop_damage()
 	anim_switch("idle")
 
 func state_acquire():

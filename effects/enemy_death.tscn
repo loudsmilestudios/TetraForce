@@ -1,9 +1,11 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://effects/enemy_death.png" type="Texture" id=1]
 
-[sub_resource type="Animation" id=1]
-resource_name = "default"
+[sub_resource type="CanvasItemMaterial" id=1]
+light_mode = 1
+
+[sub_resource type="Animation" id=2]
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -32,13 +34,15 @@ tracks/1/keys = {
 }
 
 [node name="enemy_death" type="Node2D"]
+material = SubResource( 1 )
 z_index = 4096
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "default"
-anims/default = SubResource( 1 )
+anims/default = SubResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
+use_parent_material = true
 texture = ExtResource( 1 )
 hframes = 8
 frame = 7

@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="11" nextobjectid="29">
+<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="11" nextobjectid="38">
  <properties>
+  <property name="light" value="dark"/>
   <property name="music" value="shrine"/>
  </properties>
  <tileset firstgid="1" source="../tiled/dungeon/dungeon_tileset.tsx"/>
  <tileset firstgid="281" source="../tiled/objects.tsx"/>
- <tileset firstgid="304" source="../tiled/overworld/overworld_tileset.tsx"/>
+ <tileset firstgid="305" source="../tiled/overworld/overworld_tileset.tsx"/>
  <layer id="2" name="floor" width="40" height="40">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -247,6 +248,12 @@
     <property name="player_position" value="down"/>
    </properties>
   </object>
+  <object id="29" gid="304" x="336" y="336" width="16" height="16"/>
+  <object id="33" gid="304" x="336" y="400" width="16" height="16"/>
+  <object id="34" gid="304" x="288" y="400" width="16" height="16"/>
+  <object id="35" gid="304" x="288" y="336" width="16" height="16"/>
+  <object id="36" gid="304" x="288" y="464" width="16" height="16"/>
+  <object id="37" gid="304" x="336" y="464" width="16" height="16"/>
  </objectgroup>
  <objectgroup id="7" name="zones" visible="0" locked="1">
   <object id="1" type="area" x="128" y="208" width="384" height="416"/>

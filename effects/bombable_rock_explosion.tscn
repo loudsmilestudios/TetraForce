@@ -2,8 +2,7 @@
 
 [ext_resource path="res://effects/bombable_rock_explosion.png" type="Texture" id=1]
 
-[sub_resource type="Animation" id=1]
-resource_name = "default"
+[sub_resource type="Animation" id=2]
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:frame")
 tracks/0/interp = 1
@@ -38,4 +37,4 @@ frame = 3
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "default"
-anims/default = SubResource( 1 )
+anims/default = SubResource( 2 )

@@ -49,6 +49,10 @@ func initialize():
 		rpc_id(1, "_receive_my_player_data", global.options.player_data)
 	
 	start_empty_timeout()
+	
+	yield(get_tree().create_timer(0.1), "timeout")
+	
+	global.emit_signal("debug_update")
 
 remote func _receive_my_player_data(data):
 	var player_name = data.name
@@ -165,11 +169,13 @@ func set_state(object, properties):
 	var nodepath = object.get_path()
 	if pid == 1:
 		states[nodepath] = properties
+		global.emit_signal("debug_update")
 	else:
 		rpc_id(1, "_receive_state_change", nodepath, properties)
 
 remote func _receive_state_change(nodepath, properties):
 	states[nodepath] = properties
+	global.emit_signal("debug_update")
 
 func request_persistent_state(object):
 	var nodepath = object.get_path()
@@ -197,11 +203,13 @@ remote func add_to_state(state, value):
 			states.get(state).append(value)
 			global.set(state, states.get(state))
 			rpc("_receive_state_array", state, states.get(state))
+			global.emit_signal("debug_update")
 	else:
 		rpc_id(1, "add_to_state", state, value)
 
 remote func _receive_state_array(state, value):
 	global.set(state, value)
+	global.emit_signal("debug_update")
 
 func peer_call(object, function, arguments = []):
 	for peer in map_peers:

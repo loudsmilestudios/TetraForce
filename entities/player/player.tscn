@@ -370,10 +370,10 @@ height = 6.0
 [sub_resource type="RectangleShape2D" id=22]
 extents = Vector2( 4, 4 )
 
-[sub_resource type="CanvasItemMaterial" id=26]
+[sub_resource type="CanvasItemMaterial" id=23]
 light_mode = 1
 
-[sub_resource type="DynamicFont" id=23]
+[sub_resource type="DynamicFont" id=24]
 outline_size = 1
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 1 )
@@ -461,7 +461,7 @@ shape = SubResource( 22 )
 
 [node name="name" type="Node2D" parent="."]
 light_mask = 0
-material = SubResource( 26 )
+material = SubResource( 23 )
 z_index = 4096
 z_as_relative = false
 
@@ -474,7 +474,7 @@ margin_top = -18.0
 margin_right = 112.0
 margin_bottom = -4.0
 rect_scale = Vector2( 0.6, 0.6 )
-custom_fonts/font = SubResource( 23 )
+custom_fonts/font = SubResource( 24 )
 text = "Chain"
 align = 1
 __meta__ = {
