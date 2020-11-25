@@ -575,9 +575,15 @@ tracks/5/loop_wrap = true
 tracks/5/imported = false
 tracks/5/enabled = true
 tracks/5/keys = {
-"times": PoolRealArray( 0.66 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0, 0.33, 0.66 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "values": [ {
+"args": [  ],
+"method": "cut"
+}, {
+"args": [  ],
+"method": "cut"
+}, {
 "args": [  ],
 "method": "cut"
 } ]
@@ -676,9 +682,15 @@ tracks/5/loop_wrap = true
 tracks/5/imported = false
 tracks/5/enabled = true
 tracks/5/keys = {
-"times": PoolRealArray( 0.66 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0, 0.33, 0.66 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "values": [ {
+"args": [  ],
+"method": "cut"
+}, {
+"args": [  ],
+"method": "cut"
+}, {
 "args": [  ],
 "method": "cut"
 } ]
@@ -777,9 +789,15 @@ tracks/5/loop_wrap = true
 tracks/5/imported = false
 tracks/5/enabled = true
 tracks/5/keys = {
-"times": PoolRealArray( 0.66 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0, 0.33, 0.66 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "values": [ {
+"args": [  ],
+"method": "cut"
+}, {
+"args": [  ],
+"method": "cut"
+}, {
 "args": [  ],
 "method": "cut"
 } ]
@@ -878,9 +896,15 @@ tracks/5/loop_wrap = true
 tracks/5/imported = false
 tracks/5/enabled = true
 tracks/5/keys = {
-"times": PoolRealArray( 0.66 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0, 0.33, 0.66 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "values": [ {
+"args": [  ],
+"method": "cut"
+}, {
+"args": [  ],
+"method": "cut"
+}, {
 "args": [  ],
 "method": "cut"
 } ]
@@ -965,13 +989,14 @@ anims/default = SubResource( 10 )
 anims/flash = SubResource( 11 )
 
 [node name="Sprite" type="Sprite" parent="."]
-position = Vector2( -3, -16 )
+position = Vector2( -13, 3 )
+rotation = 4.71239
 texture = ExtResource( 2 )
 hframes = 2
 
 [node name="Hitbox" type="Area2D" parent="."]
-position = Vector2( -3, -15 )
-scale = Vector2( 0.25, 1 )
+position = Vector2( -12, 3 )
+scale = Vector2( 1, 0.25 )
 collision_layer = 35
 collision_mask = 35
 
