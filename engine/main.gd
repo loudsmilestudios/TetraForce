@@ -53,16 +53,35 @@ func _ready():
 		get_node("panel/address").set_text("127.0.0.1:" + arguments["port"])
 	
 	if OS.get_name() == "Server" || arguments.get("dedicatedserver") == "true":
-		var empty_timeout = 0
-		var empty_timeout_arg = arguments.get("empty-server-timeout", 60)
-		#if empty_timeout_arg.is_valid_integer():
-		#	var empty_timeout_arg_int = int(empty_timeout_arg)
-		#	if empty_timeout_arg_int > 0:
-		#		empty_timeout = empty_timeout_arg_int
-		print(empty_timeout_arg)
+		var empty_timeout = get_empty_server_timeout(arguments)
 		set_dedicated_server(empty_timeout)
 	
 	#print(yield(server_api.get_servers(), "completed"))
+
+func get_empty_server_timeout(arguments):
+	var empty_timeout
+	
+	var empty_timeout_arg = arguments.get("empty-server-timeout")   # don't set default here
+	if empty_timeout_arg != null:
+		if empty_timeout_arg.is_valid_integer():
+			var empty_timeout_arg_int = int(empty_timeout_arg)
+			if empty_timeout_arg_int >= 0:
+				empty_timeout = empty_timeout_arg_int
+			else:
+				print("invalid value for empty-server-timeout - must be an integer >= 0")
+		else:
+			print("invalid value for empty-server-timeout - must be an integer >= 0")
+	
+	if empty_timeout == null:
+		empty_timeout = 0   # set default here
+		print("defaulting empty-server-timeout to %d" % empty_timeout)
+	
+	if empty_timeout > 0:
+		print("empty-server-timeout set to %d seconds" % empty_timeout)
+	else:
+		print("empty-server-timeout set to 0 - server will not stop when empty")
+	
+	return empty_timeout
 
 func start_game(dedicated = false, empty_timeout = 0):
 	if dedicated:
