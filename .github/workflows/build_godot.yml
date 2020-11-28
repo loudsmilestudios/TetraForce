@@ -44,3 +44,21 @@ jobs:
         with:
           name: Client - ${{ matrix.platform }}
           path: ${{ github.workspace }}/${{ steps.build.outputs.build }}
+  osx:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Build
+        id: build
+        uses: josephbmanley/build-godot-action@v1.4.0
+        with:
+          name: TetraForce.dmg
+          preset: osx
+          projectDir: '.'
+          debugMode: 'true'
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: Client - osx
+          path: ${{ github.workspace }}/${{ steps.build.outputs.build }}
