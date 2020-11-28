@@ -26,7 +26,12 @@ var weapons_def = {
 		path = "res://entities/weapons/bomb.tscn",
 		icon = preload("res://entities/weapons/icons/bomb.png"),
 		ammo_type = "bomb",
-		acquire_dialogue = ""}
+		acquire_dialogue = ""},
+	"Bone": {
+		path = "res://entities/weapons/bone.tscn",
+		icon = "",
+		ammo_type = "",
+		acquire_dialogue = ""},
 }
 
 var items_def = {

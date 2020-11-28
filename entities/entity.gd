@@ -219,7 +219,7 @@ func anim_switch(a):
 		anim.play(newanim)
 	animation = newanim
 
-sync func use_weapon(weapon_name, input):
+sync func use_weapon(weapon_name, input="A"):
 	var weapon = global.weapons_def[weapon_name]
 	var new_weapon = load(weapon.path).instance()
 	var weapon_group = str(weapon_name, name)

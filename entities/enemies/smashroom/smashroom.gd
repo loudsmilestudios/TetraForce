@@ -23,4 +23,5 @@ func _physics_process(delta):
 		movetimer = movetimer_length
 
 func knockback_back(body):
-	body.damage(0, -knockdir, self)
+	if body is Entity:
+		body.damage(0, -knockdir, self)
