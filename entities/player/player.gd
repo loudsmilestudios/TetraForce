@@ -47,6 +47,7 @@ func initialize():
 		add_child(hud)
 		hud.initialize(self)
 		connect("update_count", hud, "update_weapons")
+		nametag.hide()
 		
 		#$ZoneHandler.connect("area_entered", self, "zone_changed")
 		ray.add_exception($ZoneHandler)
