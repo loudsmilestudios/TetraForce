@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" width="96" height="54" tilewidth="16" tileheight="16" infinite="1" nextlayerid="21" nextobjectid="389">
+<map version="1.4" tiledversion="1.4.1" orientation="orthogonal" renderorder="right-down" width="96" height="54" tilewidth="16" tileheight="16" infinite="1" nextlayerid="21" nextobjectid="390">
  <properties>
   <property name="music" value="shore"/>
  </properties>
@@ -2913,6 +2913,13 @@
   <object id="386" gid="774" x="368" y="208" width="16" height="16"/>
   <object id="387" gid="774" x="368" y="224" width="16" height="16"/>
   <object id="388" gid="774" x="816" y="448" width="16" height="16"/>
+  <object id="389" name="ship_entrance" gid="767" x="464" y="176" width="16" height="16">
+   <properties>
+    <property name="entrance" value="ship_entrance"/>
+    <property name="map" value="dungeon1"/>
+    <property name="player_position" value="down"/>
+   </properties>
+  </object>
  </objectgroup>
  <objectgroup id="20" name="enemies">
   <object id="371" name="stalfaux" gid="766" x="849.333" y="321.333" width="16" height="16"/>
