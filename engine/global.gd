@@ -2,7 +2,7 @@ extends Node
 
 var player
 var equips = {"B": "Sword", "X": "", "Y": ""}
-var weapons = ["Sword", "Bomb"]
+var weapons = ["Sword", "Bow"]
 var items = ["Lantern"]
 var health = 5
 var max_health = 5
@@ -39,6 +39,21 @@ var items_def = {
 		icon = preload("res://entities/player/items/lantern.png"),
 		acquire_dialogue = "",
 	}
+}
+
+var ammo_def = {
+	"50 Tetrans": {
+		icon = preload("res://entities/player/items/lantern.png"),
+		acquire_dialogue = "",
+		ammo_type = "tetrans",
+		amount = 50,
+	},
+	"10 Arrows": {
+		icon = preload("res://entities/player/items/lantern.png"),
+		acquire_dialogue = "",
+		ammo_type = "arrow",
+		amount = 10,
+	},
 }
 
 var ammo = {

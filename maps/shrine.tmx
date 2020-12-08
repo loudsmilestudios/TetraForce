@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="11" nextobjectid="41">
+<map version="1.4" tiledversion="1.4.3" orientation="orthogonal" renderorder="right-down" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="11" nextobjectid="42">
  <properties>
   <property name="music" value="shrine"/>
  </properties>
  <tileset firstgid="1" source="../tiled/dungeon/dungeon_tileset.tsx"/>
  <tileset firstgid="281" source="../tiled/objects.tsx"/>
- <tileset firstgid="305" source="../tiled/overworld/overworld_tileset.tsx"/>
+ <tileset firstgid="306" source="../tiled/overworld/overworld_tileset.tsx"/>
  <layer id="2" name="floor" width="40" height="40">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -135,7 +135,7 @@
 0,0,0,0,21,104,104,104,104,24,18,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,16,25,104,104,104,104,104,23,0,0,0,
 0,0,0,0,21,104,104,104,104,104,24,17,17,17,17,276,17,17,18,0,0,16,17,17,276,17,17,17,17,25,104,104,104,104,104,104,23,0,0,0,
 0,0,0,0,21,104,104,104,104,104,104,104,104,104,104,104,104,104,23,0,0,21,104,104,104,104,104,104,104,104,104,104,104,104,104,104,23,0,0,0,
-0,0,0,0,26,27,27,27,27,27,27,27,27,27,27,27,27,27,28,321,321,26,27,27,27,27,27,27,27,27,27,27,27,27,27,27,28,0,0,0
+0,0,0,0,26,27,27,27,27,27,27,27,27,27,27,27,27,27,28,322,322,26,27,27,27,27,27,27,27,27,27,27,27,27,27,27,28,0,0,0
 </data>
  </layer>
  <layer id="4" name="decor" width="40" height="40">
@@ -250,6 +250,12 @@
   <object id="38" gid="281" x="320" y="352" width="16" height="16"/>
   <object id="39" gid="281" x="304" y="384" width="16" height="16"/>
   <object id="40" gid="281" x="320" y="416" width="16" height="16"/>
+  <object id="41" gid="291" x="272" y="304" width="16" height="16">
+   <properties>
+    <property name="def" value="ammo"/>
+    <property name="item" value="10 Arrows"/>
+   </properties>
+  </object>
  </objectgroup>
  <objectgroup id="7" name="zones" visible="0" locked="1">
   <object id="1" type="area" x="128" y="208" width="384" height="416"/>
