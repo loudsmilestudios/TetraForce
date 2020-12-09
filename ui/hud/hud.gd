@@ -22,6 +22,7 @@ func initialize(p):
 	update_hearts()
 	update_weapons()
 	update_tetrans()
+	update_buttons()
 
 func update_hearts():
 	for heart in hearts.get_children():
@@ -55,6 +56,15 @@ func update_weapons():
 
 func update_tetrans():
 	$tetrans/tetrans.text = str(global.ammo.tetrans).pad_zeros(3)
+
+func update_buttons():
+	print(int(Input.get_connected_joypads().size()))
+	if int(Input.get_connected_joypads().size()) > 0:
+		for i in ["B", "X", "Y"]:
+			get_node("hud2d/buttons/"+i).texture = load("res://ui/hud/button_ui.png")
+	else:
+		for i in ["B", "X", "Y"]:
+			get_node("hud2d/buttons/"+i).texture = load("res://ui/hud/keyboard_button_ui.png")
 
 func show_hearts():
 	hearts.modulate = lerp(hearts.modulate, Color(1,1,1,1), 0.1)
