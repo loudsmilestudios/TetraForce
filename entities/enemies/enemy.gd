@@ -2,6 +2,8 @@ extends Entity
 
 class_name Enemy
 
+export var zone = ""
+
 func _ready():
 	add_to_group("enemy")
 	add_to_group("maphost")

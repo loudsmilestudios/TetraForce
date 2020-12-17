@@ -11,6 +11,7 @@ func _ready():
 func _physics_process(delta):
 	if !network.is_map_host() || is_dead():
 		return
+	print(zone)
 	
 	loop_movement()
 	loop_damage()
@@ -23,5 +24,5 @@ func _physics_process(delta):
 		movetimer = movetimer_length
 
 func knockback_back(body):
-	if body is Entity:
-		body.damage(0, -knockdir, self)
+	if body.get_parent() is Entity && !body.is_in_group("projectile"):
+		body.get_parent().damage(0, -knockdir, self)

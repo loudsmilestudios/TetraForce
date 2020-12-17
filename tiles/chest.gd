@@ -30,7 +30,7 @@ func interact(node):
 	network.peer_call(self, "show_item")
 	
 	match def:
-		"weapon", "item":
+		"weapons", "items":
 			network.add_to_state(def, item)
 		"ammo":
 			var ammo = global.get("ammo_def")[item]
@@ -38,6 +38,8 @@ func interact(node):
 			global.player.hud.update_weapons()
 			global.player.hud.update_tetrans()
 			print(ammo)
+		"dungeon":
+			network.current_map.get_node("dungeon_handler").add_key()
 	
 	yield(get_tree().create_timer(1), "timeout")
 	

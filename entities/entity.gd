@@ -165,11 +165,9 @@ func loop_damage():
 func loop_holes():
 	if get_collision_layer_bit(7) == true:
 		return
-	var safe = true
 	for body in center.get_overlapping_bodies():
 		if body is Holes:
-			safe = false
-			var hole_origin = body.map_to_world(body.world_to_map(position + Vector2(0,6))) + Vector2(8,8)
+			var hole_origin = body.map_to_world(body.world_to_map(position.round() + Vector2(0,6))) + Vector2(8,8)
 			var hole_hitbox = Rect2(hole_origin - Vector2(5,5), Vector2(10,10))
 			position = position.linear_interpolate(hole_origin, 0.1) # there's a way to lerp w/ delta time i forgot it tho
 			position += Vector2(0, rand_range(-1,0))
@@ -177,8 +175,6 @@ func loop_holes():
 				create_hole_fx(hole_origin)
 				network.peer_call(self, "create_hole_fx", [hole_origin])
 				hole_fall()
-	if safe:
-		last_safe_pos = position - movedir * 2
 
 func hole_fall():
 	pass
@@ -189,7 +185,7 @@ func create_hole_fx(pos):
 	hole_fx.position = pos
 	sfx.play("fall")
 
-func damage(amount, dir, body=null):
+func damage(amount, dir, damager=null):
 	if hitstun == 0:
 		if amount != 0:
 			sfx.play(hurt_sfx)
@@ -198,8 +194,8 @@ func damage(amount, dir, body=null):
 		hitstun = 10
 		update_health(-amount)
 		knockdir = dir
-		if body != null:
-			emit_signal("damaged", body)
+		if damager != null:
+			emit_signal("damaged", damager)
 
 func update_health(amount):
 	health = max(min(health + amount, MAX_HEALTH), 0)

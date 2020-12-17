@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://engine/network_object.tscn" type="PackedScene" id=1]
+[ext_resource path="res://engine/dungeon_handler.gd" type="Script" id=2]
+
+[node name="dungeon_handler" type="Node"]
+script = ExtResource( 2 )
+
+[node name="NetworkObject" parent="." instance=ExtResource( 1 )]
+persistent = true
+enter_properties = {
+"keys": 0
+}

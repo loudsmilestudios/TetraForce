@@ -9,6 +9,8 @@ var hud
 var push_counter = 0
 var action_cooldown = 0
 var screen_position = Vector2(0,0)
+var last_safe_spritedir = "Down"
+var current_zone
 
 func initialize():
 	hurt_sfx = "hurt"
@@ -60,6 +62,7 @@ func initialize():
 		var zone = $ZoneHandler.get_overlapping_areas()[0]
 		var zone_size = zone.get_node("CollisionShape2D").shape.extents * 2
 		var zone_rect = Rect2(zone.position, zone_size)
+		current_zone = zone
 		camera.set_limits(zone_rect)
 		camera.smoothing_enabled = true
 		yield(get_tree(), "idle_frame")
@@ -258,6 +261,7 @@ func hole_fall():
 	state = "hole"
 	yield(get_tree().create_timer(1.5), "timeout")
 	position = last_safe_pos
+	spritedir = last_safe_spritedir
 	show()
 	damage(1, Vector2(0,0))
 	state = "default"
@@ -279,3 +283,6 @@ func change_zone(zone):
 	camera.scroll_screen(zone_rect)
 	sfx.set_music(zone.music, zone.musicfx)
 	camera.set_light(zone.light)
+	last_safe_pos = position
+	last_safe_spritedir = spritedir
+	current_zone = zone

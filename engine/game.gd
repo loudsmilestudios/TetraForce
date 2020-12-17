@@ -71,6 +71,10 @@ func add_new_player(id):
 	else:
 		new_player.sprite.texture = load(network.player_data.get(id).skin)
 		new_player.nametag.text = network.player_data.get(id).name
+	
+	yield(get_tree(), "physics_frame")
+	
+	entity_detect.set_process(true)
 
 func remove_player(id):
 	if has_node(str(id)):

@@ -2,7 +2,7 @@ extends Node
 
 var player
 var equips = {"B": "Sword", "X": "", "Y": ""}
-var weapons = ["Sword", "Bow"]
+var weapons = ["Sword", "Bomb"]
 var items = ["Lantern"]
 var health = 5
 var max_health = 5
@@ -38,7 +38,7 @@ var items_def = {
 	"Lantern": {
 		icon = preload("res://entities/player/items/lantern.png"),
 		acquire_dialogue = "",
-	}
+	},
 }
 
 var ammo_def = {
@@ -54,6 +54,13 @@ var ammo_def = {
 		ammo_type = "arrow",
 		amount = 10,
 	},
+}
+
+var dungeon_def = {
+	"Key": {
+		icon = preload("res://entities/collectables/key.png"),
+		acquire_dialogue = "",
+	}
 }
 
 var ammo = {
