@@ -23,6 +23,7 @@ func initialize(p):
 	update_weapons()
 	update_tetrans()
 	update_keys()
+	update_buttons()
 
 func update_hearts():
 	for heart in hearts.get_children():
@@ -62,6 +63,17 @@ func update_keys():
 	if network.current_map.has_node("dungeon_handler"):
 		$keys.show()
 		$keys/keys.text = str(network.current_map.get_node("dungeon_handler").keys).pad_zeros(1)
+
+func update_buttons():
+	#Checks if there are any controllers connected
+	if Input.get_connected_joypads().size() > 0:
+		# Show controller buttons
+		for i in ["B", "X", "Y"]:
+			get_node("hud2d/buttons/" + i).texture = preload("res://ui/hud/button_ui.png")
+	else:
+		# Show keyboard buttons
+		for i in ["B", "X", "Y"]:
+			get_node("hud2d/buttons/" + i).texture = preload("res://ui/hud/keyboard_buttons.png")
 
 func show_hearts():
 	hearts.modulate = lerp(hearts.modulate, Color(1,1,1,1), 0.1)

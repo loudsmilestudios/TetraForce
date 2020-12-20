@@ -110,6 +110,7 @@ func change_map(map, entrance):
 	var new_map_path = "res://maps/" + map + ".tmx"
 	var new_map = load(new_map_path).instance()
 	
+	player.hud.update_buttons() # When changing zones, update the buttons shown
 	old_map.queue_free()
 	next_entrance = entrance
 	root.add_child(new_map)
