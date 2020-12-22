@@ -72,19 +72,36 @@ func update_buttons():
 		name = Input.get_joy_name(0)
 		# If controller is XInput, show Xbox buttons
 		if "XInput" in name or "Xbox" in name:
-			for i in ["B", "X", "Y"]:
-				get_node("hud2d/buttons/" + i).texture = preload("res://ui/hud/xbox_buttons.png")
+			set_hud_buttons("xbox_buttons.png")
 		# If controller is DualShock, show PlayStation buttons
 		elif "DualShock" in name or "PS" in name:
-			for i in ["B", "X", "Y"]:
-				get_node("hud2d/buttons/" + i).texture = preload("res://ui/hud/ps_buttons.png")
+			set_hud_buttons("ps_buttons.png")
 		else:
-			for i in ["B", "X", "Y"]:
-				get_node("hud2d/buttons/" + i).texture = preload("res://ui/hud/button_ui.png")
+			set_hud_buttons("button_ui.png")
 	else:
 		# Show keyboard buttons
-		for i in ["B", "X", "Y"]:
-			get_node("hud2d/buttons/" + i).texture = preload("res://ui/hud/keyboard_buttons.png")
+		set_hud_buttons("", 1, 1, true)
+
+func set_hud_buttons(texture_name, hframes = 4, vframes = 4, keyboard = false):
+	var button_array = ["B", "X", "Y"]
+	for i in button_array:
+		var node = get_node("hud2d/buttons/" + i)
+		node.hframes = hframes
+		node.vframes = vframes
+		var input_size = InputMap.get_action_list(i).size()
+		if keyboard == true:
+			node.frame = 0
+			for j in range(0,input_size):
+				if InputMap.get_action_list(i)[j].get_class() == "InputEventKey":
+					var name = InputMap.get_action_list(i)[j].scancode
+					name = OS.get_scancode_string(name)
+					name += ".png"
+					node.texture = load("res://ui/hud/keyboard/%s" % name)
+		else:
+			node.texture = load("res://ui/hud/%s" % texture_name)
+			for j in range(0,input_size):
+				if InputMap.get_action_list(i)[j].get_class() == "InputEventJoypadButton":
+					node.frame = InputMap.get_action_list(i)[j].get_button_index()
 
 func show_hearts():
 	hearts.modulate = lerp(hearts.modulate, Color(1,1,1,1), 0.1)
