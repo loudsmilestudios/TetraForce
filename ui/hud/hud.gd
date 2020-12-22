@@ -24,6 +24,7 @@ func initialize(p):
 	update_tetrans()
 	update_keys()
 	update_buttons()
+	Input.connect("joy_connection_changed", self, "_on_joy_connection_changed")
 
 func update_hearts():
 	for heart in hearts.get_children():
@@ -68,8 +69,18 @@ func update_buttons():
 	#Checks if there are any controllers connected
 	if Input.get_connected_joypads().size() > 0:
 		# Show controller buttons
-		for i in ["B", "X", "Y"]:
-			get_node("hud2d/buttons/" + i).texture = preload("res://ui/hud/button_ui.png")
+		name = Input.get_joy_name(0)
+		# If controller is XInput, show Xbox buttons
+		if "XInput" in name or "Xbox" in name:
+			for i in ["B", "X", "Y"]:
+				get_node("hud2d/buttons/" + i).texture = preload("res://ui/hud/xbox_buttons.png")
+		# If controller is DualShock, show PlayStation buttons
+		elif "DualShock" in name or "PS" in name:
+			for i in ["B", "X", "Y"]:
+				get_node("hud2d/buttons/" + i).texture = preload("res://ui/hud/ps_buttons.png")
+		else:
+			for i in ["B", "X", "Y"]:
+				get_node("hud2d/buttons/" + i).texture = preload("res://ui/hud/button_ui.png")
 	else:
 		# Show keyboard buttons
 		for i in ["B", "X", "Y"]:
@@ -94,3 +105,7 @@ func show_inventory():
 
 func debug_update():
 	$debug/states.text = JSON.print(network.states, "    ")
+
+func _on_joy_connection_changed(dev_id, connected):
+	if dev_id == 0:
+		update_buttons()
