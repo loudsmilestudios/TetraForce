@@ -4,7 +4,7 @@
 
 extends Node
 
-export(String) var api_endpoint = "api.tetraforce.io"
+export(String) var api_endpoint = "api.online.tetraforce.io"
 
 var _http_client : HTTPRequest
 var auth_token : String
