@@ -34,17 +34,22 @@ func _ready():
 func _process(delta): # can be on screen change instead of process
 	if !network.is_map_host():
 		return
-	var visible_entities: Array = []
-	for entity_detect in get_tree().get_nodes_in_group("entity_detect"):
-		if is_instance_valid(entity_detect):
-			for entity in entity_detect.get_overlapping_bodies():
-				if entity is Enemy or entity is NPC:
-					visible_entities.append(entity)
+	
+	var active_zones = []
+	var active_enemies = []
+	
+	for player in get_tree().get_nodes_in_group("player"):
+		if !active_zones.has(player.current_zone) && player.current_zone != null:
+			active_zones.append(player.current_zone)
+	
+	for zone in active_zones:
+		for enemy in zone.get_enemies():
+			active_enemies.append(enemy)
 	
 	for entity in get_tree().get_nodes_in_group("entity"):
 		if entity is Player:
 			continue
-		if visible_entities.has(entity):
+		if active_enemies.has(entity):
 			entity.set_physics_process(true)
 		else:
 			entity.set_physics_process(false)
@@ -56,11 +61,6 @@ func add_new_player(id):
 	new_player.name = str(id)
 	new_player.set_network_master(id, true)
 	
-	var entity_detect = preload("res://entities/player/entity_detect.tscn").instance()
-	entity_detect.player = new_player
-	add_child(entity_detect)
-	entity_detect.add_to_group(str(id))
-	
 	add_child(new_player)
 	new_player.camera = camera
 	new_player.initialize()
@@ -71,10 +71,6 @@ func add_new_player(id):
 	else:
 		new_player.sprite.texture = load(network.player_data.get(id).skin)
 		new_player.nametag.text = network.player_data.get(id).name
-	
-	yield(get_tree(), "physics_frame")
-	
-	entity_detect.set_process(true)
 
 func remove_player(id):
 	if has_node(str(id)):
