@@ -206,6 +206,6 @@ func _on_save_pressed():
 func _on_endpoint_item_selected(index):
 	match index:
 		0:
-			server_api.api_endpoint = "55uly5k4f0.execute-api.us-east-2.amazonaws.com"
+			server_api.api_endpoint = "api.online.tetraforce.io"
 		1:
-			server_api.api_endpoint = "stage.api.tetraforce.io"
+			server_api.api_endpoint = "stage.api.online.tetraforce.io"
