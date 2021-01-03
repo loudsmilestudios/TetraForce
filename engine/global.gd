@@ -21,39 +21,58 @@ var weapons_def = {
 		path = "res://entities/weapons/arrow.tscn",
 		icon = preload("res://entities/weapons/icons/bow.png"),
 		ammo_type = "arrow",
-		acquire_dialogue = "acquire_bow"},
+		acquire_dialogue = "acquisition/acquire_bow"},
 	"Bomb": {
 		path = "res://entities/weapons/bomb.tscn",
 		icon = preload("res://entities/weapons/icons/bomb.png"),
 		ammo_type = "bomb",
-		acquire_dialogue = ""},
+		acquire_dialogue = "acquisition/acquire_bombs"},
 	"Bone": {
 		path = "res://entities/weapons/bone.tscn",
 		icon = "",
 		ammo_type = "",
-		acquire_dialogue = ""},
+		acquire_dialogue = ""
+	}
 }
 
 var items_def = {
 	"Lantern": {
 		icon = preload("res://entities/player/items/lantern.png"),
-		acquire_dialogue = "",
-	},
+		acquire_dialogue = "acquisition/acquire_lantern"
+	}
 }
 
 var ammo_def = {
+	"100 Tetrans": {
+		icon = preload("res://entities/collectables/icons/tetran_yellow_100.png"),
+		acquire_dialogue = "acquisition/acquire_tetran_yellow",
+		ammo_type = "tetrans",
+		amount = 100,
+	},
 	"50 Tetrans": {
-		icon = preload("res://entities/player/items/lantern.png"),
-		acquire_dialogue = "",
+		icon = preload("res://entities/collectables/icons/tetran_black_50.png"),
+		acquire_dialogue = "acquisition/acquire_tetran_black",
 		ammo_type = "tetrans",
 		amount = 50,
 	},
+	"20 Tetrans": {
+		icon = preload("res://entities/collectables/icons/tetran_green_20.png"),
+		acquire_dialogue = "acquisition/acquire_tetran_green",
+		ammo_type = "tetrans",
+		amount = 20,
+	},
 	"10 Arrows": {
-		icon = preload("res://entities/player/items/lantern.png"),
-		acquire_dialogue = "",
+		icon = preload("res://entities/collectables/icons/arrows.png"),
+		acquire_dialogue = "acquisition/acquire_arrows_10",
 		ammo_type = "arrow",
 		amount = 10,
 	},
+	"10 Bombs": {
+		icon = preload("res://entities/collectables/icons/bombs.png"),
+		acquire_dialogue = "acquisition/acquire_bombs_10",
+		ammo_type = "bomb",
+		amount = 10,
+	}
 }
 
 var dungeon_def = {

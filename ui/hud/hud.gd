@@ -66,42 +66,55 @@ func update_keys():
 		$keys/keys.text = str(network.current_map.get_node("dungeon_handler").keys).pad_zeros(1)
 
 func update_buttons():
+	var node = ""
+	var texture_name = ""
+	var keyboard = false
+	var hframes = 4
+	var vframes = 4
 	#Checks if there are any controllers connected
 	if Input.get_connected_joypads().size() > 0:
 		# Show controller buttons
 		name = Input.get_joy_name(0)
 		# If controller is XInput, show Xbox buttons
 		if "XInput" in name or "Xbox" in name:
-			set_hud_buttons("xbox_buttons.png")
+			texture_name = "xbox_buttons.png"
 		# If controller is DualShock, show PlayStation buttons
 		elif "DualShock" in name or "PS" in name:
-			set_hud_buttons("ps_buttons.png")
+			texture_name = "ps_buttons.png"
 		else:
-			set_hud_buttons("button_ui.png")
+			texture_name = "switch_buttons.png"
 	else:
 		# Show keyboard buttons
-		set_hud_buttons("", 1, 1, true)
+		hframes = 1
+		vframes = 1
+		keyboard = true
+		
+	for i in ["B", "X", "Y"]:
+		node = get_node("hud2d/buttons/" + i)
+		update_key_icons_hud(keyboard, i, node, texture_name, hframes, vframes)
+	
+	# Update Confirm button
+	node = $hud2d/Z
+	update_key_icons_hud(keyboard, "A", node, texture_name, hframes, vframes)
 
-func set_hud_buttons(texture_name, hframes = 4, vframes = 4, keyboard = false):
-	var button_array = ["B", "X", "Y"]
-	for i in button_array:
-		var node = get_node("hud2d/buttons/" + i)
-		node.hframes = hframes
-		node.vframes = vframes
-		var input_size = InputMap.get_action_list(i).size()
-		if keyboard == true:
-			node.frame = 0
-			for j in range(0,input_size):
-				if InputMap.get_action_list(i)[j].get_class() == "InputEventKey":
-					var name = InputMap.get_action_list(i)[j].scancode
-					name = OS.get_scancode_string(name)
-					name += ".png"
-					node.texture = load("res://ui/hud/keyboard/%s" % name)
-		else:
-			node.texture = load("res://ui/hud/%s" % texture_name)
-			for j in range(0,input_size):
-				if InputMap.get_action_list(i)[j].get_class() == "InputEventJoypadButton":
-					node.frame = InputMap.get_action_list(i)[j].get_button_index()
+func update_key_icons_hud(keyboard, button, node, texture_name, hframes, vframes):
+	node.hframes = hframes
+	node.vframes = vframes
+	var input_size = InputMap.get_action_list(button).size() # Number of inputs mapped to each action
+	if keyboard == true:
+		node.frame = 0
+		# Check every input in the action for a keyboard input
+		for j in range(0,input_size):
+			if InputMap.get_action_list(button)[j].get_class() == "InputEventKey":
+				var name = InputMap.get_action_list(button)[j].scancode
+				name = OS.get_scancode_string(name) + ".png"
+				node.texture = load("res://ui/hud/keyboard/%s" % name)
+	else:
+		node.texture = load("res://ui/hud/%s" % texture_name)
+		# Check every input in the action for a controller input
+		for j in range(0,input_size):
+			if InputMap.get_action_list(button)[j].get_class() == "InputEventJoypadButton":
+				node.frame = InputMap.get_action_list(button)[j].get_button_index()
 
 func show_hearts():
 	hearts.modulate = lerp(hearts.modulate, Color(1,1,1,1), 0.1)
@@ -114,6 +127,14 @@ func show_buttons():
 
 func hide_buttons():
 	buttons.modulate = lerp(buttons.modulate, Color(1,1,1,0.33), 0.2)
+	
+func show_action():
+	var Z = $hud2d/Z
+	Z.show()
+	
+func hide_action():
+	var Z = $hud2d/Z
+	Z.hide()
 
 func show_inventory():
 	var inventory = preload("res://ui/inventory/inventory.tscn").instance()

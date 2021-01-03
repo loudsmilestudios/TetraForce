@@ -396,6 +396,8 @@ tracks/0/keys = {
 
 [node name="player" type="KinematicBody2D"]
 z_index = 100
+collision_layer = 1025
+collision_mask = 1025
 script = ExtResource( 3 )
 TYPE = "PLAYER"
 MAX_HEALTH = 7.0

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tileset version="1.4" tiledversion="1.4.1" name="objects" tilewidth="16" tileheight="22" tilecount="25" columns="0">
+<tileset version="1.4" tiledversion="1.4.1" name="objects" tilewidth="16" tileheight="22" tilecount="26" columns="0">
  <grid orientation="orthogonal" width="1" height="1"/>
  <tile id="0">
   <properties>
@@ -21,6 +21,9 @@
    <property name="path" value="res://tiles/block.tscn"/>
   </properties>
   <image width="16" height="16" source="images/objects/block.png"/>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
  </tile>
  <tile id="3">
   <properties>
@@ -161,5 +164,11 @@
    <property name="path" value="res://entities/enemies/pirafaux/pirafaux.tscn"/>
   </properties>
   <image width="16" height="22" source="images/objects/pirafaux.png"/>
+ </tile>
+ <tile id="25">
+  <image width="16" height="16" source="images/objects/keyblock.png"/>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
  </tile>
 </tileset>

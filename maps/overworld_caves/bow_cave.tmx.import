@@ -1,0 +1,22 @@
+[remap]
+
+importer="vnen.tiled_importer"
+type="PackedScene"
+path="res://.import/bow_cave.tmx-fc118332f733026c210fb0a1a4fbeed8.scn"
+
+[deps]
+
+source_file="res://maps/overworld_caves/bow_cave.tmx"
+dest_files=[ "res://.import/bow_cave.tmx-fc118332f733026c210fb0a1a4fbeed8.scn" ]
+
+[params]
+
+custom_properties=true
+tile_metadata=true
+uv_clip=true
+image_flags=7
+collision_layer=1
+embed_internal_images=false
+save_tiled_properties=true
+add_background=true
+post_import_script="res://tiled/import.gd"

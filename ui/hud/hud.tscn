@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://ui/theme/font.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://ui/hud/hearts.png" type="Texture" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://ui/theme/theme.tres" type="Theme" id=6]
 [ext_resource path="res://ui/hud/tetran_count.png" type="Texture" id=7]
 [ext_resource path="res://ui/hud/key_count.png" type="Texture" id=8]
+[ext_resource path="res://ui/hud/action.png" type="Texture" id=9]
 
 [sub_resource type="DynamicFont" id=1]
 font_data = ExtResource( 1 )
@@ -47,6 +48,15 @@ modulate = Color( 1, 1, 1, 0.882353 )
 position = Vector2( 236, 10 )
 texture = ExtResource( 4 )
 
+[node name="Z" type="Sprite" parent="hud2d"]
+visible = false
+modulate = Color( 1, 1, 1, 0.882353 )
+position = Vector2( 182.5, 10 )
+texture = ExtResource( 9 )
+__meta__ = {
+"_edit_lock_": true
+}
+
 [node name="buttons" type="Control" parent="hud2d"]
 margin_left = 256.0
 margin_right = 256.0
@@ -58,7 +68,9 @@ __meta__ = {
 
 [node name="B" type="Sprite" parent="hud2d/buttons"]
 modulate = Color( 1, 1, 1, 0.882353 )
-position = Vector2( -51.5, 10 )
+self_modulate = Color( 1, 1, 1, 0.882353 )
+position = Vector2( -46.5, 15 )
+scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 5 )
 hframes = 3
 __meta__ = {
@@ -66,13 +78,17 @@ __meta__ = {
 }
 
 [node name="icon" type="Sprite" parent="hud2d/buttons/B"]
+position = Vector2( -5, -9 )
+scale = Vector2( 2, 2 )
+z_index = -1
 
 [node name="count" type="Label" parent="hud2d/buttons/B"]
 anchor_right = 1.0
-margin_left = -9.0
+margin_left = -22.0
 margin_top = 6.0
-margin_right = -9.0
+margin_right = -22.0
 margin_bottom = 20.0
+rect_scale = Vector2( 1.5, 1.5 )
 custom_fonts/font = SubResource( 1 )
 align = 1
 __meta__ = {
@@ -81,7 +97,9 @@ __meta__ = {
 
 [node name="X" type="Sprite" parent="hud2d/buttons"]
 modulate = Color( 1, 1, 1, 0.882353 )
-position = Vector2( -30, 10 )
+self_modulate = Color( 1, 1, 1, 0.882353 )
+position = Vector2( -25, 15 )
+scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 5 )
 hframes = 3
 frame = 1
@@ -90,12 +108,16 @@ __meta__ = {
 }
 
 [node name="icon" type="Sprite" parent="hud2d/buttons/X"]
+position = Vector2( -5, -9 )
+scale = Vector2( 2, 2 )
+z_index = -1
 
 [node name="count" type="Label" parent="hud2d/buttons/X"]
-margin_left = -9.0
+margin_left = -22.0
 margin_top = 6.0
-margin_right = 10.0
+margin_right = -3.0
 margin_bottom = 20.0
+rect_scale = Vector2( 1.5, 1.5 )
 custom_fonts/font = SubResource( 1 )
 align = 1
 __meta__ = {
@@ -104,7 +126,9 @@ __meta__ = {
 
 [node name="Y" type="Sprite" parent="hud2d/buttons"]
 modulate = Color( 1, 1, 1, 0.882353 )
-position = Vector2( -9, 10 )
+self_modulate = Color( 1, 1, 1, 0.882353 )
+position = Vector2( -4, 15 )
+scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 5 )
 hframes = 3
 frame = 2
@@ -113,12 +137,16 @@ __meta__ = {
 }
 
 [node name="icon" type="Sprite" parent="hud2d/buttons/Y"]
+position = Vector2( -5, -9 )
+scale = Vector2( 2, 2 )
+z_index = -1
 
 [node name="count" type="Label" parent="hud2d/buttons/Y"]
-margin_left = -9.0
+margin_left = -22.0
 margin_top = 6.0
-margin_right = 9.0
+margin_right = -4.0
 margin_bottom = 20.0
+rect_scale = Vector2( 1.5, 1.5 )
 custom_fonts/font = SubResource( 1 )
 align = 1
 __meta__ = {

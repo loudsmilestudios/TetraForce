@@ -45,13 +45,13 @@ func import_tilemap(tilemap):
 		tilemap.set_script(load(tilemap.get_meta("script")))
 	if tilemap.has_meta("replace"):
 		replace_tilemap(tilemap, tilemap.get_meta("replace"))
-	if tilemap.has_meta("z_index"):
-		tilemap.z_index = tilemap.get_meta("z_index")
-	if tilemap.has_meta("collision"):
-		tilemap.set_collision_layer_bit(0, 0)
-		tilemap.set_collision_layer_bit(1, 0)
-		tilemap.set_collision_mask_bit(0, 0)
-		tilemap.set_collision_mask_bit(1, 0)
+	#if tilemap.has_meta("z_index"):
+	#	tilemap.z_index = tilemap.get_meta("z_index")
+	#if tilemap.has_meta("collision"):
+	#	tilemap.set_collision_layer_bit(0, 0)
+	#	tilemap.set_collision_layer_bit(1, 0)
+	#	tilemap.set_collision_mask_bit(0, 0)
+	#	tilemap.set_collision_mask_bit(1, 0)
 
 func spawn_object(object):
 	if object.has_meta("path"):
