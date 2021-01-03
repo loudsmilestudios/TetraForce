@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://ui/theme/font.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://ui/hud/hearts.png" type="Texture" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://ui/theme/theme.tres" type="Theme" id=6]
 [ext_resource path="res://ui/hud/tetran_count.png" type="Texture" id=7]
 [ext_resource path="res://ui/hud/key_count.png" type="Texture" id=8]
+[ext_resource path="res://ui/hud/action.png" type="Texture" id=9]
 
 [sub_resource type="DynamicFont" id=1]
 font_data = ExtResource( 1 )
@@ -46,6 +47,15 @@ visible = false
 modulate = Color( 1, 1, 1, 0.882353 )
 position = Vector2( 236, 10 )
 texture = ExtResource( 4 )
+
+[node name="Z" type="Sprite" parent="hud2d"]
+visible = false
+modulate = Color( 1, 1, 1, 0.882353 )
+position = Vector2( 182.5, 10 )
+texture = ExtResource( 9 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="buttons" type="Control" parent="hud2d"]
 margin_left = 256.0

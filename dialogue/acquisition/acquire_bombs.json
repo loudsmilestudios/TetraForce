@@ -1,0 +1,16 @@
+{
+	"Force" : 0,
+	"Random": 0,
+	"Nodes" :
+	 [
+		{
+			"id"      : 0,
+			"name"    : "You got the Bombs!",
+			"text"    : "Press Start to equip to B, X, or Y. Use it to lay an explosive bomb, and remove obstacles.",
+			"next_id" : -1,
+			"choices" : []
+		},
+
+	]
+
+}

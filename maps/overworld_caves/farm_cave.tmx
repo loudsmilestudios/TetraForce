@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.1" orientation="orthogonal" renderorder="right-down" width="30" height="30" tilewidth="16" tileheight="16" infinite="0" nextlayerid="10" nextobjectid="59">
+<map version="1.4" tiledversion="1.4.3" orientation="orthogonal" renderorder="right-down" width="30" height="30" tilewidth="16" tileheight="16" infinite="0" nextlayerid="10" nextobjectid="61">
  <properties>
   <property name="music" value="cave"/>
  </properties>
@@ -262,6 +262,18 @@
     <property name="entrance" value="farm_cave"/>
     <property name="map" value="overworld"/>
     <property name="player_position" value="down"/>
+   </properties>
+  </object>
+  <object id="59" gid="321" x="224" y="80" width="16" height="16">
+   <properties>
+    <property name="def" value="ammo"/>
+    <property name="item" value="20 Tetrans"/>
+   </properties>
+  </object>
+  <object id="60" gid="321" x="272" y="80" width="16" height="16">
+   <properties>
+    <property name="def" value="ammo"/>
+    <property name="item" value="20 Tetrans"/>
    </properties>
   </object>
  </objectgroup>

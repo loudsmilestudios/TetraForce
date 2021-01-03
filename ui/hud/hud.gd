@@ -74,6 +74,14 @@ func show_buttons():
 
 func hide_buttons():
 	buttons.modulate = lerp(buttons.modulate, Color(1,1,1,0.33), 0.2)
+	
+func show_action():
+	var Z = $hud2d/Z
+	Z.show()
+	
+func hide_action():
+	var Z = $hud2d/Z
+	Z.hide()
 
 func show_inventory():
 	var inventory = preload("res://ui/inventory/inventory.tscn").instance()
