@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" width="30" height="30" tilewidth="16" tileheight="16" infinite="0" nextlayerid="11" nextobjectid="19">
+<map version="1.4" tiledversion="1.4.3" orientation="orthogonal" renderorder="right-down" width="30" height="30" tilewidth="16" tileheight="16" infinite="0" nextlayerid="11" nextobjectid="20">
  <properties>
   <property name="light" value="dark"/>
   <property name="music" value="cave"/>

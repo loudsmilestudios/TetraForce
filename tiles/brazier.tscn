@@ -45,11 +45,11 @@ anims/default = SubResource( 1 )
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )
 hframes = 4
-frame = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
 shape = SubResource( 2 )
 
 [node name="Light2D" type="Light2D" parent="."]
-texture = ExtResource( 2 )
+visible = false
+texture = ExtResource( 3 )
