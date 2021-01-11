@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.3" orientation="orthogonal" renderorder="right-down" width="30" height="30" tilewidth="16" tileheight="16" infinite="1" nextlayerid="13" nextobjectid="97">
+<map version="1.4" tiledversion="1.4.3" orientation="orthogonal" renderorder="right-down" width="30" height="30" tilewidth="16" tileheight="16" infinite="1" nextlayerid="13" nextobjectid="104">
  <properties>
   <property name="music" value="dungeon"/>
  </properties>
@@ -1418,7 +1418,7 @@
 </chunk>
    <chunk x="16" y="48" width="16" height="16">
 0,0,0,141,168,141,141,226,227,0,0,19,0,0,0,0,
-0,0,0,146,0,0,166,231,232,142,142,42,216,0,0,0,
+0,0,0,0,0,0,166,231,232,142,142,42,216,0,0,0,
 0,0,0,141,0,0,141,234,0,0,0,32,218,0,0,0,
 0,0,141,168,0,0,0,0,0,0,0,40,0,0,0,0,
 0,0,150,0,0,0,95,0,0,0,0,40,0,0,0,0,
@@ -1426,11 +1426,11 @@
 0,0,0,0,0,0,0,0,0,0,0,0,218,234,153,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,30,0,0,0,24,0,0,0,34,0,0,0,24,0,
-0,0,0,0,0,0,0,0,0,0,0,0,141,141,0,0,
-0,0,0,0,95,0,0,0,0,0,0,0,0,0,0,0,
-0,95,0,0,0,0,0,0,0,0,153,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,157,0,0,0,0,0,141,141,0,0,
+0,0,0,0,95,0,142,0,0,0,0,0,0,0,0,0,
+0,95,0,0,0,141,0,0,0,0,153,0,0,0,0,0,
+0,0,0,0,0,141,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,166,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </chunk>
@@ -2286,16 +2286,28 @@
   <object id="52" gid="383" x="864" y="912" width="16" height="16"/>
   <object id="53" gid="383" x="272" y="528" width="16" height="16"/>
   <object id="54" gid="383" x="112" y="816" width="16" height="16"/>
-  <object id="57" gid="383" x="640" y="992" width="16" height="16"/>
+  <object id="57" gid="383" x="640" y="992" width="16" height="16">
+   <properties>
+    <property name="key" type="bool" value="false"/>
+   </properties>
+  </object>
   <object id="59" gid="383" x="848" y="720" width="16" height="16"/>
-  <object id="60" gid="385" x="304" y="976" width="16" height="22"/>
+  <object id="60" gid="385" x="304" y="944" width="16" height="22">
+   <properties>
+    <property name="key" type="bool" value="true"/>
+   </properties>
+  </object>
   <object id="61" gid="385" x="288" y="1040" width="16" height="22"/>
   <object id="62" gid="385" x="-32" y="800" width="16" height="22"/>
   <object id="63" gid="385" x="-16" y="848" width="16" height="22"/>
   <object id="64" gid="385" x="880" y="1056" width="16" height="22"/>
   <object id="65" gid="385" x="928" y="1120" width="16" height="22"/>
   <object id="66" gid="385" x="848" y="1120" width="16" height="22"/>
-  <object id="67" gid="385" x="1136" y="928" width="16" height="22"/>
+  <object id="67" gid="385" x="1136" y="928" width="16" height="22">
+   <properties>
+    <property name="key" type="bool" value="true"/>
+   </properties>
+  </object>
   <object id="68" gid="385" x="1104" y="928" width="16" height="22"/>
   <object id="69" gid="385" x="1104" y="960" width="16" height="22"/>
   <object id="70" gid="385" x="1056" y="832" width="16" height="22"/>
@@ -2353,6 +2365,33 @@
     <property name="path" value="res://tiles/lockblock.tscn"/>
    </properties>
   </object>
+  <object id="97" gid="387" x="256" y="1088" width="16" height="16">
+   <properties>
+    <property name="direction" value="right"/>
+   </properties>
+  </object>
+  <object id="98" gid="387" x="320" y="912" width="16" height="16">
+   <properties>
+    <property name="direction" value="up"/>
+   </properties>
+  </object>
+  <object id="99" gid="387" x="272" y="800" width="16" height="16">
+   <properties>
+    <property name="direction" value="right"/>
+   </properties>
+  </object>
+  <object id="101" gid="371" x="1184" y="896" width="16" height="16">
+   <properties>
+    <property name="def" value="dungeon"/>
+    <property name="item" value="Key"/>
+   </properties>
+  </object>
+  <object id="102" gid="387" x="512" y="512" width="16" height="16">
+   <properties>
+    <property name="direction" value="right"/>
+   </properties>
+  </object>
+  <object id="103" gid="363" x="304" y="800" width="16" height="16"/>
  </objectgroup>
  <objectgroup id="11" name="zones" visible="0" locked="1">
   <object id="24" type="area" x="512" y="896" width="256" height="256"/>

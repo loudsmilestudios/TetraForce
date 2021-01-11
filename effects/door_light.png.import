@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/key_door_right.png-aa98859519363e2f40f84657638a6aaa.stex"
+path="res://.import/door_light.png-50904411662ce6e148bcd2a0e732c508.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://tiles/key_door_right.png"
-dest_files=[ "res://.import/key_door_right.png-aa98859519363e2f40f84657638a6aaa.stex" ]
+source_file="res://effects/door_light.png"
+dest_files=[ "res://.import/door_light.png-50904411662ce6e148bcd2a0e732c508.stex" ]
 
 [params]
 

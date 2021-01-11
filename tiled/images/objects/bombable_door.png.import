@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/key_door_left.png-dcf394a00ffd707ca261f4525a6115bf.stex"
+path="res://.import/bombable_door.png-f770b5b1c6a9d9793ee84009cbf1bb4d.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://tiles/key_door_left.png"
-dest_files=[ "res://.import/key_door_left.png-dcf394a00ffd707ca261f4525a6115bf.stex" ]
+source_file="res://tiled/images/objects/bombable_door.png"
+dest_files=[ "res://.import/bombable_door.png-f770b5b1c6a9d9793ee84009cbf1bb4d.stex" ]
 
 [params]
 

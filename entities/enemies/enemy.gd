@@ -3,6 +3,7 @@ extends Entity
 class_name Enemy
 
 export var zone = ""
+export(bool) var key = false
 
 func _ready():
 	add_to_group("enemy")
@@ -30,7 +31,12 @@ func enemy_death(pos):
 	death_animation.global_position = pos
 	get_parent().add_child(death_animation)
 	sfx.play("enemy_death")
-	network.current_map.spawn_collectable("tetran", pos, 4)
+	if key == false:
+		network.current_map.spawn_collectable("tetran", pos, 4)
+	else:
+		var key_spawn = preload("res://entities/collectables/key.tscn").instance()
+		key_spawn.global_position = pos
+		get_parent().add_child(key_spawn)
 	set_dead()
 
 func set_health(value):

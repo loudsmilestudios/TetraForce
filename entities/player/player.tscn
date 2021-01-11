@@ -485,8 +485,9 @@ __meta__ = {
 
 [node name="Light2D" type="Light2D" parent="."]
 enabled = false
-texture = ExtResource( 6 )
+texture = ExtResource( 5 )
 offset = Vector2( 0, 33 )
+mode = 2
 
 [node name="Flicker" type="AnimationPlayer" parent="Light2D"]
 autoplay = "flicker"

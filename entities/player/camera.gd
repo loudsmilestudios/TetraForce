@@ -7,6 +7,9 @@ const SCROLL_DURATION = 0.5
 
 func _ready():
 	set_process(false)
+	
+func _physics_process(delta):
+	target.get_node("Light2D").enabled = global.items.has("Lantern") #Moved so it updates while your in a dark room
 
 func initialize(node):
 	target = node
@@ -63,7 +66,8 @@ func _process(_delta):
 func set_light(mode):
 	if mode == "dark":
 		$CanvasModulate.color = Color(0, 0, 0, 1.0)
-		target.get_node("Light2D").enabled = global.items.has("Lantern")
 	else:
 		$CanvasModulate.color = Color(1.0, 1.0, 1.0, 1.0)
 		target.get_node("Light2D").enabled = false
+		for light in get_tree().get_nodes_in_group("light_halo"):
+			light.enabled = false
