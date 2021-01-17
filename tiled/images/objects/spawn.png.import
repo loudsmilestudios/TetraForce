@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/key_door_left.png-dcf394a00ffd707ca261f4525a6115bf.stex"
+path="res://.import/spawn.png-d169a0b62c8d029a1eeb6d1a8c7ebcca.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://tiles/key_door_left.png"
-dest_files=[ "res://.import/key_door_left.png-dcf394a00ffd707ca261f4525a6115bf.stex" ]
+source_file="res://tiled/images/objects/spawn.png"
+dest_files=[ "res://.import/spawn.png-d169a0b62c8d029a1eeb6d1a8c7ebcca.stex" ]
 
 [params]
 

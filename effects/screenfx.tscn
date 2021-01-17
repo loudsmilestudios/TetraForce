@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [sub_resource type="Animation" id=1]
 resource_name = "default"
@@ -13,6 +13,64 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ false ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "fadeblack"
+length = 2.0
+step = 0.25
+tracks/0/type = "value"
+tracks/0/path = NodePath("screenfx/CanvasLayer/ColorRect:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("screenfx/CanvasLayer/ColorRect:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 0 ), Color( 0, 0, 0, 1 ) ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "fadeblackout"
+length = 0.5
+step = 0.25
+tracks/0/type = "value"
+tracks/0/path = NodePath("screenfx/CanvasLayer/ColorRect:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("screenfx/CanvasLayer/ColorRect:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 1 ), Color( 0, 0, 0, 0 ) ]
 }
 
 [sub_resource type="Animation" id=2]
@@ -76,6 +134,8 @@ tracks/1/keys = {
 [node name="screenfx" type="AnimationPlayer"]
 autoplay = "default"
 anims/default = SubResource( 1 )
+anims/fadeblack = SubResource( 4 )
+anims/fadeblackout = SubResource( 5 )
 anims/fadein = SubResource( 2 )
 anims/fadewhite = SubResource( 3 )
 
@@ -83,7 +143,7 @@ anims/fadewhite = SubResource( 3 )
 layer = 100
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
-visible = false
+modulate = Color( 0, 0, 0, 0 )
 margin_right = 256.0
 margin_bottom = 144.0
 __meta__ = {

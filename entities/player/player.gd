@@ -203,14 +203,24 @@ func state_die():
 	if anim.assigned_animation != "die":
 		animation = "die"
 		anim.play("die")
-
+		
 func respawn():
+	var death_animation = preload("res://effects/enemy_death.tscn").instance()
+	death_animation.global_position = position
+	if health <= 0:
+		sfx.play("death")
+		get_parent().add_child(death_animation)
+		self.hide()
+		screenfx.play("fadeblack")
+		yield(get_tree().create_timer(1.5), "timeout")
+		hud.show_gameover()
+		yield(get_tree().create_timer(1.5), "timeout")
 	if is_network_master():
 		knockdir = Vector2(0,0)
 		position = home_position
+		spritedir = last_safe_spritedir
 		set_health(MAX_HEALTH)
 		emit_signal("health_changed")
-		state = "default"
 
 func check_for_death():
 	if health <= 0:

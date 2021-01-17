@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" width="30" height="30" tilewidth="16" tileheight="16" infinite="0" nextlayerid="11" nextobjectid="19">
+<map version="1.4" tiledversion="1.4.3" orientation="orthogonal" renderorder="right-down" width="30" height="30" tilewidth="16" tileheight="16" infinite="0" nextlayerid="11" nextobjectid="21">
  <properties>
   <property name="light" value="dark"/>
   <property name="music" value="cave"/>
  </properties>
  <tileset firstgid="1" source="../../tiled/cave/cave_tileset.tsx"/>
- <tileset firstgid="311" source="../../tiled/objects.tsx"/>
+ <tileset firstgid="351" source="../../tiled/objects.tsx"/>
  <layer id="4" name="ground" width="30" height="30">
   <data encoding="csv">
 84,84,84,84,84,84,84,84,84,84,84,84,84,84,84,84,84,84,84,84,84,84,84,84,84,84,84,84,84,84,
@@ -18,7 +18,7 @@
 84,84,84,84,76,77,77,77,79,72,72,72,72,73,84,84,84,96,97,97,90,92,92,92,92,92,93,84,84,84,
 84,84,84,84,76,77,77,77,77,77,77,77,77,79,72,73,84,84,84,84,96,90,92,92,92,92,93,84,84,84,
 84,84,84,84,76,66,77,77,77,77,77,77,77,77,77,79,72,72,73,84,84,96,97,97,97,97,98,84,84,84,
-84,84,84,84,76,77,67,77,77,77,77,77,77,77,77,77,77,77,79,73,84,85,85,85,85,85,84,84,84,84,
+84,84,84,84,76,77,67,77,77,77,77,77,77,77,77,77,77,77,79,73,84,84,85,85,85,84,84,84,84,84,
 84,84,84,84,76,77,77,77,77,77,77,77,77,77,77,77,77,77,77,79,72,72,72,72,72,73,84,84,84,84,
 84,84,84,84,76,77,77,77,77,77,77,77,77,77,66,77,77,77,77,77,77,77,77,77,77,78,84,84,84,84,
 84,84,84,84,81,82,82,82,82,82,75,77,77,77,77,77,77,77,77,77,77,77,77,77,77,78,84,84,84,84,
@@ -89,7 +89,7 @@
 7,7,7,8,0,0,0,0,0,0,0,0,0,0,11,12,5,0,0,0,0,0,0,0,0,0,0,7,7,7,
 7,7,7,8,0,0,0,0,0,0,0,0,0,0,0,0,11,12,12,5,0,0,0,0,0,0,0,7,7,7,
 7,7,7,8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,11,5,0,0,0,0,0,0,7,7,7,
-7,7,7,8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,11,12,280,280,280,280,5,7,7,7,
+7,7,7,8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,11,12,280,280,280,12,5,7,7,7,
 7,7,7,8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,6,7,7,7,
 7,7,7,8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,6,7,7,7,
 7,7,7,8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,6,7,7,7,
@@ -190,7 +190,7 @@
 153,154,0,0,0,0,0,0,0,0,0,0,0,0,0,41,42,35,0,0,0,0,0,0,0,0,0,0,0,125,
 158,159,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,41,42,42,35,0,0,0,0,0,109,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,41,35,0,0,0,0,0,0,0,0,
-114,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,110,0,0,49,0,0,0,0,110,0,0,0,
+114,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,110,0,0,49,0,0,0,110,110,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,107,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,109,0,0,0,0,0,0,0,0,0,141,142,143,144,0,0,109,0,0,0,0,0,0,0,
@@ -214,36 +214,36 @@
 </data>
  </layer>
  <objectgroup id="9" name="objects">
-  <object id="1" gid="319" x="192" y="208" width="16" height="16"/>
-  <object id="2" gid="320" x="400" y="176" width="16" height="16"/>
-  <object id="3" gid="320" x="384" y="176" width="16" height="16"/>
-  <object id="4" gid="320" x="368" y="176" width="16" height="16"/>
-  <object id="5" gid="320" x="352" y="176" width="16" height="16"/>
-  <object id="6" name="shrine_cave_south" gid="312" x="384" y="480" width="16" height="16">
+  <object id="1" gid="359" x="192" y="208" width="16" height="16"/>
+  <object id="3" gid="360" x="384" y="176" width="16" height="16"/>
+  <object id="4" gid="360" x="368" y="176" width="16" height="16"/>
+  <object id="5" gid="360" x="352" y="176" width="16" height="16"/>
+  <object id="6" name="shrine_cave_south" gid="352" x="384" y="480" width="16" height="16">
    <properties>
     <property name="entrance" value="shrine_cave_south"/>
     <property name="map" value="overworld"/>
     <property name="player_position" value="up"/>
    </properties>
   </object>
-  <object id="7" name="shrine_cave_stairs" gid="312" x="384" y="64" width="16" height="16">
+  <object id="7" name="shrine_cave_stairs" gid="352" x="384" y="64" width="16" height="16">
    <properties>
     <property name="entrance" value="shrine_cave_stairs"/>
     <property name="map" value="overworld"/>
     <property name="player_position" value="down"/>
    </properties>
   </object>
-  <object id="8" name="shrine_cave_north" gid="312" x="224" y="16" width="16" height="16">
+  <object id="8" name="shrine_cave_north" gid="352" x="224" y="16" width="16" height="16">
    <properties>
     <property name="entrance" value="shrine_cave_north"/>
     <property name="map" value="overworld"/>
     <property name="player_position" value="down"/>
    </properties>
   </object>
-  <object id="14" gid="333" x="336" y="320" width="16" height="16"/>
-  <object id="15" gid="333" x="224" y="224" width="16" height="16"/>
-  <object id="17" gid="333" x="80" y="160" width="16" height="16"/>
-  <object id="18" gid="333" x="176" y="48" width="16" height="16"/>
+  <object id="14" gid="373" x="336" y="320" width="16" height="16"/>
+  <object id="15" gid="373" x="224" y="224" width="16" height="16"/>
+  <object id="17" gid="373" x="80" y="160" width="16" height="16"/>
+  <object id="18" gid="373" x="176" y="48" width="16" height="16"/>
+  <object id="20" gid="374" x="400" y="448" width="16" height="16"/>
  </objectgroup>
  <objectgroup id="10" name="zones" visible="0">
   <object id="10" type="area" x="16" y="0" width="464" height="480"/>

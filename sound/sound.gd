@@ -2,6 +2,7 @@ extends Node
 
 onready var music = AudioStreamPlayer.new()
 var current_song = ""
+var gameover = false
 
 const DEFAULT_SFX_VOLUME = -15
 const DEFAULT_MUSIC_VOLUME = -20
@@ -16,14 +17,15 @@ func _process(delta):
 	music.volume_db = lerp(music.volume_db, music_volume, 0.1)
 
 func set_music(song, musicfx = ""):
-	music_volume = DEFAULT_MUSIC_VOLUME
-	if song != current_song:
-		var path = str("res://sound/music/", song, ".ogg")
-		current_song = song
-		music.stream = load(path)
-		music.play()
-	if musicfx == "quiet":
-		music_volume = QUIET_MUSIC_VOLUME
+	if gameover == false:
+		music_volume = DEFAULT_MUSIC_VOLUME
+		if song != current_song:
+			var path = str("res://sound/music/", song, ".ogg")
+			current_song = song
+			music.stream = load(path)
+			music.play()
+		if musicfx == "quiet":
+			music_volume = QUIET_MUSIC_VOLUME
 
 func play(sound, volume=0):
 	var path = str("res://sound/sfx/", sound, ".ogg")

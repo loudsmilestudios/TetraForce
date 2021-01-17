@@ -9,6 +9,7 @@ export(String) var sound = "tetran"
 const TOTAL_FLASH_COUNT = 15; # Total amount of flashes 
 const FLASH_TIME_VISIBLE = .1; # Time when collectables are invisible while flashing
 const FLASH_TIME_NOT_VISIBLE = .1; # Time when collectables are visible while flashing
+
 var flash_count = 0; # Current counter of flashes
 
 func _ready():
@@ -19,7 +20,8 @@ func _ready():
 	
 	timer.connect("timeout", self, "_flash")
 	timer.name = "Timer"
-	if time_till_flashing > 0: timer.start()
+	if time_till_flashing > 0 != is_in_group("key_spawn"): 
+		timer.start()
 	
 	var network_object = preload("res://engine/network_object.tscn").instance()
 	network_object.enter_properties = {"position":Vector2(0,0)}

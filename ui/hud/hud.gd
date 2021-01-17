@@ -23,8 +23,12 @@ func initialize(p):
 	update_weapons()
 	update_tetrans()
 	update_keys()
+
 	update_buttons()
 	Input.connect("joy_connection_changed", self, "_on_joy_connection_changed")
+
+	$hud2d/Z.modulate = Color(1,1,1,0.3)
+
 
 func update_hearts():
 	for heart in hearts.get_children():
@@ -129,17 +133,19 @@ func hide_buttons():
 	buttons.modulate = lerp(buttons.modulate, Color(1,1,1,0.33), 0.2)
 	
 func show_action():
-	var Z = $hud2d/Z
-	Z.show()
+	$hud2d/Z.modulate = lerp($hud2d/Z.modulate, Color(1,1,1,1), 0.1)
 	
 func hide_action():
-	var Z = $hud2d/Z
-	Z.hide()
+	$hud2d/Z.modulate = lerp($hud2d/Z.modulate, Color(1,1,1,0.3), 0.2)
 
 func show_inventory():
 	var inventory = preload("res://ui/inventory/inventory.tscn").instance()
 	add_child(inventory)
 	#inventory.start()
+	
+func show_gameover():
+	var gameover = preload("res://ui/layovers/gameover.tscn").instance()
+	add_child(gameover)
 
 func debug_update():
 	$debug/states.text = JSON.print(network.states, "    ")

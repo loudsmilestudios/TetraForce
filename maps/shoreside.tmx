@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.1" orientation="orthogonal" renderorder="right-down" width="96" height="54" tilewidth="16" tileheight="16" infinite="1" nextlayerid="21" nextobjectid="390">
+<map version="1.4" tiledversion="1.4.3" orientation="orthogonal" renderorder="right-down" width="96" height="54" tilewidth="16" tileheight="16" infinite="1" nextlayerid="21" nextobjectid="391">
  <properties>
   <property name="music" value="shore"/>
  </properties>
@@ -2918,6 +2918,13 @@
     <property name="entrance" value="ship_entrance"/>
     <property name="map" value="dungeon1"/>
     <property name="player_position" value="down"/>
+   </properties>
+  </object>
+  <object id="390" name="bow_cave" gid="767" x="864" y="560" width="16" height="16">
+   <properties>
+    <property name="entrance" value="bow_cave"/>
+    <property name="map" value="overworld_caves/bow_cave"/>
+    <property name="player_position" value="left"/>
    </properties>
   </object>
  </objectgroup>

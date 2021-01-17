@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.1" orientation="orthogonal" renderorder="right-down" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="11" nextobjectid="42">
+<map version="1.4" tiledversion="1.4.3" orientation="orthogonal" renderorder="right-down" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="11" nextobjectid="60">
  <properties>
   <property name="music" value="shrine"/>
  </properties>
  <tileset firstgid="1" source="../tiled/dungeon/dungeon_tileset.tsx"/>
  <tileset firstgid="281" source="../tiled/objects.tsx"/>
- <tileset firstgid="307" source="../tiled/overworld/overworld_tileset.tsx"/>
+ <tileset firstgid="309" source="../tiled/overworld/overworld_tileset.tsx"/>
  <layer id="2" name="floor" width="40" height="40">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -51,6 +51,9 @@
 </data>
  </layer>
  <layer id="3" name="water" width="40" height="40">
+  <properties>
+   <property name="replace" value="res://tiles/dungeon_water.tscn"/>
+  </properties>
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -135,7 +138,7 @@
 0,0,0,0,21,104,104,104,104,24,18,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,16,25,104,104,104,104,104,23,0,0,0,
 0,0,0,0,21,104,104,104,104,104,24,17,17,17,17,276,17,17,18,0,0,16,17,17,276,17,17,17,17,25,104,104,104,104,104,104,23,0,0,0,
 0,0,0,0,21,104,104,104,104,104,104,104,104,104,104,104,104,104,23,0,0,21,104,104,104,104,104,104,104,104,104,104,104,104,104,104,23,0,0,0,
-0,0,0,0,26,27,27,27,27,27,27,27,27,27,27,27,27,27,28,323,323,26,27,27,27,27,27,27,27,27,27,27,27,27,27,27,28,0,0,0
+0,0,0,0,26,27,27,27,27,27,27,27,27,27,27,27,27,27,28,325,325,26,27,27,27,27,27,27,27,27,27,27,27,27,27,27,28,0,0,0
 </data>
  </layer>
  <layer id="4" name="decor" width="40" height="40">
@@ -247,6 +250,15 @@
     <property name="player_position" value="down"/>
    </properties>
   </object>
+  <object id="42" gid="304" x="416" y="256" width="16" height="16"/>
+  <object id="43" gid="304" x="208" y="256" width="16" height="16"/>
+  <object id="44" gid="304" x="256" y="272" width="16" height="16"/>
+  <object id="45" gid="304" x="368" y="272" width="16" height="16"/>
+  <object id="46" gid="304" x="336" y="560" width="16" height="16"/>
+  <object id="47" gid="304" x="288" y="560" width="16" height="16"/>
+  <object id="48" gid="304" x="448" y="592" width="16" height="16"/>
+  <object id="49" gid="304" x="176" y="592" width="16" height="16"/>
+  <object id="59" gid="303" x="336" y="336" width="16" height="16"/>
  </objectgroup>
  <objectgroup id="7" name="zones" visible="0" locked="1">
   <object id="1" type="area" x="128" y="208" width="384" height="416"/>

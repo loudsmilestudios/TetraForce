@@ -49,8 +49,6 @@ position = Vector2( 236, 10 )
 texture = ExtResource( 4 )
 
 [node name="Z" type="Sprite" parent="hud2d"]
-visible = false
-modulate = Color( 1, 1, 1, 0.882353 )
 position = Vector2( 182.5, 10 )
 texture = ExtResource( 9 )
 __meta__ = {

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/key_door_right.png-aa98859519363e2f40f84657638a6aaa.stex"
+path="res://.import/bombable_rock_explostion2.png-93024c5a4bf9795adf5c5904ca49f1f2.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://tiles/key_door_right.png"
-dest_files=[ "res://.import/key_door_right.png-aa98859519363e2f40f84657638a6aaa.stex" ]
+source_file="res://effects/bombable_rock_explostion2.png"
+dest_files=[ "res://.import/bombable_rock_explostion2.png-93024c5a4bf9795adf5c5904ca49f1f2.stex" ]
 
 [params]
 

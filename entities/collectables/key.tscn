@@ -7,7 +7,9 @@
 radius = 3.5
 height = 4.5
 
-[node name="key" type="Area2D"]
+[node name="key" type="Area2D" groups=[
+"key_spawn",
+]]
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]

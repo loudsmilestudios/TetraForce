@@ -1,0 +1,22 @@
+[remap]
+
+importer="vnen.tiled_importer"
+type="PackedScene"
+path="res://.import/blacksmith_cellar.tmx-91fae3fafe0428acbfeb3a7e3f714817.scn"
+
+[deps]
+
+source_file="res://maps/overworld_caves/blacksmith_cellar.tmx"
+dest_files=[ "res://.import/blacksmith_cellar.tmx-91fae3fafe0428acbfeb3a7e3f714817.scn" ]
+
+[params]
+
+custom_properties=true
+tile_metadata=true
+uv_clip=true
+image_flags=7
+collision_layer=1
+embed_internal_images=false
+save_tiled_properties=true
+add_background=true
+post_import_script="res://tiled/import.gd"
