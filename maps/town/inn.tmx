@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.1" orientation="orthogonal" renderorder="right-down" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="10" nextobjectid="8">
+<map version="1.4" tiledversion="1.4.3" orientation="orthogonal" renderorder="right-down" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="10" nextobjectid="8">
  <properties>
   <property name="music" value="town"/>
   <property name="musicfx" value="quiet"/>
@@ -226,7 +226,7 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <objectgroup id="9" name="objects" visible="0">
+ <objectgroup id="9" name="objects">
   <object id="2" name="inn_upstairs" gid="182" x="464" y="304" width="16" height="16">
    <properties>
     <property name="entrance" value="inn_upstairs"/>
@@ -252,7 +252,7 @@
    <properties>
     <property name="dialogue" value="npc_boy_inn"/>
     <property name="direction" value="Left"/>
-    <property name="texture" value="Boy"/>
+    <property name="texture" value="boy"/>
    </properties>
   </object>
   <object id="6" gid="192" x="352" y="320" width="16" height="16">

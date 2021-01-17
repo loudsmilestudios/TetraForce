@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.3" orientation="orthogonal" renderorder="right-down" width="30" height="30" tilewidth="16" tileheight="16" infinite="1" nextlayerid="13" nextobjectid="104">
+<map version="1.4" tiledversion="1.4.3" orientation="orthogonal" renderorder="right-down" width="30" height="30" tilewidth="16" tileheight="16" infinite="1" nextlayerid="13" nextobjectid="112">
  <properties>
   <property name="music" value="dungeon"/>
  </properties>
@@ -252,7 +252,7 @@
 0,61,62,62,62,62,67,67,67,67,67,62,62,62,63,0,
 0,66,67,67,119,67,67,67,67,67,67,67,67,67,68,0,
 0,66,67,74,67,67,67,67,67,67,67,67,67,74,68,0,
-0,66,67,67,67,67,67,67,67,67,67,74,67,67,68,0,
+0,66,67,67,67,67,67,67,67,67,67,74,76,67,68,0,
 0,66,67,67,67,67,67,67,67,67,67,67,67,67,67,115,
 0,66,74,67,67,67,67,67,67,67,67,67,67,67,68,0,
 0,66,67,77,67,78,67,67,67,67,75,67,67,67,68,0,
@@ -1426,11 +1426,11 @@
 0,0,0,0,0,0,0,0,0,0,0,0,218,234,153,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,30,0,0,0,24,0,0,0,34,0,0,0,24,0,
-0,0,0,0,0,0,157,0,0,0,0,0,141,141,0,0,
-0,0,0,0,95,0,142,0,0,0,0,0,0,0,0,0,
-0,95,0,0,0,141,0,0,0,0,153,0,0,0,0,0,
-0,0,0,0,0,141,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,166,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,141,141,0,0,
+0,0,0,0,95,0,0,0,0,0,0,0,0,0,0,0,
+0,95,0,0,0,0,0,0,0,0,153,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </chunk>
@@ -1478,7 +1478,7 @@
 153,0,0,0,141,141,0,0,0,240,153,0,166,231,232,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,221,222,223,30,221,222,223,24,221,222,223,24,0,
-0,224,225,138,0,0,0,0,0,153,0,168,141,214,215,0,
+0,224,225,138,0,0,0,0,0,153,76,168,141,214,215,0,
 0,229,230,0,0,0,0,0,0,0,0,0,163,219,220,0,
 0,224,225,0,0,0,0,0,0,0,0,0,0,214,215,0,
 0,229,230,0,0,0,0,0,0,0,0,0,0,219,220,0,
@@ -2273,8 +2273,8 @@
     <property name="player_position" value="up"/>
    </properties>
   </object>
-  <object id="42" gid="383" x="416" y="1120" width="16" height="16"/>
-  <object id="43" gid="383" x="368" y="1136" width="16" height="16"/>
+  <object id="42" gid="383" x="416" y="1104" width="16" height="16"/>
+  <object id="43" gid="383" x="400" y="1104" width="16" height="16"/>
   <object id="44" gid="383" x="464" y="832" width="16" height="16"/>
   <object id="45" gid="383" x="400" y="832" width="16" height="16"/>
   <object id="46" gid="383" x="928" y="480" width="16" height="16"/>
@@ -2294,7 +2294,8 @@
   <object id="59" gid="383" x="848" y="720" width="16" height="16"/>
   <object id="60" gid="385" x="304" y="944" width="16" height="22">
    <properties>
-    <property name="key" type="bool" value="true"/>
+    <property name="chest_spawn" type="bool" value="true"/>
+    <property name="location" value="spawn_1"/>
    </properties>
   </object>
   <object id="61" gid="385" x="288" y="1040" width="16" height="22"/>
@@ -2308,7 +2309,12 @@
     <property name="key" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="68" gid="385" x="1104" y="928" width="16" height="22"/>
+  <object id="68" gid="385" x="1104" y="928" width="16" height="22">
+   <properties>
+    <property name="chest_spawn" type="bool" value="true"/>
+    <property name="location" value="spawn_2"/>
+   </properties>
+  </object>
   <object id="69" gid="385" x="1104" y="960" width="16" height="22"/>
   <object id="70" gid="385" x="1056" y="832" width="16" height="22"/>
   <object id="71" gid="385" x="1024" y="784" width="16" height="22"/>
@@ -2370,20 +2376,9 @@
     <property name="direction" value="right"/>
    </properties>
   </object>
-  <object id="98" gid="387" x="320" y="912" width="16" height="16">
-   <properties>
-    <property name="direction" value="up"/>
-   </properties>
-  </object>
   <object id="99" gid="387" x="272" y="800" width="16" height="16">
    <properties>
     <property name="direction" value="right"/>
-   </properties>
-  </object>
-  <object id="101" gid="371" x="1184" y="896" width="16" height="16">
-   <properties>
-    <property name="def" value="dungeon"/>
-    <property name="item" value="Key"/>
    </properties>
   </object>
   <object id="102" gid="387" x="512" y="512" width="16" height="16">
@@ -2392,6 +2387,20 @@
    </properties>
   </object>
   <object id="103" gid="363" x="304" y="800" width="16" height="16"/>
+  <object id="110" name="spawn_1" gid="389" x="448" y="944" width="16" height="16">
+   <properties>
+    <property name="def" value="dungeon"/>
+    <property name="item" value="Key"/>
+    <property name="location" value="spawn_1"/>
+   </properties>
+  </object>
+  <object id="111" name="spawn_2" gid="389" x="1184" y="896" width="16" height="16">
+   <properties>
+    <property name="def" value="dungeon"/>
+    <property name="item" value="Key"/>
+    <property name="location" value="spawn_2"/>
+   </properties>
+  </object>
  </objectgroup>
  <objectgroup id="11" name="zones" visible="0" locked="1">
   <object id="24" type="area" x="512" y="896" width="256" height="256"/>

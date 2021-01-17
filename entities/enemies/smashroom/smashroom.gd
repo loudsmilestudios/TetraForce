@@ -11,7 +11,6 @@ func _ready():
 func _physics_process(delta):
 	if !network.is_map_host() || is_dead():
 		return
-	print(zone)
 	
 	loop_movement()
 	loop_damage()

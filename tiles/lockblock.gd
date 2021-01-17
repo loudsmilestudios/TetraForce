@@ -9,19 +9,18 @@ func _ready():
 
 func interact(node):
 	if network.is_map_host():
-		if network.current_map.get_node("dungeon_handler").keys > 0:
-			network.current_map.get_node("dungeon_handler").remove_key()
-			network.peer_call(self, "unlock")
-			unlock()
+		unlock()
+		network.peer_call(self, "unlock")
 	else:
 		network.peer_call_id(network.get_map_host(), self, "unlock")
 
 func unlock():
-	$CollisionShape2D.queue_free()
-	locked = false
-	hide()
-	
-	emit_signal("update_persistent_state")
+	if network.current_map.get_node("dungeon_handler").keys > 0:
+		network.current_map.get_node("dungeon_handler").remove_key()
+		emit_signal("update_persistent_state")
+		$CollisionShape2D.queue_free()
+		locked = false
+		hide()
 
 func set_locked(l):
 	if !l:

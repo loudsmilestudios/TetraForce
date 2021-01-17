@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tileset version="1.4" tiledversion="1.4.3" name="objects" tilewidth="16" tileheight="22" tilecount="28" columns="0">
+<tileset version="1.4" tiledversion="1.4.3" name="objects" tilewidth="16" tileheight="22" tilecount="29" columns="0">
  <grid orientation="orthogonal" width="1" height="1"/>
  <tile id="0">
   <properties>
-   <property name="key" type="bool" value="false"/>
+   <property name="chest_spawn" type="bool" value="false"/>
+   <property name="location" value=""/>
    <property name="path" value="res://entities/enemies/stalfos/stalfos.tscn"/>
   </properties>
   <image width="16" height="16" source="images/objects/stalfos.png"/>
@@ -40,23 +41,26 @@
  </tile>
  <tile id="5">
   <properties>
+   <property name="chest_spawn" type="bool" value="false"/>
    <property name="color" value="green"/>
-   <property name="key" type="bool" value="false"/>
+   <property name="location" value=""/>
    <property name="path" value="res://entities/enemies/slime/slime.tscn"/>
   </properties>
   <image width="16" height="16" source="images/objects/greenslime.png"/>
  </tile>
  <tile id="6">
   <properties>
+   <property name="chest_spawn" type="bool" value="false"/>
    <property name="color" value="red"/>
-   <property name="key" type="bool" value="false"/>
+   <property name="location" value=""/>
    <property name="path" value="res://entities/enemies/slime/slime.tscn"/>
   </properties>
   <image width="16" height="16" source="images/objects/redslime.png"/>
  </tile>
  <tile id="7">
   <properties>
-   <property name="key" type="bool" value="false"/>
+   <property name="chest_spawn" type="bool" value="false"/>
+   <property name="location" value=""/>
   </properties>
   <image width="16" height="16" source="images/objects/blueslime.png"/>
  </tile>
@@ -155,7 +159,8 @@
  </tile>
  <tile id="22">
   <properties>
-   <property name="key" type="bool" value="false"/>
+   <property name="chest_spawn" type="bool" value="false"/>
+   <property name="location" value=""/>
    <property name="path" value="res://entities/enemies/smashroom/smashroom.tscn"/>
   </properties>
   <image width="16" height="16" source="images/objects/smashroom.png"/>
@@ -168,7 +173,8 @@
  </tile>
  <tile id="24">
   <properties>
-   <property name="key" type="bool" value="false"/>
+   <property name="chest_spawn" type="bool" value="false"/>
+   <property name="location" value=""/>
    <property name="path" value="res://entities/enemies/pirafaux/pirafaux.tscn"/>
   </properties>
   <image width="16" height="22" source="images/objects/pirafaux.png"/>
@@ -201,5 +207,14 @@
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0" width="16" height="16"/>
   </objectgroup>
+ </tile>
+ <tile id="28">
+  <properties>
+   <property name="def" value=""/>
+   <property name="item" value=""/>
+   <property name="location" value=""/>
+   <property name="path" value="res://tiles/spawn.tscn"/>
+  </properties>
+  <image width="16" height="16" source="images/objects/spawn.png"/>
  </tile>
 </tileset>
