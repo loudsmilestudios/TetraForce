@@ -8,8 +8,10 @@ var server_api = preload("res://engine/server_api.gd").new()
 onready var address_line = $multiplayer/Manual/address
 onready var lobby_line = $multiplayer/Automatic/lobby
 onready var endpoint_button = $options/scroll/vbox/endpoint
+onready var singleplayer_focus = $top/VBoxContainer/singleplayer
 
 func _ready():
+	$AnimatedSprite.playing = true
 	global.load_options()
 	hide_menus()
 	$top.show()
@@ -57,6 +59,10 @@ func _ready():
 		set_dedicated_server(empty_timeout)
 	
 	#print(yield(server_api.get_servers(), "completed"))
+	
+	yield(get_tree().create_timer(0.5), "timeout")
+	sfx.set_music("shrine", "quiet")
+	singleplayer_focus.grab_focus()
 
 func get_empty_server_timeout(arguments):
 	var empty_timeout
@@ -184,24 +190,27 @@ func _on_multiplayer_pressed():
 	hide_menus()
 	$multiplayer.show()
 	$back.show()
+	$back.grab_focus()
 
 func _on_options_pressed():
 	hide_menus()
 	$options.show()
 	$back.show()
+	$back.grab_focus()
 
 func _on_keybinds_pressed():
 	hide_menus()
 	$keybinds.show()
 	$back.show()
+	$back.grab_focus()
 
 func _on_back_pressed():
 	hide_menus()
 	$top.show()
+	singleplayer_focus.grab_focus()
 
 func _on_save_pressed():
 	global.save_options()
-
 
 func _on_endpoint_item_selected(index):
 	match index:
@@ -209,3 +218,8 @@ func _on_endpoint_item_selected(index):
 			server_api.api_endpoint = "api.online.tetraforce.io"
 		1:
 			server_api.api_endpoint = "stage.api.online.tetraforce.io"
+
+func _on_mouse_entered():
+	sfx.play("item_select")
+
+

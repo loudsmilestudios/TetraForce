@@ -36,7 +36,5 @@ func _on_resume_pressed():
 	player.show()
 	player.state = "default"
 	
-
 func _on_exit_pressed():
 	sfx.play("denied")
-	get_tree().change_scene("res://engine/main.tscn")
