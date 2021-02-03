@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://ui/theme/theme.tres" type="Theme" id=1]
 [ext_resource path="res://entities/player/chain.png" type="Texture" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://ui/main/characterselect.gd" type="Script" id=4]
 [ext_resource path="res://engine/keybinds.gd" type="Script" id=5]
 [ext_resource path="res://ui/logo_animated_sprite.tres" type="SpriteFrames" id=6]
+[ext_resource path="res://ui/loading_screen/loading_screen.tscn" type="PackedScene" id=7]
 
 [sub_resource type="Animation" id=1]
 loop = true
@@ -557,6 +558,11 @@ text = "Back"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="loading_screen_layer" type="CanvasLayer" parent="."]
+
+[node name="loading_screen" parent="loading_screen_layer" instance=ExtResource( 7 )]
+visible = false
 [connection signal="mouse_entered" from="top/VBoxContainer/singleplayer" to="." method="_on_mouse_entered"]
 [connection signal="pressed" from="top/VBoxContainer/singleplayer" to="." method="_on_singleplayer_pressed"]
 [connection signal="mouse_entered" from="top/VBoxContainer/multiplayer" to="." method="_on_mouse_entered"]
