@@ -130,14 +130,24 @@ func join_server(ip, port):
 
 func join_aws(lobby_name):
 
+	# Attempt to join existing server
 	if not yield(attempt_to_join_aws_sever(lobby_name), "completed"):
+		
+		# Request new server
 		loading_screen.with_load("creating %s" % lobby_name)
 		var new_lobby = yield(server_api.create_server(lobby_name), "completed")
+		print("API Response: %s" % new_lobby)
+		
+		# Handle response based on result
 		if new_lobby.success:
-			for i in range(10):
+			
+			# Attempt to get server info 5 times
+			for i in range(5):
 				yield(get_tree().create_timer(5.0), "timeout")
-				if yield(attempt_to_join_aws_sever(lobby_name), "completed"):
+				if yield(attempt_to_join_aws_sever(lobby_name, true), "completed"):
 					return
+
+			# Timeout if no sever info found
 			print("Server creation timeout!")
 			loading_screen.stop_loading()
 		else:
@@ -146,11 +156,15 @@ func join_aws(lobby_name):
 func attempt_to_join_aws_sever(lobby_name, hide_loading_message = false) -> bool:
 	if not hide_loading_message:
 		loading_screen.with_load(lobby_name)
+
+	# Look up lobby
 	var lobby = yield(server_api.get_server(lobby_name), "completed")
+	print("API Response: %s" % lobby)
+	
+	# Return and act on result
 	if lobby.success == true:
 		join_server(lobby.data.ip, lobby.data.port)
 		return true
-	print(lobby)
 	return false
 
 func end_aws_task(task_name):
