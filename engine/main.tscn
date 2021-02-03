@@ -1,62 +1,13 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://ui/theme/theme.tres" type="Theme" id=1]
 [ext_resource path="res://entities/player/chain.png" type="Texture" id=2]
 [ext_resource path="res://engine/main.gd" type="Script" id=3]
 [ext_resource path="res://ui/main/characterselect.gd" type="Script" id=4]
 [ext_resource path="res://engine/keybinds.gd" type="Script" id=5]
-[ext_resource path="res://ui/main/Full_Logo_Sprite.png" type="Texture" id=6]
-
-[sub_resource type="AtlasTexture" id=2]
-atlas = ExtResource( 6 )
-region = Rect2( 0, 0, 198, 114 )
-
-[sub_resource type="AtlasTexture" id=3]
-atlas = ExtResource( 6 )
-region = Rect2( 198, 0, 198, 114 )
-
-[sub_resource type="AtlasTexture" id=4]
-atlas = ExtResource( 6 )
-region = Rect2( 396, 0, 198, 114 )
-
-[sub_resource type="AtlasTexture" id=5]
-atlas = ExtResource( 6 )
-region = Rect2( 594, 0, 198, 114 )
-
-[sub_resource type="AtlasTexture" id=6]
-atlas = ExtResource( 6 )
-region = Rect2( 792, 0, 198, 114 )
-
-[sub_resource type="AtlasTexture" id=7]
-atlas = ExtResource( 6 )
-region = Rect2( 990, 0, 198, 114 )
-
-[sub_resource type="AtlasTexture" id=8]
-atlas = ExtResource( 6 )
-region = Rect2( 1188, 0, 198, 114 )
-
-[sub_resource type="AtlasTexture" id=9]
-atlas = ExtResource( 6 )
-region = Rect2( 1386, 0, 198, 114 )
-
-[sub_resource type="AtlasTexture" id=10]
-atlas = ExtResource( 6 )
-region = Rect2( 1584, 0, 198, 114 )
-
-[sub_resource type="AtlasTexture" id=11]
-atlas = ExtResource( 6 )
-region = Rect2( 1782, 0, 198, 114 )
-
-[sub_resource type="SpriteFrames" id=12]
-animations = [ {
-"frames": [ SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ) ],
-"loop": true,
-"name": "Logo",
-"speed": 10.0
-} ]
+[ext_resource path="res://ui/logo_animated_sprite.tres" type="SpriteFrames" id=6]
 
 [sub_resource type="Animation" id=1]
-resource_name = "default"
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("preview:frame")
@@ -97,7 +48,7 @@ __meta__ = {
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 position = Vector2( 258.121, 55.1716 )
-frames = SubResource( 12 )
+frames = ExtResource( 6 )
 animation = "Logo"
 
 [node name="top" type="Panel" parent="." groups=[
