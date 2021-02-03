@@ -1,0 +1,102 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://ui/logo_animated_sprite.tres" type="SpriteFrames" id=1]
+[ext_resource path="res://ui/loading_screen/backgrounds/background_0.png" type="Texture" id=2]
+[ext_resource path="res://ui/loading_screen/loading_screen_frame.png" type="Texture" id=3]
+[ext_resource path="res://ui/theme/theme.tres" type="Theme" id=4]
+[ext_resource path="res://ui/loading_screen/loading_screen.gd" type="Script" id=5]
+[ext_resource path="res://ui/loading_screen/backgrounds/background_1.png" type="Texture" id=6]
+
+[sub_resource type="Animation" id=1]
+resource_name = "loading"
+length = 1.25
+loop = true
+step = 0.25
+tracks/0/type = "value"
+tracks/0/path = NodePath("HBoxContainer/dots:text")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.25, 0.5, 0.75 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ "...", ".. ", ".  ", "   " ]
+}
+
+[node name="loading_screen" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+Backgrounds = [ ExtResource( 2 ), ExtResource( 6 ) ]
+
+[node name="animation_player" type="AnimationPlayer" parent="."]
+anims/loading = SubResource( 1 )
+
+[node name="background" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="frame" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="logo" type="AnimatedSprite" parent="."]
+position = Vector2( 0, 90 )
+scale = Vector2( 0.298246, 0.298246 )
+frames = ExtResource( 1 )
+animation = "Logo"
+centered = false
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -14.0
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="loading_label" type="Label" parent="HBoxContainer"]
+margin_left = 70.0
+margin_right = 118.0
+margin_bottom = 13.0
+theme = ExtResource( 4 )
+text = "Loading:"
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="message" type="Label" parent="HBoxContainer"]
+margin_left = 122.0
+margin_right = 164.0
+margin_bottom = 13.0
+theme = ExtResource( 4 )
+text = "MESSAGE"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="dots" type="Label" parent="HBoxContainer"]
+margin_left = 168.0
+margin_right = 186.0
+margin_bottom = 13.0
+theme = ExtResource( 4 )
+text = "   "
+__meta__ = {
+"_edit_use_anchors_": false
+}

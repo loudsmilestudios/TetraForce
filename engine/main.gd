@@ -9,6 +9,7 @@ onready var address_line = $multiplayer/Manual/address
 onready var lobby_line = $multiplayer/Automatic/lobby
 onready var endpoint_button = $options/scroll/vbox/endpoint
 onready var singleplayer_focus = $top/VBoxContainer/singleplayer
+onready var loading_screen = $loading_screen_layer/loading_screen
 
 func _ready():
 	$AnimatedSprite.playing = true
@@ -90,6 +91,7 @@ func get_empty_server_timeout(arguments):
 	return empty_timeout
 
 func start_game(dedicated = false, empty_timeout = 0):
+	loading_screen.stop_loading()
 	if dedicated:
 		network.dedicated = true
 		network.empty_timeout = empty_timeout
@@ -114,8 +116,11 @@ func host_server(dedicated = false, empty_timeout = 0, port = default_port, max_
 	start_game(dedicated, empty_timeout)
 
 func join_server(ip, port):
+	loading_screen.with_load("connecting to host")
+	
 	if !ip.is_valid_ip_address():
 		print("Invalid IP")
+		loading_screen.stop_loading()
 		return
 	
 	var ws = WebSocketClient.new()
@@ -124,23 +129,54 @@ func join_server(ip, port):
 	get_tree().set_network_peer(ws)
 
 func join_aws(lobby_name):
-	if screenfx.assigned_animation != "fadewhite":
-		screenfx.play("fadewhite")
-		yield(screenfx, "animation_finished")
+
+	# Attempt to join existing server
+	if not yield(attempt_to_join_aws_sever(lobby_name), "completed"):
+		
+		# Request new server
+		loading_screen.with_load("creating %s" % lobby_name)
+		var new_lobby = yield(server_api.create_server(lobby_name), "completed")
+		print("API Response: %s" % new_lobby)
+		
+		# Handle response based on result
+		if new_lobby.success:
+			
+			# Attempt to get server info 5 times
+			for i in range(5):
+				yield(get_tree().create_timer(5.0), "timeout")
+				if yield(attempt_to_join_aws_sever(lobby_name, true), "completed"):
+					return
+
+			# Timeout if no sever info found
+			print("Server creation timeout!")
+			loading_screen.stop_loading()
+		else:
+			loading_screen.stop_loading()
+
+func attempt_to_join_aws_sever(lobby_name, hide_loading_message = false) -> bool:
+	if not hide_loading_message:
+		loading_screen.with_load(lobby_name)
+
+	# Look up lobby
 	var lobby = yield(server_api.get_server(lobby_name), "completed")
+	print("API Response: %s" % lobby)
+	
+	# Return and act on result
 	if lobby.success == true:
 		join_server(lobby.data.ip, lobby.data.port)
-	else:
-		var new_lobby = yield(server_api.create_server(lobby_name), "completed")
-		join_aws(lobby_name)
+		return true
+	return false
 
 func end_aws_task(task_name):
 	print(yield(server_api.stop_server(task_name), "completed"))
 
 func _client_connect_ok():
+	loading_screen.stop_loading()
 	start_game()
 
 func _client_connect_fail():
+	print("Failed to connect!")
+	loading_screen.stop_loading()
 	get_tree().set_network_peer(null)
 
 func _client_disconnect():
