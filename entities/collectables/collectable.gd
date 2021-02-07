@@ -30,7 +30,7 @@ func _ready():
 	add_child(network_object)
 	
 	$CollisionShape2D.disabled = true
-	yield(get_tree().create_timer(0.5), "timeout")
+	yield(get_tree().create_timer(0.75), "timeout")
 	$CollisionShape2D.disabled = false
 
 func _flash():

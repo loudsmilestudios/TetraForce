@@ -1,6 +1,7 @@
 extends CanvasLayer
 
 var player
+var timer = Timer.new()
 
 const HEART_ROW_SIZE = 8
 const HEART_SIZE = 8
@@ -8,6 +9,12 @@ const HEART_SIZE = 8
 onready var hud2d = $hud2d
 onready var hearts = $hud2d/hearts
 onready var buttons = $hud2d/buttons
+onready var pearl = preload("res://entities/collectables/spiritpearl.tscn").instance()
+
+func _ready():
+	timer.connect("timeout",self,"on_slate_add") 
+	timer.set_wait_time(0.25)
+	add_child(timer)
 
 func initialize(p):
 	global.connect("debug_update", self, "debug_update")
@@ -86,6 +93,17 @@ func show_inventory():
 	var inventory = preload("res://ui/inventory/inventory.tscn").instance()
 	add_child(inventory)
 	#inventory.start()
+	
+func collect_pearl():
+	pearl.add_pearl()
+	
+func on_slate_add():
+	if global.player.health < global.max_health:
+		global.player.health += 1
+		sfx.play("blip")
+		update_hearts()
+	else:
+		timer.stop()
 	
 func show_gameover():
 	var gameover = preload("res://ui/layovers/gameover.tscn").instance()

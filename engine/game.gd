@@ -116,7 +116,7 @@ func spawn_collectable(collectable, pos, chance):
 	if randi() % chance == 0:
 		var path = str("res://entities/collectables/", pick_collectable(), ".tscn")
 		var new_collectable = load(path).instance()
-		add_child(new_collectable)
+		call_deferred("add_child", new_collectable)
 		new_collectable.position = pos
 
 

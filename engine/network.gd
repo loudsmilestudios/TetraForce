@@ -60,7 +60,6 @@ remote func _receive_my_player_data(data):
 	player_data[player_id] = data
 	rpc("_receive_player_data", player_data)
 	print(str(get_player_tag(player_id), " joined the game."))
-	rpc_id(player_id, "receive_weapons", states.weapons)
 
 remote func _receive_player_data(data):
 	player_data = data

@@ -88,6 +88,8 @@ func delete():
 	queue_free()
 
 func body_entered(body):
+	if body.has_method("cut") && get_parent().state != "hold":
+		cut()
 	if body is Entity && body != get_parent():
 		damage(body)
 
@@ -99,7 +101,7 @@ func cut():
 	if is_network_master():
 		for body in $Hitbox.get_overlapping_bodies():
 			if body.has_method("cut"):
-				body.cut($Hitbox)
+				body.cut($CutNode)
 				return true
 		return false
 	return false

@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://ui/theme/theme.tres" type="Theme" id=1]
 [ext_resource path="res://ui/theme/panel2.png" type="Texture" id=2]
 [ext_resource path="res://ui/inventory/inventory.gd" type="Script" id=3]
 [ext_resource path="res://ui/inventory/inventorydecor.png" type="Texture" id=4]
+[ext_resource path="res://ui/inventory/spiritslate.png" type="Texture" id=5]
 
 [sub_resource type="Animation" id=1]
 resource_name = "slidedown"
@@ -77,6 +78,24 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="spiritpearl" type="Node2D" parent="."]
+
+[node name="pearl_icon" type="Sprite" parent="spiritpearl"]
+position = Vector2( -22.8042, 53.033 )
+texture = ExtResource( 5 )
+hframes = 5
+
+[node name="pearl_qty" type="Label" parent="spiritpearl"]
+margin_left = -28.0242
+margin_top = 24.7071
+margin_right = -19.0242
+margin_bottom = 37.7071
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+text = "0"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="scroll" type="ScrollContainer" parent="."]
 margin_left = 5.0
 margin_top = 12.0
@@ -102,7 +121,7 @@ anims/slidedown = SubResource( 1 )
 anims/slideup = SubResource( 2 )
 
 [node name="display" type="Sprite" parent="."]
-position = Vector2( -19, 86 )
+position = Vector2( -23.5962, 86 )
 texture = ExtResource( 2 )
 __meta__ = {
 "_edit_lock_": true

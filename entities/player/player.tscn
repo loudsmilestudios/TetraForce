@@ -315,7 +315,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.66 ),
+"times": PoolRealArray( 0, 0.32 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ 28, 29 ]
@@ -431,7 +431,7 @@ anims/walkUp = SubResource( 20 )
 texture = ExtResource( 4 )
 vframes = 8
 hframes = 6
-frame = 36
+frame = 28
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false

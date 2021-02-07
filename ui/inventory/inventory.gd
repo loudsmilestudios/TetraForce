@@ -8,6 +8,7 @@ var selected = 0
 
 func _ready():
 	get_parent().update_weapons()
+	update_pearls()
 	anim.play("slideup")
 	sfx.play("inventory_open")
 
@@ -74,3 +75,8 @@ func set_weapon(btn):
 	global.equips[btn] = new_selection
 	
 	get_parent().update_weapons()
+	
+func update_pearls():
+	var pearl_icon = $spiritpearl/pearl_icon
+	pearl_icon.frame = pearl_icon.frame + global.spiritpearl
+	$spiritpearl/pearl_qty.text = str("x",global.spiritpearl)

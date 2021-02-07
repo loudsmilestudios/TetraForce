@@ -4,8 +4,10 @@ var player
 var equips = {"B": "Sword", "X": "", "Y": ""}
 var weapons = ["Sword", "Bomb"]
 var items = []
+var pearl =["Spiritpearl"]
 var health = 5
 var max_health = 5
+var spiritpearl = 0
 
 var changing_map = false
 
@@ -79,6 +81,14 @@ var dungeon_def = {
 	"Key": {
 		icon = preload("res://entities/collectables/key.png"),
 		acquire_dialogue = "",
+	}
+}
+
+var pearl_def = {
+	"Spiritpearl": {
+		path = "res://entities/collectables/spiritpearl.tscn",
+		icon = preload("res://entities/collectables/spiritpearl.png"),
+		acquire_dialogue = "acquisition/acquire_spirit_pearl"
 	}
 }
 

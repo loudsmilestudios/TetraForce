@@ -40,6 +40,8 @@ func interact(node):
 			print(ammo)
 		"dungeon":
 			network.current_map.get_node("dungeon_handler").add_key()
+		"pearl":
+			global.player.hud.collect_pearl()
 	
 	yield(get_tree().create_timer(1), "timeout")
 	
