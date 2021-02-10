@@ -161,7 +161,7 @@ jobs:
     - name: Configure
       run: |
         mkdir tetraforce
-        mv "Client - OSX" ./tetraforce/TetraForce.zip
+        mv "Client - OSX.zip" ./tetraforce/TetraForce.zip
     - name: Ship to S3
       uses: jakejarvis/s3-sync-action@master
       with:
