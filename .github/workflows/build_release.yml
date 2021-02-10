@@ -8,6 +8,7 @@ on:
 
 jobs:
   docker:
+    name: Build & Push - Docker
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -55,6 +56,7 @@ jobs:
           TAG_NAME: ${{ steps.get_tag.outputs.TAG }}
           LATEST: "true"
   linux:
+    name: Build & Push - Linux
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -89,6 +91,7 @@ jobs:
           SOURCE_DIR: ${{github.workspace}}/tetraforce
           DEST_DIR: builds/master/latest/linux
   windows:
+    name: Build & Push - Windows
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -161,7 +164,7 @@ jobs:
     - name: Configure
       run: |
         mkdir tetraforce
-        mv "Client - OSX.zip" ./tetraforce/TetraForce.zip
+        mv TetraForce.dmg ./tetraforce/TetraForce.dmg
     - name: Ship to S3
       uses: jakejarvis/s3-sync-action@master
       with:
