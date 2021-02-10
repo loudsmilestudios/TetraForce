@@ -45,20 +45,25 @@ jobs:
           name: Client - ${{ matrix.platform }}
           path: ${{ github.workspace }}/${{ steps.build.outputs.build }}
   osx:
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Build
-        id: build
-        uses: josephbmanley/build-godot-action@v1.4.0
-        with:
-          name: TetraForce.dmg
-          preset: osx
-          projectDir: '.'
-          debugMode: 'true'
+      - name: Setup Godot
+        run: |
+          brew install --cask godot
+          ln -s /Applications/Godot.app/Contents/MacOS/Godot /usr/local/bin/godot
+      - name: Build Project
+        run: |
+          wget https://downloads.tuxfamily.org/godotengine/3.2.3/Godot_v3.2.3-stable_export_templates.tpz -q
+          unzip Godot_v3.2.3-stable_export_templates.tpz -d .
+          mkdir -p "/Users/runner/Library/Application Support/Godot/templates/3.2.3.stable"
+          mv templates/* "/Users/runner/Library/Application Support/Godot/templates/3.2.3.stable"
+
+          mkdir -p $GITHUB_WORKSPACE/build
+          godot --export osx $GITHUB_WORKSPACE/build/TetraForce.dmg
       - name: Upload Artifact
         uses: actions/upload-artifact@v2
         with:
-          name: Client - osx
-          path: ${{ github.workspace }}/${{ steps.build.outputs.build }}
+          name: Client - OSX
+          path: ${{ github.workspace }}/build/TetraForce.dmg

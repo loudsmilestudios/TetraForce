@@ -125,4 +125,51 @@ jobs:
           AWS_REGION: us-east-2
           SOURCE_DIR: ${{github.workspace}}/tetraforce
           DEST_DIR: builds/master/latest/${{ matrix.platform }}
+  osx:
+    name: Build OSX
+    runs-on: macos-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup Godot
+        run: |
+          brew install --cask godot
+          ln -s /Applications/Godot.app/Contents/MacOS/Godot /usr/local/bin/godot
+      - name: Build Project
+        run: |
+          wget https://downloads.tuxfamily.org/godotengine/3.2.3/Godot_v3.2.3-stable_export_templates.tpz -q
+          unzip Godot_v3.2.3-stable_export_templates.tpz -d .
+          mkdir -p "/Users/runner/Library/Application Support/Godot/templates/3.2.3.stable"
+          mv templates/* "/Users/runner/Library/Application Support/Godot/templates/3.2.3.stable"
 
+          mkdir -p $GITHUB_WORKSPACE/build
+          godot --export osx $GITHUB_WORKSPACE/build/TetraForce.dmg
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: "Client - OSX"
+          path: ${{ github.workspace }}/build/TetraForce.dmg
+  publish_osx:
+    name: Publish OSX
+    runs-on: ubuntu-latest
+    needs: osx
+    steps:
+    - name: Download Build
+      uses: actions/download-artifact@v2
+      with:
+        name: "Client - OSX"
+    - name: Configure
+      run: |
+        mkdir tetraforce
+        mv "Client - OSX" ./tetraforce/TetraForce.zip
+    - name: Ship to S3
+      uses: jakejarvis/s3-sync-action@master
+      with:
+        args: --acl public-read --follow-symlinks --delete
+      env:
+        AWS_S3_BUCKET: tetraforce-public-production-us-east-2
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        AWS_REGION: us-east-2
+        SOURCE_DIR: ${{github.workspace}}/tetraforce
+        DEST_DIR: builds/master/latest/osx
