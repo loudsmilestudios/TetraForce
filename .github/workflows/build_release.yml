@@ -176,3 +176,25 @@ jobs:
         AWS_REGION: us-east-2
         SOURCE_DIR: ${{github.workspace}}/tetraforce
         DEST_DIR: builds/master/latest/osx
+  html5:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Build
+        id: build
+        uses: josephbmanley/build-godot-action@v1.4.0
+        with:
+          name: index.html
+          preset: HTML5
+          projectDir: '.'
+      - name: Ship to S3
+        uses: jakejarvis/s3-sync-action@master
+        with:
+          args: --acl public-read --follow-symlinks --delete
+        env:
+          AWS_S3_BUCKET: tetraforce-web-production-us-east-2
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_REGION: us-east-2
+          SOURCE_DIR: ${{ github.workspace }}/${{ steps.build.outputs.build }}
