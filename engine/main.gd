@@ -157,14 +157,31 @@ func attempt_to_join_aws_sever(lobby_name, hide_loading_message = false) -> bool
 	if not hide_loading_message:
 		loading_screen.with_load(lobby_name)
 
-	# Look up lobby
-	var lobby = yield(server_api.get_server(lobby_name), "completed")
-	print("API Response: %s" % lobby)
-	
-	# Return and act on result
-	if lobby.success == true:
-		join_server(lobby.data.ip, lobby.data.port)
-		return true
+	var waitingOnServer = true
+
+	while waitingOnServer:
+		# Look up lobby
+		var lobby = yield(server_api.get_server(lobby_name), "completed")
+		print("API Response: %s" % lobby)
+		
+		# Return and act on result
+		if lobby.success == true:
+			if "status" in lobby.data:
+				if lobby.data.status == "RUNNING":
+					join_server(lobby.data.ip, lobby.data.port)
+					return true
+				elif lobby.data.status in ["PENDING", "PROVISIONING"]:
+					loading_screen.with_load("%s is pending" % lobby_name)
+					yield(get_tree().create_timer(5.0), "timeout")
+				else:
+					print("%s has status: %s", [lobby_name, lobby.data.status])
+					waitingOnServer = false
+			else:
+				print("%s missing status!" % lobby_name)
+				waitingOnServer = false
+		else:
+			waitingOnServer = false
+
 	return false
 
 func end_aws_task(task_name):
