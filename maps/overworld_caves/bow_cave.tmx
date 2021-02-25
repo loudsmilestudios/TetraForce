@@ -2200,8 +2200,16 @@
    </properties>
    <point/>
   </object>
-  <object id="66" gid="377" x="720" y="896" width="16" height="16"/>
-  <object id="67" gid="377" x="560" y="896" width="16" height="16"/>
+  <object id="66" gid="377" x="720" y="896" width="16" height="16">
+   <properties>
+    <property name="texture" value="cave"/>
+   </properties>
+  </object>
+  <object id="67" gid="377" x="560" y="896" width="16" height="16">
+   <properties>
+    <property name="texture" value="cave"/>
+   </properties>
+  </object>
   <object id="68" gid="361" x="176" y="480" width="16" height="16"/>
  </objectgroup>
  <objectgroup id="10" name="zones" visible="0" locked="1">

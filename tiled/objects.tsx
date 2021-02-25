@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tileset version="1.4" tiledversion="1.4.3" name="objects" tilewidth="16" tileheight="22" tilecount="29" columns="0">
+<tileset version="1.4" tiledversion="1.4.3" name="objects" tilewidth="16" tileheight="22" tilecount="30" columns="0">
  <grid orientation="orthogonal" width="1" height="1"/>
  <tile id="0">
   <properties>
@@ -73,6 +73,7 @@
  <tile id="9">
   <properties>
    <property name="path" value="res://tiles/cliff.tscn"/>
+   <property name="spritedir" value="Down"/>
   </properties>
   <image width="16" height="16" source="images/objects/cliff.png"/>
   <objectgroup draworder="index" id="2">
@@ -82,7 +83,9 @@
  <tile id="10">
   <properties>
    <property name="def" value="weapons"/>
+   <property name="hidden" type="bool" value="false"/>
    <property name="item" value="Bow"/>
+   <property name="location" value="room"/>
    <property name="path" value="res://tiles/chest.tscn"/>
   </properties>
   <image width="16" height="16" source="images/objects/chest.png"/>
@@ -192,6 +195,7 @@
   <properties>
    <property name="direction" value="up"/>
    <property name="path" value="res://tiles/key_door.tscn"/>
+   <property name="texture" value="dungeon1"/>
   </properties>
   <image width="16" height="16" source="images/objects/key_door_up.png"/>
   <objectgroup draworder="index" id="2">
@@ -210,11 +214,15 @@
  </tile>
  <tile id="28">
   <properties>
-   <property name="def" value=""/>
-   <property name="item" value=""/>
-   <property name="location" value=""/>
-   <property name="path" value="res://tiles/spawn.tscn"/>
+   <property name="path" value="res://tiles/blue_cannon.tscn"/>
+   <property name="spritedir" value="Down"/>
   </properties>
-  <image width="16" height="16" source="images/objects/spawn.png"/>
+  <image width="16" height="16" source="images/objects/blue_cannon.png"/>
+ </tile>
+ <tile id="29">
+  <properties>
+   <property name="path" value="res://tiles/cannonwall.tscn"/>
+  </properties>
+  <image width="16" height="16" source="images/objects/cannon_wall.png"/>
  </tile>
 </tileset>

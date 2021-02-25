@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/cannon_shot_effect_right.png-2eccc3fe0af392c9539a6550e8398bf4.stex"
+path="res://.import/dungeon1_key_door.png-06ca813e5a92e8d8a9dcd89edfea2b9a.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://effects/cannon_shot_effect_right.png"
-dest_files=[ "res://.import/cannon_shot_effect_right.png-2eccc3fe0af392c9539a6550e8398bf4.stex" ]
+source_file="res://tiles/dungeon1_key_door.png"
+dest_files=[ "res://.import/dungeon1_key_door.png-06ca813e5a92e8d8a9dcd89edfea2b9a.stex" ]
 
 [params]
 

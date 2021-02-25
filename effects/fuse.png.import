@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/cannon_shot_down.png-9ab15d0c6995d26e6dcd5f8d8ea560c1.stex"
+path="res://.import/fuse.png-58da16e22742ef47c18ccbdc6607e6c3.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://tiles/cannon_shot_down.png"
-dest_files=[ "res://.import/cannon_shot_down.png-9ab15d0c6995d26e6dcd5f8d8ea560c1.stex" ]
+source_file="res://effects/fuse.png"
+dest_files=[ "res://.import/fuse.png-58da16e22742ef47c18ccbdc6607e6c3.stex" ]
 
 [params]
 

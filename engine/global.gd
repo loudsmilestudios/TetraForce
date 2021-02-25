@@ -2,7 +2,7 @@ extends Node
 
 var player
 var equips = {"B": "Sword", "X": "", "Y": ""}
-var weapons = ["Sword", "Bomb"]
+var weapons = ["Sword"]
 var items = []
 var pearl =["Spiritpearl"]
 var health = 5
@@ -33,8 +33,12 @@ var weapons_def = {
 		path = "res://entities/weapons/bone.tscn",
 		icon = "",
 		ammo_type = "",
-		acquire_dialogue = ""
-	}
+		acquire_dialogue = ""},
+	"CannonBall": {
+		path = "res://entities/weapons/cannonball.tscn",
+		icon = "",
+		ammo_type = "",
+		acquire_dialogue = ""}
 }
 
 var items_def = {

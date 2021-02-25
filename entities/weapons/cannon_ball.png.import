@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/key_door.png-3223c8579087e2e8b91364052c4b8b9b.stex"
+path="res://.import/cannon_ball.png-a70df3e4b69475bf7062765d1d609db6.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://tiles/key_door.png"
-dest_files=[ "res://.import/key_door.png-3223c8579087e2e8b91364052c4b8b9b.stex" ]
+source_file="res://entities/weapons/cannon_ball.png"
+dest_files=[ "res://.import/cannon_ball.png-a70df3e4b69475bf7062765d1d609db6.stex" ]
 
 [params]
 

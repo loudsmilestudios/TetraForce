@@ -2,17 +2,17 @@
 
 [ext_resource path="res://tiles/decor/thorns_shallow.png" type="Texture" id=1]
 
-[sub_resource type="AtlasTexture" id=1305]
+[sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 1 )
 region = Rect2( 0, 0, 16, 16 )
 
-[sub_resource type="AtlasTexture" id=1306]
+[sub_resource type="AtlasTexture" id=2]
 atlas = ExtResource( 1 )
 region = Rect2( 16, 0, 16, 16 )
 
-[sub_resource type="SpriteFrames" id=1307]
+[sub_resource type="SpriteFrames" id=3]
 animations = [ {
-"frames": [ SubResource( 1305 ), SubResource( 1306 ) ],
+"frames": [ SubResource( 1 ), SubResource( 2 ) ],
 "loop": true,
 "name": "conch_shallow",
 "speed": 5.0
@@ -20,7 +20,7 @@ animations = [ {
 
 [node name="thorns_shallow" type="AnimatedSprite"]
 z_index = 2
-frames = SubResource( 1307 )
+frames = SubResource( 3 )
 animation = "conch_shallow"
 speed_scale = 0.25
 playing = true

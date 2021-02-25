@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.3" orientation="orthogonal" renderorder="right-down" width="96" height="54" tilewidth="16" tileheight="16" infinite="1" nextlayerid="21" nextobjectid="391">
+<map version="1.4" tiledversion="1.4.3" orientation="orthogonal" renderorder="right-down" width="96" height="54" tilewidth="16" tileheight="16" infinite="1" nextlayerid="21" nextobjectid="392">
  <properties>
   <property name="music" value="shore"/>
  </properties>
@@ -2929,10 +2929,10 @@
   </object>
  </objectgroup>
  <objectgroup id="20" name="enemies">
-  <object id="371" name="stalfaux" gid="766" x="849.333" y="321.333" width="16" height="16"/>
-  <object id="372" name="stalfaux" gid="766" x="849.333" y="353.333" width="16" height="16"/>
-  <object id="373" name="stalfaux" gid="766" x="897.333" y="321.333" width="16" height="16"/>
-  <object id="374" name="stalfaux" gid="766" x="849.333" y="401.333" width="16" height="16"/>
+  <properties>
+   <property name="z_index" type="int" value="6"/>
+  </properties>
+  <object id="374" name="stalfaux" gid="766" x="864" y="384" width="16" height="16"/>
   <object id="375" name="stalfaux" gid="766" x="897.333" y="369.333" width="16" height="16"/>
   <object id="376" name="stalfaux" gid="766" x="1153.33" y="641.333" width="16" height="16"/>
   <object id="377" name="stalfaux" gid="766" x="1169.33" y="689.333" width="16" height="16"/>

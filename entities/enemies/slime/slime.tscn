@@ -109,7 +109,7 @@ height = 6.0
 
 [node name="slime" type="KinematicBody2D"]
 collision_layer = 2
-collision_mask = 2
+collision_mask = 3
 script = ExtResource( 1 )
 MAX_HEALTH = 0.5
 SPEED = 50

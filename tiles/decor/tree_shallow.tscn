@@ -2,27 +2,26 @@
 
 [ext_resource path="res://tiles/decor/tree_shallow.png" type="Texture" id=1]
 
-[sub_resource type="AtlasTexture" id=376]
+[sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 1 )
 region = Rect2( 0, 0, 32, 32 )
 
-[sub_resource type="AtlasTexture" id=377]
+[sub_resource type="AtlasTexture" id=2]
 atlas = ExtResource( 1 )
 region = Rect2( 32, 0, 32, 32 )
 
-[sub_resource type="SpriteFrames" id=378]
+[sub_resource type="SpriteFrames" id=3]
 animations = [ {
-"frames": [ SubResource( 376 ), SubResource( 377 ) ],
+"frames": [ SubResource( 1 ), SubResource( 2 ) ],
 "loop": true,
 "name": "treeshallow",
 "speed": 5.0
 } ]
 
 [node name="tree_shallow" type="AnimatedSprite"]
-z_index = 5
-frames = SubResource( 378 )
+z_index = 2
+frames = SubResource( 3 )
 animation = "treeshallow"
-frame = 1
 speed_scale = 0.25
 playing = true
 centered = false

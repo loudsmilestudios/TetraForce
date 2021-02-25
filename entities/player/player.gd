@@ -178,7 +178,7 @@ func state_spin():
 
 func state_fall():
 	anim_switch("jump")
-	position.y += 100 * get_physics_process_delta_time()
+	loop_movement()
 	
 	$CollisionShape2D.disabled = true
 	var colliding = false
@@ -208,15 +208,15 @@ func state_die():
 func respawn():
 	var death_animation = preload("res://effects/enemy_death.tscn").instance()
 	death_animation.global_position = position
-	if health <= 0:
-		sfx.play("death")
-		get_parent().add_child(death_animation)
-		self.hide()
-		screenfx.play("fadeblack")
-		yield(get_tree().create_timer(1.5), "timeout")
-		hud.show_gameover()
-		yield(get_tree().create_timer(1.5), "timeout")
 	if is_network_master():
+		if health <= 0:
+			sfx.play("death")
+			get_parent().add_child(death_animation)
+			self.hide()
+			screenfx.play("fadeblack")
+			yield(get_tree().create_timer(1.5), "timeout")
+			hud.show_gameover()
+			yield(get_tree().create_timer(1.5), "timeout")
 		knockdir = Vector2(0,0)
 		position = home_position
 		spritedir = last_safe_spritedir
@@ -258,8 +258,7 @@ func loop_interact():
 			hud.show_action()
 		if collider.is_in_group("interactable") && Input.is_action_just_pressed("A"):
 			collider.interact(self)
-		elif collider.is_in_group("cliff") && spritedir == "Down":
-			position.y += 2
+		elif collider.is_in_group("cliff") && spritedir == collider.spritedir:
 			state = "fall"
 			sfx.play("fall2")
 		elif is_on_wall() && collider.is_in_group("pushable") && push_counter >= 0.75:

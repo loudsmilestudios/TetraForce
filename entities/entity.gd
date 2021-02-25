@@ -18,6 +18,7 @@ var last_safe_pos = position
 # COMBAT
 var health = MAX_HEALTH setget set_health
 var hitstun = 0
+var invunerable = 0
 var hurt_sfx = "hit_hurt"
 signal health_changed
 signal update_count
@@ -152,6 +153,11 @@ func loop_damage():
 			network.peer_call(self, "set_hurt_texture", [false])
 		check_for_death()
 		hitstun -= 1
+	if invunerable > 1:
+		invunerable -= 1
+	elif invunerable == 1:
+		remove_from_group("invunerable")
+		invunerable -= 1
 	
 	if !hitbox.monitoring:
 		return
@@ -188,11 +194,14 @@ func create_hole_fx(pos):
 	sfx.play("fall")
 
 func damage(amount, dir, damager=null):
-	if hitstun == 0:
+	if hitstun == 0 && !is_in_group("invunerable"):
 		if amount != 0:
 			sfx.play(hurt_sfx)
 			set_hurt_texture(true)
 			network.peer_call(self, "set_hurt_texture", [true])
+			if TYPE == "PLAYER":
+				add_to_group("invunerable")
+				invunerable = 30
 		hitstun = 10
 		update_health(-amount)
 		knockdir = dir

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.3" orientation="orthogonal" renderorder="right-down" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="11" nextobjectid="68">
+<map version="1.4" tiledversion="1.4.3" orientation="orthogonal" renderorder="right-down" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="11" nextobjectid="79">
  <properties>
   <property name="music" value="shrine"/>
  </properties>
  <tileset firstgid="1" source="../tiled/dungeon/dungeon_tileset.tsx"/>
  <tileset firstgid="281" source="../tiled/objects.tsx"/>
- <tileset firstgid="310" source="../tiled/overworld/overworld_tileset.tsx"/>
+ <tileset firstgid="311" source="../tiled/overworld/overworld_tileset.tsx"/>
  <layer id="2" name="floor" width="40" height="40">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -138,7 +138,7 @@
 0,0,0,0,21,104,104,104,104,24,18,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,16,25,104,104,104,104,104,23,0,0,0,
 0,0,0,0,21,104,104,104,104,104,24,17,17,17,17,276,17,17,18,0,0,16,17,17,276,17,17,17,17,25,104,104,104,104,104,104,23,0,0,0,
 0,0,0,0,21,104,104,104,104,104,104,104,104,104,104,104,104,104,23,0,0,21,104,104,104,104,104,104,104,104,104,104,104,104,104,104,23,0,0,0,
-0,0,0,0,26,27,27,27,27,27,27,27,27,27,27,27,27,27,28,326,326,26,27,27,27,27,27,27,27,27,27,27,27,27,27,27,28,0,0,0
+0,0,0,0,26,27,27,27,27,27,27,27,27,27,27,27,27,27,28,327,327,26,27,27,27,27,27,27,27,27,27,27,27,27,27,27,28,0,0,0
 </data>
  </layer>
  <layer id="4" name="decor" width="40" height="40">
@@ -258,13 +258,6 @@
   <object id="47" gid="304" x="288" y="560" width="16" height="16"/>
   <object id="48" gid="304" x="448" y="592" width="16" height="16"/>
   <object id="49" gid="304" x="176" y="592" width="16" height="16"/>
-  <object id="64" x="0" y="384">
-   <properties>
-    <property name="path" value="res://engine/dungeon_handler.tscn"/>
-   </properties>
-   <point/>
-  </object>
-  <object id="67" gid="283" x="368" y="384" width="16" height="16"/>
  </objectgroup>
  <objectgroup id="7" name="zones" visible="0" locked="1">
   <object id="1" type="area" x="128" y="208" width="384" height="416"/>

@@ -8,6 +8,7 @@
 extents = Vector2( 8, 8 )
 
 [node name="bombable_door" type="StaticBody2D"]
+collision_mask = 3
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]

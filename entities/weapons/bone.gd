@@ -10,7 +10,7 @@ func start():
 	shooter = get_parent()
 	$Hitbox.connect("body_entered", self, "body_entered")
 	add_to_group("projectile")
-	z_index = shooter.z_index - 1
+	#z_index = shooter.z_index - 1
 	position = shooter.position
 	get_parent().remove_child(self)
 	shooter.get_parent().add_child(self)
@@ -32,6 +32,8 @@ func _physics_process(delta):
 func body_entered(body):
 	if !received_sync && !is_network_master() && body != shooter:
 		queue_free()
+	elif body.get_collision_layer_bit(7) == true:
+		return
 	elif body is Entity && body != shooter:
 		damage(body)
 	elif body != shooter:

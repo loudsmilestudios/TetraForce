@@ -71,3 +71,6 @@ func set_light(mode):
 		target.get_node("Light2D").enabled = false
 		for light in get_tree().get_nodes_in_group("light_halo"):
 			light.enabled = false
+			
+func on_screen_shake():
+	$AnimationPlayer.play("screenshake")

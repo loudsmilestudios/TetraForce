@@ -32,10 +32,13 @@ func enemy_death(pos):
 	death_animation.global_position = pos
 	get_parent().add_child(death_animation)
 	sfx.play("enemy_death")
-	if chest_spawn == false:
-		network.current_map.spawn_collectable("tetran", pos, 4)
+	if chest_spawn == true:
+		var spawn_node = location #Sets Spawn Node Name
+		var spawn_point = get_parent().get_node(spawn_node) #Get Spawn Node
+		spawn_point.chest_spawn()
 	else:
-		chest_spawn()
+		network.current_map.spawn_collectable("tetran", pos, 4)
+		
 	set_dead()
 
 func set_health(value):
@@ -72,15 +75,3 @@ func rand_direction():
 		4:
 			return Vector2.DOWN
 	return Vector2(0, 0)
-	
-func chest_spawn():
-		var chest = preload("res://tiles/chest.tscn").instance()
-		var spawn_node = location
-		var spawn_point = get_parent().get_node(spawn_node)
-		chest_spawn = false
-		chest.def = spawn_point.def
-		chest.item = spawn_point.item
-		if location == spawn_point.location:
-			chest.global_position = spawn_point.position
-			get_parent().add_child(chest)
-			emit_signal("update_persistent_state")

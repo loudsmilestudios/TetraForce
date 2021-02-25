@@ -115,15 +115,15 @@ tracks/1/keys = {
 }
 
 [sub_resource type="CapsuleShape2D" id=5]
-radius = 4.5
-height = 6.0
+radius = 6.91275
+height = 3.50099
 
 [sub_resource type="CircleShape2D" id=6]
 radius = 96.0
 
 [node name="Stalfos" type="KinematicBody2D"]
 collision_layer = 2
-collision_mask = 2
+collision_mask = 2147483655
 script = ExtResource( 1 )
 MAX_HEALTH = 0.5
 SPEED = 40
@@ -139,7 +139,7 @@ anims/walk = SubResource( 4 )
 z_as_relative = false
 texture = ExtResource( 2 )
 hframes = 5
-frame = 1
+frame = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 5 )

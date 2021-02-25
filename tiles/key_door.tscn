@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
-[ext_resource path="res://tiles/key_door.png" type="Texture" id=1]
+[ext_resource path="res://tiles/dungeon1_key_door.png" type="Texture" id=1]
 [ext_resource path="res://tiles/key_door.gd" type="Script" id=2]
+[ext_resource path="res://engine/network_object.tscn" type="PackedScene" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 8, 8 )
@@ -72,14 +73,15 @@ tracks/0/keys = {
 "values": [ 3, 2, 1, 0 ]
 }
 
-[node name="key_door_up" type="StaticBody2D"]
+[node name="key_door" type="StaticBody2D"]
+collision_mask = 3
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )
 vframes = 4
 hframes = 4
-frame = 13
+frame = 11
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
@@ -89,3 +91,9 @@ anims/key_door_down = SubResource( 2 )
 anims/key_door_left = SubResource( 3 )
 anims/key_door_right = SubResource( 4 )
 anims/key_door_up = SubResource( 5 )
+
+[node name="NetworkObject" parent="." instance=ExtResource( 3 )]
+persistent = true
+enter_properties = {
+"locked": true
+}

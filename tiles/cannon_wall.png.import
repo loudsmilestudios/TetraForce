@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/cannon_shot_effect_down.png-540bb90432c251519462fcbc16891661.stex"
+path="res://.import/cannon_wall.png-adc16a4e9e461fb2071b6b2a0c70dce0.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://effects/cannon_shot_effect_down.png"
-dest_files=[ "res://.import/cannon_shot_effect_down.png-540bb90432c251519462fcbc16891661.stex" ]
+source_file="res://tiles/cannon_wall.png"
+dest_files=[ "res://.import/cannon_wall.png-adc16a4e9e461fb2071b6b2a0c70dce0.stex" ]
 
 [params]
 

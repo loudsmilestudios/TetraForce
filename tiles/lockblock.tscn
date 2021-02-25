@@ -8,6 +8,7 @@
 extents = Vector2( 8, 8 )
 
 [node name="lockblock" type="StaticBody2D"]
+collision_mask = 3
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]

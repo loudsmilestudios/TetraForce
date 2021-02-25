@@ -37,6 +37,7 @@ tracks/1/keys = {
 extents = Vector2( 8, 8 )
 
 [node name="brazier" type="StaticBody2D"]
+collision_mask = 3
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "default"
