@@ -141,9 +141,9 @@ func join_aws(lobby_name):
 		# Handle response based on result
 		if new_lobby.success:
 			
-			# Attempt to get server info 5 times
-			for i in range(5):
-				yield(get_tree().create_timer(5.0), "timeout")
+			# Attempt to get server info 15 times
+			for i in range(15):
+				yield(get_tree().create_timer(8.0), "timeout")
 				if yield(attempt_to_join_aws_sever(lobby_name, true), "completed"):
 					return
 
