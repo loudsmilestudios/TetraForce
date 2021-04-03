@@ -4,6 +4,9 @@ var keys = 0
 
 signal update_persistent_state
 
+func _ready():
+	network.peer_call(self, "set_keys", [keys])
+
 func add_key():
 	if network.is_map_host():
 		set_keys(keys + 1)

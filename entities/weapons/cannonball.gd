@@ -48,12 +48,12 @@ func _physics_process(delta):
 	position += movedir * SPEED * delta
 
 func body_entered(body):
-	if !received_sync && !is_network_master() && body != shooter:
+	if body.is_in_group("cannon"):
+		body.on_explosion()
+	elif !received_sync && !is_network_master() && body != shooter:
 		queue_free()
 	elif body is Entity && body != shooter:
 		damage(body)
-	elif body.is_in_group("cannon"):
-		body.on_explosion()
 	elif body != shooter && !body.is_in_group("cannon"):
 		delete()
 		network.peer_call(self, "delete")

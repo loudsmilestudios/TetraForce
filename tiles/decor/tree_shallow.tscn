@@ -19,7 +19,7 @@ animations = [ {
 } ]
 
 [node name="tree_shallow" type="AnimatedSprite"]
-z_index = 2
+z_index = 1
 frames = SubResource( 3 )
 animation = "treeshallow"
 speed_scale = 0.25

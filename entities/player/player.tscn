@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://ui/theme/font.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://engine/network_object.tscn" type="PackedScene" id=2]
@@ -52,6 +52,8 @@ tracks/1/keys = {
 }
 
 [sub_resource type="Animation" id=3]
+resource_name = "dropDown"
+length = 3.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -59,10 +61,22 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( -0.00266039, 0.0973396, 0.19734, 0.29734, 0.39734, 0.49734, 0.59734, 0.69734, 0.79734, 0.89734, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2, 2.1, 2.2, 2.3, 2.4, 2.5, 2.6, 2.7, 2.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 1 ]
+"values": [ 30, 31, 32, 30, 31, 32, 30, 31, 32, 30, 31, 32, 30, 31, 32, 30, 31, 32, 30, 31, 32, 30, 31, 32, 30, 31, 32, 30, 1 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 2.9 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, -150 ), Vector2( 0, 0 ) ]
 }
 
 [sub_resource type="Animation" id=4]
@@ -76,7 +90,19 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ 3 ]
+"values": [ 1 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
 }
 
 [sub_resource type="Animation" id=5]
@@ -90,11 +116,24 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ 5 ]
+"values": [ 3 ]
 }
 
 [sub_resource type="Animation" id=6]
-resource_name = "jumpDown"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 5 ]
+}
+
+[sub_resource type="Animation" id=7]
 length = 1.2
 loop = true
 step = 0.4
@@ -111,8 +150,7 @@ tracks/0/keys = {
 "values": [ 30, 31, 32 ]
 }
 
-[sub_resource type="Animation" id=7]
-resource_name = "jumpSide"
+[sub_resource type="Animation" id=8]
 length = 1.2
 loop = true
 step = 0.4
@@ -129,8 +167,7 @@ tracks/0/keys = {
 "values": [ 33, 34, 35 ]
 }
 
-[sub_resource type="Animation" id=8]
-resource_name = "jumpUp"
+[sub_resource type="Animation" id=9]
 length = 1.2
 loop = true
 step = 0.4
@@ -147,7 +184,7 @@ tracks/0/keys = {
 "values": [ 30, 31, 32 ]
 }
 
-[sub_resource type="Animation" id=9]
+[sub_resource type="Animation" id=10]
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -161,7 +198,7 @@ tracks/0/keys = {
 "values": [ 6, 7 ]
 }
 
-[sub_resource type="Animation" id=10]
+[sub_resource type="Animation" id=11]
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -175,7 +212,7 @@ tracks/0/keys = {
 "values": [ 8, 9 ]
 }
 
-[sub_resource type="Animation" id=11]
+[sub_resource type="Animation" id=12]
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -189,7 +226,7 @@ tracks/0/keys = {
 "values": [ 10, 11 ]
 }
 
-[sub_resource type="Animation" id=12]
+[sub_resource type="Animation" id=13]
 length = 1.6
 step = 0.33
 tracks/0/type = "value"
@@ -217,7 +254,7 @@ tracks/1/keys = {
 "values": [ Vector2( 1, 1 ), Vector2( -1, 1 ), Vector2( 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=13]
+[sub_resource type="Animation" id=14]
 length = 1.6
 step = 0.33
 tracks/0/type = "value"
@@ -245,7 +282,7 @@ tracks/1/keys = {
 "values": [ Vector2( 1, 1 ), Vector2( -1, 1 ), Vector2( 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=14]
+[sub_resource type="Animation" id=15]
 length = 1.6
 step = 0.33
 tracks/0/type = "value"
@@ -273,7 +310,7 @@ tracks/1/keys = {
 "values": [ Vector2( 1, 1 ), Vector2( -1, 1 ), Vector2( 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=15]
+[sub_resource type="Animation" id=16]
 length = 0.66
 step = 0.33
 tracks/0/type = "value"
@@ -289,7 +326,7 @@ tracks/0/keys = {
 "values": [ 24, 25 ]
 }
 
-[sub_resource type="Animation" id=16]
+[sub_resource type="Animation" id=17]
 length = 0.66
 step = 0.33
 tracks/0/type = "value"
@@ -305,7 +342,7 @@ tracks/0/keys = {
 "values": [ 26, 27 ]
 }
 
-[sub_resource type="Animation" id=17]
+[sub_resource type="Animation" id=18]
 length = 0.66
 step = 0.33
 tracks/0/type = "value"
@@ -321,7 +358,7 @@ tracks/0/keys = {
 "values": [ 28, 29 ]
 }
 
-[sub_resource type="Animation" id=18]
+[sub_resource type="Animation" id=19]
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -335,7 +372,7 @@ tracks/0/keys = {
 "values": [ 0, 1 ]
 }
 
-[sub_resource type="Animation" id=19]
+[sub_resource type="Animation" id=20]
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -349,7 +386,7 @@ tracks/0/keys = {
 "values": [ 2, 3 ]
 }
 
-[sub_resource type="Animation" id=20]
+[sub_resource type="Animation" id=21]
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -363,23 +400,39 @@ tracks/0/keys = {
 "values": [ 4, 5 ]
 }
 
-[sub_resource type="CapsuleShape2D" id=21]
+[sub_resource type="Animation" id=22]
+resource_name = "invunerable"
+length = 0.05
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("../Sprite:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.0251196, 0.0502392 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true ]
+}
+
+[sub_resource type="CapsuleShape2D" id=23]
 radius = 4.5
 height = 6.0
 
-[sub_resource type="RectangleShape2D" id=22]
+[sub_resource type="RectangleShape2D" id=24]
 extents = Vector2( 4, 4 )
 
-[sub_resource type="CanvasItemMaterial" id=23]
+[sub_resource type="CanvasItemMaterial" id=25]
 light_mode = 1
 
-[sub_resource type="DynamicFont" id=24]
+[sub_resource type="DynamicFont" id=26]
 outline_size = 1
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 1 )
 
-[sub_resource type="Animation" id=25]
-resource_name = "flicker"
+[sub_resource type="Animation" id=27]
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:texture")
@@ -408,34 +461,38 @@ autoplay = "idleDown"
 playback_speed = 4.0
 anims/acquire = SubResource( 1 )
 anims/die = SubResource( 2 )
-anims/idleDown = SubResource( 3 )
-anims/idleSide = SubResource( 4 )
-anims/idleUp = SubResource( 5 )
-anims/jumpDown = SubResource( 6 )
-anims/jumpSide = SubResource( 7 )
-anims/jumpUp = SubResource( 8 )
-anims/pushDown = SubResource( 9 )
-anims/pushSide = SubResource( 10 )
-anims/pushUp = SubResource( 11 )
-anims/spinDown = SubResource( 12 )
-anims/spinSide = SubResource( 13 )
-anims/spinUp = SubResource( 14 )
-anims/swingDown = SubResource( 15 )
-anims/swingSide = SubResource( 16 )
-anims/swingUp = SubResource( 17 )
-anims/walkDown = SubResource( 18 )
-anims/walkSide = SubResource( 19 )
-anims/walkUp = SubResource( 20 )
+anims/dropDown = SubResource( 3 )
+anims/idleDown = SubResource( 4 )
+anims/idleSide = SubResource( 5 )
+anims/idleUp = SubResource( 6 )
+anims/jumpDown = SubResource( 7 )
+anims/jumpSide = SubResource( 8 )
+anims/jumpUp = SubResource( 9 )
+anims/pushDown = SubResource( 10 )
+anims/pushSide = SubResource( 11 )
+anims/pushUp = SubResource( 12 )
+anims/spinDown = SubResource( 13 )
+anims/spinSide = SubResource( 14 )
+anims/spinUp = SubResource( 15 )
+anims/swingDown = SubResource( 16 )
+anims/swingSide = SubResource( 17 )
+anims/swingUp = SubResource( 18 )
+anims/walkDown = SubResource( 19 )
+anims/walkSide = SubResource( 20 )
+anims/walkUp = SubResource( 21 )
+
+[node name="invunerable" type="AnimationPlayer" parent="AnimationPlayer"]
+anims/invunerable = SubResource( 22 )
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 4 )
 vframes = 8
 hframes = 6
-frame = 36
+frame = 30
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
-shape = SubResource( 21 )
+shape = SubResource( 23 )
 
 [node name="NetworkObject" parent="." instance=ExtResource( 2 )]
 require_map_host = false
@@ -459,11 +516,11 @@ collision_mask = 1024
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ZoneHandler"]
 position = Vector2( -8, 8 )
-shape = SubResource( 22 )
+shape = SubResource( 24 )
 
 [node name="name" type="Node2D" parent="."]
 light_mask = 0
-material = SubResource( 23 )
+material = SubResource( 25 )
 z_index = 4096
 z_as_relative = false
 
@@ -476,7 +533,7 @@ margin_top = -18.0
 margin_right = 112.0
 margin_bottom = -4.0
 rect_scale = Vector2( 0.6, 0.6 )
-custom_fonts/font = SubResource( 24 )
+custom_fonts/font = SubResource( 26 )
 text = "Chain"
 align = 1
 __meta__ = {
@@ -492,4 +549,4 @@ mode = 2
 [node name="Flicker" type="AnimationPlayer" parent="Light2D"]
 autoplay = "flicker"
 playback_speed = 0.5
-anims/flicker = SubResource( 25 )
+anims/flicker = SubResource( 27 )

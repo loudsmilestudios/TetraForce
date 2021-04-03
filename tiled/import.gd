@@ -56,7 +56,7 @@ func import_tilemap(tilemap):
 func spawn_object(object):
 	if object.has_meta("path"):
 		var path = object.get_meta("path")
-		
+
 		var node = load(path).instance()
 		scene.add_child(node)
 		node.set_owner(scene)
@@ -66,6 +66,7 @@ func spawn_object(object):
 		#node.position += Vector2((node.scale.x-1)*8, -(node.scale.y-1)*8)
 		
 		set_properties(object, node)
+	
 	
 	else:
 		object.get_parent().remove_child(object)

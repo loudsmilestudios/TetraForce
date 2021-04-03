@@ -157,6 +157,7 @@ func loop_damage():
 		invunerable -= 1
 	elif invunerable == 1:
 		remove_from_group("invunerable")
+		#anim.stop()
 		invunerable -= 1
 	
 	if !hitbox.monitoring:
@@ -201,7 +202,7 @@ func damage(amount, dir, damager=null):
 			network.peer_call(self, "set_hurt_texture", [true])
 			if TYPE == "PLAYER":
 				add_to_group("invunerable")
-				invunerable = 30
+				invunerable = 60
 		hitstun = 10
 		update_health(-amount)
 		knockdir = dir

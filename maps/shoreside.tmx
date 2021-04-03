@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.3" orientation="orthogonal" renderorder="right-down" width="96" height="54" tilewidth="16" tileheight="16" infinite="1" nextlayerid="21" nextobjectid="392">
+<map version="1.4" tiledversion="1.4.3" orientation="orthogonal" renderorder="right-down" width="96" height="54" tilewidth="16" tileheight="16" infinite="1" nextlayerid="21" nextobjectid="397">
  <properties>
   <property name="music" value="shore"/>
  </properties>
@@ -2494,7 +2494,7 @@
 </chunk>
   </data>
  </layer>
- <layer id="10" name="water_trees" width="96" height="54">
+ <layer id="10" name="water_trees" width="96" height="54" visible="0">
   <data encoding="csv">
    <chunk x="32" y="0" width="16" height="16">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -2927,6 +2927,11 @@
     <property name="player_position" value="left"/>
    </properties>
   </object>
+  <object id="392" gid="784" x="960" y="672" width="16" height="16"/>
+  <object id="393" gid="784" x="736" y="704" width="16" height="16"/>
+  <object id="394" gid="784" x="688" y="704" width="16" height="16"/>
+  <object id="395" gid="784" x="560" y="752" width="16" height="16"/>
+  <object id="396" gid="784" x="400" y="672" width="16" height="16"/>
  </objectgroup>
  <objectgroup id="20" name="enemies">
   <properties>

@@ -164,13 +164,13 @@ func is_map_host():
 func get_map_host():
 	return map_hosts.get(current_map.name)
 
-func set_state(object, properties):
-	var nodepath = object.get_path()
+func set_state(path, properties):
+	#var nodepath = object.get_path()
 	if pid == 1:
-		states[nodepath] = properties
+		states[path] = properties
 		global.emit_signal("debug_update")
 	else:
-		rpc_id(1, "_receive_state_change", nodepath, properties)
+		rpc_id(1, "_receive_state_change", path, properties)
 
 remote func _receive_state_change(nodepath, properties):
 	states[nodepath] = properties
@@ -194,17 +194,6 @@ remote func _receive_state(nodepath, properties):
 func update_state(nodepath, properties):
 	for property in properties.keys():
 		get_node(nodepath).set(property, properties[property])
-
-remote func add_to_state(state, value):
-	if pid == 1:
-		print(states.get(state))
-		if !states.get(state).has(value):
-			states.get(state).append(value)
-			global.set(state, states.get(state))
-			rpc("_receive_state_array", state, states.get(state))
-			global.emit_signal("debug_update")
-	else:
-		rpc_id(1, "add_to_state", state, value)
 
 remote func _receive_state_array(state, value):
 	global.set(state, value)

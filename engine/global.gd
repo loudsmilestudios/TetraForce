@@ -10,6 +10,7 @@ var max_health = 5
 var spiritpearl = 0
 
 var changing_map = false
+var transition_type = false
 
 signal debug_update
 
@@ -134,6 +135,7 @@ func change_map(map, entrance):
 	if changing_map:
 		return
 	changing_map = true
+	
 	screenfx.play("fadewhite")
 	yield(screenfx, "animation_finished")
 	

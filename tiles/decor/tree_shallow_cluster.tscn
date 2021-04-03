@@ -20,7 +20,7 @@ animations = [ {
 
 [node name="tree_shallow_cluster" type="AnimatedSprite"]
 position = Vector2( -8, 0 )
-z_index = 2
+z_index = 1
 frames = SubResource( 3 )
 animation = "treeshallowcluster"
 frame = 1

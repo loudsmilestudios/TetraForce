@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tileset version="1.4" tiledversion="1.4.3" name="objects" tilewidth="16" tileheight="22" tilecount="30" columns="0">
+<tileset version="1.4" tiledversion="1.4.3" name="objects" tilewidth="16" tileheight="22" tilecount="32" columns="0">
  <grid orientation="orthogonal" width="1" height="1"/>
  <tile id="0">
   <properties>
@@ -224,5 +224,19 @@
    <property name="path" value="res://tiles/cannonwall.tscn"/>
   </properties>
   <image width="16" height="16" source="images/objects/cannon_wall.png"/>
+ </tile>
+ <tile id="30">
+  <properties>
+   <property name="path" value="res://tiles/gravestone.tscn"/>
+  </properties>
+  <image width="16" height="16" source="images/objects/gravestone.png"/>
+ </tile>
+ <tile id="31">
+  <properties>
+   <property name="entrance" value=""/>
+   <property name="map" value=""/>
+   <property name="path" value="res://tiles/dropdown.tscn"/>
+  </properties>
+  <image width="16" height="16" source="images/objects/dropdown.png"/>
  </tile>
 </tileset>

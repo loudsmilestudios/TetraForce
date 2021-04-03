@@ -38,13 +38,19 @@ func initialize():
 			"right":
 				position.x += 16
 				spritedir = "Right"
-
+			
 		home_position = position
+		
+		if global.transition_type == true:
+			anim.play("dropDown")
+			global.transition_type = false
+			spritedir = "Down"
+		else:
+			anim_switch("idle")
 		
 		camera.initialize(self)
 		
-		anim_switch("idle")
-
+		
 		hud = preload("res://ui/hud/hud.tscn").instance()
 		add_child(hud)
 		hud.initialize(self)
@@ -73,8 +79,12 @@ func initialize():
 		
 		set_lightdir()
 		
-		yield(screenfx, "animation_finished")
-
+		yield(get_tree().create_timer(0.5), "timeout")
+		while anim.current_animation == "dropDown":
+			yield(get_tree(), "idle_frame")
+			yield(anim, "animation_finished")
+			sfx.play("fall_land")
+		
 		set_physics_process(true)
 		global.changing_map = false
 	network.current_map.emit_signal("player_entered", int(name))
@@ -116,6 +126,7 @@ func _physics_process(_delta):
 	
 	set_lightdir()
 	
+	check_for_invunerable()
 	check_for_death()
 	
 	if action_cooldown > 0:
@@ -178,7 +189,14 @@ func state_spin():
 
 func state_fall():
 	anim_switch("jump")
-	loop_movement()
+	if spritedir == "Down":
+		position.y += 100 * get_physics_process_delta_time()
+	if spritedir == "Up":
+		position.y -= 100 * get_physics_process_delta_time()
+	if spritedir == "Right":
+		position.x += 100 * get_physics_process_delta_time()
+	if spritedir == "Left":
+		position.x -= 100 * get_physics_process_delta_time()
 	
 	$CollisionShape2D.disabled = true
 	var colliding = false
@@ -188,6 +206,7 @@ func state_fall():
 	if !colliding:
 		$CollisionShape2D.disabled = false
 		state = "default"
+		
 
 func state_menu():
 	anim_switch("idle")
@@ -199,7 +218,14 @@ func state_dialogue():
 func state_acquire():
 	animation = "acquire"
 	anim.play("acquire")
-
+	
+func check_for_invunerable():
+	if invunerable >= 1 && health > 0:
+		$AnimationPlayer/invunerable.play("invunerable")
+	else: 
+		$AnimationPlayer/invunerable.stop()
+		$Sprite.visible = true
+		
 func state_die():
 	if anim.assigned_animation != "die":
 		animation = "die"
@@ -274,11 +300,11 @@ func hole_fall():
 			child.queue_free()
 	state = "hole"
 	yield(get_tree().create_timer(1.5), "timeout")
-	position = last_safe_pos
-	spritedir = last_safe_spritedir
-	show()
-	damage(1, Vector2(0,0))
-	state = "default"
+	if state != "dropdown":
+		position = last_safe_pos
+		spritedir = last_safe_spritedir
+		damage(1, Vector2(0,0))
+		show()
 
 func set_lightdir():
 	match spritedir:
