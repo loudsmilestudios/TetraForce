@@ -12,9 +12,9 @@ func _ready():
 func body_entered(body):
 	if body.is_in_group("player") && body.is_network_master():
 		global.health = body.health
-		global.player.position = position.linear_interpolate(position, 1)
-		global.player.hole_fall()
-		body.state = "dropdown"
+		body.position = position.linear_interpolate(position, 1)
+		body.hide()
+		body.state = "hole"
 		get_parent().add_child(hole_fx)
 		hole_fx.position = position
 		sfx.play("fall")

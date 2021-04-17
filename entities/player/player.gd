@@ -300,11 +300,11 @@ func hole_fall():
 			child.queue_free()
 	state = "hole"
 	yield(get_tree().create_timer(1.5), "timeout")
-	if state != "dropdown":
-		position = last_safe_pos
-		spritedir = last_safe_spritedir
-		damage(1, Vector2(0,0))
-		show()
+	position = last_safe_pos
+	spritedir = last_safe_spritedir
+	damage(1, Vector2(0,0))
+	state = "default"
+	show()
 
 func set_lightdir():
 	match spritedir:
