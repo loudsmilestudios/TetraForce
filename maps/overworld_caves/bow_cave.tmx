@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.3" orientation="orthogonal" renderorder="right-down" width="30" height="30" tilewidth="16" tileheight="16" infinite="1" nextlayerid="13" nextobjectid="69">
+<map version="1.4" tiledversion="1.4.3" orientation="orthogonal" renderorder="right-down" width="30" height="30" tilewidth="16" tileheight="16" infinite="1" nextlayerid="13" nextobjectid="71">
  <properties>
   <property name="music" value="dungeon"/>
  </properties>
  <tileset firstgid="1" source="../../tiled/cave/cave_tileset.tsx"/>
  <tileset firstgid="351" source="../../tiled/objects.tsx"/>
- <tileset firstgid="380" source="../../tiled/dungeon/dungeon1_tileset.tsx"/>
+ <tileset firstgid="383" source="../../tiled/dungeon/dungeon1_tileset.tsx"/>
  <layer id="1" name="ground" width="30" height="30">
   <data encoding="csv">
    <chunk x="0" y="16" width="16" height="16">
@@ -81,7 +81,7 @@
 84,84,84,84,84,84,84,84,84,84,84,84,84,84,84,84
 </chunk>
    <chunk x="0" y="32" width="16" height="16">
-84,76,77,56,455,57,57,57,57,57,57,455,58,68,78,84,
+84,76,77,56,458,57,57,57,57,57,57,458,58,68,78,84,
 84,76,77,56,57,57,57,101,57,57,57,57,58,77,78,84,
 84,76,77,56,57,57,57,57,57,57,102,57,58,77,78,84,
 84,76,77,56,57,57,57,101,57,57,57,57,58,77,78,84,
@@ -89,7 +89,7 @@
 84,76,77,56,57,57,57,57,57,101,57,57,58,77,78,84,
 84,76,77,56,57,57,104,57,57,57,57,57,58,77,78,84,
 84,76,77,56,57,57,57,57,101,57,57,57,58,77,78,84,
-84,76,77,56,455,57,57,57,57,57,57,455,58,77,78,84,
+84,76,77,56,458,57,57,57,57,57,57,458,58,77,78,84,
 84,76,77,61,62,62,62,62,62,62,62,62,63,77,78,84,
 84,81,75,77,77,77,77,77,77,77,77,77,67,74,83,84,
 76,84,81,82,82,82,82,82,82,82,82,82,82,83,84,77,
@@ -1493,7 +1493,7 @@
 0,0,0,0,0,0,0,0,0,136,137,0,114,0,109,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,696,110,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,699,110,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </chunk>
@@ -1642,7 +1642,7 @@
 0,0,0,114,115,0,0,0,0,0,0,115,114,0,0,0
 </chunk>
    <chunk x="48" y="32" width="16" height="16">
-0,0,0,696,0,0,0,0,0,0,0,0,110,110,0,0,
+0,0,0,699,0,0,0,0,0,0,0,0,110,110,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,134,134,134,0,0,0,0,0,0,0,
@@ -1763,7 +1763,7 @@
 0,0,0,0,0,0,0,0,0,0,0,146,147,148,149,0,
 0,0,0,0,0,0,0,0,0,0,0,151,152,153,154,0,
 0,0,0,0,0,0,0,0,0,131,132,156,157,158,159,0,
-0,0,0,0,0,438,0,0,0,136,137,0,0,0,0,0,
+0,0,0,0,0,441,0,0,0,136,137,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,109,0,0,0,141,142
 </chunk>
@@ -2187,13 +2187,6 @@
     <property name="player_position" value="down"/>
    </properties>
   </object>
-  <object id="64" name="spawn_1" gid="379" x="848" y="992" width="16" height="16">
-   <properties>
-    <property name="def" value="dungeon"/>
-    <property name="item" value="Key"/>
-    <property name="location" value="spawn_1"/>
-   </properties>
-  </object>
   <object id="65" x="-80" y="1184">
    <properties>
     <property name="path" value="res://engine/dungeon_handler.tscn"/>
@@ -2211,6 +2204,14 @@
    </properties>
   </object>
   <object id="68" gid="361" x="176" y="480" width="16" height="16"/>
+  <object id="70" name="spawn_1" gid="361" x="848" y="992" width="16" height="16">
+   <properties>
+    <property name="def" value="dungeon"/>
+    <property name="hidden" type="bool" value="true"/>
+    <property name="item" value="Key"/>
+    <property name="location" value="spawn_1"/>
+   </properties>
+  </object>
  </objectgroup>
  <objectgroup id="10" name="zones" visible="0" locked="1">
   <object id="47" type="area" x="-48" y="736" width="304" height="432"/>

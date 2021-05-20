@@ -33,7 +33,8 @@ func _physics_process(delta):
 		return
 	if anim.current_animation != "walk" && bonetimer > 0:
 		anim.play("walk")
-		remove_from_group("invunerable")
+		if is_in_group("invunerable"):
+			remove_from_group("invunerable")
 	
 	loop_movement()
 	loop_damage()
