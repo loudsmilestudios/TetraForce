@@ -66,7 +66,9 @@ __meta__ = {
 
 [node name="B" type="Sprite" parent="hud2d/buttons"]
 modulate = Color( 1, 1, 1, 0.882353 )
-position = Vector2( -51.5, 10 )
+self_modulate = Color( 1, 1, 1, 0.882353 )
+position = Vector2( -46.5, 15 )
+scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 5 )
 hframes = 3
 __meta__ = {
@@ -74,13 +76,17 @@ __meta__ = {
 }
 
 [node name="icon" type="Sprite" parent="hud2d/buttons/B"]
+position = Vector2( -5, -9 )
+scale = Vector2( 2, 2 )
+z_index = -1
 
 [node name="count" type="Label" parent="hud2d/buttons/B"]
 anchor_right = 1.0
-margin_left = -9.0
+margin_left = -22.0
 margin_top = 6.0
-margin_right = -9.0
+margin_right = -22.0
 margin_bottom = 20.0
+rect_scale = Vector2( 1.5, 1.5 )
 custom_fonts/font = SubResource( 1 )
 align = 1
 __meta__ = {
@@ -89,7 +95,9 @@ __meta__ = {
 
 [node name="X" type="Sprite" parent="hud2d/buttons"]
 modulate = Color( 1, 1, 1, 0.882353 )
-position = Vector2( -30, 10 )
+self_modulate = Color( 1, 1, 1, 0.882353 )
+position = Vector2( -25, 15 )
+scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 5 )
 hframes = 3
 frame = 1
@@ -98,12 +106,16 @@ __meta__ = {
 }
 
 [node name="icon" type="Sprite" parent="hud2d/buttons/X"]
+position = Vector2( -5, -9 )
+scale = Vector2( 2, 2 )
+z_index = -1
 
 [node name="count" type="Label" parent="hud2d/buttons/X"]
-margin_left = -9.0
+margin_left = -22.0
 margin_top = 6.0
-margin_right = 10.0
+margin_right = -3.0
 margin_bottom = 20.0
+rect_scale = Vector2( 1.5, 1.5 )
 custom_fonts/font = SubResource( 1 )
 align = 1
 __meta__ = {
@@ -112,7 +124,9 @@ __meta__ = {
 
 [node name="Y" type="Sprite" parent="hud2d/buttons"]
 modulate = Color( 1, 1, 1, 0.882353 )
-position = Vector2( -9, 10 )
+self_modulate = Color( 1, 1, 1, 0.882353 )
+position = Vector2( -4, 15 )
+scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 5 )
 hframes = 3
 frame = 2
@@ -121,12 +135,16 @@ __meta__ = {
 }
 
 [node name="icon" type="Sprite" parent="hud2d/buttons/Y"]
+position = Vector2( -5, -9 )
+scale = Vector2( 2, 2 )
+z_index = -1
 
 [node name="count" type="Label" parent="hud2d/buttons/Y"]
-margin_left = -9.0
+margin_left = -22.0
 margin_top = 6.0
-margin_right = 9.0
+margin_right = -4.0
 margin_bottom = 20.0
+rect_scale = Vector2( 1.5, 1.5 )
 custom_fonts/font = SubResource( 1 )
 align = 1
 __meta__ = {
