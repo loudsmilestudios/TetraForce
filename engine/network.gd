@@ -35,6 +35,11 @@ func _ready():
 	get_tree().connect("network_peer_disconnected", self, "_player_disconnected")
 	states.weapons = global.weapons
 
+func complete():
+	tick.queue_free()
+	current_map.queue_free()
+	get_tree().set_network_peer(null)
+
 func initialize():
 	tick = Timer.new()
 	add_child(tick)

@@ -200,9 +200,9 @@ func _client_disconnect():
 	end_game()
 
 func end_game():
-	network.current_map.free() # erase immediately, otherwise network might show errors (this is why we connected deferred above)
+	network.complete()
 	show()
-	get_tree().set_network_peer(null) #remove peer
+	screenfx.play("default")
 
 func quit_program():
 	get_tree().set_network_peer(null)
