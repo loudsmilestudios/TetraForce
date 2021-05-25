@@ -153,7 +153,6 @@ enter_properties = {
 }
 
 [node name="PlayerDetect" type="Area2D" parent="."]
-visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetect"]
 shape = SubResource( 6 )

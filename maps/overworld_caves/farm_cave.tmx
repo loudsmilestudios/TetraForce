@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.3" orientation="orthogonal" renderorder="right-down" width="30" height="30" tilewidth="16" tileheight="16" infinite="0" nextlayerid="10" nextobjectid="61">
+<map version="1.4" tiledversion="1.4.3" orientation="orthogonal" renderorder="right-down" width="30" height="30" tilewidth="16" tileheight="16" infinite="0" nextlayerid="10" nextobjectid="64">
  <properties>
   <property name="music" value="cave"/>
  </properties>
  <tileset firstgid="1" source="../../tiled/cave/cave_tileset.tsx"/>
- <tileset firstgid="311" source="../../tiled/objects.tsx"/>
+ <tileset firstgid="351" source="../../tiled/objects.tsx"/>
  <layer id="4" name="ground" width="30" height="30">
   <data encoding="csv">
 84,84,84,84,84,84,84,84,84,84,84,84,84,84,84,84,84,84,84,84,84,84,84,84,84,84,84,84,84,84,
@@ -207,75 +207,82 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,127,128,127,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
  <objectgroup id="3" name="objects">
-  <object id="12" gid="313" x="256" y="256" width="16" height="16"/>
-  <object id="13" gid="313" x="272" y="256" width="16" height="16"/>
-  <object id="14" gid="313" x="288" y="256" width="16" height="16"/>
-  <object id="15" gid="313" x="304" y="256" width="16" height="16"/>
-  <object id="16" gid="313" x="320" y="256" width="16" height="16"/>
-  <object id="17" gid="313" x="240" y="256" width="16" height="16"/>
-  <object id="18" gid="313" x="224" y="256" width="16" height="16"/>
-  <object id="19" gid="313" x="208" y="256" width="16" height="16"/>
-  <object id="20" gid="313" x="192" y="256" width="16" height="16"/>
-  <object id="21" gid="313" x="176" y="256" width="16" height="16"/>
-  <object id="22" gid="313" x="176" y="192" width="16" height="16"/>
-  <object id="23" gid="313" x="192" y="192" width="16" height="16"/>
-  <object id="24" gid="313" x="208" y="192" width="16" height="16"/>
-  <object id="25" gid="313" x="224" y="192" width="16" height="16"/>
-  <object id="27" gid="313" x="240" y="192" width="16" height="16"/>
-  <object id="28" gid="313" x="256" y="192" width="16" height="16"/>
-  <object id="29" gid="313" x="272" y="192" width="16" height="16"/>
-  <object id="30" gid="313" x="288" y="192" width="16" height="16"/>
-  <object id="31" gid="313" x="304" y="192" width="16" height="16"/>
-  <object id="32" gid="313" x="320" y="192" width="16" height="16"/>
-  <object id="33" gid="313" x="320" y="160" width="16" height="16"/>
-  <object id="34" gid="313" x="304" y="160" width="16" height="16"/>
-  <object id="35" gid="313" x="288" y="160" width="16" height="16"/>
-  <object id="36" gid="313" x="272" y="160" width="16" height="16"/>
-  <object id="37" gid="313" x="256" y="160" width="16" height="16"/>
-  <object id="38" gid="313" x="240" y="160" width="16" height="16"/>
-  <object id="39" gid="313" x="224" y="160" width="16" height="16"/>
-  <object id="40" gid="313" x="208" y="160" width="16" height="16"/>
-  <object id="41" gid="313" x="192" y="160" width="16" height="16"/>
-  <object id="42" gid="313" x="176" y="160" width="16" height="16"/>
-  <object id="43" gid="313" x="272" y="320" width="16" height="16"/>
-  <object id="44" gid="313" x="240" y="336" width="16" height="16"/>
-  <object id="45" gid="313" x="256" y="336" width="16" height="16"/>
-  <object id="46" gid="313" x="224" y="320" width="16" height="16"/>
-  <object id="47" gid="311" x="256" y="288" width="16" height="16"/>
-  <object id="48" gid="311" x="240" y="288" width="16" height="16"/>
-  <object id="49" gid="311" x="224" y="416" width="16" height="16"/>
-  <object id="50" gid="311" x="256" y="384" width="16" height="16"/>
-  <object id="51" gid="311" x="128" y="368" width="16" height="16"/>
-  <object id="52" gid="311" x="112" y="400" width="16" height="16"/>
-  <object id="53" gid="311" x="288" y="224" width="16" height="16"/>
-  <object id="54" gid="311" x="224" y="224" width="16" height="16"/>
-  <object id="55" gid="311" x="288" y="176" width="16" height="16"/>
-  <object id="56" gid="311" x="224" y="176" width="16" height="16"/>
-  <object id="58" name="farm_cave" gid="312" x="368" y="336" width="16" height="16">
+  <object id="12" gid="353" x="256" y="256" width="16" height="16"/>
+  <object id="13" gid="353" x="272" y="256" width="16" height="16"/>
+  <object id="14" gid="353" x="288" y="256" width="16" height="16"/>
+  <object id="15" gid="353" x="304" y="256" width="16" height="16"/>
+  <object id="16" gid="353" x="320" y="256" width="16" height="16"/>
+  <object id="17" gid="353" x="240" y="256" width="16" height="16"/>
+  <object id="18" gid="353" x="224" y="256" width="16" height="16"/>
+  <object id="19" gid="353" x="208" y="256" width="16" height="16"/>
+  <object id="20" gid="353" x="192" y="256" width="16" height="16"/>
+  <object id="21" gid="353" x="176" y="256" width="16" height="16"/>
+  <object id="22" gid="353" x="176" y="192" width="16" height="16"/>
+  <object id="23" gid="353" x="192" y="192" width="16" height="16"/>
+  <object id="24" gid="353" x="208" y="192" width="16" height="16"/>
+  <object id="25" gid="353" x="224" y="192" width="16" height="16"/>
+  <object id="27" gid="353" x="240" y="192" width="16" height="16"/>
+  <object id="28" gid="353" x="256" y="192" width="16" height="16"/>
+  <object id="29" gid="353" x="272" y="192" width="16" height="16"/>
+  <object id="30" gid="353" x="288" y="192" width="16" height="16"/>
+  <object id="31" gid="353" x="304" y="192" width="16" height="16"/>
+  <object id="32" gid="353" x="320" y="192" width="16" height="16"/>
+  <object id="33" gid="353" x="320" y="160" width="16" height="16"/>
+  <object id="34" gid="353" x="304" y="160" width="16" height="16"/>
+  <object id="35" gid="353" x="288" y="160" width="16" height="16"/>
+  <object id="36" gid="353" x="272" y="160" width="16" height="16"/>
+  <object id="37" gid="353" x="256" y="160" width="16" height="16"/>
+  <object id="38" gid="353" x="240" y="160" width="16" height="16"/>
+  <object id="39" gid="353" x="224" y="160" width="16" height="16"/>
+  <object id="40" gid="353" x="208" y="160" width="16" height="16"/>
+  <object id="41" gid="353" x="192" y="160" width="16" height="16"/>
+  <object id="42" gid="353" x="176" y="160" width="16" height="16"/>
+  <object id="43" gid="353" x="272" y="320" width="16" height="16"/>
+  <object id="44" gid="353" x="240" y="336" width="16" height="16"/>
+  <object id="45" gid="353" x="256" y="336" width="16" height="16"/>
+  <object id="46" gid="353" x="224" y="320" width="16" height="16"/>
+  <object id="47" gid="351" x="256" y="288" width="16" height="16"/>
+  <object id="48" gid="351" x="240" y="288" width="16" height="16"/>
+  <object id="49" gid="351" x="224" y="416" width="16" height="16"/>
+  <object id="50" gid="351" x="256" y="384" width="16" height="16"/>
+  <object id="51" gid="351" x="128" y="368" width="16" height="16"/>
+  <object id="52" gid="351" x="112" y="400" width="16" height="16"/>
+  <object id="53" gid="351" x="288" y="224" width="16" height="16"/>
+  <object id="54" gid="351" x="224" y="224" width="16" height="16"/>
+  <object id="55" gid="351" x="288" y="176" width="16" height="16"/>
+  <object id="56" gid="351" x="224" y="176" width="16" height="16"/>
+  <object id="58" name="farm_cave" gid="352" x="368" y="336" width="16" height="16">
    <properties>
     <property name="entrance" value="farm_cave"/>
     <property name="map" value="overworld"/>
     <property name="player_position" value="down"/>
    </properties>
   </object>
-  <object id="59" gid="321" x="224" y="80" width="16" height="16">
+  <object id="59" gid="361" x="224" y="80" width="16" height="16">
    <properties>
     <property name="def" value="ammo"/>
     <property name="item" value="20 Tetrans"/>
    </properties>
   </object>
-  <object id="60" gid="321" x="272" y="80" width="16" height="16">
+  <object id="60" gid="361" x="272" y="80" width="16" height="16">
    <properties>
     <property name="def" value="ammo"/>
     <property name="item" value="20 Tetrans"/>
    </properties>
   </object>
+  <object id="61" gid="383" x="208" y="448" width="16" height="16"/>
+  <object id="62" gid="383" x="224" y="448" width="16" height="16">
+   <properties>
+    <property name="color" value="red"/>
+   </properties>
+  </object>
+  <object id="63" gid="383" x="240" y="448" width="16" height="16"/>
  </objectgroup>
  <objectgroup id="9" name="zones" visible="0" locked="1">
   <object id="57" type="area" x="32" y="16" width="416" height="464"/>
