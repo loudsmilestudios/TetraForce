@@ -172,6 +172,11 @@ func set_state(path, properties):
 	else:
 		rpc_id(1, "_receive_state_change", path, properties)
 
+func add_to_state(state, value):
+	if !states.get(state).has(value):
+		states.get(state).append(value)
+		set_state(state, states.get(state))
+
 remote func _receive_state_change(nodepath, properties):
 	states[nodepath] = properties
 	global.emit_signal("debug_update")
