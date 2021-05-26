@@ -17,4 +17,4 @@ func _ready():
 
 func _on_collect(body):
 	global.ammo.tetrans += value
-	body.hud.update_tetrans()
+	global.player.hud.update_tetrans()
