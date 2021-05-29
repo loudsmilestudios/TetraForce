@@ -14,14 +14,16 @@ var flash_count = 0; # Current counter of flashes
 
 func _ready():
 	self.connect("body_entered", self, "_collect")
+	add_to_group("collectable") #Group to find node
 	var timer = Timer.new()
 	add_child(timer)
 	timer.wait_time = time_till_flashing
 	
-	timer.connect("timeout", self, "_flash")
-	timer.name = "Timer"
-	if time_till_flashing > 0 != is_in_group("key_spawn"): 
-		timer.start()
+	if network.is_map_host():
+		timer.connect("timeout", self, "_flash")
+		timer.name = "Timer"
+		if time_till_flashing > 0 != is_in_group("key_spawn"): 
+			timer.start()
 	
 	var network_object = preload("res://engine/network_object.tscn").instance()
 	network_object.enter_properties = {"position":Vector2(0,0)}
@@ -36,16 +38,20 @@ func _ready():
 func _flash():
 	flash_count+=1
 	if(flash_count == TOTAL_FLASH_COUNT * 2):
+		network.peer_call(self, "queue_free")
 		queue_free()
 
 	if($Sprite.visible):
 		$Timer.wait_time = FLASH_TIME_NOT_VISIBLE
 	else:
 		$Timer.wait_time = FLASH_TIME_VISIBLE
-	$Sprite.visible = !$Sprite.visible
+	network.peer_call(self, "_start_flash", [!$Sprite.visible])
+	_start_flash(!$Sprite.visible)
 
 	$Timer.start()
 
+func _start_flash(is_visible):
+	$Sprite.visible = is_visible
 	
 # Function to be overrided by extended script, queue_free is not needed
 func _on_collect(body):
@@ -53,7 +59,8 @@ func _on_collect(body):
 
 # Calls inherited _on_collect function, and will (with fornclake's edit) be freed on every client
 func _collect(body: Node2D):
-	_on_collect(body) # Collect Function
-	sfx.play(sound)
-	# Deletion Code with network syncing goes here:
-	queue_free()
+	if body is Entity && body.TYPE == "PLAYER": 
+		_on_collect(body) # Collect Function
+		sfx.play(sound)
+		# Deletion Code with network syncing goes here:
+		queue_free()

@@ -26,17 +26,20 @@ func interact(node : Entity):
 			mouth = true
 		else:
 			mouth = false
-	network.peer_call_id(network.get_map_host(), self, "on_interact")
+	if network.is_map_host():
+		on_interact()
+	else:
+		network.peer_call_id(network.get_map_host(), self, "on_interact")
 	
 func on_interact():
-	if network.is_map_host():
-		network.peer_call(self, "on_interact")
 	if fired == false && mouth == false:
-			$AnimationPlayer.play("fuse" + spritedir)
-			yield(get_tree().create_timer(2.5), "timeout")
-			$AnimationPlayer.play("shot" + spritedir)
-			use_weapon("CannonBall")
-			fired = true
+		if network.is_map_host():
+			network.peer_call(self, "on_interact")
+		$AnimationPlayer.play("fuse" + spritedir)
+		yield(get_tree().create_timer(2.5), "timeout")
+		$AnimationPlayer.play("shot" + spritedir)
+		use_weapon("CannonBall")
+		fired = true
 
 sync func use_weapon(weapon_name, input="A"):
 	var weapon = global.weapons_def[weapon_name]
