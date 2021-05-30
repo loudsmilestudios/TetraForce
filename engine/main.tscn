@@ -278,8 +278,8 @@ anims/default = SubResource( 1 )
 position = Vector2( 112.53, 45.1675 )
 scale = Vector2( 1.75, 1.75 )
 texture = ExtResource( 2 )
-vframes = 8
 hframes = 6
+vframes = 8
 
 [node name="name" type="LineEdit" parent="options/scroll/vbox/characterselect"]
 margin_left = 48.5298
@@ -563,6 +563,7 @@ __meta__ = {
 
 [node name="loading_screen" parent="loading_screen_layer" instance=ExtResource( 7 )]
 visible = false
+
 [connection signal="mouse_entered" from="top/VBoxContainer/singleplayer" to="." method="_on_mouse_entered"]
 [connection signal="pressed" from="top/VBoxContainer/singleplayer" to="." method="_on_singleplayer_pressed"]
 [connection signal="mouse_entered" from="top/VBoxContainer/multiplayer" to="." method="_on_mouse_entered"]
