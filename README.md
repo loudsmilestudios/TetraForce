@@ -4,7 +4,7 @@
 
 [Play Now!](https://tetraforce.io/downloads/)
 
-TetraForce is an action adventure game inspired by the top-down Legend of Zelda games. It is designed to be very replayable for casual players and Zelda enthusiasts. The three features it will have to reach that goal is multiplayer, item randomizer, and moddability. Without these elements we will have a solid Zelda-inspired adventure. With all three added, it is a brand new Zelda-like experience.
+TetraForce is an action adventure game inspired by various action platformer puzzle games, such as the top-down Legend of Zelda games, and CrossCode. It is designed to be very replayable for casual and experienced players, whether they are playing by themselves or with friends. Three features we think are the most to get excited about are easy to utilize multiplayer, item randomizer, and moddability. With these features in mind and with more to come, it will be a brand new gaming experience inspired by some of the best games ever made.
 
 ![Multiplayer Screenshot](https://miro.medium.com/max/2930/1*ydgwH7-VoGrR0l6yx1-_OQ.png)
 
