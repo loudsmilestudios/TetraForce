@@ -6,6 +6,7 @@
 
 [sub_resource type="Animation" id=1]
 resource_name = "no_player"
+length = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -16,12 +17,11 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ 11 ]
+"values": [ 1 ]
 }
 
 [sub_resource type="Animation" id=2]
 resource_name = "sees_player"
-length = 0.04
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -30,15 +30,15 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.02 ),
+"times": PoolRealArray( 0, 0.5 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
-"values": [ 8, 0 ]
+"values": [ 0, 1 ]
 }
 
 [sub_resource type="CapsuleShape2D" id=3]
-radius = 5.82362
-height = 3.81358
+radius = 8.38653
+height = 0.502419
 
 [sub_resource type="CircleShape2D" id=4]
 radius = 25.0
@@ -52,11 +52,11 @@ anims/sees_player = SubResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 3 )
-hframes = 4
-vframes = 3
-frame = 8
+hframes = 2
+frame = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0.132431, 0 )
 shape = SubResource( 3 )
 
 [node name="NetworkObject" parent="." instance=ExtResource( 2 )]
