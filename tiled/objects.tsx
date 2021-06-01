@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tileset version="1.4" tiledversion="1.4.3" name="objects" tilewidth="16" tileheight="22" tilecount="34" columns="0">
+<tileset version="1.5" tiledversion="1.6.0" name="objects" tilewidth="16" tileheight="22" tilecount="36" columns="0">
  <grid orientation="orthogonal" width="1" height="1"/>
  <tile id="0">
   <properties>
@@ -253,5 +253,21 @@
    <property name="path" value="res://entities/enemies/knawblin/knawblin.tscn"/>
   </properties>
   <image width="16" height="16" source="images/objects/knawblin.png"/>
+ </tile>
+ <tile id="34">
+  <properties>
+   <property name="chest_spawn" type="bool" value="false"/>
+   <property name="location" value=""/>
+   <property name="path" value="res://entities/enemies/bat/bat.tscn"/>
+  </properties>
+  <image width="16" height="16" source="images/objects/bat.png"/>
+ </tile>
+ <tile id="35">
+  <properties>
+   <property name="chest_spawn" type="bool" value="false"/>
+   <property name="location" value=""/>
+   <property name="path" value="res://entities/enemies/sneaky_bush/sneaky_bush.tscn"/>
+  </properties>
+  <image width="16" height="16" source="images/objects/greenslime.png"/>
  </tile>
 </tileset>

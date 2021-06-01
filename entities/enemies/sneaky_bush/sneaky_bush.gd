@@ -9,7 +9,7 @@ func _ready():
 	MAX_HEALTH = 0.5
 	DAMAGE = 0.5
 	health = MAX_HEALTH
-	SPEED = 60
+	SPEED = 20
 
 func _physics_process(delta):
 	var sees_player = false
@@ -24,7 +24,6 @@ func _physics_process(delta):
 	if !sees_player && anim.assigned_animation != "no_player":
 		anim.play("no_player")
 		network.peer_call(anim, "play", ["no_player"])
-
 	loop_movement()
 	loop_spritedir()
 	loop_damage()
