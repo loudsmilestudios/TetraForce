@@ -1,0 +1,89 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://entities/enemies/thief_cat/thief_cat.gd" type="Script" id=1]
+[ext_resource path="res://engine/network_object.tscn" type="PackedScene" id=2]
+[ext_resource path="res://entities/enemies/thief_cat/thief_cat.png" type="Texture" id=3]
+
+[sub_resource type="Animation" id=1]
+resource_name = "walkDown"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3 ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "walkSide"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 4, 5, 6, 7 ]
+}
+
+[sub_resource type="Animation" id=3]
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 8, 9, 10, 11 ]
+}
+
+[sub_resource type="CapsuleShape2D" id=4]
+radius = 5.25806
+height = 3.87604
+
+[node name="Thief_cat" type="KinematicBody2D"]
+script = ExtResource( 1 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/walkDown = SubResource( 1 )
+anims/walkSide = SubResource( 2 )
+anims/walkUp = SubResource( 3 )
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 3 )
+hframes = 4
+vframes = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 4 )
+
+[node name="NetworkObject" parent="." instance=ExtResource( 2 )]
+update_properties = {
+"animation": "",
+"pos": Vector2( 0, 0 )
+}
+enter_properties = {
+"health": 0
+}
+
+[node name="PlayerDetect" type="Area2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="PlayerDetect"]
+position = Vector2( 0, -1.65 )
+rotation = 1.5708
+scale = Vector2( 1, 1.22917 )
+polygon = PoolVector2Array( -38.3502, -39.0506, 1.64977, -52.0677, 41.6498, -39.0509, 33.6499, -13.017, 0, 0, -30.3501, -13.0168 )
