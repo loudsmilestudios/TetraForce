@@ -135,7 +135,8 @@ func change_map(map, entrance):
 	if changing_map:
 		return
 	changing_map = true
-	
+
+	sfx.fadeout_music()
 	screenfx.play("fadewhite")
 	yield(screenfx, "animation_finished")
 	
