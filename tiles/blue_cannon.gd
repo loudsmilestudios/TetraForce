@@ -9,33 +9,37 @@ signal update_persistent_state
 
 func _ready():
 	add_to_group("interactable")
-	spritedir()
+	update_spritedir()
 	
 func _physics_process(delta):
 	pass
 	
-func interact(node):
-	if node.spritedir == "Up" && spritedir =="Down":
-		mouth = true
-	elif node.spritedir == "Down" && spritedir =="Up":
-		mouth = true
-	elif node.spritedir == "Left" && spritedir =="Right":
-		mouth = true
-	elif node.spritedir == "Right" && spritedir =="Left":
-		mouth = true
-	else:
-		mouth = false
-		
+func interact(node : Entity):
+	if node:
+		if node.spritedir == "Up" && spritedir =="Down":
+			mouth = true
+		elif node.spritedir == "Down" && spritedir =="Up":
+			mouth = true
+		elif node.spritedir == "Left" && spritedir =="Right":
+			mouth = true
+		elif node.spritedir == "Right" && spritedir =="Left":
+			mouth = true
+		else:
+			mouth = false
 	if network.is_map_host():
-		if fired == false && mouth == false:
-			$AnimationPlayer.play("fuse" + spritedir)
-			yield(get_tree().create_timer(2.5), "timeout")
-			$AnimationPlayer.play("shot" + spritedir)
-			use_weapon("CannonBall")
-			fired = true
-			#emit_signal("update_persistent_state")
+		on_interact()
 	else:
-		network.peer_call_id(network.get_map_host(), self, "interact", [node])
+		network.peer_call_id(network.get_map_host(), self, "on_interact")
+	
+func on_interact():
+	if fired == false && mouth == false:
+		if network.is_map_host():
+			network.peer_call(self, "on_interact")
+		$AnimationPlayer.play("fuse" + spritedir)
+		yield(get_tree().create_timer(2.5), "timeout")
+		$AnimationPlayer.play("shot" + spritedir)
+		use_weapon("CannonBall")
+		fired = true
 
 sync func use_weapon(weapon_name, input="A"):
 	var weapon = global.weapons_def[weapon_name]
@@ -54,7 +58,7 @@ sync func use_weapon(weapon_name, input="A"):
 	new_weapon.input = input
 	new_weapon.start()
 
-func spritedir():
+func update_spritedir():
 	match spritedir:
 		"Up":
 			$Sprite.frame = 2

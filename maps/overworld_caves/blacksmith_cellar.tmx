@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.3" orientation="orthogonal" renderorder="right-down" width="17" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="6">
+<map version="1.4" tiledversion="1.4.3" orientation="orthogonal" renderorder="right-down" width="17" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="12">
  <properties>
   <property name="music" value="cave"/>
  </properties>
  <tileset firstgid="1" source="../../tiled/overworld/overworld_tileset.tsx"/>
  <tileset firstgid="291" source="../../tiled/town/town_interior.tsx"/>
  <tileset firstgid="471" source="../../tiled/objects.tsx"/>
- <tileset firstgid="500" source="../../tiled/cave/cave_tileset.tsx"/>
+ <tileset firstgid="504" source="../../tiled/cave/cave_tileset.tsx"/>
  <layer id="3" name="ground" width="17" height="20">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -60,9 +60,9 @@
 291,292,292,292,292,292,292,292,292,292,292,292,292,292,292,292,292,
 296,297,297,297,297,297,297,297,297,297,297,297,297,297,297,297,297,
 301,302,302,302,302,302,302,302,302,302,302,302,302,416,415,418,295,
-0,0,0,0,0,0,0,0,535,0,0,0,0,0,0,0,296,
-0,0,0,0,0,0,0,0,540,541,534,0,0,0,0,0,296,
-0,0,0,0,0,0,0,0,0,0,540,545,0,546,541,541,301,
+0,0,0,0,0,0,0,0,539,0,0,0,0,0,0,0,296,
+0,0,0,0,0,0,0,0,544,545,538,0,0,0,0,0,296,
+0,0,0,0,0,0,0,0,0,0,544,549,0,550,545,545,301,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -103,30 +103,6 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <layer id="5" name="pots" width="17" height="20">
-  <data encoding="csv">
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,408,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,408,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,408,407,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,407,408,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-</data>
- </layer>
  <objectgroup id="6" name="objects">
   <object id="1" gid="481" x="192" y="64" width="16" height="16">
    <properties>
@@ -149,6 +125,28 @@
    </properties>
   </object>
   <object id="4" gid="480" x="192" y="112" width="16" height="16"/>
+  <object id="6" gid="503" x="224" y="288" width="16" height="16">
+   <properties>
+    <property name="color" value="red"/>
+   </properties>
+  </object>
+  <object id="7" gid="503" x="240" y="288" width="16" height="16"/>
+  <object id="8" gid="503" x="240" y="304" width="16" height="16">
+   <properties>
+    <property name="color" value="red"/>
+   </properties>
+  </object>
+  <object id="9" gid="503" x="224" y="304" width="16" height="16"/>
+  <object id="10" gid="503" x="240" y="128" width="16" height="16">
+   <properties>
+    <property name="color" value="red"/>
+   </properties>
+  </object>
+  <object id="11" gid="503" x="240" y="144" width="16" height="16">
+   <properties>
+    <property name="color" value="red"/>
+   </properties>
+  </object>
  </objectgroup>
  <objectgroup id="7" name="zones" visible="0" locked="1">
   <object id="5" type="area" x="0" y="32" width="272" height="288"/>

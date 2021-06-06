@@ -136,14 +136,17 @@ jobs:
         uses: actions/checkout@v2
       - name: Setup Godot
         run: |
-          brew install --cask godot
+          wget https://downloads.tuxfamily.org/godotengine/3.3.2/Godot_v3.3.2-stable_osx.universal.zip -O Godot.zip
+          unzip Godot.zip
+          rm Godot.zip
+          mv Godot.app /Applications/Godot.app
           ln -s /Applications/Godot.app/Contents/MacOS/Godot /usr/local/bin/godot
       - name: Build Project
         run: |
-          wget https://downloads.tuxfamily.org/godotengine/3.2.3/Godot_v3.2.3-stable_export_templates.tpz -q
-          unzip Godot_v3.2.3-stable_export_templates.tpz -d .
-          mkdir -p "/Users/runner/Library/Application Support/Godot/templates/3.2.3.stable"
-          mv templates/* "/Users/runner/Library/Application Support/Godot/templates/3.2.3.stable"
+          wget https://downloads.tuxfamily.org/godotengine/3.3.2/Godot_v3.3.2-stable_export_templates.tpz -q
+          unzip Godot_v3.3.2-stable_export_templates.tpz -d .
+          mkdir -p "/Users/runner/Library/Application Support/Godot/templates/3.3.2.stable"
+          mv templates/* "/Users/runner/Library/Application Support/Godot/templates/3.3.2.stable"
 
           mkdir -p $GITHUB_WORKSPACE/build
           godot --export osx $GITHUB_WORKSPACE/build/TetraForce.dmg

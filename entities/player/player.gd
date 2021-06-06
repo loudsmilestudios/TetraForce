@@ -248,6 +248,7 @@ func respawn():
 		spritedir = last_safe_spritedir
 		set_health(MAX_HEALTH)
 		emit_signal("health_changed")
+		network.peer_call(self, "set_hurt_texture", [false])
 
 func check_for_death():
 	if health <= 0:

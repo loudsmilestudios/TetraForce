@@ -82,7 +82,7 @@ window/stretch/aspect="keep"
 
 [editor_plugins]
 
-enabled=PoolStringArray( "vnen.tiled_importer" )
+enabled=PoolStringArray( "res://addons/godot-multiplayer-development-tools/plugin.cfg", "res://addons/vnen.tiled_importer/plugin.cfg" )
 
 [gui]
 
@@ -230,3 +230,7 @@ quality/2d/use_pixel_snap=true
 [tiled_importer]
 
 enable_json_format=false
+
+[tools]
+
+multiplayer_devtools/multistart/instance_count=1

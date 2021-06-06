@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.1" orientation="orthogonal" renderorder="right-down" width="19" height="12" tilewidth="16" tileheight="16" infinite="0" nextlayerid="10" nextobjectid="6">
+<map version="1.4" tiledversion="1.4.3" orientation="orthogonal" renderorder="right-down" width="19" height="12" tilewidth="16" tileheight="16" infinite="0" nextlayerid="10" nextobjectid="12">
  <properties>
   <property name="music" value="town"/>
   <property name="musicfx" value="quiet"/>
@@ -86,22 +86,6 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <layer id="6" name="pots" width="19" height="12">
-  <data encoding="csv">
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,118,118,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,118,118,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,118,118,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-</data>
- </layer>
  <objectgroup id="9" name="objects">
   <object id="2" name="town_house1" gid="182" x="144" y="176" width="16" height="16">
    <properties>
@@ -114,6 +98,36 @@
    <properties>
     <property name="dialogue" value="npc_boy_house1"/>
     <property name="texture" value="boy"/>
+   </properties>
+  </object>
+  <object id="6" gid="213" x="176" y="96" width="16" height="16">
+   <properties>
+    <property name="color" value="red"/>
+   </properties>
+  </object>
+  <object id="7" gid="213" x="192" y="96" width="16" height="16">
+   <properties>
+    <property name="color" value="red"/>
+   </properties>
+  </object>
+  <object id="8" gid="213" x="192" y="112" width="16" height="16">
+   <properties>
+    <property name="color" value="red"/>
+   </properties>
+  </object>
+  <object id="9" gid="213" x="176" y="112" width="16" height="16">
+   <properties>
+    <property name="color" value="red"/>
+   </properties>
+  </object>
+  <object id="10" gid="213" x="176" y="128" width="16" height="16">
+   <properties>
+    <property name="color" value="red"/>
+   </properties>
+  </object>
+  <object id="11" gid="213" x="192" y="128" width="16" height="16">
+   <properties>
+    <property name="color" value="red"/>
    </properties>
   </object>
  </objectgroup>
