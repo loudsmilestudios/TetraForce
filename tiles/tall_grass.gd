@@ -22,6 +22,7 @@ func enter_cut_cells(value):
 	cut_cells = value
 	for cell in cut_cells:
 		set_cellv(cell, -1)
+	update_bitmask_region()
 
 func process_tile(tile):
 	if get_cellv(tile) == -1:

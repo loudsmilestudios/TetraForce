@@ -511,8 +511,8 @@ anims/shotUp = SubResource( 8 )
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )
-vframes = 2
 hframes = 4
+vframes = 2
 frame = 2
 
 [node name="explosion" type="Sprite" parent="."]
@@ -520,8 +520,8 @@ visible = false
 position = Vector2( 0, -16 )
 z_index = -1
 texture = ExtResource( 2 )
-vframes = 4
 hframes = 4
+vframes = 4
 frame = 7
 
 [node name="fuse" type="Sprite" parent="."]

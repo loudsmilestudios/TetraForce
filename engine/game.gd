@@ -113,11 +113,17 @@ func pick_collectable():
 			return "heart"
 
 func spawn_collectable(collectable, pos, chance):
-	if randi() % chance == 0:
-		var path = str("res://entities/collectables/", pick_collectable(), ".tscn")
+		if randi() % chance == 0:
+			var path = str("res://entities/collectables/", pick_collectable(), ".tscn")
+			create_collectable(path, pos)
+			network.peer_call(self, "create_collectable", [path, pos])
+			
+func create_collectable(path, pos):
 		var new_collectable = load(path).instance()
 		call_deferred("add_child", new_collectable)
 		new_collectable.position = pos
+			
+		
 
 
 

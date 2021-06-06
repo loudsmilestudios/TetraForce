@@ -2,14 +2,16 @@ extends Enemy
 
 var movetimer_length = 30
 var movetimer = 0
+var radius = 25
 
 onready var detect = $PlayerDetect
 
 func _ready():
-	MAX_HEALTH = 0.5
+	MAX_HEALTH = 1
 	DAMAGE = 0.5
 	health = MAX_HEALTH
-	SPEED = 60
+	SPEED = 20
+	radius = $PlayerDetect/CollisionShape2D.shape.radius
 
 func _physics_process(delta):
 	var sees_player = false
@@ -21,14 +23,17 @@ func _physics_process(delta):
 			if !anim.is_playing() && anim.assigned_animation != "sees_player":
 				anim.play("sees_player")
 				network.peer_call(anim, "play", ["sees_player"])
+			radius = 50
 	if !sees_player && anim.assigned_animation != "no_player":
 		anim.play("no_player")
 		network.peer_call(anim, "play", ["no_player"])
-
+	if !sees_player:
+		radius = 25
 	loop_movement()
 	loop_spritedir()
 	loop_damage()
 	loop_holes()
+	$PlayerDetect/CollisionShape2D.shape.radius = radius
 
 	if movetimer > 0:
 		movetimer -= 1
