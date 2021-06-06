@@ -3,6 +3,7 @@ extends CanvasLayer
 var player
 var timer = Timer.new()
 
+const ESC_PATH = "res://ui/esc_menu/esc_menu.tscn"
 const HEART_ROW_SIZE = 8
 const HEART_SIZE = 8
 
@@ -164,6 +165,14 @@ func on_slate_add():
 func show_gameover():
 	var gameover = preload("res://ui/layovers/gameover.tscn").instance()
 	add_child(gameover)
+
+func show_esc_menu():
+	var esc_menu : Node = get_node_or_null("ESC_Menu")
+	if esc_menu:
+		esc_menu.queue_free()
+	else:
+		esc_menu = preload(ESC_PATH).instance()
+		add_child(esc_menu)
 
 func debug_update():
 	$debug/states.text = JSON.print(network.states, "    ")
