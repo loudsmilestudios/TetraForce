@@ -7,6 +7,8 @@ export var music = ""
 export var musicfx = ""
 export var light = "default"
 
+var current_enemies = []
+
 func _ready():
 	network.current_map = self
 	add_child(camera)
@@ -122,10 +124,7 @@ func create_collectable(path, pos):
 		var new_collectable = load(path).instance()
 		call_deferred("add_child", new_collectable)
 		new_collectable.position = pos
-			
 		
-
-
 
 
 

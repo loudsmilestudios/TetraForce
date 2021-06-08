@@ -13,8 +13,8 @@ func _ready():
 		light = get_parent().get_parent().light
 
 func get_enemies():
-	var overlapping_enemies = []
-	for body in get_overlapping_bodies():
-		if body is Enemy:
-			overlapping_enemies.append(body)
-	return overlapping_enemies
+	var enemies = []
+	for enemy in get_overlapping_bodies():
+		if enemy is Enemy:
+			enemies.append(enemy)
+	return enemies
