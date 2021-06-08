@@ -8,15 +8,22 @@ const DEFAULT_SFX_VOLUME = -15
 const DEFAULT_MUSIC_VOLUME = -20
 const QUIET_MUSIC_VOLUME = -27.5
 
+var music_fadingout = false
 var music_volume = DEFAULT_MUSIC_VOLUME
 
 func _ready():
 	add_child(music)
 
 func _process(delta):
+	if music_fadingout:
+		music_volume -= delta * 30
 	music.volume_db = lerp(music.volume_db, music_volume, 0.1)
 
+func fadeout_music():
+	music_fadingout = true
+
 func set_music(song, musicfx = ""):
+	music_fadingout = false
 	if gameover == false:
 		music_volume = DEFAULT_MUSIC_VOLUME
 		if song != current_song:
