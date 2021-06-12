@@ -6,22 +6,27 @@ var movetimer = 0
 onready var detect = $PlayerDetect
 
 func _ready():
-	MAX_HEALTH = 0.5
+	MAX_HEALTH = 1
 	DAMAGE = 0.5
 	health = MAX_HEALTH
 	movedir = rand_direction()
-	SPEED = 50
+	SPEED = 35
 
 func _physics_process(delta):
 	if !network.is_map_host() || is_dead():
 		return
 	
 	var sees_player = false
+
 	if !network.is_map_host() || is_dead():
 		return
 	for body in detect.get_overlapping_bodies():
 		if body is Player:
 			sees_player = true
+			SPEED = 50
+		else:
+			sees_player = false
+			SPEED = 35
 	
 	loop_movement()
 	loop_spritedir()
@@ -33,12 +38,12 @@ func _physics_process(delta):
 	if movetimer > 0:
 		movetimer -= 1
 
-	if movetimer == 10:
-		movedir = Vector2.ZERO
+	#if movetimer == 10:
+		#movedir = Vector2.ZERO
 
 	if movetimer == 0 || is_on_wall():
 		movetimer = movetimer_length
-		movedir = rand_direction()
+		movedir = rand_direction_fair(movedir)
 		if movedir == Vector2.UP:
 			$PlayerDetect/CollisionPolygon2D.rotation_degrees = 0.0
 		if movedir == Vector2.DOWN:
