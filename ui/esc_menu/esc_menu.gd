@@ -1,8 +1,11 @@
 extends Node
 
+func _ready():
+	$VBoxContainer.get_child(0).grab_focus()
+
 func on_return():
 	sfx.play("sword3")
-	self.queue_free()
+	get_parent().show_esc_menu()
 
 func on_exit_to_menu():
 	sfx.play("sword3")

@@ -279,6 +279,7 @@ func loop_action_button():
 		action_cooldown = 10
 	if Input.is_action_just_pressed("ESC"):
 		hud.show_esc_menu()
+		state = "menu"
 
 func loop_interact():
 	if ray.is_colliding():

@@ -170,6 +170,7 @@ func show_esc_menu():
 	var esc_menu : Node = get_node_or_null("ESC_Menu")
 	if esc_menu:
 		esc_menu.queue_free()
+		player.state = "default"
 	else:
 		esc_menu = preload(ESC_PATH).instance()
 		add_child(esc_menu)
