@@ -3,6 +3,10 @@ extends Node
 func _ready():
 	$VBoxContainer.get_child(0).grab_focus()
 
+func _input(event):
+	if Input.is_action_just_pressed("ESC"):
+		on_return()
+
 func on_return():
 	sfx.play("sword3")
 	get_parent().show_esc_menu()
