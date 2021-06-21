@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tileset version="1.5" tiledversion="1.6.0" name="objects" tilewidth="16" tileheight="22" tilecount="36" columns="0">
+<tileset version="1.5" tiledversion="1.6.0" name="objects" tilewidth="16" tileheight="22" tilecount="37" columns="0">
  <grid orientation="orthogonal" width="1" height="1"/>
  <tile id="0">
   <properties>
@@ -268,6 +268,14 @@
    <property name="location" value=""/>
    <property name="path" value="res://entities/enemies/sneaky_bush/sneaky_bush.tscn"/>
   </properties>
-  <image width="16" height="16" source="images/objects/greenslime.png"/>
+  <image width="16" height="16" source="images/objects/sneakybush.png"/>
+ </tile>
+ <tile id="36">
+  <properties>
+   <property name="chest_spawn" type="bool" value="false"/>
+   <property name="location" value=""/>
+   <property name="path" value="res://entities/enemies/cucukin/cucukin.tscn"/>
+  </properties>
+  <image width="16" height="16" source="images/objects/cucukin.png"/>
  </tile>
 </tileset>
