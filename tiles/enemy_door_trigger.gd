@@ -4,15 +4,21 @@ export(String, MULTILINE) var dialogue: String = ""
 
 var begin
 var current_enemies = []
-var active = false
+var zone
+
+signal started
+signal finished
 
 func _ready():
+	set_physics_process(false)
 	add_to_group("interactable")
 	add_to_group("nopush")
-		
+	add_to_group("zoned")
+
 func _physics_process(delta):
-	if current_enemies == [] && active == true:
-		deactivate()
+	if zone:
+		if zone.get_enemies() == []:
+			deactivate()
 
 func interact(node):
 	var dialogue_manager = preload("res://ui/dialogue/dialogue_manager.tscn").instance()
@@ -33,20 +39,21 @@ func _on_Begin_Pressed():
 			network.peer_call_id(network.get_map_host(), self, "activate")
 		
 func activate():
-	active = true
 	$AnimationPlayer.play("activate")
 	network.peer_call($AnimationPlayer, "play", ["activate"])
-	print(network.current_map.current_enemies)
-
-func get_active_enemies(): # returns a list of all enemies in active zones
-	var active_zones = [global.player.current_zone]
-	var active_enemies = []
-	for zone in active_zones:
-		for enemy in zone.get_enemies():
-			current_enemies.append(enemy)
-	return current_enemies
+	emit_signal("started")
+	yield(get_tree(), "idle_frame")
+	yield(get_tree(), "idle_frame")
+	set_physics_process(true)
+	
 	
 func deactivate():
 	$AnimationPlayer.play("deactivate")
 	network.peer_call($AnimationPlayer, "play", ["deactivate"])
+	remove_from_group("interactable")
+	network.peer_call(self, "remove_from_group", ["interactable"])
+	emit_signal("finished")
+	set_physics_process(false)
+	
+	
 	

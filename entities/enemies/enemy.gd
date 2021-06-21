@@ -5,14 +5,21 @@ class_name Enemy
 export var zone = ""
 export(bool) var chest_spawn = false
 export(String) var location = "room"
+export(String) var spawned_by = ""
+
+var spawn_position = home_position
 
 func _ready():
+	spawn_position = home_position
 	add_to_group("enemy")
 	add_to_group("maphost")
 	set_collision_layer_bit(0, 0)
 	set_collision_mask_bit(0, 0)
 	set_collision_layer_bit(1, 1)
 	set_collision_mask_bit(1, 1)
+	if spawned_by != "":
+		set_dead()
+		get_parent().get_node(spawned_by).connect("started", self, "spawned")
 
 func _process(delta):
 	set_hole_bit(hitstun == 0)
@@ -57,6 +64,17 @@ remote func set_dead():
 	pos = Vector2(0,0)
 	position = Vector2(0,0)
 	health = -1
+	
+func spawned():
+	show()
+	set_physics_process(true)
+	home_position = spawn_position
+	pos = home_position
+	position = home_position
+	health = MAX_HEALTH
+	var death_animation = preload("res://effects/enemy_death.tscn").instance()
+	death_animation.global_position = position
+	get_parent().add_child(death_animation)
 
 func is_dead():
 	if health <= 0 && hitstun == 0:

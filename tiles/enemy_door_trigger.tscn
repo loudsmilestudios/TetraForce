@@ -39,16 +39,18 @@ tracks/0/keys = {
 extents = Vector2( 8, 8 )
 
 [node name="enemy_door_trigger" type="StaticBody2D"]
+collision_layer = 1025
+collision_mask = 1025
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )
 hframes = 7
-frame = 6
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/activate = SubResource( 1 )
 anims/deactivate = SubResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource( 3 )

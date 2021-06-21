@@ -11,6 +11,12 @@ func _ready():
 		musicfx = get_parent().get_parent().musicfx
 	if light == "":
 		light = get_parent().get_parent().light
+	
+	yield(get_tree(), "idle_frame")
+	
+	for body in get_overlapping_bodies():
+		if body.is_in_group("zoned"):
+			body.zone = self
 
 func get_enemies():
 	var enemies = []
