@@ -3,11 +3,11 @@ extends StaticBody2D
 export(String, MULTILINE) var dialogue: String = ""
 
 var begin
-var current_enemies = []
 var zone
 
 signal started
 signal finished
+signal reset
 
 func _ready():
 	set_physics_process(false)
@@ -19,6 +19,11 @@ func _physics_process(delta):
 	if zone:
 		if zone.get_enemies() == []:
 			deactivate()
+		if zone.get_players() == [] && zone.get_enemies() != []:
+			deactivate()
+			emit_signal("reset")
+			add_to_group("interactable")
+			network.peer_call(self, "add_to_group", ["interactable"])
 
 func interact(node):
 	var dialogue_manager = preload("res://ui/dialogue/dialogue_manager.tscn").instance()

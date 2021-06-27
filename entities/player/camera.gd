@@ -56,9 +56,9 @@ func unlimit():
 	limit_bottom = 1000000
 
 func set_limits(rect : Rect2):
-	limit_left = int(rect.position.x - 16)
+	limit_left = int(rect.position.x)
 	limit_right = int(rect.position.x + rect.size.x + 16)
-	limit_top = int(rect.position.y  - 16)
+	limit_top = int(rect.position.y)
 	limit_bottom = int(rect.position.y + rect.size.y + 16)
 
 func _process(_delta):

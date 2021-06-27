@@ -8,13 +8,12 @@ export var texture = "dungeon1"
 
 onready var locked = true setget set_locked
 
-signal update_persistent_state
-
 func _ready():
 	spritedir()
 	lock()
 	get_parent().get_node(location).connect("finished", self, "set_locked", [false])
 	get_parent().get_node(location).connect("started", self, "set_locked", [true])
+	get_parent().get_node(location).connect("reset", self, "set_reset")
 	if !starts_locked:
 		locked = false
 		unlock()
@@ -27,6 +26,12 @@ func lock():
 func unlock():
 	$AnimationPlayer.play("enemy_unlock_" + direction)
 	$CollisionShape2D.disabled = true
+	
+func set_reset():
+	lock()
+	if !starts_locked:
+		locked = false
+		unlock()
 
 func set_locked(value):
 	if locked == value:

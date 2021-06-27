@@ -24,3 +24,10 @@ func get_enemies():
 		if enemy is Enemy:
 			enemies.append(enemy)
 	return enemies
+
+func get_players():
+	var players = []
+	for player in get_overlapping_bodies():
+		if player is Player:
+			players.append(player)
+	return players

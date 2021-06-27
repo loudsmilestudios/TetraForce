@@ -155,7 +155,6 @@ anims/enemy_unlock_right = SubResource( 8 )
 anims/enemy_unlock_up = SubResource( 9 )
 
 [node name="NetworkObject" parent="." instance=ExtResource( 3 )]
-persistent = true
 enter_properties = {
 "locked": true
 }

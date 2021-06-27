@@ -2,7 +2,6 @@ extends Entity
 
 class_name Enemy
 
-export var zone = ""
 export(bool) var chest_spawn = false
 export(String) var location = "room"
 export(String) var spawned_by = ""
@@ -20,6 +19,7 @@ func _ready():
 	if spawned_by != "":
 		set_dead()
 		get_parent().get_node(spawned_by).connect("started", self, "spawned")
+		get_parent().get_node(spawned_by).connect("reset", self, "set_dead")
 
 func _process(delta):
 	set_hole_bit(hitstun == 0)
