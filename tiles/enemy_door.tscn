@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://tiles/enemy_door.png" type="Texture" id=1]
 [ext_resource path="res://tiles/enemy_door.gd" type="Script" id=2]
@@ -7,7 +7,7 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 8, 8 )
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=2]
 resource_name = "enemy_lock_down"
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -24,8 +24,6 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id=3]
 resource_name = "enemy_lock_left"
-length = 0.5
-loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -33,16 +31,14 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.2, 0.3, 0.4 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 15, 14, 13, 12 ]
+"values": [ 30, 31, 32, 33, 34, 35, 36, 37, 38, 39 ]
 }
 
 [sub_resource type="Animation" id=4]
 resource_name = "enemy_lock_right"
-length = 0.5
-loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -50,16 +46,14 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.2, 0.3, 0.4 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 7, 6, 5, 4 ]
+"values": [ 10, 11, 12, 13, 14, 15, 16, 17, 18, 19 ]
 }
 
 [sub_resource type="Animation" id=5]
 resource_name = "enemy_lock_up"
-length = 0.5
-loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -67,10 +61,73 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.2, 0.3, 0.4 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 3, 2, 1, 0 ]
+"values": [ 20, 21, 22, 23, 24, 25, 26, 27, 28, 29 ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "enemy_unlock_down"
+length = 0.55
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 9, 4, 3, 2, 1, 0 ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "enemy_unlock_left"
+length = 0.55
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 39, 34, 33, 32, 31, 30 ]
+}
+
+[sub_resource type="Animation" id=8]
+length = 0.55
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 19, 14, 13, 12, 11, 10 ]
+}
+
+[sub_resource type="Animation" id=9]
+resource_name = "enemy_unlock_up"
+length = 0.55
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 29, 24, 23, 22, 21, 20 ]
 }
 
 [node name="enemy_door" type="StaticBody2D"]
@@ -81,16 +138,21 @@ script = ExtResource( 2 )
 texture = ExtResource( 1 )
 hframes = 10
 vframes = 4
+frame = 19
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
 disabled = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/enemy_lock_down = SubResource( 6 )
+anims/enemy_lock_down = SubResource( 2 )
 anims/enemy_lock_left = SubResource( 3 )
 anims/enemy_lock_right = SubResource( 4 )
 anims/enemy_lock_up = SubResource( 5 )
+anims/enemy_unlock_down = SubResource( 6 )
+anims/enemy_unlock_left = SubResource( 7 )
+anims/enemy_unlock_right = SubResource( 8 )
+anims/enemy_unlock_up = SubResource( 9 )
 
 [node name="NetworkObject" parent="." instance=ExtResource( 3 )]
 persistent = true

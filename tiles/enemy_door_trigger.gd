@@ -42,8 +42,8 @@ func activate():
 	$AnimationPlayer.play("activate")
 	network.peer_call($AnimationPlayer, "play", ["activate"])
 	emit_signal("started")
-	yield(get_tree(), "idle_frame")
-	yield(get_tree(), "idle_frame")
+	for i in range(20):
+		yield(get_tree(), "idle_frame")
 	set_physics_process(true)
 	
 	

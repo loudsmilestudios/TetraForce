@@ -66,6 +66,8 @@ remote func set_dead():
 	health = -1
 	
 func spawned():
+	if network.is_map_host():
+		network.peer_call(self, "spawned")
 	show()
 	set_physics_process(true)
 	home_position = spawn_position
