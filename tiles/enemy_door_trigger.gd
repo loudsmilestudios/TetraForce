@@ -46,6 +46,9 @@ func _on_Begin_Pressed():
 func activate():
 	$AnimationPlayer.play("activate")
 	network.peer_call($AnimationPlayer, "play", ["activate"])
+	if is_in_group("interactable"):
+		remove_from_group("interactable")
+		network.peer_call(self, "remove_from_group", ["interactable"])
 	emit_signal("started")
 	for i in range(20):
 		yield(get_tree(), "idle_frame")
@@ -55,8 +58,9 @@ func activate():
 func deactivate():
 	$AnimationPlayer.play("deactivate")
 	network.peer_call($AnimationPlayer, "play", ["deactivate"])
-	remove_from_group("interactable")
-	network.peer_call(self, "remove_from_group", ["interactable"])
+	if is_in_group("interactable"):
+		remove_from_group("interactable")
+		network.peer_call(self, "remove_from_group", ["interactable"])
 	emit_signal("finished")
 	set_physics_process(false)
 	

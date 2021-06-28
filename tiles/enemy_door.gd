@@ -20,17 +20,21 @@ func _ready():
 		
 func lock():
 	$AnimationPlayer.play("enemy_lock_" + direction)
+	network.peer_call($AnimationPlayer, "play", ["enemy_lock_" + direction])
 	set_locked(true)
-	$CollisionShape2D.disabled = false
+	#$CollisionShape2D.disabled = false
 
 func unlock():
 	$AnimationPlayer.play("enemy_unlock_" + direction)
-	$CollisionShape2D.disabled = true
+	network.peer_call($AnimationPlayer, "play", ["enemy_unlock_" + direction])
+	#$CollisionShape2D.disabled = true
 	
 func set_reset():
 	lock()
 	if !starts_locked:
 		locked = false
+		if network.is_map_host():
+			network.peer_call(self, "unlock")
 		unlock()
 
 func set_locked(value):
