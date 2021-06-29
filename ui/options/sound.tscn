@@ -1,18 +1,14 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://ui/options/sound.gd" type="Script" id=1]
-[ext_resource path="res://ui/theme/font.ttf" type="DynamicFontData" id=2]
-
-[sub_resource type="DynamicFont" id=1]
-font_data = ExtResource( 2 )
-
-[sub_resource type="Theme" id=2]
-default_font = SubResource( 1 )
+[ext_resource path="res://ui/theme/theme.tres" type="Theme" id=2]
 
 [node name="Sound" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-theme = SubResource( 2 )
+margin_top = -0.222717
+margin_bottom = -0.222717
+theme = ExtResource( 2 )
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -31,13 +27,15 @@ __meta__ = {
 
 [node name="Master" type="HSplitContainer" parent="VBoxContainer"]
 margin_right = 232.0
-margin_bottom = 16.0
+margin_bottom = 13.0
+dragger_visibility = 1
 
 [node name="Label" type="Label" parent="VBoxContainer/Master"]
-margin_top = 1.0
 margin_right = 36.0
-margin_bottom = 14.0
+margin_bottom = 13.0
 text = "Master"
+align = 1
+valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -45,7 +43,7 @@ __meta__ = {
 [node name="Slider" type="HSlider" parent="VBoxContainer/Master"]
 margin_left = 48.0
 margin_right = 232.0
-margin_bottom = 16.0
+margin_bottom = 10.0
 grow_horizontal = 2
 __meta__ = {
 "_edit_use_anchors_": false
