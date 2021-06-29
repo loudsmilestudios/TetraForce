@@ -1,0 +1,131 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://ui/theme/theme.tres" type="Theme" id=1]
+[ext_resource path="res://entities/player/chain.png" type="Texture" id=2]
+[ext_resource path="res://ui/main/characterselect.gd" type="Script" id=3]
+
+[sub_resource type="Animation" id=1]
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("preview:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 0, 1 ]
+}
+
+[node name="options" type="Panel" groups=[
+"menu",
+]]
+visible = false
+margin_left = 108.0
+margin_top = 103.0
+margin_right = 408.0
+margin_bottom = 273.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="scroll" type="Panel" parent="."]
+margin_left = 1.0
+margin_right = 300.0
+margin_bottom = 170.0
+
+[node name="vbox" type="Control" parent="scroll"]
+margin_bottom = 240.0
+rect_min_size = Vector2( 0, 240 )
+
+[node name="characterselect" type="Panel" parent="scroll/vbox"]
+margin_left = 36.4108
+margin_top = 10.0
+margin_right = 260.411
+margin_bottom = 132.0
+rect_min_size = Vector2( 160, 114 )
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="scroll/vbox/characterselect"]
+autoplay = "default"
+playback_speed = 4.0
+anims/default = SubResource( 1 )
+
+[node name="preview" type="Sprite" parent="scroll/vbox/characterselect"]
+position = Vector2( 112.53, 45.1675 )
+scale = Vector2( 1.75, 1.75 )
+texture = ExtResource( 2 )
+hframes = 6
+vframes = 8
+
+[node name="name" type="LineEdit" parent="scroll/vbox/characterselect"]
+margin_left = 48.5298
+margin_top = 77.1675
+margin_right = 176.53
+margin_bottom = 109.575
+text = "Chain"
+align = 1
+max_length = 10
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="back" type="Button" parent="scroll/vbox/characterselect"]
+margin_left = 48.5298
+margin_top = 29.1675
+margin_right = 64.5298
+margin_bottom = 51.1675
+text = "<"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="forward" type="Button" parent="scroll/vbox/characterselect"]
+margin_left = 160.53
+margin_top = 29.1675
+margin_right = 176.53
+margin_bottom = 51.1675
+text = ">"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="scroll/vbox/characterselect"]
+margin_left = 16.0
+margin_top = 5.64322
+margin_right = 208.0
+margin_bottom = 21.6432
+text = "Character skin and player name"
+align = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="endpoint" type="OptionButton" parent="scroll/vbox"]
+margin_left = 83.0703
+margin_top = 138.162
+margin_right = 213.07
+margin_bottom = 162.162
+theme = ExtResource( 1 )
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="save" type="Button" parent="."]
+margin_left = 338.0
+margin_top = 148.725
+margin_right = 386.0
+margin_bottom = 170.725
+text = "Save"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="text_changed" from="scroll/vbox/characterselect/name" to="scroll/vbox/characterselect" method="_on_name_text_changed"]
