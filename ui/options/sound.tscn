@@ -45,6 +45,7 @@ margin_left = 48.0
 margin_right = 232.0
 margin_bottom = 10.0
 grow_horizontal = 2
+max_value = 50.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
