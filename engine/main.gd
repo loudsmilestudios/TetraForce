@@ -26,8 +26,8 @@ func _ready():
 	
 	add_child(server_api)
 	
-	endpoint_button.add_item("Production")
-	endpoint_button.add_item("Stage")
+	#endpoint_button.add_item("Production")
+	#endpoint_button.add_item("Stage")
 	_on_endpoint_item_selected(0)
 	
 	if OS.get_name() == "HTML5":
@@ -248,12 +248,6 @@ func _on_multiplayer_pressed():
 func _on_options_pressed():
 	hide_menus()
 	$options.show()
-	$back.show()
-	$back.grab_focus()
-
-func _on_keybinds_pressed():
-	hide_menus()
-	$keybinds.show()
 	$back.show()
 	$back.grab_focus()
 

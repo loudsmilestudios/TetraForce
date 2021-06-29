@@ -1,4 +1,4 @@
-extends Panel
+extends Control
 
 var can_change_key = false
 var action_string

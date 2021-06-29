@@ -1,9 +1,8 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://ui/theme/theme.tres" type="Theme" id=1]
-[ext_resource path="res://ui/options/keybinds.tscn" type="PackedScene" id=2]
+[ext_resource path="res://ui/options/options.tscn" type="PackedScene" id=2]
 [ext_resource path="res://engine/main.gd" type="Script" id=3]
-[ext_resource path="res://ui/options/gameplay.tscn" type="PackedScene" id=4]
 [ext_resource path="res://ui/logo_animated_sprite.tres" type="SpriteFrames" id=6]
 [ext_resource path="res://ui/loading_screen/loading_screen.tscn" type="PackedScene" id=7]
 
@@ -88,16 +87,6 @@ margin_right = 144.0
 margin_bottom = 86.7537
 size_flags_stretch_ratio = 0.0
 text = "Options"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="keybinds" type="Button" parent="top/VBoxContainer"]
-margin_top = 90.0
-margin_right = 144.0
-margin_bottom = 111.754
-size_flags_stretch_ratio = 0.0
-text = "Keybinds"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -221,9 +210,14 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="options" parent="." instance=ExtResource( 4 )]
-
-[node name="keybinds" parent="." instance=ExtResource( 2 )]
+[node name="options" parent="." instance=ExtResource( 2 )]
+visible = false
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 143.0
+margin_top = 98.0
+margin_right = 368.0
+margin_bottom = 277.0
 
 [node name="back" type="Button" parent="." groups=[
 "menu",
@@ -248,8 +242,6 @@ visible = false
 [connection signal="pressed" from="top/VBoxContainer/multiplayer" to="." method="_on_multiplayer_pressed"]
 [connection signal="mouse_entered" from="top/VBoxContainer/options" to="." method="_on_mouse_entered"]
 [connection signal="pressed" from="top/VBoxContainer/options" to="." method="_on_options_pressed"]
-[connection signal="mouse_entered" from="top/VBoxContainer/keybinds" to="." method="_on_mouse_entered"]
-[connection signal="pressed" from="top/VBoxContainer/keybinds" to="." method="_on_keybinds_pressed"]
 [connection signal="mouse_entered" from="top/VBoxContainer/quit" to="." method="_on_mouse_entered"]
 [connection signal="pressed" from="top/VBoxContainer/quit" to="." method="_on_quit_pressed"]
 [connection signal="pressed" from="multiplayer/Automatic/connect" to="." method="_on_connect_pressed"]
