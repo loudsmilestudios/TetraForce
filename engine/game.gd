@@ -41,8 +41,11 @@ func _process(delta): # can be on screen change instead of process
 	var active_enemies = []
 	
 	for player in get_tree().get_nodes_in_group("player"):
-		if !active_zones.has(player.current_zone) && player.current_zone != null:
-			active_zones.append(player.current_zone)
+		var handler = player.get_node("ZoneHandler")
+		if handler.get_overlapping_areas().size() > 0: 
+			var player_zone = handler.get_overlapping_areas()[0]
+			if !active_zones.has(player_zone):
+				active_zones.append(player_zone)
 	
 	for zone in active_zones:
 		for enemy in zone.get_enemies():
