@@ -28,6 +28,7 @@ __meta__ = {
 [node name="Master" type="HSplitContainer" parent="VBoxContainer"]
 margin_right = 232.0
 margin_bottom = 13.0
+dragger_visibility = 1
 
 [node name="Label" type="Label" parent="VBoxContainer/Master"]
 margin_right = 36.0

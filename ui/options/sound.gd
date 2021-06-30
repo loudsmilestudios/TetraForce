@@ -23,5 +23,7 @@ func percent_to_db(pct : float) -> float:
 	return pct / 100 * 86 - 6
 
 func on_master_slider_change(new_value):
+	if not "sound" in global.options:
+		global.options["sound"] = {}
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master"), percent_to_db(new_value))
 	global.options.sound.master_volume = new_value

@@ -35,11 +35,11 @@ margin_right = 4.29142
 margin_top = 4.03168
 margin_bottom = 4.72205
 
+[sub_resource type="StyleBoxEmpty" id=4]
+
 [sub_resource type="StyleBoxEmpty" id=5]
 
-[sub_resource type="StyleBoxEmpty" id=6]
-
-[sub_resource type="StyleBoxTexture" id=12]
+[sub_resource type="StyleBoxTexture" id=6]
 texture = ExtResource( 9 )
 region_rect = Rect2( 0, 0, 8, 8 )
 margin_left = 3.0
@@ -95,9 +95,9 @@ HSlider/icons/grabber = ExtResource( 10 )
 HSlider/icons/grabber_disabled = ExtResource( 8 )
 HSlider/icons/grabber_highlight = ExtResource( 10 )
 HSlider/icons/tick = null
-HSlider/styles/grabber_area = SubResource( 5 )
-HSlider/styles/grabber_area_highlight = SubResource( 6 )
-HSlider/styles/slider = SubResource( 12 )
+HSlider/styles/grabber_area = SubResource( 4 )
+HSlider/styles/grabber_area_highlight = SubResource( 5 )
+HSlider/styles/slider = SubResource( 6 )
 LineEdit/colors/clear_button_color = Color( 0.88, 0.88, 0.88, 1 )
 LineEdit/colors/clear_button_color_pressed = Color( 1, 1, 1, 1 )
 LineEdit/colors/cursor_color = Color( 0.94, 0.94, 0.94, 1 )
