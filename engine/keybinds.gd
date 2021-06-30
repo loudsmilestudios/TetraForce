@@ -1,4 +1,4 @@
-extends Panel
+extends Control
 
 var can_change_key = false
 var action_string
@@ -6,6 +6,7 @@ var action_string
 enum ACTIONS {UP, DOWN, LEFT, RIGHT, A, B, X, Y, START}
 
 func _ready():
+	global.connect("options_loaded", self, "update_options")
 	_set_keys()
 
 func _input(event):
@@ -34,6 +35,7 @@ func _change_key(new_key, type):
 
 	# ass the new key to our currently selected action
 	InputMap.action_add_event(action_string, new_key)
+	update_action(type, action_string, new_key.scancode)
 
 	# update the UI
 	_set_keys()
@@ -77,3 +79,36 @@ func _mark_button(target):
 	for action in ACTIONS:
 		if action != target:
 			get_node("scroll/vbox/Action_" + str(action) + "/Button").set_pressed(false)
+
+#############################
+# SAVING & LOADING KEYBINDS #
+#############################
+func intialize_options():
+	if not "keybinds" in global.options:
+		global.options["keybinds"] = {}
+	for type in ["InputEventKey", "InputEventJoypadButton"]:
+		if not type in global.options.keybinds:
+			global.options.keybinds[type] = {}
+
+func update_options():
+	intialize_options()
+
+	for type in [InputEventKey, InputEventJoypadButton]:
+		for keybind in global.options.keybinds[input_type_to_string(type)]:
+			action_string = keybind
+			var event = type.new()
+			event.scancode = OS.find_scancode_from_string(global.options.keybinds[input_type_to_string(type)][keybind])
+			_change_key(event, type)
+
+func input_type_to_string(type):
+	match type:
+		InputEventKey:
+			return "InputEventKey"
+		InputEventJoypadButton:
+			return "InputEventJoypadButton"
+	return "unknown"
+
+func update_action(type, action, value):
+	intialize_options()
+
+	global.options.keybinds[input_type_to_string(type)][action] = OS.get_scancode_string(value)
