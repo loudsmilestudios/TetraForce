@@ -1,6 +1,5 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://ui/options/save.tscn" type="PackedScene" id=1]
 [ext_resource path="res://entities/player/chain.png" type="Texture" id=2]
 [ext_resource path="res://ui/main/characterselect.gd" type="Script" id=3]
 [ext_resource path="res://ui/theme/font.ttf" type="DynamicFontData" id=4]
@@ -109,15 +108,5 @@ autowrap = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="save" parent="." instance=ExtResource( 1 )]
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-margin_left = -16.2278
-margin_top = -22.7537
-margin_right = 16.2278
-margin_bottom = 0.0
 
 [connection signal="text_changed" from="characterselect/name" to="characterselect" method="_on_name_text_changed"]

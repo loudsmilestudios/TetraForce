@@ -252,6 +252,8 @@ func _on_options_pressed():
 	$back.grab_focus()
 
 func _on_back_pressed():
+	if $options.is_visible_in_tree():
+		global.save_options()
 	hide_menus()
 	$top.show()
 	singleplayer_focus.grab_focus()
