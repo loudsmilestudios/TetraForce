@@ -35,16 +35,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="save" parent="." instance=ExtResource( 1 )]
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-margin_left = -16.2278
-margin_top = -22.7537
-margin_right = 16.2278
-margin_bottom = 0.0
-
 [node name="characterselect" type="Control" parent="."]
 anchor_left = 0.5
 anchor_top = 0.5
@@ -119,5 +109,15 @@ autowrap = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="save" parent="." instance=ExtResource( 1 )]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -16.2278
+margin_top = -22.7537
+margin_right = 16.2278
+margin_bottom = 0.0
 
 [connection signal="text_changed" from="characterselect/name" to="characterselect" method="_on_name_text_changed"]
