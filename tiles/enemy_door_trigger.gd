@@ -12,13 +12,13 @@ signal finished
 signal reset
 
 func _ready():
-	set_physics_process(false)
+	set_physics_process(active)
 	add_to_group("interactable")
 	add_to_group("nopush")
 	add_to_group("zoned")
 
 func _physics_process(delta):
-	if zone && network.is_map_host():
+	if active && zone && network.is_map_host():
 		if zone.get_enemies() == []:
 			deactivate()
 		if zone.get_players() == [] && zone.get_enemies() != []:

@@ -57,6 +57,6 @@ visible = false
 shape = SubResource( 3 )
 
 [node name="NetworkObject" parent="." instance=ExtResource( 3 )]
-update_properties = {
+enter_properties = {
 "active": false
 }
