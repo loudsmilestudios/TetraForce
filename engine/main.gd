@@ -26,8 +26,8 @@ func _ready():
 	
 	add_child(server_api)
 	
-	endpoint_button.add_item("Production")
-	endpoint_button.add_item("Stage")
+	#endpoint_button.add_item("Production")
+	#endpoint_button.add_item("Stage")
 	_on_endpoint_item_selected(0)
 	
 	if OS.get_name() == "HTML5":
@@ -251,13 +251,9 @@ func _on_options_pressed():
 	$back.show()
 	$back.grab_focus()
 
-func _on_keybinds_pressed():
-	hide_menus()
-	$keybinds.show()
-	$back.show()
-	$back.grab_focus()
-
 func _on_back_pressed():
+	if $options.is_visible_in_tree():
+		global.save_options()
 	hide_menus()
 	$top.show()
 	singleplayer_focus.grab_focus()
