@@ -26,8 +26,8 @@ func _ready():
 	
 	add_child(server_api)
 	
-	endpoint_button.add_item("Production")
-	endpoint_button.add_item("Stage")
+	#endpoint_button.add_item("Production")
+	#endpoint_button.add_item("Stage")
 	_on_endpoint_item_selected(0)
 	
 	if OS.get_name() == "HTML5":
@@ -200,9 +200,9 @@ func _client_disconnect():
 	end_game()
 
 func end_game():
-	network.current_map.free() # erase immediately, otherwise network might show errors (this is why we connected deferred above)
+	network.complete()
 	show()
-	get_tree().set_network_peer(null) #remove peer
+	screenfx.play("default")
 
 func quit_program():
 	get_tree().set_network_peer(null)
@@ -251,13 +251,9 @@ func _on_options_pressed():
 	$back.show()
 	$back.grab_focus()
 
-func _on_keybinds_pressed():
-	hide_menus()
-	$keybinds.show()
-	$back.show()
-	$back.grab_focus()
-
 func _on_back_pressed():
+	if $options.is_visible_in_tree():
+		global.save_options()
 	hide_menus()
 	$top.show()
 	singleplayer_focus.grab_focus()

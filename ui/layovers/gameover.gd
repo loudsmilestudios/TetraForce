@@ -37,4 +37,10 @@ func _on_resume_pressed():
 	player.state = "default"
 	
 func _on_exit_pressed():
-	sfx.play("denied")
+	sfx.play("sword3")
+	var main = get_tree().get_root().get_node_or_null("main")
+	if main:
+		main.end_game()
+	else:
+		printerr("'%s' screen could not find `main` node!" % name)
+	self.queue_free()

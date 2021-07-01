@@ -15,7 +15,7 @@ tracks/0/keys = {
 "values": [ false ]
 }
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=2]
 resource_name = "fadeblack"
 length = 2.0
 step = 0.25
@@ -44,7 +44,7 @@ tracks/1/keys = {
 "values": [ Color( 0, 0, 0, 0 ), Color( 0, 0, 0, 1 ) ]
 }
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=3]
 resource_name = "fadeblackout"
 length = 0.5
 step = 0.25
@@ -73,8 +73,7 @@ tracks/1/keys = {
 "values": [ Color( 0, 0, 0, 1 ), Color( 0, 0, 0, 0 ) ]
 }
 
-[sub_resource type="Animation" id=2]
-resource_name = "fadein"
+[sub_resource type="Animation" id=4]
 length = 0.5
 step = 0.25
 tracks/0/type = "value"
@@ -102,8 +101,7 @@ tracks/1/keys = {
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
 
-[sub_resource type="Animation" id=3]
-resource_name = "fadewhite"
+[sub_resource type="Animation" id=5]
 length = 0.5
 step = 0.25
 tracks/0/type = "value"
@@ -134,10 +132,10 @@ tracks/1/keys = {
 [node name="screenfx" type="AnimationPlayer"]
 autoplay = "default"
 anims/default = SubResource( 1 )
-anims/fadeblack = SubResource( 4 )
-anims/fadeblackout = SubResource( 5 )
-anims/fadein = SubResource( 2 )
-anims/fadewhite = SubResource( 3 )
+anims/fadeblack = SubResource( 2 )
+anims/fadeblackout = SubResource( 3 )
+anims/fadein = SubResource( 4 )
+anims/fadewhite = SubResource( 5 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 100

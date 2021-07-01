@@ -1,0 +1,70 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://ui/theme/theme.tres" type="Theme" id=1]
+[ext_resource path="res://ui/theme/dogicapixel.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://ui/esc_menu/esc_menu.gd" type="Script" id=3]
+
+[sub_resource type="DynamicFont" id=1]
+size = 8
+font_data = ExtResource( 2 )
+
+[sub_resource type="Theme" id=2]
+default_font = SubResource( 1 )
+
+[node name="ESC_Menu" type="TabContainer"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -25.377
+margin_top = -28.0
+margin_right = 76.1319
+margin_bottom = 82.0
+rect_scale = Vector2( 0.5, 0.5 )
+theme = ExtResource( 1 )
+tabs_visible = false
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 8.99585
+margin_top = 8.99585
+margin_right = -9.51308
+margin_bottom = -9.11333
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource( 2 )
+alignment = 1
+
+[node name="Return" type="Button" parent="VBoxContainer"]
+margin_top = 11.0
+margin_right = 83.0
+margin_bottom = 25.7537
+text = "Return"
+
+[node name="Options" type="Button" parent="VBoxContainer"]
+margin_top = 29.0
+margin_right = 83.0
+margin_bottom = 43.7537
+text = "Options"
+
+[node name="ExitToMenu" type="Button" parent="VBoxContainer"]
+margin_top = 47.0
+margin_right = 83.4557
+margin_bottom = 61.7537
+text = "Exit to Menu"
+
+[node name="QuitGame" type="Button" parent="VBoxContainer"]
+margin_top = 65.0
+margin_right = 83.0
+margin_bottom = 79.7537
+text = "Quit Game"
+
+[connection signal="button_down" from="VBoxContainer/Return" to="." method="on_return"]
+[connection signal="button_down" from="VBoxContainer/Options" to="." method="on_options"]
+[connection signal="button_down" from="VBoxContainer/ExitToMenu" to="." method="on_exit_to_menu"]
+[connection signal="button_down" from="VBoxContainer/QuitGame" to="." method="on_quit_game"]

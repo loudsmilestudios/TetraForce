@@ -1,27 +1,10 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://ui/theme/theme.tres" type="Theme" id=1]
-[ext_resource path="res://entities/player/chain.png" type="Texture" id=2]
+[ext_resource path="res://ui/options/options.tscn" type="PackedScene" id=2]
 [ext_resource path="res://engine/main.gd" type="Script" id=3]
-[ext_resource path="res://ui/main/characterselect.gd" type="Script" id=4]
-[ext_resource path="res://engine/keybinds.gd" type="Script" id=5]
 [ext_resource path="res://ui/logo_animated_sprite.tres" type="SpriteFrames" id=6]
 [ext_resource path="res://ui/loading_screen/loading_screen.tscn" type="PackedScene" id=7]
-
-[sub_resource type="Animation" id=1]
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath("preview:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ 0, 1 ]
-}
 
 [node name="main" type="Control"]
 margin_right = 39.9996
@@ -104,16 +87,6 @@ margin_right = 144.0
 margin_bottom = 86.7537
 size_flags_stretch_ratio = 0.0
 text = "Options"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="keybinds" type="Button" parent="top/VBoxContainer"]
-margin_top = 90.0
-margin_right = 144.0
-margin_bottom = 111.754
-size_flags_stretch_ratio = 0.0
-text = "Keybinds"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -237,315 +210,14 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="options" type="Panel" parent="." groups=[
-"menu",
-]]
+[node name="options" parent="." instance=ExtResource( 2 )]
 visible = false
-margin_left = 108.0
-margin_top = 103.0
-margin_right = 408.0
-margin_bottom = 273.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="scroll" type="Panel" parent="options"]
-margin_left = 1.0
-margin_right = 300.0
-margin_bottom = 170.0
-
-[node name="vbox" type="Control" parent="options/scroll"]
-margin_bottom = 240.0
-rect_min_size = Vector2( 0, 240 )
-
-[node name="characterselect" type="Panel" parent="options/scroll/vbox"]
-margin_left = 36.4108
-margin_top = 10.0
-margin_right = 260.411
-margin_bottom = 132.0
-rect_min_size = Vector2( 160, 114 )
-script = ExtResource( 4 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="options/scroll/vbox/characterselect"]
-autoplay = "default"
-playback_speed = 4.0
-anims/default = SubResource( 1 )
-
-[node name="preview" type="Sprite" parent="options/scroll/vbox/characterselect"]
-position = Vector2( 112.53, 45.1675 )
-scale = Vector2( 1.75, 1.75 )
-texture = ExtResource( 2 )
-vframes = 8
-hframes = 6
-
-[node name="name" type="LineEdit" parent="options/scroll/vbox/characterselect"]
-margin_left = 48.5298
-margin_top = 77.1675
-margin_right = 176.53
-margin_bottom = 109.575
-text = "Chain"
-align = 1
-max_length = 10
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="back" type="Button" parent="options/scroll/vbox/characterselect"]
-margin_left = 48.5298
-margin_top = 29.1675
-margin_right = 64.5298
-margin_bottom = 51.1675
-text = "<"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="forward" type="Button" parent="options/scroll/vbox/characterselect"]
-margin_left = 160.53
-margin_top = 29.1675
-margin_right = 176.53
-margin_bottom = 51.1675
-text = ">"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Label" type="Label" parent="options/scroll/vbox/characterselect"]
-margin_left = 16.0
-margin_top = 5.64322
-margin_right = 208.0
-margin_bottom = 21.6432
-text = "Character skin and player name"
-align = 1
-autowrap = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="endpoint" type="OptionButton" parent="options/scroll/vbox"]
-margin_left = 83.0703
-margin_top = 138.162
-margin_right = 213.07
-margin_bottom = 162.162
-theme = ExtResource( 1 )
-text = "API Endpoint"
-align = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="save" type="Button" parent="options"]
-margin_left = 338.0
-margin_top = 148.725
-margin_right = 386.0
-margin_bottom = 170.725
-text = "Save"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="keybinds" type="Panel" parent="." groups=[
-"menu",
-]]
-visible = false
-margin_left = 128.0
-margin_top = 100.0
-margin_right = 384.0
-margin_bottom = 276.0
-script = ExtResource( 5 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="scroll" type="ScrollContainer" parent="keybinds"]
-margin_left = 3.0
-margin_top = 8.0
-margin_right = 253.0
-margin_bottom = 166.0
-follow_focus = true
-scroll_horizontal_enabled = false
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="vbox" type="VBoxContainer" parent="keybinds/scroll"]
-margin_right = 250.0
-margin_bottom = 221.0
-size_flags_horizontal = 3
-alignment = 1
-
-[node name="Action_UP" type="HBoxContainer" parent="keybinds/scroll/vbox"]
-margin_right = 242.0
-margin_bottom = 21.0
-alignment = 1
-
-[node name="Label" type="Label" parent="keybinds/scroll/vbox/Action_UP"]
-margin_left = 70.0
-margin_top = 4.0
-margin_right = 82.0
-margin_bottom = 17.0
-text = "A:"
-
-[node name="Button" type="Button" parent="keybinds/scroll/vbox/Action_UP"]
-margin_left = 86.0
-margin_right = 172.456
-margin_bottom = 21.7537
-text = "ActionKeybind"
-
-[node name="Action_DOWN" type="HBoxContainer" parent="keybinds/scroll/vbox"]
-margin_top = 25.0
-margin_right = 242.0
-margin_bottom = 46.0
-alignment = 1
-
-[node name="Label" type="Label" parent="keybinds/scroll/vbox/Action_DOWN"]
-margin_left = 70.0
-margin_top = 4.0
-margin_right = 82.0
-margin_bottom = 17.0
-text = "A:"
-
-[node name="Button" type="Button" parent="keybinds/scroll/vbox/Action_DOWN"]
-margin_left = 86.0
-margin_right = 172.456
-margin_bottom = 21.7537
-text = "ActionKeybind"
-
-[node name="Action_LEFT" type="HBoxContainer" parent="keybinds/scroll/vbox"]
-margin_top = 50.0
-margin_right = 242.0
-margin_bottom = 71.0
-alignment = 1
-
-[node name="Label" type="Label" parent="keybinds/scroll/vbox/Action_LEFT"]
-margin_left = 70.0
-margin_top = 4.0
-margin_right = 82.0
-margin_bottom = 17.0
-text = "A:"
-
-[node name="Button" type="Button" parent="keybinds/scroll/vbox/Action_LEFT"]
-margin_left = 86.0
-margin_right = 172.456
-margin_bottom = 21.7537
-text = "ActionKeybind"
-
-[node name="Action_RIGHT" type="HBoxContainer" parent="keybinds/scroll/vbox"]
-margin_top = 75.0
-margin_right = 242.0
-margin_bottom = 96.0
-alignment = 1
-
-[node name="Label" type="Label" parent="keybinds/scroll/vbox/Action_RIGHT"]
-margin_left = 70.0
-margin_top = 4.0
-margin_right = 82.0
-margin_bottom = 17.0
-text = "A:"
-
-[node name="Button" type="Button" parent="keybinds/scroll/vbox/Action_RIGHT"]
-margin_left = 86.0
-margin_right = 172.456
-margin_bottom = 21.7537
-text = "ActionKeybind"
-
-[node name="Action_A" type="HBoxContainer" parent="keybinds/scroll/vbox"]
-margin_top = 100.0
-margin_right = 242.0
-margin_bottom = 121.0
-alignment = 1
-
-[node name="Label" type="Label" parent="keybinds/scroll/vbox/Action_A"]
-margin_left = 70.0
-margin_top = 4.0
-margin_right = 82.0
-margin_bottom = 17.0
-text = "A:"
-
-[node name="Button" type="Button" parent="keybinds/scroll/vbox/Action_A"]
-margin_left = 86.0
-margin_right = 172.456
-margin_bottom = 21.7537
-text = "ActionKeybind"
-
-[node name="Action_B" type="HBoxContainer" parent="keybinds/scroll/vbox"]
-margin_top = 125.0
-margin_right = 242.0
-margin_bottom = 146.0
-alignment = 1
-
-[node name="Label" type="Label" parent="keybinds/scroll/vbox/Action_B"]
-margin_left = 70.0
-margin_top = 4.0
-margin_right = 82.0
-margin_bottom = 17.0
-text = "A:"
-
-[node name="Button" type="Button" parent="keybinds/scroll/vbox/Action_B"]
-margin_left = 86.0
-margin_right = 172.456
-margin_bottom = 21.7537
-text = "ActionKeybind"
-
-[node name="Action_X" type="HBoxContainer" parent="keybinds/scroll/vbox"]
-margin_top = 150.0
-margin_right = 242.0
-margin_bottom = 171.0
-alignment = 1
-
-[node name="Label" type="Label" parent="keybinds/scroll/vbox/Action_X"]
-margin_left = 70.0
-margin_top = 4.0
-margin_right = 82.0
-margin_bottom = 17.0
-text = "A:"
-
-[node name="Button" type="Button" parent="keybinds/scroll/vbox/Action_X"]
-margin_left = 86.0
-margin_right = 172.456
-margin_bottom = 21.7537
-text = "ActionKeybind"
-
-[node name="Action_Y" type="HBoxContainer" parent="keybinds/scroll/vbox"]
-margin_top = 175.0
-margin_right = 242.0
-margin_bottom = 196.0
-alignment = 1
-
-[node name="Label" type="Label" parent="keybinds/scroll/vbox/Action_Y"]
-margin_left = 70.0
-margin_top = 4.0
-margin_right = 82.0
-margin_bottom = 17.0
-text = "A:"
-
-[node name="Button" type="Button" parent="keybinds/scroll/vbox/Action_Y"]
-margin_left = 86.0
-margin_right = 172.456
-margin_bottom = 21.7537
-text = "ActionKeybind"
-
-[node name="Action_START" type="HBoxContainer" parent="keybinds/scroll/vbox"]
-margin_top = 200.0
-margin_right = 242.0
-margin_bottom = 221.0
-alignment = 1
-
-[node name="Label" type="Label" parent="keybinds/scroll/vbox/Action_START"]
-margin_left = 70.0
-margin_top = 4.0
-margin_right = 82.0
-margin_bottom = 17.0
-text = "A:"
-
-[node name="Button" type="Button" parent="keybinds/scroll/vbox/Action_START"]
-margin_left = 86.0
-margin_right = 172.456
-margin_bottom = 21.7537
-text = "ActionKeybind"
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 143.0
+margin_top = 98.0
+margin_right = 368.0
+margin_bottom = 277.0
 
 [node name="back" type="Button" parent="." groups=[
 "menu",
@@ -563,22 +235,17 @@ __meta__ = {
 
 [node name="loading_screen" parent="loading_screen_layer" instance=ExtResource( 7 )]
 visible = false
+
 [connection signal="mouse_entered" from="top/VBoxContainer/singleplayer" to="." method="_on_mouse_entered"]
 [connection signal="pressed" from="top/VBoxContainer/singleplayer" to="." method="_on_singleplayer_pressed"]
 [connection signal="mouse_entered" from="top/VBoxContainer/multiplayer" to="." method="_on_mouse_entered"]
 [connection signal="pressed" from="top/VBoxContainer/multiplayer" to="." method="_on_multiplayer_pressed"]
 [connection signal="mouse_entered" from="top/VBoxContainer/options" to="." method="_on_mouse_entered"]
 [connection signal="pressed" from="top/VBoxContainer/options" to="." method="_on_options_pressed"]
-[connection signal="mouse_entered" from="top/VBoxContainer/keybinds" to="." method="_on_mouse_entered"]
-[connection signal="pressed" from="top/VBoxContainer/keybinds" to="." method="_on_keybinds_pressed"]
 [connection signal="mouse_entered" from="top/VBoxContainer/quit" to="." method="_on_mouse_entered"]
 [connection signal="pressed" from="top/VBoxContainer/quit" to="." method="_on_quit_pressed"]
 [connection signal="pressed" from="multiplayer/Automatic/connect" to="." method="_on_connect_pressed"]
 [connection signal="pressed" from="multiplayer/Manual/host" to="." method="_on_host_pressed"]
 [connection signal="pressed" from="multiplayer/Manual/join" to="." method="_on_join_pressed"]
-[connection signal="text_changed" from="options/scroll/vbox/characterselect/name" to="options/scroll/vbox/characterselect" method="_on_name_text_changed"]
-[connection signal="item_selected" from="options/scroll/vbox/endpoint" to="." method="_on_endpoint_item_selected"]
-[connection signal="mouse_entered" from="options/save" to="." method="_on_mouse_entered"]
-[connection signal="pressed" from="options/save" to="." method="_on_save_pressed"]
 [connection signal="mouse_entered" from="back" to="." method="_on_mouse_entered"]
 [connection signal="pressed" from="back" to="." method="_on_back_pressed"]

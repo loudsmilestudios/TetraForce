@@ -1,0 +1,112 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://entities/player/chain.png" type="Texture" id=2]
+[ext_resource path="res://ui/main/characterselect.gd" type="Script" id=3]
+[ext_resource path="res://ui/theme/font.ttf" type="DynamicFontData" id=4]
+
+[sub_resource type="Animation" id=1]
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("preview:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 0, 1 ]
+}
+
+[sub_resource type="DynamicFont" id=2]
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=3]
+font_data = ExtResource( 4 )
+
+[node name="gameplay" type="Control"]
+margin_left = 108.0
+margin_top = 103.0
+margin_right = 408.0
+margin_bottom = 273.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="characterselect" type="Control" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -112.0
+margin_top = -61.0
+margin_right = 112.0
+margin_bottom = 61.0
+rect_min_size = Vector2( 160, 114 )
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="characterselect"]
+autoplay = "default"
+playback_speed = 4.0
+anims/default = SubResource( 1 )
+
+[node name="preview" type="Sprite" parent="characterselect"]
+position = Vector2( 112.53, 45.1675 )
+scale = Vector2( 1.75, 1.75 )
+texture = ExtResource( 2 )
+hframes = 6
+vframes = 8
+
+[node name="name" type="LineEdit" parent="characterselect"]
+margin_left = 50.0281
+margin_top = 68.1777
+margin_right = 178.028
+margin_bottom = 101.585
+custom_fonts/font = SubResource( 2 )
+text = "Chain"
+align = 1
+max_length = 10
+caret_blink = true
+caret_blink_speed = 0.5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="back" type="Button" parent="characterselect"]
+margin_left = 48.5298
+margin_top = 29.1675
+margin_right = 64.5298
+margin_bottom = 51.1675
+text = "<"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="forward" type="Button" parent="characterselect"]
+margin_left = 160.53
+margin_top = 29.1675
+margin_right = 176.53
+margin_bottom = 51.1675
+text = ">"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="characterselect"]
+margin_left = 16.0
+margin_top = 5.64322
+margin_right = 208.0
+margin_bottom = 21.6432
+custom_fonts/font = SubResource( 3 )
+text = "Character skin and player name"
+align = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="text_changed" from="characterselect/name" to="characterselect" method="_on_name_text_changed"]

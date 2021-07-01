@@ -1,4 +1,4 @@
-extends Panel
+extends Control
 
 var selected = 0
 
