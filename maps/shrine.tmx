@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.6.0" orientation="orthogonal" renderorder="right-down" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="18" nextobjectid="203">
+<map version="1.5" tiledversion="1.6.0" orientation="orthogonal" renderorder="right-down" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="18" nextobjectid="204">
  <properties>
   <property name="music" value="shrine"/>
  </properties>
  <tileset firstgid="1" source="../tiled/dungeon/dungeon_tileset.tsx"/>
  <tileset firstgid="281" source="../tiled/objects.tsx"/>
- <tileset firstgid="318" source="../tiled/overworld/overworld_tileset.tsx"/>
+ <tileset firstgid="319" source="../tiled/overworld/overworld_tileset.tsx"/>
  <layer id="2" name="floor" width="40" height="40">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -138,7 +138,7 @@
 0,0,0,0,21,104,104,104,104,24,18,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,16,25,104,104,104,104,104,23,0,0,0,
 0,0,0,0,21,104,104,104,104,104,24,17,17,17,17,276,17,17,18,0,0,16,17,17,276,17,17,17,17,25,104,104,104,104,104,104,23,0,0,0,
 0,0,0,0,21,104,104,104,104,104,104,104,104,104,104,104,104,104,23,0,0,21,104,104,104,104,104,104,104,104,104,104,104,104,104,104,23,0,0,0,
-0,0,0,0,26,27,27,27,27,27,27,27,27,27,27,27,27,27,28,334,334,26,27,27,27,27,27,27,27,27,27,27,27,27,27,27,28,0,0,0
+0,0,0,0,26,27,27,27,27,27,27,27,27,27,27,27,27,27,28,335,335,26,27,27,27,27,27,27,27,27,27,27,27,27,27,27,28,0,0,0
 </data>
  </layer>
  <layer id="4" name="decor" width="40" height="40">
@@ -264,13 +264,7 @@
   <object id="171" gid="313" x="240" y="592" width="16" height="16"/>
   <object id="172" gid="313" x="224" y="592" width="16" height="16"/>
   <object id="173" gid="313" x="208" y="592" width="16" height="16"/>
-  <object id="200" x="320" y="416">
-   <properties>
-    <property name="path" value="res://entities/enemies/thief_cat/thief_cat.tscn"/>
-   </properties>
-   <point/>
-  </object>
-  <object id="202" gid="314" x="336" y="352" width="16" height="16"/>
+  <object id="203" gid="318" x="304" y="368" width="16" height="16"/>
  </objectgroup>
  <objectgroup id="7" name="zones" visible="0" locked="1">
   <object id="1" type="area" x="128" y="208" width="384" height="416"/>
