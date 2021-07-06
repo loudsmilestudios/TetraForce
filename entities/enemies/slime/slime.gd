@@ -20,6 +20,7 @@ func _ready():
 
 func _physics_process(delta):
 	if !network.is_map_host() || is_dead():
+		sprite.flip_h = (spritedir == "Left")
 		return
 	
 	loop_movement()

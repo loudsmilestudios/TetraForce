@@ -19,18 +19,6 @@ tracks/0/keys = {
 "update": 1,
 "values": [ 4 ]
 }
-tracks/1/type = "value"
-tracks/1/path = NodePath("Sprite:flip_h")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 1, 2, 3 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
-"update": 1,
-"values": [ false, true, false, true ]
-}
 
 [sub_resource type="Animation" id=2]
 loop = true
@@ -143,6 +131,7 @@ anims/walkUp = SubResource( 7 )
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 3 )
+flip_h = true
 hframes = 8
 frame = 4
 
@@ -152,7 +141,8 @@ shape = SubResource( 8 )
 [node name="NetworkObject" parent="." instance=ExtResource( 2 )]
 update_properties = {
 "animation": "",
-"pos": Vector2( 0, 0 )
+"pos": Vector2( 0, 0 ),
+"spritedir": "Down"
 }
 enter_properties = {
 "health": 0

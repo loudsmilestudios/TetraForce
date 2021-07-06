@@ -20,7 +20,9 @@ func _ready():
 
 func _physics_process(delta):
 	if !network.is_map_host() || is_dead():
+		sprite.flip_h = (spritedir == "Left")
 		return
+		
 	for body in detect.get_overlapping_bodies():
 		if body is Player:
 			sees_player = true
@@ -94,5 +96,3 @@ func set_direction():
 			
 func set_hold(value):
 	hold = value
-
-

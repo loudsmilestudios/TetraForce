@@ -102,7 +102,7 @@ height = 3.0
 collision_layer = 2
 collision_mask = 2
 script = ExtResource( 2 )
-SPEED = 45
+SPEED = 25
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "idleDown"
@@ -122,3 +122,11 @@ hframes = 8
 shape = SubResource( 7 )
 
 [node name="NetworkObject" parent="." instance=ExtResource( 3 )]
+update_properties = {
+"animation": "",
+"pos": Vector2( 0, 0 ),
+"spritedir": "Down"
+}
+enter_properties = {
+"health": 0
+}
