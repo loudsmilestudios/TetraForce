@@ -3,6 +3,9 @@ extends Enemy
 var movetimer_length = 50
 var movetimer = 0
 var new_rotation
+var sees_player = false
+
+var hold = false setget set_hold
 
 onready var detect = $PlayerDetect
 onready var enemy_array = $PlayerDetect/CollisionPolygon2D
@@ -14,34 +17,42 @@ func _ready():
 	health = MAX_HEALTH
 	movedir = rand_direction()
 	SPEED = 35
-	
-	$Hitbox.connect("body_entered", self, "body_entered")
 
 func _physics_process(delta):
-	var sees_player = false
 	if !network.is_map_host() || is_dead():
 		return
 	for body in detect.get_overlapping_bodies():
 		if body is Player:
 			sees_player = true
 			SPEED = 50
+			movetimer = 120
 		else:
 			if movetimer == 0 || is_on_wall():
 				movetimer = movetimer_length
 				movedir = rand_direction_fair(movedir)
 			sees_player = false
 			SPEED = 20
+	if sees_player == false:
+		set_hold(false)
 	
-	loop_movement()
 	loop_spritedir()
+	loop_movement()
 	loop_damage()
 	loop_holes()
 	set_direction()
 	
-	anim_switch("walk")
+	if movedir != Vector2.ZERO:
+		anim_switch("walk")
+	else:
+		anim_switch("idle")
 	
 	if movetimer > 0:
 		movetimer -= 1
+		
+	for body in get_slide_count():
+		var collision = get_slide_collision(body)
+		if collision.collider is TileMap:
+			set_hold(true)
 		
 	var players = get_tree().get_nodes_in_group("player")
 	var shortest_distance = 999999
@@ -52,7 +63,11 @@ func _physics_process(delta):
 			closest_player = player
 	for body in detect.get_overlapping_bodies():
 		if body == closest_player && closest_player != null:
-			movedir = Vector2(-1,0).rotated(position.angle_to_point(closest_player.position))
+			if hold == false:
+				movedir = Vector2(-1,0).rotated(position.angle_to_point(closest_player.position))
+			else:
+				movedir = Vector2.ZERO
+				
 			enemy_array.rotation_degrees = rad2deg(position.angle_to_point(closest_player.position)) + 270
 			
 			new_rotation = int(enemy_array.rotation_degrees)
@@ -66,8 +81,6 @@ func _physics_process(delta):
 			if new_rotation >= 111 and new_rotation <= 250:
 				spritedir = "Down"
 			
-			movetimer = 120
-			
 func set_direction():
 	match movedir:
 		Vector2.LEFT:
@@ -79,6 +92,7 @@ func set_direction():
 		Vector2.DOWN:
 			enemy_array.rotation_degrees = 180.0
 			
-func body_entered(body):
-	if !body.is_in_group("player"):
-		enemy_array.rotation_degrees = rotation_degrees + 180.0
+func set_hold(value):
+	hold = value
+
+
