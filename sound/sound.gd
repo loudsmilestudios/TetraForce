@@ -63,7 +63,7 @@ func _process(delta):
 				music.play()
 	# If the music's playing, manage volume.
 	if music.playing:
-		print(music.volume_db, " @ ", _music_lerp_speed)
+		# print(music.volume_db, " @ ", _music_lerp_speed)
 		music.volume_db = lerp(music.volume_db, music_volume, _music_lerp_speed)
 
 func fadeout_music():
