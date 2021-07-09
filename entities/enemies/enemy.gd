@@ -19,6 +19,7 @@ func _ready():
 	if spawned_by != "":
 		set_dead()
 		get_parent().get_node(spawned_by).connect("started", self, "spawned")
+		get_parent().get_node(spawned_by).connect("check_for_active", self, "spawned")
 		get_parent().get_node(spawned_by).connect("reset", self, "set_dead")
 
 func _process(delta):

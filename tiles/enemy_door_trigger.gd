@@ -8,6 +8,7 @@ var zone
 onready var active = false setget set_active
  
 signal started
+signal check_for_active
 signal finished
 signal reset
 
@@ -16,9 +17,10 @@ func _ready():
 	add_to_group("interactable")
 	add_to_group("nopush")
 	add_to_group("zoned")
+	self.connect("check_for_active", self, "active")
 
 func _physics_process(delta):
-	if active && zone && network.is_map_host():
+	if active && zone:
 		if zone.get_enemies() == []:
 			deactivate()
 		if zone.get_players() == [] && zone.get_enemies() != []:
@@ -26,7 +28,6 @@ func _physics_process(delta):
 			emit_signal("reset")
 			add_to_group("interactable")
 			network.peer_call(self, "add_to_group", ["interactable"])
-
 
 func interact(node):
 	var dialogue_manager = preload("res://ui/dialogue/dialogue_manager.tscn").instance()
@@ -42,9 +43,9 @@ func interact(node):
 func _on_Begin_Pressed():
 	if begin.text == "Begin":
 		if network.is_map_host():
-			set_active(true)
+			activate()
 		else:
-			network.peer_call_id(network.get_map_host(), self, "set_active",[true])
+			network.peer_call_id(network.get_map_host(), self, "activate")
 		
 func activate():
 	$AnimationPlayer.play("activate")
@@ -58,6 +59,14 @@ func activate():
 		yield(get_tree(), "idle_frame")
 	set_physics_process(true)
 	
+func active():
+	if active == true && $AnimationPlayer.current_animation != "activate":
+		$AnimationPlayer.play("active")
+	if active == true && is_in_group("interactable"):
+		remove_from_group("interactable")
+	for i in range(20):
+		yield(get_tree(), "idle_frame")
+	set_physics_process(true)
 	
 func deactivate():
 	$AnimationPlayer.play("deactivate")
@@ -66,8 +75,12 @@ func deactivate():
 	if is_in_group("interactable"):
 		remove_from_group("interactable")
 		network.peer_call(self, "remove_from_group", ["interactable"])
-	emit_signal("finished")
+	if zone.get_enemies() == []:
+		emit_signal("finished")
 	set_physics_process(false)
+	
+func inactive():
+	pass
 	
 func set_active(value):
 	if active == value:
@@ -78,6 +91,6 @@ func set_active(value):
 	if !active:
 		deactivate()
 	else:
-		activate()
+		emit_signal("check_for_active")
 	
 	

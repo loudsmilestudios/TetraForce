@@ -6,26 +6,38 @@ export(String) var location = "room"
 export(String) var direction = "up"
 export var texture = "dungeon1"
 
-onready var locked = true setget set_locked
+var complete = false
+
+onready var locked = false setget set_locked
 
 func _ready():
 	spritedir()
-	lock()
+	starts_locked()
 	get_parent().get_node(location).connect("finished", self, "set_locked", [false])
 	get_parent().get_node(location).connect("started", self, "set_locked", [true])
+	get_parent().get_node(location).connect("check_for_active", self, "check_lock_state")
 	get_parent().get_node(location).connect("reset", self, "set_reset")
-	if !starts_locked:
-		locked = false
-		unlock()
+	
+func starts_locked():
+	if starts_locked:
+		$AnimationPlayer.play("enemy_locked_" + direction)
+		network.peer_call($AnimationPlayer, "play", ["enemy_locked_" + direction])
 		
 func lock():
-	$AnimationPlayer.play("enemy_lock_" + direction)
-	network.peer_call($AnimationPlayer, "play", ["enemy_lock_" + direction])
-	set_locked(true)
+	if !starts_locked:
+		$AnimationPlayer.play("enemy_lock_" + direction)
+		network.peer_call($AnimationPlayer, "play", ["enemy_lock_" + direction])
+		set_locked(true)
 
 func unlock():
 	$AnimationPlayer.play("enemy_unlock_" + direction)
 	network.peer_call($AnimationPlayer, "play", ["enemy_unlock_" + direction])
+	set_locked(false)
+	
+func check_lock_state():
+	if locked == true:
+		$AnimationPlayer.play("enemy_locked_" + direction)
+		network.peer_call($AnimationPlayer, "play", ["enemy_locked_" + direction])
 	
 func set_reset():
 	lock()

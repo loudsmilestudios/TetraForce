@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://tiles/enemy_door.png" type="Texture" id=1]
 [ext_resource path="res://tiles/enemy_door.gd" type="Script" id=2]
@@ -116,7 +116,118 @@ tracks/1/keys = {
 }
 
 [sub_resource type="Animation" id=6]
-resource_name = "enemy_unlock_down"
+resource_name = "enemy_locked_down"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 9 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "enemy_locked_left"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 39 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "enemy_locked_right"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 19 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=9]
+resource_name = "enemy_locked_up"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 29 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=10]
 length = 0.55
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -143,8 +254,7 @@ tracks/1/keys = {
 "values": [ false, true ]
 }
 
-[sub_resource type="Animation" id=7]
-resource_name = "enemy_unlock_left"
+[sub_resource type="Animation" id=11]
 length = 0.55
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -171,7 +281,7 @@ tracks/1/keys = {
 "values": [ false, true ]
 }
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=12]
 length = 0.55
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -198,8 +308,7 @@ tracks/1/keys = {
 "values": [ false, true ]
 }
 
-[sub_resource type="Animation" id=9]
-resource_name = "enemy_unlock_up"
+[sub_resource type="Animation" id=13]
 length = 0.55
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -234,7 +343,6 @@ script = ExtResource( 2 )
 texture = ExtResource( 1 )
 hframes = 10
 vframes = 4
-frame = 20
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
@@ -245,12 +353,16 @@ anims/enemy_lock_down = SubResource( 2 )
 anims/enemy_lock_left = SubResource( 3 )
 anims/enemy_lock_right = SubResource( 4 )
 anims/enemy_lock_up = SubResource( 5 )
-anims/enemy_unlock_down = SubResource( 6 )
-anims/enemy_unlock_left = SubResource( 7 )
-anims/enemy_unlock_right = SubResource( 8 )
-anims/enemy_unlock_up = SubResource( 9 )
+anims/enemy_locked_down = SubResource( 6 )
+anims/enemy_locked_left = SubResource( 7 )
+anims/enemy_locked_right = SubResource( 8 )
+anims/enemy_locked_up = SubResource( 9 )
+anims/enemy_unlock_down = SubResource( 10 )
+anims/enemy_unlock_left = SubResource( 11 )
+anims/enemy_unlock_right = SubResource( 12 )
+anims/enemy_unlock_up = SubResource( 13 )
 
 [node name="NetworkObject" parent="." instance=ExtResource( 3 )]
 enter_properties = {
-"locked": true
+"locked": false
 }
