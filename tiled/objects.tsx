@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tileset version="1.5" tiledversion="1.6.0" name="objects" tilewidth="16" tileheight="22" tilecount="38" columns="0">
+<tileset version="1.5" tiledversion="1.6.0" name="objects" tilewidth="16" tileheight="22" tilecount="39" columns="0">
  <grid orientation="orthogonal" width="1" height="1"/>
  <tile id="0">
   <properties>
@@ -285,5 +285,11 @@
    <property name="path" value="res://entities/enemies/thief_cat/thief_cat.tscn"/>
   </properties>
   <image width="16" height="16" source="images/objects/thief_cat.png"/>
+ </tile>
+ <tile id="38">
+  <properties>
+   <property name="path" value="res://tiles/red_cannon.tscn"/>
+  </properties>
+  <image width="16" height="16" source="images/objects/blue_cannon.png"/>
  </tile>
 </tileset>
