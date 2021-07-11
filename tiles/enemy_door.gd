@@ -6,22 +6,20 @@ export(String) var location = "room"
 export(String) var direction = "up"
 export var texture = "dungeon1"
 
-var complete = false
-
 onready var locked = false setget set_locked
+onready var inactive = false setget set_inactive
 
 func _ready():
 	spritedir()
-	starts_locked()
 	get_parent().get_node(location).connect("finished", self, "set_locked", [false])
 	get_parent().get_node(location).connect("started", self, "set_locked", [true])
 	get_parent().get_node(location).connect("check_for_active", self, "check_lock_state")
+	get_parent().get_node(location).connect("check_for_inactive", self, "check_lock_state")
 	get_parent().get_node(location).connect("reset", self, "set_reset")
-	
-func starts_locked():
-	if starts_locked:
+	if starts_locked && inactive == false:
 		$AnimationPlayer.play("enemy_locked_" + direction)
 		network.peer_call($AnimationPlayer, "play", ["enemy_locked_" + direction])
+		locked = true
 		
 func lock():
 	if !starts_locked:
@@ -30,14 +28,22 @@ func lock():
 		set_locked(true)
 
 func unlock():
-	$AnimationPlayer.play("enemy_unlock_" + direction)
-	network.peer_call($AnimationPlayer, "play", ["enemy_unlock_" + direction])
-	set_locked(false)
-	
+	if starts_locked && inactive:
+		$AnimationPlayer.play("enemy_unlock_" + direction)
+		network.peer_call($AnimationPlayer, "play", ["enemy_unlocked_" + direction])
+	else:
+		$AnimationPlayer.play("enemy_unlock_" + direction)
+		network.peer_call($AnimationPlayer, "play", ["enemy_unlock_" + direction])
+		set_locked(false)
+		set_inactive(true)
+
 func check_lock_state():
 	if locked == true:
 		$AnimationPlayer.play("enemy_locked_" + direction)
 		network.peer_call($AnimationPlayer, "play", ["enemy_locked_" + direction])
+	if locked == false:
+		$AnimationPlayer.play("enemy_unlocked_" + direction)
+		network.peer_call($AnimationPlayer, "play", ["enemy_unlocked_" + direction])
 	
 func set_reset():
 	lock()
@@ -57,6 +63,13 @@ func set_locked(value):
 		unlock()
 	else:
 		lock()
+		
+func set_inactive(value):
+	if inactive == value:
+		return
+	if network.is_map_host():
+		network.peer_call(self, "set_inactive", [value])
+	inactive = value
 		
 func spritedir():
 	if direction == "up":
