@@ -187,6 +187,8 @@ func set_state(path, properties):
 func add_to_state(state, value):
 	if !states.get(state).has(value):
 		states.get(state).append(value)
+		global.set(state, states.get(state))
+		rpc("_receive_state_array", state, states.get(state))
 		set_state(state, states.get(state))
 
 remote func _receive_state_change(nodepath, properties):
