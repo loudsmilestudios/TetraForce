@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tileset version="1.5" tiledversion="1.6.0" name="objects" tilewidth="16" tileheight="22" tilecount="39" columns="0">
+<tileset version="1.5" tiledversion="1.6.0" name="objects" tilewidth="16" tileheight="22" tilecount="38" columns="0">
  <grid orientation="orthogonal" width="1" height="1"/>
  <tile id="0">
   <properties>
    <property name="chest_spawn" type="bool" value="false"/>
    <property name="location" value=""/>
    <property name="path" value="res://entities/enemies/stalfos/stalfos.tscn"/>
-   <property name="spawned_by" value=""/>
   </properties>
   <image width="16" height="16" source="images/objects/stalfos.png"/>
  </tile>
@@ -46,7 +45,6 @@
    <property name="color" value="green"/>
    <property name="location" value=""/>
    <property name="path" value="res://entities/enemies/slime/slime.tscn"/>
-   <property name="spawned_by" value=""/>
   </properties>
   <image width="16" height="16" source="images/objects/greenslime.png"/>
  </tile>
@@ -56,7 +54,6 @@
    <property name="color" value="red"/>
    <property name="location" value=""/>
    <property name="path" value="res://entities/enemies/slime/slime.tscn"/>
-   <property name="spawned_by" value=""/>
   </properties>
   <image width="16" height="16" source="images/objects/redslime.png"/>
  </tile>
@@ -64,7 +61,6 @@
   <properties>
    <property name="chest_spawn" type="bool" value="false"/>
    <property name="location" value=""/>
-   <property name="spawned_by" value=""/>
   </properties>
   <image width="16" height="16" source="images/objects/blueslime.png"/>
  </tile>
@@ -169,7 +165,6 @@
    <property name="chest_spawn" type="bool" value="false"/>
    <property name="location" value=""/>
    <property name="path" value="res://entities/enemies/smashroom/smashroom.tscn"/>
-   <property name="spawned_by" value=""/>
   </properties>
   <image width="16" height="16" source="images/objects/smashroom.png"/>
  </tile>
@@ -184,7 +179,6 @@
    <property name="chest_spawn" type="bool" value="false"/>
    <property name="location" value=""/>
    <property name="path" value="res://entities/enemies/pirafaux/pirafaux.tscn"/>
-   <property name="spawned_by" value=""/>
   </properties>
   <image width="16" height="22" source="images/objects/pirafaux.png"/>
  </tile>
@@ -257,7 +251,6 @@
    <property name="chest_spawn" type="bool" value="false"/>
    <property name="location" value=""/>
    <property name="path" value="res://entities/enemies/knawblin/knawblin.tscn"/>
-   <property name="spawned_by" value=""/>
   </properties>
   <image width="16" height="16" source="images/objects/knawblin.png"/>
  </tile>
@@ -266,7 +259,6 @@
    <property name="chest_spawn" type="bool" value="false"/>
    <property name="location" value=""/>
    <property name="path" value="res://entities/enemies/bat/bat.tscn"/>
-   <property name="spawned_by" value=""/>
   </properties>
   <image width="16" height="16" source="images/objects/bat.png"/>
  </tile>
@@ -275,7 +267,6 @@
    <property name="chest_spawn" type="bool" value="false"/>
    <property name="location" value=""/>
    <property name="path" value="res://entities/enemies/sneaky_bush/sneaky_bush.tscn"/>
-   <property name="spawned_by" value=""/>
   </properties>
   <image width="16" height="16" source="images/objects/sneakybush.png"/>
  </tile>
@@ -284,24 +275,15 @@
    <property name="chest_spawn" type="bool" value="false"/>
    <property name="location" value=""/>
    <property name="path" value="res://entities/enemies/cucukin/cucukin.tscn"/>
-   <property name="spawned_by" value=""/>
   </properties>
   <image width="16" height="16" source="images/objects/cucukin.png"/>
  </tile>
  <tile id="37">
   <properties>
-   <property name="direction" value="down"/>
+   <property name="chest_spawn" type="bool" value="false"/>
    <property name="location" value=""/>
-   <property name="path" value="res://tiles/enemy_door.tscn"/>
-   <property name="starts_locked" type="bool" value="false"/>
+   <property name="path" value="res://entities/enemies/thief_cat/thief_cat.tscn"/>
   </properties>
-  <image width="16" height="16" source="images/objects/enemy_door.png"/>
- </tile>
- <tile id="38">
-  <properties>
-   <property name="dialogue" value="enemy_door"/>
-   <property name="path" value="res://tiles/enemy_door_trigger.tscn"/>
-  </properties>
-  <image width="16" height="16" source="images/objects/enemy_door_trigger.png"/>
+  <image width="16" height="16" source="images/objects/thief_cat.png"/>
  </tile>
 </tileset>

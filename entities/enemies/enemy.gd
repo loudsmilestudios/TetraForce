@@ -96,3 +96,35 @@ func rand_direction():
 		4:
 			return Vector2.DOWN
 	return Vector2(0, 0)
+
+#Elimates scenarios where an enemy with a detection shape changing direction doesn't do so unfairly.
+func rand_direction_fair(prev_direction : Vector2):
+	var new_direction
+	if prev_direction == Vector2.LEFT:
+		new_direction = randi() % 2 + 1
+		match new_direction:
+			1:
+				return Vector2.DOWN
+			2:
+				return Vector2.UP
+	elif prev_direction == Vector2.UP:
+		new_direction = randi() % 2 + 1
+		match new_direction:
+			1:
+				return Vector2.LEFT
+			2:
+				return Vector2.RIGHT
+	elif prev_direction == Vector2.RIGHT:
+		new_direction = randi() % 2 + 1
+		match new_direction:
+			1:
+				return Vector2.DOWN
+			2:
+				return Vector2.UP
+	else:
+		new_direction = randi() % 2 + 1
+		match new_direction:
+			1:
+				return Vector2.LEFT
+			2:
+				return Vector2.RIGHT
