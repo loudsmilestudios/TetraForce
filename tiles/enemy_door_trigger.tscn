@@ -1,0 +1,98 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://tiles/enemy_door_trigger.png" type="Texture" id=1]
+[ext_resource path="res://tiles/enemy_door_trigger.gd" type="Script" id=2]
+[ext_resource path="res://engine/network_object.tscn" type="PackedScene" id=3]
+
+[sub_resource type="Animation" id=1]
+resource_name = "activate"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5, 6 ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "active"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 6 ]
+}
+
+[sub_resource type="Animation" id=3]
+length = 0.7
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.5, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 6, 0, 6, 0, 6, 0 ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "inactive"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 8, 8 )
+
+[node name="enemy_door_trigger" type="StaticBody2D"]
+collision_layer = 1025
+collision_mask = 1025
+script = ExtResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+hframes = 7
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/activate = SubResource( 1 )
+anims/active = SubResource( 2 )
+anims/deactivate = SubResource( 3 )
+anims/inactive = SubResource( 4 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource( 5 )
+
+[node name="NetworkObject" parent="." instance=ExtResource( 3 )]
+update_properties = {
+}
+enter_properties = {
+"active": false,
+"disable": false
+}

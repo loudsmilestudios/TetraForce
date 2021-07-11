@@ -2,6 +2,7 @@ extends Camera2D
 
 var target
 var current_rect
+var screen_size = Vector2(256,144)
 
 const SCROLL_DURATION = 0.5
 
@@ -14,7 +15,7 @@ func _physics_process(delta):
 func initialize(node):
 	target = node
 	current = true
-
+	
 func scroll_screen(rect : Rect2):
 	if rect == current_rect:
 		return
@@ -22,15 +23,23 @@ func scroll_screen(rect : Rect2):
 	
 	target.set_physics_process(false) # yes i know i should use signals
 	set_process(false)
-	smoothing_enabled = false
 	
-	var current_center = get_camera_screen_center()
+	var scroll_from = get_camera_screen_center()
 	
-	unlimit()
-	position = current_center
-	var new_center = get_new_center(rect)
+	unlimit() # remove the current camera limits (can't have limits while scrolling)
+	position = scroll_from
 	
-	$Tween.interpolate_property(self, "position", current_center, new_center, SCROLL_DURATION, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	# where we're scrolling to. it's the first position in the next zone that
+	# is at least halfway through the screen size away from the edge.
+	# basically fake limits code just used to get where the camera /will/ be
+	var scroll_to = target.position
+	var scroll_to_min = current_rect.position + screen_size / 2
+	var scroll_to_max = current_rect.position + current_rect.size - screen_size / 2
+	scroll_to.x = clamp(scroll_to.x, scroll_to_min.x, scroll_to_max.x)
+	scroll_to.y = clamp(scroll_to.y, scroll_to_min.y, scroll_to_max.y)
+	
+	
+	$Tween.interpolate_property(self, "position", scroll_from, scroll_to, SCROLL_DURATION, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	$Tween.start()
 	yield($Tween, "tween_all_completed")
 	
@@ -40,23 +49,17 @@ func scroll_screen(rect : Rect2):
 	target.set_physics_process(true)
 	set_process(true)
 
-func get_new_center(rect):
-	var new_center = target.position
-	new_center.x = clamp(new_center.x, rect.position.x + 128, rect.position.x + rect.size.x - 128 + 16)
-	new_center.y = clamp(new_center.y, rect.position.y + 72, rect.position.y + rect.size.y - 72 + 16)
-	return new_center
-
 func unlimit():
 	limit_left = -1000000
 	limit_right = 1000000
 	limit_top = -1000000
 	limit_bottom = 1000000
 
-func set_limits(rect):
-	limit_left = rect.position.x
-	limit_right = rect.position.x + rect.size.x + 16
-	limit_top = rect.position.y
-	limit_bottom = rect.position.y + rect.size.y + 16
+func set_limits(rect : Rect2):
+	limit_left = int(rect.position.x)
+	limit_right = int(rect.position.x + rect.size.x + 16)
+	limit_top = int(rect.position.y)
+	limit_bottom = int(rect.position.y + rect.size.y + 16)
 
 func _process(_delta):
 	if target == null:
