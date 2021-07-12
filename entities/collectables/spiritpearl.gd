@@ -1,27 +1,23 @@
 extends Collectable
 
 var max_pearls = 4
+var spiritpearls = 0
 var player_hud = global.player.hud
 
 signal update_persistent_state
 
-func add_pearl():
-	if network.is_map_host():
-		count_pearl()
-		if global.spiritpearl >= max_pearls:
-			global.max_health += 1
-			on_full_slate()
-			global.spiritpearl = 0
-	else:
-		network.peer_call(self, "count_pearl")
-		if global.spiritpearl >= max_pearls:
-			global.max_health += 1
-			on_full_slate()
-			global.spiritpearl = 0
+func _ready():
+	network.peer_call(self, "set_spiritpearls", [spiritpearls])
 
 func count_pearl():
-	global.spiritpearl += 1
-	network.peer_call(self, "add_pearl", [global.spiritpearl])
+	if network.is_map_host():
+		network.peer_call(self, "set_spiritpearls", [spiritpearls])
+	set_spiritpearls(spiritpearls + 1)
+	emit_signal("update_persistent_state")
+	if global.spiritpearl >= max_pearls:
+		global.max_health += 1
+		on_full_slate()
+		set_spiritpearls(0)
 	
 func on_full_slate():
 	var newheart = Sprite.new()
@@ -31,3 +27,9 @@ func on_full_slate():
 	player_hud.update_hearts()
 	player_hud.timer.start()
 
+func set_spiritpearls(amount):
+	spiritpearls = amount
+	global.spiritpearl = amount
+	global.player.hud.update_pearls()
+	if network.is_map_host():
+		network.peer_call(global.player.hud, "update_pearls")

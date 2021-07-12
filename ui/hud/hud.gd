@@ -31,6 +31,7 @@ func initialize(p):
 	update_weapons()
 	update_tetrans()
 	update_keys()
+	update_pearls()
 
 	update_buttons()
 	Input.connect("joy_connection_changed", self, "_on_joy_connection_changed")
@@ -76,6 +77,12 @@ func update_keys():
 	if network.current_map.has_node("dungeon_handler"):
 		$keys.show()
 		$keys/keys.text = str(network.current_map.get_node("dungeon_handler").keys).pad_zeros(1)
+
+func update_pearls():
+	$tetrans/pearls.text = str(global.spiritpearl).pad_zeros(1)
+	
+func pearl():
+	pearl.count_pearl()
 
 func update_buttons():
 	var node = ""
@@ -151,8 +158,6 @@ func show_inventory():
 	add_child(inventory)
 	#inventory.start()
 	
-func collect_pearl():
-	pearl.add_pearl()
 	
 func on_slate_add():
 	if global.player.health < global.max_health:
