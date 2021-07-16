@@ -175,20 +175,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="pearls" type="Label" parent="tetrans"]
-margin_left = 29.888
-margin_top = 5.0
-margin_right = 47.888
-margin_bottom = 18.0
-size_flags_horizontal = 0
-size_flags_vertical = 0
-theme = ExtResource( 6 )
-custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
-text = "0"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="keys" type="Node2D" parent="."]
 position = Vector2( 8, 30 )
 

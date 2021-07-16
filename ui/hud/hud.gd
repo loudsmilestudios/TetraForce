@@ -2,6 +2,8 @@ extends CanvasLayer
 
 var player
 var timer = Timer.new()
+var max_pearls = 4
+var spiritpearls = 0
 
 const ESC_PATH = "res://ui/esc_menu/esc_menu.tscn"
 const HEART_ROW_SIZE = 8
@@ -10,7 +12,7 @@ const HEART_SIZE = 8
 onready var hud2d = $hud2d
 onready var hearts = $hud2d/hearts
 onready var buttons = $hud2d/buttons
-onready var pearl = preload("res://entities/collectables/spiritpearl.tscn").instance()
+
 
 func _ready():
 	timer.connect("timeout",self,"on_slate_add") 
@@ -31,7 +33,6 @@ func initialize(p):
 	update_weapons()
 	update_tetrans()
 	update_keys()
-	update_pearls()
 
 	update_buttons()
 	Input.connect("joy_connection_changed", self, "_on_joy_connection_changed")
@@ -77,12 +78,6 @@ func update_keys():
 	if network.current_map.has_node("dungeon_handler"):
 		$keys.show()
 		$keys/keys.text = str(network.current_map.get_node("dungeon_handler").keys).pad_zeros(1)
-
-func update_pearls():
-	$tetrans/pearls.text = str(global.spiritpearl).pad_zeros(1)
-	
-func pearl():
-	pearl.count_pearl()
 
 func update_buttons():
 	var node = ""
@@ -158,6 +153,25 @@ func show_inventory():
 	add_child(inventory)
 	#inventory.start()
 	
+func count_pearl():
+	network.peer_call(self, "set_spiritpearls", [spiritpearls + 1])
+	set_spiritpearls(spiritpearls + 1)
+	if global.spiritpearl >= max_pearls:
+		global.max_health += 1
+		on_full_slate()
+		set_spiritpearls(0)
+		
+func set_spiritpearls(amount):
+	spiritpearls = amount
+	global.spiritpearl = spiritpearls
+	
+func on_full_slate():
+	var newheart = Sprite.new()
+	newheart.texture = hearts.texture
+	newheart.hframes = hearts.hframes
+	hearts.add_child(newheart)
+	update_hearts()
+	timer.start()
 	
 func on_slate_add():
 	if global.player.health < global.max_health:

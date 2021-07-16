@@ -10,8 +10,7 @@ func _ready():
 	network.peer_call(self, "set_spiritpearls", [spiritpearls])
 
 func count_pearl():
-	if network.is_map_host():
-		network.peer_call(self, "set_spiritpearls", [spiritpearls])
+	network.peer_call(self, "set_spiritpearls", [spiritpearls + 1])
 	set_spiritpearls(spiritpearls + 1)
 	emit_signal("update_persistent_state")
 	if global.spiritpearl >= max_pearls:
@@ -29,7 +28,5 @@ func on_full_slate():
 
 func set_spiritpearls(amount):
 	spiritpearls = amount
-	global.spiritpearl = amount
-	global.player.hud.update_pearls()
-	if network.is_map_host():
-		network.peer_call(global.player.hud, "update_pearls")
+	global.spiritpearl = spiritpearls
+
