@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.6.0" orientation="orthogonal" renderorder="right-down" width="30" height="30" tilewidth="16" tileheight="16" infinite="1" nextlayerid="13" nextobjectid="212">
+<map version="1.5" tiledversion="1.6.0" orientation="orthogonal" renderorder="right-down" width="30" height="30" tilewidth="16" tileheight="16" infinite="1" nextlayerid="13" nextobjectid="227">
  <properties>
   <property name="music" value="dungeon"/>
  </properties>
  <tileset firstgid="1" source="../tiled/dungeon/dungeon1_tileset.tsx"/>
  <tileset firstgid="361" source="../tiled/objects.tsx"/>
+ <tileset firstgid="401" source="../tiled/overworld/overworld_tileset.tsx"/>
  <layer id="3" name="ground" width="30" height="30">
   <data encoding="csv">
    <chunk x="0" y="16" width="16" height="16">
@@ -2044,42 +2045,6 @@
  </layer>
  <layer id="6" name="pots" width="30" height="30">
   <data encoding="csv">
-   <chunk x="16" y="48" width="16" height="16">
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,143,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,143,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-</chunk>
-   <chunk x="64" y="48" width="16" height="16">
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,143,0,0,0
-</chunk>
    <chunk x="32" y="64" width="16" height="16">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -2087,25 +2052,7 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,143,143,0,143,143,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-</chunk>
-   <chunk x="64" y="64" width="16" height="16">
-0,0,0,0,0,0,0,0,0,0,0,0,143,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,635,635,0,635,635,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -2135,10 +2082,6 @@
   <object id="14" gid="363" x="896" y="496" width="16" height="16"/>
   <object id="15" gid="363" x="896" y="480" width="16" height="16"/>
   <object id="16" gid="363" x="896" y="464" width="16" height="16"/>
-  <object id="17" gid="363" x="1120" y="1040" width="16" height="16"/>
-  <object id="19" gid="363" x="1152" y="1040" width="16" height="16"/>
-  <object id="20" gid="363" x="1152" y="1072" width="16" height="16"/>
-  <object id="21" gid="363" x="1120" y="1072" width="16" height="16"/>
   <object id="41" name="ship_entrance" gid="362" x="624" y="1152" width="16" height="16">
    <properties>
     <property name="entrance" value="ship_entrance"/>
@@ -2160,7 +2103,7 @@
    </properties>
   </object>
   <object id="48" gid="383" x="1152" y="784" width="16" height="16"/>
-  <object id="51" gid="383" x="944" y="944" width="16" height="16"/>
+  <object id="51" gid="383" x="848" y="992" width="16" height="16"/>
   <object id="60" gid="385" x="304" y="944" width="16" height="22">
    <properties>
     <property name="chest_spawn" type="bool" value="true"/>
@@ -2208,6 +2151,12 @@
    </properties>
   </object>
   <object id="84" gid="371" x="1072" y="1024" width="16" height="16">
+   <properties>
+    <property name="def" value="ammo"/>
+    <property name="item" value="20 Tetrans"/>
+   </properties>
+  </object>
+  <object id="212" gid="371" x="480" y="752" width="16" height="16">
    <properties>
     <property name="def" value="ammo"/>
     <property name="item" value="20 Tetrans"/>
@@ -2333,8 +2282,8 @@
     <property name="color" value="yellow"/>
    </properties>
   </object>
-  <object id="146" gid="396" x="1152" y="1056" width="16" height="16"/>
-  <object id="148" gid="396" x="1136" y="1040" width="16" height="16"/>
+  <object id="146" gid="396" x="1136" y="1056" width="16" height="16"/>
+  <object id="148" gid="396" x="1120" y="1040" width="16" height="16"/>
   <object id="151" gid="396" x="640" y="992" width="16" height="16"/>
   <object id="152" gid="396" x="112" y="832" width="16" height="16"/>
   <object id="153" gid="396" x="880" y="688" width="16" height="16"/>
@@ -2423,12 +2372,6 @@
   <object id="192" gid="369" x="896" y="1056" width="16" height="16"/>
   <object id="193" gid="369" x="912" y="1056" width="16" height="16"/>
   <object id="194" gid="369" x="912" y="1040" width="16" height="16"/>
-  <object id="196" gid="371" x="480" y="752" width="16" height="16">
-   <properties>
-    <property name="def" value="ammo"/>
-    <property name="item" value="10 Tetrans"/>
-   </properties>
-  </object>
   <object id="197" name="miniboss" gid="400" x="528" y="752" width="16" height="16"/>
   <object id="198" gid="399" x="512" y="800" width="16" height="16">
    <properties>
@@ -2483,6 +2426,52 @@
    </properties>
   </object>
   <object id="210" gid="394" x="288" y="528" width="16" height="16"/>
+  <object id="213" gid="393" x="1216" y="1024" width="16" height="16">
+   <properties>
+    <property name="color" value="yellow"/>
+   </properties>
+  </object>
+  <object id="214" gid="393" x="1216" y="1040" width="16" height="16">
+   <properties>
+    <property name="color" value="yellow"/>
+   </properties>
+  </object>
+  <object id="215" gid="393" x="656" y="1136" width="16" height="16">
+   <properties>
+    <property name="color" value="yellow"/>
+   </properties>
+  </object>
+  <object id="216" gid="393" x="640" y="1136" width="16" height="16">
+   <properties>
+    <property name="color" value="yellow"/>
+   </properties>
+  </object>
+  <object id="217" gid="393" x="608" y="1136" width="16" height="16">
+   <properties>
+    <property name="color" value="yellow"/>
+   </properties>
+  </object>
+  <object id="218" gid="393" x="592" y="1136" width="16" height="16">
+   <properties>
+    <property name="color" value="yellow"/>
+   </properties>
+  </object>
+  <object id="219" gid="393" x="288" y="848" width="16" height="16">
+   <properties>
+    <property name="color" value="yellow"/>
+   </properties>
+  </object>
+  <object id="220" gid="393" x="288" y="864" width="16" height="16">
+   <properties>
+    <property name="color" value="yellow"/>
+   </properties>
+  </object>
+  <object id="221" gid="370" x="1072" y="1072" width="16" height="16"/>
+  <object id="222" gid="370" x="1088" y="1072" width="16" height="16"/>
+  <object id="223" gid="370" x="1136" y="1088" width="16" height="16"/>
+  <object id="224" gid="370" x="1152" y="1088" width="16" height="16"/>
+  <object id="225" gid="370" x="1120" y="1088" width="16" height="16"/>
+  <object id="226" gid="395" x="992" y="944" width="16" height="16"/>
  </objectgroup>
  <objectgroup id="11" name="zones" visible="0" locked="1">
   <object id="24" type="area" x="512" y="896" width="256" height="256"/>
