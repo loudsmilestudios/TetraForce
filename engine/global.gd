@@ -151,3 +151,10 @@ func change_map(map, entrance):
 	root.add_child(new_map)
 	
 	emit_signal("debug_update")
+
+func count_pearl():
+	spiritpearl += 1
+	if spiritpearl >= 4:
+		max_health += 1
+		player.hud.on_full_slate()
+		spiritpearl = 0

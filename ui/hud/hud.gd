@@ -162,6 +162,7 @@ func count_pearl():
 		set_spiritpearls(0)
 		
 func set_spiritpearls(amount):
+	print(amount)
 	spiritpearls = amount
 	global.spiritpearl = spiritpearls
 	
