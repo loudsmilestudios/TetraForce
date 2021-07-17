@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.6.0" orientation="orthogonal" renderorder="right-down" width="30" height="30" tilewidth="16" tileheight="16" infinite="1" nextlayerid="13" nextobjectid="131">
+<map version="1.5" tiledversion="1.6.0" orientation="orthogonal" renderorder="right-down" width="30" height="30" tilewidth="16" tileheight="16" infinite="1" nextlayerid="13" nextobjectid="133">
  <properties>
   <property name="music" value="dungeon"/>
  </properties>
@@ -2329,6 +2329,18 @@
     <property name="direction" value="left"/>
     <property name="location" value="room2"/>
     <property name="starts_locked" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="131" gid="389" x="224" y="1072" width="16" height="16">
+   <properties>
+    <property name="direction" value="left"/>
+    <property name="location" value="room1"/>
+   </properties>
+  </object>
+  <object id="132" gid="389" x="256" y="1072" width="16" height="16">
+   <properties>
+    <property name="direction" value="right"/>
+    <property name="location" value="room1"/>
    </properties>
   </object>
  </objectgroup>

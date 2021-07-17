@@ -2939,7 +2939,7 @@
   </properties>
   <object id="374" name="stalfaux" gid="766" x="864" y="384" width="16" height="16"/>
   <object id="375" name="stalfaux" gid="766" x="897.333" y="369.333" width="16" height="16"/>
-  <object id="377" name="stalfaux" gid="766" x="1169.33" y="689.333" width="16" height="16"/>
+  <object id="377" name="stalfaux" gid="766" x="1168" y="688" width="16" height="16"/>
   <object id="378" name="slime" gid="772" x="545.333" y="705.333" width="16" height="16"/>
   <object id="379" name="slime" gid="772" x="689.333" y="721.333" width="16" height="16"/>
   <object id="380" name="slime" gid="771" x="593.333" y="737.333" width="16" height="16"/>
