@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.6.0" orientation="orthogonal" renderorder="right-down" width="17" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="14">
+<map version="1.5" tiledversion="1.6.0" orientation="orthogonal" renderorder="right-down" width="17" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="15">
  <properties>
   <property name="music" value="cave"/>
  </properties>
@@ -7,6 +7,7 @@
  <tileset firstgid="291" source="../../tiled/town/town_interior.tsx"/>
  <tileset firstgid="471" source="../../tiled/objects.tsx"/>
  <tileset firstgid="511" source="../../tiled/cave/cave_tileset.tsx"/>
+ <tileset firstgid="861" source="../../tiled/dungeon/dungeon_tileset.tsx"/>
  <layer id="3" name="ground" width="17" height="20">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -62,7 +63,7 @@
 301,302,302,302,302,302,302,302,302,302,302,302,302,416,415,418,295,
 0,0,0,0,0,0,0,0,546,0,0,0,0,0,0,0,296,
 0,0,0,0,0,0,0,0,551,552,545,0,0,0,0,0,296,
-0,0,0,0,0,0,0,0,0,0,551,552,552,552,552,552,301,
+0,0,0,0,0,0,0,0,0,0,551,1041,0,1042,552,552,301,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -147,6 +148,7 @@
    </properties>
   </object>
   <object id="12" gid="505" x="64" y="96" width="16" height="16"/>
+  <object id="14" gid="480" x="191.969" y="109.938" width="16" height="16"/>
  </objectgroup>
  <objectgroup id="7" name="zones" visible="0" locked="1">
   <object id="5" type="area" x="0" y="32" width="272" height="288"/>
