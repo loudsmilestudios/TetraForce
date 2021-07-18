@@ -47,8 +47,7 @@ func interact(node):
 			"dungeon":
 				network.current_map.get_node("dungeon_handler").add_key()
 			"pearl":
-				global.count_pearl()
-				network.peer_call(global, "count_pearl")
+				network.add_to_state(def, item)
 		
 		yield(get_tree().create_timer(1), "timeout")
 		

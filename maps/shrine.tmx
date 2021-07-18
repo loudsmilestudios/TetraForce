@@ -284,8 +284,8 @@
   </object>
   <object id="208" gid="291" x="320" y="480" width="16" height="16">
    <properties>
-    <property name="def" value="pearl"/>
-    <property name="item" value="Spiritpearl"/>
+    <property name="def" value="weapons"/>
+    <property name="item" value="Bomb"/>
    </properties>
   </object>
  </objectgroup>

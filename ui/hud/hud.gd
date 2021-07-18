@@ -39,7 +39,6 @@ func initialize(p):
 
 	$hud2d/Z.modulate = Color(1,1,1,0.3)
 
-
 func update_hearts():
 	for heart in hearts.get_children():
 		var index = heart.get_index()
@@ -152,20 +151,7 @@ func show_inventory():
 	var inventory = preload("res://ui/inventory/inventory.tscn").instance()
 	add_child(inventory)
 	#inventory.start()
-	
-func count_pearl():
-	network.peer_call(self, "set_spiritpearls", [spiritpearls + 1])
-	set_spiritpearls(spiritpearls + 1)
-	if global.spiritpearl >= max_pearls:
-		global.max_health += 1
-		on_full_slate()
-		set_spiritpearls(0)
-		
-func set_spiritpearls(amount):
-	print(amount)
-	spiritpearls = amount
-	global.spiritpearl = spiritpearls
-	
+
 func on_full_slate():
 	var newheart = Sprite.new()
 	newheart.texture = hearts.texture

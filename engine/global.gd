@@ -4,7 +4,7 @@ var player
 var equips = {"B": "Sword", "X": "", "Y": ""}
 var weapons = ["Sword"]
 var items = []
-var pearl =["Spiritpearl"]
+var pearl = []
 var health = 5
 var max_health = 5
 var spiritpearl = 0
@@ -151,10 +151,3 @@ func change_map(map, entrance):
 	root.add_child(new_map)
 	
 	emit_signal("debug_update")
-
-func count_pearl():
-	spiritpearl += 1
-	if spiritpearl >= 4:
-		max_health += 1
-		player.hud.on_full_slate()
-		spiritpearl = 0
