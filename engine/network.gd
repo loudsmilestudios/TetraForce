@@ -71,7 +71,7 @@ func initialize():
 	
 	global.emit_signal("debug_update")
 	
-remote func _sync_item_list(state, value):
+remote func _get_system_arrays(state, value):
 	states[state] = state
 	match state:
 			"weapons", "items", "pearl":
@@ -186,6 +186,14 @@ func is_map_host():
 
 func get_map_host():
 	return map_hosts.get(current_map.name)
+	
+func persistent_set_state(object, properties):
+	var nodepath = object
+	if pid == 1:
+		states[nodepath] = properties
+		global.emit_signal("debug_update")
+	else:
+		rpc_id(1, "_receive_state_change", nodepath, properties)
 
 remote func set_state(path, properties):
 	if pid == 1:
