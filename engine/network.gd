@@ -72,6 +72,7 @@ func initialize():
 	global.emit_signal("debug_update")
 	
 remote func _get_system_arrays(state, value):
+	#This is to update Arrays for Late Session Joins. Does Nothing, needs to be worked on
 	states[state] = state
 	match state:
 			"weapons", "items", "pearl":
