@@ -6,6 +6,7 @@
  <tileset firstgid="1" source="../../tiled/cave/cave_tileset.tsx"/>
  <tileset firstgid="351" source="../../tiled/objects.tsx"/>
  <tileset firstgid="391" source="../../tiled/dungeon/dungeon1_tileset.tsx"/>
+ <tileset firstgid="751" source="../../tiled/overworld/overworld_tileset.tsx"/>
  <layer id="1" name="ground" width="30" height="30">
   <data encoding="csv">
    <chunk x="0" y="16" width="16" height="16">
@@ -112,7 +113,7 @@
 77,77,77,77,84,84,76,66,77,78,84,77,77,77,77,77,
 84,84,84,84,84,84,76,77,77,78,84,84,84,84,84,84,
 84,71,72,73,84,84,76,77,77,78,84,84,71,72,73,84,
-84,76,77,78,84,84,76,77,77,78,84,84,76,77,78,84,
+84,76,77,78,84,84,76,77,77,78,84,84,76,827,78,84,
 84,76,77,78,84,84,76,77,77,78,84,84,76,77,78,167,
 84,76,77,79,72,72,80,77,77,79,72,72,80,77,78,341
 </chunk>
@@ -2363,7 +2364,7 @@
    </properties>
   </object>
   <object id="133" gid="376" x="960" y="816" width="16" height="16"/>
-  <object id="135" name="spawn_1" gid="361" x="784" y="736" width="16" height="16">
+  <object id="135" name="spawn_1" gid="361" x="464" y="736" width="16" height="16">
    <properties>
     <property name="def" value="dungeon"/>
     <property name="hidden" type="bool" value="true"/>
