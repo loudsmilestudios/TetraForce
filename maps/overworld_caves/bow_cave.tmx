@@ -2170,10 +2170,10 @@
    </properties>
    <point/>
   </object>
-  <object id="68" gid="361" x="112" y="592" width="16" height="16">
+  <object id="68" name="boss" gid="361" x="112" y="592" width="16" height="16">
    <properties>
     <property name="hidden" type="bool" value="true"/>
-    <property name="location" value="bossroom"/>
+    <property name="location" value="boss"/>
    </properties>
   </object>
   <object id="71" gid="383" x="448" y="720" width="16" height="16">
@@ -2253,7 +2253,7 @@
   <object id="105" gid="356" x="128" y="592" width="16" height="16">
    <properties>
     <property name="chest_spawn" type="bool" value="true"/>
-    <property name="location" value="bossroom"/>
+    <property name="location" value="boss"/>
     <property name="spawned_by" value="bossroom"/>
    </properties>
   </object>
