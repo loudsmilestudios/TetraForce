@@ -77,8 +77,6 @@ func set_weapon(btn):
 	get_parent().update_weapons()
 	
 func update_pearls():
-	print("network: ", int(network.states["pearl"].size()))
-	print("global: ", int(global.pearl.size()))
 	var pearl_icon = $spiritpearl/pearl_icon
 	pearl_icon.frame = pearl_icon.frame + global.pearl.size()
 	$spiritpearl/pearl_qty.text = str("x",global.pearl.size())
