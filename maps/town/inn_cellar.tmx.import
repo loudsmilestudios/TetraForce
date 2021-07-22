@@ -1,0 +1,22 @@
+[remap]
+
+importer="vnen.tiled_importer"
+type="PackedScene"
+path="res://.import/inn_cellar.tmx-e00dc2b97465db95b90eed59565a5530.scn"
+
+[deps]
+
+source_file="res://maps/town/inn_cellar.tmx"
+dest_files=[ "res://.import/inn_cellar.tmx-e00dc2b97465db95b90eed59565a5530.scn" ]
+
+[params]
+
+custom_properties=true
+tile_metadata=true
+uv_clip=true
+image_flags=7
+collision_layer=1
+embed_internal_images=false
+save_tiled_properties=true
+add_background=true
+post_import_script="res://tiled/import.gd"

@@ -68,6 +68,12 @@ var ammo_def = {
 		ammo_type = "tetrans",
 		amount = 20,
 	},
+	"10 Tetrans": {
+		icon = preload("res://entities/collectables/icons/tetran_blue_10.png"),
+		acquire_dialogue = "acquisition/acquire_tetran_blue",
+		ammo_type = "tetrans",
+		amount = 10,
+	},
 	"10 Arrows": {
 		icon = preload("res://entities/collectables/icons/arrows.png"),
 		acquire_dialogue = "acquisition/acquire_arrows_10",
