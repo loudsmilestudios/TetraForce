@@ -2341,7 +2341,7 @@
   <object id="192" gid="369" x="896" y="1056" width="16" height="16"/>
   <object id="193" gid="369" x="912" y="1056" width="16" height="16"/>
   <object id="194" gid="369" x="912" y="1040" width="16" height="16"/>
-  <object id="197" name="miniboss" gid="400" x="528" y="752" width="16" height="16"/>
+  <object id="197" name="miniboss" gid="400" x="608" y="752" width="16" height="16"/>
   <object id="198" gid="399" x="512" y="800" width="16" height="16">
    <properties>
     <property name="direction" value="right"/>
