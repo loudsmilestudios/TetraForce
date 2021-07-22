@@ -47,7 +47,7 @@ func interact(node):
 			"dungeon":
 				network.current_map.get_node("dungeon_handler").add_key()
 			"pearl":
-				global.player.hud.collect_pearl()
+				network.add_to_state(def, item)
 		
 		yield(get_tree().create_timer(1), "timeout")
 		
@@ -95,3 +95,5 @@ func chest_spawn():
 			set_spawned(true)
 			hidden = false
 			emit_signal("update_persistent_state")
+			
+	

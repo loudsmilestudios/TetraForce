@@ -4,7 +4,7 @@ var player
 var equips = {"B": "Sword", "X": "", "Y": ""}
 var weapons = ["Sword"]
 var items = []
-var pearl =["Spiritpearl"]
+var pearl = []
 var health = 5
 var max_health = 5
 var spiritpearl = 0

@@ -22,11 +22,14 @@ signal received_player_list
 
 var player_data = {}
 
+var state
+
 # save stuff
 # states[nodepath] = properties
 var states = {
 	weapons = [],
 	items = [],
+	pearl = [],
 }
 
 func _ready():
@@ -34,6 +37,8 @@ func _ready():
 	#get_tree().connect("network_peer_connected", self, "_player_connected")
 	get_tree().connect("network_peer_disconnected", self, "_player_disconnected")
 	states.weapons = global.weapons
+	states.items = global.items
+	states.pearl = global.pearl
 
 func clean_session_data():
 	current_players = []
@@ -65,6 +70,13 @@ func initialize():
 	yield(get_tree().create_timer(0.1), "timeout")
 	
 	global.emit_signal("debug_update")
+	
+remote func _get_system_arrays(state, value):
+	#This is to update Arrays for Late Session Joins. Does Nothing, needs to be worked on
+	states[state] = state
+	match state:
+			"weapons", "items", "pearl":
+				pass
 
 remote func _receive_my_player_data(data):
 	var player_name = data.name
@@ -175,24 +187,36 @@ func is_map_host():
 
 func get_map_host():
 	return map_hosts.get(current_map.name)
-
-func set_state(path, properties):
-	#var nodepath = object.get_path()
+	
+func persistent_set_state(object, properties):
+	var nodepath = object
 	if pid == 1:
-		states[path] = properties
+		states[nodepath] = properties
 		global.emit_signal("debug_update")
 	else:
-		rpc_id(1, "_receive_state_change", path, properties)
+		rpc_id(1, "_receive_state_change", nodepath, properties)
 
-func add_to_state(state, value):
-	if !states.get(state).has(value):
+remote func set_state(path, properties):
+	if pid == 1:
+		states[path] = properties
+		rpc("_receive_state_array", path, properties)
+		global.emit_signal("debug_update")
+	else:
+		rpc_id(1, "_receive_state_array", path, properties)
+
+remote func add_to_state(state, value):
+	if !states.get(state).has(value) || states.get(state).has("Spiritpearl"):
 		states.get(state).append(value)
 		global.set(state, states.get(state))
-		rpc("_receive_state_array", state, states.get(state))
+		rpc("_receive_state_change", state, states.get(state))
 		set_state(state, states.get(state))
 
 remote func _receive_state_change(nodepath, properties):
 	states[nodepath] = properties
+	global.emit_signal("debug_update")
+	
+remote func _receive_state_array(state, value):
+	global.set(state, value)
 	global.emit_signal("debug_update")
 
 func request_persistent_state(object):
@@ -213,10 +237,6 @@ remote func _receive_state(nodepath, properties):
 func update_state(nodepath, properties):
 	for property in properties.keys():
 		get_node(nodepath).set(property, properties[property])
-
-remote func _receive_state_array(state, value):
-	global.set(state, value)
-	global.emit_signal("debug_update")
 
 func peer_call(object, function, arguments = []):
 	for peer in map_peers:

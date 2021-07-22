@@ -8,11 +8,11 @@ var selected = 0
 
 func _ready():
 	get_parent().update_weapons()
-	update_pearls()
 	anim.play("slideup")
 	sfx.play("inventory_open")
 
 func start():
+	update_pearls()
 	add_weapons()
 	yield(get_tree(), "physics_frame")
 	change_selection(0)
@@ -78,5 +78,5 @@ func set_weapon(btn):
 	
 func update_pearls():
 	var pearl_icon = $spiritpearl/pearl_icon
-	pearl_icon.frame = pearl_icon.frame + global.spiritpearl
-	$spiritpearl/pearl_qty.text = str("x",global.spiritpearl)
+	pearl_icon.frame = pearl_icon.frame + global.pearl.size()
+	$spiritpearl/pearl_qty.text = str("x",global.pearl.size())

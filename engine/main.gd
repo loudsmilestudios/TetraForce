@@ -7,7 +7,7 @@ var server_api = preload("res://engine/server_api.gd").new()
 
 onready var address_line = $multiplayer/Manual/address
 onready var lobby_line = $multiplayer/Automatic/lobby
-onready var endpoint_button = $options/scroll/vbox/endpoint
+#onready var endpoint_button = $options/scroll/vbox/endpoint JosephB Needs to confirm deletion
 onready var singleplayer_focus = $top/VBoxContainer/singleplayer
 onready var loading_screen = $loading_screen_layer/loading_screen
 
