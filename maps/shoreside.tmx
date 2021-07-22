@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.6.0" orientation="orthogonal" renderorder="right-down" width="96" height="54" tilewidth="16" tileheight="16" infinite="1" nextlayerid="21" nextobjectid="406">
+<map version="1.5" tiledversion="1.6.0" orientation="orthogonal" renderorder="right-down" width="96" height="54" tilewidth="16" tileheight="16" infinite="1" nextlayerid="21" nextobjectid="409">
  <properties>
   <property name="music" value="shore"/>
  </properties>
@@ -2040,16 +2040,16 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 192,0,0,0,0,0,0,0,191,192,0,0,201,202,203,204,
 197,191,192,0,0,0,0,0,196,197,202,203,191,207,208,209,
-0,196,197,0,0,251,0,191,192,206,207,208,213,212,213,208,
+0,196,197,0,0,0,0,191,192,206,207,208,213,212,213,208,
 0,0,0,0,0,0,0,196,197,211,212,213,214,217,212,213,
 203,204,0,0,0,0,0,0,0,216,217,218,219,216,217,218,
 208,209,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 213,214,252,0,0,0,0,0,0,0,0,0,0,191,192,0,
 218,252,252,0,0,0,0,0,0,0,0,0,0,196,197,0,
-195,252,191,192,0,0,0,0,0,0,0,0,251,0,0,0,
+195,252,191,192,0,0,0,0,0,0,0,0,0,0,0,0,
 191,192,196,197,0,0,0,0,0,0,0,0,0,0,0,0,
 196,197,252,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,201,202,203,204,0,0,191,192,0,0,0,0,0,251,0,
+0,201,202,203,204,0,0,191,192,0,0,0,0,0,0,0,
 0,206,207,208,209,0,0,196,197,191,192,191,192,0,0,0,
 0,211,212,207,208,203,204,0,0,196,197,196,197,0,0,0
 </chunk>
@@ -2932,6 +2932,9 @@
   <object id="394" gid="784" x="688" y="704" width="16" height="16"/>
   <object id="395" gid="784" x="560" y="752" width="16" height="16"/>
   <object id="396" gid="784" x="400" y="672" width="16" height="16"/>
+  <object id="406" gid="786" x="496" y="736" width="16" height="16"/>
+  <object id="407" gid="786" x="448" y="688" width="16" height="16"/>
+  <object id="408" gid="786" x="336" y="592" width="16" height="16"/>
  </objectgroup>
  <objectgroup id="20" name="enemies">
   <properties>
@@ -2947,7 +2950,6 @@
   <object id="382" name="slime" gid="771" x="433.333" y="673.333" width="16" height="16"/>
   <object id="383" name="slime" gid="771" x="657.333" y="721.333" width="16" height="16"/>
   <object id="400" name="knawblin" gid="799" x="1152" y="656" width="16" height="16"/>
-  <object id="401" name="thief_cat" gid="803" x="832" y="544" width="16" height="16"/>
   <object id="404" gid="802" x="1056" y="624" width="16" height="16"/>
   <object id="405" gid="771" x="352" y="640" width="16" height="16"/>
  </objectgroup>

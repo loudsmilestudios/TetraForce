@@ -99,6 +99,7 @@ radius = 6.0
 height = 3.0
 
 [node name="Knawblin" type="KinematicBody2D"]
+z_index = 1
 collision_layer = 2
 collision_mask = 2
 script = ExtResource( 2 )

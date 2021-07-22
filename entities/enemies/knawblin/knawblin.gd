@@ -1,6 +1,6 @@
 extends Enemy
 
-var movetimer_length = 100
+var movetimer_length = 150
 var movetimer = 0
 
 func _ready():
@@ -28,7 +28,7 @@ func _physics_process(delta):
 		movedir = rand_direction()
 		movetimer = movetimer_length
 	
-	if movetimer == 25:
+	if movetimer == 50:
 		movedir = Vector2.ZERO
 		use_weapon("Bow")
 		network.peer_call(self, "use_weapon", ["Bow"])

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.6.0" orientation="orthogonal" renderorder="right-down" width="80" height="80" tilewidth="16" tileheight="16" infinite="1" nextlayerid="22" nextobjectid="237">
+<map version="1.5" tiledversion="1.6.0" orientation="orthogonal" renderorder="right-down" width="80" height="80" tilewidth="16" tileheight="16" infinite="1" nextlayerid="22" nextobjectid="239">
  <properties>
   <property name="music" value="overworld"/>
  </properties>
@@ -551,7 +551,7 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,336,337,338,0,0,0,0,0,0
+0,0,0,0,0,0,0,336,0,338,0,0,0,0,0,0
 </chunk>
    <chunk x="64" y="0" width="16" height="16">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -608,7 +608,7 @@
 0,0,0,0,62,62,62,54,62,62,63,0,0,0,0,0
 </chunk>
    <chunk x="48" y="16" width="16" height="16">
-0,0,0,0,336,337,337,337,337,337,337,338,0,0,0,0,
+0,0,0,0,336,337,337,337,0,337,337,338,0,0,0,0,
 0,0,0,0,346,347,347,347,347,347,347,348,0,0,0,0,
 0,0,0,0,346,347,347,347,347,347,347,348,0,0,0,0,
 0,0,0,0,356,340,347,347,347,339,357,358,0,0,0,0,
@@ -3540,6 +3540,24 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,336,337,338,0,0,0,0,0,0
+</chunk>
+   <chunk x="48" y="16" width="16" height="16">
+0,0,0,0,0,0,0,0,337,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </chunk>
    <chunk x="64" y="16" width="16" height="16">
@@ -4302,8 +4320,7 @@
   <object id="67" gid="7" x="448" y="176" width="16" height="16"/>
   <object id="68" gid="7" x="592" y="224" width="16" height="16"/>
   <object id="71" gid="6" x="1360" y="496" width="16" height="16"/>
-  <object id="72" gid="6" x="1376" y="560" width="16" height="16"/>
-  <object id="76" gid="7" x="1408" y="672" width="16" height="16"/>
+  <object id="76" gid="7" x="1376" y="672" width="16" height="16"/>
   <object id="78" gid="4" x="80" y="1072" width="16" height="16"/>
   <object id="79" gid="4" x="208" y="1072" width="16" height="16"/>
   <object id="80" gid="4" x="400" y="1056" width="16" height="16"/>
@@ -4629,11 +4646,17 @@
   <object id="222" gid="34" x="592" y="272" width="16" height="16"/>
   <object id="223" gid="34" x="640" y="272" width="16" height="16"/>
   <object id="225" gid="7" x="640" y="224" width="16" height="16"/>
-  <object id="229" gid="7" x="1360" y="672" width="16" height="16"/>
   <object id="230" gid="6" x="1408" y="512" width="16" height="16"/>
   <object id="232" gid="34" x="1408" y="720" width="16" height="16"/>
   <object id="236" gid="34" x="1360" y="720" width="16" height="16"/>
-  <object id="235" gid="1" x="624" y="912" width="16" height="16"/>
+  <object id="235" gid="1" x="528" y="928" width="16" height="16"/>
+  <object id="237" name="town_inn_cellar" gid="2" x="896" y="272" width="16" height="16">
+   <properties>
+    <property name="entrance" value="town_inn_cellar"/>
+    <property name="map" value="town/inn_cellar"/>
+    <property name="player_position" value="up"/>
+   </properties>
+  </object>
  </objectgroup>
  <objectgroup id="20" name="bombable_walls">
   <properties>

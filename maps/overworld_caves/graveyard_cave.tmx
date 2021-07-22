@@ -320,10 +320,10 @@
  </layer>
  <objectgroup id="12" name="objects">
   <object id="1" gid="631" x="272" y="192" width="16" height="16"/>
-  <object id="2" gid="631" x="240" y="176" width="16" height="16"/>
-  <object id="3" gid="631" x="320" y="224" width="16" height="16"/>
+  <object id="2" gid="631" x="224" y="80" width="16" height="16"/>
+  <object id="3" gid="631" x="240" y="176" width="16" height="16"/>
   <object id="4" gid="631" x="464" y="176" width="16" height="16"/>
-  <object id="5" gid="631" x="448" y="208" width="16" height="16"/>
+  <object id="5" gid="631" x="304" y="224" width="16" height="16"/>
   <object id="6" gid="631" x="128" y="176" width="16" height="16"/>
   <object id="7" gid="631" x="128" y="240" width="16" height="16"/>
   <object id="8" gid="631" x="640" y="112" width="16" height="16"/>
