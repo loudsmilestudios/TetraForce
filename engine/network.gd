@@ -51,6 +51,7 @@ func complete():
 	current_map.queue_free()
 	get_tree().set_network_peer(null)
 	clean_session_data()
+	pid = 1
 
 func initialize():
 	tick = Timer.new()
