@@ -1,5 +1,8 @@
 extends Node
 
+const VERSION_FILE = "res://semantic.version"
+
+var version = null setget ,get_version
 var player
 var equips = {"B": "Sword", "X": "", "Y": ""}
 var weapons = ["Sword"]
@@ -157,3 +160,14 @@ func change_map(map, entrance):
 	root.add_child(new_map)
 	
 	emit_signal("debug_update")
+
+func get_version():
+	if !version:
+		var file = File.new()
+		if file.file_exists(VERSION_FILE):
+			file.open(VERSION_FILE, File.READ)
+			version = file.get_as_text()
+			file.close()
+		else:
+			version = "custom build"
+	return version

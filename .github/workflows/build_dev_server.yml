@@ -13,6 +13,9 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+      - name: Version
+        run: |
+          echo ${{ github.event.inputs.version }} > semantic.version
       - name: Build Godot Project
         id: build
         uses: josephbmanley/build-godot-action@v1.4.0
