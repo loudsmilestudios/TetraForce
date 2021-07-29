@@ -55,6 +55,20 @@ jobs:
           IMAGE_NAME: "tetraforce"
           TAG_NAME: ${{ steps.get_tag.outputs.TAG }}
           LATEST: "true"
+      - name: Docker Build & Push to AWS ECR
+        uses: opspresso/action-docker@master
+        with:
+          args: --ecr
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_REGION: "us-east-2"
+          IMAGE_URI: "141264065387.dkr.ecr.us-east-2.amazonaws.com/tetraforce"
+          BUILD_PATH: "."
+          DOCKERFILE: "Dockerfile"
+          IMAGE_NAME: "tetraforce"
+          TAG_NAME: ${{ steps.get_tag.outputs.TAG }}
+          LATEST: "true"
   linux:
     name: Build & Push - Linux
     runs-on: ubuntu-latest
