@@ -104,6 +104,15 @@ jobs:
           AWS_REGION: us-east-2
           SOURCE_DIR: ${{github.workspace}}/tetraforce
           DEST_DIR: builds/master/latest/linux
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-2
+      - name: Clear CloudFront Cache
+        run: |
+          aws cloudfront create-invalidation --distribution-id ${{ secrets.CLOUDFRONT_ID }} --paths "/builds/master/latest/linux/*"
   windows:
     name: Build & Push - Windows
     runs-on: ubuntu-latest
@@ -142,6 +151,15 @@ jobs:
           AWS_REGION: us-east-2
           SOURCE_DIR: ${{github.workspace}}/tetraforce
           DEST_DIR: builds/master/latest/${{ matrix.platform }}
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-2
+      - name: Clear CloudFront Cache
+        run: |
+          aws cloudfront create-invalidation --distribution-id ${{ secrets.CLOUDFRONT_ID }} --paths "/builds/master/latest/${{ matrix.platform }}/*"
   osx:
     name: Build OSX
     runs-on: macos-latest
@@ -193,6 +211,15 @@ jobs:
         AWS_REGION: us-east-2
         SOURCE_DIR: ${{github.workspace}}/tetraforce
         DEST_DIR: builds/master/latest/osx
+    - name: Configure AWS Credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: us-east-2
+    - name: Clear CloudFront Cache
+      run: |
+        aws cloudfront create-invalidation --distribution-id ${{ secrets.CLOUDFRONT_ID }} --paths "/builds/master/latest/osx/*"
   html5:
     runs-on: ubuntu-latest
     steps:
