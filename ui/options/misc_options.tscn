@@ -1,0 +1,9 @@
+[gd_scene format=2]
+
+[node name="Misc" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 8.99585
+margin_top = 29.9958
+margin_right = -9.51308
+margin_bottom = -9.11333

@@ -141,6 +141,11 @@ func load_blacklist():
 		print("No word blocklist found!")
 
 func value_in_blacklist(value : String):
+	if "misc" in global.options:
+		if "censor" in global.options.misc:
+			if global.options.misc.censor == false:
+				return false
+
 	value = value.replace(" ", "").to_lower().replace("-","").replace(".","")
 	for word in blacklisted_words:
 		if word in value:
