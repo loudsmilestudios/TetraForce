@@ -120,6 +120,50 @@ var options = {
 	}
 }
 
+func _validate_save_dir():
+	var dir = Directory.new()
+	if not dir.dir_exists("user://saves"):
+		dir.open("user://")
+		dir.make_dir("saves")
+
+func save_game_data(save_name):
+	_validate_save_dir()
+
+	var data = {"states": network.states}
+
+	var save_file = File.new()
+	save_file.open("user://saves/%s.tetraforce" % save_name, File.WRITE)
+	save_file.store_line(to_json(data))
+	save_file.close()
+	return true
+
+func load_game_data(save_name):
+	_validate_save_dir()
+
+	var save_file = File.new()
+	if save_file.file_exists("user://saves/%s.tetraforce"):
+		save_file.open("user://saves/%s.tetraforce" % save_name, File.READ)
+		var data = parse_json(save_file.get_as_text())
+		if "states" in data:
+			network.states = data["states"]
+		return true
+	else:
+		return false
+
+func get_saves():
+	var save_files = []
+
+	_validate_save_dir()
+	var dir = Directory.new()
+	dir.open("user://saves")
+	dir.list_dir_begin()
+	var save_file = dir.get_next()
+	while save_file != "":
+		if save_file.ends_with(".tetraforce"):
+			save_files.append(save_file.replace(".tetraforce",""))
+		save_file = dir.get_next()
+	return save_files
+
 func save_options():
 	var save_options = File.new()
 	save_options.open("user://options.json", File.WRITE)
