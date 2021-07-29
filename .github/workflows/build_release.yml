@@ -66,7 +66,6 @@ jobs:
           IMAGE_URI: "141264065387.dkr.ecr.us-east-2.amazonaws.com/tetraforce"
           BUILD_PATH: "."
           DOCKERFILE: "Dockerfile"
-          IMAGE_NAME: "tetraforce"
           TAG_NAME: ${{ steps.get_tag.outputs.TAG }}
           LATEST: "true"
   linux:
