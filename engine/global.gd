@@ -129,7 +129,10 @@ func _validate_save_dir():
 func save_game_data(save_name):
 	_validate_save_dir()
 
-	var data = {"states": network.states}
+	var data = {
+		"format" : "1",
+		"states": network.states
+	}
 
 	var save_file = File.new()
 	save_file.open("user://saves/%s.tetraforce" % save_name, File.WRITE)
