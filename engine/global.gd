@@ -1,11 +1,9 @@
 extends Node
-
 const CENSOR_CHARS = "!@#$%^&*("
 const VERSION_FILE = "res://semantic.version"
 
 var version = null setget ,get_version
 var blacklisted_words = []
-
 var player
 var equips = {"B": "Sword", "X": "", "Y": ""}
 var weapons = ["Sword"]
