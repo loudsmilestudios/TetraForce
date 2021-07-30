@@ -37,6 +37,8 @@ func _process(delta): # can be on screen change instead of process
 	if !network.is_map_host():
 		return
 	
+	update_spiritpearls()
+	
 	var active_zones = []
 	var active_enemies = []
 	
@@ -75,7 +77,7 @@ func add_new_player(id):
 		new_player.nametag.text = global.options.player_data.name
 	else:
 		new_player.sprite.texture = load(network.player_data.get(id).skin)
-		new_player.nametag.text = network.player_data.get(id).name
+		new_player.nametag.text = global.filter_value(network.player_data.get(id).name)
 
 func remove_player(id):
 	if has_node(str(id)):
@@ -128,6 +130,14 @@ func create_collectable(path, pos):
 		call_deferred("add_child", new_collectable)
 		new_collectable.position = pos
 		
+func update_spiritpearls():
+	if global.pearl.size() >= 4:
+		global.max_health += 1
+		global.player.hud.on_full_slate()
+		network.states["pearl"].clear()
+		global.pearl.clear()
+		network.peer_call(self, "update_spiritpearls")
+	global.emit_signal("debug_update")
 
 
 

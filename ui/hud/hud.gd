@@ -2,6 +2,8 @@ extends CanvasLayer
 
 var player
 var timer = Timer.new()
+var max_pearls = 4
+var spiritpearls = 0
 
 const ESC_PATH = "res://ui/esc_menu/esc_menu.tscn"
 const HEART_ROW_SIZE = 8
@@ -10,7 +12,7 @@ const HEART_SIZE = 8
 onready var hud2d = $hud2d
 onready var hearts = $hud2d/hearts
 onready var buttons = $hud2d/buttons
-onready var pearl = preload("res://entities/collectables/spiritpearl.tscn").instance()
+
 
 func _ready():
 	timer.connect("timeout",self,"on_slate_add") 
@@ -36,7 +38,6 @@ func initialize(p):
 	Input.connect("joy_connection_changed", self, "_on_joy_connection_changed")
 
 	$hud2d/Z.modulate = Color(1,1,1,0.3)
-
 
 func update_hearts():
 	for heart in hearts.get_children():
@@ -150,9 +151,14 @@ func show_inventory():
 	var inventory = preload("res://ui/inventory/inventory.tscn").instance()
 	add_child(inventory)
 	#inventory.start()
-	
-func collect_pearl():
-	pearl.add_pearl()
+
+func on_full_slate():
+	var newheart = Sprite.new()
+	newheart.texture = hearts.texture
+	newheart.hframes = hearts.hframes
+	hearts.add_child(newheart)
+	update_hearts()
+	timer.start()
 	
 func on_slate_add():
 	if global.player.health < global.max_health:
