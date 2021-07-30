@@ -19,11 +19,11 @@ jobs:
           GITHUB_HEAD_REF: $${{ github.head_ref }}
           GITHUB_BASE_REF: ${{ github.base_ref }}
         run: |
-          if [ "${{ github.event.inputs.version }}" = "" ]
+          if [ "${{ github.event.release.tag_name }}" -ne "" ]
           then
             TAG=$(jq --raw-output '.release.tag_name' $GITHUB_EVENT_PATH)
           else
-            TAG=${{ github.event.inputs.version }}
+            TAG=`git tag`-`git rev-parse --short HEAD`
           fi
           
           echo $TAG > semantic.version
@@ -74,6 +74,22 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+      - id: get_tag
+        name: Get Tag
+        env:
+          GITHUB_HEAD_REF: $${{ github.head_ref }}
+          GITHUB_BASE_REF: ${{ github.base_ref }}
+        run: |
+          if [ "${{ github.event.release.tag_name }}" -ne "" ]
+          then
+            TAG=$(jq --raw-output '.release.tag_name' $GITHUB_EVENT_PATH)
+          else
+            TAG=`git tag`-`git rev-parse --short HEAD`
+          fi
+          
+          echo $TAG > semantic.version
+          
+          echo ::set-output name=TAG::$TAG
       - name: Build
         id: build
         uses: josephbmanley/build-godot-action@v1.4.0
@@ -121,6 +137,22 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+      - id: get_tag
+        name: Get Tag
+        env:
+          GITHUB_HEAD_REF: $${{ github.head_ref }}
+          GITHUB_BASE_REF: ${{ github.base_ref }}
+        run: |
+          if [ "${{ github.event.release.tag_name }}" -ne "" ]
+          then
+            TAG=$(jq --raw-output '.release.tag_name' $GITHUB_EVENT_PATH)
+          else
+            TAG=`git tag`-`git rev-parse --short HEAD`
+          fi
+          
+          echo $TAG > semantic.version
+          
+          echo ::set-output name=TAG::$TAG
       - name: Build
         id: build
         uses: josephbmanley/build-godot-action@v1.4.0
@@ -172,6 +204,22 @@ jobs:
           rm Godot.zip
           mv Godot.app /Applications/Godot.app
           ln -s /Applications/Godot.app/Contents/MacOS/Godot /usr/local/bin/godot
+      - id: get_tag
+        name: Get Tag
+        env:
+          GITHUB_HEAD_REF: $${{ github.head_ref }}
+          GITHUB_BASE_REF: ${{ github.base_ref }}
+        run: |
+          if [ "${{ github.event.release.tag_name }}" -ne "" ]
+          then
+            TAG=$(jq --raw-output '.release.tag_name' $GITHUB_EVENT_PATH)
+          else
+            TAG=`git tag`-`git rev-parse --short HEAD`
+          fi
+          
+          echo $TAG > semantic.version
+          
+          echo ::set-output name=TAG::$TAG
       - name: Build Project
         run: |
           wget https://downloads.tuxfamily.org/godotengine/3.3.2/Godot_v3.3.2-stable_export_templates.tpz -q
