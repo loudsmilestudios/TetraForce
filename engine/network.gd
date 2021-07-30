@@ -194,7 +194,8 @@ func _player_disconnected(id): # remove disconnected players from player_list
 		update_players()
 
 func _player_connected(id):
-	start_connection_timeout(id)
+	if get_tree().is_network_server():
+		start_connection_timeout(id)
 
 func is_map_host():
 	if !map_hosts.keys().has(current_map.name):
