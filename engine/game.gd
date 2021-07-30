@@ -77,7 +77,7 @@ func add_new_player(id):
 		new_player.nametag.text = global.options.player_data.name
 	else:
 		new_player.sprite.texture = load(network.player_data.get(id).skin)
-		new_player.nametag.text = network.player_data.get(id).name
+		new_player.nametag.text = global.filter_value(network.player_data.get(id).name)
 
 func remove_player(id):
 	if has_node(str(id)):

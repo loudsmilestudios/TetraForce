@@ -1,8 +1,9 @@
 extends Node
-
+const CENSOR_CHARS = "!@#$%^&*("
 const VERSION_FILE = "res://semantic.version"
 
 var version = null setget ,get_version
+var blacklisted_words = []
 var player
 var equips = {"B": "Sword", "X": "", "Y": ""}
 var weapons = ["Sword"]
@@ -122,6 +123,40 @@ var options = {
 		skin="res://entities/player/chain.png",
 	}
 }
+func _ready():
+	load_blacklist()
+
+func load_blacklist():
+	var blacklist_file = File.new()
+	if blacklist_file.file_exists("res://engine/blacklist.txt"):
+		blacklist_file.open("res://engine/blacklist.txt", File.READ)
+		var word = blacklist_file.get_line()
+		while word:
+			blacklisted_words.append(word)
+			word = blacklist_file.get_line()
+		blacklist_file.close()
+	else:
+		print("No word blocklist found!")
+
+func value_in_blacklist(value : String):
+	if "misc" in global.options:
+		if "censor" in global.options.misc:
+			if global.options.misc.censor == false:
+				return false
+
+	value = value.replace(" ", "").to_lower().replace("-","").replace(".","")
+	for word in blacklisted_words:
+		if word in value:
+			return true
+	return false
+
+func filter_value(value : String):
+	if value_in_blacklist(value):
+		var new_value = ""
+		for i in range(len(value)):
+			new_value += CENSOR_CHARS[rand_range(0,len(CENSOR_CHARS))]
+		return new_value
+	return value
 
 func save_options():
 	var save_options = File.new()

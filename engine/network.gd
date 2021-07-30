@@ -43,6 +43,8 @@ func _ready():
 	states.items = global.items
 	states.pearl = global.pearl
 
+
+
 func clean_session_data():
 	current_players = []
 	map_peers = []
@@ -86,6 +88,9 @@ remote func _get_system_arrays(state, value):
 remote func _receive_my_player_data(data):
 	var player_name = data.name
 	var player_id = get_tree().get_rpc_sender_id()
+	if global.value_in_blacklist(player_name):
+		player_name = global.filter_value(player_name)
+
 	player_data[player_id] = data
 	rpc("_receive_player_data", player_data)
 	print(str(get_player_tag(player_id), " joined the game."))
@@ -103,8 +108,11 @@ func get_player_tag(id):
 	return str(player_data[id].name, " (", id, ")")
 	
 func kick_player(id, reason):
-	print(get_player_tag(id), " kicked: ", reason)
-	get_tree().network_peer.disconnect_peer(id, 1000, reason)
+	if is_network_master():
+		print(get_player_tag(id), " kicked: ", reason)
+		get_tree().network_peer.disconnect_peer(id, 1000, reason)
+	else:
+		print("Tried to kick as a client?")
 
 ### PLAYER LIST UPDATES ###
 # super important. list of every player in the game & what map they're in
