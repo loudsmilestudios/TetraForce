@@ -19,7 +19,7 @@ jobs:
           GITHUB_HEAD_REF: $${{ github.head_ref }}
           GITHUB_BASE_REF: ${{ github.base_ref }}
         run: |
-          if [ "${{ github.event.release.tag_name }}" -ne "" ]
+          if [ "${{ github.event.release.tag_name }}" != "" ]
           then
             TAG=$(jq --raw-output '.release.tag_name' $GITHUB_EVENT_PATH)
           else
@@ -80,7 +80,7 @@ jobs:
           GITHUB_HEAD_REF: $${{ github.head_ref }}
           GITHUB_BASE_REF: ${{ github.base_ref }}
         run: |
-          if [ "${{ github.event.release.tag_name }}" -ne "" ]
+          if [ "${{ github.event.release.tag_name }}" != "" ]
           then
             TAG=$(jq --raw-output '.release.tag_name' $GITHUB_EVENT_PATH)
           else
@@ -143,7 +143,7 @@ jobs:
           GITHUB_HEAD_REF: $${{ github.head_ref }}
           GITHUB_BASE_REF: ${{ github.base_ref }}
         run: |
-          if [ "${{ github.event.release.tag_name }}" -ne "" ]
+          if [ "${{ github.event.release.tag_name }}" != "" ]
           then
             TAG=$(jq --raw-output '.release.tag_name' $GITHUB_EVENT_PATH)
           else
@@ -210,7 +210,7 @@ jobs:
           GITHUB_HEAD_REF: $${{ github.head_ref }}
           GITHUB_BASE_REF: ${{ github.base_ref }}
         run: |
-          if [ "${{ github.event.release.tag_name }}" -ne "" ]
+          if [ "${{ github.event.release.tag_name }}" != "" ]
           then
             TAG=$(jq --raw-output '.release.tag_name' $GITHUB_EVENT_PATH)
           else
