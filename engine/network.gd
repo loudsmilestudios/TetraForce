@@ -57,6 +57,7 @@ func complete(include_network = true):
 	if include_network:
 		get_tree().set_network_peer(null)
 	clean_session_data()
+	pid = 1
 
 func initialize():
 	tick = Timer.new()
