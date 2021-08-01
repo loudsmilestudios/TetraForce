@@ -3,7 +3,10 @@ extends Area2D
 var object
 var pressed = false
 
+onready var player
 onready var pushed = false setget set_pushed
+
+signal on_button_pressed
 
 func _ready():
 	self.connect("area_entered", self, "on_pressed")
@@ -16,6 +19,8 @@ func _physics_process(delta):
 		yield(get_tree().create_timer(0.5), "timeout")
 		if get_overlapping_areas():
 			set_pushed(true)
+			network.peer_call(self, "set_pushed", [true])
+			player.sprite.offset.y = 0
 			set_physics_process(false)
 		else:
 			set_physics_process(false)
@@ -26,24 +31,24 @@ func on_pressed(area):
 		set_physics_process(true)
 		
 func on_body_entered(body):
+	player = body
 	if pressed == true:
 		return
 	if pressed == false:
 		set_physics_process(true)
 	if $AnimationPlayer.current_animation == "Up":
-		global.player.sprite.offset.y = global.player.sprite.offset.y - 3
+		body.sprite.offset.y = body.sprite.offset.y - 3
+		
 		
 func on_body_exit(body):
 	if pressed == true:
 		return
-	global.player.sprite.offset.y = 0
+	body.sprite.offset.y = 0
 	
 func set_pushed(value):
+	pushed = value
 	if pushed:
 		$AnimationPlayer.play("Down")
-		global.player.sprite.offset.y = 0
-		if pressed == false:
-			pressed = true
 	else:
 		$AnimationPlayer.play("Up")
-	pushed = value
+	
