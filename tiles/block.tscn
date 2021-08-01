@@ -35,7 +35,6 @@ collision_mask = 3
 [node name="Tween" type="Tween" parent="."]
 
 [node name="NetworkObject" parent="." instance=ExtResource( 3 )]
-persistent = true
 enter_properties = {
 "pushed": false,
 "target_position": Vector2( 0, 0 )
