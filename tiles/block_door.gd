@@ -3,7 +3,7 @@ extends StaticBody2D
 export(bool) var starts_locked = false
 export(String) var location = "room"
 export(String) var direction = "up"
-export var texture = "dungeon1"
+#export var texture = "dungeon1" no textures implemented yet
 
 onready var locked = false setget set_locked
 
@@ -41,10 +41,10 @@ func set_locked(value):
 		
 func spritedir():
 	if direction == "up":
-		$Sprite.frame = 20
+		$Sprite.frame = 8
 	elif direction == "right":
-		$Sprite.frame = 10
+		$Sprite.frame = 4
 	elif direction == "down":
 		$Sprite.frame = 0
 	elif direction == "left":
-		$Sprite.frame = 30
+		$Sprite.frame = 12

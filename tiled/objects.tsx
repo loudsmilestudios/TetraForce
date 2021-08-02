@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tileset version="1.5" tiledversion="1.6.0" name="objects" tilewidth="16" tileheight="22" tilecount="40" columns="0">
+<tileset version="1.5" tiledversion="1.6.0" name="objects" tilewidth="16" tileheight="22" tilecount="43" columns="0">
  <grid orientation="orthogonal" width="1" height="1"/>
  <tile id="0">
   <properties>
@@ -312,5 +312,27 @@
    <property name="path" value="res://tiles/enemy_door_trigger.tscn"/>
   </properties>
   <image width="16" height="16" source="images/objects/enemy_door_trigger.png"/>
+ </tile>
+ <tile id="40">
+  <properties>
+   <property name="direction" value="down"/>
+   <property name="location" value=""/>
+   <property name="path" value="res://tiles/block_door.tscn"/>
+   <property name="starts_locked" type="bool" value="false"/>
+  </properties>
+  <image width="16" height="16" source="images/objects/block_door.png"/>
+ </tile>
+ <tile id="41">
+  <properties>
+   <property name="path" value="res://tiles/door_switch.tscn"/>
+   <property name="requires_weight" type="bool" value="true"/>
+  </properties>
+  <image width="16" height="16" source="images/objects/door_switch.png"/>
+ </tile>
+ <tile id="42">
+  <properties>
+   <property name="path" value="res://tiles/statue.tscn"/>
+  </properties>
+  <image width="16" height="16" source="images/objects/statue.png"/>
  </tile>
 </tileset>
