@@ -1,5 +1,7 @@
 extends Node
 
+const CONNECTION_TIMEOUT = 5
+
 var pid = 1
 
 var dedicated = false
@@ -8,6 +10,7 @@ var current_map = null
 var player_list = {} # player, map -- every active player and what map they're in
 var map_hosts = {} # map, player -- every active map and which player is hosting it
 
+var validated_players = []
 var current_players = []
 var map_peers = []
 
@@ -22,18 +25,25 @@ signal received_player_list
 
 var player_data = {}
 
+var state
+
 # save stuff
 # states[nodepath] = properties
 var states = {
 	weapons = [],
 	items = [],
+	pearl = [],
 }
 
 func _ready():
 	set_process(false)
-	#get_tree().connect("network_peer_connected", self, "_player_connected")
+	get_tree().connect("network_peer_connected", self, "_player_connected")
 	get_tree().connect("network_peer_disconnected", self, "_player_disconnected")
 	states.weapons = global.weapons
+	states.items = global.items
+	states.pearl = global.pearl
+
+
 
 func clean_session_data():
 	current_players = []
@@ -41,11 +51,13 @@ func clean_session_data():
 	player_list = {}
 	map_hosts = {}
 
-func complete():
+func complete(include_network = true):
 	tick.queue_free()
 	current_map.queue_free()
-	get_tree().set_network_peer(null)
+	if include_network:
+		get_tree().set_network_peer(null)
 	clean_session_data()
+	pid = 1
 
 func initialize():
 	tick = Timer.new()
@@ -59,25 +71,49 @@ func initialize():
 	elif !dedicated:
 		pid = get_tree().get_network_unique_id()
 		rpc_id(1, "_receive_my_player_data", global.options.player_data)
+		rpc_id(1, "_reveive_my_version", global.version)
 	
 	start_empty_timeout()
 	
 	yield(get_tree().create_timer(0.1), "timeout")
 	
 	global.emit_signal("debug_update")
+	
+remote func _get_system_arrays(state, value):
+	#This is to update Arrays for Late Session Joins. Does Nothing, needs to be worked on
+	states[state] = state
+	match state:
+			"weapons", "items", "pearl":
+				pass
 
 remote func _receive_my_player_data(data):
 	var player_name = data.name
 	var player_id = get_tree().get_rpc_sender_id()
+	if global.value_in_blacklist(player_name):
+		player_name = global.filter_value(player_name)
+
 	player_data[player_id] = data
 	rpc("_receive_player_data", player_data)
 	print(str(get_player_tag(player_id), " joined the game."))
+
+remote func _reveive_my_version(version):
+	if version != global.version:
+		kick_player(get_tree().get_rpc_sender_id(), "Incompatible version! Server requires version: %s" % global.version)
+	else:
+		validated_players.append(get_tree().get_rpc_sender_id())
 
 remote func _receive_player_data(data):
 	player_data = data
 
 func get_player_tag(id):
 	return str(player_data[id].name, " (", id, ")")
+	
+func kick_player(id, reason):
+	if is_network_master():
+		print(get_player_tag(id), " kicked: ", reason)
+		get_tree().network_peer.disconnect_peer(id, 1000, reason)
+	else:
+		print("Tried to kick as a client?")
 
 ### PLAYER LIST UPDATES ###
 # super important. list of every player in the game & what map they're in
@@ -166,6 +202,10 @@ func _player_disconnected(id): # remove disconnected players from player_list
 		rpc("_receive_player_list", player_list, map_hosts)
 		update_players()
 
+func _player_connected(id):
+	if get_tree().is_network_server():
+		start_connection_timeout(id)
+
 func is_map_host():
 	if !map_hosts.keys().has(current_map.name):
 		return false
@@ -175,22 +215,36 @@ func is_map_host():
 
 func get_map_host():
 	return map_hosts.get(current_map.name)
-
-func set_state(path, properties):
-	#var nodepath = object.get_path()
+	
+func persistent_set_state(object, properties):
+	var nodepath = object
 	if pid == 1:
-		states[path] = properties
+		states[nodepath] = properties
 		global.emit_signal("debug_update")
 	else:
-		rpc_id(1, "_receive_state_change", path, properties)
+		rpc_id(1, "_receive_state_change", nodepath, properties)
 
-func add_to_state(state, value):
-	if !states.get(state).has(value):
+remote func set_state(path, properties):
+	if pid == 1:
+		states[path] = properties
+		rpc("_receive_state_array", path, properties)
+		global.emit_signal("debug_update")
+	else:
+		rpc_id(1, "_receive_state_array", path, properties)
+
+remote func add_to_state(state, value):
+	if !states.get(state).has(value) || states.get(state).has("Spiritpearl"):
 		states.get(state).append(value)
+		global.set(state, states.get(state))
+		rpc("_receive_state_change", state, states.get(state))
 		set_state(state, states.get(state))
 
 remote func _receive_state_change(nodepath, properties):
 	states[nodepath] = properties
+	global.emit_signal("debug_update")
+	
+remote func _receive_state_array(state, value):
+	global.set(state, value)
 	global.emit_signal("debug_update")
 
 func request_persistent_state(object):
@@ -211,10 +265,6 @@ remote func _receive_state(nodepath, properties):
 func update_state(nodepath, properties):
 	for property in properties.keys():
 		get_node(nodepath).set(property, properties[property])
-
-remote func _receive_state_array(state, value):
-	global.set(state, value)
-	global.emit_signal("debug_update")
 
 func peer_call(object, function, arguments = []):
 	for peer in map_peers:
@@ -282,3 +332,23 @@ func _empty_timeout():
 	
 	print("no players after empty-server-timeout=%d, stopping server" % empty_timeout)
 	get_tree().quit()
+
+func start_connection_timeout(id):
+	var connection_timer = Timer.new()
+	connection_timer.name = "connection_timer_%s" % id
+	connection_timer.connect("timeout", self, "_connection_timer_timeout", [id])
+	add_child(connection_timer)
+	connection_timer.start(CONNECTION_TIMEOUT)
+
+func _connection_timer_timeout(id):
+	var connection_timer = get_node_or_null("connection_timer_%s" % id)
+	if connection_timer:
+		if id in get_tree().get_network_connected_peers():
+			if not id in validated_players:
+				kick_player(id, "Did not recieve version data!")
+			if not id in player_data:
+				kick_player(id, "Did not recieve player data!")
+		connection_timer.queue_free()
+	else:
+		if id in get_tree().get_network_connected_peers():
+			kick_player(id, "Failed to find connection timer!")

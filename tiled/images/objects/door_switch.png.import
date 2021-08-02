@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/enemy_door_up.png-310e14a7119420297ecd2b7317d03dcf.stex"
+path="res://.import/door_switch.png-c1b9da0f652c57711ba43459737fb1c6.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://tiles/enemy_door_up.png"
-dest_files=[ "res://.import/enemy_door_up.png-310e14a7119420297ecd2b7317d03dcf.stex" ]
+source_file="res://tiled/images/objects/door_switch.png"
+dest_files=[ "res://.import/door_switch.png-c1b9da0f652c57711ba43459737fb1c6.stex" ]
 
 [params]
 

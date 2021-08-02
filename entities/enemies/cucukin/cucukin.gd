@@ -26,12 +26,14 @@ func launch():
 	active = true
 	anim.play("lift")
 	network.peer_call(anim, "play", ["lift"])
-	yield(get_tree().create_timer(5), "timeout")
-	anim.play("launch")
-	network.peer_call(anim, "play", ["launch"])
+	yield(get_tree().create_timer(4.75), "timeout")
 	if is_in_group("invunerable"):
 				remove_from_group("invunerable")
 				$Hitbox.connect("body_entered", self, "body_entered")
+	yield(get_tree().create_timer(0.25), "timeout")
+	anim.play("launch")
+	network.peer_call(anim, "play", ["launch"])
+	
 					
 	var players = get_tree().get_nodes_in_group("player")
 	var shortest_distance = 999999

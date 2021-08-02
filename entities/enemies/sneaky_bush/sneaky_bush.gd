@@ -29,6 +29,7 @@ func _physics_process(delta):
 		network.peer_call(anim, "play", ["no_player"])
 	if !sees_player:
 		radius = 25
+		movedir = Vector2.ZERO
 	loop_movement()
 	loop_spritedir()
 	loop_damage()

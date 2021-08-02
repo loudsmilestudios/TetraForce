@@ -7,6 +7,8 @@ export var music = ""
 export var musicfx = ""
 export var light = "default"
 
+var current_enemies = []
+
 func _ready():
 	network.current_map = self
 	add_child(camera)
@@ -35,12 +37,17 @@ func _process(delta): # can be on screen change instead of process
 	if !network.is_map_host():
 		return
 	
+	update_spiritpearls()
+	
 	var active_zones = []
 	var active_enemies = []
 	
 	for player in get_tree().get_nodes_in_group("player"):
-		if !active_zones.has(player.current_zone) && player.current_zone != null:
-			active_zones.append(player.current_zone)
+		var handler = player.get_node("ZoneHandler")
+		if handler.get_overlapping_areas().size() > 0: 
+			var player_zone = handler.get_overlapping_areas()[0]
+			if !active_zones.has(player_zone):
+				active_zones.append(player_zone)
 	
 	for zone in active_zones:
 		for enemy in zone.get_enemies():
@@ -70,7 +77,7 @@ func add_new_player(id):
 		new_player.nametag.text = global.options.player_data.name
 	else:
 		new_player.sprite.texture = load(network.player_data.get(id).skin)
-		new_player.nametag.text = network.player_data.get(id).name
+		new_player.nametag.text = global.filter_value(network.player_data.get(id).name)
 
 func remove_player(id):
 	if has_node(str(id)):
@@ -115,17 +122,25 @@ func pick_collectable():
 func spawn_collectable(collectable, pos, chance):
 		if randi() % chance == 0:
 			var path = str("res://entities/collectables/", pick_collectable(), ".tscn")
-			create_collectable(path, pos)
-			network.peer_call(self, "create_collectable", [path, pos])
+			if network.is_map_host():
+				create_collectable(path, pos)
+				network.peer_call(self, "create_collectable", [path, pos])
 			
 func create_collectable(path, pos):
 		var new_collectable = load(path).instance()
 		call_deferred("add_child", new_collectable)
 		new_collectable.position = pos
-			
+		new_collectable.item_position.append(pos)
 		
-
-
+		
+func update_spiritpearls():
+	if global.pearl.size() >= 4:
+		global.max_health += 1
+		global.player.hud.on_full_slate()
+		network.states["pearl"].clear()
+		global.pearl.clear()
+		network.peer_call(self, "update_spiritpearls")
+	global.emit_signal("debug_update")
 
 
 

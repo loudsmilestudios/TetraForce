@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/enemy_door_left.png-880e297a6ee0cefd92e0e291cb1a229c.stex"
+path="res://.import/tetran_blue_10.png-f9495566d45fc754b94906a89a7664f7.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://tiles/enemy_door_left.png"
-dest_files=[ "res://.import/enemy_door_left.png-880e297a6ee0cefd92e0e291cb1a229c.stex" ]
+source_file="res://entities/collectables/icons/tetran_blue_10.png"
+dest_files=[ "res://.import/tetran_blue_10.png-f9495566d45fc754b94906a89a7664f7.stex" ]
 
 [params]
 

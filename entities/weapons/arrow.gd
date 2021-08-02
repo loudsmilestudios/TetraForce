@@ -10,9 +10,8 @@ func start():
 	$Hitbox.connect("body_entered", self, "body_entered")
 	add_to_group("projectile")
 	sfx.play("bow")
-	z_index = shooter.z_index - 1
 	position = shooter.position
-	
+		
 	match shooter.spritedir:
 		"Right":
 			movedir = Vector2.RIGHT

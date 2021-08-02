@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://ui/theme/theme.tres" type="Theme" id=1]
 [ext_resource path="res://ui/options/options.tscn" type="PackedScene" id=2]
 [ext_resource path="res://engine/main.gd" type="Script" id=3]
+[ext_resource path="res://ui/main/version_label.gd" type="Script" id=4]
 [ext_resource path="res://ui/logo_animated_sprite.tres" type="SpriteFrames" id=6]
 [ext_resource path="res://ui/loading_screen/loading_screen.tscn" type="PackedScene" id=7]
 
@@ -218,6 +219,22 @@ margin_left = 143.0
 margin_top = 98.0
 margin_right = 368.0
 margin_bottom = 277.0
+
+[node name="VersionLabel" type="Label" parent="."]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 299.0
+margin_top = 231.0
+margin_right = 468.0
+margin_bottom = 244.0
+text = "custom build"
+align = 2
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="back" type="Button" parent="." groups=[
 "menu",

@@ -2,11 +2,13 @@
 
 importer="vnen.tiled_importer"
 type="PackedScene"
-valid=false
+path="res://.import/inn_cellar.tmx-e00dc2b97465db95b90eed59565a5530.scn"
 
 [deps]
 
-source_file="res://dialogue/dungeon_sign.json"
+source_file="res://maps/town/inn_cellar.tmx"
+dest_files=[ "res://.import/inn_cellar.tmx-e00dc2b97465db95b90eed59565a5530.scn" ]
+
 [params]
 
 custom_properties=true

@@ -1,0 +1,27 @@
+{
+	"Force" : 0,
+	"Random": 0,
+	"Nodes" :
+	 [
+		{
+			"id"      : 0,
+			"name"    : "",
+			"text"    : "Would you like to begin the challenge?",
+			"next_id" : 1,
+			"choices" : [
+				
+				{
+					"text"    : "Begin",
+					"next_id" : -1
+				},
+
+				{
+					"text"    : "Cancel",
+					"next_id" : -1
+				}
+			]
+		}
+
+	]
+
+}
