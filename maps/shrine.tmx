@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.6.0" orientation="orthogonal" renderorder="right-down" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="18" nextobjectid="210">
+<map version="1.5" tiledversion="1.6.0" orientation="orthogonal" renderorder="right-down" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="18" nextobjectid="211">
  <properties>
   <property name="music" value="shrine"/>
  </properties>
@@ -264,26 +264,6 @@
   <object id="171" gid="313" x="240" y="592" width="16" height="16"/>
   <object id="172" gid="313" x="224" y="592" width="16" height="16"/>
   <object id="173" gid="313" x="208" y="592" width="16" height="16"/>
-  <object id="204" x="336" y="448">
-   <properties>
-    <property name="path" value="res://tiles/door_switch.tscn"/>
-   </properties>
-   <point/>
-  </object>
-  <object id="205" gid="283" x="320" y="448" width="16" height="16"/>
-  <object id="206" gid="291" x="240" y="480" width="16" height="16">
-   <properties>
-    <property name="def" value="dungeon"/>
-    <property name="item" value="Key"/>
-   </properties>
-  </object>
-  <object id="208" gid="306" x="240" y="448" width="16" height="16"/>
-  <object id="209" x="48" y="640">
-   <properties>
-    <property name="path" value="res://engine/dungeon_handler.tscn"/>
-   </properties>
-   <point/>
-  </object>
  </objectgroup>
  <objectgroup id="7" name="zones" visible="0" locked="1">
   <object id="1" type="area" x="128" y="208" width="384" height="416"/>

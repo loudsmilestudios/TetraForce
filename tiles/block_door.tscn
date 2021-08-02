@@ -7,7 +7,7 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 8, 8 )
 
-[sub_resource type="Animation" id=14]
+[sub_resource type="Animation" id=2]
 length = 0.4
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -34,7 +34,7 @@ tracks/1/keys = {
 "values": [ true, false ]
 }
 
-[sub_resource type="Animation" id=15]
+[sub_resource type="Animation" id=3]
 length = 0.4
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -61,7 +61,7 @@ tracks/1/keys = {
 "values": [ true, false ]
 }
 
-[sub_resource type="Animation" id=16]
+[sub_resource type="Animation" id=4]
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -87,7 +87,7 @@ tracks/1/keys = {
 "values": [ true, false ]
 }
 
-[sub_resource type="Animation" id=17]
+[sub_resource type="Animation" id=5]
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -113,8 +113,7 @@ tracks/1/keys = {
 "values": [ true, false ]
 }
 
-[sub_resource type="Animation" id=2]
-resource_name = "locked_down"
+[sub_resource type="Animation" id=6]
 length = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -141,8 +140,7 @@ tracks/1/keys = {
 "values": [ false ]
 }
 
-[sub_resource type="Animation" id=3]
-resource_name = "locked_left"
+[sub_resource type="Animation" id=7]
 length = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -169,8 +167,7 @@ tracks/1/keys = {
 "values": [ false ]
 }
 
-[sub_resource type="Animation" id=4]
-resource_name = "locked_right"
+[sub_resource type="Animation" id=8]
 length = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -197,8 +194,7 @@ tracks/1/keys = {
 "values": [ false ]
 }
 
-[sub_resource type="Animation" id=5]
-resource_name = "locked_up"
+[sub_resource type="Animation" id=9]
 length = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -225,8 +221,7 @@ tracks/1/keys = {
 "values": [ false ]
 }
 
-[sub_resource type="Animation" id=6]
-resource_name = "unlock_down"
+[sub_resource type="Animation" id=10]
 length = 0.4
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -253,8 +248,7 @@ tracks/1/keys = {
 "values": [ false, true ]
 }
 
-[sub_resource type="Animation" id=7]
-resource_name = "unlock_left"
+[sub_resource type="Animation" id=11]
 length = 0.4
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -281,8 +275,7 @@ tracks/1/keys = {
 "values": [ false, true ]
 }
 
-[sub_resource type="Animation" id=8]
-resource_name = "unlock_right"
+[sub_resource type="Animation" id=12]
 length = 0.4
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -309,8 +302,7 @@ tracks/1/keys = {
 "values": [ false, true ]
 }
 
-[sub_resource type="Animation" id=9]
-resource_name = "unlock_up"
+[sub_resource type="Animation" id=13]
 length = 0.4
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -337,8 +329,7 @@ tracks/1/keys = {
 "values": [ false, true ]
 }
 
-[sub_resource type="Animation" id=10]
-resource_name = "unlocked_down"
+[sub_resource type="Animation" id=14]
 length = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -365,8 +356,7 @@ tracks/1/keys = {
 "values": [ true ]
 }
 
-[sub_resource type="Animation" id=11]
-resource_name = "unlocked_left"
+[sub_resource type="Animation" id=15]
 length = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -393,8 +383,7 @@ tracks/1/keys = {
 "values": [ true ]
 }
 
-[sub_resource type="Animation" id=12]
-resource_name = "unlocked_right"
+[sub_resource type="Animation" id=16]
 length = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -421,8 +410,7 @@ tracks/1/keys = {
 "values": [ true ]
 }
 
-[sub_resource type="Animation" id=13]
-resource_name = "unlocked_up"
+[sub_resource type="Animation" id=17]
 length = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -463,22 +451,22 @@ shape = SubResource( 1 )
 disabled = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/lock_down = SubResource( 14 )
-anims/lock_left = SubResource( 15 )
-anims/lock_right = SubResource( 16 )
-anims/lock_up = SubResource( 17 )
-anims/locked_down = SubResource( 2 )
-anims/locked_left = SubResource( 3 )
-anims/locked_right = SubResource( 4 )
-anims/locked_up = SubResource( 5 )
-anims/unlock_down = SubResource( 6 )
-anims/unlock_left = SubResource( 7 )
-anims/unlock_right = SubResource( 8 )
-anims/unlock_up = SubResource( 9 )
-anims/unlocked_down = SubResource( 10 )
-anims/unlocked_left = SubResource( 11 )
-anims/unlocked_right = SubResource( 12 )
-anims/unlocked_up = SubResource( 13 )
+anims/lock_down = SubResource( 2 )
+anims/lock_left = SubResource( 3 )
+anims/lock_right = SubResource( 4 )
+anims/lock_up = SubResource( 5 )
+anims/locked_down = SubResource( 6 )
+anims/locked_left = SubResource( 7 )
+anims/locked_right = SubResource( 8 )
+anims/locked_up = SubResource( 9 )
+anims/unlock_down = SubResource( 10 )
+anims/unlock_left = SubResource( 11 )
+anims/unlock_right = SubResource( 12 )
+anims/unlock_up = SubResource( 13 )
+anims/unlocked_down = SubResource( 14 )
+anims/unlocked_left = SubResource( 15 )
+anims/unlocked_right = SubResource( 16 )
+anims/unlocked_up = SubResource( 17 )
 
 [node name="NetworkObject" parent="." instance=ExtResource( 3 )]
 update_properties = {
