@@ -4,7 +4,6 @@ onready var ray = $RayCast2D
 onready var tween = $Tween
 
 onready var target_position = position setget set_block_position
-onready var pushed = false setget set_pushed
 
 func _ready():
 	add_to_group("pushable")
@@ -20,19 +19,14 @@ func interact(node):
 func attempt_move(direction):
 	ray.cast_to = direction * 16
 	yield(get_tree().create_timer(0.05), "timeout")
-	if !ray.is_colliding() && !pushed:
+	if !ray.is_colliding():
 		target_position = (position + direction * 16).snapped(Vector2(16,16)) - Vector2(8,8)
-		set_pushed(true)
 		move_to(position, target_position)
 		network.peer_call(self, "move_to", [position, target_position])
-		network.peer_call(self, "set_pushed", [pushed])
 
 func set_block_position(value):
 	target_position = value
 	snap_to(position, target_position)
-
-func set_pushed(value):
-	pushed = value
 
 func move_to(current_pos, target_pos):
 	tween.interpolate_property(self, "position", current_pos, target_pos, 1.0, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)

@@ -3,19 +3,16 @@ extends TileMap
 var cut_cells = [] setget enter_cut_cells
 var walkfx_texture = preload("res://effects/walkfx_grass.png")
 
-signal update_persistent_state
-
 func _ready():
 	var network_object = preload("res://engine/network_object.tscn").instance()
 	network_object.enter_properties = {"cut_cells":[]}
-	network_object.persistent = true
+	network_object.persistent = false
 	add_child(network_object)
 	add_to_group("fxtile")
 
 func cut(hitbox):
 	var tile = world_to_map(hitbox.global_position)
 	process_tile(tile)
-	emit_signal("update_persistent_state")
 	network.peer_call(self, "process_tile", [tile])
 
 func enter_cut_cells(value):
