@@ -1,6 +1,7 @@
 extends Node
 
 var keys = 0
+var thorn_order = 0
 
 signal update_persistent_state
 
@@ -26,3 +27,14 @@ func remove_key():
 func set_keys(amount):
 	keys = amount
 	global.player.hud.update_keys()
+	
+func add_thorn_order():
+	if network.is_map_host():
+		set_thorns(thorn_order + 1)
+		network.peer_call(self, "set_thorns", [thorn_order])
+		emit_signal("update_persistent_state")
+	else:
+		network.peer_call(self, "add_thorn_order")
+		
+func set_thorns(amount):
+	thorn_order = amount
