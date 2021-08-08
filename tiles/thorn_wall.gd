@@ -4,9 +4,8 @@ export(int) var order = 0
 
 func on_cannon_fired():
 	var thorn_order = network.current_map.get_node("dungeon_handler").thorn_order
-	if thorn_order != order:
-		return
 	var rect = global.player.camera.current_rect
+	
 	screenfx.play("fadein")
 	yield(get_tree().create_timer(1), "timeout")
 	$AnimationPlayer.play("break")

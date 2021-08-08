@@ -16,8 +16,10 @@ func interact(node : Entity):
 	
 	if node.spritedir == "Left":
 		return
-	
+		
 	if fired == false:
+		if network.current_map.has_node("dungeon_handler"):
+				network.current_map.get_node("dungeon_handler").add_thorn_order()
 		$AnimationPlayer.play("fuse")
 		network.peer_call($AnimationPlayer, "play", ["fuse"])
 		node.state = "menu"
@@ -48,6 +50,4 @@ func fire():
 	set_fired(true)
 	if is_in_group("interactable"):
 		remove_from_group("interactable")
-	if network.current_map.has_node("dungeon_handler"):
-		network.current_map.get_node("dungeon_handler").add_thorn_order()
 	emit_signal("update_persistent_state")
