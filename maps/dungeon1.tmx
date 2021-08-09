@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.6.0" orientation="orthogonal" renderorder="right-down" width="30" height="30" tilewidth="16" tileheight="16" infinite="1" nextlayerid="13" nextobjectid="231">
+<map version="1.5" tiledversion="1.6.0" orientation="orthogonal" renderorder="right-down" width="30" height="30" tilewidth="16" tileheight="16" infinite="1" nextlayerid="13" nextobjectid="239">
  <properties>
   <property name="music" value="dungeon"/>
  </properties>
  <tileset firstgid="1" source="../tiled/dungeon/dungeon1_tileset.tsx"/>
- <tileset firstgid="361" source="../tiled/objects.tsx"/>
- <tileset firstgid="404" source="../tiled/overworld/overworld_tileset.tsx"/>
- <tileset firstgid="694" source="../tiled/z-index.tsx"/>
+ <tileset firstgid="371" source="../tiled/objects.tsx"/>
+ <tileset firstgid="416" source="../tiled/overworld/overworld_tileset.tsx"/>
+ <tileset firstgid="706" source="../tiled/z-index.tsx"/>
  <layer id="3" name="ground" width="30" height="30">
   <data encoding="csv">
    <chunk x="0" y="16" width="16" height="16">
@@ -794,13 +794,13 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,
-7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,
-4,12,29,24,12,29,12,12,29,12,24,29,12,24,29,5,
-8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,6,
-8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,6,
-8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,6,
-8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,6
+6,6,2,2,2,2,2,2,2,2,2,2,2,2,2,2,
+6,6,7,7,7,7,7,7,7,7,7,7,7,7,7,8,
+6,6,29,24,12,29,12,12,29,12,24,29,12,24,29,8,
+6,6,0,0,0,0,0,0,0,0,0,0,0,0,0,8,
+6,6,0,0,0,0,0,0,0,0,0,0,0,0,0,8,
+6,6,0,0,0,0,0,0,0,0,0,0,0,0,0,8,
+6,6,0,0,0,0,0,0,0,0,0,0,0,0,0,8
 </chunk>
    <chunk x="80" y="16" width="16" height="16">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -813,12 +813,12 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 2,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-7,8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-7,8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-7,8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-7,8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-7,8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-7,8,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+8,8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+8,8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+8,8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+8,8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+8,8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+8,8,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </chunk>
    <chunk x="-16" y="32" width="16" height="16">
 0,0,0,0,0,0,0,0,0,0,0,6,7,7,7,7,
@@ -903,24 +903,24 @@
 8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,6,
 9,2,2,2,2,2,2,2,272,0,271,2,2,2,2,10,
 4,12,12,12,12,12,12,12,277,0,276,12,12,12,12,12,
-8,363,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-8,363,0,0,363,0,0,363,363,0,0,0,363,363,0,0,
-8,363,0,0,363,0,0,363,0,0,0,0,0,0,0,0,
-8,363,363,363,363,0,0,363,363,0,0,0,0,0,363,0,
-8,0,0,0,0,0,0,0,363,0,0,0,0,0,363,0,
-8,0,363,363,363,0,0,0,363,0,0,0,0,0,0,0
+8,373,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+8,373,0,0,373,0,0,373,373,0,0,0,373,373,0,0,
+8,373,0,0,373,0,0,373,0,0,0,0,0,0,0,0,
+8,373,373,373,373,0,0,373,373,0,0,0,0,0,373,0,
+8,0,0,0,0,0,0,0,373,0,0,0,0,0,373,0,
+8,0,373,373,373,0,0,0,373,0,0,0,0,0,0,0
 </chunk>
    <chunk x="64" y="32" width="16" height="16">
-8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,6,
-8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,6,
-8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,6,
-8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,6,
-8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,6,
-8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,6,
-8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,6,
-8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,6,
-9,2,2,2,2,2,26,0,0,28,2,2,2,2,2,10,
-12,12,12,12,12,12,21,0,0,23,12,12,12,12,12,5,
+6,6,0,0,0,0,0,0,0,0,0,0,0,0,0,8,
+6,6,0,0,0,0,0,0,0,0,0,0,0,0,0,8,
+6,6,0,0,0,0,0,0,0,0,0,0,0,0,0,8,
+6,6,0,0,0,0,0,0,0,0,0,0,0,0,0,8,
+6,6,0,0,0,0,0,0,0,0,0,0,0,0,0,8,
+6,6,0,0,0,0,0,0,0,0,0,0,0,0,0,8,
+6,6,0,0,0,0,0,0,0,0,0,0,0,0,0,8,
+6,11,12,12,12,12,12,12,12,12,12,12,12,12,12,13,
+11,12,12,12,12,12,12,0,0,12,12,12,12,12,12,12,
+12,12,12,12,12,12,21,334,335,23,12,12,12,12,12,5,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,6,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,6,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,6,
@@ -929,15 +929,15 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,6
 </chunk>
    <chunk x="80" y="32" width="16" height="16">
-7,8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-7,8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-7,8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-7,8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-7,8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-7,8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-7,8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-7,8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-7,8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+8,8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+8,8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+8,8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+8,8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+8,8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+8,8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+8,8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+8,8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+13,8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 7,8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 7,8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 7,8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -1019,11 +1019,11 @@
 8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,6
 </chunk>
    <chunk x="48" y="48" width="16" height="16">
-31,0,0,0,0,0,0,0,363,0,0,0,363,363,363,0,
-0,0,0,0,0,0,0,0,363,0,0,0,363,0,0,0,
-41,363,363,363,363,0,363,363,363,0,0,0,0,0,0,0,
-8,363,0,0,0,0,363,0,0,0,0,0,363,363,363,363,
-8,363,363,363,363,363,363,0,0,0,0,0,0,0,0,0,
+31,0,0,0,0,0,0,0,373,0,0,0,373,373,373,0,
+0,0,0,0,0,0,0,0,373,0,0,0,373,0,0,0,
+41,373,373,373,373,0,373,373,373,0,0,0,0,0,0,0,
+8,373,0,0,0,0,373,0,0,0,0,0,373,373,373,373,
+8,373,373,373,373,373,373,0,0,0,0,0,0,0,0,0,
 9,2,2,2,2,2,2,2,2,272,0,271,2,2,2,2,
 4,12,12,12,12,12,12,12,12,277,0,276,12,12,12,5,
 8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,6,
@@ -1374,7 +1374,7 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,361,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,152,150,150,0,0,0,0,150,150,152,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -1603,8 +1603,8 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,694,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,699
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,706,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,711
 </chunk>
    <chunk x="32" y="16" width="16" height="16">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -1621,8 +1621,8 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-695,0,0,0,0,0,0,0,0,0,0,0,0,0,0,694,
-700,0,0,0,0,0,0,0,0,0,0,0,0,0,0,699
+707,0,0,0,0,0,0,0,0,0,0,0,0,0,0,706,
+712,0,0,0,0,0,0,0,0,0,0,0,0,0,0,711
 </chunk>
    <chunk x="48" y="16" width="16" height="16">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -1639,15 +1639,15 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-695,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-700,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+707,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+712,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </chunk>
    <chunk x="0" y="32" width="16" height="16">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,709,710,711,0,0,0,0,0,
-0,0,0,0,0,0,0,0,714,715,716,0,0,0,0,0,
+0,0,0,0,0,0,0,0,721,722,723,0,0,0,0,0,
+0,0,0,0,0,0,0,0,726,727,728,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -1661,7 +1661,7 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </chunk>
    <chunk x="16" y="32" width="16" height="16">
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,704,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,716,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,27,0,0,0,0,0,0,0,0,
@@ -1679,7 +1679,7 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </chunk>
    <chunk x="32" y="32" width="16" height="16">
-705,0,0,0,0,0,0,0,0,0,0,0,0,0,0,704,
+717,0,0,0,0,0,0,0,0,0,0,0,0,0,0,716,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -1691,22 +1691,40 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,709,710,711,0,0,0,0,0,0,
-0,0,0,0,0,0,0,714,715,716,0,0,0,0,0,0,
+0,0,0,0,0,0,0,721,722,723,0,0,0,0,0,0,
+0,0,0,0,0,0,0,726,727,728,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </chunk>
    <chunk x="48" y="32" width="16" height="16">
-705,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+717,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,709,710,711,0,0,
-0,0,0,0,0,0,0,0,0,0,0,714,715,716,0,0,
+0,0,0,0,0,0,0,0,0,0,0,721,722,723,0,0,
+0,0,0,0,0,0,0,0,0,0,0,726,727,728,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</chunk>
+   <chunk x="64" y="32" width="16" height="16">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,12,12,12,12,0,0,0,0,0,0,
+0,0,0,0,0,0,12,12,12,12,0,0,0,0,0,0,
+0,0,0,0,0,0,12,334,335,12,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -1715,9 +1733,9 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </chunk>
    <chunk x="0" y="48" width="16" height="16">
-0,0,0,0,0,0,0,0,0,0,0,0,0,694,6,6,
-0,0,0,0,0,0,0,0,0,0,0,0,0,699,6,6,
-0,0,0,0,0,0,0,0,0,0,0,0,0,704,6,6,
+0,0,0,0,0,0,0,0,0,0,0,0,0,706,6,6,
+0,0,0,0,0,0,0,0,0,0,0,0,0,711,6,6,
+0,0,0,0,0,0,0,0,0,0,0,0,0,716,6,6,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -1733,65 +1751,65 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </chunk>
    <chunk x="16" y="48" width="16" height="16">
-8,695,0,0,0,0,0,0,0,0,0,0,0,0,0,694,
-8,700,0,0,0,0,0,0,0,0,0,0,0,0,0,699,
-8,705,0,0,0,0,0,0,0,0,0,0,0,0,0,704,
+8,707,0,0,0,0,0,0,0,0,0,0,0,0,0,706,
+8,712,0,0,0,0,0,0,0,0,0,0,0,0,0,711,
+8,717,0,0,0,0,0,0,0,0,0,0,0,0,0,716,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,709,710,711,0,0,0,0,0,0,0,0,0,0,
+0,0,0,721,722,723,0,0,0,0,0,0,0,0,0,0,
 0,0,0,2,2,2,0,0,0,0,0,0,0,0,0,0,
-0,0,0,714,715,716,0,0,0,0,0,0,0,0,0,0,
+0,0,0,726,727,728,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,694,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,699,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,704,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,706,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,711,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,716,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </chunk>
    <chunk x="32" y="48" width="16" height="16">
-695,0,0,0,0,0,0,0,0,0,0,0,0,0,0,694,
-700,0,0,0,0,0,0,0,0,0,0,0,0,0,0,699,
-705,0,0,0,0,0,0,0,0,0,0,0,0,0,0,704,
+707,0,0,0,0,0,0,0,0,0,0,0,0,0,0,706,
+712,0,0,0,0,0,0,0,0,0,0,0,0,0,0,711,
+717,0,0,0,0,0,0,0,0,0,0,0,0,0,0,716,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,694,
-695,0,0,0,0,0,0,0,0,0,0,0,0,0,0,699,
-700,0,0,0,0,0,0,0,0,0,0,0,0,0,0,704,
-705,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,706,
+707,0,0,0,0,0,0,0,0,0,0,0,0,0,0,711,
+712,0,0,0,0,0,0,0,0,0,0,0,0,0,0,716,
+717,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </chunk>
    <chunk x="48" y="48" width="16" height="16">
-695,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-700,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-705,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+707,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+712,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+717,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-695,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-700,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-705,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+707,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+712,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+717,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,709,710,711,0,0,0,0,0,0,0,
-0,0,0,0,0,0,714,715,716,0,0,0,0,0,0,0
+0,0,0,0,0,0,721,722,723,0,0,0,0,0,0,0,
+0,0,0,0,0,0,726,727,728,0,0,0,0,0,0,0
 </chunk>
    <chunk x="0" y="64" width="16" height="16">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,694,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,699,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,704,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,706,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,711,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,716,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -1807,9 +1825,9 @@
    <chunk x="16" y="64" width="16" height="16">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-695,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-700,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-705,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+707,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+712,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+717,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -1825,9 +1843,9 @@
    <chunk x="48" y="64" width="16" height="16">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,694,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,699,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,704,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,706,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,711,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,716,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -1843,9 +1861,9 @@
    <chunk x="64" y="64" width="16" height="16">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-8,695,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-8,700,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-8,705,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+8,707,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+8,712,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+8,717,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -1861,25 +1879,10 @@
   </data>
  </layer>
  <layer id="7" name="upper_decor" width="30" height="30">
+  <properties>
+   <property name="z_index" type="int" value="202"/>
+  </properties>
   <data encoding="csv">
-   <chunk x="0" y="16" width="16" height="16">
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,286,287,0,0,0,0
-</chunk>
    <chunk x="16" y="16" width="16" height="16">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -1926,26 +1929,8 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,324,324,324,324,324,324,324,324,324,324,324,324,324,0,
-0,0,329,329,329,329,329,329,329,329,329,329,329,329,329,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-</chunk>
-   <chunk x="0" y="48" width="16" height="16">
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,286,287,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,361,0,0,361,361,0,0,361,361,0,0,361,361,0,
+0,0,366,0,0,366,366,0,0,366,366,0,0,366,366,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -1988,24 +1973,6 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </chunk>
-   <chunk x="0" y="64" width="16" height="16">
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,286,287,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-</chunk>
    <chunk x="32" y="64" width="16" height="16">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -2035,7 +2002,7 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,638,0,0,0,638,0,0,0,0,0,0,
+0,0,0,0,0,650,0,0,0,650,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -2049,107 +2016,107 @@
   </data>
  </layer>
  <objectgroup id="9" name="objects">
-  <object id="1" gid="369" x="848" y="608" width="16" height="16"/>
-  <object id="2" gid="369" x="848" y="624" width="16" height="16"/>
-  <object id="3" gid="369" x="848" y="640" width="16" height="16"/>
-  <object id="4" gid="363" x="784" y="496" width="16" height="16"/>
-  <object id="5" gid="363" x="800" y="512" width="16" height="16"/>
-  <object id="6" gid="363" x="784" y="528" width="16" height="16"/>
-  <object id="7" gid="363" x="960" y="512" width="16" height="16"/>
-  <object id="8" gid="363" x="992" y="512" width="16" height="16"/>
-  <object id="9" gid="363" x="976" y="512" width="16" height="16"/>
-  <object id="10" gid="363" x="944" y="512" width="16" height="16"/>
-  <object id="11" gid="363" x="928" y="512" width="16" height="16"/>
-  <object id="12" gid="363" x="912" y="512" width="16" height="16"/>
-  <object id="13" gid="363" x="896" y="512" width="16" height="16"/>
-  <object id="14" gid="363" x="896" y="496" width="16" height="16"/>
-  <object id="15" gid="363" x="896" y="480" width="16" height="16"/>
-  <object id="16" gid="363" x="896" y="464" width="16" height="16"/>
-  <object id="41" name="ship_entrance" gid="362" x="624" y="1152" width="16" height="16">
+  <object id="1" gid="379" x="848" y="608" width="16" height="16"/>
+  <object id="2" gid="379" x="848" y="624" width="16" height="16"/>
+  <object id="3" gid="379" x="848" y="640" width="16" height="16"/>
+  <object id="4" gid="373" x="784" y="496" width="16" height="16"/>
+  <object id="5" gid="373" x="800" y="512" width="16" height="16"/>
+  <object id="6" gid="373" x="784" y="528" width="16" height="16"/>
+  <object id="7" gid="373" x="960" y="512" width="16" height="16"/>
+  <object id="8" gid="373" x="992" y="512" width="16" height="16"/>
+  <object id="9" gid="373" x="976" y="512" width="16" height="16"/>
+  <object id="10" gid="373" x="944" y="512" width="16" height="16"/>
+  <object id="11" gid="373" x="928" y="512" width="16" height="16"/>
+  <object id="12" gid="373" x="912" y="512" width="16" height="16"/>
+  <object id="13" gid="373" x="896" y="512" width="16" height="16"/>
+  <object id="14" gid="373" x="896" y="496" width="16" height="16"/>
+  <object id="15" gid="373" x="896" y="480" width="16" height="16"/>
+  <object id="16" gid="373" x="896" y="464" width="16" height="16"/>
+  <object id="41" name="ship_entrance" gid="372" x="624" y="1152" width="16" height="16">
    <properties>
     <property name="entrance" value="ship_entrance"/>
     <property name="map" value="shoreside"/>
     <property name="player_position" value="up"/>
    </properties>
   </object>
-  <object id="42" gid="383" x="416" y="1104" width="16" height="16"/>
-  <object id="44" gid="383" x="464" y="832" width="16" height="16"/>
-  <object id="46" gid="383" x="976" y="544" width="16" height="16">
+  <object id="42" gid="393" x="416" y="1104" width="16" height="16"/>
+  <object id="44" gid="393" x="464" y="832" width="16" height="16"/>
+  <object id="46" gid="393" x="976" y="544" width="16" height="16">
    <properties>
     <property name="spawned_by" value="room2"/>
    </properties>
   </object>
-  <object id="47" gid="383" x="880" y="544" width="16" height="16">
+  <object id="47" gid="393" x="880" y="544" width="16" height="16">
    <properties>
     <property name="spawned_by" value="room2"/>
    </properties>
   </object>
-  <object id="48" gid="383" x="1152" y="784" width="16" height="16"/>
-  <object id="51" gid="383" x="848" y="992" width="16" height="16"/>
-  <object id="60" gid="385" x="304" y="944" width="16" height="22">
+  <object id="48" gid="393" x="1152" y="784" width="16" height="16"/>
+  <object id="51" gid="393" x="848" y="992" width="16" height="16"/>
+  <object id="60" gid="395" x="304" y="944" width="16" height="22">
    <properties>
     <property name="chest_spawn" type="bool" value="true"/>
     <property name="location" value="spawn_1"/>
    </properties>
   </object>
-  <object id="61" gid="385" x="288" y="1040" width="16" height="22"/>
-  <object id="62" gid="385" x="-32" y="800" width="16" height="22"/>
-  <object id="63" gid="385" x="-16" y="848" width="16" height="22"/>
-  <object id="67" gid="385" x="1136" y="928" width="16" height="22"/>
-  <object id="68" gid="385" x="1104" y="928" width="16" height="22">
+  <object id="61" gid="395" x="288" y="1040" width="16" height="22"/>
+  <object id="62" gid="395" x="-32" y="800" width="16" height="22"/>
+  <object id="63" gid="395" x="-16" y="848" width="16" height="22"/>
+  <object id="67" gid="395" x="1136" y="928" width="16" height="22"/>
+  <object id="68" gid="395" x="1104" y="928" width="16" height="22">
    <properties>
     <property name="chest_spawn" type="bool" value="true"/>
     <property name="location" value="spawn_2"/>
    </properties>
   </object>
-  <object id="69" gid="385" x="1104" y="960" width="16" height="22"/>
-  <object id="70" gid="385" x="1056" y="832" width="16" height="22"/>
-  <object id="71" gid="385" x="864" y="784" width="16" height="22"/>
-  <object id="74" gid="385" x="848" y="480" width="16" height="22">
+  <object id="69" gid="395" x="1104" y="960" width="16" height="22"/>
+  <object id="70" gid="395" x="1056" y="832" width="16" height="22"/>
+  <object id="71" gid="395" x="864" y="784" width="16" height="22"/>
+  <object id="74" gid="395" x="848" y="480" width="16" height="22">
    <properties>
     <property name="location" value=""/>
     <property name="spawned_by" value="room2"/>
    </properties>
   </object>
-  <object id="77" gid="385" x="368" y="480" width="16" height="22"/>
-  <object id="80" gid="385" x="384" y="544" width="16" height="22"/>
-  <object id="81" gid="384" x="624" y="640" width="16" height="16"/>
-  <object id="82" gid="371" x="640" y="640" width="16" height="16">
+  <object id="77" gid="395" x="368" y="480" width="16" height="22"/>
+  <object id="80" gid="395" x="384" y="544" width="16" height="22"/>
+  <object id="81" gid="394" x="624" y="640" width="16" height="16"/>
+  <object id="82" gid="381" x="640" y="640" width="16" height="16">
    <properties>
     <property name="item" value="Bomb"/>
    </properties>
   </object>
-  <object id="83" gid="371" x="288" y="640" width="16" height="16">
+  <object id="83" gid="381" x="288" y="640" width="16" height="16">
    <properties>
     <property name="def" value="ammo"/>
     <property name="item" value="10 Arrows"/>
    </properties>
   </object>
-  <object id="84" gid="371" x="1072" y="1024" width="16" height="16">
+  <object id="84" gid="381" x="1072" y="1024" width="16" height="16">
    <properties>
     <property name="def" value="ammo"/>
     <property name="item" value="20 Tetrans"/>
    </properties>
   </object>
-  <object id="212" gid="371" x="480" y="752" width="16" height="16">
+  <object id="212" gid="381" x="480" y="752" width="16" height="16">
    <properties>
     <property name="def" value="ammo"/>
     <property name="item" value="20 Tetrans"/>
    </properties>
   </object>
-  <object id="85" gid="371" x="0" y="752" width="16" height="16">
+  <object id="85" gid="381" x="0" y="752" width="16" height="16">
    <properties>
     <property name="def" value="ammo"/>
     <property name="item" value="10 Tetrans"/>
    </properties>
   </object>
-  <object id="86" gid="371" x="800" y="608" width="16" height="16">
+  <object id="86" gid="381" x="800" y="608" width="16" height="16">
    <properties>
     <property name="def" value="dungeon"/>
     <property name="item" value="Key"/>
    </properties>
   </object>
-  <object id="87" gid="371" x="944" y="976" width="16" height="16">
+  <object id="87" gid="381" x="944" y="976" width="16" height="16">
    <properties>
     <property name="def" value="dungeon"/>
     <property name="item" value="Key"/>
@@ -2161,29 +2128,29 @@
    </properties>
    <point/>
   </object>
-  <object id="95" gid="386" x="672" y="960" width="16" height="16">
+  <object id="95" gid="396" x="672" y="960" width="16" height="16">
    <properties>
     <property name="path" value="res://tiles/lockblock.tscn"/>
    </properties>
   </object>
-  <object id="97" gid="387" x="256" y="1088" width="16" height="16">
+  <object id="97" gid="397" x="256" y="1088" width="16" height="16">
    <properties>
     <property name="direction" value="right"/>
     <property name="texture" value="dungeon1"/>
    </properties>
   </object>
-  <object id="99" gid="387" x="272" y="800" width="16" height="16">
+  <object id="99" gid="397" x="272" y="800" width="16" height="16">
    <properties>
     <property name="direction" value="right"/>
    </properties>
   </object>
-  <object id="102" gid="387" x="512" y="512" width="16" height="16">
+  <object id="102" gid="397" x="512" y="512" width="16" height="16">
    <properties>
     <property name="direction" value="right"/>
    </properties>
   </object>
-  <object id="103" gid="363" x="320" y="800" width="16" height="16"/>
-  <object id="112" name="spawn_1" gid="371" x="448" y="944" width="16" height="16">
+  <object id="103" gid="373" x="320" y="800" width="16" height="16"/>
+  <object id="112" name="spawn_1" gid="381" x="448" y="944" width="16" height="16">
    <properties>
     <property name="def" value="dungeon"/>
     <property name="hidden" type="bool" value="true"/>
@@ -2191,7 +2158,7 @@
     <property name="location" value="spawn_1"/>
    </properties>
   </object>
-  <object id="113" name="spawn_2" gid="371" x="1184" y="896" width="16" height="16">
+  <object id="113" name="spawn_2" gid="381" x="1184" y="896" width="16" height="16">
    <properties>
     <property name="def" value="dungeon"/>
     <property name="hidden" type="bool" value="true"/>
@@ -2199,254 +2166,268 @@
     <property name="location" value="spawn_2"/>
    </properties>
   </object>
-  <object id="114" gid="370" x="432" y="784" width="16" height="16">
+  <object id="114" gid="380" x="432" y="784" width="16" height="16">
    <properties>
     <property name="spritedir" value="Left"/>
    </properties>
   </object>
-  <object id="115" gid="389" x="448" y="976" width="16" height="16"/>
-  <object id="116" gid="389" x="912" y="752" width="16" height="16">
+  <object id="115" gid="399" x="448" y="976" width="16" height="16"/>
+  <object id="116" gid="399" x="912" y="752" width="16" height="16">
    <properties>
     <property name="spritedir" value="Up"/>
    </properties>
   </object>
-  <object id="117" gid="389" x="928" y="768" width="16" height="16"/>
-  <object id="119" gid="363" x="928" y="800" width="16" height="16"/>
-  <object id="211" gid="363" x="928" y="832" width="16" height="16"/>
-  <object id="120" gid="363" x="912" y="720" width="16" height="16"/>
-  <object id="122" gid="390" x="448" y="1048" width="16" height="16"/>
-  <object id="123" gid="390" x="928" y="872" width="16" height="16"/>
-  <object id="124" gid="390" x="912" y="664" width="16" height="16"/>
-  <object id="133" gid="393" x="992" y="976" width="16" height="16">
+  <object id="117" gid="399" x="928" y="768" width="16" height="16"/>
+  <object id="119" gid="373" x="928" y="800" width="16" height="16"/>
+  <object id="211" gid="373" x="928" y="832" width="16" height="16"/>
+  <object id="120" gid="373" x="912" y="720" width="16" height="16"/>
+  <object id="122" gid="400" x="448" y="1048" width="16" height="16"/>
+  <object id="123" gid="400" x="928" y="872" width="16" height="16"/>
+  <object id="124" gid="400" x="912" y="664" width="16" height="16"/>
+  <object id="133" gid="403" x="992" y="976" width="16" height="16">
    <properties>
     <property name="color" value="yellow"/>
    </properties>
   </object>
-  <object id="134" gid="393" x="992" y="992" width="16" height="16">
+  <object id="134" gid="403" x="992" y="992" width="16" height="16">
    <properties>
     <property name="color" value="yellow"/>
    </properties>
   </object>
-  <object id="135" gid="393" x="1088" y="704" width="16" height="16">
+  <object id="135" gid="403" x="1088" y="704" width="16" height="16">
    <properties>
     <property name="color" value="yellow"/>
    </properties>
   </object>
-  <object id="136" gid="393" x="1104" y="704" width="16" height="16">
+  <object id="136" gid="403" x="1104" y="704" width="16" height="16">
    <properties>
     <property name="color" value="yellow"/>
    </properties>
   </object>
-  <object id="137" gid="393" x="1184" y="704" width="16" height="16">
+  <object id="137" gid="403" x="1184" y="704" width="16" height="16">
    <properties>
     <property name="color" value="yellow"/>
    </properties>
   </object>
-  <object id="138" gid="393" x="1200" y="704" width="16" height="16">
+  <object id="138" gid="403" x="1200" y="704" width="16" height="16">
    <properties>
     <property name="color" value="yellow"/>
    </properties>
   </object>
-  <object id="139" gid="393" x="144" y="1040" width="16" height="16">
+  <object id="139" gid="403" x="144" y="1040" width="16" height="16">
    <properties>
     <property name="color" value="yellow"/>
    </properties>
   </object>
-  <object id="140" gid="393" x="128" y="1040" width="16" height="16">
+  <object id="140" gid="403" x="128" y="1040" width="16" height="16">
    <properties>
     <property name="color" value="yellow"/>
    </properties>
   </object>
-  <object id="146" gid="396" x="1136" y="1056" width="16" height="16"/>
-  <object id="148" gid="396" x="1120" y="1040" width="16" height="16"/>
-  <object id="151" gid="396" x="640" y="992" width="16" height="16"/>
-  <object id="152" gid="396" x="112" y="832" width="16" height="16"/>
-  <object id="153" gid="396" x="880" y="688" width="16" height="16"/>
-  <object id="154" gid="396" x="400" y="832" width="16" height="16"/>
-  <object id="155" gid="396" x="880" y="912" width="16" height="16"/>
-  <object id="171" name="room1" gid="400" x="880" y="1088" width="16" height="16"/>
-  <object id="172" gid="399" x="880" y="1024" width="16" height="16">
+  <object id="146" gid="406" x="1136" y="1056" width="16" height="16"/>
+  <object id="148" gid="406" x="1120" y="1040" width="16" height="16"/>
+  <object id="151" gid="406" x="640" y="992" width="16" height="16"/>
+  <object id="152" gid="406" x="112" y="832" width="16" height="16"/>
+  <object id="153" gid="406" x="880" y="688" width="16" height="16"/>
+  <object id="154" gid="406" x="400" y="832" width="16" height="16"/>
+  <object id="155" gid="406" x="880" y="912" width="16" height="16"/>
+  <object id="171" name="room1" gid="410" x="880" y="1088" width="16" height="16"/>
+  <object id="172" gid="409" x="880" y="1024" width="16" height="16">
    <properties>
     <property name="location" value="room1"/>
    </properties>
   </object>
-  <object id="173" gid="399" x="1008" y="1088" width="16" height="16">
+  <object id="173" gid="409" x="1008" y="1088" width="16" height="16">
    <properties>
     <property name="direction" value="left"/>
     <property name="location" value="room1"/>
     <property name="starts_locked" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="174" gid="399" x="1040" y="1088" width="16" height="16">
+  <object id="174" gid="409" x="1040" y="1088" width="16" height="16">
    <properties>
     <property name="direction" value="right"/>
     <property name="location" value="room1"/>
     <property name="starts_locked" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="175" gid="399" x="880" y="1008" width="16" height="16">
+  <object id="175" gid="409" x="880" y="1008" width="16" height="16">
    <properties>
     <property name="direction" value="up"/>
     <property name="location" value="room1"/>
    </properties>
   </object>
-  <object id="177" gid="385" x="800" y="1104" width="16" height="22">
+  <object id="177" gid="395" x="800" y="1104" width="16" height="22">
    <properties>
     <property name="location" value=""/>
     <property name="spawned_by" value="room1"/>
    </properties>
   </object>
-  <object id="179" gid="383" x="960" y="1104" width="16" height="16">
+  <object id="179" gid="393" x="960" y="1104" width="16" height="16">
    <properties>
     <property name="location" value=""/>
     <property name="spawned_by" value="room1"/>
    </properties>
   </object>
-  <object id="195" gid="383" x="848" y="1136" width="16" height="16">
+  <object id="195" gid="393" x="848" y="1136" width="16" height="16">
    <properties>
     <property name="location" value=""/>
     <property name="spawned_by" value="room1"/>
    </properties>
   </object>
-  <object id="180" name="room2" gid="400" x="944" y="464" width="16" height="16"/>
-  <object id="181" gid="399" x="768" y="512" width="16" height="16">
+  <object id="180" name="room2" gid="410" x="944" y="464" width="16" height="16"/>
+  <object id="181" gid="409" x="768" y="512" width="16" height="16">
    <properties>
     <property name="direction" value="right"/>
     <property name="location" value="room2"/>
     <property name="starts_locked" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="182" gid="399" x="752" y="512" width="16" height="16">
+  <object id="182" gid="409" x="752" y="512" width="16" height="16">
    <properties>
     <property name="direction" value="left"/>
     <property name="location" value="room2"/>
     <property name="starts_locked" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="183" gid="399" x="960" y="576" width="16" height="16">
+  <object id="183" gid="409" x="960" y="576" width="16" height="16">
    <properties>
     <property name="direction" value="up"/>
     <property name="location" value="room2"/>
    </properties>
   </object>
-  <object id="184" gid="399" x="960" y="592" width="16" height="16">
+  <object id="184" gid="409" x="960" y="592" width="16" height="16">
    <properties>
     <property name="location" value="room2"/>
    </properties>
   </object>
-  <object id="188" gid="369" x="848" y="1040" width="16" height="16"/>
-  <object id="189" gid="369" x="848" y="1056" width="16" height="16"/>
-  <object id="190" gid="369" x="864" y="1056" width="16" height="16"/>
-  <object id="191" gid="369" x="880" y="1056" width="16" height="16"/>
-  <object id="192" gid="369" x="896" y="1056" width="16" height="16"/>
-  <object id="193" gid="369" x="912" y="1056" width="16" height="16"/>
-  <object id="194" gid="369" x="912" y="1040" width="16" height="16"/>
-  <object id="197" name="miniboss" gid="400" x="608" y="752" width="16" height="16"/>
-  <object id="198" gid="399" x="512" y="800" width="16" height="16">
+  <object id="188" gid="379" x="848" y="1040" width="16" height="16"/>
+  <object id="189" gid="379" x="848" y="1056" width="16" height="16"/>
+  <object id="190" gid="379" x="864" y="1056" width="16" height="16"/>
+  <object id="191" gid="379" x="880" y="1056" width="16" height="16"/>
+  <object id="192" gid="379" x="896" y="1056" width="16" height="16"/>
+  <object id="193" gid="379" x="912" y="1056" width="16" height="16"/>
+  <object id="194" gid="379" x="912" y="1040" width="16" height="16"/>
+  <object id="197" name="miniboss" gid="410" x="608" y="752" width="16" height="16"/>
+  <object id="198" gid="409" x="512" y="800" width="16" height="16">
    <properties>
     <property name="direction" value="right"/>
     <property name="location" value="miniboss"/>
    </properties>
   </object>
-  <object id="199" gid="399" x="496" y="800" width="16" height="16">
+  <object id="199" gid="409" x="496" y="800" width="16" height="16">
    <properties>
     <property name="direction" value="left"/>
     <property name="location" value="miniboss"/>
    </properties>
   </object>
-  <object id="201" gid="399" x="640" y="736" width="16" height="16">
+  <object id="201" gid="409" x="640" y="736" width="16" height="16">
    <properties>
     <property name="location" value="miniboss"/>
     <property name="starts_locked" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="202" gid="399" x="640" y="720" width="16" height="16">
+  <object id="202" gid="409" x="640" y="720" width="16" height="16">
    <properties>
     <property name="direction" value="up"/>
     <property name="location" value="miniboss"/>
     <property name="starts_locked" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="203" gid="399" x="752" y="800" width="16" height="16">
+  <object id="203" gid="409" x="752" y="800" width="16" height="16">
    <properties>
     <property name="direction" value="left"/>
     <property name="location" value="miniboss"/>
     <property name="starts_locked" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="204" gid="399" x="768" y="800" width="16" height="16">
+  <object id="204" gid="409" x="768" y="800" width="16" height="16">
    <properties>
     <property name="direction" value="right"/>
     <property name="location" value="miniboss"/>
     <property name="starts_locked" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="205" gid="385" x="624" y="816" width="16" height="22">
+  <object id="205" gid="395" x="624" y="816" width="16" height="22">
    <properties>
     <property name="spawned_by" value="miniboss"/>
    </properties>
   </object>
-  <object id="206" gid="395" x="1040" y="768" width="16" height="16"/>
-  <object id="207" gid="395" x="1184" y="832" width="16" height="16"/>
-  <object id="208" gid="396" x="1104" y="800" width="16" height="16"/>
-  <object id="209" gid="394" x="848" y="512" width="16" height="16">
+  <object id="206" gid="405" x="1040" y="768" width="16" height="16"/>
+  <object id="207" gid="405" x="1184" y="832" width="16" height="16"/>
+  <object id="208" gid="406" x="1104" y="800" width="16" height="16"/>
+  <object id="209" gid="404" x="848" y="512" width="16" height="16">
    <properties>
     <property name="spawned_by" value="room2"/>
    </properties>
   </object>
-  <object id="210" gid="394" x="288" y="528" width="16" height="16"/>
-  <object id="213" gid="393" x="1216" y="1024" width="16" height="16">
+  <object id="210" gid="404" x="288" y="528" width="16" height="16"/>
+  <object id="213" gid="403" x="1216" y="1024" width="16" height="16">
    <properties>
     <property name="color" value="yellow"/>
    </properties>
   </object>
-  <object id="214" gid="393" x="1216" y="1040" width="16" height="16">
+  <object id="214" gid="403" x="1216" y="1040" width="16" height="16">
    <properties>
     <property name="color" value="yellow"/>
    </properties>
   </object>
-  <object id="215" gid="393" x="656" y="1136" width="16" height="16">
+  <object id="215" gid="403" x="656" y="1136" width="16" height="16">
    <properties>
     <property name="color" value="yellow"/>
    </properties>
   </object>
-  <object id="218" gid="393" x="592" y="1136" width="16" height="16">
+  <object id="218" gid="403" x="592" y="1136" width="16" height="16">
    <properties>
     <property name="color" value="yellow"/>
    </properties>
   </object>
-  <object id="219" gid="393" x="288" y="848" width="16" height="16">
+  <object id="219" gid="403" x="288" y="848" width="16" height="16">
    <properties>
     <property name="color" value="yellow"/>
    </properties>
   </object>
-  <object id="220" gid="393" x="288" y="864" width="16" height="16">
+  <object id="220" gid="403" x="288" y="864" width="16" height="16">
    <properties>
     <property name="color" value="yellow"/>
    </properties>
   </object>
-  <object id="221" gid="370" x="1072" y="1072" width="16" height="16"/>
-  <object id="222" gid="370" x="1088" y="1072" width="16" height="16"/>
-  <object id="223" gid="370" x="1136" y="1088" width="16" height="16"/>
-  <object id="224" gid="370" x="1152" y="1088" width="16" height="16"/>
-  <object id="225" gid="370" x="1120" y="1088" width="16" height="16"/>
-  <object id="226" gid="395" x="992" y="944" width="16" height="16"/>
-  <object id="227" name="entrance" gid="402" x="672" y="928" width="16" height="16"/>
-  <object id="228" gid="403" x="656" y="928" width="16" height="16"/>
-  <object id="229" gid="401" x="512" y="960" width="16" height="16">
+  <object id="221" gid="380" x="1072" y="1072" width="16" height="16"/>
+  <object id="222" gid="380" x="1088" y="1072" width="16" height="16"/>
+  <object id="223" gid="380" x="1136" y="1088" width="16" height="16"/>
+  <object id="224" gid="380" x="1152" y="1088" width="16" height="16"/>
+  <object id="225" gid="380" x="1120" y="1088" width="16" height="16"/>
+  <object id="226" gid="405" x="992" y="944" width="16" height="16"/>
+  <object id="227" name="entrance" gid="412" x="672" y="928" width="16" height="16"/>
+  <object id="228" gid="413" x="656" y="928" width="16" height="16"/>
+  <object id="229" gid="411" x="512" y="960" width="16" height="16">
    <properties>
     <property name="direction" value="right"/>
     <property name="location" value="entrance"/>
     <property name="starts_locked" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="230" gid="401" x="496" y="960" width="16" height="16">
+  <object id="230" gid="411" x="496" y="960" width="16" height="16">
    <properties>
     <property name="direction" value="left"/>
     <property name="location" value="entrance"/>
     <property name="starts_locked" type="bool" value="true"/>
    </properties>
   </object>
+  <object id="231" gid="414" x="176" y="512" width="16" height="16"/>
+  <object id="232" gid="414" x="32" y="816" width="16" height="16"/>
+  <object id="233" gid="414" x="176" y="1072" width="16" height="16"/>
+  <object id="234" name="thorn2" gid="415" x="1144" y="680" width="16" height="16">
+   <properties>
+    <property name="order" type="int" value="3"/>
+   </properties>
+  </object>
+  <object id="235" name="thorn1" gid="415" x="1208" y="680" width="16" height="16">
+   <properties>
+    <property name="order" type="int" value="2"/>
+   </properties>
+  </object>
+  <object id="236" name="thorn0" gid="415" x="1080" y="680" width="16" height="16"/>
  </objectgroup>
  <objectgroup id="11" name="zones" visible="0" locked="1">
   <object id="24" type="area" x="512" y="896" width="256" height="256"/>

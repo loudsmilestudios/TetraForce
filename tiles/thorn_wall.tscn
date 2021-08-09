@@ -100,6 +100,7 @@ tracks/6/keys = {
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
+z_index = 202
 texture = ExtResource( 1 )
 hframes = 9
 

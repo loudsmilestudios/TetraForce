@@ -46,7 +46,6 @@ func scroll_screen(rect : Rect2):
 	yield($Tween, "tween_all_completed")
 	
 	set_limits(rect)
-	print(get_camera_screen_center() - scroll_to)
 	smoothing_enabled = true
 	target.set_physics_process(true)
 	set_process(true)

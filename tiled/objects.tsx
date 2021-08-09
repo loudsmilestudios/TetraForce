@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tileset version="1.5" tiledversion="1.6.0" name="objects" tilewidth="16" tileheight="22" tilecount="43" columns="0">
+<tileset version="1.5" tiledversion="1.6.0" name="objects" tilewidth="16" tileheight="22" tilecount="45" columns="0">
  <grid orientation="orthogonal" width="1" height="1"/>
  <tile id="0">
   <properties>
@@ -334,5 +334,19 @@
    <property name="path" value="res://tiles/statue.tscn"/>
   </properties>
   <image width="16" height="16" source="images/objects/statue.png"/>
+ </tile>
+ <tile id="43">
+  <properties>
+   <property name="location" value="thorn"/>
+   <property name="path" value="res://tiles/red_cannon.tscn"/>
+  </properties>
+  <image width="16" height="16" source="images/objects/red_cannon.png"/>
+ </tile>
+ <tile id="44">
+  <properties>
+   <property name="order" type="int" value="1"/>
+   <property name="path" value="res://tiles/thorn_wall.tscn"/>
+  </properties>
+  <image width="16" height="16" source="images/objects/thornwall.png"/>
  </tile>
 </tileset>
