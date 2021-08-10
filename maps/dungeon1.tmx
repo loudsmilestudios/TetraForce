@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.6.0" orientation="orthogonal" renderorder="right-down" width="30" height="30" tilewidth="16" tileheight="16" infinite="1" nextlayerid="13" nextobjectid="231">
+<map version="1.5" tiledversion="1.6.0" orientation="orthogonal" renderorder="right-down" width="30" height="30" tilewidth="16" tileheight="16" infinite="1" nextlayerid="13" nextobjectid="235">
  <properties>
   <property name="music" value="dungeon"/>
  </properties>
@@ -1565,7 +1565,7 @@
    <chunk x="64" y="64" width="16" height="16">
 0,0,0,0,0,0,0,0,0,0,0,0,150,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,211,211,211,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,152,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,226,227,0,0,
 0,0,152,0,0,0,0,0,95,0,240,153,231,232,0,0,
@@ -2182,7 +2182,6 @@
     <property name="direction" value="right"/>
    </properties>
   </object>
-  <object id="103" gid="363" x="320" y="800" width="16" height="16"/>
   <object id="112" name="spawn_1" gid="371" x="448" y="944" width="16" height="16">
    <properties>
     <property name="def" value="dungeon"/>
@@ -2211,9 +2210,6 @@
    </properties>
   </object>
   <object id="117" gid="389" x="928" y="768" width="16" height="16"/>
-  <object id="119" gid="363" x="928" y="800" width="16" height="16"/>
-  <object id="211" gid="363" x="928" y="832" width="16" height="16"/>
-  <object id="120" gid="363" x="912" y="720" width="16" height="16"/>
   <object id="122" gid="390" x="448" y="1048" width="16" height="16"/>
   <object id="123" gid="390" x="928" y="872" width="16" height="16"/>
   <object id="124" gid="390" x="912" y="664" width="16" height="16"/>
@@ -2425,11 +2421,6 @@
     <property name="color" value="yellow"/>
    </properties>
   </object>
-  <object id="221" gid="370" x="1072" y="1072" width="16" height="16"/>
-  <object id="222" gid="370" x="1088" y="1072" width="16" height="16"/>
-  <object id="223" gid="370" x="1136" y="1088" width="16" height="16"/>
-  <object id="224" gid="370" x="1152" y="1088" width="16" height="16"/>
-  <object id="225" gid="370" x="1120" y="1088" width="16" height="16"/>
   <object id="226" gid="395" x="992" y="944" width="16" height="16"/>
   <object id="227" name="entrance" gid="402" x="672" y="928" width="16" height="16"/>
   <object id="228" gid="403" x="656" y="928" width="16" height="16"/>
@@ -2447,6 +2438,10 @@
     <property name="starts_locked" type="bool" value="true"/>
    </properties>
   </object>
+  <object id="231" gid="403" x="304" y="800" width="16" height="16"/>
+  <object id="232" gid="403" x="912" y="720" width="16" height="16"/>
+  <object id="233" gid="403" x="928" y="800" width="16" height="16"/>
+  <object id="234" gid="403" x="928" y="832" width="16" height="16"/>
  </objectgroup>
  <objectgroup id="11" name="zones" visible="0" locked="1">
   <object id="24" type="area" x="512" y="896" width="256" height="256"/>
