@@ -268,3 +268,6 @@ func animation_changed(value):
 
 func set_health(value):
 	health = value
+	
+func reset_collision():
+	$CollisionShape2D.disabled = false

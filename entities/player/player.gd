@@ -4,6 +4,7 @@ class_name Player
 
 onready var nametag = $name/nametag
 onready var ray = $RayCast2D
+onready var collision = $CollisionShape2D
 var hud
 
 var push_counter = 0
@@ -222,36 +223,45 @@ func state_acquire():
 func check_for_invunerable():
 	if invunerable >= 1 && health > 0:
 		$AnimationPlayer/invunerable.play("invunerable")
+		network.peer_call($AnimationPlayer/invunerable, "play", ["invunerable"])
 	else: 
-		$AnimationPlayer/invunerable.stop()
-		$Sprite.visible = true
+		$AnimationPlayer/invunerable.play("visible")
+		network.peer_call($AnimationPlayer/invunerable, "play", ["visible"])
 		
 func state_die():
 	if anim.assigned_animation != "die":
 		animation = "die"
 		anim.play("die")
+		network.peer_call(anim, "play", ["die"])
 		
-func respawn():
+func death_effect():
 	var death_animation = preload("res://effects/enemy_death.tscn").instance()
 	death_animation.global_position = position
+	get_parent().add_child(death_animation)
+	sfx.play("death")
+	hide()
+	$CollisionShape2D.disabled = true
 	if is_network_master():
 		if health <= 0:
-			sfx.play("death")
-			get_parent().add_child(death_animation)
-			self.hide()
 			screenfx.play("fadeblack")
 			yield(get_tree().create_timer(1.5), "timeout")
 			hud.show_gameover()
 			yield(get_tree().create_timer(1.5), "timeout")
-		knockdir = Vector2(0,0)
-		position = home_position
-		spritedir = last_safe_spritedir
-		set_health(MAX_HEALTH)
-		emit_signal("health_changed")
-		network.peer_call(self, "set_hurt_texture", [false])
+
+func respawn():
+	knockdir = Vector2(0,0)
+	position = home_position
+	spritedir = last_safe_spritedir
+	emit_signal("health_changed")
+	show()
+	network.peer_call(self, "show")
+	$CollisionShape2D.disabled = false
+	network.peer_call(self, "reset_collision")
+	network.peer_call(self, "set_hurt_texture", [false])
+	state = "default"
 
 func check_for_death():
-	if health <= 0:
+	if health <= 0 && state != "die":
 		state = "die"
 
 func loop_controls():
