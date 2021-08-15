@@ -156,7 +156,8 @@ func loop_damage():
 	if invunerable > 1:
 		invunerable -= 1
 	elif invunerable == 1:
-		remove_from_group("invunerable")
+		if is_in_group("invunerable"):
+			remove_from_group("invunerable")
 		#anim.stop()
 		invunerable -= 1
 	
@@ -195,7 +196,7 @@ func create_hole_fx(pos):
 	sfx.play("fall")
 
 func damage(amount, dir, damager=null):
-	if hitstun == 0 && !is_in_group("invunerable"):
+	if hitstun == 0 && state != "menu":
 		if amount != 0:
 			sfx.play(hurt_sfx)
 			set_hurt_texture(true)

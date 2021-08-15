@@ -207,13 +207,8 @@ func state_fall():
 	if !colliding:
 		$CollisionShape2D.disabled = false
 		state = "default"
-		
 
 func state_menu():
-	anim_switch("idle")
-
-func state_dialogue():
-	loop_damage()
 	anim_switch("idle")
 
 func state_acquire():

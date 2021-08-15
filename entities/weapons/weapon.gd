@@ -31,7 +31,6 @@ func damage(body):
 	elif network.is_map_host():
 		body.damage(DAMAGE, knockdir, self)
 	elif is_network_master():
-		body.set_hurt_texture(true)
 		if body is Player:
 			network.peer_call_id(int(body.name), body, "damage", [DAMAGE, knockdir])
 		else:
