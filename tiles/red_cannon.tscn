@@ -1,0 +1,207 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://tiles/red_cannon.png" type="Texture" id=1]
+[ext_resource path="res://effects/red_cannon_shot.png" type="Texture" id=2]
+[ext_resource path="res://engine/network_object.tscn" type="PackedScene" id=3]
+[ext_resource path="res://tiles/red_cannon.gd" type="Script" id=4]
+[ext_resource path="res://effects/fuse.png" type="Texture" id=5]
+[ext_resource path="res://entities/weapons/cannon_ball.png" type="Texture" id=6]
+
+[sub_resource type="Animation" id=1]
+resource_name = "fuse"
+length = 2.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("fuse:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( -7, -4 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("fuse:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75, 2, 2.25 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 0, 1, 0, 1, 0, 1, 0, 1 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("fuse:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 2.45 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "shot"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("explosion:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ Vector2( 6, -5 ), Vector2( 4, -6 ), Vector2( 6, -5 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("explosion:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("explosion:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("CollisionShape2D:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 2.38419e-07, 1 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("CollisionShape2D:rotation_degrees")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 61.2 ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("cannon_ball:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 15, -9 ), Vector2( 39, -24 ), Vector2( 63, -40 ), Vector2( 87, -56 ), Vector2( 111, -72 ), Vector2( 135, -88 ), Vector2( 167, -112 ), Vector2( 207, -144 ) ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("cannon_ball:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0, 0.8 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("cannon_ball:z_index")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 0, 200 ]
+}
+
+[sub_resource type="CapsuleShape2D" id=3]
+radius = 7.0
+height = 11.218
+
+[node name="RedCannon" type="StaticBody2D"]
+collision_mask = 3
+script = ExtResource( 4 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/fuse = SubResource( 1 )
+anims/shot = SubResource( 2 )
+
+[node name="cannon_ball" type="Sprite" parent="."]
+texture = ExtResource( 6 )
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+hframes = 2
+
+[node name="explosion" type="Sprite" parent="."]
+visible = false
+position = Vector2( 6, -5 )
+texture = ExtResource( 2 )
+hframes = 4
+
+[node name="fuse" type="Sprite" parent="."]
+visible = false
+position = Vector2( -7, -4 )
+z_index = 201
+texture = ExtResource( 5 )
+hframes = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2( 2.38419e-07, 1 )
+rotation = 1.06814
+shape = SubResource( 3 )
+
+[node name="NetworkObject" parent="." instance=ExtResource( 3 )]
+persistent = true
+update_properties = {
+"fired": false
+}
+enter_properties = {
+"fired": false
+}
