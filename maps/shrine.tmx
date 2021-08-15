@@ -264,11 +264,6 @@
   <object id="171" gid="313" x="240" y="592" width="16" height="16"/>
   <object id="172" gid="313" x="224" y="592" width="16" height="16"/>
   <object id="173" gid="313" x="208" y="592" width="16" height="16"/>
-  <object id="222" gid="293" x="336" y="448" width="16" height="16">
-   <properties>
-    <property name="dialogue" value="sign_bridge"/>
-   </properties>
-  </object>
  </objectgroup>
  <objectgroup id="7" name="zones" visible="0">
   <object id="1" type="area" x="128" y="208" width="384" height="416"/>
