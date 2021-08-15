@@ -55,8 +55,25 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -58.2278
-margin_top = -12.0
-margin_right = 58.2278
-margin_bottom = 12.0
-text = "Disable Text Filer"
+margin_left = -57.7414
+margin_top = -31.4413
+margin_right = 64.7143
+margin_bottom = -7.44126
+text = "Disable Text Filter"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PvPButton" type="Button" parent="Misc"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -57.7414
+margin_top = 0.558739
+margin_right = 64.7143
+margin_bottom = 24.5587
+text = "Disable PvP"
+__meta__ = {
+"_edit_use_anchors_": false
+}
