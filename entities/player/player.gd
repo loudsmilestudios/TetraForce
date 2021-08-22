@@ -120,6 +120,7 @@ func _physics_process(_delta):
 			state_die()
 	
 	screen_position = position - camera.position
+	animation = anim.current_animation
 	
 	#if Rect2(Vector2(0,0), Vector2(72, 22)).has_point(screen_position) && state != "menu":
 	#	hud.hide_hearts()
@@ -207,6 +208,8 @@ func state_fall():
 	if spritedir == "Left":
 		position.x -= 100 * get_physics_process_delta_time()
 	
+	pos = position
+	
 	$CollisionShape2D.disabled = true
 	var colliding = false
 	for body in hitbox.get_overlapping_bodies():
@@ -219,8 +222,9 @@ func state_fall():
 func state_water():
 	if get_collision_layer_bit(6) == true:
 		return
-	anim.play("fall")
-	network.peer_call(anim, "play", ["fall"])
+	if anim.current_animation != "fall":
+		anim.play("fall")
+		network.peer_call(anim, "play", ["fall"])
 	if spritedir == "Down":
 		position.y += 64 * get_physics_process_delta_time()
 	if spritedir == "Up":
@@ -229,6 +233,9 @@ func state_water():
 		position.x += 64 * get_physics_process_delta_time()
 	if spritedir == "Left":
 		position.x -= 64 * get_physics_process_delta_time()
+	
+	pos = position
+	
 	yield(get_tree().create_timer(0.22), "timeout")
 	for body in center.get_overlapping_bodies():
 		if drowning == false:
