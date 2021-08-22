@@ -236,7 +236,7 @@ func state_water():
 	
 	pos = position
 	
-	yield(get_tree().create_timer(0.22), "timeout")
+	yield(get_tree().create_timer(0.15), "timeout")
 	for body in center.get_overlapping_bodies():
 		if drowning == false:
 			if body is Water:
