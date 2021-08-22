@@ -103,6 +103,8 @@ func create_center():
 	new_center.set_collision_mask_bit(0,0)
 	new_center.set_collision_layer_bit(5,1)
 	new_center.set_collision_mask_bit(5,1)
+	new_center.set_collision_layer_bit(6,1)
+	new_center.set_collision_mask_bit(6,1)
 	new_center.set_collision_layer_bit(7,1)
 	new_center.set_collision_mask_bit(7,1)
 	
@@ -185,6 +187,7 @@ func loop_holes():
 				create_hole_fx(hole_origin)
 				network.peer_call(self, "create_hole_fx", [hole_origin])
 				hole_fall()
+				network.peer_call(self, "hole_fall")
 
 func hole_fall():
 	pass
@@ -194,6 +197,12 @@ func create_hole_fx(pos):
 	get_parent().add_child(hole_fx)
 	hole_fx.position = pos
 	sfx.play("fall")
+	
+func create_drowning_fx(pos):
+	var drowning_fx = preload("res://effects/drowning.tscn").instance()
+	get_parent().add_child(drowning_fx)
+	drowning_fx.position = pos
+	sfx.play("drown")
 
 func damage(amount, dir, damager=null):
 	if hitstun == 0 && state != "menu":

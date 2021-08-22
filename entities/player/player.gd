@@ -13,6 +13,8 @@ var screen_position = Vector2(0,0)
 var last_safe_spritedir = "Down"
 var current_zone
 
+var drowning = false
+
 func initialize():
 	hurt_sfx = "hurt"
 	add_to_group("player")
@@ -106,6 +108,10 @@ func _physics_process(_delta):
 			state_spin()
 		"fall":
 			state_fall()
+		"water":
+			state_water()
+		"swim":
+			state_swim()
 		"menu":
 			state_menu()
 		"acquire":
@@ -141,6 +147,8 @@ func state_default():
 	loop_action_button()
 	loop_interact()
 	loop_holes()
+	
+	drowning = false
 	
 	if movedir.length() == 1:
 		ray.cast_to = movedir * 8
@@ -207,6 +215,41 @@ func state_fall():
 	if !colliding:
 		$CollisionShape2D.disabled = false
 		state = "default"
+		
+func state_water():
+	if get_collision_layer_bit(6) == true:
+		return
+	anim.play("fall")
+	network.peer_call(anim, "play", ["fall"])
+	if spritedir == "Down":
+		position.y += 64 * get_physics_process_delta_time()
+	if spritedir == "Up":
+		position.y -= 64 * get_physics_process_delta_time()
+	if spritedir == "Right":
+		position.x += 64 * get_physics_process_delta_time()
+	if spritedir == "Left":
+		position.x -= 64 * get_physics_process_delta_time()
+	yield(get_tree().create_timer(0.22), "timeout")
+	for body in center.get_overlapping_bodies():
+		if drowning == false:
+			if body is Water:
+				var water_origin = body.map_to_world(body.world_to_map(position.round() + Vector2(0,6))) + Vector2(8,8)
+				var water_hitbox = Rect2(water_origin - Vector2(5,5), Vector2(10,10))
+				position = position.linear_interpolate(water_origin, 0.1) # there's a way to lerp w/ delta time i forgot it tho
+				position += Vector2(0, rand_range(-1,0))
+				if water_hitbox.has_point(position + Vector2(0,4)):
+					if spritedir == "Left":
+						water_origin = (water_origin - Vector2(8,0))
+					if spritedir == "Right":
+						water_origin = (water_origin + Vector2(8,0))
+					drowning = true
+					create_drowning_fx(water_origin)
+					network.peer_call(self, "create_drowning_fx", [water_origin])
+					hole_fall()
+					network.peer_call(self, "hole_fall")
+					
+func state_swim():
+	pass
 
 func state_menu():
 	anim_switch("idle")
@@ -295,6 +338,11 @@ func loop_interact():
 		elif collider.is_in_group("cliff") && spritedir == collider.spritedir:
 			state = "fall"
 			sfx.play("fall2")
+		elif collider.is_in_group("water"):
+			if global.items.has("SeaCharm"):
+				state = "swim"
+			else:
+				state = "water"
 		elif is_on_wall() && collider.is_in_group("pushable") && push_counter >= 0.75:
 			collider.interact(self)
 			push_counter = 0
