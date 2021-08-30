@@ -1,0 +1,27 @@
+{
+	"Force" : 0,
+	"Random": 0,
+	"Nodes" :
+	 [
+		{
+			"id"      : 0,
+			"name"    : "",
+			"text"    : "Would you like to reset this room's puzzle?",
+			"next_id" : 1,
+			"choices" : [
+				
+				{
+					"text"    : "Yes",
+					"next_id" : -1
+				},
+
+				{
+					"text"    : "Cancel",
+					"next_id" : -1
+				}
+			]
+		}
+
+	]
+
+}

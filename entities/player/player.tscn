@@ -465,8 +465,7 @@ tracks/0/keys = {
 
 [node name="player" type="KinematicBody2D"]
 z_index = 100
-collision_layer = 1025
-collision_mask = 1025
+collision_layer = 1026
 script = ExtResource( 3 )
 TYPE = "PLAYER"
 MAX_HEALTH = 7.0
@@ -505,7 +504,7 @@ anims/visible = SubResource( 23 )
 texture = ExtResource( 4 )
 hframes = 6
 vframes = 8
-frame = 37
+frame = 36
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false

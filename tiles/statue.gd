@@ -7,6 +7,8 @@ onready var target_position = position setget set_block_position
 
 func _ready():
 	add_to_group("pushable")
+	add_to_group("objects")
+	set_collision_layer_bit(10, 1)
 
 func interact(node):
 	if tween.is_active():

@@ -57,7 +57,7 @@ func _ready():
 	add_child(walkfx)
 	#get_parent().connect("player_entered", self, "player_entered")
 	set_collision_layer_bit(10, 1)
-	set_collision_mask_bit(10, 1)
+	#set_collision_mask_bit(10, 1)
 	set_process(true)
 
 func _process(delta):
@@ -269,6 +269,3 @@ func animation_changed(value):
 
 func set_health(value):
 	health = value
-	
-func reset_collision():
-	$CollisionShape2D.disabled = false

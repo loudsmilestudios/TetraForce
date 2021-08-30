@@ -221,6 +221,7 @@ ESC={
 2d_physics/layer_6="walkfx"
 2d_physics/layer_7="water"
 2d_physics/layer_8="holes"
+2d_physics/layer_11="zone"
 
 [rendering]
 
