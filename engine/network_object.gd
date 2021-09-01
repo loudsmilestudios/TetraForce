@@ -41,12 +41,12 @@ func player_entered(id):
 func update_enter_properties(id):
 	for key in enter_properties.keys():
 		enter_properties[key] = get_parent().get(str(key))
-	network.peer_call_id(id, self, "_receive_update", [enter_properties])
+	network.peer_call_id(id, self, "receive_update", [enter_properties])
 
 func update_sync():
 	for key in update_properties.keys():
 		update_properties[key] = get_parent().get(str(key))
-	network.peer_call_unreliable(self, "_receive_update", [update_properties])
+	network.peer_call_unreliable(self, "receive_update", [update_properties])
 
 func update_persistent_state():
 	if !network.is_map_host():
@@ -55,6 +55,7 @@ func update_persistent_state():
 		enter_properties[key] = get_parent().get(str(key))
 	network.persistent_set_state(get_parent().get_path(), enter_properties)
 
-func _receive_update(properties = {}):
+func receive_update(properties = {}):
 	for key in properties.keys():
 		get_parent().set(key, properties[key])
+		print(get_parent())

@@ -10,7 +10,7 @@ func _ready():
 	add_to_group("pushable")
 	add_to_group("objects")
 	set_collision_layer_bit(10, 1)
-	$NetworkObject.enter_properties = {"target_position":[target_position], "pushed":[false]}
+	#$NetworkObject.enter_properties = {"target_position":[target_position], "pushed":[false]}
 
 func interact(node):
 	if tween.is_active():
