@@ -6,18 +6,12 @@ export(bool) var sync_creation = false
 export(Dictionary) var update_properties = {}
 export(Dictionary) var enter_properties = {}
 
-var default_enter_properties = {}
-
 func _ready():
 	get_parent().get_parent().connect("player_entered", self, "player_entered")
 	network.tick.connect("timeout", self, "_tick")
 	if persistent:
 		get_parent().connect("update_persistent_state", self, "update_persistent_state")
 		network.request_persistent_state(get_parent())
-	yield(get_tree(),"idle_frame")
-	for key in enter_properties.keys():
-		enter_properties[key] = get_parent().get(str(key))
-	default_enter_properties = enter_properties
 
 func _tick():
 	if require_map_host && !network.is_map_host():
@@ -58,4 +52,3 @@ func update_persistent_state():
 func receive_update(properties = {}):
 	for key in properties.keys():
 		get_parent().set(key, properties[key])
-		print(get_parent())

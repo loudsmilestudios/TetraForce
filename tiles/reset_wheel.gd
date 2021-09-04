@@ -9,6 +9,15 @@ func _ready():
 	add_to_group("interactable")
 	add_to_group("nopush")
 	add_to_group("zoned")
+	set_physics_process(false)
+	
+func _physics_process(delta):
+	if zone.get_players() == []:
+		yield(get_tree().create_timer(0.5), "timeout")
+		if network.is_map_host():
+			reset_object()
+		else:
+			network.peer_call_id(network.get_map_host(), self, "reset_object")
 	
 func interact(node):
 	var dialogue_manager = preload("res://ui/dialogue/dialogue_manager.tscn").instance()
@@ -22,9 +31,9 @@ func interact(node):
 	
 func _on_Begin_Pressed():
 	if begin.text == "Yes":
-		#if is_in_group("interactable"):
-		#	remove_from_group("interactable")
-		#	network.peer_call(self, "remove_from_group", ["interactable"])
+		if is_in_group("interactable"):
+			remove_from_group("interactable")
+			network.peer_call(self, "remove_from_group", ["interactable"])
 		if network.is_map_host():
 			reset()
 		else:
@@ -41,14 +50,19 @@ func reset():
 			reset_position(str(network.pid))
 			continue
 		network.peer_call_id(id, self, "reset_position", [str(id)])
-
-	yield(screenfx, "animation_finished")
-	reset_object()
+	
+	yield(get_tree().create_timer(0.5), "timeout")
+	
+	if network.is_map_host():
+		reset_object()
+	else:
+		network.peer_call_id(network.get_map_host(), self, "reset_object")
 	
 	yield(get_tree().create_timer(2), "timeout")
-	#if !is_in_group("interactable"):
-	#	add_to_group("interactable")
-	#	network.peer_call(self, "add_to_group", ["interactable"])
+	
+	if !is_in_group("interactable"):
+		add_to_group("interactable")
+		network.peer_call(self, "add_to_group", ["interactable"])
 	
 func reset_position(id):
 	var reset_position = Vector2(position.x, position.y + 16)
@@ -65,8 +79,7 @@ func reset_position(id):
 	
 func reset_object():
 	for object in zone.get_objects():
-		var network_object = object.get_node("NetworkObject")
-		for key in network_object.default_enter_properties.keys():
-			object.set(key, network_object.default_enter_properties[key])
+		network.peer_call(object, "set_default_state")
+		object.set_default_state()
 
 
