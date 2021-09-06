@@ -43,6 +43,7 @@ func initialize():
 				spritedir = "Right"
 			
 		home_position = position
+		ray.set_collision_mask_bit(6, 1)
 		
 		if global.transition_type == true:
 			anim.play("dropDown")
@@ -234,7 +235,7 @@ func state_water():
 	
 	pos = position
 	
-	yield(get_tree().create_timer(0.15), "timeout")
+	yield(get_tree().create_timer(0.2), "timeout")
 	for body in center.get_overlapping_bodies():
 		if drowning == false:
 			if body is Water:
@@ -254,7 +255,7 @@ func state_water():
 					network.peer_call(self, "hole_fall")
 					
 func state_swim():
-	pass
+	state = "default"
 
 func state_menu():
 	anim_switch("idle")
@@ -345,6 +346,9 @@ func loop_interact():
 			sfx.play("fall2")
 		elif collider.is_in_group("water"):
 			if global.items.has("SeaCharm"):
+				print("swim")
+				ray.set_collision_mask_bit(6, 0)
+				print(ray.collision_mask)
 				state = "swim"
 			else:
 				state = "water"
