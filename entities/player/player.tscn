@@ -491,7 +491,7 @@ tracks/0/keys = {
 
 [node name="player" type="KinematicBody2D"]
 z_index = 100
-collision_layer = 1025
+collision_layer = 1089
 collision_mask = 1025
 script = ExtResource( 3 )
 TYPE = "PLAYER"
@@ -550,6 +550,7 @@ update_properties = {
 visible = false
 enabled = true
 cast_to = Vector2( 0, 0 )
+collision_mask = 65
 collide_with_areas = true
 
 [node name="ZoneHandler" type="Area2D" parent="."]

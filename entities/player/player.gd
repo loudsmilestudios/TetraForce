@@ -220,8 +220,6 @@ func state_fall():
 		state = "default"
 		
 func state_water():
-	if get_collision_layer_bit(6) == true:
-		return
 	if anim.current_animation != "fall":
 		anim.play("fall")
 		network.peer_call(anim, "play", ["fall"])
