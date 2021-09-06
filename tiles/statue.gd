@@ -4,6 +4,7 @@ onready var ray = $RayCast2D
 onready var tween = $Tween
 
 onready var target_position = position setget set_block_position
+onready var home_position = position
 
 func _ready():
 	add_to_group("pushable")
@@ -38,3 +39,7 @@ func move_to(current_pos, target_pos):
 func snap_to(current_pos, target_pos):
 	tween.interpolate_property(self, "position", current_pos, target_pos, 0.1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	tween.start()
+	
+func set_default_state():
+	target_position = home_position
+	snap_to(target_position, home_position)

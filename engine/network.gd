@@ -33,6 +33,7 @@ var states = {
 	weapons = [],
 	items = [],
 	pearl = [],
+	collectables = [],
 }
 
 func _ready():

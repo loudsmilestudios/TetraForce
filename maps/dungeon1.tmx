@@ -2221,7 +2221,7 @@
    </properties>
   </object>
   <object id="146" gid="406" x="1168" y="1056" width="16" height="16"/>
-  <object id="148" gid="406" x="1152" y="1024" width="16" height="16"/>
+  <object id="148" gid="406" x="1136" y="1008" width="16" height="16"/>
   <object id="151" gid="406" x="640" y="992" width="16" height="16"/>
   <object id="152" gid="406" x="112" y="832" width="16" height="16"/>
   <object id="153" gid="406" x="880" y="688" width="16" height="16"/>
@@ -2390,9 +2390,6 @@
   </object>
   <object id="221" gid="380" x="1072" y="1072" width="16" height="16"/>
   <object id="222" gid="380" x="1088" y="1072" width="16" height="16"/>
-  <object id="223" gid="380" x="1136" y="1088" width="16" height="16"/>
-  <object id="224" gid="380" x="1152" y="1088" width="16" height="16"/>
-  <object id="225" gid="380" x="1120" y="1088" width="16" height="16"/>
   <object id="226" gid="405" x="992" y="944" width="16" height="16"/>
   <object id="227" name="entrance" gid="412" x="672" y="928" width="16" height="16"/>
   <object id="228" gid="413" x="656" y="928" width="16" height="16"/>

@@ -28,10 +28,11 @@ func _ready():
 			timer.start()
 			
 	var network_object = preload("res://engine/network_object.tscn").instance()
-	network_object.enter_properties = {"position":item_position}
+	add_child(network_object)
+	network_object.enter_properties = {"position":position}
+	network_object.update_properties = {"position":position}
 	network_object.require_map_host = true
 	network_object.sync_creation = true
-	add_child(network_object)
 	#print(network_object.enter_properties)
 	
 	$CollisionShape2D.disabled = true
@@ -43,6 +44,7 @@ func _flash():
 	if(flash_count == TOTAL_FLASH_COUNT * 2):
 		network.peer_call(self, "queue_free")
 		queue_free()
+		network.states.collectables.erase(self)
 
 	if($Sprite.visible):
 		$Timer.wait_time = FLASH_TIME_NOT_VISIBLE
@@ -67,3 +69,4 @@ func _collect(body: Node2D):
 		sfx.play(sound)
 		# Deletion Code with network syncing goes here:
 		queue_free()
+		network.states.collectables.erase(self)
