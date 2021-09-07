@@ -13,6 +13,8 @@ var health = 5
 var max_health = 5
 var spiritpearl = 0
 
+var pvp = true
+
 var changing_map = false
 var transition_type = false
 

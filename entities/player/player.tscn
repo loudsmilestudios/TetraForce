@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=2]
+[gd_scene load_steps=35 format=2]
 
 [ext_resource path="res://ui/theme/font.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://engine/network_object.tscn" type="PackedScene" id=2]
@@ -43,11 +43,11 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 12 ),
+"times": PoolRealArray( 11 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [  ],
-"method": "respawn"
+"method": "death_effect"
 } ]
 }
 
@@ -417,22 +417,38 @@ tracks/0/keys = {
 "values": [ true, false, true ]
 }
 
-[sub_resource type="CapsuleShape2D" id=23]
+[sub_resource type="Animation" id=23]
+resource_name = "visible"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("../Sprite:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[sub_resource type="CapsuleShape2D" id=24]
 radius = 4.5
 height = 6.0
 
-[sub_resource type="RectangleShape2D" id=24]
+[sub_resource type="RectangleShape2D" id=25]
 extents = Vector2( 4, 4 )
 
-[sub_resource type="CanvasItemMaterial" id=25]
+[sub_resource type="CanvasItemMaterial" id=26]
 light_mode = 1
 
-[sub_resource type="DynamicFont" id=26]
+[sub_resource type="DynamicFont" id=27]
 outline_size = 1
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 1 )
 
-[sub_resource type="Animation" id=27]
+[sub_resource type="Animation" id=28]
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:texture")
@@ -483,16 +499,17 @@ anims/walkUp = SubResource( 21 )
 
 [node name="invunerable" type="AnimationPlayer" parent="AnimationPlayer"]
 anims/invunerable = SubResource( 22 )
+anims/visible = SubResource( 23 )
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 4 )
-vframes = 8
 hframes = 6
-frame = 30
+vframes = 8
+frame = 37
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
-shape = SubResource( 23 )
+shape = SubResource( 24 )
 
 [node name="NetworkObject" parent="." instance=ExtResource( 2 )]
 require_map_host = false
@@ -516,11 +533,11 @@ collision_mask = 1024
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ZoneHandler"]
 position = Vector2( -8, 8 )
-shape = SubResource( 24 )
+shape = SubResource( 25 )
 
 [node name="name" type="Node2D" parent="."]
 light_mask = 0
-material = SubResource( 25 )
+material = SubResource( 26 )
 z_index = 4096
 z_as_relative = false
 
@@ -533,7 +550,7 @@ margin_top = -18.0
 margin_right = 112.0
 margin_bottom = -4.0
 rect_scale = Vector2( 0.6, 0.6 )
-custom_fonts/font = SubResource( 26 )
+custom_fonts/font = SubResource( 27 )
 text = "Chain"
 align = 1
 __meta__ = {
@@ -549,4 +566,4 @@ mode = 2
 [node name="Flicker" type="AnimationPlayer" parent="Light2D"]
 autoplay = "flicker"
 playback_speed = 0.5
-anims/flicker = SubResource( 27 )
+anims/flicker = SubResource( 28 )

@@ -17,6 +17,6 @@ func update_options():
 		}
 	
 	if global.options.misc.censor:
-		censor_button.text = "Disable Text Filer"
+		censor_button.text = "Disable Text Filter"
 	else:
 		censor_button.text = "Enable Text Filter"

@@ -7,6 +7,8 @@ onready var player = global.player
 func _ready():
 	sfx.set_music("dungeon", "quiet")
 	sfx.gameover = true
+	player.state = "menu"
+	player.set_health(player.MAX_HEALTH)
 	yield(get_tree().create_timer(2.5), "timeout")
 	resume.show()
 	yield(get_tree().create_timer(0.25), "timeout")
@@ -27,14 +29,12 @@ func _input(event):
 func _on_resume_pressed():
 	sfx.play("sword3")
 	resume.release_focus()
-	player.set_hurt_texture(false)
 	yield(get_tree().create_timer(0.75), "timeout")
 	self.queue_free()
 	screenfx.play("fadeblackout")
 	sfx.gameover = false
 	sfx.set_music(player.current_zone.music, "default")
-	player.show()
-	player.state = "default"
+	player.respawn()
 	
 func _on_exit_pressed():
 	sfx.play("sword3")
