@@ -52,6 +52,10 @@ var items_def = {
 	"Lantern": {
 		icon = preload("res://entities/player/items/lantern.png"),
 		acquire_dialogue = "acquisition/acquire_lantern"
+	},
+	"SeaCharm": {
+		icon = preload("res://entities/player/items/lantern.png"),
+		acquire_dialogue = "acquisition/acquire_lantern"
 	}
 }
 
