@@ -52,5 +52,7 @@ playback_speed = 0.66
 anims/default = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
+visible = false
 texture = ExtResource( 1 )
 hframes = 2
+frame = 1
