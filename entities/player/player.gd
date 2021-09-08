@@ -346,9 +346,7 @@ func loop_interact():
 			sfx.play("fall2")
 		elif collider.is_in_group("water"):
 			if global.items.has("SeaCharm"):
-				print("swim")
 				ray.set_collision_mask_bit(6, 0)
-				print(ray.collision_mask)
 				state = "swim"
 			else:
 				state = "water"
