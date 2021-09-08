@@ -14,7 +14,7 @@ TetraForce is built with the open source [Godot Engine](https://godotengine.org/
 
 [Website](https://tetraforce.io/)
 
-[Discord server](https://discord.gg/cxTBVCZ)
+[Discord server](https://discord.gg/pk427kD3f2)
 
 [Patreon](https://www.patreon.com/tetraforce)
 
