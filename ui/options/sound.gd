@@ -17,10 +17,10 @@ func update_options():
 		on_master_slider_change(master_slider.value)
 
 func db_to_percent(db : float) -> float:
-	return ((db + 6) / 86) * 100
+	return db2linear(db)
 
 func percent_to_db(pct : float) -> float:
-	return pct / 100 * 86 - 6
+	return linear2db(pct / 100)
 
 func on_master_slider_change(new_value):
 	if not "sound" in global.options:
