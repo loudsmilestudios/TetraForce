@@ -1,5 +1,9 @@
 extends Node
+const CENSOR_CHARS = "!@#$%^&*("
+const VERSION_FILE = "res://semantic.version"
 
+var version = null setget ,get_version
+var blacklisted_words = []
 var player
 var equips = {"B": "Sword", "X": "", "Y": ""}
 var weapons = ["Sword"]
@@ -8,6 +12,8 @@ var pearl = []
 var health = 5
 var max_health = 5
 var spiritpearl = 0
+
+var pvp = true
 
 var changing_map = false
 var transition_type = false
@@ -44,6 +50,10 @@ var weapons_def = {
 
 var items_def = {
 	"Lantern": {
+		icon = preload("res://entities/player/items/lantern.png"),
+		acquire_dialogue = "acquisition/acquire_lantern"
+	},
+	"SeaCharm": {
 		icon = preload("res://entities/player/items/lantern.png"),
 		acquire_dialogue = "acquisition/acquire_lantern"
 	}
@@ -119,6 +129,40 @@ var options = {
 		skin="res://entities/player/chain.png",
 	}
 }
+func _ready():
+	load_blacklist()
+
+func load_blacklist():
+	var blacklist_file = File.new()
+	if blacklist_file.file_exists("res://engine/blacklist.txt"):
+		blacklist_file.open("res://engine/blacklist.txt", File.READ)
+		var word = blacklist_file.get_line()
+		while word:
+			blacklisted_words.append(word)
+			word = blacklist_file.get_line()
+		blacklist_file.close()
+	else:
+		print("No word blocklist found!")
+
+func value_in_blacklist(value : String):
+	if "misc" in global.options:
+		if "censor" in global.options.misc:
+			if global.options.misc.censor == false:
+				return false
+
+	value = value.replace(" ", "").to_lower().replace("-","").replace(".","")
+	for word in blacklisted_words:
+		if word in value:
+			return true
+	return false
+
+func filter_value(value : String):
+	if value_in_blacklist(value):
+		var new_value = ""
+		for i in range(len(value)):
+			new_value += CENSOR_CHARS[rand_range(0,len(CENSOR_CHARS))]
+		return new_value
+	return value
 
 func _validate_save_dir():
 	var dir = Directory.new()
@@ -204,3 +248,14 @@ func change_map(map, entrance):
 	root.add_child(new_map)
 	
 	emit_signal("debug_update")
+
+func get_version():
+	if !version:
+		var file = File.new()
+		if file.file_exists(VERSION_FILE):
+			file.open(VERSION_FILE, File.READ)
+			version = file.get_as_text()
+			file.close()
+		else:
+			version = "custom build"
+	return version

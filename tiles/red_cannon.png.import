@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/cannon_shot_red.png-770d6fb830785df7e31d31c8a328cc5f.stex"
+path="res://.import/red_cannon.png-a8f5bb8d9cd8f3cec44a12063bac42ac.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://tiles/cannon_shot_red.png"
-dest_files=[ "res://.import/cannon_shot_red.png-770d6fb830785df7e31d31c8a328cc5f.stex" ]
+source_file="res://tiles/red_cannon.png"
+dest_files=[ "res://.import/red_cannon.png-a8f5bb8d9cd8f3cec44a12063bac42ac.stex" ]
 
 [params]
 

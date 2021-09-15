@@ -57,7 +57,7 @@ func _ready():
 	add_child(walkfx)
 	#get_parent().connect("player_entered", self, "player_entered")
 	set_collision_layer_bit(10, 1)
-	set_collision_mask_bit(10, 1)
+	#set_collision_mask_bit(10, 1)
 	set_process(true)
 
 func _process(delta):
@@ -103,6 +103,8 @@ func create_center():
 	new_center.set_collision_mask_bit(0,0)
 	new_center.set_collision_layer_bit(5,1)
 	new_center.set_collision_mask_bit(5,1)
+	new_center.set_collision_layer_bit(6,1)
+	new_center.set_collision_mask_bit(6,1)
 	new_center.set_collision_layer_bit(7,1)
 	new_center.set_collision_mask_bit(7,1)
 	
@@ -156,7 +158,8 @@ func loop_damage():
 	if invunerable > 1:
 		invunerable -= 1
 	elif invunerable == 1:
-		remove_from_group("invunerable")
+		if is_in_group("invunerable"):
+			remove_from_group("invunerable")
 		#anim.stop()
 		invunerable -= 1
 	
@@ -184,6 +187,7 @@ func loop_holes():
 				create_hole_fx(hole_origin)
 				network.peer_call(self, "create_hole_fx", [hole_origin])
 				hole_fall()
+				network.peer_call(self, "hole_fall")
 
 func hole_fall():
 	pass
@@ -193,9 +197,15 @@ func create_hole_fx(pos):
 	get_parent().add_child(hole_fx)
 	hole_fx.position = pos
 	sfx.play("fall")
+	
+func create_drowning_fx(pos):
+	var drowning_fx = preload("res://effects/drowning.tscn").instance()
+	get_parent().add_child(drowning_fx)
+	drowning_fx.position = pos
+	sfx.play("drown")
 
 func damage(amount, dir, damager=null):
-	if hitstun == 0 && !is_in_group("invunerable"):
+	if hitstun == 0 && state != "menu":
 		if amount != 0:
 			sfx.play(hurt_sfx)
 			set_hurt_texture(true)
@@ -268,3 +278,6 @@ func animation_changed(value):
 
 func set_health(value):
 	health = value
+	
+func reset_collision():
+	$CollisionShape2D.disabled = false

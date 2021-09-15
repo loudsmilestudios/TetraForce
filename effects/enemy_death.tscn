@@ -45,4 +45,3 @@ anims/default = SubResource( 2 )
 use_parent_material = true
 texture = ExtResource( 1 )
 hframes = 8
-frame = 7

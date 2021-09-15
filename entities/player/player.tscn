@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=2]
+[gd_scene load_steps=36 format=2]
 
 [ext_resource path="res://ui/theme/font.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://engine/network_object.tscn" type="PackedScene" id=2]
@@ -43,11 +43,11 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 12 ),
+"times": PoolRealArray( 11 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [  ],
-"method": "respawn"
+"method": "death_effect"
 } ]
 }
 
@@ -80,6 +80,34 @@ tracks/1/keys = {
 }
 
 [sub_resource type="Animation" id=4]
+resource_name = "fall"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 38 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, -7 ), Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=5]
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -105,7 +133,7 @@ tracks/1/keys = {
 "values": [ Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=6]
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -119,7 +147,7 @@ tracks/0/keys = {
 "values": [ 3 ]
 }
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=7]
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -131,23 +159,6 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ 5 ]
-}
-
-[sub_resource type="Animation" id=7]
-length = 1.2
-loop = true
-step = 0.4
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4, 0.8 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 1,
-"values": [ 30, 31, 32 ]
 }
 
 [sub_resource type="Animation" id=8]
@@ -164,7 +175,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.4, 0.8 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
-"values": [ 33, 34, 35 ]
+"values": [ 30, 31, 32 ]
 }
 
 [sub_resource type="Animation" id=9]
@@ -181,10 +192,13 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.4, 0.8 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
-"values": [ 30, 31, 32 ]
+"values": [ 33, 34, 35 ]
 }
 
 [sub_resource type="Animation" id=10]
+length = 1.2
+loop = true
+step = 0.4
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -192,10 +206,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0, 0.4, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
-"values": [ 6, 7 ]
+"values": [ 30, 31, 32 ]
 }
 
 [sub_resource type="Animation" id=11]
@@ -209,7 +223,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.5 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
-"values": [ 8, 9 ]
+"values": [ 6, 7 ]
 }
 
 [sub_resource type="Animation" id=12]
@@ -223,10 +237,24 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.5 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
-"values": [ 10, 11 ]
+"values": [ 8, 9 ]
 }
 
 [sub_resource type="Animation" id=13]
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 10, 11 ]
+}
+
+[sub_resource type="Animation" id=14]
 length = 1.6
 step = 0.33
 tracks/0/type = "value"
@@ -254,7 +282,7 @@ tracks/1/keys = {
 "values": [ Vector2( 1, 1 ), Vector2( -1, 1 ), Vector2( 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=14]
+[sub_resource type="Animation" id=15]
 length = 1.6
 step = 0.33
 tracks/0/type = "value"
@@ -282,7 +310,7 @@ tracks/1/keys = {
 "values": [ Vector2( 1, 1 ), Vector2( -1, 1 ), Vector2( 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=15]
+[sub_resource type="Animation" id=16]
 length = 1.6
 step = 0.33
 tracks/0/type = "value"
@@ -310,7 +338,7 @@ tracks/1/keys = {
 "values": [ Vector2( 1, 1 ), Vector2( -1, 1 ), Vector2( 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=16]
+[sub_resource type="Animation" id=17]
 length = 0.66
 step = 0.33
 tracks/0/type = "value"
@@ -326,7 +354,7 @@ tracks/0/keys = {
 "values": [ 24, 25 ]
 }
 
-[sub_resource type="Animation" id=17]
+[sub_resource type="Animation" id=18]
 length = 0.66
 step = 0.33
 tracks/0/type = "value"
@@ -342,7 +370,7 @@ tracks/0/keys = {
 "values": [ 26, 27 ]
 }
 
-[sub_resource type="Animation" id=18]
+[sub_resource type="Animation" id=19]
 length = 0.66
 step = 0.33
 tracks/0/type = "value"
@@ -358,7 +386,7 @@ tracks/0/keys = {
 "values": [ 28, 29 ]
 }
 
-[sub_resource type="Animation" id=19]
+[sub_resource type="Animation" id=20]
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -372,7 +400,7 @@ tracks/0/keys = {
 "values": [ 0, 1 ]
 }
 
-[sub_resource type="Animation" id=20]
+[sub_resource type="Animation" id=21]
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -386,7 +414,7 @@ tracks/0/keys = {
 "values": [ 2, 3 ]
 }
 
-[sub_resource type="Animation" id=21]
+[sub_resource type="Animation" id=22]
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -400,8 +428,7 @@ tracks/0/keys = {
 "values": [ 4, 5 ]
 }
 
-[sub_resource type="Animation" id=22]
-resource_name = "invunerable"
+[sub_resource type="Animation" id=23]
 length = 0.05
 loop = true
 tracks/0/type = "value"
@@ -417,22 +444,37 @@ tracks/0/keys = {
 "values": [ true, false, true ]
 }
 
-[sub_resource type="CapsuleShape2D" id=23]
+[sub_resource type="Animation" id=24]
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("../Sprite:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[sub_resource type="CapsuleShape2D" id=25]
 radius = 4.5
 height = 6.0
 
-[sub_resource type="RectangleShape2D" id=24]
+[sub_resource type="RectangleShape2D" id=26]
 extents = Vector2( 4, 4 )
 
-[sub_resource type="CanvasItemMaterial" id=25]
+[sub_resource type="CanvasItemMaterial" id=27]
 light_mode = 1
 
-[sub_resource type="DynamicFont" id=26]
+[sub_resource type="DynamicFont" id=28]
 outline_size = 1
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 1 )
 
-[sub_resource type="Animation" id=27]
+[sub_resource type="Animation" id=29]
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:texture")
@@ -449,7 +491,7 @@ tracks/0/keys = {
 
 [node name="player" type="KinematicBody2D"]
 z_index = 100
-collision_layer = 1025
+collision_layer = 1090
 collision_mask = 1025
 script = ExtResource( 3 )
 TYPE = "PLAYER"
@@ -462,37 +504,39 @@ playback_speed = 4.0
 anims/acquire = SubResource( 1 )
 anims/die = SubResource( 2 )
 anims/dropDown = SubResource( 3 )
-anims/idleDown = SubResource( 4 )
-anims/idleSide = SubResource( 5 )
-anims/idleUp = SubResource( 6 )
-anims/jumpDown = SubResource( 7 )
-anims/jumpSide = SubResource( 8 )
-anims/jumpUp = SubResource( 9 )
-anims/pushDown = SubResource( 10 )
-anims/pushSide = SubResource( 11 )
-anims/pushUp = SubResource( 12 )
-anims/spinDown = SubResource( 13 )
-anims/spinSide = SubResource( 14 )
-anims/spinUp = SubResource( 15 )
-anims/swingDown = SubResource( 16 )
-anims/swingSide = SubResource( 17 )
-anims/swingUp = SubResource( 18 )
-anims/walkDown = SubResource( 19 )
-anims/walkSide = SubResource( 20 )
-anims/walkUp = SubResource( 21 )
+anims/fall = SubResource( 4 )
+anims/idleDown = SubResource( 5 )
+anims/idleSide = SubResource( 6 )
+anims/idleUp = SubResource( 7 )
+anims/jumpDown = SubResource( 8 )
+anims/jumpSide = SubResource( 9 )
+anims/jumpUp = SubResource( 10 )
+anims/pushDown = SubResource( 11 )
+anims/pushSide = SubResource( 12 )
+anims/pushUp = SubResource( 13 )
+anims/spinDown = SubResource( 14 )
+anims/spinSide = SubResource( 15 )
+anims/spinUp = SubResource( 16 )
+anims/swingDown = SubResource( 17 )
+anims/swingSide = SubResource( 18 )
+anims/swingUp = SubResource( 19 )
+anims/walkDown = SubResource( 20 )
+anims/walkSide = SubResource( 21 )
+anims/walkUp = SubResource( 22 )
 
 [node name="invunerable" type="AnimationPlayer" parent="AnimationPlayer"]
-anims/invunerable = SubResource( 22 )
+anims/invunerable = SubResource( 23 )
+anims/visible = SubResource( 24 )
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 4 )
-vframes = 8
 hframes = 6
-frame = 30
+vframes = 8
+frame = 38
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
-shape = SubResource( 23 )
+shape = SubResource( 25 )
 
 [node name="NetworkObject" parent="." instance=ExtResource( 2 )]
 require_map_host = false
@@ -516,11 +560,11 @@ collision_mask = 1024
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ZoneHandler"]
 position = Vector2( -8, 8 )
-shape = SubResource( 24 )
+shape = SubResource( 26 )
 
 [node name="name" type="Node2D" parent="."]
 light_mask = 0
-material = SubResource( 25 )
+material = SubResource( 27 )
 z_index = 4096
 z_as_relative = false
 
@@ -533,7 +577,7 @@ margin_top = -18.0
 margin_right = 112.0
 margin_bottom = -4.0
 rect_scale = Vector2( 0.6, 0.6 )
-custom_fonts/font = SubResource( 26 )
+custom_fonts/font = SubResource( 28 )
 text = "Chain"
 align = 1
 __meta__ = {
@@ -549,4 +593,4 @@ mode = 2
 [node name="Flicker" type="AnimationPlayer" parent="Light2D"]
 autoplay = "flicker"
 playback_speed = 0.5
-anims/flicker = SubResource( 27 )
+anims/flicker = SubResource( 29 )

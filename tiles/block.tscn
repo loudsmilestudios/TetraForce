@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://tiles/block.png" type="Texture" id=1]
 [ext_resource path="res://tiles/block.gd" type="Script" id=2]
@@ -6,6 +6,9 @@
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 8, 8 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 7, 7 )
 
 [node name="block" type="StaticBody2D"]
 collision_mask = 3
@@ -32,8 +35,12 @@ collision_mask = 3
 [node name="Tween" type="Tween" parent="."]
 
 [node name="NetworkObject" parent="." instance=ExtResource( 3 )]
-persistent = true
 enter_properties = {
 "pushed": false,
 "target_position": Vector2( 0, 0 )
 }
+
+[node name="weight" type="Area2D" parent="."]
+
+[node name="Collision" type="CollisionShape2D" parent="weight"]
+shape = SubResource( 2 )

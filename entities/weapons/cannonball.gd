@@ -16,8 +16,8 @@ func start():
 	match shooter.spritedir:
 		"Right":
 			movedir = Vector2.RIGHT
-			position.y = position.y + 13
-			position.y = position.y - 2
+			#position.y = position.y + 13
+			#position.y = position.y - 2
 		"Down":
 			movedir = Vector2.DOWN
 			position.y = position.y + 12

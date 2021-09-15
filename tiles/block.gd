@@ -3,14 +3,15 @@ extends StaticBody2D
 onready var ray = $RayCast2D
 onready var tween = $Tween
 
-onready var target_position = position setget set_position
+onready var target_position = position setget set_block_position
 onready var pushed = false setget set_pushed
-
-signal update_persistent_state
+onready var home_position = position
 
 func _ready():
 	add_to_group("pushable")
-
+	add_to_group("objects")
+	set_collision_layer_bit(10, 1)
+	
 func interact(node):
 	if tween.is_active():
 		return
@@ -28,11 +29,11 @@ func attempt_move(direction):
 		move_to(position, target_position)
 		network.peer_call(self, "move_to", [position, target_position])
 		network.peer_call(self, "set_pushed", [pushed])
-		network.set_state(self, {"target_position":target_position, "pushed":pushed})
 
-func set_position(value):
-	position = value
-	
+func set_block_position(value):
+	target_position = value
+	snap_to(position, target_position)
+
 func set_pushed(value):
 	pushed = value
 
@@ -40,5 +41,13 @@ func move_to(current_pos, target_pos):
 	tween.interpolate_property(self, "position", current_pos, target_pos, 1.0, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	tween.start()
 	sfx.play("push")
-	
 
+func snap_to(current_pos, target_pos):
+	tween.interpolate_property(self, "position", current_pos, target_pos, 0.1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	tween.start()
+	
+func set_default_state():
+	set_pushed(false)
+	target_position = home_position
+	snap_to(target_position, home_position)
+	

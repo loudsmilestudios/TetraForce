@@ -1,6 +1,7 @@
-[gd_scene load_steps=52 format=2]
+[gd_scene load_steps=53 format=2]
 
 [ext_resource path="res://tiles/dungeon_water_anim.tres" type="Texture" id=1]
+[ext_resource path="res://tiles/water.gd" type="Script" id=2]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
@@ -475,6 +476,8 @@ points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 z_index = -1
 tile_set = SubResource( 50 )
 cell_size = Vector2( 16, 16 )
-collision_layer = 2147483651
-collision_mask = 3
+show_collision = true
+collision_layer = 2147483648
+collision_mask = 0
 format = 1
+script = ExtResource( 2 )

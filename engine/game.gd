@@ -77,7 +77,7 @@ func add_new_player(id):
 		new_player.nametag.text = global.options.player_data.name
 	else:
 		new_player.sprite.texture = load(network.player_data.get(id).skin)
-		new_player.nametag.text = network.player_data.get(id).name
+		new_player.nametag.text = global.filter_value(network.player_data.get(id).name)
 
 func remove_player(id):
 	if has_node(str(id)):
@@ -122,13 +122,16 @@ func pick_collectable():
 func spawn_collectable(collectable, pos, chance):
 		if randi() % chance == 0:
 			var path = str("res://entities/collectables/", pick_collectable(), ".tscn")
-			create_collectable(path, pos)
-			network.peer_call(self, "create_collectable", [path, pos])
+			if network.is_map_host():
+				create_collectable(path, pos)
+				network.peer_call(self, "create_collectable", [path, pos])
 			
 func create_collectable(path, pos):
 		var new_collectable = load(path).instance()
 		call_deferred("add_child", new_collectable)
 		new_collectable.position = pos
+		new_collectable.item_position.append(pos)
+		network.add_to_state("collectables", new_collectable)
 		
 func update_spiritpearls():
 	if global.pearl.size() >= 4:

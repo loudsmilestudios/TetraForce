@@ -19,11 +19,11 @@ jobs:
           GITHUB_HEAD_REF: $${{ github.head_ref }}
           GITHUB_BASE_REF: ${{ github.base_ref }}
         run: |
-          if [ "${{ github.event.inputs.version }}" = "" ]
+          if [ "${{ github.event.release.tag_name }}" != "" ]
           then
             TAG=$(jq --raw-output '.release.tag_name' $GITHUB_EVENT_PATH)
           else
-            TAG=${{ github.event.inputs.version }}
+            TAG=`git tag`-`git rev-parse --short HEAD`
           fi
           
           echo $TAG > semantic.version
@@ -55,12 +55,41 @@ jobs:
           IMAGE_NAME: "tetraforce"
           TAG_NAME: ${{ steps.get_tag.outputs.TAG }}
           LATEST: "true"
+      - name: Docker Build & Push to AWS ECR
+        uses: opspresso/action-docker@master
+        with:
+          args: --ecr
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_REGION: "us-east-2"
+          IMAGE_URI: "141264065387.dkr.ecr.us-east-2.amazonaws.com/tetraforce"
+          BUILD_PATH: "."
+          DOCKERFILE: "Dockerfile"
+          TAG_NAME: ${{ steps.get_tag.outputs.TAG }}
+          LATEST: "true"
   linux:
     name: Build & Push - Linux
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+      - id: get_tag
+        name: Get Tag
+        env:
+          GITHUB_HEAD_REF: $${{ github.head_ref }}
+          GITHUB_BASE_REF: ${{ github.base_ref }}
+        run: |
+          if [ "${{ github.event.release.tag_name }}" != "" ]
+          then
+            TAG=$(jq --raw-output '.release.tag_name' $GITHUB_EVENT_PATH)
+          else
+            TAG=`git tag`-`git rev-parse --short HEAD`
+          fi
+          
+          echo $TAG > semantic.version
+          
+          echo ::set-output name=TAG::$TAG
       - name: Build
         id: build
         uses: josephbmanley/build-godot-action@v1.4.0
@@ -90,6 +119,15 @@ jobs:
           AWS_REGION: us-east-2
           SOURCE_DIR: ${{github.workspace}}/tetraforce
           DEST_DIR: builds/master/latest/linux
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-2
+      - name: Clear CloudFront Cache
+        run: |
+          aws cloudfront create-invalidation --distribution-id ${{ secrets.CLOUDFRONT_ID }} --paths "/builds/master/latest/linux/*"
   windows:
     name: Build & Push - Windows
     runs-on: ubuntu-latest
@@ -99,6 +137,22 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+      - id: get_tag
+        name: Get Tag
+        env:
+          GITHUB_HEAD_REF: $${{ github.head_ref }}
+          GITHUB_BASE_REF: ${{ github.base_ref }}
+        run: |
+          if [ "${{ github.event.release.tag_name }}" != "" ]
+          then
+            TAG=$(jq --raw-output '.release.tag_name' $GITHUB_EVENT_PATH)
+          else
+            TAG=`git tag`-`git rev-parse --short HEAD`
+          fi
+          
+          echo $TAG > semantic.version
+          
+          echo ::set-output name=TAG::$TAG
       - name: Build
         id: build
         uses: josephbmanley/build-godot-action@v1.4.0
@@ -128,6 +182,15 @@ jobs:
           AWS_REGION: us-east-2
           SOURCE_DIR: ${{github.workspace}}/tetraforce
           DEST_DIR: builds/master/latest/${{ matrix.platform }}
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-2
+      - name: Clear CloudFront Cache
+        run: |
+          aws cloudfront create-invalidation --distribution-id ${{ secrets.CLOUDFRONT_ID }} --paths "/builds/master/latest/${{ matrix.platform }}/*"
   osx:
     name: Build OSX
     runs-on: macos-latest
@@ -141,6 +204,22 @@ jobs:
           rm Godot.zip
           mv Godot.app /Applications/Godot.app
           ln -s /Applications/Godot.app/Contents/MacOS/Godot /usr/local/bin/godot
+      - id: get_tag
+        name: Get Tag
+        env:
+          GITHUB_HEAD_REF: $${{ github.head_ref }}
+          GITHUB_BASE_REF: ${{ github.base_ref }}
+        run: |
+          if [ "${{ github.event.release.tag_name }}" != "" ]
+          then
+            TAG=$(jq --raw-output '.release.tag_name' $GITHUB_EVENT_PATH)
+          else
+            TAG=`git tag`-`git rev-parse --short HEAD`
+          fi
+          
+          echo $TAG > semantic.version
+          
+          echo ::set-output name=TAG::$TAG
       - name: Build Project
         run: |
           wget https://downloads.tuxfamily.org/godotengine/3.3.2/Godot_v3.3.2-stable_export_templates.tpz -q
@@ -179,6 +258,15 @@ jobs:
         AWS_REGION: us-east-2
         SOURCE_DIR: ${{github.workspace}}/tetraforce
         DEST_DIR: builds/master/latest/osx
+    - name: Configure AWS Credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: us-east-2
+    - name: Clear CloudFront Cache
+      run: |
+        aws cloudfront create-invalidation --distribution-id ${{ secrets.CLOUDFRONT_ID }} --paths "/builds/master/latest/osx/*"
   html5:
     runs-on: ubuntu-latest
     steps:

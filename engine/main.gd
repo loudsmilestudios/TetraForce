@@ -19,7 +19,6 @@ func _ready():
 	
 	get_tree().connect("connected_to_server", self, "_client_connect_ok")
 	get_tree().connect("connection_failed", self, "_client_connect_fail")
-	get_tree().connect("server_disconnected", self, "_client_disconnect")
 	network.connect("end_aws_task", self, "end_aws_task")
 	
 	get_tree().set_auto_accept_quit(false)
@@ -125,6 +124,7 @@ func join_server(ip, port):
 	
 	var ws = WebSocketClient.new()
 	var url = "ws://%s:%s" % [ip, port]
+	ws.connect("server_close_request", self, "_client_disconnect")
 	ws.connect_to_url(url, PoolStringArray(), true);
 	get_tree().set_network_peer(ws)
 
@@ -194,10 +194,12 @@ func _client_connect_ok():
 func _client_connect_fail():
 	print("Failed to connect!")
 	loading_screen.stop_loading()
-	get_tree().set_network_peer(null)
-
-func _client_disconnect():
 	end_game()
+
+func _client_disconnect(code, reason):
+	print("Disconnected from server: %s, %s" % [code, reason])
+	network.complete(false)
+	show()
 
 func end_game():
 	network.complete()

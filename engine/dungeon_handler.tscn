@@ -9,5 +9,6 @@ script = ExtResource( 2 )
 [node name="NetworkObject" parent="." instance=ExtResource( 1 )]
 persistent = true
 enter_properties = {
-"keys": 0
+"keys": 0,
+"thorn_order": 0
 }

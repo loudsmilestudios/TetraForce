@@ -2,6 +2,8 @@ extends Area2D
 
 class_name Collectable
 
+var item_position = []
+
 export(float) var timer_till_self_destruct
 export(float) var time_till_flashing = 5 # Is the time till the collectable starts flashing, in seconds
 export(String) var sound = "tetran"
@@ -24,12 +26,14 @@ func _ready():
 		timer.name = "Timer"
 		if time_till_flashing > 0 != is_in_group("key_spawn"): 
 			timer.start()
-	
+			
 	var network_object = preload("res://engine/network_object.tscn").instance()
-	network_object.enter_properties = {"position":Vector2(0,0)}
+	add_child(network_object)
+	network_object.enter_properties = {"position":position}
+	network_object.update_properties = {"position":position}
 	network_object.require_map_host = true
 	network_object.sync_creation = true
-	add_child(network_object)
+	#print(network_object.enter_properties)
 	
 	$CollisionShape2D.disabled = true
 	yield(get_tree().create_timer(0.75), "timeout")
@@ -40,6 +44,7 @@ func _flash():
 	if(flash_count == TOTAL_FLASH_COUNT * 2):
 		network.peer_call(self, "queue_free")
 		queue_free()
+		network.states.collectables.erase(self)
 
 	if($Sprite.visible):
 		$Timer.wait_time = FLASH_TIME_NOT_VISIBLE
@@ -64,3 +69,4 @@ func _collect(body: Node2D):
 		sfx.play(sound)
 		# Deletion Code with network syncing goes here:
 		queue_free()
+		network.states.collectables.erase(self)

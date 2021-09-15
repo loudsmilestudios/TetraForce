@@ -6,11 +6,13 @@ var screen_size = Vector2(256,144)
 
 const SCROLL_DURATION = 0.5
 
+signal reset_limit
+
 func _ready():
 	set_process(false)
 	
 func _physics_process(delta):
-	target.get_node("Light2D").enabled = global.items.has("Lantern") #Moved so it updates while your in a dark room
+	global.player.get_node("Light2D").enabled = global.items.has("Lantern") #Moved so it updates while your in a dark room
 
 func initialize(node):
 	target = node
@@ -35,8 +37,8 @@ func scroll_screen(rect : Rect2):
 	var scroll_to = target.position
 	var scroll_to_min = current_rect.position + screen_size / 2
 	var scroll_to_max = current_rect.position + current_rect.size - screen_size / 2
-	scroll_to.x = clamp(scroll_to.x, scroll_to_min.x, scroll_to_max.x)
-	scroll_to.y = clamp(scroll_to.y, scroll_to_min.y, scroll_to_max.y)
+	scroll_to.x = clamp(scroll_to.x, scroll_to_min.x + 16, scroll_to_max.x)
+	scroll_to.y = clamp(scroll_to.y, scroll_to_min.y + 16, scroll_to_max.y)
 	
 	
 	$Tween.interpolate_property(self, "position", scroll_from, scroll_to, SCROLL_DURATION, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
@@ -44,7 +46,6 @@ func scroll_screen(rect : Rect2):
 	yield($Tween, "tween_all_completed")
 	
 	set_limits(rect)
-	
 	smoothing_enabled = true
 	target.set_physics_process(true)
 	set_process(true)
