@@ -14,5 +14,7 @@ func toggle_pvp():
 func update_options():
 	if not "pvp" in global.options or global.options["pvp"]:
 		self.text = "PvP: Enabled"
+		global.pvp = true
 	else:
 		self.text = "PvP: Disabled"
+		global.pvp = false
