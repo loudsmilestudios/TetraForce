@@ -5,10 +5,13 @@ onready var tween = $Tween
 
 onready var target_position = position setget set_block_position
 onready var pushed = false setget set_pushed
+onready var home_position = position
 
 func _ready():
 	add_to_group("pushable")
-
+	add_to_group("objects")
+	set_collision_layer_bit(10, 1)
+	
 func interact(node):
 	if tween.is_active():
 		return
@@ -42,3 +45,9 @@ func move_to(current_pos, target_pos):
 func snap_to(current_pos, target_pos):
 	tween.interpolate_property(self, "position", current_pos, target_pos, 0.1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	tween.start()
+	
+func set_default_state():
+	set_pushed(false)
+	target_position = home_position
+	snap_to(target_position, home_position)
+	

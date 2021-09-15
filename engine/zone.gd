@@ -31,3 +31,10 @@ func get_players():
 		if player is Player:
 			players.append(player)
 	return players
+	
+func get_objects():
+	var objects = []
+	for object in get_overlapping_bodies():
+		if object.is_in_group("objects"):
+			objects.append(object)
+	return objects

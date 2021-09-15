@@ -131,7 +131,7 @@ func create_collectable(path, pos):
 		call_deferred("add_child", new_collectable)
 		new_collectable.position = pos
 		new_collectable.item_position.append(pos)
-		
+		network.add_to_state("collectables", new_collectable)
 		
 func update_spiritpearls():
 	if global.pearl.size() >= 4:
