@@ -6,7 +6,7 @@ func _ready():
 
 func toggle_pvp():
 	if not "pvp" in global.options:
-		global.options["pvp"] = true
+		global.options["pvp"] = false
 	else:
 		global.options["pvp"] = !global.options["pvp"]
 	update_options()
