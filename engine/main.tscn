@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://ui/theme/theme.tres" type="Theme" id=1]
 [ext_resource path="res://ui/options/options.tscn" type="PackedScene" id=2]
 [ext_resource path="res://engine/main.gd" type="Script" id=3]
 [ext_resource path="res://ui/main/version_label.gd" type="Script" id=4]
+[ext_resource path="res://ui/saves/saves.tscn" type="PackedScene" id=5]
 [ext_resource path="res://ui/logo_animated_sprite.tres" type="SpriteFrames" id=6]
 [ext_resource path="res://ui/loading_screen/loading_screen.tscn" type="PackedScene" id=7]
 
@@ -16,7 +17,6 @@ size_flags_vertical = 2
 theme = ExtResource( 1 )
 script = ExtResource( 3 )
 __meta__ = {
-"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
@@ -39,7 +39,6 @@ animation = "Logo"
 [node name="top" type="Panel" parent="." groups=[
 "menu",
 ]]
-visible = false
 margin_left = 176.0
 margin_top = 117.572
 margin_right = 336.0
@@ -63,9 +62,9 @@ __meta__ = {
 }
 
 [node name="singleplayer" type="Button" parent="top/VBoxContainer"]
-margin_top = 15.0
+margin_top = 28.0
 margin_right = 144.0
-margin_bottom = 36.7537
+margin_bottom = 49.7537
 size_flags_stretch_ratio = 0.0
 text = "Singleplayer"
 __meta__ = {
@@ -73,9 +72,9 @@ __meta__ = {
 }
 
 [node name="multiplayer" type="Button" parent="top/VBoxContainer"]
-margin_top = 40.0
+margin_top = 53.0
 margin_right = 144.0
-margin_bottom = 61.7537
+margin_bottom = 74.7537
 size_flags_stretch_ratio = 0.0
 text = "Multiplayer"
 __meta__ = {
@@ -83,9 +82,9 @@ __meta__ = {
 }
 
 [node name="options" type="Button" parent="top/VBoxContainer"]
-margin_top = 65.0
+margin_top = 78.0
 margin_right = 144.0
-margin_bottom = 86.7537
+margin_bottom = 99.7537
 size_flags_stretch_ratio = 0.0
 text = "Options"
 __meta__ = {
@@ -93,9 +92,9 @@ __meta__ = {
 }
 
 [node name="quit" type="Button" parent="top/VBoxContainer"]
-margin_top = 115.0
+margin_top = 103.0
 margin_right = 144.0
-margin_bottom = 136.754
+margin_bottom = 124.754
 size_flags_stretch_ratio = 0.0
 text = "Quit"
 __meta__ = {
@@ -105,6 +104,7 @@ __meta__ = {
 [node name="multiplayer" type="TabContainer" parent="." groups=[
 "menu",
 ]]
+visible = false
 margin_left = 144.0
 margin_top = 98.0
 margin_right = 368.0
@@ -210,6 +210,13 @@ text = "Join"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="saves" parent="." instance=ExtResource( 5 )]
+visible = false
+margin_left = 145.0
+margin_top = 119.0
+margin_right = 328.0
+margin_bottom = 238.0
 
 [node name="options" parent="." instance=ExtResource( 2 )]
 visible = false

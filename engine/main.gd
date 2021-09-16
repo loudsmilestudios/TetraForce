@@ -239,6 +239,11 @@ func _on_quit_pressed():
 	quit_program()
 
 func _on_singleplayer_pressed():
+	hide_menus()
+	$saves.show()
+	$back.show()
+	$back.grab_focus()
+	return
 	host_server(false, 0, 0, 1)
 
 func _on_multiplayer_pressed():
