@@ -1,0 +1,28 @@
+[gd_resource type="Theme" load_steps=7 format=2]
+
+[ext_resource path="res://ui/theme/font.ttf" type="DynamicFontData" id=1]
+
+[sub_resource type="StyleBoxFlat" id=5]
+content_margin_left = 2.0
+content_margin_right = 2.0
+content_margin_top = 2.0
+content_margin_bottom = 2.0
+bg_color = Color( 0.352941, 0.101961, 0.0823529, 1 )
+
+[sub_resource type="OpenSimplexNoise" id=2]
+
+[sub_resource type="NoiseTexture" id=3]
+noise = SubResource( 2 )
+
+[sub_resource type="StyleBoxTexture" id=4]
+texture = SubResource( 3 )
+region_rect = Rect2( 0, 0, 512, 512 )
+
+[sub_resource type="DynamicFont" id=1]
+font_data = ExtResource( 1 )
+
+[resource]
+default_font = SubResource( 1 )
+PanelContainer/styles/panel = SubResource( 5 )
+ScrollContainer/styles/bg = SubResource( 4 )
+VBoxContainer/constants/separation = 1

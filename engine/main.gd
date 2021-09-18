@@ -240,7 +240,8 @@ func _on_quit_pressed():
 
 func _on_singleplayer_pressed():
 	hide_menus()
-	$saves.show()
+	$player_select.show()
+	$player_select.show()
 	$back.show()
 	$back.grab_focus()
 	return

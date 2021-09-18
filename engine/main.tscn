@@ -4,13 +4,15 @@
 [ext_resource path="res://ui/options/options.tscn" type="PackedScene" id=2]
 [ext_resource path="res://engine/main.gd" type="Script" id=3]
 [ext_resource path="res://ui/main/version_label.gd" type="Script" id=4]
-[ext_resource path="res://ui/saves/saves.tscn" type="PackedScene" id=5]
+[ext_resource path="res://ui/player_select/player_select.tscn" type="PackedScene" id=5]
 [ext_resource path="res://ui/logo_animated_sprite.tres" type="SpriteFrames" id=6]
 [ext_resource path="res://ui/loading_screen/loading_screen.tscn" type="PackedScene" id=7]
 
 [node name="main" type="Control"]
-margin_right = 39.9996
-margin_bottom = 40.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 258.0
+margin_bottom = 146.0
 rect_scale = Vector2( 0.5, 0.5 )
 size_flags_horizontal = 2
 size_flags_vertical = 2
@@ -211,13 +213,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="saves" parent="." instance=ExtResource( 5 )]
-visible = false
-margin_left = 145.0
-margin_top = 119.0
-margin_right = 328.0
-margin_bottom = 238.0
-
 [node name="options" parent="." instance=ExtResource( 2 )]
 visible = false
 anchor_right = 0.0
@@ -232,16 +227,18 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 299.0
-margin_top = 231.0
-margin_right = 468.0
-margin_bottom = 244.0
+margin_left = -174.556
+margin_top = -17.7622
+margin_right = -5.55591
+margin_bottom = -4.76221
 text = "custom build"
 align = 2
 script = ExtResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="player_select" parent="." instance=ExtResource( 5 )]
 
 [node name="back" type="Button" parent="." groups=[
 "menu",
