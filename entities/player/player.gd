@@ -256,6 +256,7 @@ func state_water():
 					
 func state_swim():
 	state = "default"
+	set_collision_layer_bit(6, 0)
 
 func state_menu():
 	anim_switch("idle")
