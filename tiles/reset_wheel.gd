@@ -4,12 +4,16 @@ export(String, MULTILINE) var dialogue: String = ""
 
 var begin
 var zone
+var objects = []
 
 func _ready():
 	add_to_group("interactable")
 	add_to_group("nopush")
 	add_to_group("zoned")
 	set_physics_process(false)
+	yield(get_tree(), "idle_frame")
+	for object in zone.get_objects():
+		objects.append(object)
 	
 func _physics_process(delta):
 	if zone.get_players() == []:
@@ -78,7 +82,7 @@ func reset_position(id):
 	screenfx.play("fadein")
 	
 func reset_object():
-	for object in zone.get_objects():
+	for object in objects:
 		network.peer_call(object, "set_default_state")
 		object.set_default_state()
 
