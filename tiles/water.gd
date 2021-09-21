@@ -9,7 +9,6 @@ func _ready():
 	add_to_group("water")
 	add_to_group("zoned")
 	add_to_group("objects")
-	add_to_group("nopush")
 	set_collision_layer_bit(6, 1)
 	set_collision_mask_bit(6, 1)
 	set_collision_layer_bit(10, 1)

@@ -11,7 +11,6 @@ func _ready():
 	add_to_group("pushable")
 	add_to_group("objects")
 	set_collision_layer_bit(10, 1)
-	print(target_position)
 	
 func interact(node):
 	if tween.is_active():
@@ -31,6 +30,8 @@ func attempt_move(direction):
 			if is_network_master():
 				process_move_attempt(direction)
 				ray.get_collider().clear_water(target_position)
+				set_pushed(true)
+				network.peer_call(self, "set_pushed", [pushed])
 
 func set_block_position(value):
 	target_position = value
@@ -59,9 +60,7 @@ func set_default_state():
 	
 func process_move_attempt(direction):
 	target_position = (position + direction * 16).snapped(Vector2(16,16)) - Vector2(8,8)
-	set_pushed(true)
 	move_to(position, target_position)
 	network.peer_call(self, "move_to", [position, target_position])
-	network.peer_call(self, "set_pushed", [pushed])
-	print(target_position)
+	
 
