@@ -47,6 +47,8 @@ func _ready():
 
 
 func clean_session_data():
+	global.ammo = global.INITIAL_AMMO
+	global.current_save_name = null
 	current_players = []
 	map_peers = []
 	player_list = {}

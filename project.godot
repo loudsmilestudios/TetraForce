@@ -39,6 +39,16 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://entities/player/player.gd"
 }, {
+"base": "PanelContainer",
+"class": "SaveDisplay",
+"language": "GDScript",
+"path": "res://ui/player_select/save_display.gd"
+}, {
+"base": "Control",
+"class": "SaveManager",
+"language": "GDScript",
+"path": "res://ui/player_select/saves_manager.gd"
+}, {
 "base": "TileMap",
 "class": "Water",
 "language": "GDScript",
@@ -56,6 +66,8 @@ _global_script_class_icons={
 "Holes": "",
 "NPC": "",
 "Player": "",
+"SaveDisplay": "",
+"SaveManager": "",
 "Water": "",
 "Weapon": ""
 }
@@ -216,6 +228,11 @@ SELECT={
 ESC={
 "deadzone": 0.5,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777217,"unicode":0,"echo":false,"script":null)
+ ]
+}
+QUICK_SAVE={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777248,"unicode":0,"echo":false,"script":null)
  ]
 }
 

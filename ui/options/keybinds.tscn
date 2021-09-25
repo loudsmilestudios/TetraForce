@@ -29,7 +29,7 @@ __meta__ = {
 
 [node name="vbox" type="VBoxContainer" parent="scroll"]
 margin_right = 248.0
-margin_bottom = 221.0
+margin_bottom = 246.0
 size_flags_horizontal = 3
 alignment = 1
 
@@ -198,6 +198,25 @@ margin_bottom = 17.0
 text = "A:"
 
 [node name="Button" type="Button" parent="scroll/vbox/Action_START"]
+margin_left = 89.0
+margin_right = 175.456
+margin_bottom = 21.7537
+text = "ActionKeybind"
+
+[node name="Action_QUICK_SAVE" type="HBoxContainer" parent="scroll/vbox"]
+margin_top = 225.0
+margin_right = 248.0
+margin_bottom = 246.0
+alignment = 1
+
+[node name="Label" type="Label" parent="scroll/vbox/Action_QUICK_SAVE"]
+margin_left = 73.0
+margin_top = 4.0
+margin_right = 85.0
+margin_bottom = 17.0
+text = "A:"
+
+[node name="Button" type="Button" parent="scroll/vbox/Action_QUICK_SAVE"]
 margin_left = 89.0
 margin_right = 175.456
 margin_bottom = 21.7537

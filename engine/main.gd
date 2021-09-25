@@ -89,7 +89,7 @@ func get_empty_server_timeout(arguments):
 	
 	return empty_timeout
 
-func start_game(dedicated = false, empty_timeout = 0):
+func start_game(dedicated = false, empty_timeout = 0, map = null, entrance = null):
 	loading_screen.stop_loading()
 	if dedicated:
 		network.dedicated = true
@@ -98,8 +98,15 @@ func start_game(dedicated = false, empty_timeout = 0):
 	network.initialize()
 	
 	if !dedicated:
-		global.next_entrance = default_entrance
-		var level = load(default_map).instance()
+		if entrance:
+			global.next_entrance = entrance
+		else:
+			global.next_entrance = default_entrance
+		var level
+		if map:
+			level = load(map).instance()
+		else:
+			level = load(default_map).instance()
 		get_tree().get_root().add_child(level)
 		hide()
 
@@ -238,14 +245,19 @@ func _on_join_pressed():
 func _on_quit_pressed():
 	quit_program()
 
-func _on_singleplayer_pressed():
+func _on_quickstart_pressed():
 	hide_menus()
+	$top.show()
+	singleplayer_focus.grab_focus()
+	host_server(false, 0, 0, 1)
+
+func _on_load_pressed():
+	hide_menus()
+	$player_select/saves.refresh_saves()
 	$player_select.show()
 	$player_select.show()
 	$back.show()
 	$back.grab_focus()
-	return
-	host_server(false, 0, 0, 1)
 
 func _on_multiplayer_pressed():
 	hide_menus()
@@ -265,6 +277,9 @@ func _on_back_pressed():
 	hide_menus()
 	$top.show()
 	singleplayer_focus.grab_focus()
+
+func _on_returned_pressed():
+	hide()
 
 func _on_save_pressed():
 	global.save_options()

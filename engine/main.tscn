@@ -64,29 +64,39 @@ __meta__ = {
 }
 
 [node name="singleplayer" type="Button" parent="top/VBoxContainer"]
-margin_top = 28.0
+margin_top = 15.0
 margin_right = 144.0
-margin_bottom = 49.7537
+margin_bottom = 36.7537
 size_flags_stretch_ratio = 0.0
-text = "Singleplayer"
+text = "Quickstart"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="multiplayer" type="Button" parent="top/VBoxContainer"]
-margin_top = 53.0
+margin_top = 40.0
 margin_right = 144.0
-margin_bottom = 74.7537
+margin_bottom = 61.7537
 size_flags_stretch_ratio = 0.0
 text = "Multiplayer"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="options" type="Button" parent="top/VBoxContainer"]
-margin_top = 78.0
+[node name="load_game" type="Button" parent="top/VBoxContainer"]
+margin_top = 65.0
 margin_right = 144.0
-margin_bottom = 99.7537
+margin_bottom = 86.7537
+size_flags_stretch_ratio = 0.0
+text = "Load Game"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="options" type="Button" parent="top/VBoxContainer"]
+margin_top = 90.0
+margin_right = 144.0
+margin_bottom = 111.754
 size_flags_stretch_ratio = 0.0
 text = "Options"
 __meta__ = {
@@ -94,9 +104,9 @@ __meta__ = {
 }
 
 [node name="quit" type="Button" parent="top/VBoxContainer"]
-margin_top = 103.0
+margin_top = 115.0
 margin_right = 144.0
-margin_bottom = 124.754
+margin_bottom = 136.754
 size_flags_stretch_ratio = 0.0
 text = "Quit"
 __meta__ = {
@@ -239,6 +249,8 @@ __meta__ = {
 }
 
 [node name="player_select" parent="." instance=ExtResource( 5 )]
+visible = false
+main_path = NodePath("..")
 
 [node name="back" type="Button" parent="." groups=[
 "menu",
@@ -258,9 +270,11 @@ __meta__ = {
 visible = false
 
 [connection signal="mouse_entered" from="top/VBoxContainer/singleplayer" to="." method="_on_mouse_entered"]
-[connection signal="pressed" from="top/VBoxContainer/singleplayer" to="." method="_on_singleplayer_pressed"]
+[connection signal="pressed" from="top/VBoxContainer/singleplayer" to="." method="_on_quickstart_pressed"]
 [connection signal="mouse_entered" from="top/VBoxContainer/multiplayer" to="." method="_on_mouse_entered"]
 [connection signal="pressed" from="top/VBoxContainer/multiplayer" to="." method="_on_multiplayer_pressed"]
+[connection signal="mouse_entered" from="top/VBoxContainer/load_game" to="." method="_on_mouse_entered"]
+[connection signal="pressed" from="top/VBoxContainer/load_game" to="." method="_on_load_pressed"]
 [connection signal="mouse_entered" from="top/VBoxContainer/options" to="." method="_on_mouse_entered"]
 [connection signal="pressed" from="top/VBoxContainer/options" to="." method="_on_options_pressed"]
 [connection signal="mouse_entered" from="top/VBoxContainer/quit" to="." method="_on_mouse_entered"]
