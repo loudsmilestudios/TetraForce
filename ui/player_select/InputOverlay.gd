@@ -26,5 +26,5 @@ func open():
 	self.on_focused()
 
 func close():
-	hide()
+	self.hide()
 	emit_signal("close_without_submission")

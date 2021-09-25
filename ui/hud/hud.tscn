@@ -28,7 +28,7 @@ outline_size = 1
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 1 )
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=7]
 resource_name = "default"
 length = 0.1
 tracks/0/type = "bezier"
@@ -72,8 +72,7 @@ tracks/3/keys = {
 "times": PoolRealArray( 0 )
 }
 
-[sub_resource type="Animation" id=7]
-resource_name = "fade_out"
+[sub_resource type="Animation" id=8]
 length = 1.5
 tracks/0/type = "bezier"
 tracks/0/path = NodePath("OnscreenSave/Label:modulate:r")
@@ -324,8 +323,8 @@ mode = 1
 show_return_button = true
 
 [node name="OnscreenSave" type="AnimationPlayer" parent="."]
-anims/default = SubResource( 8 )
-anims/fade_out = SubResource( 7 )
+anims/default = SubResource( 7 )
+anims/fade_out = SubResource( 8 )
 script = ExtResource( 11 )
 
 [node name="Label" type="Label" parent="OnscreenSave"]

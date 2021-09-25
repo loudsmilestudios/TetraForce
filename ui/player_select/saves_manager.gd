@@ -65,6 +65,7 @@ func on_new():
 
 func on_save_name_entered(save_name):
 	global.save_game_data(save_name)
+	show()
 	emit_signal("exit")
 
 func set_mode(mode):
@@ -97,8 +98,8 @@ func update_gui():
 
 func close():
 	if(overlay and overlay.visible):
-		show()
 		overlay.close()
+		show()
 		new_button.grab_focus()
 	else:
 		emit_signal("exit")

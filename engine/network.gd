@@ -29,7 +29,7 @@ var state
 
 # save stuff
 # states[nodepath] = properties
-var states = {
+export var states = {
 	weapons = [],
 	items = [],
 	pearl = [],
@@ -47,8 +47,7 @@ func _ready():
 
 
 func clean_session_data():
-	global.ammo = global.INITIAL_AMMO
-	global.current_save_name = null
+	global.clean_session_data()
 	current_players = []
 	map_peers = []
 	player_list = {}
@@ -251,7 +250,7 @@ remote func _receive_state_array(state, value):
 	global.emit_signal("debug_update")
 
 func request_persistent_state(object):
-	var nodepath = object.get_path()
+	var nodepath = str(object.get_path())
 	if pid == 1:
 		var properties = states.get(nodepath, {})
 		update_state(nodepath, properties)

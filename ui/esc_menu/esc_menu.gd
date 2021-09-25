@@ -44,6 +44,7 @@ func on_options():
 
 func on_save():
 	saves.show()
+	saves.grab_focus()
 	saves.manager.refresh_saves()
 	hide()
 

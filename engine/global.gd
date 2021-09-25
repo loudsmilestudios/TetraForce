@@ -9,13 +9,17 @@ const INITIAL_AMMO = {
 	"bomb": 20,
 }
 
+const DEFAULT_EQUIPS = {"B": "Sword", "X": "", "Y": ""}
+const DEFAULT_WEAPONS = ["Sword"]
+const DEFAULT_ITEMS = []
+
 var version = null setget ,get_version
 var current_save_name = null
 var blacklisted_words = []
 var player
-var equips = {"B": "Sword", "X": "", "Y": ""}
-var weapons = ["Sword"]
-var items = []
+var equips = DEFAULT_EQUIPS
+var weapons = DEFAULT_WEAPONS
+var items = DEFAULT_ITEMS
 var pearl = []
 var health = 5
 var max_health = 5
@@ -136,6 +140,14 @@ var options = {
 func _ready():
 	load_blacklist()
 
+func clean_session_data():
+	ammo = INITIAL_AMMO
+	current_save_name = null
+
+	equips = DEFAULT_EQUIPS
+	weapons = DEFAULT_WEAPONS
+	items = DEFAULT_ITEMS
+
 func load_blacklist():
 	var blacklist_file = File.new()
 	if blacklist_file.file_exists("res://engine/blacklist.txt"):
@@ -204,12 +216,17 @@ func save_game_data(save_name):
 	var data = {
 		"format" : "1",
 		"states": network.states,
-		"ammo" : ammo
+		"ammo" : ammo,
+		"items" : {
+			"equips": equips,
+			"weapons": weapons,
+			"items": items
+		}
 	}
 
 	var save_file = File.new()
 	save_file.open(SAVE_FORMAT % save_name, File.WRITE)
-	save_file.store_line(to_json(data))
+	save_file.store_line(Marshalls.utf8_to_base64(to_json(data)))
 	save_file.close()
 	if not "quicksave" in save_name:
 		current_save_name = save_name
@@ -223,13 +240,17 @@ func load_game_data(save_name):
 	var save_file = File.new()
 	if save_file.file_exists(SAVE_FORMAT % save_name):
 		save_file.open(SAVE_FORMAT % save_name, File.READ)
-		var data = parse_json(save_file.get_as_text())
+		var data = parse_json(Marshalls.base64_to_utf8(save_file.get_as_text()))
 		for part in data:
 			match part:
 				"states":
 					network.states = data["states"]
 				"ammo":
 					ammo = data["ammo"]
+				"items":
+					equips = data["items"]["equips"]
+					weapons = data["items"]["weapons"]
+					items = data["items"]["items"]
 		current_save_name = save_name
 		print("Loaded save: %s" % save_name)
 		return true
