@@ -21,16 +21,10 @@ margin_top = 7.0
 margin_right = 222.0
 margin_bottom = 31.0
 
-[node name="Label" type="Label" parent="HBoxContainer"]
-margin_top = 5.0
-margin_right = 36.0
-margin_bottom = 19.0
-text = "100%"
-
 [node name="Button" type="Button" parent="HBoxContainer"]
-margin_left = 40.0
-margin_right = 133.456
+margin_right = 215.0
 margin_bottom = 24.7537
-size_flags_horizontal = 2
+size_flags_horizontal = 3
 text = "SaveName"
 icon = SubResource( 1 )
+align = 0

@@ -6,7 +6,8 @@ signal exit
 export(PackedScene) var save_display
 
 var main = null
-var overlay = null
+var input_overlay = null
+var confirm_overlay = null
 onready var save_holder = $VBoxContainer
 onready var new_button = $VBoxContainer/ChangeMode/HSplitContainer/NewButton
 onready var delete_button = $VBoxContainer/ChangeMode/HSplitContainer/DeleteSaveButton
@@ -16,6 +17,7 @@ enum SAVE_MODE { VIEW = 0, SAVE = 1, LOAD = 2, DELETE = 3 }
 
 var default_mode = SAVE_MODE.LOAD
 var current_mode = default_mode
+var pending_confirm_source = null
 
 func _ready():
 	new_button.connect("button_down", self, "on_new")
@@ -36,10 +38,22 @@ func refresh_saves():
 		save_holder.move_child(node, 0)
 		node.connect("clicked", self, "set_mode", [default_mode])
 		node.connect("action_complete", self, "on_action_complete")
+		node.connect("request_confirmation", self, "on_confirm_request")
 	update_gui()
 
 func _process(delta):
 	delete_button.visible == (len(global.get_saves()) <= 0)
+
+func on_confirm_request(source, message):
+	pending_confirm_source = source
+	confirm_overlay.set_message(message)
+	hide()
+	confirm_overlay.open()
+
+func on_confirmation(result):
+	if result:
+		pending_confirm_source.on_action(true)
+	show()
 
 func on_action_complete():
 	match default_mode:
@@ -57,9 +71,9 @@ func on_new():
 			else:
 				printerr("Reference to `main` not set! Cannot start game.")
 		SAVE_MODE.SAVE:
-			if overlay:
+			if input_overlay:
 				hide()
-				overlay.open()
+				input_overlay.open()
 		_:
 			printerr("Move `%s` is not supported by player select!" % default_mode)
 
@@ -97,8 +111,12 @@ func update_gui():
 			delete_button.text = "???"
 
 func close():
-	if(overlay and overlay.visible):
-		overlay.close()
+	if(input_overlay and input_overlay.visible):
+		input_overlay.close()
+		show()
+		new_button.grab_focus()
+	elif(confirm_overlay and confirm_overlay.visible):
+		confirm_overlay.close()
 		show()
 		new_button.grab_focus()
 	else:

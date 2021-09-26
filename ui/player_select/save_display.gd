@@ -2,6 +2,7 @@ class_name SaveDisplay
 extends PanelContainer
 
 signal action_complete
+signal request_confirmation(display, message)
 signal clicked
 
 
@@ -23,21 +24,31 @@ func update_display():
 	if save_icon:
 		button.icon = save_icon
 
-func on_action():
+func on_action(confirmed=false):
 	match mode:
 		0:
 			pass
 		1:
-			global.save_game_data(save_name)
-			emit_signal("action_complete")
+			if confirmed:
+				global.save_game_data(save_name)
+				emit_signal("action_complete")
+			else:
+				emit_signal("request_confirmation", self,
+					"This will overwrite '%s'.\nAre you sure?" % save_name)
+				return
 		2:
 			if global.load_game_data(save_name):
 				emit_signal("action_complete")
 			else:
 				printerr("Failed to load save: `%s`" % save_name)
 		3:
-			global.delete_save_data(save_name)
-			self.queue_free()
+			if confirmed:
+				global.delete_save_data(save_name)
+				self.queue_free()
+			else:
+				emit_signal("request_confirmation", self,
+					"This will delete '%s'.\nAre you sure?" % save_name)
+				return
 		_:
 			printerr("%s has an invalid SAVE_MODE value for `mode`!" % get_path())
 	emit_signal("clicked")

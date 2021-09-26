@@ -18,6 +18,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 theme = ExtResource( 1 )
 custom_styles/bg = SubResource( 1 )
+follow_focus = true
+scroll_horizontal_enabled = false
 script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -45,24 +47,19 @@ margin_left = 2.0
 margin_top = 2.0
 margin_right = 235.0
 margin_bottom = 23.0
+custom_constants/separation = 0
 dragger_visibility = 1
 
-[node name="Label3" type="Label" parent="VBoxContainer/ChangeMode/HSplitContainer"]
-margin_top = 4.0
-margin_right = 24.0
-margin_bottom = 17.0
-text = "    "
-
 [node name="NewButton" type="Button" parent="VBoxContainer/ChangeMode/HSplitContainer"]
-margin_left = 36.0
-margin_right = 62.4557
-margin_bottom = 21.7537
-size_flags_horizontal = 2
+margin_right = 112.0
+margin_bottom = 21.0
+size_flags_horizontal = 3
+size_flags_vertical = 0
 text = "New"
 
 [node name="DeleteSaveButton" type="Button" parent="VBoxContainer/ChangeMode/HSplitContainer"]
-margin_left = 122.0
-margin_right = 196.456
-margin_bottom = 21.7537
-size_flags_horizontal = 2
+margin_left = 120.0
+margin_right = 233.0
+margin_bottom = 21.0
+size_flags_horizontal = 3
 text = "Delete Save"
