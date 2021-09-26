@@ -22,6 +22,7 @@ var pending_confirm_source = null
 func _ready():
 	new_button.connect("button_down", self, "on_new")
 	delete_button.connect("button_down", self, "_on_manage_saves_button_down")
+
 	refresh_saves()
 	
 func refresh_saves():
@@ -39,6 +40,7 @@ func refresh_saves():
 		node.connect("clicked", self, "set_mode", [default_mode])
 		node.connect("action_complete", self, "on_action_complete")
 		node.connect("request_confirmation", self, "on_confirm_request")
+		node.connect("clicked", self, "play_interact_sfx")
 	update_gui()
 
 func _process(delta):
@@ -121,3 +123,6 @@ func close():
 		new_button.grab_focus()
 	else:
 		emit_signal("exit")
+
+func play_interact_sfx():
+	sfx.play("sword3")
