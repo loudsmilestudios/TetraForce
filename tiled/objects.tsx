@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tileset version="1.5" tiledversion="1.6.0" name="objects" tilewidth="16" tileheight="22" tilecount="46" columns="0">
+<tileset version="1.5" tiledversion="1.6.0" name="objects" tilewidth="16" tileheight="22" tilecount="47" columns="0">
  <grid orientation="orthogonal" width="1" height="1"/>
  <tile id="0">
   <properties>
@@ -355,5 +355,11 @@
    <property name="path" value="res://tiles/reset_wheel.tscn"/>
   </properties>
   <image width="16" height="16" source="images/objects/reset_wheel.png"/>
+ </tile>
+ <tile id="46">
+  <properties>
+   <property name="path" value="res://tiles/floating_barrel.tscn"/>
+  </properties>
+  <image width="16" height="16" source="images/objects/barrel.png"/>
  </tile>
 </tileset>

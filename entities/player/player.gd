@@ -367,7 +367,7 @@ func hole_fall():
 	yield(get_tree().create_timer(1.5), "timeout")
 	position = last_safe_pos
 	spritedir = last_safe_spritedir
-	damage(1, Vector2(0,0))
+	damage(0.5, Vector2(0,0))
 	state = "default"
 	show()
 
