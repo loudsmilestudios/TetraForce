@@ -12,6 +12,9 @@ const INITIAL_AMMO = {
 const DEFAULT_EQUIPS = {"B": "Sword", "X": "", "Y": ""}
 const DEFAULT_WEAPONS = ["Sword"]
 const DEFAULT_ITEMS = []
+const DEFAULT_PEARL = []
+const DEFAULT_SPIRITPEARL = 0
+const DEFAULT_HEALTH = 5
 
 var version = null setget ,get_version
 var current_save_name = null
@@ -20,10 +23,10 @@ var player
 var equips = DEFAULT_EQUIPS
 var weapons = DEFAULT_WEAPONS
 var items = DEFAULT_ITEMS
-var pearl = []
-var health = 5
-var max_health = 5
-var spiritpearl = 0
+var pearl = DEFAULT_PEARL
+var health = DEFAULT_HEALTH
+var max_health = DEFAULT_HEALTH
+var spiritpearl = DEFAULT_SPIRITPEARL
 
 var pvp = true
 
@@ -147,6 +150,10 @@ func clean_session_data():
 	equips = DEFAULT_EQUIPS
 	weapons = DEFAULT_WEAPONS
 	items = DEFAULT_ITEMS
+	pearl = DEFAULT_PEARL
+	health = DEFAULT_HEALTH
+	max_health = DEFAULT_HEALTH
+	spiritpearl = DEFAULT_SPIRITPEARL
 
 func load_blacklist():
 	var blacklist_file = File.new()
@@ -220,7 +227,12 @@ func save_game_data(save_name):
 		"items" : {
 			"equips": equips,
 			"weapons": weapons,
-			"items": items
+			"items": items,
+			"pearl" : pearl,
+			"spiritpearl": spiritpearl,
+		},
+		"stats" : {
+			"max_health" : max_health
 		}
 	}
 
@@ -251,6 +263,11 @@ func load_game_data(save_name):
 					equips = data["items"]["equips"]
 					weapons = data["items"]["weapons"]
 					items = data["items"]["items"]
+					pearl = data["items"]["pearl"]
+					spiritpearl = data["items"]["spiritpearl"]
+				"stats":
+					max_health = data["stats"]["max_health"]
+					health = max_health
 		current_save_name = save_name
 		print("Loaded save: %s" % save_name)
 		return true
