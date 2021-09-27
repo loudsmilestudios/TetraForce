@@ -33,17 +33,22 @@ var center : Area2D
 var camera
 var tween
 var walkfx
+onready var map = get_parent()
 
 var pos = Vector2(0,0) setget position_changed
 var animation = "idleDown" setget animation_changed
 
 signal update_persistent_state
 
+signal killed
 signal damaged
 
 func _ready():
 	set_process(false)
 	add_to_group("entity")
+	
+	map = get_game(self)
+	
 	if !sprite.material:
 		sprite.material = ShaderMaterial.new()
 		sprite.material.set_shader(preload("res://entities/entity.shader"))
@@ -55,10 +60,16 @@ func _ready():
 	create_tween()
 	walkfx = preload("res://effects/walkfx.tscn").instance()
 	add_child(walkfx)
-	#get_parent().connect("player_entered", self, "player_entered")
+	#map.connect("player_entered", self, "player_entered")
 	set_collision_layer_bit(10, 1)
 	#set_collision_mask_bit(10, 1)
 	set_process(true)
+
+func get_game(node):
+	var game = node.get_parent()
+	while game != null and not game.has_method("is_game"):
+		game = game.get_parent()
+	return game
 
 func _process(delta):
 	walkfx.hide()
@@ -194,13 +205,13 @@ func hole_fall():
 
 func create_hole_fx(pos):
 	var hole_fx = preload("res://effects/hole_falling.tscn").instance()
-	get_parent().add_child(hole_fx)
+	map.add_child(hole_fx)
 	hole_fx.position = pos
 	sfx.play("fall")
 	
 func create_drowning_fx(pos):
 	var drowning_fx = preload("res://effects/drowning.tscn").instance()
-	get_parent().add_child(drowning_fx)
+	map.add_child(drowning_fx)
 	drowning_fx.position = pos
 	sfx.play("drown")
 
@@ -218,6 +229,8 @@ func damage(amount, dir, damager=null):
 		knockdir = dir
 		if damager != null:
 			emit_signal("damaged", damager)
+			if health <= 0:
+				emit_signal("killed", damager)
 
 func update_health(amount):
 	health = max(min(health + amount, MAX_HEALTH), 0)
