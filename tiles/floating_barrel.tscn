@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://tiles/floating_barrel.png" type="Texture" id=1]
 [ext_resource path="res://tiles/floating_barrel.gd" type="Script" id=2]
@@ -7,9 +7,6 @@
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 8, 8 )
-
-[sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 7, 7 )
 
 [sub_resource type="Animation" id=3]
 resource_name = "default"
@@ -36,6 +33,18 @@ tracks/1/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ false ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprite:z_index")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 1 ]
 }
 
 [sub_resource type="Animation" id=4]
@@ -119,19 +128,30 @@ tracks/3/keys = {
 "method": "play"
 } ]
 }
+tracks/4/type = "value"
+tracks/4/path = NodePath("Sprite:z_index")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 1 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
 
 [node name="floating_barrel" type="KinematicBody2D"]
 collision_mask = 3
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
+z_index = 1
 texture = ExtResource( 1 )
 hframes = 6
-frame = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
-disabled = true
 __meta__ = {
 "_edit_lock_": true
 }
@@ -149,12 +169,6 @@ enter_properties = {
 "pushed": false,
 "target_position": Vector2( 0, 0 )
 }
-
-[node name="weight" type="Area2D" parent="."]
-visible = false
-
-[node name="Collision" type="CollisionShape2D" parent="weight"]
-shape = SubResource( 2 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "default"

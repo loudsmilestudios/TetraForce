@@ -79,6 +79,7 @@ func reset_position(id):
 	network.peer_call($AnimationPlayer, "play", ["idle"])
 	
 	player.position = reset_position
+	player.last_safe_pos = reset_position
 	screenfx.play("fadein")
 	
 func reset_object():
