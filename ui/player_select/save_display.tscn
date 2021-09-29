@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://entities/player/chain.png" type="Texture" id=1]
+[ext_resource path="res://ui/player_select/save_display.gd" type="Script" id=2]
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 16, 16 )
+
+[node name="SaveDisplay" type="PanelContainer"]
+margin_right = 229.0
+margin_bottom = 28.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 222.0
+margin_bottom = 31.0
+
+[node name="Button" type="Button" parent="HBoxContainer"]
+margin_right = 215.0
+margin_bottom = 24.7537
+size_flags_horizontal = 3
+text = "SaveName"
+icon = SubResource( 1 )
+align = 0

@@ -1,0 +1,65 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://ui/theme/character_select.tres" type="Theme" id=1]
+[ext_resource path="res://ui/player_select/save_display.tscn" type="PackedScene" id=2]
+[ext_resource path="res://ui/player_select/saves_manager.gd" type="Script" id=3]
+[ext_resource path="res://ui/player_select/player_select_panel.png" type="Texture" id=4]
+
+[sub_resource type="StyleBoxTexture" id=1]
+texture = ExtResource( 4 )
+region_rect = Rect2( 0, 0, 32, 32 )
+margin_left = 8.99585
+margin_right = 9.51308
+margin_top = 8.99585
+margin_bottom = 9.11333
+
+[node name="saves" type="ScrollContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+custom_styles/bg = SubResource( 1 )
+follow_focus = true
+scroll_horizontal_enabled = false
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+save_display = ExtResource( 2 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+margin_left = 8.99585
+margin_top = 8.99585
+margin_right = 246.487
+margin_bottom = 62.9958
+size_flags_horizontal = 3
+custom_constants/separation = 1
+
+[node name="PanelContainer" parent="VBoxContainer" instance=ExtResource( 2 )]
+margin_right = 237.0
+
+[node name="ChangeMode" type="PanelContainer" parent="VBoxContainer"]
+margin_top = 29.0
+margin_right = 237.0
+margin_bottom = 54.0
+
+[node name="HSplitContainer" type="HSplitContainer" parent="VBoxContainer/ChangeMode"]
+margin_left = 2.0
+margin_top = 2.0
+margin_right = 235.0
+margin_bottom = 23.0
+custom_constants/separation = 0
+dragger_visibility = 1
+
+[node name="NewButton" type="Button" parent="VBoxContainer/ChangeMode/HSplitContainer"]
+margin_right = 112.0
+margin_bottom = 21.0
+size_flags_horizontal = 3
+size_flags_vertical = 0
+text = "New"
+
+[node name="DeleteSaveButton" type="Button" parent="VBoxContainer/ChangeMode/HSplitContainer"]
+margin_left = 120.0
+margin_right = 233.0
+margin_bottom = 21.0
+size_flags_horizontal = 3
+text = "Delete Save"

@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://ui/theme/font.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://ui/hud/hearts.png" type="Texture" id=2]
@@ -9,6 +9,8 @@
 [ext_resource path="res://ui/hud/tetran_count.png" type="Texture" id=7]
 [ext_resource path="res://ui/hud/key_count.png" type="Texture" id=8]
 [ext_resource path="res://ui/hud/action.png" type="Texture" id=9]
+[ext_resource path="res://ui/player_select/player_select.tscn" type="PackedScene" id=10]
+[ext_resource path="res://ui/hud/OnscreenSavingAnimation.gd" type="Script" id=11]
 
 [sub_resource type="DynamicFont" id=1]
 font_data = ExtResource( 1 )
@@ -25,6 +27,93 @@ font_data = ExtResource( 1 )
 outline_size = 1
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 1 )
+
+[sub_resource type="Animation" id=7]
+resource_name = "default"
+length = 0.1
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("OnscreenSave/Label:modulate:r")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath("OnscreenSave/Label:modulate:g")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+tracks/2/type = "bezier"
+tracks/2/path = NodePath("OnscreenSave/Label:modulate:b")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+tracks/3/type = "bezier"
+tracks/3/path = NodePath("OnscreenSave/Label:modulate:a")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+
+[sub_resource type="Animation" id=8]
+length = 1.5
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("OnscreenSave/Label:modulate:r")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = false
+tracks/0/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.9 )
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath("OnscreenSave/Label:modulate:g")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = false
+tracks/1/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.9 )
+}
+tracks/2/type = "bezier"
+tracks/2/path = NodePath("OnscreenSave/Label:modulate:b")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = false
+tracks/2/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.9 )
+}
+tracks/3/type = "bezier"
+tracks/3/path = NodePath("OnscreenSave/Label:modulate:a")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 1.4 )
+}
 
 [node name="hud" type="CanvasLayer"]
 script = ExtResource( 3 )
@@ -223,6 +312,30 @@ custom_colors/font_color_readonly = Color( 1, 1, 1, 1 )
 custom_constants/line_spacing = -2
 custom_constants/completion_lines = 0
 readonly = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="saves" parent="." instance=ExtResource( 10 )]
+visible = false
+rect_scale = Vector2( 0.5, 0.5 )
+mode = 1
+show_return_button = true
+
+[node name="OnscreenSave" type="AnimationPlayer" parent="."]
+anims/default = SubResource( 7 )
+anims/fade_out = SubResource( 8 )
+script = ExtResource( 11 )
+
+[node name="Label" type="Label" parent="OnscreenSave"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -54.0
+margin_top = -14.0
+theme = ExtResource( 6 )
+text = "Saving..."
 __meta__ = {
 "_edit_use_anchors_": false
 }

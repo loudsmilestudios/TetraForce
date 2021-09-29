@@ -1,0 +1,56 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://ui/player_select/confirm_overlay.gd" type="Script" id=1]
+
+[node name="confirm_overlay" type="ColorRect"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0.745098 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Message" type="Label" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -128.0
+margin_top = -57.0
+margin_right = 127.0
+margin_bottom = 7.0
+text = "Are you sure?"
+align = 1
+valign = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Confirm" type="Button" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 2.16205
+margin_top = 21.5795
+margin_right = 55.6177
+margin_bottom = 44.3333
+text = "Yes"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Deny" type="Button" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -58.803
+margin_top = 22.0
+margin_right = -5.34727
+margin_bottom = 44.7537
+text = "Cancel"
+__meta__ = {
+"_edit_use_anchors_": false
+}

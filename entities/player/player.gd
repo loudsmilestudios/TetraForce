@@ -94,6 +94,7 @@ func initialize():
 	network.current_map.emit_signal("player_entered", int(name))
 
 func _physics_process(_delta):
+
 	if !is_network_master():
 		sprite.flip_h = (spritedir == "Left")
 		return
@@ -149,6 +150,9 @@ func state_default():
 	loop_action_button()
 	loop_interact()
 	loop_holes()
+	
+	if(Input.is_action_just_pressed("QUICK_SAVE")):
+		global.quicksave_game_data()
 	
 	drowning = false
 	

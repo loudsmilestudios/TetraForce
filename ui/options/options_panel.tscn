@@ -5,7 +5,7 @@
 [ext_resource path="res://ui/theme/panel2.png" type="Texture" id=3]
 [ext_resource path="res://ui/theme/font.ttf" type="DynamicFontData" id=4]
 
-[sub_resource type="StyleBoxTexture" id=3]
+[sub_resource type="StyleBoxTexture" id=1]
 texture = ExtResource( 3 )
 region_rect = Rect2( 0, 0, 32, 32 )
 margin_left = 9.0
@@ -31,12 +31,12 @@ TabContainer/icons/increment = null
 TabContainer/icons/increment_highlight = null
 TabContainer/icons/menu = null
 TabContainer/icons/menu_highlight = null
-TabContainer/styles/panel = SubResource( 3 )
+TabContainer/styles/panel = SubResource( 1 )
 TabContainer/styles/tab_bg = null
 TabContainer/styles/tab_disabled = null
 TabContainer/styles/tab_fg = null
 
-[sub_resource type="DynamicFont" id=4]
+[sub_resource type="DynamicFont" id=3]
 font_data = ExtResource( 4 )
 
 [node name="options_panel" type="Control"]
@@ -66,7 +66,7 @@ margin_left = 9.4494
 margin_top = -29.0533
 margin_right = 47.9051
 margin_bottom = -6.29962
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 3 )
 text = "Back"
 __meta__ = {
 "_edit_use_anchors_": false
