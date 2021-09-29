@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.6.0" orientation="orthogonal" renderorder="right-down" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="18" nextobjectid="240">
+<map version="1.5" tiledversion="1.6.0" orientation="orthogonal" renderorder="right-down" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="18" nextobjectid="245">
  <properties>
   <property name="music" value="shrine"/>
  </properties>
  <tileset firstgid="1" source="../tiled/dungeon/dungeon_tileset.tsx"/>
  <tileset firstgid="281" source="../tiled/objects.tsx"/>
- <tileset firstgid="327" source="../tiled/overworld/overworld_tileset.tsx"/>
+ <tileset firstgid="328" source="../tiled/overworld/overworld_tileset.tsx"/>
  <layer id="2" name="floor" width="40" height="40">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,

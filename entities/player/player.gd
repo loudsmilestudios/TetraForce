@@ -260,6 +260,8 @@ func state_water():
 					
 func state_swim():
 	state = "default"
+	set_collision_layer_bit(10, 0)
+	set_collision_layer_bit(6, 0)
 
 func state_menu():
 	anim_switch("idle")
@@ -369,7 +371,7 @@ func hole_fall():
 	yield(get_tree().create_timer(1.5), "timeout")
 	position = last_safe_pos
 	spritedir = last_safe_spritedir
-	damage(1, Vector2(0,0))
+	damage(0.5, Vector2(0,0))
 	state = "default"
 	show()
 
