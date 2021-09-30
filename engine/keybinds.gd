@@ -3,7 +3,7 @@ extends Control
 var can_change_key = false
 var action_string
 
-enum ACTIONS {UP, DOWN, LEFT, RIGHT, A, B, X, Y, START}
+enum ACTIONS {UP, DOWN, LEFT, RIGHT, A, B, X, Y, START, QUICK_SAVE}
 
 func _ready():
 	global.connect("options_loaded", self, "update_options")

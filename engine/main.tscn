@@ -1,22 +1,24 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://ui/theme/theme.tres" type="Theme" id=1]
 [ext_resource path="res://ui/options/options.tscn" type="PackedScene" id=2]
 [ext_resource path="res://engine/main.gd" type="Script" id=3]
 [ext_resource path="res://ui/main/version_label.gd" type="Script" id=4]
+[ext_resource path="res://ui/player_select/player_select.tscn" type="PackedScene" id=5]
 [ext_resource path="res://ui/logo_animated_sprite.tres" type="SpriteFrames" id=6]
 [ext_resource path="res://ui/loading_screen/loading_screen.tscn" type="PackedScene" id=7]
 
 [node name="main" type="Control"]
-margin_right = 39.9996
-margin_bottom = 40.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 258.0
+margin_bottom = 146.0
 rect_scale = Vector2( 0.5, 0.5 )
 size_flags_horizontal = 2
 size_flags_vertical = 2
 theme = ExtResource( 1 )
 script = ExtResource( 3 )
 __meta__ = {
-"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
@@ -39,7 +41,6 @@ animation = "Logo"
 [node name="top" type="Panel" parent="." groups=[
 "menu",
 ]]
-visible = false
 margin_left = 176.0
 margin_top = 117.572
 margin_right = 336.0
@@ -67,7 +68,7 @@ margin_top = 15.0
 margin_right = 144.0
 margin_bottom = 36.7537
 size_flags_stretch_ratio = 0.0
-text = "Singleplayer"
+text = "Quickstart"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -82,10 +83,20 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="options" type="Button" parent="top/VBoxContainer"]
+[node name="load_game" type="Button" parent="top/VBoxContainer"]
 margin_top = 65.0
 margin_right = 144.0
 margin_bottom = 86.7537
+size_flags_stretch_ratio = 0.0
+text = "Load Game"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="options" type="Button" parent="top/VBoxContainer"]
+margin_top = 90.0
+margin_right = 144.0
+margin_bottom = 111.754
 size_flags_stretch_ratio = 0.0
 text = "Options"
 __meta__ = {
@@ -105,6 +116,7 @@ __meta__ = {
 [node name="multiplayer" type="TabContainer" parent="." groups=[
 "menu",
 ]]
+visible = false
 margin_left = 144.0
 margin_top = 98.0
 margin_right = 368.0
@@ -225,16 +237,20 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 299.0
-margin_top = 231.0
-margin_right = 468.0
-margin_bottom = 244.0
+margin_left = -174.556
+margin_top = -17.7622
+margin_right = -5.55591
+margin_bottom = -4.76221
 text = "custom build"
 align = 2
 script = ExtResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="player_select" parent="." instance=ExtResource( 5 )]
+visible = false
+main_path = NodePath("..")
 
 [node name="back" type="Button" parent="." groups=[
 "menu",
@@ -254,9 +270,11 @@ __meta__ = {
 visible = false
 
 [connection signal="mouse_entered" from="top/VBoxContainer/singleplayer" to="." method="_on_mouse_entered"]
-[connection signal="pressed" from="top/VBoxContainer/singleplayer" to="." method="_on_singleplayer_pressed"]
+[connection signal="pressed" from="top/VBoxContainer/singleplayer" to="." method="_on_quickstart_pressed"]
 [connection signal="mouse_entered" from="top/VBoxContainer/multiplayer" to="." method="_on_mouse_entered"]
 [connection signal="pressed" from="top/VBoxContainer/multiplayer" to="." method="_on_multiplayer_pressed"]
+[connection signal="mouse_entered" from="top/VBoxContainer/load_game" to="." method="_on_mouse_entered"]
+[connection signal="pressed" from="top/VBoxContainer/load_game" to="." method="_on_load_pressed"]
 [connection signal="mouse_entered" from="top/VBoxContainer/options" to="." method="_on_mouse_entered"]
 [connection signal="pressed" from="top/VBoxContainer/options" to="." method="_on_options_pressed"]
 [connection signal="mouse_entered" from="top/VBoxContainer/quit" to="." method="_on_mouse_entered"]

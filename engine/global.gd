@@ -1,17 +1,32 @@
 extends Node
 const CENSOR_CHARS = "!@#$%^&*("
 const VERSION_FILE = "res://semantic.version"
+const SAVE_FORMAT = "user://saves/%s.tetraforce"
+
+const INITIAL_AMMO = {
+	"tetrans": 0,
+	"arrow": 30,
+	"bomb": 20,
+}
+
+const DEFAULT_EQUIPS = {"B": "Sword", "X": "", "Y": ""}
+const DEFAULT_WEAPONS = ["Sword"]
+const DEFAULT_ITEMS = []
+const DEFAULT_PEARL = []
+const DEFAULT_SPIRITPEARL = 0
+const DEFAULT_HEALTH = 5
 
 var version = null setget ,get_version
+var current_save_name = null
 var blacklisted_words = []
 var player
-var equips = {"B": "Sword", "X": "", "Y": ""}
-var weapons = ["Sword"]
-var items = []
-var pearl = []
-var health = 5
-var max_health = 5
-var spiritpearl = 0
+var equips = DEFAULT_EQUIPS
+var weapons = DEFAULT_WEAPONS
+var items = DEFAULT_ITEMS
+var pearl = DEFAULT_PEARL
+var health = DEFAULT_HEALTH
+var max_health = DEFAULT_HEALTH
+var spiritpearl = DEFAULT_SPIRITPEARL
 
 var pvp = true
 
@@ -19,6 +34,7 @@ var changing_map = false
 var transition_type = false
 
 signal debug_update
+signal save
 
 var weapons_def = {
 	"Sword": {
@@ -113,12 +129,7 @@ var pearl_def = {
 	}
 }
 
-var ammo = {
-	"tetrans": 0,
-	"arrow": 30,
-	"bomb": 20,
-}
-
+var ammo = INITIAL_AMMO
 var next_entrance = ""
 
 signal options_loaded
@@ -131,6 +142,18 @@ var options = {
 }
 func _ready():
 	load_blacklist()
+
+func clean_session_data():
+	ammo = INITIAL_AMMO
+	current_save_name = null
+
+	equips = DEFAULT_EQUIPS
+	weapons = DEFAULT_WEAPONS
+	items = DEFAULT_ITEMS
+	pearl = DEFAULT_PEARL
+	health = DEFAULT_HEALTH
+	max_health = DEFAULT_HEALTH
+	spiritpearl = DEFAULT_SPIRITPEARL
 
 func load_blacklist():
 	var blacklist_file = File.new()
@@ -163,6 +186,107 @@ func filter_value(value : String):
 			new_value += CENSOR_CHARS[rand_range(0,len(CENSOR_CHARS))]
 		return new_value
 	return value
+
+func _validate_save_dir():
+	var dir = Directory.new()
+	if not dir.dir_exists("user://saves"):
+		dir.open("user://")
+		dir.make_dir("saves")
+
+func delete_save_data(save_name):
+	_validate_save_dir()
+	var dir = Directory.new()
+	dir.remove(SAVE_FORMAT % save_name)
+	print("Deleted save: %s" % save_name)
+
+func quicksave_game_data():
+	print("Quicksaving...")
+	var quicksave_name = get_quicksave_name()
+	save_game_data(quicksave_name)
+
+func get_quicksave_name():
+	if current_save_name:
+		return current_save_name + "_quicksave"
+	else:
+		var has_name = false
+		var i = 0
+		var save_name = "quicksave_%s" % i
+		var all_saves = get_saves()
+		while save_name in all_saves:
+			i = i + 1
+			save_name = "quicksave_%s" % i
+		return save_name
+
+func save_game_data(save_name):
+	_validate_save_dir()
+
+	var data = {
+		"format" : "1",
+		"states": network.states,
+		"ammo" : ammo,
+		"items" : {
+			"equips": equips,
+			"weapons": weapons,
+			"items": items,
+			"pearl" : pearl,
+			"spiritpearl": spiritpearl,
+		},
+		"stats" : {
+			"max_health" : max_health
+		}
+	}
+
+	var save_file = File.new()
+	save_file.open(SAVE_FORMAT % save_name, File.WRITE)
+	save_file.store_line(Marshalls.utf8_to_base64(to_json(data)))
+	save_file.close()
+	if not "quicksave" in save_name:
+		current_save_name = save_name
+	emit_signal("save")
+	print("Saved as: %s" % save_name)
+	return true
+
+func load_game_data(save_name):
+	_validate_save_dir()
+
+	var save_file = File.new()
+	if save_file.file_exists(SAVE_FORMAT % save_name):
+		save_file.open(SAVE_FORMAT % save_name, File.READ)
+		var data = parse_json(Marshalls.base64_to_utf8(save_file.get_as_text()))
+		for part in data:
+			match part:
+				"states":
+					network.states = data["states"]
+				"ammo":
+					ammo = data["ammo"]
+				"items":
+					equips = data["items"]["equips"]
+					weapons = data["items"]["weapons"]
+					items = data["items"]["items"]
+					pearl = data["items"]["pearl"]
+					spiritpearl = data["items"]["spiritpearl"]
+				"stats":
+					max_health = data["stats"]["max_health"]
+					health = max_health
+		current_save_name = save_name
+		print("Loaded save: %s" % save_name)
+		return true
+	else:
+		return false
+
+func get_saves():
+	var save_files = []
+
+	_validate_save_dir()
+	var dir = Directory.new()
+	dir.open("user://saves")
+	dir.list_dir_begin()
+	var save_file = dir.get_next()
+	while save_file != "":
+		if save_file.ends_with(".tetraforce"):
+			save_files.append(save_file.replace(".tetraforce",""))
+		save_file = dir.get_next()
+	return save_files
 
 func save_options():
 	var save_options = File.new()
