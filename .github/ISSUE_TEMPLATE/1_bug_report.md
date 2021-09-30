@@ -10,6 +10,10 @@ labels: 'bug'
 
 <!-- Docker/Windows/CentOS -->
 
+**Game Version:**
+
+<!-- You should be able to see the version number at the bottom right on the title screen -->
+
 **Issue description:**
 
 <!-- Clear description of the issue you are seeing. -->
