@@ -209,6 +209,9 @@ func _player_connected(id):
 		start_connection_timeout(id)
 
 func is_map_host():
+	if not current_map:
+		return false
+
 	if !map_hosts.keys().has(current_map.name):
 		return false
 	if map_hosts.get(current_map.name) == pid:

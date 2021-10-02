@@ -16,12 +16,16 @@ var difficulty_scale setget ,get_difficulty_scale
 var managed_entities = [] # Contains all entities managed by controller
 
 func _ready():
-	if !network.is_map_host():
-		return
-
 	_load_entities()
-	if automatic_boss_bar:
-		_boss_bar_auto_init()
+
+func _process(delta):
+	if _network_is_map_host():
+		if automatic_boss_bar:
+			_boss_bar_auto_init()
+	set_process(false)
+
+func _network_is_map_host():
+	return network.is_map_host()
 
 # _load_entities: Loads all NodePath in _managed_entities,
 #		configures it and places it the managed_entities Array
