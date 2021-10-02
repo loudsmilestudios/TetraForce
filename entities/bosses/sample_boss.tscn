@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://entities/enemies/slime/slime.tscn" type="PackedScene" id=1]
+[ext_resource path="res://entities/bosses/sample_boss.gd" type="Script" id=2]
+
+[node name="SlimeBoss" type="Node2D"]
+script = ExtResource( 2 )
+_managed_entities = [ NodePath("slime"), NodePath("slime2"), NodePath("slime3") ]
+
+[node name="slime" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1.33484, 27.698 )
+
+[node name="slime2" parent="." instance=ExtResource( 1 )]
+position = Vector2( 21.8633, 18.0793 )
+
+[node name="slime3" parent="." instance=ExtResource( 1 )]
+position = Vector2( -16.8471, 13.7411 )

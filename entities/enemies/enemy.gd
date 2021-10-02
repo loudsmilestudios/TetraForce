@@ -18,9 +18,9 @@ func _ready():
 	set_collision_mask_bit(1, 1)
 	if spawned_by != "":
 		set_dead()
-		get_parent().get_node(spawned_by).connect("started", self, "spawned")
-		get_parent().get_node(spawned_by).connect("check_for_active", self, "spawned")
-		get_parent().get_node(spawned_by).connect("reset", self, "set_dead")
+		map.get_node(spawned_by).connect("started", self, "spawned")
+		map.get_node(spawned_by).connect("check_for_active", self, "spawned")
+		map.get_node(spawned_by).connect("reset", self, "set_dead")
 
 func _process(delta):
 	set_hole_bit(hitstun == 0)
@@ -38,11 +38,11 @@ func check_for_death():
 func enemy_death(pos):
 	var death_animation = preload("res://effects/enemy_death.tscn").instance()
 	death_animation.global_position = pos
-	get_parent().add_child(death_animation)
+	map.add_child(death_animation)
 	sfx.play("enemy_death")
 	if chest_spawn == true:
 		var spawn_node = location #Sets Spawn Node Name
-		var spawn_point = get_parent().get_node(spawn_node) #Get Spawn Node
+		var spawn_point = map.get_node(spawn_node) #Get Spawn Node
 		spawn_point.chest_spawn()
 	else:
 		network.current_map.spawn_collectable("tetran", pos, 4)
@@ -77,7 +77,7 @@ func spawned():
 	health = MAX_HEALTH
 	var death_animation = preload("res://effects/enemy_death.tscn").instance()
 	death_animation.global_position = position
-	get_parent().add_child(death_animation)
+	map.add_child(death_animation)
 
 func is_dead():
 	if health <= 0 && hitstun == 0:
