@@ -24,5 +24,7 @@ func clear_water(pos):
 	
 func set_default_state():
 	for cell in default_cells.keys():
-		set_cellv(cell, default_cells[cell])
-	update_bitmask_region()
+		var world_position = map_to_world(cell)
+		if world_position.x > top_left_margin.x && world_position.y > top_left_margin.y && world_position.y < bottom_right_margin.y && world_position.x < bottom_right_margin.x: 
+			set_cellv(cell, default_cells[cell])
+		update_bitmask_region()
