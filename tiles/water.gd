@@ -24,7 +24,7 @@ func clear_water(pos):
 
 func is_cell_in_zone(cellv : Vector2):
 	var zone_shape = zone.shape
-	var top_left : Vector2 = zone.global_position - zone_shape.extends
+	var top_left : Vector2 = zone.global_position - zone_shape.extents
 	var bottom_right : Vector2  = zone.global_position + zone_shape.extents
 	var world_location : Vector2  = map_to_world(cellv)
 	
