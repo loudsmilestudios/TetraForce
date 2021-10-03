@@ -9,6 +9,9 @@ export var light = "default"
 
 var current_enemies = []
 
+func is_game():
+	return true
+
 func _ready():
 	network.current_map = self
 	add_child(camera)

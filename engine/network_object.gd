@@ -7,7 +7,11 @@ export(Dictionary) var update_properties = {}
 export(Dictionary) var enter_properties = {}
 
 func _ready():
-	get_parent().get_parent().connect("player_entered", self, "player_entered")
+	var parent = get_parent()
+	if parent.has_method("get_game"):
+		parent.get_game(self).connect("player_entered", self, "player_entered")
+	else:
+		parent.get_parent().connect("player_entered", self, "player_entered")
 	network.tick.connect("timeout", self, "_tick")
 	if persistent:
 		get_parent().connect("update_persistent_state", self, "update_persistent_state")
