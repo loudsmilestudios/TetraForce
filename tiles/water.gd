@@ -36,4 +36,4 @@ func set_default_state(action_zone):
 	for cell in default_cells.keys():
 		if is_cell_in_zone(cell, action_zone):
 			set_cellv(cell, default_cells[cell])
-	update_bitmask_region()
+			update_bitmask_area(cell)
