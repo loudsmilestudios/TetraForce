@@ -264,12 +264,8 @@
   <object id="171" gid="313" x="240" y="592" width="16" height="16"/>
   <object id="172" gid="313" x="224" y="592" width="16" height="16"/>
   <object id="173" gid="313" x="208" y="592" width="16" height="16"/>
-  <object id="245" gid="327" x="416" y="352" width="16" height="16"/>
-  <object id="246" gid="327" x="416" y="416" width="16" height="16"/>
-  <object id="247" gid="326" x="320" y="336" width="16" height="16"/>
-  <object id="248" gid="326" x="320" y="400" width="16" height="16"/>
  </objectgroup>
- <objectgroup id="7" name="zones" locked="1">
+ <objectgroup id="7" name="zones" visible="0" locked="1">
   <object id="1" name="1" type="area" x="128" y="368" width="384" height="256"/>
   <object id="231" name="2" type="area" x="112" y="208" width="384" height="160"/>
  </objectgroup>
