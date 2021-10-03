@@ -51,7 +51,7 @@ func update_persistent_state():
 		return
 	for key in enter_properties.keys():
 		enter_properties[key] = get_parent().get(str(key))
-	network.persistent_set_state(get_parent().get_path(), enter_properties)
+	network.persistent_set_state(str(get_parent().get_path()), enter_properties)
 
 func receive_update(properties = {}):
 	for key in properties.keys():
