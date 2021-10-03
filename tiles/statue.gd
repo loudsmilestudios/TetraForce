@@ -40,6 +40,6 @@ func snap_to(current_pos, target_pos):
 	tween.interpolate_property(self, "position", current_pos, target_pos, 0.1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	tween.start()
 	
-func set_default_state():
+func set_default_state(action_zone=null):
 	target_position = home_position
 	snap_to(target_position, home_position)
