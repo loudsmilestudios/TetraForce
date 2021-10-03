@@ -21,8 +21,22 @@ func clear_water(pos):
 	network.peer_call(self, "process_tile", [tile])
 	self.set_cellv(tile, -1)
 	network.peer_call(self, "set_cellv", [tile, -1])
+
+func is_cell_in_zone(cellv : Vector2):
+	var zone_shape = zone.shape
+	var top_left : Vector2 = zone.global_position - zone_shape.extends
+	var bottom_right : Vector2  = zone.global_position + zone_shape.extents
+	var world_location : Vector2  = map_to_world(cellv)
+	
+	if world_location.x < top_left.x || world_location.y < top_left.y:
+		return false
+	if world_location.x > bottom_right.x || world_location.y > bottom_right.y:
+		return false
+	return true
+
 	
 func set_default_state():
 	for cell in default_cells.keys():
-		set_cellv(cell, default_cells[cell])
+		if is_cell_in_zone(cell):
+			set_cellv(cell, default_cells[cell])
 	update_bitmask_region()

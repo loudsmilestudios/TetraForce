@@ -4,6 +4,8 @@ export var music = ""
 export var musicfx = ""
 export var light = ""
 
+onready var shape : RectangleShape2D = $CollisionShape2D.shape
+
 func _ready():
 	if music == "":
 		music = get_parent().get_parent().music
