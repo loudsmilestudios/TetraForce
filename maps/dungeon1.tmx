@@ -2060,7 +2060,7 @@
   <object id="14" gid="373" x="896" y="496" width="16" height="16"/>
   <object id="15" gid="373" x="896" y="480" width="16" height="16"/>
   <object id="16" gid="373" x="896" y="464" width="16" height="16"/>
-  <object id="41" name="ship_entrance" gid="372" x="464" y="528" width="16" height="16">
+  <object id="41" name="ship_entrance" gid="372" x="624" y="1152" width="16" height="16">
    <properties>
     <property name="entrance" value="ship_entrance"/>
     <property name="map" value="shoreside"/>
