@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://tiles/thorn_wall.png" type="Texture" id=1]
 [ext_resource path="res://tiles/thorn_wall.gd" type="Script" id=2]
 [ext_resource path="res://entities/weapons/cannon_ball.png" type="Texture" id=3]
 [ext_resource path="res://effects/bomb_explode.png" type="Texture" id=4]
+[ext_resource path="res://engine/network_object.tscn" type="PackedScene" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 16, 16 )
@@ -97,10 +98,10 @@ tracks/6/keys = {
 }
 
 [node name="thorn_wall" type="StaticBody2D"]
+collision_mask = 3
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
-z_index = 202
 texture = ExtResource( 1 )
 hframes = 9
 
@@ -120,3 +121,12 @@ visible = false
 position = Vector2( 0, 3 )
 texture = ExtResource( 4 )
 hframes = 8
+
+[node name="NetworkObject" parent="." instance=ExtResource( 5 )]
+persistent = true
+update_properties = {
+"broken": false
+}
+enter_properties = {
+"broken": false
+}
