@@ -50,6 +50,8 @@ func _physics_process(delta):
 func body_entered(body):
 	if body.is_in_group("cannon"):
 		body.on_explosion()
+		delete()
+		network.peer_call(self, "delete")
 	elif !received_sync && !is_network_master() && body != shooter:
 		queue_free()
 	elif body is Entity && body != shooter:
@@ -57,4 +59,7 @@ func body_entered(body):
 	elif body != shooter && !body.is_in_group("cannon"):
 		delete()
 		network.peer_call(self, "delete")
+		shooter.fired = false
+		shooter.add_to_group("interactable")
+		network.peer_call(shooter, "add_to_group", ["interactable"])
 	

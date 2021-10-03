@@ -32,7 +32,10 @@ func interact(node : Entity):
 		network.peer_call_id(network.get_map_host(), self, "on_interact")
 	
 func on_interact():
+	if $explosion.visible or $fuse.visible == true:
+		return
 	if fired == false && mouth == false:
+		remove_from_group("interactable")
 		if network.is_map_host():
 			network.peer_call(self, "on_interact")
 		$AnimationPlayer.play("fuse" + spritedir)
