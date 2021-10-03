@@ -4,6 +4,7 @@ export var music = ""
 export var musicfx = ""
 export var light = ""
 
+onready var collision_shape : CollisionShape2D = $CollisionShape2D
 onready var shape : RectangleShape2D = $CollisionShape2D.shape
 
 func _ready():

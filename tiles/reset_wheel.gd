@@ -84,7 +84,7 @@ func reset_position(id):
 	
 func reset_object():
 	for object in objects:
-		network.peer_call(object, "set_default_state")
-		object.set_default_state()
+		network.peer_call(object, "set_default_state", [zone])
+		object.set_default_state(zone)
 
 

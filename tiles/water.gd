@@ -22,21 +22,18 @@ func clear_water(pos):
 	self.set_cellv(tile, -1)
 	network.peer_call(self, "set_cellv", [tile, -1])
 
-func is_cell_in_zone(cellv : Vector2):
-	var zone_shape = zone.shape
-	var top_left : Vector2 = zone.global_position - zone_shape.extents
-	var bottom_right : Vector2  = zone.global_position + zone_shape.extents
-	var world_location : Vector2  = map_to_world(cellv)
+func is_cell_in_zone(cellv : Vector2, action_zone):
 	
-	if world_location.x > top_left.x || world_location.y > top_left.y:
-		return false
-	if world_location.x < bottom_right.x || world_location.y < bottom_right.y:
-		return false
-	return true
+	# Convert zone into Rect2, so we check for points within it.
+	# Worth noting that this only handles rectangle shapes
+	var collision_rect = Rect2(action_zone.collision_shape.global_position - action_zone.shape.extents,
+		action_zone.shape.extents*2)
+
+	return collision_rect.has_point(map_to_world(cellv))
 
 	
-func set_default_state():
+func set_default_state(action_zone):
 	for cell in default_cells.keys():
-		if is_cell_in_zone(cell):
+		if is_cell_in_zone(cell, action_zone):
 			set_cellv(cell, default_cells[cell])
 	update_bitmask_region()
