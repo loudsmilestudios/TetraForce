@@ -28,9 +28,9 @@ func is_cell_in_zone(cellv : Vector2):
 	var bottom_right : Vector2  = zone.global_position + zone_shape.extents
 	var world_location : Vector2  = map_to_world(cellv)
 	
-	if world_location.x < top_left.x || world_location.y < top_left.y:
+	if world_location.x > top_left.x || world_location.y > top_left.y:
 		return false
-	if world_location.x > bottom_right.x || world_location.y > bottom_right.y:
+	if world_location.x < bottom_right.x || world_location.y < bottom_right.y:
 		return false
 	return true
 
