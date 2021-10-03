@@ -24,12 +24,15 @@ func _tick():
 		update_sync()
 
 func player_entered(id):
-	#print(id)
+
 	if require_map_host && !network.is_map_host():
 		return
 	if id == network.pid:
 		return
 	if persistent:
+		# Enter properties are fully managed by
+		# update_persistent_state() if 
+		# persistent == true
 		return
 	if sync_creation:
 		network.peer_create_id(id, get_parent().filename, get_parent().name, get_parent().get_parent())
