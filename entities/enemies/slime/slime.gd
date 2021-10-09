@@ -33,8 +33,9 @@ func _physics_process(delta):
 	if movetimer > 0:
 		movetimer -= 1
 	
-	if movetimer == 10:
-		movedir = Vector2.ZERO
-	if movetimer == 0 || is_on_wall():
+	if movetimer == 0 || is_on_wall() && hitstun == 0:
 		movedir = rand_direction()
 		movetimer = movetimer_length
+	
+	if movetimer == 10:
+		movedir = Vector2.ZERO

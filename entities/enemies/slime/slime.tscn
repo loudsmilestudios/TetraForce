@@ -104,12 +104,12 @@ tracks/0/keys = {
 }
 
 [sub_resource type="CapsuleShape2D" id=7]
-radius = 4.5
-height = 6.0
+radius = 7.48479
+height = 0.0
 
 [node name="slime" type="KinematicBody2D"]
 collision_layer = 2
-collision_mask = 3
+collision_mask = 2
 script = ExtResource( 1 )
 MAX_HEALTH = 0.5
 SPEED = 50
@@ -124,12 +124,11 @@ anims/walkUp = SubResource( 6 )
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 2 )
-vframes = 3
 hframes = 4
+vframes = 3
 frame = 10
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 shape = SubResource( 7 )
 
 [node name="NetworkObject" parent="." instance=ExtResource( 3 )]

@@ -328,8 +328,8 @@
   <object id="7" gid="631" x="128" y="240" width="16" height="16"/>
   <object id="8" gid="631" x="640" y="112" width="16" height="16"/>
   <object id="15" gid="637" x="896" y="224" width="16" height="16"/>
-  <object id="16" gid="636" x="832" y="224" width="16" height="16" visible="0"/>
-  <object id="19" name="graveyard_cave_main" gid="632" x="1056" y="192" width="16" height="16" visible="0">
+  <object id="16" gid="636" x="832" y="224" width="16" height="16"/>
+  <object id="19" name="graveyard_cave_main" gid="632" x="1056" y="192" width="16" height="16">
    <properties>
     <property name="entrance" value="graveyard_cave_main"/>
     <property name="map" value="overworld"/>
