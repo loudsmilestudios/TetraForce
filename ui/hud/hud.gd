@@ -12,6 +12,7 @@ const HEART_SIZE = 8
 onready var hud2d = $hud2d
 onready var hearts = $hud2d/hearts
 onready var buttons = $hud2d/buttons
+onready var boss_overlay = $BossOverlay
 
 
 func _ready():

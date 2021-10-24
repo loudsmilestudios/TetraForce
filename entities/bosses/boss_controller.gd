@@ -15,6 +15,8 @@ export(bool) var automatic_boss_bar = true
 var difficulty_scale setget ,get_difficulty_scale
 var managed_entities = [] # Contains all entities managed by controller
 
+onready var boss_overlay : BossOverlay = global.player.hud.boss_overlay
+
 func _ready():
 	_load_entities()
 
@@ -79,6 +81,7 @@ func set_stage(new_stage):
 	if new_stage != current_stage:
 		current_stage = new_stage
 		emit_signal("stage_changed", current_stage)
+
 func get_stage():
 	if _error_if_not_host(): return
 	return current_stage
@@ -90,6 +93,18 @@ func get_difficulty_scale():
 #================#
 # Boss Bar Logic #
 #================#
+
+# boss_bar_show: Makes the boss bar visible
+func boss_bar_show():
+	if _error_if_not_host(): return
+	if _boss_bar_error_if_in_automatic(): return
+	_boss_bar_show()
+
+# boss_bar_hide: Makes the boss bar no longer visible
+func boss_bar_hide():
+	if _error_if_not_host(): return
+	if _boss_bar_error_if_in_automatic(): return
+	_boss_bar_hide()
 
 # boss_bar_set_max_hp: Sets the max_hp value on the boss bar
 func boss_bar_set_max_hp(max_hp):
@@ -119,6 +134,11 @@ func _boss_bar_auto_init():
 	_boss_bar_set_max_hp(max_hp)
 	network.peer_call(self, "_boss_bar_set_max_hp", max_hp)
 	_bass_bar_auto_update()
+	self.connect("stage_changed", self, "_boss_bar_on_stage_changed")
+
+func _boss_bar_on_stage_changed(new_stage):
+	if automatic_boss_bar and new_stage != DefaultStage.INACTIVE:
+		_boss_bar_show()
 
 # _bass_bar_auto_update: Calculates and sets boss bar values
 func _bass_bar_auto_update():
@@ -142,10 +162,19 @@ func _boss_bar_auto_calculate_current_hp():
 
 # _boss_bar_set_max_hp: Sends message to Boss Bar UI to update max
 func _boss_bar_set_max_hp(max_hp):
-	# This needs to be connect to Boss Bar UI
-	print_debug("Max HP is %s" % max_hp)
+	boss_overlay.set_max_boss_hp(max_hp)
 
 # _boss_bar_set_max_hp: Sends message to Boss Bar UI to update current
 func _boss_bar_set_current_hp(new_hp):
-	# This needs to be connected to Boss Bar UI
-	print_debug("Current HP is %s" % new_hp)
+	boss_overlay.set_current_boss_hp(new_hp)
+	# Hide boss bar
+	if automatic_boss_bar and new_hp <= 0:
+		boss_bar_hide()
+
+# _boss_bar_show: Sends message to Boss Bar UI display the bar on screen
+func _boss_bar_show():
+	boss_overlay.show_boss_bar()
+
+# _boss_bar_hide: Sends message to hide the Boss Bar UI
+func _boss_bar_hide():
+	boss_overlay.hide_boss_bar()
