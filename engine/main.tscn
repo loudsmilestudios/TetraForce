@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://ui/theme/theme.tres" type="Theme" id=1]
 [ext_resource path="res://ui/options/options.tscn" type="PackedScene" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://ui/player_select/player_select.tscn" type="PackedScene" id=5]
 [ext_resource path="res://ui/logo_animated_sprite.tres" type="SpriteFrames" id=6]
 [ext_resource path="res://ui/loading_screen/loading_screen.tscn" type="PackedScene" id=7]
+[ext_resource path="res://ui/credits/Credits.tscn" type="PackedScene" id=8]
 
 [node name="main" type="Control"]
 anchor_right = 1.0
@@ -42,9 +43,9 @@ animation = "Logo"
 "menu",
 ]]
 margin_left = 176.0
-margin_top = 117.572
+margin_top = 118.0
 margin_right = 336.0
-margin_bottom = 269.572
+margin_bottom = 278.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -64,9 +65,9 @@ __meta__ = {
 }
 
 [node name="singleplayer" type="Button" parent="top/VBoxContainer"]
-margin_top = 15.0
+margin_top = 3.0
 margin_right = 144.0
-margin_bottom = 36.7537
+margin_bottom = 24.7537
 size_flags_stretch_ratio = 0.0
 text = "Quickstart"
 __meta__ = {
@@ -74,9 +75,9 @@ __meta__ = {
 }
 
 [node name="multiplayer" type="Button" parent="top/VBoxContainer"]
-margin_top = 40.0
+margin_top = 28.0
 margin_right = 144.0
-margin_bottom = 61.7537
+margin_bottom = 49.7537
 size_flags_stretch_ratio = 0.0
 text = "Multiplayer"
 __meta__ = {
@@ -84,19 +85,29 @@ __meta__ = {
 }
 
 [node name="load_game" type="Button" parent="top/VBoxContainer"]
-margin_top = 65.0
+margin_top = 53.0
 margin_right = 144.0
-margin_bottom = 86.7537
+margin_bottom = 74.7537
 size_flags_stretch_ratio = 0.0
 text = "Load Game"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="options" type="Button" parent="top/VBoxContainer"]
-margin_top = 90.0
+[node name="credits" type="Button" parent="top/VBoxContainer"]
+margin_top = 78.0
 margin_right = 144.0
-margin_bottom = 111.754
+margin_bottom = 99.7537
+size_flags_stretch_ratio = 0.0
+text = "Credits"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="options" type="Button" parent="top/VBoxContainer"]
+margin_top = 103.0
+margin_right = 144.0
+margin_bottom = 124.754
 size_flags_stretch_ratio = 0.0
 text = "Options"
 __meta__ = {
@@ -104,9 +115,9 @@ __meta__ = {
 }
 
 [node name="quit" type="Button" parent="top/VBoxContainer"]
-margin_top = 115.0
+margin_top = 128.0
 margin_right = 144.0
-margin_bottom = 136.754
+margin_bottom = 149.754
 size_flags_stretch_ratio = 0.0
 text = "Quit"
 __meta__ = {
@@ -232,6 +243,38 @@ margin_top = 98.0
 margin_right = 368.0
 margin_bottom = 277.0
 
+[node name="credits" type="Panel" parent="." groups=[
+"menu",
+]]
+visible = false
+margin_left = 142.0
+margin_top = 118.0
+margin_right = 372.0
+margin_bottom = 278.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ScrollContainer" type="ScrollContainer" parent="credits"]
+margin_left = 11.0
+margin_top = 12.0
+margin_right = 284.0
+margin_bottom = 205.0
+rect_scale = Vector2( 0.75, 0.75 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+scroll_horizontal_enabled = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Credits" parent="credits/ScrollContainer" instance=ExtResource( 8 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 273.0
+margin_bottom = 457.0
+size_flags_horizontal = 3
+
 [node name="VersionLabel" type="Label" parent="."]
 anchor_left = 1.0
 anchor_top = 1.0
@@ -275,6 +318,8 @@ visible = false
 [connection signal="pressed" from="top/VBoxContainer/multiplayer" to="." method="_on_multiplayer_pressed"]
 [connection signal="mouse_entered" from="top/VBoxContainer/load_game" to="." method="_on_mouse_entered"]
 [connection signal="pressed" from="top/VBoxContainer/load_game" to="." method="_on_load_pressed"]
+[connection signal="mouse_entered" from="top/VBoxContainer/credits" to="." method="_on_mouse_entered"]
+[connection signal="pressed" from="top/VBoxContainer/credits" to="." method="_on_credits_pressed"]
 [connection signal="mouse_entered" from="top/VBoxContainer/options" to="." method="_on_mouse_entered"]
 [connection signal="pressed" from="top/VBoxContainer/options" to="." method="_on_options_pressed"]
 [connection signal="mouse_entered" from="top/VBoxContainer/quit" to="." method="_on_mouse_entered"]
