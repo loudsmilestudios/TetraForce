@@ -63,7 +63,7 @@ func _error_if_not_host():
 func _on_entity_damaged(damager, entity):
 	emit_signal("entity_damaged", damager, entity)
 	if automatic_boss_bar:
-		_bass_bar_auto_update()
+		_boss_bar_auto_update()
 
 func _on_entity_killed(killer, entity):
 	emit_signal("entity_killed", killer, entity)
@@ -128,20 +128,20 @@ func _boss_bar_error_if_in_automatic():
 		return true
 	return false
 
-# _bass_bar_auto_update: Calculates max hp, sets max hp, and calls update
+# _boss_bar_auto_update: Calculates max hp, sets max hp, and calls update
 func _boss_bar_auto_init():
 	var max_hp = _boss_bar_auto_calculate_max_hp()
 	_boss_bar_set_max_hp(max_hp)
 	network.peer_call(self, "_boss_bar_set_max_hp", max_hp)
-	_bass_bar_auto_update()
+	_boss_bar_auto_update()
 	self.connect("stage_changed", self, "_boss_bar_on_stage_changed")
 
 func _boss_bar_on_stage_changed(new_stage):
 	if automatic_boss_bar and new_stage != DefaultStage.INACTIVE:
 		_boss_bar_show()
 
-# _bass_bar_auto_update: Calculates and sets boss bar values
-func _bass_bar_auto_update():
+# _boss_bar_auto_update: Calculates and sets boss bar values
+func _boss_bar_auto_update():
 	var current_hp = _boss_bar_auto_calculate_current_hp()
 	_boss_bar_set_current_hp(current_hp)
 	network.peer_call(self, "_boss_bar_set_current_hp", current_hp)
