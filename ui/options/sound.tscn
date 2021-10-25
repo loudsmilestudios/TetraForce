@@ -25,26 +25,76 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Master" type="HSplitContainer" parent="VBoxContainer"]
+[node name="Master" type="HBoxContainer" parent="VBoxContainer"]
 margin_right = 232.0
 margin_bottom = 13.0
-dragger_visibility = 1
 
 [node name="Label" type="Label" parent="VBoxContainer/Master"]
-margin_right = 36.0
+margin_right = 114.0
 margin_bottom = 13.0
+size_flags_horizontal = 3
 text = "Master"
-align = 1
 valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Slider" type="HSlider" parent="VBoxContainer/Master"]
-margin_left = 48.0
+margin_left = 118.0
 margin_right = 232.0
 margin_bottom = 10.0
 grow_horizontal = 2
+size_flags_horizontal = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Music" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 17.0
+margin_right = 232.0
+margin_bottom = 30.0
+
+[node name="Label" type="Label" parent="VBoxContainer/Music"]
+margin_right = 114.0
+margin_bottom = 13.0
+size_flags_horizontal = 3
+text = "Music"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Slider" type="HSlider" parent="VBoxContainer/Music"]
+margin_left = 118.0
+margin_right = 232.0
+margin_bottom = 10.0
+grow_horizontal = 2
+size_flags_horizontal = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sfx" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 34.0
+margin_right = 232.0
+margin_bottom = 47.0
+
+[node name="Label" type="Label" parent="VBoxContainer/Sfx"]
+margin_right = 114.0
+margin_bottom = 13.0
+size_flags_horizontal = 3
+text = "Sound Effects"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Slider" type="HSlider" parent="VBoxContainer/Sfx"]
+margin_left = 118.0
+margin_right = 232.0
+margin_bottom = 10.0
+grow_horizontal = 2
+size_flags_horizontal = 3
 __meta__ = {
 "_edit_use_anchors_": false
 }
