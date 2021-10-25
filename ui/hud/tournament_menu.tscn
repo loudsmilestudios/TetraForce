@@ -1,0 +1,388 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://ui/theme/theme.tres" type="Theme" id=1]
+[ext_resource path="res://ui/hud/tournament_menu.gd" type="Script" id=2]
+[ext_resource path="res://ui/theme/panel2.png" type="Texture" id=3]
+
+[sub_resource type="StyleBoxTexture" id=1]
+texture = ExtResource( 3 )
+margin_left = 10.0
+margin_right = 10.0
+margin_top = 10.0
+margin_bottom = 10.0
+
+[node name="tournament" type="Panel"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -76.0
+margin_top = -46.5
+margin_right = 76.0
+margin_bottom = 46.5
+theme = ExtResource( 1 )
+custom_styles/panel = SubResource( 1 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ArenaTitle" type="Label" parent="."]
+anchor_right = 1.0
+margin_left = 12.0
+margin_top = 5.0
+margin_right = -13.0
+margin_bottom = 19.0
+text = "Arena"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Unranked" type="VBoxContainer" parent="."]
+margin_left = 10.3298
+margin_top = 43.9677
+margin_right = 90.3298
+margin_bottom = 123.968
+rect_scale = Vector2( 0.5, 0.5 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="4FFA" type="VBoxContainer" parent="Unranked"]
+margin_right = 80.0
+margin_bottom = 38.0
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Unranked/4FFA"]
+margin_right = 80.0
+margin_bottom = 13.0
+text = "4 FFA"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="Unranked/4FFA"]
+margin_top = 17.0
+margin_right = 80.0
+margin_bottom = 38.7537
+text = "Queue"
+
+[node name="1v1" type="VBoxContainer" parent="Unranked"]
+margin_top = 42.0
+margin_right = 80.0
+margin_bottom = 80.0
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Unranked/1v1"]
+margin_right = 80.0
+margin_bottom = 13.0
+text = "1v1"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="Unranked/1v1"]
+margin_top = 17.0
+margin_right = 80.0
+margin_bottom = 38.7537
+text = "Queue"
+
+[node name="CloseButton" type="Button" parent="."]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -13.2324
+margin_top = 6.82703
+margin_right = 41.7676
+margin_bottom = 28.827
+rect_scale = Vector2( 0.5, 0.5 )
+text = "Close"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label2" type="Label" parent="."]
+margin_left = 60.6487
+margin_top = 22.0919
+margin_right = 192.649
+margin_bottom = 35.0919
+rect_scale = Vector2( 0.5, 0.5 )
+text = "Tournaments"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TabContainer" type="TabContainer" parent="."]
+margin_left = 60.0
+margin_top = 29.0
+margin_right = 263.0
+margin_bottom = 158.109
+rect_scale = Vector2( 0.4, 0.4 )
+tabs_visible = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="TabContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 8.99585
+margin_top = 8.99585
+margin_right = -9.51308
+margin_bottom = -9.11333
+text = "Tournament system coming soon!"
+align = 1
+valign = 1
+autowrap = true
+
+[node name="Player" type="VBoxContainer" parent="TabContainer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 8.99585
+margin_top = 8.99585
+margin_right = -9.51308
+margin_bottom = -9.11333
+
+[node name="ExplainationLabel" type="Label" parent="TabContainer/Player"]
+margin_right = 184.0
+margin_bottom = 13.0
+text = "Tournament Hosted by: Person"
+autowrap = true
+
+[node name="LinkButton" type="Button" parent="TabContainer/Player"]
+margin_top = 17.0
+margin_right = 184.0
+margin_bottom = 38.7537
+text = "View Ladder"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HSeparator" type="HSeparator" parent="TabContainer/Player"]
+margin_top = 42.0
+margin_right = 184.0
+margin_bottom = 46.0
+
+[node name="Label" type="Label" parent="TabContainer/Player"]
+margin_top = 50.0
+margin_right = 184.0
+margin_bottom = 79.0
+text = "You are not part of the ongoing tournament"
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="TabContainer/Player"]
+margin_top = 83.0
+margin_right = 184.0
+margin_bottom = 104.754
+text = "Request to join"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HostMode" type="ScrollContainer" parent="TabContainer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 8.99585
+margin_top = 8.99585
+margin_right = -9.51308
+margin_bottom = -9.11333
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/HostMode"]
+margin_right = 184.491
+margin_bottom = 174.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TabContainer/HostMode/VBoxContainer"]
+margin_right = 186.0
+margin_bottom = 32.0
+alignment = 1
+
+[node name="Label" type="Label" parent="TabContainer/HostMode/VBoxContainer/HBoxContainer"]
+margin_left = 3.0
+margin_top = 9.0
+margin_right = 87.0
+margin_bottom = 22.0
+text = "challonge.com/"
+
+[node name="LineEdit" type="LineEdit" parent="TabContainer/HostMode/VBoxContainer/HBoxContainer"]
+margin_left = 91.0
+margin_right = 182.407
+margin_bottom = 32.4068
+placeholder_text = "None"
+
+[node name="RequestLabel" type="Label" parent="TabContainer/HostMode/VBoxContainer"]
+margin_top = 36.0
+margin_right = 186.0
+margin_bottom = 49.0
+text = "Requesting to join:"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="TabContainer/HostMode/VBoxContainer"]
+margin_top = 53.0
+margin_right = 186.0
+margin_bottom = 82.0
+scroll_vertical_enabled = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TabContainer/HostMode/VBoxContainer/ScrollContainer"]
+margin_right = 212.0
+margin_bottom = 21.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="TabContainer/HostMode/VBoxContainer/ScrollContainer/HBoxContainer"]
+margin_right = 32.4557
+margin_bottom = 21.7537
+text = "fred"
+
+[node name="Button2" type="Button" parent="TabContainer/HostMode/VBoxContainer/ScrollContainer/HBoxContainer"]
+margin_left = 36.0
+margin_right = 68.4557
+margin_bottom = 21.7537
+text = "fred"
+
+[node name="Button5" type="Button" parent="TabContainer/HostMode/VBoxContainer/ScrollContainer/HBoxContainer"]
+margin_left = 72.0
+margin_right = 104.456
+margin_bottom = 21.7537
+text = "fred"
+
+[node name="Button6" type="Button" parent="TabContainer/HostMode/VBoxContainer/ScrollContainer/HBoxContainer"]
+margin_left = 108.0
+margin_right = 140.456
+margin_bottom = 21.7537
+text = "fred"
+
+[node name="Button3" type="Button" parent="TabContainer/HostMode/VBoxContainer/ScrollContainer/HBoxContainer"]
+margin_left = 144.0
+margin_right = 176.456
+margin_bottom = 21.7537
+text = "fred"
+
+[node name="Button4" type="Button" parent="TabContainer/HostMode/VBoxContainer/ScrollContainer/HBoxContainer"]
+margin_left = 180.0
+margin_right = 212.456
+margin_bottom = 21.7537
+text = "fred"
+
+[node name="HSeparator" type="HSeparator" parent="TabContainer/HostMode/VBoxContainer"]
+margin_top = 86.0
+margin_right = 186.0
+margin_bottom = 90.0
+
+[node name="Label" type="Label" parent="TabContainer/HostMode/VBoxContainer"]
+margin_top = 94.0
+margin_right = 186.0
+margin_bottom = 107.0
+text = "Status: Waiting..."
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/HostMode/VBoxContainer"]
+margin_top = 111.0
+margin_right = 186.0
+margin_bottom = 157.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TabContainer/HostMode/VBoxContainer/VBoxContainer"]
+margin_right = 186.0
+margin_bottom = 21.0
+
+[node name="Label" type="Label" parent="TabContainer/HostMode/VBoxContainer/VBoxContainer/HBoxContainer"]
+margin_top = 4.0
+margin_right = 91.0
+margin_bottom = 17.0
+size_flags_horizontal = 3
+text = "fred"
+
+[node name="Button" type="Button" parent="TabContainer/HostMode/VBoxContainer/VBoxContainer/HBoxContainer"]
+margin_left = 95.0
+margin_right = 186.0
+margin_bottom = 21.7537
+size_flags_horizontal = 3
+text = "Add"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="TabContainer/HostMode/VBoxContainer/VBoxContainer"]
+margin_top = 25.0
+margin_right = 186.0
+margin_bottom = 46.0
+
+[node name="Label" type="Label" parent="TabContainer/HostMode/VBoxContainer/VBoxContainer/HBoxContainer2"]
+margin_top = 4.0
+margin_right = 91.0
+margin_bottom = 17.0
+size_flags_horizontal = 3
+text = "fred"
+
+[node name="Button" type="Button" parent="TabContainer/HostMode/VBoxContainer/VBoxContainer/HBoxContainer2"]
+margin_left = 95.0
+margin_right = 186.0
+margin_bottom = 21.7537
+size_flags_horizontal = 3
+text = "Add"
+
+[node name="Button" type="Button" parent="TabContainer/HostMode/VBoxContainer"]
+margin_top = 161.0
+margin_right = 186.0
+margin_bottom = 182.754
+size_flags_horizontal = 3
+disabled = true
+text = "Start Match"
+
+[node name="Default" type="VBoxContainer" parent="TabContainer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 8.99585
+margin_top = 8.99585
+margin_right = -9.51308
+margin_bottom = -9.11333
+
+[node name="ExplainationLabel" type="Label" parent="TabContainer/Default"]
+margin_right = 186.0
+margin_bottom = 61.0
+text = "The tournament mode for arenas allow for players to run and host their own tournaments!
+"
+autowrap = true
+
+[node name="HSeparator" type="HSeparator" parent="TabContainer/Default"]
+margin_top = 65.0
+margin_right = 186.0
+margin_bottom = 69.0
+
+[node name="Label" type="Label" parent="TabContainer/Default"]
+margin_top = 73.0
+margin_right = 186.0
+margin_bottom = 86.0
+text = "There is no ongoing tournament."
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="TabContainer/Default"]
+margin_top = 90.0
+margin_right = 186.0
+margin_bottom = 111.754
+text = "Host Tournament"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="pressed" from="CloseButton" to="." method="_on_closed_pressed"]

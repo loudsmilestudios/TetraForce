@@ -12,6 +12,7 @@ const HEART_SIZE = 8
 onready var hud2d = $hud2d
 onready var hearts = $hud2d/hearts
 onready var buttons = $hud2d/buttons
+onready var tournament_menu = $tournament
 
 
 func _ready():
@@ -167,7 +168,11 @@ func on_slate_add():
 		update_hearts()
 	else:
 		timer.stop()
-	
+
+func open_tournament(arena):
+	if tournament_menu.open_for_arena(arena):
+		player.state = "menu"
+
 func show_gameover():
 	var gameover = preload("res://ui/layovers/gameover.tscn").instance()
 	add_child(gameover)
@@ -181,6 +186,11 @@ func show_esc_menu():
 		player.state = "menu"
 		esc_menu = preload(ESC_PATH).instance()
 		add_child(esc_menu)
+
+func close_menus():
+	if tournament_menu.visible:
+		tournament_menu.hide()
+		player.state = "default"
 
 func debug_update():
 	$debug/states.text = JSON.print(network.states, "    ")

@@ -6,6 +6,8 @@ var pid = 1
 
 var dedicated = false
 
+var tournament_master : TournamentMaster = TournamentMaster.new()
+
 var current_map = null
 var player_list = {} # player, map -- every active player and what map they're in
 var map_hosts = {} # map, player -- every active map and which player is hosting it
@@ -52,6 +54,7 @@ func clean_session_data():
 	map_peers = []
 	player_list = {}
 	map_hosts = {}
+	tournament_master.reset()
 
 func complete(include_network = true):
 	tick.queue_free()
@@ -270,6 +273,12 @@ remote func _receive_state(nodepath, properties):
 func update_state(nodepath, properties):
 	for property in properties.keys():
 		get_node(nodepath).set(property, properties[property])
+
+func dedicated_call(object, function, arguments = []):
+	if pid == 1:
+		object.call(function, arguments)
+	else:
+		peer_call_id(1, object, function, arguments)
 
 func peer_call(object, function, arguments = []):
 	for peer in map_peers:

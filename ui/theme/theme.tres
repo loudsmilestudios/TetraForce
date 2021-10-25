@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=22 format=2]
+[gd_resource type="Theme" load_steps=25 format=2]
 
 [ext_resource path="res://ui/theme/font.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://ui/theme/panel2.png" type="Texture" id=2]
@@ -10,6 +10,15 @@
 [ext_resource path="res://ui/theme/scrollbar.png" type="Texture" id=8]
 [ext_resource path="res://ui/theme/slider_area.png" type="Texture" id=9]
 [ext_resource path="res://ui/theme/slider_button.png" type="Texture" id=10]
+[ext_resource path="res://ui/theme/button_disabled.png" type="Texture" id=11]
+
+[sub_resource type="StyleBoxTexture" id=18]
+texture = ExtResource( 11 )
+region_rect = Rect2( 0, 0, 64, 64 )
+margin_left = 4.16426
+margin_right = 4.29142
+margin_top = 4.03168
+margin_bottom = 4.72205
 
 [sub_resource type="StyleBoxTexture" id=1]
 texture = ExtResource( 4 )
@@ -35,11 +44,26 @@ margin_right = 4.29142
 margin_top = 4.03168
 margin_bottom = 4.72205
 
-[sub_resource type="StyleBoxEmpty" id=4]
+[sub_resource type="StyleBoxTexture" id=13]
+texture = ExtResource( 8 )
+region_rect = Rect2( 0, 0, 6, 6 )
+margin_left = 2.0
+margin_right = 2.0
+margin_top = 2.0
+margin_bottom = 2.0
 
-[sub_resource type="StyleBoxEmpty" id=5]
+[sub_resource type="StyleBoxTexture" id=14]
+texture = ExtResource( 7 )
+region_rect = Rect2( 0, 0, 8, 8 )
 
-[sub_resource type="StyleBoxTexture" id=6]
+[sub_resource type="StyleBoxLine" id=12]
+color = Color( 0, 0, 0, 0.282353 )
+
+[sub_resource type="StyleBoxEmpty" id=15]
+
+[sub_resource type="StyleBoxEmpty" id=16]
+
+[sub_resource type="StyleBoxTexture" id=17]
 texture = ExtResource( 9 )
 region_rect = Rect2( 0, 0, 8, 8 )
 margin_left = 3.0
@@ -63,18 +87,6 @@ margin_right = 9.51308
 margin_top = 8.99585
 margin_bottom = 9.11333
 
-[sub_resource type="StyleBoxTexture" id=9]
-texture = ExtResource( 8 )
-region_rect = Rect2( 0, 0, 6, 6 )
-margin_left = 2.0
-margin_right = 2.0
-margin_top = 2.0
-margin_bottom = 2.0
-
-[sub_resource type="StyleBoxTexture" id=10]
-texture = ExtResource( 7 )
-region_rect = Rect2( 0, 0, 8, 8 )
-
 [sub_resource type="DynamicFont" id=11]
 font_data = ExtResource( 1 )
 
@@ -86,18 +98,29 @@ Button/colors/font_color_hover = Color( 0.94, 0.94, 0.94, 1 )
 Button/colors/font_color_pressed = Color( 1, 1, 1, 1 )
 Button/constants/hseparation = 2
 Button/fonts/font = null
-Button/styles/disabled = null
+Button/styles/disabled = SubResource( 18 )
 Button/styles/focus = null
 Button/styles/hover = SubResource( 1 )
 Button/styles/normal = SubResource( 2 )
 Button/styles/pressed = SubResource( 3 )
+HScrollBar/icons/decrement = null
+HScrollBar/icons/decrement_highlight = null
+HScrollBar/icons/increment = null
+HScrollBar/icons/increment_highlight = null
+HScrollBar/styles/grabber = SubResource( 13 )
+HScrollBar/styles/grabber_highlight = SubResource( 13 )
+HScrollBar/styles/grabber_pressed = SubResource( 13 )
+HScrollBar/styles/scroll = SubResource( 14 )
+HScrollBar/styles/scroll_focus = null
+HSeparator/constants/separation = 4
+HSeparator/styles/separator = SubResource( 12 )
 HSlider/icons/grabber = ExtResource( 10 )
 HSlider/icons/grabber_disabled = ExtResource( 8 )
 HSlider/icons/grabber_highlight = ExtResource( 10 )
 HSlider/icons/tick = null
-HSlider/styles/grabber_area = SubResource( 4 )
-HSlider/styles/grabber_area_highlight = SubResource( 5 )
-HSlider/styles/slider = SubResource( 6 )
+HSlider/styles/grabber_area = SubResource( 15 )
+HSlider/styles/grabber_area_highlight = SubResource( 16 )
+HSlider/styles/slider = SubResource( 17 )
 LineEdit/colors/clear_button_color = Color( 0.88, 0.88, 0.88, 1 )
 LineEdit/colors/clear_button_color_pressed = Color( 1, 1, 1, 1 )
 LineEdit/colors/cursor_color = Color( 0.94, 0.94, 0.94, 1 )
@@ -135,8 +158,17 @@ VScrollBar/icons/decrement = null
 VScrollBar/icons/decrement_highlight = null
 VScrollBar/icons/increment = null
 VScrollBar/icons/increment_highlight = null
-VScrollBar/styles/grabber = SubResource( 9 )
-VScrollBar/styles/grabber_highlight = SubResource( 9 )
-VScrollBar/styles/grabber_pressed = SubResource( 9 )
-VScrollBar/styles/scroll = SubResource( 10 )
+VScrollBar/styles/grabber = SubResource( 13 )
+VScrollBar/styles/grabber_highlight = SubResource( 13 )
+VScrollBar/styles/grabber_pressed = SubResource( 13 )
+VScrollBar/styles/scroll = SubResource( 14 )
 VScrollBar/styles/scroll_focus = null
+VSeparator/constants/separation = 4
+VSeparator/styles/separator = SubResource( 12 )
+VSlider/icons/grabber = null
+VSlider/icons/grabber_disabled = null
+VSlider/icons/grabber_highlight = null
+VSlider/icons/tick = null
+VSlider/styles/grabber_area = null
+VSlider/styles/grabber_area_highlight = null
+VSlider/styles/slider = null
