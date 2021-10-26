@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=22 format=2]
+[gd_resource type="Theme" load_steps=26 format=2]
 
 [ext_resource path="res://ui/theme/font.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://ui/theme/panel2.png" type="Texture" id=2]
@@ -10,6 +10,8 @@
 [ext_resource path="res://ui/theme/scrollbar.png" type="Texture" id=8]
 [ext_resource path="res://ui/theme/slider_area.png" type="Texture" id=9]
 [ext_resource path="res://ui/theme/slider_button.png" type="Texture" id=10]
+[ext_resource path="res://ui/theme/progressbar_foreground.png" type="Texture" id=11]
+[ext_resource path="res://ui/theme/progressbar_background.png" type="Texture" id=12]
 
 [sub_resource type="StyleBoxTexture" id=1]
 texture = ExtResource( 4 )
@@ -63,6 +65,22 @@ margin_right = 9.51308
 margin_top = 8.99585
 margin_bottom = 9.11333
 
+[sub_resource type="StyleBoxTexture" id=12]
+texture = ExtResource( 12 )
+region_rect = Rect2( 0, 0, 8, 8 )
+margin_left = 5.65454
+margin_right = 5.85154
+margin_top = 5.70055
+margin_bottom = 5.9019
+
+[sub_resource type="StyleBoxTexture" id=13]
+texture = ExtResource( 11 )
+region_rect = Rect2( 0, 0, 8, 8 )
+margin_left = 5.65454
+margin_right = 5.85154
+margin_top = 5.70055
+margin_bottom = 5.9019
+
 [sub_resource type="StyleBoxTexture" id=9]
 texture = ExtResource( 8 )
 region_rect = Rect2( 0, 0, 6, 6 )
@@ -112,6 +130,11 @@ LineEdit/styles/focus = null
 LineEdit/styles/normal = SubResource( 7 )
 LineEdit/styles/read_only = null
 Panel/styles/panel = SubResource( 8 )
+ProgressBar/colors/font_color = Color( 0.94, 0.94, 0.94, 1 )
+ProgressBar/colors/font_color_shadow = Color( 0, 0, 0, 1 )
+ProgressBar/fonts/font = null
+ProgressBar/styles/bg = SubResource( 12 )
+ProgressBar/styles/fg = SubResource( 13 )
 TabContainer/colors/font_color_bg = Color( 0.69, 0.69, 0.69, 1 )
 TabContainer/colors/font_color_disabled = Color( 0.9, 0.9, 0.9, 0.2 )
 TabContainer/colors/font_color_fg = Color( 0.94, 0.94, 0.94, 1 )

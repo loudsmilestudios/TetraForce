@@ -1,7 +1,7 @@
 [gd_resource type="Theme" load_steps=7 format=2]
 
 [ext_resource path="res://ui/theme/font.ttf" type="DynamicFontData" id=1]
-[ext_resource path="res://ui/theme/progressbar_background.png" type="Texture" id=2]
+[ext_resource path="res://ui/theme/progressbar_background_boss.png" type="Texture" id=2]
 [ext_resource path="res://ui/theme/progressbar_foreground_boss.png" type="Texture" id=3]
 
 [sub_resource type="DynamicFont" id=1]
