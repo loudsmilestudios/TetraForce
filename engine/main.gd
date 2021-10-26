@@ -126,6 +126,7 @@ func join_server(ip, port):
 	
 	if !ip.is_valid_ip_address():
 		print("Invalid IP")
+		open_error_message("Invalid IP")
 		loading_screen.stop_loading()
 		return
 	
@@ -157,8 +158,10 @@ func join_aws(lobby_name):
 			# Timeout if no sever info found
 			print("Server creation timeout!")
 			loading_screen.stop_loading()
+			open_error_message("Server creation timeout!")
 		else:
 			loading_screen.stop_loading()
+			open_error_message("Failed to create server!")
 
 func attempt_to_join_aws_sever(lobby_name, hide_loading_message = false) -> bool:
 	if not hide_loading_message:
@@ -207,6 +210,8 @@ func _client_disconnect(code, reason):
 	print("Disconnected from server: %s, %s" % [code, reason])
 	network.complete(false)
 	show()
+	if code != OK:
+		open_error_message(reason)
 
 func end_game():
 	network.complete()
@@ -250,6 +255,12 @@ func _on_quickstart_pressed():
 	$top.show()
 	singleplayer_focus.grab_focus()
 	host_server(false, 0, 0, 1)
+
+func open_error_message(message):
+	hide_menus()
+	$message/Label.text = message
+	$message.show()
+	$message/Button.grab_focus()
 
 func _on_load_pressed():
 	hide_menus()

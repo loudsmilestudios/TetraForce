@@ -248,6 +248,45 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="message" type="Panel" parent="." groups=[
+"menu",
+]]
+visible = false
+margin_left = 161.0
+margin_top = 127.652
+margin_right = 359.0
+margin_bottom = 229.652
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="message"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -22.0
+margin_top = -38.428
+margin_right = 16.4557
+margin_bottom = -16.6743
+text = "Close"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="message"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -84.0
+margin_top = 13.0
+margin_right = 84.0
+margin_bottom = 56.0
+text = "Generic Error Message"
+align = 1
+valign = 1
+autowrap = true
+
 [node name="player_select" parent="." instance=ExtResource( 5 )]
 visible = false
 main_path = NodePath("..")
@@ -282,5 +321,6 @@ visible = false
 [connection signal="pressed" from="multiplayer/Automatic/connect" to="." method="_on_connect_pressed"]
 [connection signal="pressed" from="multiplayer/Manual/host" to="." method="_on_host_pressed"]
 [connection signal="pressed" from="multiplayer/Manual/join" to="." method="_on_join_pressed"]
+[connection signal="pressed" from="message/Button" to="." method="_on_back_pressed"]
 [connection signal="mouse_entered" from="back" to="." method="_on_mouse_entered"]
 [connection signal="pressed" from="back" to="." method="_on_back_pressed"]
