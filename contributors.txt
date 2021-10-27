@@ -1,0 +1,8 @@
+# Please add your name in the following format:
+# NAME (@GITHUB_USERNAME)
+#
+# There is no set criteria for crediting so if you
+# make contributions and want to be credited, make a PR!
+Joseph Lesko (@fornclake)
+Andrew Glubrecht (@Elginive)
+Joseph Manley (@josephbmanley)
