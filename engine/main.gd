@@ -162,7 +162,7 @@ func join_aws(lobby_name):
 			open_error_message("Server creation timeout!")
 		else:
 			loading_screen.stop_loading()
-			open_error_message("Failed to create server!")
+			open_error_message("Failed to create server: %s" % new_lobby.message)
 
 func attempt_to_join_aws_sever(lobby_name, hide_loading_message = false) -> bool:
 	if not hide_loading_message:

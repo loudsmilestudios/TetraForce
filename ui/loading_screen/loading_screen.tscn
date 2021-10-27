@@ -84,17 +84,18 @@ __meta__ = {
 [node name="VBoxContainer" type="HBoxContainer" parent="ProgressBar"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 8.0
-margin_right = -8.0
+margin_right = 76.0001
+margin_bottom = 5.0
+rect_scale = Vector2( 0.75, 0.75 )
 alignment = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="message" type="Label" parent="ProgressBar/VBoxContainer"]
-margin_left = 73.0
-margin_right = 115.0
-margin_bottom = 14.0
+margin_left = 119.0
+margin_right = 161.0
+margin_bottom = 19.0
 size_flags_horizontal = 9
 size_flags_vertical = 7
 theme = ExtResource( 4 )
@@ -106,9 +107,10 @@ __meta__ = {
 }
 
 [node name="dots" type="Label" parent="ProgressBar/VBoxContainer"]
-margin_left = 119.0
-margin_right = 137.0
-margin_bottom = 13.0
+margin_left = 165.0
+margin_top = 3.0
+margin_right = 183.0
+margin_bottom = 16.0
 theme = ExtResource( 4 )
 text = "..."
 __meta__ = {
