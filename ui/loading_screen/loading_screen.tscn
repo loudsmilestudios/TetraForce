@@ -9,20 +9,20 @@
 
 [sub_resource type="Animation" id=1]
 resource_name = "loading"
-length = 1.25
+length = 1.5
 loop = true
 step = 0.25
 tracks/0/type = "value"
-tracks/0/path = NodePath("HBoxContainer/dots:text")
-tracks/0/interp = 2
+tracks/0/path = NodePath("ProgressBar/VBoxContainer/dots:text")
+tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.25, 0.5, 0.75 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.25, 0.5, 0.75, 1.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ "...", ".. ", ".  ", "   " ]
+"values": [ "   ", ".  ", ".. ", "...", "   " ]
 }
 
 [node name="loading_screen" type="Control"]
@@ -40,6 +40,7 @@ anims/loading = SubResource( 1 )
 [node name="background" type="TextureRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
+texture = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -60,43 +61,56 @@ animation = "Logo"
 centered = false
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
-anchor_top = 1.0
+margin_left = 7.0
+margin_top = 126.8
+margin_right = 613.0
+margin_bottom = 139.8
+alignment = 1
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+margin_left = 15.0541
+margin_top = 126.892
+margin_right = 242.054
+margin_bottom = 140.892
+size_flags_horizontal = 3
+theme = ExtResource( 4 )
+value = 2.0
+percent_visible = false
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="HBoxContainer" parent="ProgressBar"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = -14.0
+margin_left = 8.0
+margin_right = -8.0
 alignment = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="loading_label" type="Label" parent="HBoxContainer"]
-margin_left = 70.0
-margin_right = 118.0
-margin_bottom = 13.0
-theme = ExtResource( 4 )
-text = "Loading:"
-align = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="message" type="Label" parent="HBoxContainer"]
-margin_left = 122.0
-margin_right = 164.0
-margin_bottom = 13.0
+[node name="message" type="Label" parent="ProgressBar/VBoxContainer"]
+margin_left = 73.0
+margin_right = 115.0
+margin_bottom = 14.0
+size_flags_horizontal = 9
+size_flags_vertical = 7
 theme = ExtResource( 4 )
 text = "MESSAGE"
 align = 1
+valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="dots" type="Label" parent="HBoxContainer"]
-margin_left = 168.0
-margin_right = 186.0
+[node name="dots" type="Label" parent="ProgressBar/VBoxContainer"]
+margin_left = 119.0
+margin_right = 137.0
 margin_bottom = 13.0
 theme = ExtResource( 4 )
-text = "   "
+text = "..."
 __meta__ = {
 "_edit_use_anchors_": false
 }
