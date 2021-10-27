@@ -1,0 +1,115 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://ui/credits/contributors.gd" type="Script" id=1]
+[ext_resource path="res://ui/main/Full_Logo_Sprite.png" type="Texture" id=2]
+[ext_resource path="res://ui/theme/theme.tres" type="Theme" id=3]
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 0, 198, 114 )
+
+[node name="Credits" type="VBoxContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 3 )
+custom_constants/separation = 32
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="."]
+margin_right = 256.0
+margin_bottom = 114.0
+size_flags_horizontal = 3
+texture = SubResource( 1 )
+stretch_mode = 4
+
+[node name="Founders" type="VBoxContainer" parent="."]
+margin_top = 146.0
+margin_right = 256.0
+margin_bottom = 192.0
+
+[node name="FoundersHeader" type="Label" parent="Founders"]
+margin_right = 256.0
+margin_bottom = 13.0
+text = "Project Founders"
+align = 1
+uppercase = true
+
+[node name="Founders" type="Label" parent="Founders"]
+margin_top = 17.0
+margin_right = 256.0
+margin_bottom = 46.0
+text = "Andrew Glubrecht (@Elginive)
+Joseph Lesko (@fornclake)"
+align = 1
+valign = 1
+
+[node name="Music" type="VBoxContainer" parent="."]
+margin_top = 224.0
+margin_right = 256.0
+margin_bottom = 334.0
+
+[node name="MusicHeader" type="Label" parent="Music"]
+margin_right = 256.0
+margin_bottom = 13.0
+text = "Music"
+align = 1
+uppercase = true
+
+[node name="ptrbob" type="HBoxContainer" parent="Music"]
+margin_top = 17.0
+margin_right = 256.0
+margin_bottom = 110.0
+alignment = 1
+
+[node name="Songs" type="Label" parent="Music/ptrbob"]
+margin_right = 126.0
+margin_bottom = 93.0
+size_flags_horizontal = 3
+text = "Town
+Shore
+Cave
+Overworld
+Shrine
+Dungeon"
+align = 1
+valign = 1
+
+[node name="Artist" type="Label" parent="Music/ptrbob"]
+margin_left = 130.0
+margin_top = 32.0
+margin_right = 256.0
+margin_bottom = 61.0
+size_flags_horizontal = 3
+text = "by Peter Bobinski (@ptrbob)"
+autowrap = true
+
+[node name="Contributors" type="VBoxContainer" parent="."]
+margin_top = 366.0
+margin_right = 256.0
+margin_bottom = 412.0
+
+[node name="ContributorsHeader" type="Label" parent="Contributors"]
+margin_right = 256.0
+margin_bottom = 13.0
+text = "Developers"
+align = 1
+uppercase = true
+
+[node name="Contributors" type="Label" parent="Contributors"]
+margin_top = 17.0
+margin_right = 256.0
+margin_bottom = 46.0
+text = "Contributor #1
+Contributor #2"
+align = 1
+script = ExtResource( 1 )
+
+[node name="Label" type="Label" parent="."]
+margin_top = 444.0
+margin_right = 256.0
+margin_bottom = 457.0
+text = "Thank you for playing!"
+align = 1
+autowrap = true

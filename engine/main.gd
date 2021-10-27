@@ -1,3 +1,4 @@
+class_name Main
 extends Control
 
 var default_map = "res://maps/shrine.tmx"
@@ -5,7 +6,7 @@ var default_entrance = "player_start"
 export var default_port = 7777
 var server_api = preload("res://engine/server_api.gd").new()
 
-onready var address_line = $multiplayer/Manual/address
+onready var address_line = $multiplayer/Direct/address
 onready var lobby_line = $multiplayer/Automatic/lobby
 #onready var endpoint_button = $options/scroll/vbox/endpoint JosephB Needs to confirm deletion
 onready var singleplayer_focus = $top/VBoxContainer/singleplayer
@@ -306,3 +307,10 @@ func _on_mouse_entered():
 	sfx.play("item_select")
 
 
+
+
+func _on_credits_pressed():
+	hide_menus()
+	$credits.show()
+	$back.show()
+	$back.grab_focus()

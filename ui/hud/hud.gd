@@ -1,6 +1,7 @@
 extends CanvasLayer
 
 var player
+var credits
 var timer = Timer.new()
 var max_pearls = 4
 var spiritpearls = 0
@@ -12,6 +13,7 @@ const HEART_SIZE = 8
 onready var hud2d = $hud2d
 onready var hearts = $hud2d/hearts
 onready var buttons = $hud2d/buttons
+onready var boss_overlay = $boss_overlay
 
 
 func _ready():
@@ -188,3 +190,8 @@ func debug_update():
 func _on_joy_connection_changed(dev_id, connected):
 	if dev_id == 0:
 		update_buttons()
+
+func play_credits():
+	var credits = preload("res://ui/credits/CreditsCanvas.tscn").instance()
+	add_child(credits)
+	credits.connect("scroll_complete", credits, "queue_free")
