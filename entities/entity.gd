@@ -7,6 +7,7 @@ export(String, "ENEMY", "PLAYER", "TRAP") var TYPE = "ENEMY"
 export(float, 0.5, 20, 0.5) var MAX_HEALTH = 1
 export(int) var SPEED = 70
 export(float, 0, 20, 0.5) var DAMAGE = 0.5
+export(bool) var IS_VULNERABLE = true
 
 # MOVEMENT
 var movedir = Vector2(0,0)
@@ -216,6 +217,9 @@ func create_drowning_fx(pos):
 	sfx.play("drown")
 
 func damage(amount, dir, damager=null):
+	if not IS_VULNERABLE:
+		return
+		
 	if hitstun == 0 && state != "menu":
 		if amount != 0:
 			sfx.play(hurt_sfx)
