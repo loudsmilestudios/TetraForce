@@ -15,6 +15,8 @@ export(bool) var automatic_boss_bar = true
 var difficulty_scale setget ,get_difficulty_scale
 var managed_entities = [] # Contains all entities managed by controller
 
+onready var boss_overlay : BossOverlay
+
 func _ready():
 	_load_entities()
 
@@ -61,7 +63,7 @@ func _error_if_not_host():
 func _on_entity_damaged(damager, entity):
 	emit_signal("entity_damaged", damager, entity)
 	if automatic_boss_bar:
-		_bass_bar_auto_update()
+		_boss_bar_auto_update()
 
 func _on_entity_killed(killer, entity):
 	emit_signal("entity_killed", killer, entity)
@@ -79,6 +81,7 @@ func set_stage(new_stage):
 	if new_stage != current_stage:
 		current_stage = new_stage
 		emit_signal("stage_changed", current_stage)
+
 func get_stage():
 	if _error_if_not_host(): return
 	return current_stage
@@ -90,6 +93,29 @@ func get_difficulty_scale():
 #================#
 # Boss Bar Logic #
 #================#
+
+# _boss_bar_verify_overlay: Returns true if boss_overlay is gettable
+func _boss_bar_verify_overlay() -> bool:
+	if not boss_overlay:
+		boss_overlay = global.player.hud.boss_overlay
+	
+	if boss_overlay:
+		return true
+	
+	printerr("Boss bar does not exist!")
+	return false
+
+# boss_bar_show: Makes the boss bar visible
+func boss_bar_show():
+	if _error_if_not_host(): return
+	if _boss_bar_error_if_in_automatic(): return
+	_boss_bar_show()
+
+# boss_bar_hide: Makes the boss bar no longer visible
+func boss_bar_hide():
+	if _error_if_not_host(): return
+	if _boss_bar_error_if_in_automatic(): return
+	_boss_bar_hide()
 
 # boss_bar_set_max_hp: Sets the max_hp value on the boss bar
 func boss_bar_set_max_hp(max_hp):
@@ -109,19 +135,24 @@ func boss_bar_set_current_hp(current_hp):
 #		boss bar is in automatic mode
 func _boss_bar_error_if_in_automatic():
 	if automatic_boss_bar:
-		printerr("Cannot update BossBar associated with '%s', it is in automatic mode!")
+		printerr("Cannot update BossBar associated with '%s', it is in automatic mode!" % self.name)
 		return true
 	return false
 
-# _bass_bar_auto_update: Calculates max hp, sets max hp, and calls update
+# _boss_bar_auto_update: Calculates max hp, sets max hp, and calls update
 func _boss_bar_auto_init():
 	var max_hp = _boss_bar_auto_calculate_max_hp()
 	_boss_bar_set_max_hp(max_hp)
 	network.peer_call(self, "_boss_bar_set_max_hp", max_hp)
-	_bass_bar_auto_update()
+	_boss_bar_auto_update()
+	self.connect("stage_changed", self, "_boss_bar_on_stage_changed")
 
-# _bass_bar_auto_update: Calculates and sets boss bar values
-func _bass_bar_auto_update():
+func _boss_bar_on_stage_changed(new_stage):
+	if automatic_boss_bar and new_stage != DefaultStage.INACTIVE:
+		_boss_bar_show()
+
+# _boss_bar_auto_update: Calculates and sets boss bar values
+func _boss_bar_auto_update():
 	var current_hp = _boss_bar_auto_calculate_current_hp()
 	_boss_bar_set_current_hp(current_hp)
 	network.peer_call(self, "_boss_bar_set_current_hp", current_hp)
@@ -142,10 +173,23 @@ func _boss_bar_auto_calculate_current_hp():
 
 # _boss_bar_set_max_hp: Sends message to Boss Bar UI to update max
 func _boss_bar_set_max_hp(max_hp):
-	# This needs to be connect to Boss Bar UI
-	print_debug("Max HP is %s" % max_hp)
+	if _boss_bar_verify_overlay():
+		boss_overlay.set_max_boss_hp(max_hp)
 
 # _boss_bar_set_max_hp: Sends message to Boss Bar UI to update current
 func _boss_bar_set_current_hp(new_hp):
-	# This needs to be connected to Boss Bar UI
-	print_debug("Current HP is %s" % new_hp)
+	if _boss_bar_verify_overlay():
+		boss_overlay.set_current_boss_hp(new_hp)
+		# Hide boss bar
+		if automatic_boss_bar and new_hp <= 0:
+			boss_bar_hide()
+
+# _boss_bar_show: Sends message to Boss Bar UI display the bar on screen
+func _boss_bar_show():
+	if _boss_bar_verify_overlay():
+		boss_overlay.show_boss_bar()
+
+# _boss_bar_hide: Sends message to hide the Boss Bar UI
+func _boss_bar_hide():
+	if _boss_bar_verify_overlay():
+		boss_overlay.hide_boss_bar()

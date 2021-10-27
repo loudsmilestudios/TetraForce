@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://ui/theme/font.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://ui/hud/hearts.png" type="Texture" id=2]
@@ -11,6 +11,9 @@
 [ext_resource path="res://ui/hud/action.png" type="Texture" id=9]
 [ext_resource path="res://ui/player_select/player_select.tscn" type="PackedScene" id=10]
 [ext_resource path="res://ui/hud/OnscreenSavingAnimation.gd" type="Script" id=11]
+[ext_resource path="res://ui/theme/boss_overlay.tres" type="Theme" id=12]
+[ext_resource path="res://ui/theme/dogicapixelbold.ttf" type="DynamicFontData" id=13]
+[ext_resource path="res://ui/hud/boss_overlay.gd" type="Script" id=14]
 
 [sub_resource type="DynamicFont" id=1]
 font_data = ExtResource( 1 )
@@ -27,6 +30,110 @@ font_data = ExtResource( 1 )
 outline_size = 1
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=9]
+size = 8
+font_data = ExtResource( 13 )
+
+[sub_resource type="Animation" id=11]
+resource_name = "hide_bossbar"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Bossbar:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 1 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath("Bossbar:modulate:a")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 1 )
+}
+
+[sub_resource type="Animation" id=10]
+resource_name = "show_bossbar"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Bossbar:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath("Bossbar:modulate:a")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 1 )
+}
+
+[sub_resource type="Animation" id=12]
+resource_name = "hide_bossbar"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Bossbar:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 1 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath("Bossbar:modulate:a")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 1 )
+}
+
+[sub_resource type="Animation" id=13]
+resource_name = "show_bossbar"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Bossbar:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath("Bossbar:modulate:a")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 1 )
+}
 
 [sub_resource type="Animation" id=7]
 resource_name = "default"
@@ -321,6 +428,60 @@ visible = false
 rect_scale = Vector2( 0.5, 0.5 )
 mode = 1
 show_return_button = true
+
+[node name="boss_overlay" type="Control" parent="."]
+margin_right = 256.0
+margin_bottom = 144.0
+theme = ExtResource( 12 )
+script = ExtResource( 14 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Bossbar" type="ProgressBar" parent="boss_overlay"]
+visible = false
+self_modulate = Color( 1, 1, 1, 0.784314 )
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -58.0
+margin_top = -21.0
+margin_right = 58.0
+margin_bottom = -9.0
+value = 75.0
+percent_visible = false
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="boss_overlay/Bossbar"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 39.0
+margin_bottom = 4.0
+rect_scale = Vector2( 0.75, 0.75 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = SubResource( 9 )
+custom_colors/font_color = Color( 0.968627, 0.709804, 0.545098, 1 )
+text = "Dead Captain"
+align = 1
+valign = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="boss_overlay"]
+anims/hide_bossbar = SubResource( 11 )
+anims/show_bossbar = SubResource( 10 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="boss_overlay/AnimationPlayer"]
+anims/hide_bossbar = SubResource( 12 )
+anims/show_bossbar = SubResource( 13 )
 
 [node name="OnscreenSave" type="AnimationPlayer" parent="."]
 anims/default = SubResource( 7 )
