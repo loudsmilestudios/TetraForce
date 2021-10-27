@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=32 format=2]
+[gd_resource type="Theme" load_steps=34 format=2]
 
 [ext_resource path="res://ui/theme/font.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://ui/theme/panel2.png" type="Texture" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://ui/theme/scrollbar.png" type="Texture" id=8]
 [ext_resource path="res://ui/theme/slider_area.png" type="Texture" id=9]
 [ext_resource path="res://ui/theme/slider_button.png" type="Texture" id=10]
+[ext_resource path="res://ui/theme/panel2_disabled.png" type="Texture" id=11]
 [ext_resource path="res://ui/theme/progressbar_background.png" type="Texture" id=12]
 [ext_resource path="res://ui/theme/check_button_off.png" type="Texture" id=13]
 [ext_resource path="res://ui/theme/check_button_on.png" type="Texture" id=14]
@@ -62,8 +63,16 @@ margin_right = 3.0
 margin_top = 3.0
 margin_bottom = 3.0
 
-[sub_resource type="StyleBoxTexture" id=13]
+[sub_resource type="StyleBoxTexture" id=19]
 texture = ExtResource( 2 )
+region_rect = Rect2( 0, 0, 32, 32 )
+margin_left = 9.78231
+margin_right = 9.62453
+margin_top = 9.78231
+margin_bottom = 9.62453
+
+[sub_resource type="StyleBoxTexture" id=13]
+texture = ExtResource( 11 )
 region_rect = Rect2( 0, 0, 32, 32 )
 margin_left = 9.78231
 margin_right = 9.62453
@@ -150,8 +159,8 @@ LineEdit/constants/minimum_spaces = 12
 LineEdit/fonts/font = null
 LineEdit/icons/clear = null
 LineEdit/styles/focus = null
-LineEdit/styles/normal = SubResource( 13 )
-LineEdit/styles/read_only = null
+LineEdit/styles/normal = SubResource( 19 )
+LineEdit/styles/read_only = SubResource( 13 )
 Panel/styles/panel = SubResource( 14 )
 ProgressBar/colors/font_color = Color( 0.94, 0.94, 0.94, 1 )
 ProgressBar/colors/font_color_shadow = Color( 0, 0, 0, 1 )
@@ -177,6 +186,12 @@ TabContainer/styles/panel = SubResource( 14 )
 TabContainer/styles/tab_bg = SubResource( 3 )
 TabContainer/styles/tab_disabled = SubResource( 3 )
 TabContainer/styles/tab_fg = SubResource( 2 )
+TooltipLabel/colors/font_color = Color( 1, 1, 1, 1 )
+TooltipLabel/colors/font_color_shadow = Color( 0, 0, 0, 0.1 )
+TooltipLabel/constants/shadow_offset_x = 1
+TooltipLabel/constants/shadow_offset_y = 1
+TooltipLabel/fonts/font = null
+TooltipPanel/styles/panel = SubResource( 14 )
 VScrollBar/icons/decrement = null
 VScrollBar/icons/decrement_highlight = null
 VScrollBar/icons/increment = null
