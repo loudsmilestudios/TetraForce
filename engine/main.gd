@@ -1,3 +1,4 @@
+class_name Main
 extends Control
 
 var default_map = "res://maps/shrine.tmx"
@@ -295,3 +296,10 @@ func _on_mouse_entered():
 	sfx.play("item_select")
 
 
+
+
+func _on_credits_pressed():
+	hide_menus()
+	$credits.show()
+	$back.show()
+	$back.grab_focus()

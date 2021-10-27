@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=26 format=2]
+[gd_resource type="Theme" load_steps=32 format=2]
 
 [ext_resource path="res://ui/theme/font.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://ui/theme/panel2.png" type="Texture" id=2]
@@ -10,8 +10,9 @@
 [ext_resource path="res://ui/theme/scrollbar.png" type="Texture" id=8]
 [ext_resource path="res://ui/theme/slider_area.png" type="Texture" id=9]
 [ext_resource path="res://ui/theme/slider_button.png" type="Texture" id=10]
-[ext_resource path="res://ui/theme/progressbar_foreground.png" type="Texture" id=11]
 [ext_resource path="res://ui/theme/progressbar_background.png" type="Texture" id=12]
+[ext_resource path="res://ui/theme/check_button_off.png" type="Texture" id=13]
+[ext_resource path="res://ui/theme/check_button_on.png" type="Texture" id=14]
 
 [sub_resource type="StyleBoxTexture" id=1]
 texture = ExtResource( 4 )
@@ -41,7 +42,19 @@ margin_bottom = 4.72205
 
 [sub_resource type="StyleBoxEmpty" id=5]
 
-[sub_resource type="StyleBoxTexture" id=6]
+[sub_resource type="StyleBoxEmpty" id=6]
+
+[sub_resource type="StyleBoxEmpty" id=7]
+
+[sub_resource type="StyleBoxEmpty" id=8]
+
+[sub_resource type="StyleBoxEmpty" id=9]
+
+[sub_resource type="StyleBoxEmpty" id=10]
+
+[sub_resource type="StyleBoxEmpty" id=11]
+
+[sub_resource type="StyleBoxTexture" id=12]
 texture = ExtResource( 9 )
 region_rect = Rect2( 0, 0, 8, 8 )
 margin_left = 3.0
@@ -49,7 +62,7 @@ margin_right = 3.0
 margin_top = 3.0
 margin_bottom = 3.0
 
-[sub_resource type="StyleBoxTexture" id=7]
+[sub_resource type="StyleBoxTexture" id=13]
 texture = ExtResource( 2 )
 region_rect = Rect2( 0, 0, 32, 32 )
 margin_left = 9.78231
@@ -57,7 +70,7 @@ margin_right = 9.62453
 margin_top = 9.78231
 margin_bottom = 9.62453
 
-[sub_resource type="StyleBoxTexture" id=8]
+[sub_resource type="StyleBoxTexture" id=14]
 texture = ExtResource( 6 )
 region_rect = Rect2( 0, 0, 32, 32 )
 margin_left = 8.99585
@@ -65,7 +78,7 @@ margin_right = 9.51308
 margin_top = 8.99585
 margin_bottom = 9.11333
 
-[sub_resource type="StyleBoxTexture" id=12]
+[sub_resource type="StyleBoxTexture" id=15]
 texture = ExtResource( 12 )
 region_rect = Rect2( 0, 0, 8, 8 )
 margin_left = 5.65454
@@ -73,15 +86,7 @@ margin_right = 5.85154
 margin_top = 5.70055
 margin_bottom = 5.9019
 
-[sub_resource type="StyleBoxTexture" id=13]
-texture = ExtResource( 11 )
-region_rect = Rect2( 0, 0, 8, 8 )
-margin_left = 5.65454
-margin_right = 5.85154
-margin_top = 5.70055
-margin_bottom = 5.9019
-
-[sub_resource type="StyleBoxTexture" id=9]
+[sub_resource type="StyleBoxTexture" id=16]
 texture = ExtResource( 8 )
 region_rect = Rect2( 0, 0, 6, 6 )
 margin_left = 2.0
@@ -89,15 +94,15 @@ margin_right = 2.0
 margin_top = 2.0
 margin_bottom = 2.0
 
-[sub_resource type="StyleBoxTexture" id=10]
+[sub_resource type="StyleBoxTexture" id=17]
 texture = ExtResource( 7 )
 region_rect = Rect2( 0, 0, 8, 8 )
 
-[sub_resource type="DynamicFont" id=11]
+[sub_resource type="DynamicFont" id=18]
 font_data = ExtResource( 1 )
 
 [resource]
-default_font = SubResource( 11 )
+default_font = SubResource( 18 )
 Button/colors/font_color = Color( 0.88, 0.88, 0.88, 1 )
 Button/colors/font_color_disabled = Color( 0.9, 0.9, 0.9, 0.2 )
 Button/colors/font_color_hover = Color( 0.94, 0.94, 0.94, 1 )
@@ -109,13 +114,31 @@ Button/styles/focus = null
 Button/styles/hover = SubResource( 1 )
 Button/styles/normal = SubResource( 2 )
 Button/styles/pressed = SubResource( 3 )
+CheckButton/colors/font_color = Color( 0.88, 0.88, 0.88, 1 )
+CheckButton/colors/font_color_disabled = Color( 0.9, 0.9, 0.9, 0.2 )
+CheckButton/colors/font_color_hover = Color( 0.94, 0.94, 0.94, 1 )
+CheckButton/colors/font_color_hover_pressed = Color( 1, 1, 1, 1 )
+CheckButton/colors/font_color_pressed = Color( 1, 1, 1, 1 )
+CheckButton/constants/check_vadjust = 0
+CheckButton/constants/hseparation = 4
+CheckButton/fonts/font = null
+CheckButton/icons/off = ExtResource( 13 )
+CheckButton/icons/off_disabled = null
+CheckButton/icons/on = ExtResource( 14 )
+CheckButton/icons/on_disabled = null
+CheckButton/styles/disabled = SubResource( 4 )
+CheckButton/styles/focus = SubResource( 5 )
+CheckButton/styles/hover = SubResource( 6 )
+CheckButton/styles/hover_pressed = SubResource( 7 )
+CheckButton/styles/normal = SubResource( 8 )
+CheckButton/styles/pressed = SubResource( 9 )
 HSlider/icons/grabber = ExtResource( 10 )
 HSlider/icons/grabber_disabled = ExtResource( 8 )
 HSlider/icons/grabber_highlight = ExtResource( 10 )
 HSlider/icons/tick = null
-HSlider/styles/grabber_area = SubResource( 4 )
-HSlider/styles/grabber_area_highlight = SubResource( 5 )
-HSlider/styles/slider = SubResource( 6 )
+HSlider/styles/grabber_area = SubResource( 10 )
+HSlider/styles/grabber_area_highlight = SubResource( 11 )
+HSlider/styles/slider = SubResource( 12 )
 LineEdit/colors/clear_button_color = Color( 0.88, 0.88, 0.88, 1 )
 LineEdit/colors/clear_button_color_pressed = Color( 1, 1, 1, 1 )
 LineEdit/colors/cursor_color = Color( 0.94, 0.94, 0.94, 1 )
@@ -127,14 +150,14 @@ LineEdit/constants/minimum_spaces = 12
 LineEdit/fonts/font = null
 LineEdit/icons/clear = null
 LineEdit/styles/focus = null
-LineEdit/styles/normal = SubResource( 7 )
+LineEdit/styles/normal = SubResource( 13 )
 LineEdit/styles/read_only = null
-Panel/styles/panel = SubResource( 8 )
+Panel/styles/panel = SubResource( 14 )
 ProgressBar/colors/font_color = Color( 0.94, 0.94, 0.94, 1 )
 ProgressBar/colors/font_color_shadow = Color( 0, 0, 0, 1 )
 ProgressBar/fonts/font = null
-ProgressBar/styles/bg = SubResource( 12 )
-ProgressBar/styles/fg = SubResource( 13 )
+ProgressBar/styles/bg = SubResource( 15 )
+ProgressBar/styles/fg = SubResource( 4 )
 TabContainer/colors/font_color_bg = Color( 0.69, 0.69, 0.69, 1 )
 TabContainer/colors/font_color_disabled = Color( 0.9, 0.9, 0.9, 0.2 )
 TabContainer/colors/font_color_fg = Color( 0.94, 0.94, 0.94, 1 )
@@ -150,7 +173,7 @@ TabContainer/icons/increment = null
 TabContainer/icons/increment_highlight = null
 TabContainer/icons/menu = null
 TabContainer/icons/menu_highlight = null
-TabContainer/styles/panel = SubResource( 8 )
+TabContainer/styles/panel = SubResource( 14 )
 TabContainer/styles/tab_bg = SubResource( 3 )
 TabContainer/styles/tab_disabled = SubResource( 3 )
 TabContainer/styles/tab_fg = SubResource( 2 )
@@ -158,8 +181,8 @@ VScrollBar/icons/decrement = null
 VScrollBar/icons/decrement_highlight = null
 VScrollBar/icons/increment = null
 VScrollBar/icons/increment_highlight = null
-VScrollBar/styles/grabber = SubResource( 9 )
-VScrollBar/styles/grabber_highlight = SubResource( 9 )
-VScrollBar/styles/grabber_pressed = SubResource( 9 )
-VScrollBar/styles/scroll = SubResource( 10 )
+VScrollBar/styles/grabber = SubResource( 16 )
+VScrollBar/styles/grabber_highlight = SubResource( 16 )
+VScrollBar/styles/grabber_pressed = SubResource( 16 )
+VScrollBar/styles/scroll = SubResource( 17 )
 VScrollBar/styles/scroll_focus = null

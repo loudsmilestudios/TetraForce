@@ -1,0 +1,41 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://ui/credits/credits_manager.gd" type="Script" id=1]
+[ext_resource path="res://ui/credits/Credits.tscn" type="PackedScene" id=2]
+[ext_resource path="res://ui/theme/theme.tres" type="Theme" id=3]
+
+[node name="Credits" type="CanvasLayer"]
+layer = 100
+script = ExtResource( 1 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Credits" parent="." instance=ExtResource( 2 )]
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.0
+margin_left = -66.5694
+margin_top = 165.244
+margin_right = 189.431
+margin_bottom = 524.244
+rect_scale = Vector2( 0.5, 0.5 )
+
+[node name="Label" type="Label" parent="."]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 1.05112
+margin_top = -8.74438
+margin_right = 158.051
+margin_bottom = 5.25562
+rect_scale = Vector2( 0.5, 0.5 )
+theme = ExtResource( 3 )
+text = "Press START to speed up"
+__meta__ = {
+"_edit_use_anchors_": false
+}
