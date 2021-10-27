@@ -135,7 +135,7 @@ func boss_bar_set_current_hp(current_hp):
 #		boss bar is in automatic mode
 func _boss_bar_error_if_in_automatic():
 	if automatic_boss_bar:
-		printerr("Cannot update BossBar associated with '%s', it is in automatic mode!")
+		printerr("Cannot update BossBar associated with '%s', it is in automatic mode!" % self.name)
 		return true
 	return false
 
