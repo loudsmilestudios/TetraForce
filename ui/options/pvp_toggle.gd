@@ -2,19 +2,21 @@ extends Button
 
 func _ready():
 	global.connect("options_loaded", self, "update_options")
-	self.connect("button_down", self, "toggle_pvp")
+	self.connect("pressed", self, "toggle_pvp")
 
 func toggle_pvp():
-	if not "pvp" in global.options:
-		global.options["pvp"] = false
+	
+	if pressed:
+		global.options["pvp"] = true
+		sfx.play("sword0")
 	else:
-		global.options["pvp"] = !global.options["pvp"]
-	update_options()
+		global.options["pvp"] = false
+		sfx.play("swordcharge")
 
 func update_options():
 	if not "pvp" in global.options or global.options["pvp"]:
-		self.text = "PvP: Enabled"
+		self.pressed = true
 		global.pvp = true
 	else:
-		self.text = "PvP: Disabled"
+		self.pressed = false
 		global.pvp = false

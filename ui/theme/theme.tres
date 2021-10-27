@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=22 format=2]
+[gd_resource type="Theme" load_steps=30 format=2]
 
 [ext_resource path="res://ui/theme/font.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://ui/theme/panel2.png" type="Texture" id=2]
@@ -10,6 +10,8 @@
 [ext_resource path="res://ui/theme/scrollbar.png" type="Texture" id=8]
 [ext_resource path="res://ui/theme/slider_area.png" type="Texture" id=9]
 [ext_resource path="res://ui/theme/slider_button.png" type="Texture" id=10]
+[ext_resource path="res://ui/theme/check_button_off.png" type="Texture" id=11]
+[ext_resource path="res://ui/theme/check_button_on.png" type="Texture" id=12]
 
 [sub_resource type="StyleBoxTexture" id=1]
 texture = ExtResource( 4 )
@@ -34,6 +36,18 @@ margin_left = 4.16426
 margin_right = 4.29142
 margin_top = 4.03168
 margin_bottom = 4.72205
+
+[sub_resource type="StyleBoxEmpty" id=13]
+
+[sub_resource type="StyleBoxEmpty" id=14]
+
+[sub_resource type="StyleBoxEmpty" id=15]
+
+[sub_resource type="StyleBoxEmpty" id=16]
+
+[sub_resource type="StyleBoxEmpty" id=17]
+
+[sub_resource type="StyleBoxEmpty" id=18]
 
 [sub_resource type="StyleBoxEmpty" id=4]
 
@@ -91,6 +105,24 @@ Button/styles/focus = null
 Button/styles/hover = SubResource( 1 )
 Button/styles/normal = SubResource( 2 )
 Button/styles/pressed = SubResource( 3 )
+CheckButton/colors/font_color = Color( 0.88, 0.88, 0.88, 1 )
+CheckButton/colors/font_color_disabled = Color( 0.9, 0.9, 0.9, 0.2 )
+CheckButton/colors/font_color_hover = Color( 0.94, 0.94, 0.94, 1 )
+CheckButton/colors/font_color_hover_pressed = Color( 1, 1, 1, 1 )
+CheckButton/colors/font_color_pressed = Color( 1, 1, 1, 1 )
+CheckButton/constants/check_vadjust = 0
+CheckButton/constants/hseparation = 4
+CheckButton/fonts/font = null
+CheckButton/icons/off = ExtResource( 11 )
+CheckButton/icons/off_disabled = null
+CheckButton/icons/on = ExtResource( 12 )
+CheckButton/icons/on_disabled = null
+CheckButton/styles/disabled = SubResource( 13 )
+CheckButton/styles/focus = SubResource( 14 )
+CheckButton/styles/hover = SubResource( 15 )
+CheckButton/styles/hover_pressed = SubResource( 16 )
+CheckButton/styles/normal = SubResource( 17 )
+CheckButton/styles/pressed = SubResource( 18 )
 HSlider/icons/grabber = ExtResource( 10 )
 HSlider/icons/grabber_disabled = ExtResource( 8 )
 HSlider/icons/grabber_highlight = ExtResource( 10 )
