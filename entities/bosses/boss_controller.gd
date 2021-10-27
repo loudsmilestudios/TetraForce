@@ -15,7 +15,7 @@ export(bool) var automatic_boss_bar = true
 var difficulty_scale setget ,get_difficulty_scale
 var managed_entities = [] # Contains all entities managed by controller
 
-onready var boss_overlay : BossOverlay = global.player.hud.boss_overlay
+onready var boss_overlay : BossOverlay
 
 func _ready():
 	_load_entities()
@@ -94,6 +94,17 @@ func get_difficulty_scale():
 # Boss Bar Logic #
 #================#
 
+# _boss_bar_verify_overlay: Returns true if boss_overlay is gettable
+func _boss_bar_verify_overlay() -> bool:
+	if not boss_overlay:
+		boss_overlay = global.player.hud.boss_overlay
+	
+	if boss_overlay:
+		return true
+	
+	printerr("Boss bar does not exist!")
+	return false
+
 # boss_bar_show: Makes the boss bar visible
 func boss_bar_show():
 	if _error_if_not_host(): return
@@ -162,19 +173,23 @@ func _boss_bar_auto_calculate_current_hp():
 
 # _boss_bar_set_max_hp: Sends message to Boss Bar UI to update max
 func _boss_bar_set_max_hp(max_hp):
-	boss_overlay.set_max_boss_hp(max_hp)
+	if _boss_bar_verify_overlay():
+		boss_overlay.set_max_boss_hp(max_hp)
 
 # _boss_bar_set_max_hp: Sends message to Boss Bar UI to update current
 func _boss_bar_set_current_hp(new_hp):
-	boss_overlay.set_current_boss_hp(new_hp)
-	# Hide boss bar
-	if automatic_boss_bar and new_hp <= 0:
-		boss_bar_hide()
+	if _boss_bar_verify_overlay():
+		boss_overlay.set_current_boss_hp(new_hp)
+		# Hide boss bar
+		if automatic_boss_bar and new_hp <= 0:
+			boss_bar_hide()
 
 # _boss_bar_show: Sends message to Boss Bar UI display the bar on screen
 func _boss_bar_show():
-	boss_overlay.show_boss_bar()
+	if _boss_bar_verify_overlay():
+		boss_overlay.show_boss_bar()
 
 # _boss_bar_hide: Sends message to hide the Boss Bar UI
 func _boss_bar_hide():
-	boss_overlay.hide_boss_bar()
+	if _boss_bar_verify_overlay():
+		boss_overlay.hide_boss_bar()
