@@ -1,3 +1,4 @@
+class_name Main
 extends Control
 
 var default_map = "res://maps/shrine.tmx"
