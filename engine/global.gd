@@ -61,6 +61,11 @@ var weapons_def = {
 		path = "res://entities/weapons/cannonball.tscn",
 		icon = "",
 		ammo_type = "",
+		acquire_dialogue = ""},
+	"Rock": {
+		path = "res://entities/weapons/rock.tscn",
+		icon = "",
+		ammo_type = "",
 		acquire_dialogue = ""}
 }
 
