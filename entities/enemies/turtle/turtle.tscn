@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://entities/enemies/turtle/turtle.gd" type="Script" id=1]
 [ext_resource path="res://engine/network_object.tscn" type="PackedScene" id=2]
@@ -98,6 +98,9 @@ tracks/0/keys = {
 radius = 7.20157
 height = 1.36625
 
+[sub_resource type="CircleShape2D" id=8]
+radius = 26.8978
+
 [node name="Turtle" type="KinematicBody2D"]
 scale = Vector2( 1, 1.01346 )
 script = ExtResource( 1 )
@@ -130,3 +133,8 @@ update_properties = {
 enter_properties = {
 "health": 0
 }
+
+[node name="PlayerDetect" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetect"]
+shape = SubResource( 8 )

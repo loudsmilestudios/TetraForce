@@ -3,8 +3,14 @@ extends Enemy
 var movetimer_length = 150
 var movetimer = 0
 
+onready var detect = $PlayerDetect
+
 func _ready():
 	movedir = rand_direction()
+	MAX_HEALTH = 2
+	DAMAGE = 0.5
+	health = MAX_HEALTH
+	SPEED = 10
 
 func _physics_process(delta):
 	if !network.is_map_host() || is_dead():
