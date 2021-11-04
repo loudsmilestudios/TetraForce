@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://entities/enemies/turtle/turtle.gd" type="Script" id=1]
 [ext_resource path="res://engine/network_object.tscn" type="PackedScene" id=2]
@@ -47,6 +47,21 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=9]
+resource_name = "shell"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 6, 7 ]
 }
 
 [sub_resource type="Animation" id=4]
@@ -111,6 +126,7 @@ SPEED = 10
 anims/idleDown = SubResource( 1 )
 anims/idleSide = SubResource( 2 )
 anims/idleUp = SubResource( 3 )
+anims/shell = SubResource( 9 )
 anims/walkDown = SubResource( 4 )
 anims/walkSide = SubResource( 5 )
 anims/walkUp = SubResource( 6 )
@@ -119,7 +135,7 @@ anims/walkUp = SubResource( 6 )
 texture = ExtResource( 3 )
 hframes = 4
 vframes = 4
-frame = 5
+frame = 7
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 7 )

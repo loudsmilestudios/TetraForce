@@ -2,6 +2,7 @@ extends Enemy
 
 var movetimer_length = 150
 var movetimer = 0
+var sees_player = false
 
 onready var detect = $PlayerDetect
 
@@ -16,6 +17,21 @@ func _physics_process(delta):
 	if !network.is_map_host() || is_dead():
 		sprite.flip_h = (spritedir == "Left")
 		return
+	
+	for body in detect.get_overlapping_bodies():
+		if body is Player:
+			sees_player = true
+			if !is_in_group("invunerable"):
+				add_to_group("invunerable")
+		else:
+			sees_player = false
+			if is_in_group("invunerable"):
+				remove_from_group("invunerable")
+	
+		if sees_player:
+			anim.play("shell")
+			movedir = Vector2.ZERO
+			movetimer = 0
 	
 	loop_movement()
 	loop_spritedir()
@@ -36,5 +52,5 @@ func _physics_process(delta):
 	
 	if movetimer == 50:
 		movedir = Vector2.ZERO
-		use_weapon("Bow")
-		network.peer_call(self, "use_weapon", ["Bow"])
+		use_weapon("Rock")
+		network.peer_call(self, "use_weapon", ["Rock"])
