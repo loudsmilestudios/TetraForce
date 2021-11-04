@@ -114,7 +114,7 @@ radius = 7.20157
 height = 1.36625
 
 [sub_resource type="CircleShape2D" id=8]
-radius = 26.8978
+radius = 42.9168
 
 [node name="Turtle" type="KinematicBody2D"]
 scale = Vector2( 1, 1.01346 )

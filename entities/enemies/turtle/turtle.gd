@@ -28,29 +28,35 @@ func _physics_process(delta):
 			if is_in_group("invunerable"):
 				remove_from_group("invunerable")
 	
-		if sees_player:
-			anim.play("shell")
-			movedir = Vector2.ZERO
-			movetimer = 0
+	if sees_player:
+		anim.play("shell")
+		movedir = Vector2.ZERO
+		movetimer = 0
+		if !is_in_group("invunerable"):
+			add_to_group("invunerable")
+	else:
+		loop_movement()
+		loop_damage()
+		anim_switch("walk")
+		
+		if movedir == Vector2.ZERO:
+			anim_switch("idle")
 	
-	loop_movement()
+		if movetimer > 0:
+			movetimer -= 1
+		
+		if movetimer == 0 || is_on_wall() && hitstun == 0:
+			movedir = rand_direction()
+			movetimer = movetimer_length
+	
+		if movetimer == 50:
+			movedir = Vector2.ZERO
+			use_weapon("Rock")
+			network.peer_call(self, "use_weapon", ["Rock"])
+			
+		
+	
 	loop_spritedir()
-	loop_damage()
 	loop_holes()
 	
-	anim_switch("walk")
 	
-	if movedir == Vector2.ZERO:
-		anim_switch("idle")
-	
-	if movetimer > 0:
-		movetimer -= 1
-		
-	if movetimer == 0 || is_on_wall() && hitstun == 0:
-		movedir = rand_direction()
-		movetimer = movetimer_length
-	
-	if movetimer == 50:
-		movedir = Vector2.ZERO
-		use_weapon("Rock")
-		network.peer_call(self, "use_weapon", ["Rock"])
