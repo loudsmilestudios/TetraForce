@@ -74,9 +74,9 @@ func initialize():
 		player_data[1] = global.options.player_data
 	elif !dedicated:
 		pid = get_tree().get_network_unique_id()
-		rpc_id(1, "_recieve_my_player_token", IdentityService.my_identity.token)
+		rpc_id(1, "_receive_my_player_token", IdentityService.my_identity.token)
 		rpc_id(1, "_receive_my_player_data", global.options.player_data)
-		rpc_id(1, "_reveive_my_version", global.version)
+		rpc_id(1, "_receive_my_version", global.version)
 	
 	start_empty_timeout()
 	
@@ -91,7 +91,7 @@ remote func _get_system_arrays(state, value):
 			"weapons", "items", "pearl":
 				pass
 
-remote func _recieve_my_player_token(token):
+remote func _receive_my_player_token(token):
 	var identity = IdentityService.load_token(token)
 	var player_id = get_tree().get_rpc_sender_id()
 	if not yield(identity.is_valid(), "completed"):
@@ -104,10 +104,10 @@ func update_name_from_identity(player_id, identity):
 		if not player_id in player_data:
 			player_data[player_id] = {}
 		var new_name = "%s:%s" % [identity.platform, identity.display_name]
-		_recieve_name_update(player_id, new_name)
-		peer_call(self, "_recieve_name_update", [player_id, new_name])
+		_receive_name_update(player_id, new_name)
+		peer_call(self, "_receive_name_update", [player_id, new_name])
 			
-remote func _recieve_name_update(player_id, new_name):
+remote func _receive_name_update(player_id, new_name):
 	player_data[player_id].name = new_name
 	emit_signal("refresh_player_request", player_id)
 
@@ -127,7 +127,7 @@ remote func _receive_my_player_data(data):
 	rpc("_receive_player_data", player_data)
 	print(str(get_player_tag(player_id), " joined the game."))
 
-remote func _reveive_my_version(version):
+remote func _receive_my_version(version):
 	if version != global.version:
 		kick_player(get_tree().get_rpc_sender_id(), "Incompatible version! Server requires version: %s" % global.version)
 	else:
