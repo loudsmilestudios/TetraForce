@@ -11,7 +11,7 @@
 radius = 8.75
 height = 8.0
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=2]
 resource_name = "bomb"
 length = 1.5
 tracks/0/type = "value"
@@ -27,7 +27,7 @@ tracks/0/keys = {
 "values": [ 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62 ]
 }
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=3]
 resource_name = "break_free"
 length = 0.5
 loop = true
@@ -44,8 +44,7 @@ tracks/0/keys = {
 "values": [ 64, 65, 66, 67, 68 ]
 }
 
-[sub_resource type="Animation" id=2]
-resource_name = "idle"
+[sub_resource type="Animation" id=4]
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -60,8 +59,7 @@ tracks/0/keys = {
 "values": [ 0, 1 ]
 }
 
-[sub_resource type="Animation" id=3]
-resource_name = "jump"
+[sub_resource type="Animation" id=5]
 length = 0.6
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -76,8 +74,7 @@ tracks/0/keys = {
 "values": [ 8, 9, 10 ]
 }
 
-[sub_resource type="Animation" id=4]
-resource_name = "sword"
+[sub_resource type="Animation" id=6]
 length = 0.98
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -92,8 +89,7 @@ tracks/0/keys = {
 "values": [ 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 32, 33 ]
 }
 
-[sub_resource type="Animation" id=6]
-resource_name = "vunerable"
+[sub_resource type="Animation" id=7]
 length = 3.6
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -112,37 +108,37 @@ tracks/0/keys = {
 script = ExtResource( 4 )
 _managed_entities = [ NodePath("dead_captain") ]
 
-[node name="KinematicBody2D" type="KinematicBody2D" parent="."]
+[node name="dead_captain" type="KinematicBody2D" parent="."]
 collision_layer = 2
 collision_mask = 3
 script = ExtResource( 2 )
 MAX_HEALTH = 5.0
 
-[node name="Vine" type="Sprite" parent="KinematicBody2D"]
+[node name="Vine" type="Sprite" parent="dead_captain"]
 position = Vector2( 0, -64 )
 z_index = 200
 texture = ExtResource( 5 )
 
-[node name="Sprite" type="Sprite" parent="KinematicBody2D"]
+[node name="Sprite" type="Sprite" parent="dead_captain"]
 z_index = 201
 texture = ExtResource( 1 )
 hframes = 8
 vframes = 9
 
-[node name="NetworkObject" parent="KinematicBody2D" instance=ExtResource( 3 )]
+[node name="NetworkObject" parent="dead_captain" instance=ExtResource( 3 )]
 persistent = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="dead_captain"]
 shape = SubResource( 1 )
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="KinematicBody2D"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="dead_captain"]
 autoplay = "idle"
-anims/bomb = SubResource( 5 )
-anims/break_free = SubResource( 7 )
-anims/idle = SubResource( 2 )
-anims/jump = SubResource( 3 )
-anims/sword = SubResource( 4 )
-anims/vunerable = SubResource( 6 )
+anims/bomb = SubResource( 2 )
+anims/break_free = SubResource( 3 )
+anims/idle = SubResource( 4 )
+anims/jump = SubResource( 5 )
+anims/sword = SubResource( 6 )
+anims/vunerable = SubResource( 7 )
 
-[node name="Shadow" parent="KinematicBody2D" instance=ExtResource( 6 )]
+[node name="Shadow" parent="dead_captain" instance=ExtResource( 6 )]
 position = Vector2( 0, 11 )
