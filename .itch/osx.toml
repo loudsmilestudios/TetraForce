@@ -1,0 +1,6 @@
+[[actions]]
+name = "play"
+path = "TetraForce.dmg"
+scope = "profile:me"
+sandbox = true
+platform = "osx"

@@ -39,6 +39,16 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://tiles/holes.gd"
 }, {
+"base": "Reference",
+"class": "Identity",
+"language": "GDScript",
+"path": "res://addons/identity-service/Identity.gd"
+}, {
+"base": "Identity",
+"class": "ItchIdentity",
+"language": "GDScript",
+"path": "res://addons/identity-service/ItchIdentity.gd"
+}, {
 "base": "Control",
 "class": "Main",
 "language": "GDScript",
@@ -81,6 +91,8 @@ _global_script_class_icons={
 "Enemy": "",
 "Entity": "",
 "Holes": "",
+"Identity": "",
+"ItchIdentity": "",
 "Main": "",
 "NPC": "",
 "Player": "",
@@ -102,6 +114,7 @@ network="*res://engine/network.gd"
 screenfx="*res://effects/screenfx.tscn"
 global="*res://engine/global.gd"
 sfx="*res://sound/sound.gd"
+IdentityService="*res://addons/identity-service/IdentityService.gd"
 
 [debug]
 
@@ -118,7 +131,7 @@ window/stretch/aspect="keep"
 
 [editor_plugins]
 
-enabled=PoolStringArray( "res://addons/godot-multiplayer-development-tools/plugin.cfg", "res://addons/vnen.tiled_importer/plugin.cfg" )
+enabled=PoolStringArray( "res://addons/godot-multiplayer-development-tools/plugin.cfg", "res://addons/identity-service/plugin.cfg", "res://addons/vnen.tiled_importer/plugin.cfg" )
 
 [gui]
 
