@@ -5,6 +5,7 @@ var movetimer = 0
 var sees_player = false
 
 onready var detect = $PlayerDetect
+onready var bombed = false setget set_bombed
 
 func _ready():
 	movedir = rand_direction()
@@ -23,6 +24,7 @@ func _physics_process(delta):
 			sees_player = true
 			if !is_in_group("invunerable"):
 				add_to_group("invunerable")
+				add_to_group("bombable")
 		else:
 			sees_player = false
 			if is_in_group("invunerable"):
@@ -54,9 +56,21 @@ func _physics_process(delta):
 			use_weapon("Rock")
 			network.peer_call(self, "use_weapon", ["Rock"])
 			
-		
-	
 	loop_spritedir()
 	loop_holes()
+
+func bombed(show_animation=true):
+	$CollisionShape2D.queue_free()
+	bombed = true
+	if show_animation:
+		var animation = preload("res://effects/bombable_rock_explosion.tscn").instance()
+		get_parent().add_child(animation)
+		animation.position = position
+	yield(get_tree(), "idle_frame")
+	set_dead()
+
+func set_bombed(b):
+	if b:
+		bombed(false)
 	
 	

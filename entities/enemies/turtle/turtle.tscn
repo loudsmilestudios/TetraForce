@@ -49,7 +49,7 @@ tracks/0/keys = {
 "values": [ 0 ]
 }
 
-[sub_resource type="Animation" id=9]
+[sub_resource type="Animation" id=4]
 resource_name = "shell"
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -64,8 +64,7 @@ tracks/0/keys = {
 "values": [ 6, 7 ]
 }
 
-[sub_resource type="Animation" id=4]
-resource_name = "walkDown"
+[sub_resource type="Animation" id=5]
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -79,8 +78,7 @@ tracks/0/keys = {
 "values": [ 4, 5 ]
 }
 
-[sub_resource type="Animation" id=5]
-resource_name = "walkSide"
+[sub_resource type="Animation" id=6]
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -94,7 +92,7 @@ tracks/0/keys = {
 "values": [ 2, 3 ]
 }
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=8]
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -110,10 +108,10 @@ tracks/0/keys = {
 }
 
 [sub_resource type="CapsuleShape2D" id=7]
-radius = 7.20157
-height = 1.36625
+radius = 6.0
+height = 1.0
 
-[sub_resource type="CircleShape2D" id=8]
+[sub_resource type="CircleShape2D" id=9]
 radius = 42.9168
 
 [node name="Turtle" type="KinematicBody2D"]
@@ -126,16 +124,15 @@ SPEED = 10
 anims/idleDown = SubResource( 1 )
 anims/idleSide = SubResource( 2 )
 anims/idleUp = SubResource( 3 )
-anims/shell = SubResource( 9 )
-anims/walkDown = SubResource( 4 )
-anims/walkSide = SubResource( 5 )
-anims/walkUp = SubResource( 6 )
+anims/shell = SubResource( 4 )
+anims/walkDown = SubResource( 5 )
+anims/walkSide = SubResource( 6 )
+anims/walkUp = SubResource( 8 )
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 3 )
-hframes = 4
-vframes = 4
-frame = 7
+hframes = 8
+vframes = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 7 )
@@ -153,4 +150,4 @@ enter_properties = {
 [node name="PlayerDetect" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetect"]
-shape = SubResource( 8 )
+shape = SubResource( 9 )
