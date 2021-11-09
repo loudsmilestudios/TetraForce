@@ -31,7 +31,13 @@ func _physics_process(delta):
 				remove_from_group("invunerable")
 	
 	if sees_player:
-		anim.play("shell")
+		if movedir == Vector2.DOWN:
+			anim.play("shellDown")
+		elif movedir == Vector2.UP:
+			anim.play("shellUp")
+		elif movedir == Vector2.LEFT or movedir == Vector2.RIGHT:
+			anim.play("shellSide")
+		
 		movedir = Vector2.ZERO
 		movetimer = 0
 		if !is_in_group("invunerable"):
@@ -53,8 +59,8 @@ func _physics_process(delta):
 	
 		if movetimer == 50:
 			movedir = Vector2.ZERO
-			use_weapon("Rock")
-			network.peer_call(self, "use_weapon", ["Rock"])
+			use_weapon("Spike")
+			network.peer_call(self, "use_weapon", ["Spike"])
 			
 	loop_spritedir()
 	loop_holes()
