@@ -7,20 +7,20 @@ export(String) var location = "room"
 export(String) var spawned_by = ""
 
 var spawn_position = home_position
+var zone
 
 func _ready():
 	spawn_position = home_position
 	add_to_group("enemy")
 	add_to_group("maphost")
+	add_to_group("zoned")
 	set_collision_layer_bit(0, 0)
 	set_collision_mask_bit(0, 0)
 	set_collision_layer_bit(1, 1)
 	set_collision_mask_bit(1, 1)
-	if spawned_by != "":
-		set_dead()
-		map.get_node(spawned_by).connect("started", self, "spawned")
-		map.get_node(spawned_by).connect("check_for_active", self, "spawned")
-		map.get_node(spawned_by).connect("reset", self, "set_dead")
+	set_collision_layer_bit(10, 1)
+	set_collision_mask_bit(10, 1)
+	check_spawn()
 
 func _process(delta):
 	set_hole_bit(hitstun == 0)
@@ -66,9 +66,17 @@ remote func set_dead():
 	position = Vector2(0,0)
 	health = -1
 	
+func check_spawn():
+	if spawned_by != "":
+		set_dead()
+		map.get_node(spawned_by).connect("started", self, "spawned")
+		map.get_node(spawned_by).connect("check_for_active", self, "spawned")
+		map.get_node(spawned_by).connect("reset", self, "set_dead")
+	
 func spawned():
 	if network.is_map_host():
 		network.peer_call(self, "spawned")
+	zone = map.get_node(spawned_by).zone
 	show()
 	set_physics_process(true)
 	home_position = spawn_position
