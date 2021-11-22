@@ -1,0 +1,16 @@
+{
+	"Force" : 0,
+	"Random": 0,
+	"Nodes" :
+	 [
+		{
+			"id"      : 0,
+			"name"    : "Placa:",
+			"text"    : "PERIGO! Estátua de desafio antigo à esquerda. Não é para os fracos.",
+			"next_id" : -1,
+			"choices" : []
+		}
+
+	]
+
+}
