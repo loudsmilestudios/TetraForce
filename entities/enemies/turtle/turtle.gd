@@ -33,10 +33,13 @@ func _physics_process(delta):
 	if sees_player:
 		if movedir == Vector2.DOWN:
 			anim.play("shellDown")
+			network.peer_call(anim, "play", ["shellDown"])
 		elif movedir == Vector2.UP:
 			anim.play("shellUp")
+			network.peer_call(anim, "play", ["shellUp"])
 		elif movedir == Vector2.LEFT or movedir == Vector2.RIGHT:
 			anim.play("shellSide")
+			network.peer_call(anim, "play", ["shellSide"])
 		
 		movedir = Vector2.ZERO
 		movetimer = 0
