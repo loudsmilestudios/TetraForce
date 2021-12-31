@@ -531,7 +531,7 @@ anims/visible = SubResource( 24 )
 texture = ExtResource( 4 )
 hframes = 6
 vframes = 8
-frame = 38
+frame = 26
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false

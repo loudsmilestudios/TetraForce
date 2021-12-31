@@ -273,10 +273,8 @@ func state_acquire():
 func check_for_invunerable():
 	if invunerable >= 1 && health > 0:
 		$AnimationPlayer/invunerable.play("invunerable")
-		network.peer_call($AnimationPlayer/invunerable, "play", ["invunerable"])
 	else: 
 		$AnimationPlayer/invunerable.play("visible")
-		network.peer_call($AnimationPlayer/invunerable, "play", ["visible"])
 		
 func state_die():
 	if anim.assigned_animation != "die":

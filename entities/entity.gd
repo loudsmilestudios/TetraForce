@@ -254,7 +254,7 @@ func anim_switch(a):
 		anim.play(newanim)
 	animation = newanim
 
-sync func use_weapon(weapon_name, input="A"):
+sync func use_weapon(weapon_name, input="A", data = {}):
 	var weapon = global.weapons_def[weapon_name]
 	var new_weapon = load(weapon.path).instance()
 	var weapon_group = str(weapon_name, name)
@@ -278,6 +278,7 @@ sync func use_weapon(weapon_name, input="A"):
 		emit_signal("update_count")
 	
 	new_weapon.input = input
+	new_weapon.data = data
 	new_weapon.start()
 
 func remove_last_item(group):

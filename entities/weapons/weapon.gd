@@ -6,6 +6,7 @@ var TYPE = null
 var input = null
 var user = null
 var pvp = global.pvp
+var data = {}
 
 export(float, 0, 20, 0.5) var DAMAGE = 0.5
 export(int, 1, 20) var MAX_AMOUNT = 1

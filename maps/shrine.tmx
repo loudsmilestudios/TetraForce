@@ -264,15 +264,6 @@
   <object id="171" gid="313" x="240" y="592" width="16" height="16"/>
   <object id="172" gid="313" x="224" y="592" width="16" height="16"/>
   <object id="173" gid="313" x="208" y="592" width="16" height="16"/>
-  <object id="249" x="336" y="336">
-   <properties>
-    <property name="location" value=""/>
-    <property name="path" value="res://entities/bosses/dead_captain/dead_captain.tscn"/>
-    <property name="spawned_by" value="room1"/>
-   </properties>
-   <point/>
-  </object>
-  <object id="250" name="room1" gid="320" x="384" y="304" width="16" height="16"/>
  </objectgroup>
  <objectgroup id="7" name="zones" visible="0" locked="1">
   <object id="1" name="1" type="area" x="128" y="368" width="384" height="256"/>

@@ -7,14 +7,14 @@
 [ext_resource path="res://entities/bosses/dead_captain/vines.png" type="Texture" id=5]
 [ext_resource path="res://effects/shadow.tscn" type="PackedScene" id=6]
 [ext_resource path="res://effects/wood_fall.png" type="Texture" id=7]
-[ext_resource path="res://entities/weapons/hurt_extension.tscn" type="PackedScene" id=8]
 [ext_resource path="res://entities/weapons/bomb_barrage.png" type="Texture" id=9]
+[ext_resource path="res://effects/cannon_shot_effect.png" type="Texture" id=10]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 8.75
 height = 8.0
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=2]
 length = 2.6
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -59,11 +59,14 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 1.1 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 1.1, 2.4 ),
+"transitions": PoolRealArray( 1, 1 ),
 "values": [ {
 "args": [  ],
 "method": "boom_sfx"
+}, {
+"args": [  ],
+"method": "bomb_barrage"
 } ]
 }
 tracks/4/type = "value"
@@ -85,13 +88,61 @@ tracks/5/loop_wrap = true
 tracks/5/imported = false
 tracks/5/enabled = true
 tracks/5/keys = {
-"times": PoolRealArray( 1.10135, 2.4 ),
+"times": PoolRealArray( 1.10135, 1.9 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ Vector2( 4, -16 ), Vector2( 4, -160 ) ]
 }
+tracks/6/type = "value"
+tracks/6/path = NodePath("Bomb:rotation_degrees")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 1.1, 1.9 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 270.0 ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("Shot:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0, 1.1, 1.6 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, false ]
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("Shot:frame")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 1.1, 1.2, 1.3, 1.4, 1.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 4, 5, 6, 7, 8 ]
+}
+tracks/9/type = "value"
+tracks/9/path = NodePath("Shot:position")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 1.1 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 5, -22 ) ]
+}
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=3]
 length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -130,7 +181,7 @@ tracks/2/keys = {
 "values": [ Vector2( 0, -66 ), Vector2( 0, -63 ) ]
 }
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=4]
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -169,8 +220,8 @@ tracks/2/keys = {
 "values": [ Vector2( 0, -63 ) ]
 }
 
-[sub_resource type="Animation" id=6]
-length = 2.5
+[sub_resource type="Animation" id=5]
+length = 2.6
 tracks/0/type = "value"
 tracks/0/path = NodePath("Vine:position")
 tracks/0/interp = 1
@@ -272,8 +323,22 @@ tracks/7/keys = {
 "method": "fall_sfx"
 } ]
 }
+tracks/8/type = "method"
+tracks/8/path = NodePath("AnimationPlayer")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 2.5 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "bomb", -1, 1.0, false ],
+"method": "play"
+} ]
+}
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=6]
 length = 1.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -312,7 +377,7 @@ tracks/2/keys = {
 "values": [ Vector2( 0, 0 ), Vector2( 0, -2 ), Vector2( 0, -18 ), Vector2( 0, -34 ), Vector2( 0, -50 ), Vector2( 0, -34 ), Vector2( 0, -18 ), Vector2( 0, -2 ), Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=7]
 length = 0.7
 step = 0.5
 tracks/0/type = "value"
@@ -322,13 +387,13 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.2, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 16, 17, 19, 20, 22, 23, 24, 25, 26, 27, 28 ]
+"values": [ 16, 17, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28 ]
 }
-tracks/1/type = "value"
-tracks/1/path = NodePath("Sprite:position")
+tracks/1/type = "method"
+tracks/1/path = NodePath("..")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -336,61 +401,13 @@ tracks/1/enabled = true
 tracks/1/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 0, 0 ) ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("Vine:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 0, -63 ) ]
-}
-tracks/3/type = "method"
-tracks/3/path = NodePath("..")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"times": PoolRealArray( 0.298204 ),
-"transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [  ],
-"method": "swordspin_sfx"
+"method": "sword_strike"
 } ]
 }
-tracks/4/type = "value"
-tracks/4/path = NodePath("hurt_extension:position")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
-"times": PoolRealArray( 0, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6, 0.65 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
-"update": 0,
-"values": [ Vector2( 0, 0 ), Vector2( -15, -16 ), Vector2( -22, 9 ), Vector2( -7, 19 ), Vector2( 12, 17 ), Vector2( 20, 7 ), Vector2( 18, -16 ), Vector2( 1, -18 ), Vector2( 0, 0 ) ]
-}
-tracks/5/type = "value"
-tracks/5/path = NodePath("hurt_extension:active")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/keys = {
-"times": PoolRealArray( 0, 0.3, 0.65 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 1,
-"values": [ false, true, false ]
-}
 
-[sub_resource type="Animation" id=9]
+[sub_resource type="Animation" id=8]
 length = 3.6
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -416,8 +433,22 @@ tracks/1/keys = {
 "update": 0,
 "values": [ Vector2( 0, -4 ) ]
 }
+tracks/2/type = "method"
+tracks/2/path = NodePath("AnimationPlayer")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 3.6 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "break_free", -1, 1.0, false ],
+"method": "play"
+} ]
+}
 
-[sub_resource type="CircleShape2D" id=10]
+[sub_resource type="CircleShape2D" id=9]
 radius = 42.2019
 
 [node name="dead_captain_controller" type="Node2D"]
@@ -440,7 +471,7 @@ z_index = 201
 texture = ExtResource( 1 )
 hframes = 8
 vframes = 9
-frame = 8
+frame = 16
 
 [node name="Wood" type="Sprite" parent="dead_captain"]
 position = Vector2( 0, -152 )
@@ -450,27 +481,38 @@ hframes = 4
 
 [node name="Bomb" type="Sprite" parent="dead_captain"]
 visible = false
-position = Vector2( 4, -160 )
+position = Vector2( 4, -19.4921 )
+rotation = 0.122039
+z_index = 200
 texture = ExtResource( 9 )
 hframes = 3
 
-[node name="NetworkObject" parent="dead_captain" instance=ExtResource( 3 )]
-persistent = true
+[node name="Shot" type="Sprite" parent="dead_captain"]
+visible = false
+position = Vector2( 5, -22 )
+z_index = 200
+texture = ExtResource( 10 )
+hframes = 4
+vframes = 4
+frame = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="dead_captain"]
 shape = SubResource( 1 )
 
-[node name="hurt_extension" parent="dead_captain" instance=ExtResource( 8 )]
-DAMAGE = 2.0
+[node name="NetworkObject" parent="dead_captain" instance=ExtResource( 3 )]
+persistent = true
+update_properties = {
+"pos": Vector2( 0, 0 )
+}
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="dead_captain"]
-anims/bomb = SubResource( 3 )
-anims/break_free = SubResource( 4 )
-anims/idle = SubResource( 5 )
-anims/intro = SubResource( 6 )
-anims/jump = SubResource( 7 )
-anims/sword = SubResource( 8 )
-anims/vulnerable = SubResource( 9 )
+anims/bomb = SubResource( 2 )
+anims/break_free = SubResource( 3 )
+anims/idle = SubResource( 4 )
+anims/intro = SubResource( 5 )
+anims/jump = SubResource( 6 )
+anims/sword = SubResource( 7 )
+anims/vulnerable = SubResource( 8 )
 
 [node name="Shadow" parent="dead_captain" instance=ExtResource( 6 )]
 position = Vector2( 0, 11 )
@@ -481,7 +523,7 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="dead_captain/PlayerDetect"]
-shape = SubResource( 10 )
+shape = SubResource( 9 )
 __meta__ = {
 "_edit_lock_": true
 }

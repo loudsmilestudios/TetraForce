@@ -5,6 +5,7 @@ class_name Enemy
 export(bool) var chest_spawn = false
 export(String) var location = "room"
 export(String) var spawned_by = ""
+export(PackedScene) var death_anim_scene = preload("res://effects/enemy_death.tscn")
 
 var spawn_position = home_position
 var zone
@@ -36,7 +37,7 @@ func check_for_death():
 		enemy_death(global_position)
 
 func enemy_death(pos):
-	var death_animation = preload("res://effects/enemy_death.tscn").instance()
+	var death_animation = death_anim_scene.instance()
 	death_animation.global_position = pos
 	map.add_child(death_animation)
 	sfx.play("enemy_death")

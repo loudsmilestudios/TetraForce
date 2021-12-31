@@ -1063,7 +1063,6 @@ tracks/0/keys = {
 extents = Vector2( 8, 8.28574 )
 
 [node name="sword" type="Node2D"]
-position = Vector2( 0, -3 )
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_horizontal_guides_": [  ]
@@ -1087,15 +1086,13 @@ anims/default = SubResource( 9 )
 anims/flash = SubResource( 10 )
 
 [node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 11, 12 )
-rotation = 1.5708
+position = Vector2( 3, -16 )
 texture = ExtResource( 2 )
 hframes = 2
-frame = 1
 
 [node name="Hitbox" type="Area2D" parent="."]
-position = Vector2( 8, 9 )
-scale = Vector2( 1.25, 1.25 )
+position = Vector2( 3, -15 )
+scale = Vector2( 0.25, 1 )
 collision_layer = 35
 collision_mask = 35
 __meta__ = {
@@ -1106,5 +1103,5 @@ __meta__ = {
 shape = SubResource( 11 )
 
 [node name="CutNode" type="Node2D" parent="."]
-position = Vector2( 17, 17 )
+position = Vector2( -16, -11 )
 scale = Vector2( 2, 2 )

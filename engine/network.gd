@@ -304,6 +304,8 @@ remote func _pc(object, function, arguments = []):
 			get_node(object).callv(function, arguments)
 		else:
 			print("object ", get_node(object).name, " does not have method ", function)
+	else:
+		printerr("object %s does not exist"%object)
 
 func start_empty_timeout():
 	if empty_timeout == 0 || player_list.size() > 0 || empty_timeout_timer:

@@ -139,7 +139,6 @@ anims/walk = SubResource( 4 )
 z_as_relative = false
 texture = ExtResource( 3 )
 hframes = 5
-frame = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 5 )

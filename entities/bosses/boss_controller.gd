@@ -60,7 +60,8 @@ func _remove_entity(entity):
 	if entity in managed_entities:
 		managed_entities.erase(entity)
 		entity.enemy_death(entity.global_position)
-		entity.queue_free()
+		entity.call_deferred("queue_free")
+		network.peer_call(entity, "call_deferred", ["queue_free"])
 
 #=================#
 # Signal Handlers #
@@ -75,6 +76,7 @@ func _on_entity_killed(killer, entity):
 	if len(managed_entities) <= 0:
 		emit_signal("all_entities_killed", killer)
 	self._remove_entity(entity)
+	network.peer_call(self, "_remove_entity", entity)
 
 #===================#
 # Getters & Setters #

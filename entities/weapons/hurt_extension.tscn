@@ -1,14 +1,49 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://entities/weapons/hurt_extension.gd" type="Script" id=1]
 
-[sub_resource type="CircleShape2D" id=1]
+[sub_resource type="Animation" id=1]
+resource_name = "deadcaptain_sword"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/path = NodePath("Hitbox/CollisionShape2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.303668, 0.350644, 0.39762, 0.45, 0.498283, 0.543582, 0.595591, 0.645923 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( -15, -15 ), Vector2( -22, 9 ), Vector2( -7, 19 ), Vector2( 12, 17 ), Vector2( 20, 7 ), Vector2( 18, -16 ), Vector2( 1, -18 ), Vector2( 0, 0 ) ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.7 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "queue_free"
+} ]
+}
+
+[sub_resource type="CircleShape2D" id=2]
 radius = 8.0
 
 [node name="hurt_extension" type="Node2D"]
 script = ExtResource( 1 )
+DAMAGE = 2.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/deadcaptain_sword = SubResource( 1 )
 
 [node name="Hitbox" type="Area2D" parent="."]
+collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
-shape = SubResource( 1 )
+shape = SubResource( 2 )
