@@ -4,7 +4,7 @@
 [ext_resource path="res://engine/network_object.tscn" type="PackedScene" id=2]
 [ext_resource path="res://entities/enemies/turtle/turtle.png" type="Texture" id=3]
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=1]
 resource_name = "idleDown"
 loop = true
 tracks/0/type = "value"
@@ -35,8 +35,7 @@ tracks/0/keys = {
 "values": [ 2 ]
 }
 
-[sub_resource type="Animation" id=1]
-resource_name = "idleUp"
+[sub_resource type="Animation" id=3]
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -65,7 +64,7 @@ tracks/0/keys = {
 "values": [ 8, 9 ]
 }
 
-[sub_resource type="Animation" id=11]
+[sub_resource type="Animation" id=5]
 resource_name = "shellSide"
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -80,7 +79,7 @@ tracks/0/keys = {
 "values": [ 10, 11 ]
 }
 
-[sub_resource type="Animation" id=10]
+[sub_resource type="Animation" id=6]
 resource_name = "shellUp"
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -111,7 +110,7 @@ tracks/0/keys = {
 "values": [ 0, 1 ]
 }
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=8]
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -125,8 +124,7 @@ tracks/0/keys = {
 "values": [ 2, 3 ]
 }
 
-[sub_resource type="Animation" id=5]
-resource_name = "walkUp"
+[sub_resource type="Animation" id=9]
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -140,12 +138,12 @@ tracks/0/keys = {
 "values": [ 4, 5 ]
 }
 
-[sub_resource type="CapsuleShape2D" id=8]
+[sub_resource type="CapsuleShape2D" id=10]
 radius = 6.0
 height = 1.0
 
-[sub_resource type="CircleShape2D" id=9]
-radius = 42.9168
+[sub_resource type="CircleShape2D" id=11]
+radius = 32.0
 
 [node name="Turtle" type="KinematicBody2D"]
 scale = Vector2( 1, 1.01346 )
@@ -154,23 +152,24 @@ MAX_HEALTH = 2.0
 SPEED = 10
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/idleDown = SubResource( 3 )
+anims/idleDown = SubResource( 1 )
 anims/idleSide = SubResource( 2 )
-anims/idleUp = SubResource( 1 )
+anims/idleUp = SubResource( 3 )
 anims/shellDown = SubResource( 4 )
-anims/shellSide = SubResource( 11 )
-anims/shellUp = SubResource( 10 )
+anims/shellSide = SubResource( 5 )
+anims/shellUp = SubResource( 6 )
 anims/walkDown = SubResource( 7 )
-anims/walkSide = SubResource( 6 )
-anims/walkUp = SubResource( 5 )
+anims/walkSide = SubResource( 8 )
+anims/walkUp = SubResource( 9 )
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 3 )
 hframes = 8
 vframes = 2
+frame = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 8 )
+shape = SubResource( 10 )
 
 [node name="NetworkObject" parent="." instance=ExtResource( 2 )]
 update_properties = {
@@ -185,4 +184,4 @@ enter_properties = {
 [node name="PlayerDetect" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetect"]
-shape = SubResource( 9 )
+shape = SubResource( 11 )

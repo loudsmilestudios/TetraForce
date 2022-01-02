@@ -3,6 +3,7 @@ extends Enemy
 var movetimer_length = 150
 var movetimer = 0
 var sees_player = false
+var shell = false
 
 onready var detect = $PlayerDetect
 onready var bombed = false setget set_bombed
@@ -25,34 +26,23 @@ func _physics_process(delta):
 			if !is_in_group("invunerable"):
 				add_to_group("invunerable")
 				add_to_group("bombable")
+			if network.is_map_host():
+				withdraw()
+			else:
+				network.peer_call_id(network.get_map_host(), self, "withdraw")
 		else:
 			sees_player = false
 			if is_in_group("invunerable"):
 				remove_from_group("invunerable")
 	
 	if sees_player:
-		if movedir == Vector2.DOWN:
-			anim.play("shellDown")
-			network.peer_call(anim, "play", ["shellDown"])
-		elif movedir == Vector2.UP:
-			anim.play("shellUp")
-			network.peer_call(anim, "play", ["shellUp"])
-		elif movedir == Vector2.LEFT or movedir == Vector2.RIGHT:
-			anim.play("shellSide")
-			network.peer_call(anim, "play", ["shellSide"])
-		
 		movedir = Vector2.ZERO
 		movetimer = 0
-		if !is_in_group("invunerable"):
-			add_to_group("invunerable")
 	else:
-		loop_movement()
 		loop_damage()
 		anim_switch("walk")
-		
-		if movedir == Vector2.ZERO:
-			anim_switch("idle")
-	
+		shell = false
+
 		if movetimer > 0:
 			movetimer -= 1
 		
@@ -65,8 +55,22 @@ func _physics_process(delta):
 			use_weapon("Spike")
 			network.peer_call(self, "use_weapon", ["Spike"])
 			
+	loop_movement()
 	loop_spritedir()
 	loop_holes()
+	
+func withdraw():
+	if shell == false:
+		if spritedir == "Down":
+			anim.play("shellDown")
+			network.peer_call(anim, "play", ["shellDown"])
+		elif spritedir == "Up":
+			anim.play("shellUp")
+			network.peer_call(anim, "play", ["shellUp"])
+		elif spritedir == "Left" or spritedir == "Right":
+			anim.play("shellSide")
+			network.peer_call(anim, "play", ["shellSide"])
+		shell = true
 
 func bombed(show_animation=true):
 	$CollisionShape2D.queue_free()
