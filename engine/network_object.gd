@@ -11,7 +11,7 @@ onready var game = get_parent()
 func _ready():
 	if game.has_method("get_game"):
 		game = game.get_game(self)
-	else not game.has_method("is_game"):
+	elif not game.has_method("is_game"):
 		game = game.get_parent()
 
 	game.connect("player_entered", self, "player_entered")
