@@ -218,6 +218,12 @@ func create_drowning_fx(pos):
 func damage(amount, dir, damager=null):
 	if is_in_group("invunerable"):
 		return
+		
+	print(damager)
+	print(global.pvp)
+	if !global.pvp && damager == "PLAYER":
+		return
+			
 	if hitstun == 0 && state != "menu":
 		if amount != 0:
 			sfx.play(hurt_sfx)
