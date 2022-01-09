@@ -15,33 +15,36 @@ func _ready():
 	health = MAX_HEALTH
 	SPEED = 10
 
+func contains_player(bodies):
+	for body in bodies:
+		if body is Player:
+			return true
+	return false
+
 func _physics_process(delta):
 	if !network.is_map_host() || is_dead():
 		sprite.flip_h = (spritedir == "Left")
 		return
 	
-	for body in detect.get_overlapping_bodies():
-		if body is Player:
-			sees_player = true
-			if !is_in_group("invunerable"):
-				add_to_group("invunerable")
-				add_to_group("bombable")
-			if network.is_map_host():
-				withdraw()
-			else:
-				network.peer_call_id(network.get_map_host(), self, "withdraw")
-		else:
-			sees_player = false
-			if is_in_group("invunerable"):
-				remove_from_group("invunerable")
+	sees_player = contains_player(detect.get_overlapping_bodies())
 	
 	if sees_player:
+		if !"shell" in anim.current_animation && !anim.current_animation == "":
+			anim_switch("shell")
+			network.peer_call(self, "anim_switch", ["shell"])
+		shell = true
 		movedir = Vector2.ZERO
 		movetimer = 0
+		if !is_in_group("invunerable"):
+			add_to_group("invunerable")
+			add_to_group("bombable")
 	else:
 		loop_damage()
 		anim_switch("walk")
+		network.peer_call(self, "anim_switch", ["walk"])
 		shell = false
+		if is_in_group("invunerable"):
+			remove_from_group("invunerable")
 
 		if movetimer > 0:
 			movetimer -= 1
@@ -58,19 +61,6 @@ func _physics_process(delta):
 	loop_movement()
 	loop_spritedir()
 	loop_holes()
-	
-func withdraw():
-	if shell == false:
-		if spritedir == "Down":
-			anim.play("shellDown")
-			network.peer_call(anim, "play", ["shellDown"])
-		elif spritedir == "Up":
-			anim.play("shellUp")
-			network.peer_call(anim, "play", ["shellUp"])
-		elif spritedir == "Left" or spritedir == "Right":
-			anim.play("shellSide")
-			network.peer_call(anim, "play", ["shellSide"])
-		shell = true
 
 func bombed(show_animation=true):
 	$CollisionShape2D.queue_free()

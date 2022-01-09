@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://ui/theme/theme.tres" type="Theme" id=1]
 [ext_resource path="res://ui/options/options.tscn" type="PackedScene" id=2]
@@ -412,9 +412,8 @@ visible = false
 [connection signal="mouse_entered" from="top/VBoxContainer/quit" to="." method="_on_mouse_entered"]
 [connection signal="pressed" from="top/VBoxContainer/quit" to="." method="_on_quit_pressed"]
 [connection signal="pressed" from="multiplayer/Automatic/connect" to="." method="_on_connect_pressed"]
-[connection signal="pressed" from="message/Button" to="." method="_on_back_pressed"]
 [connection signal="pressed" from="multiplayer/Direct/host" to="." method="_on_host_pressed"]
 [connection signal="pressed" from="multiplayer/Direct/join" to="." method="_on_join_pressed"]
-
+[connection signal="pressed" from="message/Button" to="." method="_on_back_pressed"]
 [connection signal="mouse_entered" from="back" to="." method="_on_mouse_entered"]
 [connection signal="pressed" from="back" to="." method="_on_back_pressed"]
