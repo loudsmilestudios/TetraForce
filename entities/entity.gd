@@ -216,6 +216,8 @@ func create_drowning_fx(pos):
 	sfx.play("drown")
 
 func damage(amount, dir, damager=null):
+	if is_in_group("invunerable"):
+		return
 	if hitstun == 0 && state != "menu":
 		if amount != 0:
 			sfx.play(hurt_sfx)

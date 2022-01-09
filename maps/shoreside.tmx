@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.6.0" orientation="orthogonal" renderorder="right-down" width="96" height="54" tilewidth="16" tileheight="16" infinite="1" nextlayerid="21" nextobjectid="409">
+<map version="1.5" tiledversion="1.6.0" orientation="orthogonal" renderorder="right-down" width="96" height="54" tilewidth="16" tileheight="16" infinite="1" nextlayerid="21" nextobjectid="415">
  <properties>
   <property name="music" value="shore"/>
  </properties>
@@ -195,7 +195,7 @@
 102,102,102,102,102,103,36,37,30,32,32,32,32,32,32,32,
 107,107,107,107,107,109,102,103,36,30,32,32,32,32,32,32,
 107,107,107,107,107,107,107,109,103,31,32,32,32,32,32,32,
-107,107,107,107,107,107,107,107,108,36,37,37,30,32,32,32,
+107,107,107,107,107,107,107,107,108,814,814,37,30,32,32,32,
 107,107,107,107,107,107,107,107,109,102,102,103,36,37,30,32,
 107,107,107,107,107,107,107,107,107,107,107,109,102,103,31,32,
 107,107,107,107,107,107,107,107,107,107,107,107,107,108,31,32,
@@ -2935,6 +2935,9 @@
   <object id="406" gid="786" x="496" y="736" width="16" height="16"/>
   <object id="407" gid="786" x="448" y="688" width="16" height="16"/>
   <object id="408" gid="786" x="336" y="592" width="16" height="16"/>
+  <object id="410" gid="774" x="256" y="224" width="16" height="16"/>
+  <object id="411" gid="774" x="256" y="208" width="16" height="16"/>
+  <object id="412" gid="774" x="256" y="240" width="16" height="16"/>
  </objectgroup>
  <objectgroup id="20" name="enemies">
   <properties>
@@ -2952,6 +2955,8 @@
   <object id="400" name="knawblin" gid="799" x="1152" y="656" width="16" height="16"/>
   <object id="404" gid="802" x="1056" y="624" width="16" height="16"/>
   <object id="405" gid="771" x="352" y="640" width="16" height="16"/>
+  <object id="409" name="turtle" gid="814" x="816" y="416" width="16" height="16"/>
+  <object id="414" gid="814" x="304" y="208" width="16" height="16"/>
  </objectgroup>
  <objectgroup id="19" name="zones" locked="1">
   <object id="51" type="area" x="16" y="0" width="752" height="864"/>

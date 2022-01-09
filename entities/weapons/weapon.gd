@@ -5,7 +5,6 @@ class_name Weapon
 var TYPE = null
 var input = null
 var user = null
-var pvp = global.pvp
 
 export(float, 0, 20, 0.5) var DAMAGE = 0.5
 export(int, 1, 20) var MAX_AMOUNT = 1
@@ -26,17 +25,14 @@ func damage(body):
 	var knockdir = body.global_position - global_position
 	if is_network_master() && network.is_map_host():
 		if body is Player && body.name != str(network.pid):
-			if pvp == true:
-				network.peer_call_id(int(body.name), body, "damage", [DAMAGE, knockdir])
+			network.peer_call_id(int(body.name), body, "damage", [DAMAGE, knockdir])
 		else:
 			body.damage(DAMAGE, knockdir, self)
 	elif network.is_map_host():
-		if pvp == true:
-			body.damage(DAMAGE, knockdir, self)
+		body.damage(DAMAGE, knockdir, self)
 	elif is_network_master():
 		if body is Player:
-			if pvp == true:
-				network.peer_call_id(int(body.name), body, "damage", [DAMAGE, knockdir])
+			network.peer_call_id(int(body.name), body, "damage", [DAMAGE, knockdir])
 		else:
 			network.peer_call_id(network.get_map_host(), body, "damage", [DAMAGE, knockdir])
 	if delete_on_hit:
