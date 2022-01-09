@@ -17,7 +17,7 @@ func _ready():
 	game.connect("player_entered", self, "player_entered")
 	network.tick.connect("timeout", self, "_tick")
 	if persistent:
-		game.connect("update_persistent_state", self, "update_persistent_state")
+		get_parent().connect("update_persistent_state", self, "update_persistent_state")
 		network.request_persistent_state(get_parent())
 
 func _tick():
