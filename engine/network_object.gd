@@ -6,15 +6,16 @@ export(bool) var sync_creation = false
 export(Dictionary) var update_properties = {}
 export(Dictionary) var enter_properties = {}
 
+onready var game = get_parent()
+
 func _ready():
-	var parent = get_parent()
-	if parent.has_method("get_game"):
-		parent.get_game(self).connect("player_entered", self, "player_entered")
-	else:
-		parent.get_parent().connect("player_entered", self, "player_entered")
+	if game.has_method("get_game"):
+		game = game.get_game(self)
+
+	game.connect("player_entered", self, "player_entered")
 	network.tick.connect("timeout", self, "_tick")
 	if persistent:
-		get_parent().connect("update_persistent_state", self, "update_persistent_state")
+		game.connect("update_persistent_state", self, "update_persistent_state")
 		network.request_persistent_state(get_parent())
 
 func _tick():
