@@ -22,8 +22,10 @@ var empty_timeout_timer
 
 signal end_aws_task
 signal received_player_list
+signal refresh_player_request(player_id)
 
 var player_data = {}
+var player_identities = {}
 
 var state
 
@@ -72,8 +74,9 @@ func initialize():
 		player_data[1] = global.options.player_data
 	elif !dedicated:
 		pid = get_tree().get_network_unique_id()
+		rpc_id(1, "_receive_my_player_token", IdentityService.my_identity.token)
 		rpc_id(1, "_receive_my_player_data", global.options.player_data)
-		rpc_id(1, "_reveive_my_version", global.version)
+		rpc_id(1, "_receive_my_version", global.version)
 	
 	start_empty_timeout()
 	
@@ -88,17 +91,43 @@ remote func _get_system_arrays(state, value):
 			"weapons", "items", "pearl":
 				pass
 
-remote func _receive_my_player_data(data):
-	var player_name = data.name
+remote func _receive_my_player_token(token):
+	var identity = IdentityService.load_token(token)
 	var player_id = get_tree().get_rpc_sender_id()
+	if not yield(identity.is_valid(), "completed"):
+		kick_player(player_id, "Invalid identity token!")
+	player_identities[player_id] = identity
+	update_name_from_identity(player_id, identity)
+
+func update_name_from_identity(player_id, identity):
+	if identity.platform != "guest":
+		if not player_id in player_data:
+			player_data[player_id] = {}
+		var new_name = "%s:%s" % [identity.platform, identity.display_name]
+		_receive_name_update(player_id, new_name)
+		peer_call(self, "_receive_name_update", [player_id, new_name])
+			
+remote func _receive_name_update(player_id, new_name):
+	player_data[player_id].name = new_name
+	emit_signal("refresh_player_request", player_id)
+
+remote func _receive_my_player_data(data):
+	var player_id = get_tree().get_rpc_sender_id()
+	
+	if player_id in player_data:
+		data.name = player_data[player_id].name 
+	var player_name = data.name
+	
 	if global.value_in_blacklist(player_name):
 		player_name = global.filter_value(player_name)
 
 	player_data[player_id] = data
+	if player_id in player_identities and player_identities[player_id].loaded:
+		update_name_from_identity(player_id, player_identities[player_id])
 	rpc("_receive_player_data", player_data)
 	print(str(get_player_tag(player_id), " joined the game."))
 
-remote func _reveive_my_version(version):
+remote func _receive_my_version(version):
 	if version != global.version:
 		kick_player(get_tree().get_rpc_sender_id(), "Incompatible version! Server requires version: %s" % global.version)
 	else:
@@ -355,6 +384,8 @@ func _connection_timer_timeout(id):
 				kick_player(id, "Did not recieve version data!")
 			if not id in player_data:
 				kick_player(id, "Did not recieve player data!")
+			if not id in player_identities:
+				kick_player(id, "Did not recieve player identity!")
 		connection_timer.queue_free()
 	else:
 		if id in get_tree().get_network_connected_peers():

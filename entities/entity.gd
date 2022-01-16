@@ -7,7 +7,6 @@ export(String, "ENEMY", "PLAYER", "TRAP") var TYPE = "ENEMY"
 export(float, 0.5, 20, 0.5) var MAX_HEALTH = 1
 export(int) var SPEED = 70
 export(float, 0, 20, 0.5) var DAMAGE = 0.5
-export(bool) var IS_VULNERABLE = true
 
 # MOVEMENT
 var movedir = Vector2(0,0)
@@ -217,9 +216,8 @@ func create_drowning_fx(pos):
 	sfx.play("drown")
 
 func damage(amount, dir, damager=null):
-	if not IS_VULNERABLE:
+	if is_in_group("invunerable"):
 		return
-		
 	if hitstun == 0 && state != "menu":
 		if amount != 0:
 			sfx.play(hurt_sfx)
@@ -254,7 +252,7 @@ func anim_switch(a):
 		anim.play(newanim)
 	animation = newanim
 
-sync func use_weapon(weapon_name, input="A", data = {}):
+sync func use_weapon(weapon_name, input="A"):
 	var weapon = global.weapons_def[weapon_name]
 	var new_weapon = load(weapon.path).instance()
 	var weapon_group = str(weapon_name, name)
@@ -278,7 +276,6 @@ sync func use_weapon(weapon_name, input="A", data = {}):
 		emit_signal("update_count")
 	
 	new_weapon.input = input
-	new_weapon.data = data
 	new_weapon.start()
 
 func remove_last_item(group):

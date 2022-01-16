@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://entities/weapons/spike.gd" type="Script" id=1]
+[ext_resource path="res://entities/weapons/spike.png" type="Texture" id=2]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 3.8955
+
+[node name="spike" type="Node2D"]
+script = ExtResource( 1 )
+MAX_AMOUNT = 4
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+
+[node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource( 1 )

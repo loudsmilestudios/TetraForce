@@ -38,8 +38,12 @@ const MUSIC_LERP_SPEED_NORMAL = 0.1
 const MUSIC_LERP_SPEED_FADINGREVIVE = 0.05
 
 func _ready():
+	music.bus = "Music"
+	_music_fading.bus = "Music"
+	
 	add_child(music)
 	add_child(_music_fading)
+
 
 func _process(delta):
 	var can_new_music_start = true
@@ -148,6 +152,7 @@ func set_music(song, musicfx = ""):
 func play(sound, volume=0):
 	var path = str("res://sound/sfx/", sound, ".ogg")
 	var new_sound = AudioStreamPlayer.new()
+	new_sound.bus = "Sound Effects"
 	get_tree().get_root().add_child(new_sound)
 	new_sound.set_stream(load(path))
 	new_sound.set_volume_db(DEFAULT_SFX_VOLUME + volume)

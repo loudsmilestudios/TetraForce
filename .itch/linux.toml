@@ -1,0 +1,6 @@
+[[actions]]
+name = "play"
+path = "TetraForce.x86_64"
+scope = "profile:me"
+sandbox = true
+platform = "linux"

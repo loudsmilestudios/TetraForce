@@ -34,7 +34,7 @@ func _ready():
 	network.send_current_map() # starts player list updates
 	screenfx.play("fadein")
 	connect("player_entered", self, "player_entered")
-
+	network.connect("refresh_player_request", self, "refresh_player")
 
 func _process(delta): # can be on screen change instead of process
 	if !network.is_map_host():
@@ -74,13 +74,18 @@ func add_new_player(id):
 	add_child(new_player)
 	new_player.camera = camera
 	new_player.initialize()
-	
+
 	if id == network.pid:
 		new_player.sprite.texture = load(global.options.player_data.skin)
 		new_player.nametag.text = global.options.player_data.name
 	else:
-		new_player.sprite.texture = load(network.player_data.get(id).skin)
-		new_player.nametag.text = global.filter_value(network.player_data.get(id).name)
+		refresh_player(id)
+
+func refresh_player(id):
+	var player = get_node_or_null(str(id))
+	if player and player is Player:
+		player.sprite.texture = load(network.player_data.get(id).skin)
+		player.nametag.text = global.filter_value(network.player_data.get(id).name)
 
 func remove_player(id):
 	if has_node(str(id)):

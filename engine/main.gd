@@ -1,3 +1,4 @@
+class_name Main
 extends Control
 
 var default_map = "res://maps/shrine.tmx"
@@ -5,7 +6,7 @@ var default_entrance = "player_start"
 export var default_port = 7777
 var server_api = preload("res://engine/server_api.gd").new()
 
-onready var address_line = $multiplayer/Manual/address
+onready var address_line = $multiplayer/Direct/address
 onready var lobby_line = $multiplayer/Automatic/lobby
 #onready var endpoint_button = $options/scroll/vbox/endpoint JosephB Needs to confirm deletion
 onready var singleplayer_focus = $top/VBoxContainer/singleplayer
@@ -122,10 +123,11 @@ func host_server(dedicated = false, empty_timeout = 0, port = default_port, max_
 	start_game(dedicated, empty_timeout)
 
 func join_server(ip, port):
-	loading_screen.with_load("connecting to host")
+	loading_screen.with_load("Connecting to host", 75)
 	
 	if !ip.is_valid_ip_address():
 		print("Invalid IP")
+		open_error_message("Invalid IP")
 		loading_screen.stop_loading()
 		return
 	
@@ -141,7 +143,7 @@ func join_aws(lobby_name):
 	if not yield(attempt_to_join_aws_sever(lobby_name), "completed"):
 		
 		# Request new server
-		loading_screen.with_load("creating %s" % lobby_name)
+		loading_screen.with_load("Creating '%s'" % lobby_name, 25)
 		var new_lobby = yield(server_api.create_server(lobby_name), "completed")
 		print("API Response: %s" % new_lobby)
 		
@@ -157,12 +159,14 @@ func join_aws(lobby_name):
 			# Timeout if no sever info found
 			print("Server creation timeout!")
 			loading_screen.stop_loading()
+			open_error_message("Server creation timeout!")
 		else:
 			loading_screen.stop_loading()
+			open_error_message("Failed to create server: %s" % new_lobby.message)
 
 func attempt_to_join_aws_sever(lobby_name, hide_loading_message = false) -> bool:
 	if not hide_loading_message:
-		loading_screen.with_load(lobby_name)
+		loading_screen.with_load("Connecting to '%s'" % lobby_name, 0)
 
 	var waitingOnServer = true
 
@@ -178,7 +182,7 @@ func attempt_to_join_aws_sever(lobby_name, hide_loading_message = false) -> bool
 					join_server(lobby.data.ip, lobby.data.port)
 					return true
 				elif lobby.data.status in ["PENDING", "PROVISIONING"]:
-					loading_screen.with_load("%s is pending" % lobby_name)
+					loading_screen.with_load("'%s' pending" % lobby_name, 50)
 					yield(get_tree().create_timer(5.0), "timeout")
 				else:
 					print("%s has status: %s", [lobby_name, lobby.data.status])
@@ -195,7 +199,7 @@ func end_aws_task(task_name):
 	print(yield(server_api.stop_server(task_name), "completed"))
 
 func _client_connect_ok():
-	loading_screen.stop_loading()
+	loading_screen.stop_loading(100)
 	start_game()
 
 func _client_connect_fail():
@@ -207,6 +211,8 @@ func _client_disconnect(code, reason):
 	print("Disconnected from server: %s, %s" % [code, reason])
 	network.complete(false)
 	show()
+	if code != OK:
+		open_error_message(reason)
 
 func end_game():
 	network.complete()
@@ -250,6 +256,12 @@ func _on_quickstart_pressed():
 	$top.show()
 	singleplayer_focus.grab_focus()
 	host_server(false, 0, 0, 1)
+
+func open_error_message(message):
+	hide_menus()
+	$message/Label.text = message
+	$message.show()
+	$message/Button.grab_focus()
 
 func _on_load_pressed():
 	hide_menus()
@@ -295,3 +307,10 @@ func _on_mouse_entered():
 	sfx.play("item_select")
 
 
+
+
+func _on_credits_pressed():
+	hide_menus()
+	$credits.show()
+	$back.show()
+	$back.grab_focus()

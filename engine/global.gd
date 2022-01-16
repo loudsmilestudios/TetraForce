@@ -52,11 +52,6 @@ var weapons_def = {
 		icon = preload("res://entities/weapons/icons/bomb.png"),
 		ammo_type = "bomb",
 		acquire_dialogue = "acquisition/acquire_bombs"},
-	"Bomb_Barrage": {
-		path = "res://entities/weapons/bomb_barrage.tscn",
-		icon = "",
-		ammo_type = "",
-		acquire_dialogue = ""},
 	"Bone": {
 		path = "res://entities/weapons/bone.tscn",
 		icon = "",
@@ -67,8 +62,13 @@ var weapons_def = {
 		icon = "",
 		ammo_type = "",
 		acquire_dialogue = ""},
-	"Hurt_Extension": {
-		path = "res://entities/weapons/hurt_extension.tscn",
+	"Rock": {
+		path = "res://entities/weapons/rock.tscn",
+		icon = "",
+		ammo_type = "",
+		acquire_dialogue = ""},
+	"Spike": {
+		path = "res://entities/weapons/spike.tscn",
 		icon = "",
 		ammo_type = "",
 		acquire_dialogue = ""}

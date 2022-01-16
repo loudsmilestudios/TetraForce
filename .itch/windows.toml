@@ -1,0 +1,6 @@
+[[actions]]
+name = "play"
+path = "TetraForce.exe"
+scope = "profile:me"
+sandbox = true
+platform = "windows"
