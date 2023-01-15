@@ -15,7 +15,7 @@ jobs:
           git rev-parse HEAD > semantic.version
       - name: Build
         id: build
-        uses: josephbmanley/build-godot-action@v1.4.0
+        uses: yeslayla/build-godot-action@v1.4.0
         with:
           name: TetraForce.x86_64
           preset: linux
@@ -39,7 +39,7 @@ jobs:
           git rev-parse HEAD > semantic.version
       - name: Build
         id: build
-        uses: josephbmanley/build-godot-action@v1.4.0
+        uses: yeslayla/build-godot-action@v1.4.0
         with:
           name: TetraForce.exe
           preset: ${{ matrix.platform }}
@@ -60,7 +60,7 @@ jobs:
           git rev-parse HEAD > semantic.version
       - name: Build
         id: build
-        uses: josephbmanley/build-godot-action@v1.4.0
+        uses: yeslayla/build-godot-action@v1.4.0
         with:
           name: index.html
           preset: HTML5

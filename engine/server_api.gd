@@ -1,6 +1,6 @@
 # For more information on API responses, please checkout the
 # API Usage page on the infrastructure wiki
-# https://github.com/josephbmanley/tetraforce-infrastructure/wiki/API-Usage
+# https://github.com/loudsmilestudios/tetraforce-infrastructure/wiki/API-Usage
 
 extends Node
 
