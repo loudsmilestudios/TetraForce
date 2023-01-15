@@ -31,7 +31,7 @@ jobs:
           echo ::set-output name=TAG::$TAG
       - name: Build Godot Project
         id: build
-        uses: josephbmanley/build-godot-action@v1.4.0
+        uses: yeslayla/build-godot-action@v1.4.0
         with:
           name: TetraForce
           preset: linux
@@ -53,19 +53,6 @@ jobs:
           BUILD_PATH: "."
           DOCKERFILE: "Dockerfile"
           IMAGE_NAME: "tetraforce"
-          TAG_NAME: ${{ steps.get_tag.outputs.TAG }}
-          LATEST: "true"
-      - name: Docker Build & Push to AWS ECR
-        uses: opspresso/action-docker@master
-        with:
-          args: --ecr
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_REGION: "us-east-2"
-          IMAGE_URI: "141264065387.dkr.ecr.us-east-2.amazonaws.com/tetraforce"
-          BUILD_PATH: "."
-          DOCKERFILE: "Dockerfile"
           TAG_NAME: ${{ steps.get_tag.outputs.TAG }}
           LATEST: "true"
   linux:
@@ -92,7 +79,7 @@ jobs:
           echo ::set-output name=TAG::$TAG
       - name: Build
         id: build
-        uses: josephbmanley/build-godot-action@v1.4.0
+        uses: yeslayla/build-godot-action@v1.4.0
         with:
           name: TetraForce.x86_64
           preset: linux
@@ -113,10 +100,10 @@ jobs:
         with:
           args: --acl public-read --follow-symlinks --delete
         env:
-          AWS_S3_BUCKET: tetraforce-public-production-us-east-2
+          AWS_S3_BUCKET: tetraforce-builds
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_REGION: us-east-2
+          AWS_REGION: us-east-1
           SOURCE_DIR: ${{github.workspace}}/tetraforce
           DEST_DIR: builds/master/latest/linux
       - name: Configure AWS Credentials
@@ -124,7 +111,7 @@ jobs:
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: us-east-2
+          aws-region: us-east-1
       - name: Clear CloudFront Cache
         run: |
           aws cloudfront create-invalidation --distribution-id ${{ secrets.CLOUDFRONT_ID }} --paths "/builds/master/latest/linux/*"
@@ -155,7 +142,7 @@ jobs:
           echo ::set-output name=TAG::$TAG
       - name: Build
         id: build
-        uses: josephbmanley/build-godot-action@v1.4.0
+        uses: yeslayla/build-godot-action@v1.4.0
         with:
           name: TetraForce.exe
           preset: ${{ matrix.platform }}
@@ -176,10 +163,10 @@ jobs:
         with:
           args: --acl public-read --follow-symlinks --delete
         env:
-          AWS_S3_BUCKET: tetraforce-public-production-us-east-2
+          AWS_S3_BUCKET: tetraforce-builds
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_REGION: us-east-2
+          AWS_REGION: us-east-1
           SOURCE_DIR: ${{github.workspace}}/tetraforce
           DEST_DIR: builds/master/latest/${{ matrix.platform }}
       - name: Configure AWS Credentials
@@ -187,7 +174,7 @@ jobs:
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: us-east-2
+          aws-region: us-east-1
       - name: Clear CloudFront Cache
         run: |
           aws cloudfront create-invalidation --distribution-id ${{ secrets.CLOUDFRONT_ID }} --paths "/builds/master/latest/${{ matrix.platform }}/*"
@@ -252,10 +239,10 @@ jobs:
       with:
         args: --acl public-read --follow-symlinks --delete
       env:
-        AWS_S3_BUCKET: tetraforce-public-production-us-east-2
+        AWS_S3_BUCKET: tetraforce-builds
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        AWS_REGION: us-east-2
+        AWS_REGION: us-east-1
         SOURCE_DIR: ${{github.workspace}}/tetraforce
         DEST_DIR: builds/master/latest/osx
     - name: Configure AWS Credentials
@@ -263,7 +250,7 @@ jobs:
       with:
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        aws-region: us-east-2
+        aws-region: us-east-1
     - name: Clear CloudFront Cache
       run: |
         aws cloudfront create-invalidation --distribution-id ${{ secrets.CLOUDFRONT_ID }} --paths "/builds/master/latest/osx/*"
@@ -274,7 +261,7 @@ jobs:
         uses: actions/checkout@v2
       - name: Build
         id: build
-        uses: josephbmanley/build-godot-action@v1.4.0
+        uses: yeslayla/build-godot-action@v1.4.0
         with:
           name: index.html
           preset: HTML5
@@ -284,8 +271,8 @@ jobs:
         with:
           args: --acl public-read --follow-symlinks --delete
         env:
-          AWS_S3_BUCKET: tetraforce-web-production-us-east-2
+          AWS_S3_BUCKET: tetraforce-builds
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_REGION: us-east-2
+          AWS_REGION: us-east-1
           SOURCE_DIR: ${{ github.workspace }}/${{ steps.build.outputs.build }}
