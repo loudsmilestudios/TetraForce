@@ -7,54 +7,54 @@ on:
   workflow_dispatch: {}
 
 jobs:
-  docker:
-    name: Build & Push - Docker
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-      - id: get_tag
-        name: Get Tag
-        env:
-          GITHUB_HEAD_REF: $${{ github.head_ref }}
-          GITHUB_BASE_REF: ${{ github.base_ref }}
-        run: |
-          if [ "${{ github.event.release.tag_name }}" != "" ]
-          then
-            TAG=$(jq --raw-output '.release.tag_name' $GITHUB_EVENT_PATH)
-          else
-            TAG=`git tag`-`git rev-parse --short HEAD`
-          fi
+  # docker:
+  #   name: Build & Push - Docker
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Checkout
+  #       uses: actions/checkout@v2
+  #     - id: get_tag
+  #       name: Get Tag
+  #       env:
+  #         GITHUB_HEAD_REF: $${{ github.head_ref }}
+  #         GITHUB_BASE_REF: ${{ github.base_ref }}
+  #       run: |
+  #         if [ "${{ github.event.release.tag_name }}" != "" ]
+  #         then
+  #           TAG=$(jq --raw-output '.release.tag_name' $GITHUB_EVENT_PATH)
+  #         else
+  #           TAG=`git tag`-`git rev-parse --short HEAD`
+  #         fi
           
-          echo $TAG > semantic.version
+  #         echo $TAG > semantic.version
           
-          echo ::set-output name=TAG::$TAG
-      - name: Build Godot Project
-        id: build
-        uses: yeslayla/build-godot-action@v1.4.0
-        with:
-          name: TetraForce
-          preset: linux
-          projectDir: '.'
-          debugMode: 'true'
-      - name: Get Docker Repo Name
-        id: find_repo
-        run: |
-          REPO=$(echo "${{ github.repository }}" | tr '[:upper:]' '[:lower:]')
-          echo ::set-output name=REPO::$REPO
-      - name: Push Tag to GitHub Package
-        uses: opspresso/action-docker@master
-        with:
-          args: --docker
-        env:
-          USERNAME: ${{ github.actor }}
-          PASSWORD: ${{ secrets.GITHUB_TOKEN }}
-          REGISTRY: "docker.pkg.github.com/${{ steps.find_repo.outputs.REPO }}"
-          BUILD_PATH: "."
-          DOCKERFILE: "Dockerfile"
-          IMAGE_NAME: "tetraforce"
-          TAG_NAME: ${{ steps.get_tag.outputs.TAG }}
-          LATEST: "true"
+  #         echo ::set-output name=TAG::$TAG
+  #     - name: Build Godot Project
+  #       id: build
+  #       uses: yeslayla/build-godot-action@v1.4.0
+  #       with:
+  #         name: TetraForce
+  #         preset: linux
+  #         projectDir: '.'
+  #         debugMode: 'true'
+  #     - name: Get Docker Repo Name
+  #       id: find_repo
+  #       run: |
+  #         REPO=$(echo "${{ github.repository }}" | tr '[:upper:]' '[:lower:]')
+  #         echo ::set-output name=REPO::$REPO
+  #     - name: Push Tag to GitHub Package
+  #       uses: opspresso/action-docker@master
+  #       with:
+  #         args: --docker
+  #       env:
+  #         USERNAME: ${{ github.actor }}
+  #         PASSWORD: ${{ secrets.GITHUB_TOKEN }}
+  #         REGISTRY: "docker.pkg.github.com/${{ steps.find_repo.outputs.REPO }}"
+  #         BUILD_PATH: "."
+  #         DOCKERFILE: "Dockerfile"
+  #         IMAGE_NAME: "tetraforce"
+  #         TAG_NAME: ${{ steps.get_tag.outputs.TAG }}
+  #         LATEST: "true"
   linux:
     name: Build & Push - Linux
     runs-on: ubuntu-latest
