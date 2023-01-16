@@ -29,14 +29,6 @@ jobs:
           echo $TAG > semantic.version
           
           echo ::set-output name=TAG::$TAG
-      - name: Build
-        id: build
-        uses: yeslayla/build-godot-action@v1.4.0
-        with:
-          name: TetraForce.x86_64
-          preset: linux
-          projectDir: '.'
-          debugMode: 'true'
       - name: Setup Godot
         run: |
           wget https://downloads.tuxfamily.org/godotengine/3.3.2/Godot_v3.3.2-stable_linux_headless.64.zip -O Godot.zip
