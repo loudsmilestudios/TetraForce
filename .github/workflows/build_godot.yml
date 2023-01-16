@@ -13,19 +13,26 @@ jobs:
       - name: Version
         run: |
           git rev-parse HEAD > semantic.version
-      - name: Build
-        id: build
-        uses: yeslayla/build-godot-action@v1.4.0
-        with:
-          name: TetraForce.x86_64
-          preset: linux
-          projectDir: '.'
-          debugMode: 'true'
+      - name: Setup Godot
+        run: |
+          wget https://downloads.tuxfamily.org/godotengine/3.3.2/Godot_v3.3.2-stable_linux_headless.64.zip -O Godot.zip
+          unzip Godot.zip
+          rm Godot.zip
+          mv Godot_v3.3.2-stable_linux_headless.64 /usr/local/bin/godot
+      - name: Build Project
+        run: |
+          wget https://downloads.tuxfamily.org/godotengine/3.3.2/Godot_v3.3.2-stable_export_templates.tpz -q
+          unzip Godot_v3.3.2-stable_export_templates.tpz -d .
+          mkdir -p "/Users/runner/Library/Application Support/Godot/templates/3.3.2.stable"
+          mv templates/* "/Users/runner/Library/Application Support/Godot/templates/3.3.2.stable"
+
+          mkdir -p $GITHUB_WORKSPACE/build
+          godot --export linux $GITHUB_WORKSPACE/build/TetraForce.x86_64
       - name: Upload Artifact
         uses: actions/upload-artifact@v2
         with:
           name: Client - linux
-          path: ${{ github.workspace }}/${{ steps.build.outputs.build }}
+          path: ${{ github.workspace }}/build
   windows:
     runs-on: ubuntu-latest
     strategy:
@@ -37,37 +44,23 @@ jobs:
       - name: Version
         run: |
           git rev-parse HEAD > semantic.version
-      - name: Build
-        id: build
-        uses: yeslayla/build-godot-action@v1.4.0
-        with:
-          name: TetraForce.exe
-          preset: ${{ matrix.platform }}
-          projectDir: '.'
-          debugMode: 'true'
+      - name: Setup Godot
+        run: |
+          wget https://downloads.tuxfamily.org/godotengine/3.3.2/Godot_v3.3.2-stable_linux_headless.64.zip -O Godot.zip
+          unzip Godot.zip
+          rm Godot.zip
+          mv Godot_v3.3.2-stable_linux_headless.64 /usr/local/bin/godot
+      - name: Build Project
+        run: |
+          wget https://downloads.tuxfamily.org/godotengine/3.3.2/Godot_v3.3.2-stable_export_templates.tpz -q
+          unzip Godot_v3.3.2-stable_export_templates.tpz -d .
+          mkdir -p "/Users/runner/Library/Application Support/Godot/templates/3.3.2.stable"
+          mv templates/* "/Users/runner/Library/Application Support/Godot/templates/3.3.2.stable"
+
+          mkdir -p $GITHUB_WORKSPACE/build
+          godot --export ${{ matrix.platform }} $GITHUB_WORKSPACE/build/TetraForce.exe
       - name: Upload Artifact
         uses: actions/upload-artifact@v2
         with:
           name: Client - ${{ matrix.platform }}
-          path: ${{ github.workspace }}/${{ steps.build.outputs.build }}
-  html5:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-      - name: Version
-        run: |
-          git rev-parse HEAD > semantic.version
-      - name: Build
-        id: build
-        uses: yeslayla/build-godot-action@v1.4.0
-        with:
-          name: index.html
-          preset: HTML5
-          projectDir: '.'
-          debugMode: 'true'
-      - name: Upload Artifact
-        uses: actions/upload-artifact@v2
-        with:
-          name: Client - HTML5
-          path: ${{ github.workspace }}/${{ steps.build.outputs.build }}
+          path: ${{ github.workspace }}/build
