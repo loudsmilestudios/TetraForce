@@ -1,0 +1,24 @@
+{
+	"Force" : 0,
+	"Random": 0,
+	"Nodes" :
+	 [
+		{
+			"id"      : 0,
+			"name"    : "Mulher idosa:",
+			"text"    : "Você viu meu cachorro andando por aí?",
+			"next_id" : 1,
+			"choices" : []
+		},
+
+		{
+			"id"      : 1,
+			"name"    : "Mulher idosa:",
+			"text"    : "Ele sempre volta ao redor da hora da janta, mas hoje ele parece estar ocupado demais pra se importar.",
+			"next_id" : -1,
+			"choices" : []
+		}
+
+	]
+
+}

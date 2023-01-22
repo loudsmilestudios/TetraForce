@@ -1,0 +1,45 @@
+{
+	"Force" : 0,
+	"Random": 0,
+	"Nodes" :
+	 [
+		{
+			"id"      : 0,
+			"name"    : "Placa:",
+			"text"    : "Você consegue ler esta placa?",
+			"next_id" : 1,
+			"choices" : [
+				
+				{
+					"text"    : "Sim",
+					"next_id" : 1
+				},
+
+				{
+					"text"    : "Não",
+					"next_id" : 2
+				}
+			]
+		},
+
+		{
+			"id"      : 1,
+			"name"    : "Placa:",
+			"text"    : "Parabéns! Agora siga o teu caminho.",
+			"next_id" : -1,
+			"choices" : []
+		},
+
+		{
+			"id"      : 2,
+			"name"    : "Placa:",
+			"text"    : "Que pena... Eu tinha algo importante para te dizer.",
+			"next_id" : -1,
+			"choices" : []
+		}
+
+
+
+	]
+
+}

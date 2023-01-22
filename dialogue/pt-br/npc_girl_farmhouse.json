@@ -1,0 +1,15 @@
+{
+	"Force" : 0,
+	"Random": 0,
+	"Nodes" :
+	 [
+		{
+			"id"      : 0,
+			"name"    : "Aldeã:",
+			"text"    : "Meu marido e eu administramos essa fazenda. É bastante trabalho, mas a nossa vila depende de nós.",
+			"next_id" : -1,
+			"choices" : []
+		}
+	]
+
+}

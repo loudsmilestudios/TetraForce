@@ -1,0 +1,16 @@
+{
+	"Force" : 0,
+	"Random": 0,
+	"Nodes" :
+	 [
+		{
+			"id"      : 0,
+			"name"    : "Você conseguiu a Lanterna.",
+			"text"    : "Este item é passivo. Agora você pode iluminar as áreas escuras e enxergar o seu caminho.",
+			"next_id" : -1,
+			"choices" : []
+		}
+
+	]
+
+}

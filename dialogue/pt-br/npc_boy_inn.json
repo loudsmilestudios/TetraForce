@@ -1,0 +1,43 @@
+{
+	"Force" : 0,
+	"Random": 0,
+	"Nodes" :
+	 [
+		{
+			"id"      : 0,
+			"name"    : "Aldeão:",
+			"text"    : "Já viu como a caverna ao norte daqui é escura?",
+			"next_id" : 1,
+			"choices" : [
+				
+				{
+					"text"    : "Sim",
+					"next_id" : 1
+				},
+
+				{
+					"text"    : "Não",
+					"next_id" : 2
+				}
+			]
+		},
+
+		{
+			"id"      : 1,
+			"name"    : "Aldeão:",
+			"text"    : "Que loucura, né? Eu adoraria explorá-la, mas não tenho uma luz clara o suficiente.",
+			"next_id" : -1,
+			"choices" : []
+		},
+
+		{
+			"id"      : 2,
+			"name"    : "Aldeão:",
+			"text"    : "Bem, se você for lá, assegure-se de levar uma luz forte contigo.",
+			"next_id" : -1,
+			"choices" : []
+		}
+
+	]
+
+}

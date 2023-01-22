@@ -1,0 +1,16 @@
+{
+	"Force" : 0,
+	"Random": 0,
+	"Nodes" :
+	 [
+		{
+			"id"      : 0,
+			"name"    : "Você conseguiu o Arco!",
+			"text"    : "Pressione Start para equipar em B, X, ou Y. Use para atirar flechas em alvos distantes.",
+			"next_id" : -1,
+			"choices" : []
+		}
+
+	]
+
+}

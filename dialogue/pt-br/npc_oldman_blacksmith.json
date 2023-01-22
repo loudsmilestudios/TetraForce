@@ -1,0 +1,24 @@
+{
+	"Force" : 0,
+	"Random": 0,
+	"Nodes" :
+	 [
+		{
+			"id"      : 0,
+			"name"    : "Homem idoso:",
+			"text"    : "Meu filho é o Ferreiro. Desculpe-me se você estava procurando por ele, ele não está no momento.",
+			"next_id" : 1,
+			"choices" : []
+		},
+
+		{
+			"id"      : 1,
+			"name"    : "Homem idoso:",
+			"text"    : "Por favor, volte mais tarde.",
+			"next_id" : -1,
+			"choices" : []
+		}
+
+	]
+
+}

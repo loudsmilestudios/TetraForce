@@ -1,0 +1,27 @@
+{
+	"Force" : 0,
+	"Random": 0,
+	"Nodes" :
+	 [
+		{
+			"id"      : 0,
+			"name"    : "",
+			"text"    : "Gostaria de reiniciar o quebra-cabeças desta sala?",
+			"next_id" : 1,
+			"choices" : [
+				
+				{
+					"text"    : "Sim",
+					"next_id" : -1
+				},
+
+				{
+					"text"    : "Cancelar",
+					"next_id" : -1
+				}
+			]
+		}
+
+	]
+
+}

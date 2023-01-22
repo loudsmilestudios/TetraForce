@@ -1,0 +1,43 @@
+{
+	"Force" : 0,
+	"Random": 0,
+	"Nodes" :
+	 [
+		{
+			"id"      : 0,
+			"name"    : "Aldeão:",
+			"text"    : "Eu nunca te vi por aqui. Você viajou muito?",
+			"next_id" : 1,
+			"choices" : [
+				
+				{
+					"text"    : "Sim",
+					"next_id" : 1
+				},
+
+				{
+					"text"    : "Não",
+					"next_id" : 2
+				}
+			]
+		},
+
+		{
+			"id"      : 1,
+			"name"    : "Aldeão:",
+			"text"    : "Que legal! Você vai ter que me contar sobre a sua cidade alguma hora.",
+			"next_id" : -1,
+			"choices" : []
+		},
+
+		{
+			"id"      : 2,
+			"name"    : "Aldeão:",
+			"text"    : "Hmm. Bem, ou você tem vivido debaixo de uma pedra, ou eu tenho. Mas eu tenho certeza de que eu não tenho.",
+			"next_id" : -1,
+			"choices" : []
+		}
+
+	]
+
+}

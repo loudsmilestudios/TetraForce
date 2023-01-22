@@ -1,0 +1,44 @@
+{
+	"Force" : 0,
+	"Random": 0,
+	"Nodes" :
+	 [
+		{
+			"id"      : 0,
+			"name"    : "Aldeã:",
+			"text"    : "Oh, olá. Você veio para ver a minha coleção fantástica?",
+			"next_id" : 1,
+			"choices" : [
+			]
+		},
+
+		{
+			"id"      : 1,
+			"name"    : "Aldeã:",
+			"text"    : "Vê o quão bonita é esta? Foi cunhada em uma terra distante.",
+			"next_id" : 2,
+			"choices" : [
+			]
+		},
+
+		{
+			"id"      : 2,
+			"name"    : "Aldeã:",
+			"text"    : "E esta outra, feita de uma liga rara, encontrada apenas nas profundezas das montanhas ao norte daqui.",
+			"next_id" : 3,
+			"choices" : [
+			]
+		},
+
+		{
+			"id"      : 3,
+			"name"    : "Aldeã:",
+			"text"    : "Meu deus, olha quanto tempo eu te mantive aqui. Me perdoe. Obrigado por escutar!",
+			"next_id" : -1,
+			"choices" : [
+			]
+		}
+
+	]
+
+}

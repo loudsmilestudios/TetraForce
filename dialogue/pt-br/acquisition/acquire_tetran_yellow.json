@@ -1,0 +1,16 @@
+{
+	"Force" : 0,
+	"Random": 0,
+	"Nodes" :
+	 [
+		{
+			"id"      : 0,
+			"name"    : "",
+			"text"    : "Você recebeu um Tetran Amarelo. (100)",
+			"next_id" : -1,
+			"choices" : []
+		}
+
+	]
+
+}
