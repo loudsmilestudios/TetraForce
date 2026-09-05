@@ -2,7 +2,7 @@
 
 # ![TetraForce](https://tetraforce.io/wp-content/uploads/2020/07/Logo_FullyRendered-1024x617.png)
 
-[Play Now!](https://tetraforce.io/downloads/)
+[Play Now!]([https://tetraforce.io/downloads/](https://theretrodragon.itch.io/tetraforce))
 
 TetraForce is an action adventure game inspired by various action platformer puzzle games, such as the top-down Legend of Zelda games and CrossCode. It is designed to be very replayable for casual and experienced players, whether they are playing by themselves or with friends. Three features we think are the most to get excited about are easy to utilize multiplayer, item randomizer, and moddability. With these features in mind and with more to come, it will be a brand new gaming experience inspired by some of the best games ever made.
 
@@ -12,11 +12,9 @@ TetraForce is built with the open source [Godot Engine](https://godotengine.org/
 
 ## Links
 
-[Website](https://tetraforce.io/)
+[Website]([https://tetraforce.io/](https://theretrodragon.itch.io/tetraforce))
 
 [Discord server](https://discord.gg/pk427kD3f2)
-
-[Patreon](https://www.patreon.com/tetraforce)
 
 ## Contributing
 
