@@ -1,11 +1,11 @@
 extends Control
 
 var loading : bool = false
-export(Array, Texture) var Backgrounds = [] # Array of valid background images
+@export var Backgrounds = [] # Array of valid background images # (Array, Texture2D)
 
-onready var message_label = $ProgressBar/VBoxContainer/message
-onready var progress_bar = $ProgressBar
-onready var background = $background
+@onready var message_label = $ProgressBar/VBoxContainer/message
+@onready var progress_bar = $ProgressBar
+@onready var background = $background
 
 func _ready():
 	self.hide()

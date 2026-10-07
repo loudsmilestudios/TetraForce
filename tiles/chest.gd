@@ -1,12 +1,13 @@
 extends StaticBody2D
 
-var opened = false setget set_open
-var monster_trigger = false setget set_spawned
+var opened = false: set = set_open
+var monster_trigger = false: set = set_spawned
+var acquiring = false
 
-export(String) var def = "weapon"
-export(String) var item = "Bow"
-export(String) var location = "room"
-export(bool) var hidden = false
+@export var def: String = "weapons"
+@export var item: String = "Bow"
+@export var location: String = "room"
+@export var is_hidden: bool = false
 
 signal update_persistent_state
 signal begin_dialogue
@@ -14,14 +15,26 @@ signal begin_dialogue
 func _ready():
 	add_to_group("interactable")
 	$Item.hide()
-	if hidden == true:
+	if is_hidden:
 		hide()
 		$CollisionShape2D.disabled = true
 
 func interact(node):
-	if opened:
+	if opened or acquiring:
 		return
 	if node.spritedir == "Up":
+		var definitions = global.get(str(def, "_def"))
+		if not definitions is Dictionary or !definitions.has(item):
+			push_error("Invalid chest item definition: %s/%s" % [def, item])
+			return
+		var item_data: Dictionary = definitions[item]
+		var dungeon_handler = null
+		if def == "dungeon":
+			dungeon_handler = network.current_map.get_node_or_null("dungeon_handler")
+			if !is_instance_valid(dungeon_handler):
+				push_error("Key chest requires dungeon_handler in %s" % network.current_map.name)
+				return
+		acquiring = true
 		if network.is_map_host():
 				open()
 		else:
@@ -43,26 +56,32 @@ func interact(node):
 				global.ammo[ammo.ammo_type] = global.ammo.get(ammo.ammo_type) + ammo.amount
 				global.player.hud.update_weapons()
 				global.player.hud.update_tetrans()
-				print(ammo)
 			"dungeon":
-				network.current_map.get_node("dungeon_handler").add_key()
+				dungeon_handler.add_key()
 			"pearl":
 				network.add_to_state(def, item)
 		
-		yield(get_tree().create_timer(1), "timeout")
+		await get_tree().create_timer(1).timeout
+		if !is_instance_valid(node):
+			finish_acquisition(null)
+			return
 		
-		if global.get(str(def,"_def"))[item].acquire_dialogue != "":
-			var dialogue = preload("res://ui/dialogue/dialogue_manager.tscn").instance()
+		if item_data.acquire_dialogue != "":
+			var dialogue = preload("res://ui/dialogue/dialogue_manager.tscn").instantiate()
 			node.add_child(dialogue)
-			connect("begin_dialogue", dialogue, "Begin_Dialogue")
+			connect("begin_dialogue", Callable(dialogue, "Begin_Dialogue"))
 			
-			dialogue.file_name = global.get(str(def,"_def"))[item].acquire_dialogue
+			dialogue.file_name = item_data.acquire_dialogue
 			emit_signal("begin_dialogue")
-			yield(dialogue, "finished")
+			await dialogue.finished
 		
-		hide_item()
-		network.peer_call(self, "hide_item")
-		
+		finish_acquisition(node)
+
+func finish_acquisition(node):
+	hide_item()
+	network.peer_call(self, "hide_item")
+	acquiring = false
+	if is_instance_valid(node) and node.state in ["acquire", "menu"]:
 		node.spritedir = "Down"
 		node.state = "default"
 
@@ -71,12 +90,13 @@ func show_item():
 	$AnimationPlayer.play("open")
 
 func hide_item():
+	$Item.hide()
 	$AnimationPlayer.play("default")
 
 func set_open(value):
 	opened = value
 	if opened:
-		$Sprite.frame = 1
+		$Sprite2D.frame = 1
 
 func open():
 	network.peer_call(self, "set_open", [true])
@@ -90,10 +110,15 @@ func set_spawned(value):
 		$CollisionShape2D.disabled = false
 		
 func chest_spawn():
-			network.peer_call(self, "monster_trigger", [true])
-			network.peer_call(self, "hidden", [false])
+			network.peer_call(self, "set_spawned", [true])
+			network.peer_call(self, "set_hidden", [false])
 			set_spawned(true)
-			hidden = false
+			set_hidden(false)
 			emit_signal("update_persistent_state")
+
+func set_hidden(value: bool):
+	is_hidden = value
+	visible = not value
+	$CollisionShape2D.disabled = value
 			
 	

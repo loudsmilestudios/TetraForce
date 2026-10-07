@@ -14,25 +14,23 @@ var curent_node_choices = [] # If you want more than one possible answear, you s
 var force = false # force start the dialogue
 var random = false # Start from random node
 
-var finished = false
-var visible = false
+var text_finished = false
 
 
 #------UI--------#
-onready var choiceBox = $DialogueUI/ChoiceBox
-onready var dialogueText = $DialogueUI/DialogueText 
-onready var dialoguePanel = $DialogueUI #Less rewritting if you want to move the script to another object
-onready var dialogueName = $DialogueUI/DialogueName
-onready var tween = $DialogueUI/Tween
-onready var dialogueButtons = [$DialogueUI/ChoiceBox/Button1,$DialogueUI/ChoiceBox/Button2]
+@onready var choiceBox = $DialogueUI/ChoiceBox
+@onready var dialogueText = $DialogueUI/DialogueText
+@onready var dialoguePanel = $DialogueUI #Less rewritting if you want to move the script to another object
+@onready var dialogueName = $DialogueUI/DialogueName
+var tween: Tween
+@onready var dialogueButtons = [$DialogueUI/ChoiceBox/Button1,$DialogueUI/ChoiceBox/Button2]
+var button_connections = {}
 
 signal finished
 
 func _input(event):
-	if Input.is_action_pressed("B"):
-		tween.set_speed_scale(2.0)
-	else:
-		tween.set_speed_scale(1.0)
+	if tween and tween.is_valid():
+		tween.set_speed_scale(2.0 if Input.is_action_pressed("B") else 1.0)
 	if Input.is_action_just_pressed("UP"):
 		dialogueButtons[0].grab_focus()
 	if Input.is_action_just_pressed("DOWN"):
@@ -41,17 +39,19 @@ func _input(event):
 #-----Load JSON File-----#
 func LoadFile(fname):
 	file_name = fname
-	var file = File.new()
-	if file.file_exists("res://dialogue/"+file_name+".json"):
-		file.open("res://dialogue/" + file_name + ".json", file.READ)
-		var json_result = parse_json(file.get_as_text())
+	var path = "res://dialogue/" + file_name + ".json"
+	if FileAccess.file_exists(path):
+		var file = FileAccess.open(path, FileAccess.READ)
+		var json_result = JSON.parse_string(file.get_as_text())
+		if not json_result is Dictionary:
+			print("Dialogue: Invalid JSON")
+			return
 		force = bool(json_result["Force"])
 		random = bool(json_result["Random"])
 		curent_node_id = 0
 		nodes = json_result["Nodes"]
 	else:
 		print("Dialogue: File Open Error")
-	file.close()
 	if force:
 		StartDialogue()
 	
@@ -98,52 +98,60 @@ func GrabNode(id):
 
 #----Update UI-----#
 func UpdateUI():
-	if dialogueText.percent_visible < 1:
-		choiceBox.hide()
+	choiceBox.hide()
 	if curent_node_id >= 0:
 		Dialogue_Anim()
 		dialoguePanel.show()
 		for x in dialogueButtons:
 			x.hide()
-			#disconnect buttons
-			if x.is_connected("pressed",self,"_on_Button_Pressed"):
-				x.disconnect("pressed",self,"_on_Button_Pressed")
+			if button_connections.has(x):
+				var callback: Callable = button_connections[x]
+				if x.pressed.is_connected(callback):
+					x.pressed.disconnect(callback)
+		button_connections.clear()
 			
 		dialogueName.text = curent_node_name
 		dialogueText.text = curent_node_text
 		if curent_node_choices.size() > 0:
-			for x in clamp(curent_node_choices.size(),0,3):
+			choiceBox.position.y = -33
+			for x in min(curent_node_choices.size(), dialogueButtons.size()):
 				dialogueButtons[x].text = curent_node_choices[x]["text"]
 				
-				#connecto to button
-				dialogueButtons[x].connect("pressed",self,"_on_Button_Pressed", [curent_node_choices[x]["next_id"]])
+				var callback = Callable(self, "_on_Button_Pressed").bind(curent_node_choices[x]["next_id"])
+				dialogueButtons[x].pressed.connect(callback)
+				button_connections[dialogueButtons[x]] = callback
 				
 				dialogueButtons[x].show()
 				dialogueButtons[0].grab_focus()
 				
 		else:
 			dialogueButtons[0].text = "Continue"
-			if dialogueButtons[0].text == "Continue":
-				choiceBox.rect_position.y = 700
+			choiceBox.position.y = -33
 			dialogueButtons[0].show()
-			#connect to the button
-			dialogueButtons[0].connect("pressed",self,"_on_Button_Pressed", [curent_node_next_id])
+			var callback = Callable(self, "_on_Button_Pressed").bind(curent_node_next_id)
+			dialogueButtons[0].pressed.connect(callback)
+			button_connections[dialogueButtons[0]] = callback
 
 	else:
 		get_parent().action_cooldown = 10
 		get_parent().state = "default"
-		dialogueText.percent_visible = 0
+		dialogueText.visible_ratio = 0
 		emit_signal("finished")
 		queue_free()
 		
 
 #-----Text Animation-----#
 func Dialogue_Anim():
-	finished = false
+	text_finished = false
 	$"DialogueUI/next-indicator".hide()
 	var line_speed = (curent_node_text.length() * 0.02)
-	tween.interpolate_property(dialogueText,"percent_visible",0,1,line_speed, Tween.TRANS_LINEAR)
-	tween.start()
+	if tween and tween.is_valid():
+		tween.kill()
+	dialogueText.visible_ratio = 0.0
+	tween = create_tween().set_trans(Tween.TRANS_LINEAR)
+	tween.tween_property(dialogueText, "visible_ratio", 1.0, line_speed)
+	tween.finished.connect(_on_text_tween_finished)
+	sfx.play("dialogue")
 
 #-----On Button Pressed-----#
 func _on_Button_Pressed(id):
@@ -152,18 +160,13 @@ func _on_Button_Pressed(id):
 
 #-----Initiate Dialogue-----#
 func Begin_Dialogue():
-	choiceBox.rect_position.y = -33
+	choiceBox.position.y = -33
 	LoadFile(file_name)
 	StartDialogue()
 
 #-----Prompt Once Text Complete-----#
-func _on_Tween_tween_all_completed():
-	finished = true
+func _on_text_tween_finished():
+	text_finished = true
 	$"DialogueUI/next-indicator".show()
-	if curent_node_choices.size() != null:
-		choiceBox.show()
-		dialogueButtons[0].grab_focus()
-
-#-----Text Tween Sound Effect----#
-func _on_Tween_tween_step(object, key, elapsed, value):
-	sfx.play("dialogue")
+	choiceBox.show()
+	dialogueButtons[0].grab_focus()

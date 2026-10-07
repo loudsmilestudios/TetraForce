@@ -1,8 +1,9 @@
 [remap]
 
 importer="texture"
-type="StreamTexture"
-path="res://.import/bombable_rock.png-66c39415ace3f6272c18c5976b219283.stex"
+type="CompressedTexture2D"
+uid="uid://d3gf7djks2q4p"
+path="res://.godot/imported/bombable_rock.png-66c39415ace3f6272c18c5976b219283.ctex"
 metadata={
 "vram_texture": false
 }
@@ -10,25 +11,30 @@ metadata={
 [deps]
 
 source_file="res://tiled/images/objects/bombable_rock.png"
-dest_files=[ "res://.import/bombable_rock.png-66c39415ace3f6272c18c5976b219283.stex" ]
+dest_files=["res://.godot/imported/bombable_rock.png-66c39415ace3f6272c18c5976b219283.ctex"]
 
 [params]
 
 compress/mode=0
+compress/high_quality=false
 compress/lossy_quality=0.7
-compress/hdr_mode=0
-compress/bptc_ldr=0
+compress/uastc_level=0
+compress/rdo_quality_loss=0.0
+compress/hdr_compression=1
 compress/normal_map=0
-flags/repeat=0
-flags/filter=false
-flags/mipmaps=false
-flags/anisotropic=false
-flags/srgb=2
+compress/channel_pack=0
+mipmaps/generate=false
+mipmaps/limit=-1
+roughness/mode=0
+roughness/src_normal=""
+process/channel_remap/red=0
+process/channel_remap/green=1
+process/channel_remap/blue=2
+process/channel_remap/alpha=3
 process/fix_alpha_border=true
 process/premult_alpha=false
-process/HDR_as_SRGB=false
-process/invert_color=false
-stream=false
-size_limit=0
-detect_3d=false
-svg/scale=1.0
+process/normal_map_invert_y=false
+process/hdr_as_srgb=false
+process/hdr_clamp_exposure=false
+process/size_limit=0
+detect_3d/compress_to=1

@@ -1,8 +1,8 @@
 extends Node
 
-var keys = 0 setget set_keys
+var keys = 0: set = set_keys
 
-var thorn_order = 0 setget set_thorns
+var thorn_order = 0: set = set_thorns
 
 signal update_persistent_state
 
@@ -23,8 +23,11 @@ func remove_key():
 		network.peer_call_id(network.get_map_host(), self, "remove_key")
 
 func set_keys(amount):
-	keys = amount
-	global.player.hud.update_keys()
+	# Saved JSON state supplies floats, but dungeon counters must stay integers.
+	keys = int(amount)
+	# Persistent state may arrive before the local player/HUD is initialized.
+	if is_instance_valid(global.player) and global.player is Player and is_instance_valid(global.player.hud):
+		global.player.hud.update_keys()
 	
 func add_thorn_order():
 	if network.is_map_host():
@@ -35,4 +38,4 @@ func add_thorn_order():
 		network.peer_call_id(network.get_map_host(), self, "add_thorn_order")
 		
 func set_thorns(amount):
-	thorn_order = amount
+	thorn_order = int(amount)

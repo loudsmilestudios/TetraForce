@@ -7,7 +7,11 @@ var player_hud = global.player.hud
 signal update_persistent_state
 
 func _ready():
+	initialize_collectable(false)
 	network.peer_call(self, "set_spiritpearls", [spiritpearls])
+
+func _on_collect(_body):
+	count_pearl()
 
 func count_pearl():
 	network.peer_call(self, "set_spiritpearls", [spiritpearls + 1])
@@ -19,7 +23,7 @@ func count_pearl():
 		set_spiritpearls(0)
 	
 func on_full_slate():
-	var newheart = Sprite.new()
+	var newheart = Sprite2D.new()
 	newheart.texture = player_hud.hearts.texture
 	newheart.hframes = player_hud.hearts.hframes
 	player_hud.hearts.add_child(newheart)
@@ -29,4 +33,3 @@ func on_full_slate():
 func set_spiritpearls(amount):
 	spiritpearls = amount
 	global.spiritpearl = spiritpearls
-

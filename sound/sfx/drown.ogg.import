@@ -1,15 +1,19 @@
 [remap]
 
-importer="ogg_vorbis"
-type="AudioStreamOGGVorbis"
-path="res://.import/drown.ogg-80d124e748156b0e1019b1d77fca37ef.oggstr"
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://byga2qmgh41gi"
+path="res://.godot/imported/drown.ogg-80d124e748156b0e1019b1d77fca37ef.oggvorbisstr"
 
 [deps]
 
 source_file="res://sound/sfx/drown.ogg"
-dest_files=[ "res://.import/drown.ogg-80d124e748156b0e1019b1d77fca37ef.oggstr" ]
+dest_files=["res://.godot/imported/drown.ogg-80d124e748156b0e1019b1d77fca37ef.oggvorbisstr"]
 
 [params]
 
 loop=false
 loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

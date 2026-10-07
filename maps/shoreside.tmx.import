@@ -1,22 +1,23 @@
 [remap]
 
-importer="vnen.tiled_importer"
+importer="YATI"
 type="PackedScene"
-path="res://.import/shoreside.tmx-28165245f4b5f58e0a4e4848db275a97.scn"
+uid="uid://mdndqhvlbdt"
+path="res://.godot/imported/shoreside.tmx-28165245f4b5f58e0a4e4848db275a97.tscn"
 
 [deps]
 
 source_file="res://maps/shoreside.tmx"
-dest_files=[ "res://.import/shoreside.tmx-28165245f4b5f58e0a4e4848db275a97.scn" ]
+dest_files=["res://.godot/imported/shoreside.tmx-28165245f4b5f58e0a4e4848db275a97.tscn"]
 
 [params]
 
-custom_properties=true
-tile_metadata=true
-uv_clip=true
-image_flags=7
-collision_layer=1
-embed_internal_images=false
-save_tiled_properties=true
-add_background=true
-post_import_script="res://tiled/import.gd"
+use_default_filter=false
+add_class_as_metadata=false
+add_id_as_metadata=true
+no_alternative_tiles=false
+map_wangset_to_terrain=false
+custom_data_prefix="data_"
+tiled_project_file=""
+post_processor="res://tiled/import.gd"
+save_tileset_to=""

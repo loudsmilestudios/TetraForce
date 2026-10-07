@@ -1,22 +1,23 @@
 [remap]
 
-importer="vnen.tiled_importer"
+importer="YATI"
 type="PackedScene"
-path="res://.import/inn.tmx-bdf601d7b8f05ce47fc2c90698d17dde.scn"
+uid="uid://2jxcttpk48up"
+path="res://.godot/imported/inn.tmx-bdf601d7b8f05ce47fc2c90698d17dde.tscn"
 
 [deps]
 
 source_file="res://maps/town/inn.tmx"
-dest_files=[ "res://.import/inn.tmx-bdf601d7b8f05ce47fc2c90698d17dde.scn" ]
+dest_files=["res://.godot/imported/inn.tmx-bdf601d7b8f05ce47fc2c90698d17dde.tscn"]
 
 [params]
 
-custom_properties=true
-tile_metadata=true
-uv_clip=true
-image_flags=7
-collision_layer=1
-embed_internal_images=false
-save_tiled_properties=true
-add_background=true
-post_import_script="res://tiled/import.gd"
+use_default_filter=false
+add_class_as_metadata=false
+add_id_as_metadata=true
+no_alternative_tiles=false
+map_wangset_to_terrain=false
+custom_data_prefix="data_"
+tiled_project_file=""
+post_processor="res://tiled/import.gd"
+save_tileset_to=""

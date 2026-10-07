@@ -1,15 +1,19 @@
 [remap]
 
-importer="ogg_vorbis"
-type="AudioStreamOGGVorbis"
-path="res://.import/bow.ogg-8a6d26e67d154b73d707f18db23732fb.oggstr"
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://n6uninw11l5r"
+path="res://.godot/imported/bow.ogg-8a6d26e67d154b73d707f18db23732fb.oggvorbisstr"
 
 [deps]
 
 source_file="res://sound/sfx/bow.ogg"
-dest_files=[ "res://.import/bow.ogg-8a6d26e67d154b73d707f18db23732fb.oggstr" ]
+dest_files=["res://.godot/imported/bow.ogg-8a6d26e67d154b73d707f18db23732fb.oggvorbisstr"]
 
 [params]
 
 loop=false
 loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

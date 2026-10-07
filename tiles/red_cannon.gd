@@ -1,8 +1,8 @@
 extends StaticBody2D
 
-var fired = false setget set_fired
+var fired = false: set = set_fired
 
-export(String) var location = "room"
+@export var location: String = "room"
 
 signal update_persistent_state
 
@@ -24,7 +24,7 @@ func interact(node : Entity):
 		network.peer_call($AnimationPlayer, "play", ["fuse"])
 		node.state = "menu"
 		node.add_to_group("invunerable")
-		yield($AnimationPlayer, "animation_finished")
+		await $AnimationPlayer.animation_finished
 		
 		$AnimationPlayer.play("shot")
 		network.peer_call($AnimationPlayer, "play", ["shot"])
@@ -33,10 +33,10 @@ func interact(node : Entity):
 			fire()
 		else:
 			network.peer_call_id(network.get_map_host(), self, "fire")
-		yield($AnimationPlayer, "animation_finished")
+		await $AnimationPlayer.animation_finished
 		
 		screenfx.play("fadewhite")
-		yield(screenfx, "animation_finished")
+		await screenfx.animation_finished
 		
 		node.camera.unlimit()
 		node.camera.target = thornwall

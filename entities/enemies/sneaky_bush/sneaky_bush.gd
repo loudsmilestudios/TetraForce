@@ -4,12 +4,14 @@ var movetimer_length = 30
 var movetimer = 0
 var radius = 25
 
-onready var detect = $PlayerDetect
+@onready var detect = $PlayerDetect
 
 func _ready():
+	super()
+	$PlayerDetect/CollisionShape2D.shape = $PlayerDetect/CollisionShape2D.shape.duplicate()
 	MAX_HEALTH = 1
 	DAMAGE = 0.5
-	health = MAX_HEALTH
+	_health = MAX_HEALTH
 	SPEED = 20
 	radius = $PlayerDetect/CollisionShape2D.shape.radius
 

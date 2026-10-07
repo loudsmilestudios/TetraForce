@@ -1,22 +1,23 @@
 [remap]
 
-importer="vnen.tiled_importer"
+importer="YATI"
 type="PackedScene"
-path="res://.import/TemplateBase.tmx-fb68e5024895ce275ab83ba70cbef4a9.scn"
+uid="uid://dvng4pe5kkxkv"
+path="res://.godot/imported/TemplateBase.tmx-fb68e5024895ce275ab83ba70cbef4a9.tscn"
 
 [deps]
 
 source_file="res://tiled/roughmapper/TemplateBase.tmx"
-dest_files=[ "res://.import/TemplateBase.tmx-fb68e5024895ce275ab83ba70cbef4a9.scn" ]
+dest_files=["res://.godot/imported/TemplateBase.tmx-fb68e5024895ce275ab83ba70cbef4a9.tscn"]
 
 [params]
 
-custom_properties=true
-tile_metadata=true
-uv_clip=true
-image_flags=7
-collision_layer=1
-embed_internal_images=false
-save_tiled_properties=true
-add_background=true
-post_import_script="res://tiled/import.gd"
+use_default_filter=false
+add_class_as_metadata=false
+add_id_as_metadata=true
+no_alternative_tiles=false
+map_wangset_to_terrain=false
+custom_data_prefix="data_"
+tiled_project_file=""
+post_processor="res://tiled/import.gd"
+save_tileset_to=""

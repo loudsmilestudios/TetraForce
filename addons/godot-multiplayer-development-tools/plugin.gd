@@ -1,4 +1,4 @@
-tool
+@tool
 extends EditorPlugin
 
 const SETTINGS_BASE = "tools/multiplayer_devtools/"
@@ -21,7 +21,7 @@ func _enter_tree():
 
 
 func _ready():
-	multistart_button.connect("button_down", self, "launch_multiplayer_setup")
+	multistart_button.connect("button_down", Callable(self, "launch_multiplayer_setup"))
 
 
 func _exit_tree():
@@ -41,27 +41,29 @@ func launch_multiplayer_setup():
 			window_pos.y = 0
 		elif i == 1:
 			window_pos.x = (
-				OS.get_screen_size().x
-				- ProjectSettings.get_setting("display/window/size/width")
+				DisplayServer.screen_get_size().x
+				- ProjectSettings.get_setting("display/window/size/viewport_width")
 			)
 			window_pos.y = 0
 		elif i == 2:
 			window_pos.x = (
-				OS.get_screen_size().x
-				- ProjectSettings.get_setting("display/window/size/width")
+				DisplayServer.screen_get_size().x
+				- ProjectSettings.get_setting("display/window/size/viewport_width")
 			)
 			window_pos.y = (
-				OS.get_screen_size().y
-				- ProjectSettings.get_setting("display/window/size/height")
+				DisplayServer.screen_get_size().y
+				- ProjectSettings.get_setting("display/window/size/viewport_height")
 			)
 		elif i == 3:
 			window_pos.x = 0
 			window_pos.y = (
-				OS.get_screen_size().y
-				- ProjectSettings.get_setting("display/window/size/height")
+				DisplayServer.screen_get_size().y
+				- ProjectSettings.get_setting("display/window/size/viewport_height")
 			)
 
-		var window_pos_str = "%s,%s" % [window_pos.x, window_pos.y]
-		OS.execute(OS.get_executable_path(), ["--path", ".", "--position", window_pos], false)
+		var window_pos_str = "%d,%d" % [int(window_pos.x), int(window_pos.y)]
+		OS.create_process(OS.get_executable_path(), PackedStringArray([
+			"--path", ProjectSettings.globalize_path("res://"), "--position", window_pos_str
+		]))
 
 	get_editor_interface().play_main_scene()

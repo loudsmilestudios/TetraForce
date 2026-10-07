@@ -1,8 +1,8 @@
 class_name BossOverlay
 extends Control
 
-onready var bossbar = $Bossbar
-onready var animation_player = $AnimationPlayer
+@onready var bossbar = $Bossbar
+@onready var animation_player = $AnimationPlayer
 
 func _ready():
 	self.show()

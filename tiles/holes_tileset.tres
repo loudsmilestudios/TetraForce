@@ -1,0 +1,13 @@
+[gd_resource type="TileSet" format=3]
+
+[ext_resource type="Texture2D" path="res://tiled/images/tilesets/overworld_tileset.png" id="1_1yf03"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6xmby"]
+texture = ExtResource("1_1yf03")
+3:32/0 = 0
+3:32/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[resource]
+physics_layer_0/collision_layer = 128
+physics_layer_0/collision_mask = 128
+sources/0 = SubResource("TileSetAtlasSource_6xmby")

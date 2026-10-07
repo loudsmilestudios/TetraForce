@@ -7,7 +7,7 @@ var received_sync = false
 
 func start():
 	shooter = get_parent()
-	$Hitbox.connect("body_entered", self, "body_entered")
+	$Hitbox.connect("body_entered", Callable(self, "body_entered"))
 	add_to_group("projectile")
 	sfx.play("bow")
 	position = shooter.position
@@ -29,8 +29,8 @@ func start():
 	get_parent().remove_child(self)
 	shooter.get_parent().add_child(self)
 	
-	if !is_network_master():
-		network.peer_call_id(get_network_master(), self, "request_arrow_sync", [network.pid])
+	if !is_multiplayer_authority():
+		network.peer_call_id(get_multiplayer_authority(), self, "request_arrow_sync", [network.pid])
 	set_physics_process(true)
 
 func request_arrow_sync(id):
@@ -45,7 +45,7 @@ func _physics_process(delta):
 	position += movedir * SPEED * delta
 
 func body_entered(body):
-	if !received_sync && !is_network_master() && body != shooter:
+	if !received_sync && !is_multiplayer_authority() && body != shooter:
 		queue_free()
 	elif body is Entity && body != shooter:
 		damage(body)

@@ -1,15 +1,19 @@
 [remap]
 
-importer="ogg_vorbis"
-type="AudioStreamOGGVorbis"
-path="res://.import/cave.ogg-8c6de9fb6b26a0acd4d52dced4ee063b.oggstr"
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://by37xnbayl7su"
+path="res://.godot/imported/cave.ogg-8c6de9fb6b26a0acd4d52dced4ee063b.oggvorbisstr"
 
 [deps]
 
 source_file="res://sound/music/cave.ogg"
-dest_files=[ "res://.import/cave.ogg-8c6de9fb6b26a0acd4d52dced4ee063b.oggstr" ]
+dest_files=["res://.godot/imported/cave.ogg-8c6de9fb6b26a0acd4d52dced4ee063b.oggvorbisstr"]
 
 [params]
 
 loop=true
 loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

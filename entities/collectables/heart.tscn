@@ -1,18 +1,18 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://entities/collectables/heart.png" type="Texture" id=1]
+[ext_resource path="res://entities/collectables/heart.png" type="Texture2D" id=1]
 [ext_resource path="res://entities/collectables/heart.gd" type="Script" id=2]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 3.5
-height = 4.0
+height = 11.0
 
 [node name="heart" type="Area2D" groups=[
 "collectable",
 ]]
 script = ExtResource( 2 )
 
-[node name="Sprite" type="Sprite" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2( 0, 1 )
 texture = ExtResource( 1 )
 

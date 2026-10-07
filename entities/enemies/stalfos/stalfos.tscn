@@ -1,32 +1,32 @@
 [gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://entities/enemies/stalfos/stalfos.gd" type="Script" id=1]
-[ext_resource path="res://entities/enemies/stalfos/stalfos.png" type="Texture" id=2]
+[ext_resource path="res://entities/enemies/stalfos/stalfos.png" type="Texture2D" id=2]
 [ext_resource path="res://engine/network_object.tscn" type="PackedScene" id=3]
 
 [sub_resource type="Animation" id=1]
 resource_name = "animate"
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:flip_h")
+tracks/0/path = NodePath("Sprite2D:flip_h")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 1,
 "values": [ false ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Sprite:frame")
+tracks/1/path = NodePath("Sprite2D:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.5 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 0.5 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 1,
 "values": [ 0, 1 ]
 }
@@ -34,14 +34,14 @@ tracks/1/keys = {
 [sub_resource type="Animation" id=2]
 resource_name = "throw"
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:frame")
+tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 0.5 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 1,
 "values": [ 3, 4 ]
 }
@@ -52,8 +52,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0.5 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0.5 ),
+"transitions": PackedFloat32Array( 1 ),
 "values": [ {
 "args": [  ],
 "method": "throw"
@@ -63,26 +63,26 @@ tracks/1/keys = {
 [sub_resource type="Animation" id=3]
 resource_name = "unanimate"
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:flip_h")
+tracks/0/path = NodePath("Sprite2D:flip_h")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 1,
 "values": [ false ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Sprite:frame")
+tracks/1/path = NodePath("Sprite2D:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.5 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 0.5 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 1,
 "values": [ 1, 0 ]
 }
@@ -90,38 +90,38 @@ tracks/1/keys = {
 [sub_resource type="Animation" id=4]
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:flip_h")
+tracks/0/path = NodePath("Sprite2D:flip_h")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 0.5 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 1,
 "values": [ false, true ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Sprite:frame")
+tracks/1/path = NodePath("Sprite2D:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 1,
 "values": [ 2 ]
 }
 
 [sub_resource type="CapsuleShape2D" id=5]
 radius = 6.91275
-height = 3.50099
+height = 17.32649
 
 [sub_resource type="CircleShape2D" id=6]
 radius = 96.0
 
-[node name="Stalfos" type="KinematicBody2D"]
+[node name="Stalfos" type="CharacterBody2D"]
 collision_layer = 2
 collision_mask = 2147483655
 script = ExtResource( 1 )
@@ -129,14 +129,13 @@ MAX_HEALTH = 0.5
 SPEED = 40
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-playback_speed = 4.0
+speed_scale = 4.0
 anims/animate = SubResource( 1 )
 anims/throw = SubResource( 2 )
 anims/unanimate = SubResource( 3 )
 anims/walk = SubResource( 4 )
 
-[node name="Sprite" type="Sprite" parent="."]
-z_as_relative = false
+[node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource( 2 )
 hframes = 5
 frame = 2

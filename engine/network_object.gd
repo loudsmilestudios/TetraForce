@@ -1,12 +1,12 @@
 extends Node
 
-export(bool) var require_map_host = true
-export(bool) var persistent = false
-export(bool) var sync_creation = false
-export(Dictionary) var update_properties = {}
-export(Dictionary) var enter_properties = {}
+@export var require_map_host: bool = true
+@export var persistent: bool = false
+@export var sync_creation: bool = false
+@export var update_properties: Dictionary = {}
+@export var enter_properties: Dictionary = {}
 
-onready var game = get_parent()
+@onready var game = get_parent()
 
 func _ready():
 	if game.has_method("get_game"):
@@ -14,16 +14,16 @@ func _ready():
 	elif not game.has_method("is_game"):
 		game = game.get_parent()
 
-	game.connect("player_entered", self, "player_entered")
-	network.tick.connect("timeout", self, "_tick")
+	game.connect("player_entered", Callable(self, "player_entered"))
+	network.tick.connect("timeout", Callable(self, "_tick"))
 	if persistent:
-		get_parent().connect("update_persistent_state", self, "update_persistent_state")
+		get_parent().connect("update_persistent_state", Callable(self, "update_persistent_state"))
 		network.request_persistent_state(get_parent())
 
 func _tick():
 	if require_map_host && !network.is_map_host():
 		return
-	if is_network_master():
+	if is_multiplayer_authority():
 		update_sync()
 
 func player_entered(id):
@@ -38,7 +38,7 @@ func player_entered(id):
 		# persistent == true
 		return
 	if sync_creation:
-		network.peer_create_id(id, get_parent().filename, get_parent().name, get_parent().get_parent())
+		network.peer_create_id(id, get_parent().scene_file_path, get_parent().name, get_parent().get_parent().get_path())
 		return
 	update_enter_properties(id)
 

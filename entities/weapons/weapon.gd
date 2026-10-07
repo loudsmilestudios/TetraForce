@@ -6,16 +6,16 @@ var TYPE = null
 var input = null
 var user = null
 
-export(float, 0, 20, 0.5) var DAMAGE = 0.5
-export(int, 1, 20) var MAX_AMOUNT = 1
-export(bool) var delete_on_hit = false
+@export var DAMAGE = 0.5 # (float, 0, 20, 0.5)
+@export var MAX_AMOUNT = 1 # (int, 1, 20)
+@export var delete_on_hit: bool = false
 
 func _ready():
 	user = get_parent()
 	TYPE = get_parent().TYPE
 	add_to_group("item")
 	set_physics_process(false)
-	set_network_master(get_parent().get_network_master())
+	set_multiplayer_authority(get_parent().get_multiplayer_authority())
 
 func hit():
 	if delete_on_hit:
@@ -23,14 +23,14 @@ func hit():
 
 func damage(body):
 	var knockdir = body.global_position - global_position
-	if is_network_master() && network.is_map_host():
+	if is_multiplayer_authority() && network.is_map_host():
 		if body is Player && body.name != str(network.pid):
 			network.peer_call_id(int(body.name), body, "damage", [DAMAGE, knockdir])
 		else:
 			body.damage(DAMAGE, knockdir, self)
 	elif network.is_map_host():
 		body.damage(DAMAGE, knockdir, self)
-	elif is_network_master():
+	elif is_multiplayer_authority():
 		if body is Player:
 			network.peer_call_id(int(body.name), body, "damage", [DAMAGE, knockdir])
 		else:
@@ -40,6 +40,6 @@ func damage(body):
 		delete()
 
 func delete():
-	if is_network_master():
+	if is_multiplayer_authority():
 		network.peer_call(self, "queue_free")
 	queue_free()

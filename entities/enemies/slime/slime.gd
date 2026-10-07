@@ -3,9 +3,10 @@ extends Enemy
 var movetimer_length = 30
 var movetimer = 0
 
-export var color = "green"
+@export var color = "green"
 
 func _ready():
+	super()
 	match color:
 		"green":
 			sprite.texture = preload("res://entities/enemies/slime/green.png")
@@ -15,7 +16,7 @@ func _ready():
 			sprite.texture = preload("res://entities/enemies/slime/red.png")
 			MAX_HEALTH = 1.0
 			DAMAGE = 1
-	health = MAX_HEALTH
+	_health = MAX_HEALTH
 	movedir = rand_direction()
 
 func _physics_process(delta):

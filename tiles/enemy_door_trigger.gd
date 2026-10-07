@@ -1,12 +1,12 @@
 extends StaticBody2D
 
-export(String, MULTILINE) var dialogue: String = ""
+@export var dialogue: String = "" # (String, MULTILINE)
 
 var begin
 var zone
 
-onready var active = false setget set_active
-onready var disable = false setget set_disable
+@onready var active = false: set = set_active
+@onready var disable = false: set = set_disable
  
 signal started
 signal check_for_active
@@ -19,8 +19,8 @@ func _ready():
 	add_to_group("interactable")
 	add_to_group("nopush")
 	add_to_group("zoned")
-	self.connect("check_for_active", self, "active")
-	self.connect("check_for_inactive", self, "inactive")
+	self.connect("check_for_active", Callable(self, "show_active"))
+	self.connect("check_for_inactive", Callable(self, "inactive"))
 
 func _physics_process(delta):
 	if active && zone && network.is_map_host():
@@ -33,10 +33,10 @@ func _physics_process(delta):
 			network.peer_call(self, "add_to_group", ["interactable"])
 
 func interact(node):
-	var dialogue_manager = preload("res://ui/dialogue/dialogue_manager.tscn").instance()
+	var dialogue_manager = preload("res://ui/dialogue/dialogue_manager.tscn").instantiate()
 	var accept = dialogue_manager.get_node("DialogueUI/ChoiceBox/Button1")
 	begin = accept
-	accept.connect("pressed",self,"_on_Begin_Pressed")
+	accept.connect("pressed", Callable(self, "_on_Begin_Pressed"))
 	
 	node.add_child(dialogue_manager)
 	node.state = "menu"
@@ -57,15 +57,15 @@ func activate():
 	set_disable(true)
 	emit_signal("started")
 	for i in range(20):
-		yield(get_tree(), "idle_frame")
+		await get_tree().process_frame
 	set_physics_process(true)
 	
-func active():
+func show_active():
 	if active == true && $AnimationPlayer.current_animation != "activate":
 		$AnimationPlayer.play("active")
 	set_disable(true)
 	for i in range(20):
-		yield(get_tree(), "idle_frame")
+		await get_tree().process_frame
 	set_physics_process(true)
 	
 func deactivate():
@@ -81,7 +81,7 @@ func inactive():
 	if active == false && $AnimationPlayer.current_animation != "deactivate":
 		$AnimationPlayer.play("inactive")
 	for i in range(20):
-		yield(get_tree(), "idle_frame")
+		await get_tree().process_frame
 	set_physics_process(false)
 	set_disable(true)
 	

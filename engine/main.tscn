@@ -13,9 +13,9 @@
 [node name="main" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = 258.0
-margin_bottom = 146.0
-rect_scale = Vector2( 0.5, 0.5 )
+offset_right = 258.0
+offset_bottom = 146.0
+scale = Vector2( 0.5, 0.5 )
 size_flags_horizontal = 2
 size_flags_vertical = 2
 theme = ExtResource( 1 )
@@ -25,29 +25,29 @@ __meta__ = {
 }
 
 [node name="bg" type="ColorRect" parent="."]
-margin_left = -16.0
-margin_top = -16.0
-margin_right = 528.0
-margin_bottom = 304.0
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 528.0
+offset_bottom = 304.0
 color = Color( 0.0705882, 0.0196078, 0.0196078, 1 )
 __meta__ = {
 "_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
-[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2( 258.121, 55.1716 )
-frames = ExtResource( 6 )
+sprite_frames = ExtResource( 6 )
 animation = "Logo"
 
 [node name="top" type="Panel" parent="." groups=[
 "menu",
 ]]
 visible = false
-margin_left = 176.0
-margin_top = 118.0
-margin_right = 336.0
-margin_bottom = 278.0
+offset_left = 176.0
+offset_top = 118.0
+offset_right = 336.0
+offset_bottom = 278.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -57,19 +57,19 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -72.0
-margin_top = -76.0
-margin_right = 72.0
-margin_bottom = 76.0
+offset_left = -72.0
+offset_top = -76.0
+offset_right = 72.0
+offset_bottom = 76.0
 alignment = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="singleplayer" type="Button" parent="top/VBoxContainer"]
-margin_top = 3.0
-margin_right = 144.0
-margin_bottom = 24.7537
+offset_top = 3.0
+offset_right = 144.0
+offset_bottom = 24.7537
 size_flags_stretch_ratio = 0.0
 text = "Quickstart"
 __meta__ = {
@@ -77,9 +77,9 @@ __meta__ = {
 }
 
 [node name="multiplayer" type="Button" parent="top/VBoxContainer"]
-margin_top = 28.0
-margin_right = 144.0
-margin_bottom = 49.7537
+offset_top = 28.0
+offset_right = 144.0
+offset_bottom = 49.7537
 size_flags_stretch_ratio = 0.0
 text = "Multiplayer"
 __meta__ = {
@@ -87,9 +87,9 @@ __meta__ = {
 }
 
 [node name="load_game" type="Button" parent="top/VBoxContainer"]
-margin_top = 53.0
-margin_right = 144.0
-margin_bottom = 74.7537
+offset_top = 53.0
+offset_right = 144.0
+offset_bottom = 74.7537
 size_flags_stretch_ratio = 0.0
 text = "Load Game"
 __meta__ = {
@@ -97,9 +97,9 @@ __meta__ = {
 }
 
 [node name="credits" type="Button" parent="top/VBoxContainer"]
-margin_top = 78.0
-margin_right = 144.0
-margin_bottom = 99.7537
+offset_top = 78.0
+offset_right = 144.0
+offset_bottom = 99.7537
 size_flags_stretch_ratio = 0.0
 text = "Credits"
 __meta__ = {
@@ -107,9 +107,9 @@ __meta__ = {
 }
 
 [node name="options" type="Button" parent="top/VBoxContainer"]
-margin_top = 103.0
-margin_right = 144.0
-margin_bottom = 124.754
+offset_top = 103.0
+offset_right = 144.0
+offset_bottom = 124.754
 size_flags_stretch_ratio = 0.0
 text = "Options"
 __meta__ = {
@@ -117,9 +117,9 @@ __meta__ = {
 }
 
 [node name="quit" type="Button" parent="top/VBoxContainer"]
-margin_top = 128.0
-margin_right = 144.0
-margin_bottom = 149.754
+offset_top = 128.0
+offset_right = 144.0
+offset_bottom = 149.754
 size_flags_stretch_ratio = 0.0
 text = "Quit"
 __meta__ = {
@@ -129,10 +129,10 @@ __meta__ = {
 [node name="multiplayer" type="TabContainer" parent="." groups=[
 "menu",
 ]]
-margin_left = 144.0
-margin_top = 98.0
-margin_right = 368.0
-margin_bottom = 279.0
+offset_left = 144.0
+offset_top = 98.0
+offset_right = 368.0
+offset_bottom = 279.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -140,83 +140,83 @@ __meta__ = {
 [node name="Public" type="Control" parent="multiplayer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 8.99585
-margin_top = 29.9958
-margin_right = -9.51308
-margin_bottom = -9.11333
+offset_left = 8.99585
+offset_top = 29.9958
+offset_right = -9.51308
+offset_bottom = -9.11333
 script = ExtResource( 9 )
 _main = NodePath("../..")
 _button_container = NodePath("ScrollContainer/VBoxContainer")
 
 [node name="Label" type="Label" parent="multiplayer/Public"]
-margin_right = 210.0
-margin_bottom = 31.0
+offset_right = 210.0
+offset_bottom = 31.0
 text = "Join other players in solving puzzles and fighting bosses!"
-align = 1
-autowrap = true
+horizontal_alignment = 1
+autowrap_mode = 3
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="ScrollContainer" type="ScrollContainer" parent="multiplayer/Public"]
-margin_left = 2.0
-margin_top = 34.0
-margin_right = 201.0
-margin_bottom = 139.0
-scroll_horizontal_enabled = false
+offset_left = 2.0
+offset_top = 34.0
+offset_right = 201.0
+offset_bottom = 139.0
+horizontal_scroll_mode = 0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="VBoxContainer" type="VBoxContainer" parent="multiplayer/Public/ScrollContainer"]
-margin_right = 199.0
-margin_bottom = 21.0
+offset_right = 199.0
+offset_bottom = 21.0
 size_flags_horizontal = 3
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Button" type="Button" parent="multiplayer/Public/ScrollContainer/VBoxContainer"]
-margin_right = 199.0
-margin_bottom = 21.7537
+offset_right = 199.0
+offset_bottom = 21.7537
 size_flags_horizontal = 3
 text = "#0 Public Server"
-align = 0
+alignment = 0
 
 [node name="Automatic" type="Control" parent="multiplayer"]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 8.99585
-margin_top = 29.9958
-margin_right = -9.51308
-margin_bottom = -9.11333
+offset_left = 8.99585
+offset_top = 29.9958
+offset_right = -9.51308
+offset_bottom = -9.11333
 
 [node name="lobby" type="LineEdit" parent="multiplayer/Automatic"]
-margin_left = 23.0042
-margin_top = 68.0042
-margin_right = 183.004
-margin_bottom = 100.411
+offset_left = 23.0042
+offset_top = 68.0042
+offset_right = 183.004
+offset_bottom = 100.411
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="connect" type="Button" parent="multiplayer/Automatic"]
-margin_left = 71.0042
-margin_top = 108.004
-margin_right = 135.004
-margin_bottom = 130.004
+offset_left = 71.0042
+offset_top = 108.004
+offset_right = 135.004
+offset_bottom = 130.004
 text = "Connect"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Label" type="Label" parent="multiplayer/Automatic"]
-margin_right = 210.0
-margin_bottom = 66.0
+offset_right = 210.0
+offset_bottom = 66.0
 text = "Enter any lobby name below to create a new server hosted by us. Enter the same lobby name as someone else to join their server."
-align = 1
-autowrap = true
+horizontal_alignment = 1
+autowrap_mode = 3
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -225,32 +225,32 @@ __meta__ = {
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 8.99585
-margin_top = 29.9958
-margin_right = -9.51308
-margin_bottom = -9.11333
+offset_left = 8.99585
+offset_top = 29.9958
+offset_right = -9.51308
+offset_bottom = -9.11333
 size_flags_horizontal = 2
 size_flags_vertical = 2
 
 [node name="Label" type="Label" parent="multiplayer/Direct"]
-margin_right = 199.0
-margin_bottom = 146.0
+offset_right = 199.0
+offset_bottom = 146.0
 text = "Host a server on this machine by pressing the button below.
 Play on LAN with your local IP or online by port forwarding 7777.
 
 
 Connect to a server with IP:Port"
-align = 1
-autowrap = true
+horizontal_alignment = 1
+autowrap_mode = 3
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="address" type="LineEdit" parent="multiplayer/Direct"]
-margin_left = 8.0
-margin_top = 114.0
-margin_right = 136.0
-margin_bottom = 146.407
+offset_left = 8.0
+offset_top = 114.0
+offset_right = 136.0
+offset_bottom = 146.407
 size_flags_horizontal = 2
 size_flags_vertical = 2
 text = "127.0.0.1:7777"
@@ -259,10 +259,10 @@ __meta__ = {
 }
 
 [node name="host" type="Button" parent="multiplayer/Direct"]
-margin_left = 71.0042
-margin_top = 66.0042
-margin_right = 135.004
-margin_bottom = 90.0042
+offset_left = 71.0042
+offset_top = 66.0042
+offset_right = 135.004
+offset_bottom = 90.0042
 size_flags_horizontal = 2
 size_flags_vertical = 2
 text = "Host"
@@ -271,10 +271,10 @@ __meta__ = {
 }
 
 [node name="join" type="Button" parent="multiplayer/Direct"]
-margin_left = 142.0
-margin_top = 120.0
-margin_right = 206.0
-margin_bottom = 142.0
+offset_left = 142.0
+offset_top = 120.0
+offset_right = 206.0
+offset_bottom = 142.0
 size_flags_horizontal = 2
 size_flags_vertical = 2
 text = "Join"
@@ -286,32 +286,32 @@ __meta__ = {
 visible = false
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 143.0
-margin_top = 98.0
-margin_right = 368.0
-margin_bottom = 277.0
+offset_left = 127.0
+offset_top = 98.0
+offset_right = 384.0
+offset_bottom = 277.0
 
 [node name="credits" type="Panel" parent="." groups=[
 "menu",
 ]]
 visible = false
-margin_left = 142.0
-margin_top = 118.0
-margin_right = 372.0
-margin_bottom = 278.0
+offset_left = 142.0
+offset_top = 118.0
+offset_right = 372.0
+offset_bottom = 278.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="ScrollContainer" type="ScrollContainer" parent="credits"]
-margin_left = 11.0
-margin_top = 12.0
-margin_right = 284.0
-margin_bottom = 205.0
-rect_scale = Vector2( 0.75, 0.75 )
+offset_left = 11.0
+offset_top = 12.0
+offset_right = 284.0
+offset_bottom = 205.0
+scale = Vector2( 0.75, 0.75 )
 size_flags_horizontal = 0
 size_flags_vertical = 0
-scroll_horizontal_enabled = false
+horizontal_scroll_mode = 0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -319,8 +319,8 @@ __meta__ = {
 [node name="Credits" parent="credits/ScrollContainer" instance=ExtResource( 8 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_right = 273.0
-margin_bottom = 457.0
+offset_right = 273.0
+offset_bottom = 457.0
 size_flags_horizontal = 3
 
 [node name="VersionLabel" type="Label" parent="."]
@@ -328,12 +328,12 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -174.556
-margin_top = -17.7622
-margin_right = -5.55591
-margin_bottom = -4.76221
+offset_left = -174.556
+offset_top = -17.7622
+offset_right = -5.55591
+offset_bottom = -4.76221
 text = "custom build"
-align = 2
+horizontal_alignment = 2
 script = ExtResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -343,10 +343,10 @@ __meta__ = {
 "menu",
 ]]
 visible = false
-margin_left = 161.0
-margin_top = 127.652
-margin_right = 359.0
-margin_bottom = 229.652
+offset_left = 161.0
+offset_top = 127.652
+offset_right = 359.0
+offset_bottom = 229.652
 __meta__ = {
 "_edit_group_": true,
 "_edit_use_anchors_": false
@@ -357,10 +357,10 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = -22.0
-margin_top = -38.428
-margin_right = 16.4557
-margin_bottom = -16.6743
+offset_left = -22.0
+offset_top = -38.428
+offset_right = 16.4557
+offset_bottom = -16.6743
 text = "Close"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -369,14 +369,14 @@ __meta__ = {
 [node name="Label" type="Label" parent="message"]
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = -84.0
-margin_top = 13.0
-margin_right = 84.0
-margin_bottom = 56.0
+offset_left = -84.0
+offset_top = 13.0
+offset_right = 84.0
+offset_bottom = 56.0
 text = "Generic Error Message"
-align = 1
-valign = 1
-autowrap = true
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="player_select" parent="." instance=ExtResource( 5 )]
 visible = false
@@ -385,10 +385,10 @@ main_path = NodePath("..")
 [node name="back" type="Button" parent="." groups=[
 "menu",
 ]]
-margin_left = 18.0
-margin_top = 252.0
-margin_right = 66.0
-margin_bottom = 274.0
+offset_left = 18.0
+offset_top = 252.0
+offset_right = 66.0
+offset_bottom = 274.0
 text = "Back"
 __meta__ = {
 "_edit_use_anchors_": false

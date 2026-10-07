@@ -1,8 +1,8 @@
 extends StaticBody2D
 
-export var color = "blue"
+@export var color = "blue"
 
-onready var animation = $AnimationPlayer
+@onready var animation = $AnimationPlayer
 
 var spawn = false
 
@@ -10,11 +10,11 @@ func _ready():
 	add_to_group("bombable")
 	match color:
 		"blue":
-			$Sprite.texture = preload("res://tiles/post_smash_blue.png")
+			$Sprite2D.texture = preload("res://tiles/post_smash_blue.png")
 		"red":
-			$Sprite.texture = preload("res://tiles/post_smash_red.png")
+			$Sprite2D.texture = preload("res://tiles/post_smash_red.png")
 		"yellow":
-			$Sprite.texture = preload("res://tiles/post_smash_yellow.png")
+			$Sprite2D.texture = preload("res://tiles/post_smash_yellow.png")
 
 func cut(hitbox):
 	if global.player.spritedir != "Up":

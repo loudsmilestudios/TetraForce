@@ -4,16 +4,23 @@ var movetimer_length = 70
 var movetimer = 0
 var active = false
 
-onready var detect = $PlayerDetect
+@onready var detect = $PlayerDetect
 
 func _ready():
+	super()
 	MAX_HEALTH = 0.5
 	DAMAGE = 0.5
-	health = MAX_HEALTH
+	_health = MAX_HEALTH
 	SPEED = 30
 
+func _process(delta):
+	super(delta)
+	# The animation shows the shadow during takeoff, flight, and landing.
+	# Airborne bats do not disturb the grass beneath their ground sensor.
+	if $Shadow.visible:
+		walkfx.hide()
+
 func _physics_process(delta):
-	position += movedir * SPEED * delta
 	var sees_player = false
 		
 	if !network.is_map_host() || is_dead():
@@ -34,7 +41,7 @@ func _physics_process(delta):
 		if anim.current_animation == "sees_player":
 			anim.play("land")
 			network.peer_call(anim, "play", ["land"])
-			yield(get_tree().create_timer(5), "timeout")
+			await get_tree().create_timer(5).timeout
 	
 	if anim.current_animation == "activate":
 		return

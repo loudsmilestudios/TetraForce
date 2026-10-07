@@ -1,16 +1,16 @@
 extends Area2D
 
-export(String) var map
-export(String) var player_position
-export(String) var entrance
+@export var map: String
+@export var player_position: String
+@export var entrance: String
 
 func _ready():
 	add_to_group("entrances")
-	connect("body_entered", self, "body_entered")
+	connect("body_entered", Callable(self, "body_entered"))
 	spritedir()
 
 func body_entered(body):
-	if body.is_in_group("player") && body.is_network_master():
+	if body.is_in_group("player") && body.is_multiplayer_authority():
 		global.health = body.health
 		body.state = "interact"
 		global.change_map(map, entrance)

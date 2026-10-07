@@ -1,19 +1,19 @@
 extends StaticBody2D
 
-export(bool) var starts_locked = false
-export(String) var location = "room"
-export(String) var direction = "up"
+@export var starts_locked: bool = false
+@export var location: String = "room"
+@export var direction: String = "up"
 #export var texture = "dungeon1" no textures implemented yet
 
-onready var locked = false setget set_locked
+@onready var locked = false: set = set_locked
 
 signal on_button_pressed
 signal no_weight
 
 func _ready():
 	spritedir()
-	get_parent().get_node(location).connect("on_button_pressed", self, "unlock")
-	get_parent().get_node(location).connect("no_weight", self, "lock")
+	get_parent().get_node(location).connect("on_button_pressed", Callable(self, "unlock"))
+	get_parent().get_node(location).connect("no_weight", Callable(self, "lock"))
 	set_locked(starts_locked)
 		
 func lock():
@@ -21,7 +21,7 @@ func lock():
 		return
 	if !locked && $AnimationPlayer.current_animation != "lock_" + direction:
 		$AnimationPlayer.play("lock_" + direction)
-		yield($AnimationPlayer, "animation_finished")
+		await $AnimationPlayer.animation_finished
 		set_locked(true)
 
 func unlock():
@@ -29,7 +29,7 @@ func unlock():
 		return
 	if locked && $AnimationPlayer.current_animation != "unlock_" + direction:
 		$AnimationPlayer.play("unlock_" + direction)
-		yield($AnimationPlayer, "animation_finished")
+		await $AnimationPlayer.animation_finished
 		set_locked(false)
 
 func set_locked(value):
@@ -41,10 +41,10 @@ func set_locked(value):
 		
 func spritedir():
 	if direction == "up":
-		$Sprite.frame = 8
+		$Sprite2D.frame = 8
 	elif direction == "right":
-		$Sprite.frame = 4
+		$Sprite2D.frame = 4
 	elif direction == "down":
-		$Sprite.frame = 0
+		$Sprite2D.frame = 0
 	elif direction == "left":
-		$Sprite.frame = 12
+		$Sprite2D.frame = 12

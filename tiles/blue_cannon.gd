@@ -1,6 +1,6 @@
 extends StaticBody2D
 
-export(String) var spritedir = "Down"
+@export var spritedir: String = "Down"
 var TYPE = "PLAYER"
 var fired = false
 var mouth = false
@@ -39,20 +39,20 @@ func on_interact():
 		if network.is_map_host():
 			network.peer_call(self, "on_interact")
 		$AnimationPlayer.play("fuse" + spritedir)
-		yield(get_tree().create_timer(2.5), "timeout")
+		await get_tree().create_timer(2.5).timeout
 		$AnimationPlayer.play("shot" + spritedir)
 		use_weapon("CannonBall")
 		fired = true
 
-sync func use_weapon(weapon_name, input="A"):
+@rpc("any_peer", "call_local") func use_weapon(weapon_name, input="A"):
 	var weapon = global.weapons_def[weapon_name]
-	var new_weapon = load(weapon.path).instance()
+	var new_weapon = load(weapon.path).instantiate()
 	var weapon_group = str(weapon_name, name)
 	new_weapon.add_to_group(weapon_group)
 	new_weapon.add_to_group(name)
 	add_child(new_weapon)
 	
-	new_weapon.set_network_master(get_network_master())
+	new_weapon.set_multiplayer_authority(get_multiplayer_authority())
 	
 	if get_tree().get_nodes_in_group(weapon_group).size() > new_weapon.MAX_AMOUNT:
 		new_weapon.delete()
@@ -64,20 +64,20 @@ sync func use_weapon(weapon_name, input="A"):
 func update_spritedir():
 	match spritedir:
 		"Up":
-			$Sprite.frame = 2
+			$Sprite2D.frame = 2
 			$CollisionShape2D.rotation_degrees = 0
 			$CollisionShape2D.position.y = -4
 		"Right":
-			$Sprite.frame = 4
+			$Sprite2D.frame = 4
 			$CollisionShape2D.rotation_degrees = 90
 			$CollisionShape2D.position.x = 4
 			$CollisionShape2D.position.y = -1
 		"Down":
-			$Sprite.frame = 0
+			$Sprite2D.frame = 0
 			$CollisionShape2D.rotation_degrees = 0
 			$CollisionShape2D.position.y = 4
 		"Left":
-			$Sprite.frame = 6
+			$Sprite2D.frame = 6
 			$CollisionShape2D.rotation_degrees = 90
 			$CollisionShape2D.position.x = -4
 			$CollisionShape2D.position.y = -1

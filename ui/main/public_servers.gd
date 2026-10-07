@@ -1,13 +1,13 @@
 extends Control
 
-export(int) var number_of_servers = 2
-export(NodePath) var _main
-export(NodePath) var _button_container
+@export var number_of_servers: int = 2
+@export var _main: NodePath
+@export var _button_container: NodePath
 
-export(Array, String) var name_gen_first_part = [ "Tetra", "First", "Second", "Third", "Fourth" ]
-export(Array, String) var name_gen_middle_part = [ "of" ]
-export(Array, String) var name_gen_end_part = [ "Friends", "Force" ]
-export(Array, String) var name_gen_any_part = [ "Sword", "Bow", "Dungeon", "Fire", "Doom", "Chain",
+@export var name_gen_first_part = [ "Tetra", "First", "Second", "Third", "Fourth" ] # (Array, String)
+@export var name_gen_middle_part = [ "of" ] # (Array, String)
+@export var name_gen_end_part = [ "Friends", "Force" ] # (Array, String)
+@export var name_gen_any_part = [ "Sword", "Bow", "Dungeon", "Fire", "Doom", "Chain", # (Array, String)
 		"Knot", "Key", "Pirate", "Bat", "Knawblin", "Cucukin", "Village" ]
 
 var main : Main
@@ -26,14 +26,14 @@ func _ready():
 
 func create_server_button(server_label : String, server_name : String) -> Node:
 	var button = Button.new()
-	button.connect("button_down", main, "join_aws", [server_name])
-	button.align = Button.ALIGN_LEFT
+	button.connect("button_down", Callable(main, "join_aws").bind(server_name))
+	button.alignment = HORIZONTAL_ALIGNMENT_LEFT
 	button.text = server_label
 	return button
 
 func get_version_as_int() -> int:
 	var spb = StreamPeerBuffer.new()
-	spb.data_array = global.get_version().to_utf8()
+	spb.data_array = global.get_version().to_utf8_buffer()
 	return spb.get_64()
 
 func generate_server_name(randomizer_seed : int) -> String:

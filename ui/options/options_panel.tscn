@@ -1,29 +1,26 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://ui/options/options.tscn" type="PackedScene" id=1]
 [ext_resource path="res://ui/options/options_panel.gd" type="Script" id=2]
-[ext_resource path="res://ui/theme/panel2.png" type="Texture" id=3]
-[ext_resource path="res://ui/theme/font.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://ui/theme/panel2.png" type="Texture2D" id=3]
+[ext_resource path="res://ui/theme/font.ttf" type="FontFile" id=4]
 
 [sub_resource type="StyleBoxTexture" id=1]
 texture = ExtResource( 3 )
 region_rect = Rect2( 0, 0, 32, 32 )
-margin_left = 9.0
-margin_right = 9.0
-margin_top = 9.0
-margin_bottom = 9.0
+texture_margin_left = 9.0
+texture_margin_right = 9.0
+texture_margin_top = 9.0
+texture_margin_bottom = 9.0
 axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
 
 [sub_resource type="Theme" id=2]
-TabContainer/colors/font_color_bg = Color( 0.69, 0.69, 0.69, 1 )
-TabContainer/colors/font_color_disabled = Color( 0.9, 0.9, 0.9, 0.2 )
-TabContainer/colors/font_color_fg = Color( 0.94, 0.94, 0.94, 1 )
-TabContainer/constants/hseparation = 4
-TabContainer/constants/label_valign_bg = 2
-TabContainer/constants/label_valign_fg = 0
+TabContainer/colors/font_unselected_color = Color( 0.69, 0.69, 0.69, 1 )
+TabContainer/colors/font_disabled_color = Color( 0.9, 0.9, 0.9, 0.2 )
+TabContainer/colors/font_selected_color = Color( 0.94, 0.94, 0.94, 1 )
+TabContainer/constants/icon_separation = 4
 TabContainer/constants/side_margin = 8
-TabContainer/constants/top_margin = 24
 TabContainer/fonts/font = null
 TabContainer/icons/decrement = null
 TabContainer/icons/decrement_highlight = null
@@ -32,21 +29,18 @@ TabContainer/icons/increment_highlight = null
 TabContainer/icons/menu = null
 TabContainer/icons/menu_highlight = null
 TabContainer/styles/panel = SubResource( 1 )
-TabContainer/styles/tab_bg = null
+TabContainer/styles/tab_unselected = null
 TabContainer/styles/tab_disabled = null
-TabContainer/styles/tab_fg = null
-
-[sub_resource type="DynamicFont" id=3]
-font_data = ExtResource( 4 )
+TabContainer/styles/tab_selected = null
 
 [node name="options_panel" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 30.0
-margin_top = 12.0
-margin_right = 174.0
-margin_bottom = 109.0
-rect_scale = Vector2( 0.5, 0.5 )
+offset_left = 30.0
+offset_top = 12.0
+offset_right = 174.0
+offset_bottom = 109.0
+scale = Vector2( 0.5, 0.5 )
 theme = SubResource( 2 )
 script = ExtResource( 2 )
 __meta__ = {
@@ -54,19 +48,20 @@ __meta__ = {
 }
 
 [node name="Options" parent="." instance=ExtResource( 1 )]
-margin_left = 29.0
-margin_top = -1.0
-margin_right = -29.0
-margin_bottom = -36.0
+offset_left = 29.0
+offset_top = -1.0
+offset_right = -29.0
+offset_bottom = -36.0
 
 [node name="back" type="Button" parent="."]
 anchor_top = 1.0
 anchor_bottom = 1.0
-margin_left = 9.4494
-margin_top = -29.0533
-margin_right = 47.9051
-margin_bottom = -6.29962
-custom_fonts/font = SubResource( 3 )
+offset_left = 9.4494
+offset_top = -29.0533
+offset_right = 47.9051
+offset_bottom = -6.29962
+theme_override_fonts/font = ExtResource( 4 )
+theme_override_font_sizes/font_size = 16
 text = "Back"
 __meta__ = {
 "_edit_use_anchors_": false

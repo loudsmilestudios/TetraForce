@@ -9,6 +9,6 @@ func start():
 	sfx.play("bow")
 
 func explode():
-	var explosion = preload("res://effects/bomb_explode.tscn").instance()
+	var explosion = preload("res://effects/bomb_explode.tscn").instantiate()
 	add_child(explosion)
 	explosion.start()

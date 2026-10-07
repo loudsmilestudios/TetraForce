@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://entities/collectables/spiritpearl.png" type="Texture" id=1]
+[ext_resource path="res://entities/collectables/spiritpearl.png" type="Texture2D" id=1]
 [ext_resource path="res://entities/collectables/spiritpearl.gd" type="Script" id=2]
 [ext_resource path="res://engine/network_object.tscn" type="PackedScene" id=3]
 
@@ -12,7 +12,7 @@ radius = 6.36625
 ]]
 script = ExtResource( 2 )
 
-[node name="Sprite" type="Sprite" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource( 1 )
 flip_v = true
 

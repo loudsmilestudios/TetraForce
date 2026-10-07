@@ -1,17 +1,17 @@
 extends Weapon
 
-onready var anim = $AnimationPlayer
+@onready var anim = $AnimationPlayer
 
 const SPIN_HOLD_LENGTH = 0.75
 var hold_time = 0
-var spin_attack = false
+var spin_attack_ready = false
 var spin_multiplier = 2
 
 func start():
-	$Hitbox.connect("body_entered", self, "body_entered")
-	$Hitbox.connect("area_entered", self, "area_entered")
-	if is_network_master():
-		anim.connect("animation_finished", self, "swing_ended")
+	$Hitbox.connect("body_entered", Callable(self, "body_entered"))
+	$Hitbox.connect("area_entered", Callable(self, "area_entered"))
+	if is_multiplayer_authority():
+		anim.connect("animation_finished", Callable(self, "swing_ended"))
 		if get_parent().has_method("state_swing"):
 			get_parent().state = "swing"
 	anim.play(str("swing", get_parent().spritedir))
@@ -19,7 +19,7 @@ func start():
 	sfx.play(str("sword", randi() % 4))
 
 func swing_ended(animation):
-	anim.disconnect("animation_finished", self, "swing_ended")
+	anim.disconnect("animation_finished", Callable(self, "swing_ended"))
 	if input != null && Input.is_action_pressed(input): # if still holding sword button
 		set_physics_process(true)
 		delete_on_hit = true
@@ -29,12 +29,12 @@ func swing_ended(animation):
 		delete()
 
 func _physics_process(delta):
-	if get_parent().has_method("state_hold") && !spin_attack:
+	if get_parent().has_method("state_hold") && !spin_attack_ready:
 		get_parent().state = "hold"
 	
 	if hold_time < SPIN_HOLD_LENGTH:
 		hold_time += delta
-	elif !spin_attack:
+	elif !spin_attack_ready:
 		sfx.play("swordcharge")
 		ready_spin_attack()
 	
@@ -48,12 +48,12 @@ func _physics_process(delta):
 			delete()
 	
 	if !Input.is_action_pressed(input): # on input release
-		if spin_attack:
+		if spin_attack_ready:
 			if !anim.assigned_animation.begins_with("spin"):
 				delete_on_hit = false
 				if get_parent().has_method("state_spin"):
 					get_parent().state = "spin"
-				anim.connect("animation_finished", self, "end_spin_attack")
+				anim.connect("animation_finished", Callable(self, "end_spin_attack"))
 				spin_attack(get_parent().spritedir)
 				network.peer_call(self, "spin_attack", [get_parent().spritedir])
 		else:
@@ -61,7 +61,7 @@ func _physics_process(delta):
 			delete()
 
 func ready_spin_attack():
-	spin_attack = true
+	spin_attack_ready = true
 	$Flash.play("flash")
 	network.peer_call($Flash, "play", ["flash"])
 	
@@ -74,7 +74,7 @@ func spin_attack(dir):
 	DAMAGE *= spin_multiplier
 	$Flash.play("default")
 	sfx.play("swordspin")
-	anim.playback_speed = 8
+	anim.speed_scale = 8
 	position = Vector2(0,0)
 	anim.play(str("spin", dir))
 	
@@ -98,7 +98,7 @@ func area_entered(area):
 		area._collect(get_parent())
 
 func cut():
-	if is_network_master():
+	if is_multiplayer_authority():
 		for body in $Hitbox.get_overlapping_bodies():
 			if body.has_method("cut"):
 				body.cut($CutNode)

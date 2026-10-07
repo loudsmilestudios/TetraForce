@@ -8,20 +8,20 @@ layer = 101
 script = ExtResource( 2 )
 
 [node name="Panel" type="Panel" parent="."]
-margin_left = 8.0
-margin_top = 8.0
-margin_right = 248.0
-margin_bottom = 120.0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 248.0
+offset_bottom = 120.0
 theme = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="ScrollContainer" type="ScrollContainer" parent="Panel"]
-margin_left = 8.0
-margin_top = 8.0
-margin_right = 232.0
-margin_bottom = 104.0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 232.0
+offset_bottom = 104.0
 __meta__ = {
 "_edit_use_anchors_": false
 }

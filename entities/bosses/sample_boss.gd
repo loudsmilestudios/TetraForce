@@ -1,6 +1,7 @@
 extends BossController
 
 func _ready():
+	super()
 	# Boss logic should only run on map host
 	# for others this logic should be disabled
 	if !network.is_map_host():
@@ -14,10 +15,10 @@ func _ready():
 	
 	# Here are a few signals that you can utilize
 	# the associated functions are for debug only
-	self.connect("all_entities_killed", self, "on_all_entities_killed")
-	self.connect("entity_killed", self, "on_entity_killed")
-	self.connect("entity_damaged", self, "on_entity_damaged")
-	self.connect("stage_changed", self, "on_stage_changed")
+	self.connect("all_entities_killed", Callable(self, "on_all_entities_killed"))
+	self.connect("entity_killed", Callable(self, "on_entity_killed"))
+	self.connect("entity_damaged", Callable(self, "on_entity_damaged"))
+	self.connect("stage_changed", Callable(self, "on_stage_changed"))
 	
 	_boss_ready() # This is for sample boss logic
 
@@ -54,9 +55,9 @@ enum Stages {
 # seperate from reference
 func _boss_ready():
 	# Connecting signals for sample boss logic
-	self.connect("all_entities_killed", self, "boss_defeated")
-	self.connect("entity_damaged", self, "on_boss_damaged")
-	self.connect("entity_killed", self, "clean_up_entity")
+	self.connect("all_entities_killed", Callable(self, "boss_defeated"))
+	self.connect("entity_damaged", Callable(self, "on_boss_damaged"))
+	self.connect("entity_killed", Callable(self, "clean_up_entity"))
 
 func _physics_process(delta):
 	match self.current_stage:
@@ -74,7 +75,7 @@ func _physics_process(delta):
 				network.peer_call(entity, "set_physics_process", true)
 
 func clean_up_entity(killer, entity):
-	yield(get_tree().create_timer(0.4), "timeout")
+	await get_tree().create_timer(0.4).timeout
 	entity.queue_free()
 
 # When hit while inactive, become vulnerable

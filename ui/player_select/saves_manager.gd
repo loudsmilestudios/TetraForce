@@ -3,15 +3,15 @@ extends Control
 
 signal exit
 
-export(PackedScene) var save_display
+@export var save_display: PackedScene
 
 var main = null
 var input_overlay = null
 var confirm_overlay = null
-onready var save_holder = $VBoxContainer
-onready var new_button = $VBoxContainer/ChangeMode/HSplitContainer/NewButton
-onready var delete_button = $VBoxContainer/ChangeMode/HSplitContainer/DeleteSaveButton
-onready var container = get_parent()
+@onready var save_holder = $VBoxContainer
+@onready var new_button = $VBoxContainer/ChangeMode/HSplitContainer/NewButton
+@onready var delete_button = $VBoxContainer/ChangeMode/HSplitContainer/DeleteSaveButton
+@onready var container = get_parent()
 
 enum SAVE_MODE { VIEW = 0, SAVE = 1, LOAD = 2, DELETE = 3 }
 
@@ -20,8 +20,8 @@ var current_mode = default_mode
 var pending_confirm_source = null
 
 func _ready():
-	new_button.connect("button_down", self, "on_new")
-	delete_button.connect("button_down", self, "_on_manage_saves_button_down")
+	new_button.connect("button_down", Callable(self, "on_new"))
+	delete_button.connect("button_down", Callable(self, "_on_manage_saves_button_down"))
 
 	refresh_saves()
 	
@@ -32,15 +32,15 @@ func refresh_saves():
 			child.queue_free()
 	
 	for save in global.get_saves():
-		var node : SaveDisplay = save_display.instance()
+		var node : SaveDisplay = save_display.instantiate()
 		node.save_name = save
 		node.mode = current_mode
 		save_holder.add_child(node)
 		save_holder.move_child(node, 0)
-		node.connect("clicked", self, "set_mode", [default_mode])
-		node.connect("action_complete", self, "on_action_complete")
-		node.connect("request_confirmation", self, "on_confirm_request")
-		node.connect("clicked", self, "play_interact_sfx")
+		node.connect("clicked", Callable(self, "set_mode").bind(default_mode))
+		node.connect("action_complete", Callable(self, "on_action_complete"))
+		node.connect("request_confirmation", Callable(self, "on_confirm_request"))
+		node.connect("clicked", Callable(self, "play_interact_sfx"))
 	update_gui()
 
 func _process(delta):
@@ -71,7 +71,7 @@ func on_new():
 			if main:
 				main._on_quickstart_pressed()
 			else:
-				printerr("Reference to `main` not set! Cannot start game.")
+				printerr("RefCounted to `main` not set! Cannot start game.")
 		SAVE_MODE.SAVE:
 			if input_overlay:
 				hide()

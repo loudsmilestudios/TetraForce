@@ -2,13 +2,13 @@ extends CanvasLayer
 
 signal entrance_chosen
 
-onready var vbox = $Panel/ScrollContainer/VBoxContainer
+@onready var vbox = $Panel/ScrollContainer/VBoxContainer
 
 var desired_entrance
 
 func get_entrances(entrances):
 	if entrances.size() == 1:
-		yield(get_tree(), "idle_frame")
+		await get_tree().process_frame
 		finished(entrances[0].name)
 		return
 	for entrance in entrances:
@@ -16,9 +16,8 @@ func get_entrances(entrances):
 
 func create_entrance_button(n):
 	var button = Button.new()
-	button.owner = vbox
 	vbox.add_child(button)
-	button.connect("pressed", self, "finished", [n])
+	button.connect("pressed", Callable(self, "finished").bind(n))
 	button.name = n
 	button.text = n
 

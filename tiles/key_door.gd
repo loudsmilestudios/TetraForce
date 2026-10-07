@@ -1,9 +1,9 @@
 extends StaticBody2D
 
-onready var locked = true setget set_locked
+@onready var locked = true: set = set_locked
 
-export(String) var direction = "up"
-export var texture = "dungeon1"
+@export var direction: String = "up"
+@export var texture = "dungeon1"
 
 signal update_persistent_state
 
@@ -12,9 +12,9 @@ func _ready():
 	spritedir()
 	match texture:
 		"dungeon1":
-			$Sprite.texture = preload("res://tiles/dungeon1_key_door.png")
+			$Sprite2D.texture = preload("res://tiles/dungeon1_key_door.png")
 		"cave":
-			$Sprite.texture = preload("res://tiles/cave_key_door.png")
+			$Sprite2D.texture = preload("res://tiles/cave_key_door.png")
 
 	
 
@@ -28,7 +28,7 @@ func interact(node):
 
 func unlock():
 	$AnimationPlayer.play("key_door_" + direction)
-	yield(get_tree().create_timer(0.5), "timeout")
+	await get_tree().create_timer(0.5).timeout
 	network.peer_call(self, "set_locked", [false])
 	set_locked(false)
 	emit_signal("update_persistent_state")
@@ -41,10 +41,10 @@ func set_locked(value):
 		
 func spritedir():
 	if direction == "up":
-		$Sprite.frame = 3
+		$Sprite2D.frame = 3
 	elif direction == "right":
-		$Sprite.frame = 7
+		$Sprite2D.frame = 7
 	elif direction == "down":
-		$Sprite.frame = 11
+		$Sprite2D.frame = 11
 	elif direction == "left":
-		$Sprite.frame = 15
+		$Sprite2D.frame = 15

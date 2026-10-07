@@ -1,6 +1,6 @@
 extends StaticBody2D
 
-export(String, MULTILINE) var dialogue: String = ""
+@export var dialogue: String = "" # (String, MULTILINE)
 
 var begin
 var zone
@@ -11,23 +11,27 @@ func _ready():
 	add_to_group("nopush")
 	add_to_group("zoned")
 	set_physics_process(false)
-	yield(get_tree(), "idle_frame")
+	# Area overlaps and zone assignment are populated by physics, not by
+	# rendering frames. Allow the zone's initial overlap scan to finish.
+	await get_tree().physics_frame
+	await get_tree().physics_frame
+	await get_tree().physics_frame
 	for object in zone.get_objects():
 		objects.append(object)
 	
 func _physics_process(delta):
 	if zone.get_players() == []:
-		yield(get_tree().create_timer(0.5), "timeout")
+		await get_tree().create_timer(0.5).timeout
 		if network.is_map_host():
 			reset_object()
 		else:
 			network.peer_call_id(network.get_map_host(), self, "reset_object")
 	
 func interact(node):
-	var dialogue_manager = preload("res://ui/dialogue/dialogue_manager.tscn").instance()
+	var dialogue_manager = preload("res://ui/dialogue/dialogue_manager.tscn").instantiate()
 	var accept = dialogue_manager.get_node("DialogueUI/ChoiceBox/Button1")
 	begin = accept
-	accept.connect("pressed",self,"_on_Begin_Pressed")
+	accept.connect("pressed", Callable(self, "_on_Begin_Pressed"))
 	node.add_child(dialogue_manager)
 	node.state = "menu"
 	dialogue_manager.file_name = dialogue
@@ -46,7 +50,7 @@ func _on_Begin_Pressed():
 func reset():
 	$AnimationPlayer.play("reset")
 	network.peer_call($AnimationPlayer, "play", ["reset"])
-	yield(get_tree().create_timer(1), "timeout")
+	await get_tree().create_timer(1).timeout
 	
 	for player in zone.get_players():
 		var id = int(player.name)
@@ -55,14 +59,14 @@ func reset():
 			continue
 		network.peer_call_id(id, self, "reset_position", [str(id)])
 	
-	yield(get_tree().create_timer(0.5), "timeout")
+	await get_tree().create_timer(0.5).timeout
 	
 	if network.is_map_host():
 		reset_object()
 	else:
 		network.peer_call_id(network.get_map_host(), self, "reset_object")
 	
-	yield(get_tree().create_timer(2), "timeout")
+	await get_tree().create_timer(2).timeout
 	
 	if !is_in_group("interactable"):
 		add_to_group("interactable")
@@ -73,7 +77,7 @@ func reset_position(id):
 	var player = network.current_map.get_node(id)
 	
 	screenfx.play("fadewhite")
-	yield(screenfx, "animation_finished")
+	await screenfx.animation_finished
 	
 	$AnimationPlayer.play("idle")
 	network.peer_call($AnimationPlayer, "play", ["idle"])
@@ -86,5 +90,4 @@ func reset_object():
 	for object in objects:
 		network.peer_call(object, "set_default_state", [zone])
 		object.set_default_state(zone)
-
 

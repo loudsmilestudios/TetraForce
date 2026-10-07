@@ -1,13 +1,13 @@
 extends Control
 
-onready var censor_button = $VBoxContainer/CensorToggle
+@onready var censor_button = $VBoxContainer/CensorToggle
 
 func _ready():
-	global.connect("options_loaded", self, "update_options")
-	censor_button.connect("pressed", self, "toggle_censor")
+	global.connect("options_loaded", Callable(self, "update_options"))
+	censor_button.connect("pressed", Callable(self, "toggle_censor"))
 
 func toggle_censor():
-	if censor_button.pressed:
+	if censor_button.button_pressed:
 		global.options.misc.censor = true
 		sfx.play("sword0")
 	else:
@@ -21,6 +21,6 @@ func update_options():
 		}
 	
 	if global.options.misc.censor:
-		censor_button.pressed = true
+		censor_button.button_pressed = true
 	else:
-		censor_button.pressed = false
+		censor_button.button_pressed = false

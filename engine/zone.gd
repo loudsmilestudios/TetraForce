@@ -1,13 +1,15 @@
 extends Area2D
 
-export var music = ""
-export var musicfx = ""
-export var light = ""
+@export var music = ""
+@export var musicfx = ""
+@export var light = ""
 
-onready var collision_shape : CollisionShape2D = $CollisionShape2D
-onready var shape : RectangleShape2D = $CollisionShape2D.shape
+@onready var collision_shape := find_children("*", "CollisionShape2D", true, false)[0] as CollisionShape2D
+@onready var shape := collision_shape.shape as RectangleShape2D
 
 func _ready():
+	add_to_group("zones")
+	body_entered.connect(assign_zone)
 	if music == "":
 		music = get_parent().get_parent().music
 	if musicfx == "":
@@ -15,11 +17,15 @@ func _ready():
 	if light == "":
 		light = get_parent().get_parent().light
 	
-	yield(get_tree(), "idle_frame")
+	await get_tree().physics_frame
+	await get_tree().physics_frame
 	
 	for body in get_overlapping_bodies():
-		if body.is_in_group("zoned"):
-			body.zone = self
+		assign_zone(body)
+
+func assign_zone(body):
+	if body.is_in_group("zoned"):
+		body.zone = self
 
 func get_enemies():
 	var enemies = []

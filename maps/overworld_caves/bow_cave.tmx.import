@@ -1,22 +1,23 @@
 [remap]
 
-importer="vnen.tiled_importer"
+importer="YATI"
 type="PackedScene"
-path="res://.import/bow_cave.tmx-fc118332f733026c210fb0a1a4fbeed8.scn"
+uid="uid://cv766t0q0i2v6"
+path="res://.godot/imported/bow_cave.tmx-fc118332f733026c210fb0a1a4fbeed8.tscn"
 
 [deps]
 
 source_file="res://maps/overworld_caves/bow_cave.tmx"
-dest_files=[ "res://.import/bow_cave.tmx-fc118332f733026c210fb0a1a4fbeed8.scn" ]
+dest_files=["res://.godot/imported/bow_cave.tmx-fc118332f733026c210fb0a1a4fbeed8.tscn"]
 
 [params]
 
-custom_properties=true
-tile_metadata=true
-uv_clip=true
-image_flags=7
-collision_layer=1
-embed_internal_images=false
-save_tiled_properties=true
-add_background=true
-post_import_script="res://tiled/import.gd"
+use_default_filter=false
+add_class_as_metadata=false
+add_id_as_metadata=true
+no_alternative_tiles=false
+map_wangset_to_terrain=false
+custom_data_prefix="data_"
+tiled_project_file=""
+post_processor="res://tiled/import.gd"
+save_tileset_to=""

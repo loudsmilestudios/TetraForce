@@ -5,14 +5,20 @@ var movetimer = 0
 var sees_player = false
 var shell = false
 
-onready var detect = $PlayerDetect
-onready var bombed = false setget set_bombed
+@onready var detect = $PlayerDetect
+var _is_bombed = false
+var is_bombed:
+	get:
+		return _is_bombed
+	set(value):
+		set_bombed(value)
 
 func _ready():
+	super()
 	movedir = rand_direction()
 	MAX_HEALTH = 2
 	DAMAGE = 0.5
-	health = MAX_HEALTH
+	_health = MAX_HEALTH
 	SPEED = 10
 
 func contains_player(bodies):
@@ -63,17 +69,21 @@ func _physics_process(delta):
 	loop_holes()
 
 func bombed(show_animation=true):
+	if _is_bombed:
+		return
+	_is_bombed = true
 	$CollisionShape2D.queue_free()
-	bombed = true
 	if show_animation:
-		var animation = preload("res://effects/bombable_rock_explosion.tscn").instance()
+		var animation = preload("res://effects/bombable_rock_explosion.tscn").instantiate()
 		get_parent().add_child(animation)
 		animation.position = position
-	yield(get_tree(), "idle_frame")
+	await get_tree().process_frame
 	set_dead()
 
 func set_bombed(b):
 	if b:
 		bombed(false)
+	else:
+		_is_bombed = false
 	
 	

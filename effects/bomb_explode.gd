@@ -1,7 +1,7 @@
 extends Weapon
 
 func start():
-	$Hitbox.connect("body_entered", self, "body_entered")
+	$Hitbox.connect("body_entered", Callable(self, "body_entered"))
 	var shooter = get_parent()
 	get_parent().remove_child(self)
 	shooter.get_parent().add_child(self)

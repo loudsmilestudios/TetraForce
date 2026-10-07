@@ -1,8 +1,9 @@
 [remap]
 
 importer="texture"
-type="StreamTexture"
-path="res://.import/Period.png-dcbef5f432d0b3680d0d37e891aa0a4b.stex"
+type="CompressedTexture2D"
+uid="uid://dxckni3yw8gf4"
+path="res://.godot/imported/Period.png-dcbef5f432d0b3680d0d37e891aa0a4b.ctex"
 metadata={
 "vram_texture": false
 }
@@ -10,25 +11,30 @@ metadata={
 [deps]
 
 source_file="res://ui/hud/keyboard/Period.png"
-dest_files=[ "res://.import/Period.png-dcbef5f432d0b3680d0d37e891aa0a4b.stex" ]
+dest_files=["res://.godot/imported/Period.png-dcbef5f432d0b3680d0d37e891aa0a4b.ctex"]
 
 [params]
 
 compress/mode=0
+compress/high_quality=false
 compress/lossy_quality=0.7
-compress/hdr_mode=0
-compress/bptc_ldr=0
+compress/uastc_level=0
+compress/rdo_quality_loss=0.0
+compress/hdr_compression=1
 compress/normal_map=0
-flags/repeat=0
-flags/filter=false
-flags/mipmaps=false
-flags/anisotropic=false
-flags/srgb=2
+compress/channel_pack=0
+mipmaps/generate=false
+mipmaps/limit=-1
+roughness/mode=0
+roughness/src_normal=""
+process/channel_remap/red=0
+process/channel_remap/green=1
+process/channel_remap/blue=2
+process/channel_remap/alpha=3
 process/fix_alpha_border=true
 process/premult_alpha=false
-process/HDR_as_SRGB=false
-process/invert_color=false
-stream=false
-size_limit=0
-detect_3d=false
-svg/scale=1.0
+process/normal_map_invert_y=false
+process/hdr_as_srgb=false
+process/hdr_clamp_exposure=false
+process/size_limit=0
+detect_3d/compress_to=1

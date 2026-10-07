@@ -1,20 +1,21 @@
 [gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://tiles/block.png" type="Texture" id=1]
+[ext_resource path="res://tiles/block.png" type="Texture2D" id=1]
 [ext_resource path="res://tiles/block.gd" type="Script" id=2]
 [ext_resource path="res://engine/network_object.tscn" type="PackedScene" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 8, 8 )
+size = Vector2( 16, 16 )
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 7, 7 )
+size = Vector2( 14, 14 )
 
 [node name="block" type="StaticBody2D"]
+collision_layer = 3
 collision_mask = 3
 script = ExtResource( 2 )
 
-[node name="Sprite" type="Sprite" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource( 1 )
 __meta__ = {
 "_edit_lock_": true
@@ -29,10 +30,9 @@ __meta__ = {
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
 enabled = true
-cast_to = Vector2( 0, 12 )
+target_position = Vector2( 0, 12 )
 collision_mask = 3
 
-[node name="Tween" type="Tween" parent="."]
 
 [node name="NetworkObject" parent="." instance=ExtResource( 3 )]
 enter_properties = {

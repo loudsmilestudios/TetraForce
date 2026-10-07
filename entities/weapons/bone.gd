@@ -8,7 +8,7 @@ var received_sync = false
 func start():
 	$AnimationPlayer.play("spin")
 	shooter = get_parent()
-	$Hitbox.connect("body_entered", self, "body_entered")
+	$Hitbox.connect("body_entered", Callable(self, "body_entered"))
 	add_to_group("projectile")
 	#z_index = shooter.z_index - 1
 	position = shooter.position
@@ -30,9 +30,9 @@ func _physics_process(delta):
 	position += movedir * SPEED * delta
 
 func body_entered(body):
-	if !received_sync && !is_network_master() && body != shooter:
+	if !received_sync && !is_multiplayer_authority() && body != shooter:
 		queue_free()
-	elif body.get_collision_layer_bit(7) == true:
+	elif body is CollisionObject2D && body.get_collision_layer_value(8):
 		return
 	elif body is Entity && body != shooter:
 		damage(body)

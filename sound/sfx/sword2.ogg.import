@@ -1,15 +1,19 @@
 [remap]
 
-importer="ogg_vorbis"
-type="AudioStreamOGGVorbis"
-path="res://.import/sword2.ogg-61108db431037322e738c4d095f4868c.oggstr"
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://tunug1smyuxb"
+path="res://.godot/imported/sword2.ogg-61108db431037322e738c4d095f4868c.oggvorbisstr"
 
 [deps]
 
 source_file="res://sound/sfx/sword2.ogg"
-dest_files=[ "res://.import/sword2.ogg-61108db431037322e738c4d095f4868c.oggstr" ]
+dest_files=["res://.godot/imported/sword2.ogg-61108db431037322e738c4d095f4868c.oggvorbisstr"]
 
 [params]
 
 loop=false
 loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

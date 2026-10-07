@@ -1,15 +1,16 @@
-extends KinematicBody2D
+extends CharacterBody2D
 
 class_name NPC
-onready var anim = $AnimationPlayer
+@onready var anim = $AnimationPlayer
 var spritedir = "Down"
 
-export var direction = "Down"
-export var dialogue = ""
-export var texture = "girl"
+@export var direction = "Down"
+@export var dialogue = ""
+@export var texture = "girl"
 
 func _ready():
-	$Sprite.texture = load(str("res://entities/npcs/", texture, ".png"))
+	motion_mode = CharacterBody2D.MOTION_MODE_FLOATING
+	$Sprite2D.texture = load(str("res://entities/npcs/", texture, ".png"))
 	spritedir = direction
 	add_to_group("nopush")
 	add_to_group("interactable")
@@ -18,12 +19,12 @@ func _ready():
 func interact(node):
 	spritedir = get_direction(node)
 	anim_switch("idle")
-	var dialogue_manager = preload("res://ui/dialogue/dialogue_manager.tscn").instance()
+	var dialogue_manager = preload("res://ui/dialogue/dialogue_manager.tscn").instantiate()
 	node.add_child(dialogue_manager)
 	node.state = "menu"
 	dialogue_manager.file_name = dialogue
 	dialogue_manager.Begin_Dialogue()
-	yield(dialogue_manager, "finished")
+	await dialogue_manager.finished
 	spritedir = direction
 	anim_switch("idle")
 
@@ -44,4 +45,4 @@ func anim_switch(a):
 		newanim = str(a, "Side")
 	if anim.current_animation != newanim:
 		anim.play(newanim)
-	$Sprite.flip_h = spritedir == "Left"
+	$Sprite2D.flip_h = spritedir == "Left"

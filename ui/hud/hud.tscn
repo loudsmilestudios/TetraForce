@@ -1,22 +1,19 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=25 format=2]
 
-[ext_resource path="res://ui/theme/font.ttf" type="DynamicFontData" id=1]
-[ext_resource path="res://ui/hud/hearts.png" type="Texture" id=2]
+[ext_resource path="res://ui/theme/font.ttf" type="FontFile" id=1]
+[ext_resource path="res://ui/hud/hearts.png" type="Texture2D" id=2]
 [ext_resource path="res://ui/hud/hud.gd" type="Script" id=3]
-[ext_resource path="res://ui/hud/upperhud.png" type="Texture" id=4]
-[ext_resource path="res://ui/hud/button_ui.png" type="Texture" id=5]
+[ext_resource path="res://ui/hud/upperhud.png" type="Texture2D" id=4]
+[ext_resource path="res://ui/hud/button_ui.png" type="Texture2D" id=5]
 [ext_resource path="res://ui/theme/theme.tres" type="Theme" id=6]
-[ext_resource path="res://ui/hud/tetran_count.png" type="Texture" id=7]
-[ext_resource path="res://ui/hud/key_count.png" type="Texture" id=8]
-[ext_resource path="res://ui/hud/action.png" type="Texture" id=9]
+[ext_resource path="res://ui/hud/tetran_count.png" type="Texture2D" id=7]
+[ext_resource path="res://ui/hud/key_count.png" type="Texture2D" id=8]
+[ext_resource path="res://ui/hud/action.png" type="Texture2D" id=9]
 [ext_resource path="res://ui/player_select/player_select.tscn" type="PackedScene" id=10]
 [ext_resource path="res://ui/hud/OnscreenSavingAnimation.gd" type="Script" id=11]
 [ext_resource path="res://ui/theme/boss_overlay.tres" type="Theme" id=12]
-[ext_resource path="res://ui/theme/dogicapixelbold.ttf" type="DynamicFontData" id=13]
+[ext_resource path="res://ui/theme/dogicapixelbold.ttf" type="FontFile" id=13]
 [ext_resource path="res://ui/hud/boss_overlay.gd" type="Script" id=14]
-
-[sub_resource type="DynamicFont" id=1]
-font_data = ExtResource( 1 )
 
 [sub_resource type="StyleBoxEmpty" id=2]
 
@@ -25,15 +22,6 @@ font_data = ExtResource( 1 )
 [sub_resource type="StyleBoxEmpty" id=4]
 
 [sub_resource type="StyleBoxEmpty" id=5]
-
-[sub_resource type="DynamicFont" id=6]
-outline_size = 1
-outline_color = Color( 0, 0, 0, 1 )
-font_data = ExtResource( 1 )
-
-[sub_resource type="DynamicFont" id=9]
-size = 8
-font_data = ExtResource( 13 )
 
 [sub_resource type="Animation" id=11]
 resource_name = "hide_bossbar"
@@ -44,8 +32,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 1 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 1 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 1,
 "values": [ false ]
 }
@@ -56,8 +44,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"points": PoolRealArray( 1, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0 ),
-"times": PoolRealArray( 0, 1 )
+"points": PackedFloat32Array( 1, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0 ),
+"times": PackedFloat32Array( 0, 1 )
 }
 
 [sub_resource type="Animation" id=10]
@@ -69,8 +57,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 1,
 "values": [ true ]
 }
@@ -81,8 +69,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
-"times": PoolRealArray( 0, 1 )
+"points": PackedFloat32Array( 0, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
+"times": PackedFloat32Array( 0, 1 )
 }
 
 [sub_resource type="Animation" id=12]
@@ -94,8 +82,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 1 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 1 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 1,
 "values": [ false ]
 }
@@ -106,8 +94,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"points": PoolRealArray( 1, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0 ),
-"times": PoolRealArray( 0, 1 )
+"points": PackedFloat32Array( 1, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0 ),
+"times": PackedFloat32Array( 0, 1 )
 }
 
 [sub_resource type="Animation" id=13]
@@ -119,8 +107,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 1,
 "values": [ true ]
 }
@@ -131,8 +119,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
-"times": PoolRealArray( 0, 1 )
+"points": PackedFloat32Array( 0, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
+"times": PackedFloat32Array( 0, 1 )
 }
 
 [sub_resource type="Animation" id=7]
@@ -145,8 +133,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"points": PoolRealArray( 1, -0.25, 0, 0.25, 0 ),
-"times": PoolRealArray( 0 )
+"points": PackedFloat32Array( 1, -0.25, 0, 0.25, 0 ),
+"times": PackedFloat32Array( 0 )
 }
 tracks/1/type = "bezier"
 tracks/1/path = NodePath("OnscreenSave/Label:modulate:g")
@@ -155,8 +143,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"points": PoolRealArray( 1, -0.25, 0, 0.25, 0 ),
-"times": PoolRealArray( 0 )
+"points": PackedFloat32Array( 1, -0.25, 0, 0.25, 0 ),
+"times": PackedFloat32Array( 0 )
 }
 tracks/2/type = "bezier"
 tracks/2/path = NodePath("OnscreenSave/Label:modulate:b")
@@ -165,8 +153,8 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"points": PoolRealArray( 1, -0.25, 0, 0.25, 0 ),
-"times": PoolRealArray( 0 )
+"points": PackedFloat32Array( 1, -0.25, 0, 0.25, 0 ),
+"times": PackedFloat32Array( 0 )
 }
 tracks/3/type = "bezier"
 tracks/3/path = NodePath("OnscreenSave/Label:modulate:a")
@@ -175,8 +163,8 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"points": PoolRealArray( 0, -0.25, 0, 0.25, 0 ),
-"times": PoolRealArray( 0 )
+"points": PackedFloat32Array( 0, -0.25, 0, 0.25, 0 ),
+"times": PackedFloat32Array( 0 )
 }
 
 [sub_resource type="Animation" id=8]
@@ -188,8 +176,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = false
 tracks/0/keys = {
-"points": PoolRealArray( 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
-"times": PoolRealArray( 0, 0.9 )
+"points": PackedFloat32Array( 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
+"times": PackedFloat32Array( 0, 0.9 )
 }
 tracks/1/type = "bezier"
 tracks/1/path = NodePath("OnscreenSave/Label:modulate:g")
@@ -198,8 +186,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = false
 tracks/1/keys = {
-"points": PoolRealArray( 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
-"times": PoolRealArray( 0, 0.9 )
+"points": PackedFloat32Array( 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
+"times": PackedFloat32Array( 0, 0.9 )
 }
 tracks/2/type = "bezier"
 tracks/2/path = NodePath("OnscreenSave/Label:modulate:b")
@@ -208,8 +196,8 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = false
 tracks/2/keys = {
-"points": PoolRealArray( 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
-"times": PoolRealArray( 0, 0.9 )
+"points": PackedFloat32Array( 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
+"times": PackedFloat32Array( 0, 0.9 )
 }
 tracks/3/type = "bezier"
 tracks/3/path = NodePath("OnscreenSave/Label:modulate:a")
@@ -218,33 +206,33 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"points": PoolRealArray( 1, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0 ),
-"times": PoolRealArray( 0, 1.4 )
+"points": PackedFloat32Array( 1, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0 ),
+"times": PackedFloat32Array( 0, 1.4 )
 }
 
 [node name="hud" type="CanvasLayer"]
 script = ExtResource( 3 )
 
 [node name="hud2d" type="MarginContainer" parent="."]
-margin_right = 256.0
-margin_bottom = 144.0
+offset_right = 256.0
+offset_bottom = 144.0
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="hearts" type="Sprite" parent="hud2d"]
+[node name="hearts" type="Sprite2D" parent="hud2d"]
 modulate = Color( 1, 1, 1, 0.921569 )
 position = Vector2( 6, 6 )
 texture = ExtResource( 2 )
 hframes = 5
 
-[node name="upperhud" type="Sprite" parent="hud2d"]
+[node name="upperhud" type="Sprite2D" parent="hud2d"]
 visible = false
 modulate = Color( 1, 1, 1, 0.882353 )
 position = Vector2( 236, 10 )
 texture = ExtResource( 4 )
 
-[node name="Z" type="Sprite" parent="hud2d"]
+[node name="Z" type="Sprite2D" parent="hud2d"]
 position = Vector2( 182.5, 10 )
 texture = ExtResource( 9 )
 __meta__ = {
@@ -252,15 +240,15 @@ __meta__ = {
 }
 
 [node name="buttons" type="Control" parent="hud2d"]
-margin_left = 256.0
-margin_right = 256.0
-margin_bottom = 144.0
+offset_left = 256.0
+offset_right = 256.0
+offset_bottom = 144.0
 size_flags_horizontal = 8
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="B" type="Sprite" parent="hud2d/buttons"]
+[node name="B" type="Sprite2D" parent="hud2d/buttons"]
 modulate = Color( 1, 1, 1, 0.882353 )
 self_modulate = Color( 1, 1, 1, 0.882353 )
 position = Vector2( -46.5, 15 )
@@ -271,25 +259,26 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="icon" type="Sprite" parent="hud2d/buttons/B"]
+[node name="icon" type="Sprite2D" parent="hud2d/buttons/B"]
 position = Vector2( -5, -9 )
 scale = Vector2( 2, 2 )
 z_index = -1
 
 [node name="count" type="Label" parent="hud2d/buttons/B"]
 anchor_right = 1.0
-margin_left = -22.0
-margin_top = 6.0
-margin_right = -22.0
-margin_bottom = 20.0
-rect_scale = Vector2( 1.5, 1.5 )
-custom_fonts/font = SubResource( 1 )
-align = 1
+offset_left = -22.0
+offset_top = 6.0
+offset_right = -22.0
+offset_bottom = 20.0
+scale = Vector2( 1.5, 1.5 )
+theme_override_fonts/font = ExtResource( 1 )
+theme_override_font_sizes/font_size = 16
+horizontal_alignment = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="X" type="Sprite" parent="hud2d/buttons"]
+[node name="X" type="Sprite2D" parent="hud2d/buttons"]
 modulate = Color( 1, 1, 1, 0.882353 )
 self_modulate = Color( 1, 1, 1, 0.882353 )
 position = Vector2( -25, 15 )
@@ -301,24 +290,25 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="icon" type="Sprite" parent="hud2d/buttons/X"]
+[node name="icon" type="Sprite2D" parent="hud2d/buttons/X"]
 position = Vector2( -5, -9 )
 scale = Vector2( 2, 2 )
 z_index = -1
 
 [node name="count" type="Label" parent="hud2d/buttons/X"]
-margin_left = -22.0
-margin_top = 6.0
-margin_right = -3.0
-margin_bottom = 20.0
-rect_scale = Vector2( 1.5, 1.5 )
-custom_fonts/font = SubResource( 1 )
-align = 1
+offset_left = -22.0
+offset_top = 6.0
+offset_right = -3.0
+offset_bottom = 20.0
+scale = Vector2( 1.5, 1.5 )
+theme_override_fonts/font = ExtResource( 1 )
+theme_override_font_sizes/font_size = 16
+horizontal_alignment = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Y" type="Sprite" parent="hud2d/buttons"]
+[node name="Y" type="Sprite2D" parent="hud2d/buttons"]
 modulate = Color( 1, 1, 1, 0.882353 )
 self_modulate = Color( 1, 1, 1, 0.882353 )
 position = Vector2( -4, 15 )
@@ -330,19 +320,20 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="icon" type="Sprite" parent="hud2d/buttons/Y"]
+[node name="icon" type="Sprite2D" parent="hud2d/buttons/Y"]
 position = Vector2( -5, -9 )
 scale = Vector2( 2, 2 )
 z_index = -1
 
 [node name="count" type="Label" parent="hud2d/buttons/Y"]
-margin_left = -22.0
-margin_top = 6.0
-margin_right = -4.0
-margin_bottom = 20.0
-rect_scale = Vector2( 1.5, 1.5 )
-custom_fonts/font = SubResource( 1 )
-align = 1
+offset_left = -22.0
+offset_top = 6.0
+offset_right = -4.0
+offset_bottom = 20.0
+scale = Vector2( 1.5, 1.5 )
+theme_override_fonts/font = ExtResource( 1 )
+theme_override_font_sizes/font_size = 16
+horizontal_alignment = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -350,21 +341,21 @@ __meta__ = {
 [node name="tetrans" type="Node2D" parent="."]
 position = Vector2( 9, 18 )
 
-[node name="tetran_icon" type="Sprite" parent="tetrans"]
+[node name="tetran_icon" type="Sprite2D" parent="tetrans"]
 texture = ExtResource( 7 )
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="tetrans" type="Label" parent="tetrans"]
-margin_left = 8.0181
-margin_top = -9.13171
-margin_right = 26.0181
-margin_bottom = 3.86829
+offset_left = 8.0181
+offset_top = -9.13171
+offset_right = 26.0181
+offset_bottom = 3.86829
 size_flags_horizontal = 0
 size_flags_vertical = 0
 theme = ExtResource( 6 )
-custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
 text = "000"
 __meta__ = {
 "_edit_lock_": true,
@@ -374,21 +365,21 @@ __meta__ = {
 [node name="keys" type="Node2D" parent="."]
 position = Vector2( 8, 30 )
 
-[node name="key_icon" type="Sprite" parent="keys"]
+[node name="key_icon" type="Sprite2D" parent="keys"]
 texture = ExtResource( 8 )
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="keys" type="Label" parent="keys"]
-margin_left = 9.0
-margin_top = -7.0
-margin_right = 27.0
-margin_bottom = 6.0
+offset_left = 9.0
+offset_top = -7.0
+offset_right = 27.0
+offset_bottom = 6.0
 size_flags_horizontal = 0
 size_flags_vertical = 0
 theme = ExtResource( 6 )
-custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
 text = "0"
 __meta__ = {
 "_edit_lock_": true,
@@ -397,41 +388,44 @@ __meta__ = {
 
 [node name="debug" type="Control" parent="."]
 visible = false
-margin_right = 40.0
-margin_bottom = 40.0
+offset_right = 40.0
+offset_bottom = 40.0
 theme = ExtResource( 6 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="states" type="TextEdit" parent="debug"]
-margin_left = 3.0
-margin_top = 33.0
-margin_right = 623.0
-margin_bottom = 257.0
-rect_scale = Vector2( 0.4, 0.4 )
-custom_styles/read_only = SubResource( 2 )
-custom_styles/focus = SubResource( 3 )
-custom_styles/normal = SubResource( 4 )
-custom_styles/completion = SubResource( 5 )
-custom_fonts/font = SubResource( 6 )
-custom_colors/font_color_readonly = Color( 1, 1, 1, 1 )
-custom_constants/line_spacing = -2
-custom_constants/completion_lines = 0
-readonly = true
+offset_left = 3.0
+offset_top = 33.0
+offset_right = 623.0
+offset_bottom = 257.0
+scale = Vector2( 0.4, 0.4 )
+theme_override_styles/read_only = SubResource( 2 )
+theme_override_styles/focus = SubResource( 3 )
+theme_override_styles/normal = SubResource( 4 )
+theme_override_styles/completion = SubResource( 5 )
+theme_override_fonts/font = ExtResource( 1 )
+theme_override_font_sizes/font_size = 16
+theme_override_colors/font_readonly_color = Color( 1, 1, 1, 1 )
+theme_override_colors/font_outline_color = Color( 0, 0, 0, 1 )
+theme_override_constants/line_spacing = -2
+theme_override_constants/completion_lines = 0
+theme_override_constants/outline_size = 1
+editable = false
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="saves" parent="." instance=ExtResource( 10 )]
 visible = false
-rect_scale = Vector2( 0.5, 0.5 )
+scale = Vector2( 0.5, 0.5 )
 mode = 1
 show_return_button = true
 
 [node name="boss_overlay" type="Control" parent="."]
-margin_right = 256.0
-margin_bottom = 144.0
+offset_right = 256.0
+offset_bottom = 144.0
 theme = ExtResource( 12 )
 script = ExtResource( 14 )
 __meta__ = {
@@ -445,12 +439,12 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = -58.0
-margin_top = -21.0
-margin_right = 58.0
-margin_bottom = -9.0
+offset_left = -58.0
+offset_top = -21.0
+offset_right = 58.0
+offset_bottom = -9.0
 value = 75.0
-percent_visible = false
+show_percentage = false
 __meta__ = {
 "_edit_group_": true,
 "_edit_use_anchors_": false
@@ -460,16 +454,17 @@ __meta__ = {
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = 39.0
-margin_bottom = 4.0
-rect_scale = Vector2( 0.75, 0.75 )
+offset_right = 39.0
+offset_bottom = 4.0
+scale = Vector2( 0.75, 0.75 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_fonts/font = SubResource( 9 )
-custom_colors/font_color = Color( 0.968627, 0.709804, 0.545098, 1 )
+theme_override_fonts/font = ExtResource( 13 )
+theme_override_font_sizes/font_size = 8
+theme_override_colors/font_color = Color( 0.968627, 0.709804, 0.545098, 1 )
 text = "Dead Captain"
-align = 1
-valign = 1
+horizontal_alignment = 1
+vertical_alignment = 1
 uppercase = true
 __meta__ = {
 "_edit_use_anchors_": false
@@ -480,6 +475,7 @@ anims/hide_bossbar = SubResource( 11 )
 anims/show_bossbar = SubResource( 10 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="boss_overlay/AnimationPlayer"]
+root_node = NodePath("../..")
 anims/hide_bossbar = SubResource( 12 )
 anims/show_bossbar = SubResource( 13 )
 
@@ -493,8 +489,8 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -54.0
-margin_top = -14.0
+offset_left = -54.0
+offset_top = -14.0
 theme = ExtResource( 6 )
 text = "Saving..."
 __meta__ = {

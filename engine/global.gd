@@ -16,14 +16,14 @@ const DEFAULT_PEARL = []
 const DEFAULT_SPIRITPEARL = 0
 const DEFAULT_HEALTH = 5
 
-var version = null setget ,get_version
+var version = null: get = get_version
 var current_save_name = null
 var blacklisted_words = []
 var player
-var equips = DEFAULT_EQUIPS
-var weapons = DEFAULT_WEAPONS
-var items = DEFAULT_ITEMS
-var pearl = DEFAULT_PEARL
+var equips = DEFAULT_EQUIPS.duplicate(true)
+var weapons = DEFAULT_WEAPONS.duplicate(true)
+var items = DEFAULT_ITEMS.duplicate(true)
+var pearl = DEFAULT_PEARL.duplicate(true)
 var health = DEFAULT_HEALTH
 var max_health = DEFAULT_HEALTH
 var spiritpearl = DEFAULT_SPIRITPEARL
@@ -139,7 +139,7 @@ var pearl_def = {
 	}
 }
 
-var ammo = INITIAL_AMMO
+var ammo = INITIAL_AMMO.duplicate(true)
 var next_entrance = ""
 
 signal options_loaded
@@ -154,26 +154,24 @@ func _ready():
 	load_blacklist()
 
 func clean_session_data():
-	ammo = INITIAL_AMMO
+	ammo = INITIAL_AMMO.duplicate(true)
 	current_save_name = null
 
-	equips = DEFAULT_EQUIPS
-	weapons = DEFAULT_WEAPONS
-	items = DEFAULT_ITEMS
-	pearl = DEFAULT_PEARL
+	equips = DEFAULT_EQUIPS.duplicate(true)
+	weapons = DEFAULT_WEAPONS.duplicate(true)
+	items = DEFAULT_ITEMS.duplicate(true)
+	pearl = DEFAULT_PEARL.duplicate(true)
 	health = DEFAULT_HEALTH
 	max_health = DEFAULT_HEALTH
 	spiritpearl = DEFAULT_SPIRITPEARL
 
 func load_blacklist():
-	var blacklist_file = File.new()
-	if blacklist_file.file_exists("res://engine/blacklist.txt"):
-		blacklist_file.open("res://engine/blacklist.txt", File.READ)
+	if FileAccess.file_exists("res://engine/blacklist.txt"):
+		var blacklist_file = FileAccess.open("res://engine/blacklist.txt", FileAccess.READ)
 		var word = blacklist_file.get_line()
 		while word:
 			blacklisted_words.append(word)
 			word = blacklist_file.get_line()
-		blacklist_file.close()
 	else:
 		print("No word blocklist found!")
 
@@ -193,20 +191,17 @@ func filter_value(value : String):
 	if value_in_blacklist(value):
 		var new_value = ""
 		for i in range(len(value)):
-			new_value += CENSOR_CHARS[rand_range(0,len(CENSOR_CHARS))]
+			new_value += CENSOR_CHARS[randi_range(0, len(CENSOR_CHARS) - 1)]
 		return new_value
 	return value
 
 func _validate_save_dir():
-	var dir = Directory.new()
-	if not dir.dir_exists("user://saves"):
-		dir.open("user://")
-		dir.make_dir("saves")
+	if not DirAccess.dir_exists_absolute("user://saves"):
+		DirAccess.make_dir_absolute("user://saves")
 
 func delete_save_data(save_name):
 	_validate_save_dir()
-	var dir = Directory.new()
-	dir.remove(SAVE_FORMAT % save_name)
+	DirAccess.remove_absolute(SAVE_FORMAT % save_name)
 	print("Deleted save: %s" % save_name)
 
 func quicksave_game_data():
@@ -246,10 +241,10 @@ func save_game_data(save_name):
 		}
 	}
 
-	var save_file = File.new()
-	save_file.open(SAVE_FORMAT % save_name, File.WRITE)
-	save_file.store_line(Marshalls.utf8_to_base64(to_json(data)))
-	save_file.close()
+	var save_file = FileAccess.open(SAVE_FORMAT % save_name, FileAccess.WRITE)
+	if not save_file:
+		return false
+	save_file.store_line(Marshalls.utf8_to_base64(JSON.stringify(data)))
 	if not "quicksave" in save_name:
 		current_save_name = save_name
 	emit_signal("save")
@@ -259,22 +254,26 @@ func save_game_data(save_name):
 func load_game_data(save_name):
 	_validate_save_dir()
 
-	var save_file = File.new()
-	if save_file.file_exists(SAVE_FORMAT % save_name):
-		save_file.open(SAVE_FORMAT % save_name, File.READ)
-		var data = parse_json(Marshalls.base64_to_utf8(save_file.get_as_text()))
+	if FileAccess.file_exists(SAVE_FORMAT % save_name):
+		var save_file = FileAccess.open(SAVE_FORMAT % save_name, FileAccess.READ)
+		var data = JSON.parse_string(Marshalls.base64_to_utf8(save_file.get_as_text()))
+		if not data is Dictionary:
+			return false
 		for part in data:
 			match part:
 				"states":
 					network.states = data["states"]
 				"ammo":
 					ammo = data["ammo"]
+					# JSON parses all numbers as floats; ammo and currency are counts.
+					for ammo_type in ammo:
+						ammo[ammo_type] = int(ammo[ammo_type])
 				"items":
 					equips = data["items"]["equips"]
 					weapons = data["items"]["weapons"]
 					items = data["items"]["items"]
 					pearl = data["items"]["pearl"]
-					spiritpearl = data["items"]["spiritpearl"]
+					spiritpearl = int(data["items"]["spiritpearl"])
 				"stats":
 					max_health = data["stats"]["max_health"]
 					health = max_health
@@ -288,32 +287,26 @@ func get_saves():
 	var save_files = []
 
 	_validate_save_dir()
-	var dir = Directory.new()
-	dir.open("user://saves")
-	dir.list_dir_begin()
-	var save_file = dir.get_next()
-	while save_file != "":
+	for save_file in DirAccess.get_files_at("user://saves"):
 		if save_file.ends_with(".tetraforce"):
 			save_files.append(save_file.replace(".tetraforce",""))
-		save_file = dir.get_next()
 	return save_files
 
 func save_options():
-	var save_options = File.new()
-	save_options.open("user://options.json", File.WRITE)
-	save_options.store_line(to_json(options))
-	save_options.close()
+	var save_options = FileAccess.open("user://options.json", FileAccess.WRITE)
+	if save_options:
+		save_options.store_line(JSON.stringify(options))
 
 func load_options():
-	var load_options = File.new()
-	if !load_options.file_exists("user://options.json"):
+	if !FileAccess.file_exists("user://options.json"):
+		options_loaded.emit()
 		return
-	load_options.open("user://options.json", File.READ)
-	var loaded_options = parse_json(load_options.get_line())
-	for option in loaded_options.keys():
-		options[option] = loaded_options.get(option)
-	load_options.close()
-	emit_signal("options_loaded")
+	var load_options = FileAccess.open("user://options.json", FileAccess.READ)
+	var loaded_options = JSON.parse_string(load_options.get_line())
+	if loaded_options is Dictionary:
+		for option in loaded_options.keys():
+			options[option] = loaded_options.get(option)
+	options_loaded.emit()
 
 func change_map(map, entrance):
 	if changing_map:
@@ -322,13 +315,13 @@ func change_map(map, entrance):
 
 	sfx.fadeout_music()
 	screenfx.play("fadewhite")
-	yield(screenfx, "animation_finished")
+	await screenfx.animation_finished
 	
 	var old_map = network.current_map
 	var root = old_map.get_parent()
 	
 	var new_map_path = "res://maps/" + map + ".tmx"
-	var new_map = load(new_map_path).instance()
+	var new_map = load(new_map_path).instantiate()
 	
 	old_map.queue_free()
 	next_entrance = entrance
@@ -338,11 +331,9 @@ func change_map(map, entrance):
 
 func get_version():
 	if !version:
-		var file = File.new()
-		if file.file_exists(VERSION_FILE):
-			file.open(VERSION_FILE, File.READ)
+		if FileAccess.file_exists(VERSION_FILE):
+			var file = FileAccess.open(VERSION_FILE, FileAccess.READ)
 			version = file.get_as_text()
-			file.close()
 		else:
 			version = "custom build"
 	return version

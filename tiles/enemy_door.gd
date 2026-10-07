@@ -1,21 +1,21 @@
 extends StaticBody2D
 
-export(bool) var enemy_trigger = false
-export(bool) var starts_locked = false
-export(String) var location = "room"
-export(String) var direction = "up"
-export var texture = "dungeon1"
+@export var enemy_trigger: bool = false
+@export var starts_locked: bool = false
+@export var location: String = "room"
+@export var direction: String = "up"
+@export var texture = "dungeon1"
 
-onready var locked = false setget set_locked
-onready var inactive = false setget set_inactive
+@onready var locked = false: set = set_locked
+@onready var inactive = false: set = set_inactive
 
 func _ready():
 	spritedir()
-	get_parent().get_node(location).connect("finished", self, "set_locked", [false])
-	get_parent().get_node(location).connect("started", self, "set_locked", [true])
-	get_parent().get_node(location).connect("check_for_active", self, "check_lock_state")
-	get_parent().get_node(location).connect("check_for_inactive", self, "check_lock_state")
-	get_parent().get_node(location).connect("reset", self, "set_reset")
+	get_parent().get_node(location).connect("finished", Callable(self, "set_locked").bind(false))
+	get_parent().get_node(location).connect("started", Callable(self, "set_locked").bind(true))
+	get_parent().get_node(location).connect("check_for_active", Callable(self, "check_lock_state"))
+	get_parent().get_node(location).connect("check_for_inactive", Callable(self, "check_lock_state"))
+	get_parent().get_node(location).connect("reset", Callable(self, "set_reset"))
 	if starts_locked && inactive == false:
 		$AnimationPlayer.play("enemy_locked_" + direction)
 		network.peer_call($AnimationPlayer, "play", ["enemy_locked_" + direction])
@@ -73,10 +73,10 @@ func set_inactive(value):
 		
 func spritedir():
 	if direction == "up":
-		$Sprite.frame = 20
+		$Sprite2D.frame = 20
 	elif direction == "right":
-		$Sprite.frame = 10
+		$Sprite2D.frame = 10
 	elif direction == "down":
-		$Sprite.frame = 0
+		$Sprite2D.frame = 0
 	elif direction == "left":
-		$Sprite.frame = 30
+		$Sprite2D.frame = 30

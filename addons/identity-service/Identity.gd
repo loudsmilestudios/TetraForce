@@ -1,4 +1,5 @@
 class_name Identity
+extends RefCounted
 
 signal loading_complete
 
@@ -35,22 +36,22 @@ func from_dict(data : Dictionary) -> void:
 		token = data["token"]
 
 static func decode_token(token : String) -> Dictionary:
-	var json : JSONParseResult = JSON.parse(Marshalls.base64_to_utf8(token))
-	if json.error == OK:
-		return json.result
+	var data = JSON.parse_string(Marshalls.base64_to_utf8(token))
+	if data is Dictionary:
+		return data
 	return {}
 
 func encode_token(token_dict : Dictionary):
-	token = Marshalls.utf8_to_base64(to_json(token_dict))
+	token = Marshalls.utf8_to_base64(JSON.stringify(token_dict))
 
 func is_valid() -> bool:
 	if platform == "guest":
 		loaded = true
+		return true
 	if self.has_method("_is_valid"):
-		return self.call("_is_valid")
-	yield(IdentityService.get_tree(), "idle_frame")
+		return await self.call("_is_valid")
+	await IdentityService.get_tree().process_frame
 	return true
 
 func _to_string() -> String:
 	return "%s:%s" % [platform, username]
-

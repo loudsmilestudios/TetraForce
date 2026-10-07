@@ -1,15 +1,19 @@
 [remap]
 
-importer="ogg_vorbis"
-type="AudioStreamOGGVorbis"
-path="res://.import/town.ogg-14b4247f5bdb0e4fc70b4b044242d27e.oggstr"
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://6ipbyn8j8cwb"
+path="res://.godot/imported/town.ogg-14b4247f5bdb0e4fc70b4b044242d27e.oggvorbisstr"
 
 [deps]
 
 source_file="res://sound/music/town.ogg"
-dest_files=[ "res://.import/town.ogg-14b4247f5bdb0e4fc70b4b044242d27e.oggstr" ]
+dest_files=["res://.godot/imported/town.ogg-14b4247f5bdb0e4fc70b4b044242d27e.oggvorbisstr"]
 
 [params]
 
 loop=true
 loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

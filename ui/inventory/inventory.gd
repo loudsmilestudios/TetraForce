@@ -1,8 +1,8 @@
 extends Panel
 
-onready var anim = $AnimationPlayer
-onready var weapon_list = $scroll/weapons
-onready var selected_icon = $display/selected_icon
+@onready var anim = $AnimationPlayer
+@onready var weapon_list = $scroll/weapons
+@onready var selected_icon = $display/selected_icon
 
 var selected = 0
 
@@ -14,7 +14,7 @@ func _ready():
 func start():
 	update_pearls()
 	add_weapons()
-	yield(get_tree(), "physics_frame")
+	await get_tree().physics_frame
 	change_selection(0)
 
 func _input(event):
@@ -53,11 +53,11 @@ func add_weapons():
 	for child in weapon_list.get_children():
 		child.queue_free()
 	for weapon_name in global.weapons:
-		var new_entry = preload("res://ui/inventory/entry.tscn").instance()
+		var new_entry = preload("res://ui/inventory/entry.tscn").instantiate()
 		weapon_list.add_child(new_entry)
 		new_entry.text = weapon_name
 	while weapon_list.get_child_count() < 10:
-		var new_entry = preload("res://ui/inventory/entry.tscn").instance()
+		var new_entry = preload("res://ui/inventory/entry.tscn").instantiate()
 		weapon_list.add_child(new_entry)
 		new_entry.text = "------"
 

@@ -4,6 +4,7 @@ var movetimer_length = 150
 var movetimer = 0
 
 func _ready():
+	super()
 	movedir = rand_direction()
 
 func _physics_process(delta):

@@ -1,14 +1,15 @@
 extends Enemy
 
-onready var detect = $PlayerDetect
+@onready var detect = $PlayerDetect
 
 var active = false
 
 func _ready():
+	super()
+	$Hitbox.collision_mask = 1 << 1
 	add_to_group("invunerable")
 	
 func _physics_process(delta):
-	position += movedir * SPEED * delta
 	if !network.is_map_host() || is_dead():
 		return
 	for body in detect.get_overlapping_bodies():
@@ -26,11 +27,11 @@ func launch():
 	active = true
 	anim.play("lift")
 	network.peer_call(anim, "play", ["lift"])
-	yield(get_tree().create_timer(4.75), "timeout")
+	await get_tree().create_timer(4.75).timeout
 	if is_in_group("invunerable"):
 				remove_from_group("invunerable")
-				$Hitbox.connect("body_entered", self, "body_entered")
-	yield(get_tree().create_timer(0.25), "timeout")
+				$Hitbox.connect("body_entered", Callable(self, "body_entered"))
+	await get_tree().create_timer(0.25).timeout
 	anim.play("launch")
 	network.peer_call(anim, "play", ["launch"])
 	
@@ -46,12 +47,12 @@ func launch():
 	
 func body_entered(body):
 	movedir = Vector2(0,0)
-	yield(get_tree().create_timer(0.01), "timeout")
+	await get_tree().create_timer(0.01).timeout
 	add_to_group("invunerable")
 	anim.play("explode")
 	network.peer_call(anim, "play", ["explode"])
 	sfx.play("boom")
-	yield(get_tree().create_timer(0.55), "timeout")
+	await get_tree().create_timer(0.55).timeout
 	queue_free()
 	network.peer_call(self, "queue_free")
 	

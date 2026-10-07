@@ -1,6 +1,6 @@
 extends StaticBody2D
 
-var locked = true setget set_locked
+var locked = true: set = set_locked
 
 signal update_persistent_state
 

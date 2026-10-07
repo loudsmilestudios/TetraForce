@@ -1,8 +1,9 @@
 [gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://effects/walkfx_grass.png" type="Texture" id=1]
+[ext_resource path="res://effects/walkfx_grass.png" type="Texture2D" id=1]
 
-[node name="grass_movement" type="Sprite"]
+[node name="grass_movement" type="Sprite2D"]
+visible = false
 z_index = 1000
 texture = ExtResource( 1 )
 offset = Vector2( 0, 3 )

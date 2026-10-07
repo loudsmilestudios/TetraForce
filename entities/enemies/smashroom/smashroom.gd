@@ -4,7 +4,8 @@ var movetimer_length = 15
 var movetimer = 0
 
 func _ready():
-	connect("damaged", self, "knockback_back")
+	super()
+	connect("damaged", Callable(self, "knockback_back"))
 	anim.play("default")
 	movedir = rand_direction()
 

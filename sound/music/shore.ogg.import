@@ -1,15 +1,19 @@
 [remap]
 
-importer="ogg_vorbis"
-type="AudioStreamOGGVorbis"
-path="res://.import/shore.ogg-bf073bfe551b2bead73e49e6768cbfc2.oggstr"
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://btd2vc1xtgglc"
+path="res://.godot/imported/shore.ogg-bf073bfe551b2bead73e49e6768cbfc2.oggvorbisstr"
 
 [deps]
 
 source_file="res://sound/music/shore.ogg"
-dest_files=[ "res://.import/shore.ogg-bf073bfe551b2bead73e49e6768cbfc2.oggstr" ]
+dest_files=["res://.godot/imported/shore.ogg-bf073bfe551b2bead73e49e6768cbfc2.oggvorbisstr"]
 
 [params]
 
 loop=true
 loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

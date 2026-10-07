@@ -2,7 +2,7 @@ extends AnimationPlayer
 
 func _ready():
 	play("default")
-	global.connect("save", self, "on_save")
+	global.connect("save", Callable(self, "on_save"))
 
 func on_save():
 	if is_playing():

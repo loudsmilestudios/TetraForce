@@ -7,15 +7,15 @@ signal clicked
 
 
 
-export(String) var save_name = null
-export(Texture) var save_icon = null
+@export var save_name: String = ""
+@export var save_icon: Texture2D = null
 var mode = 2
 
-onready var button = $HBoxContainer/Button
+@onready var button = $HBoxContainer/Button
 
 func _ready():
 	self.update_display()
-	button.connect("button_down", self, "on_action")
+	button.connect("button_down", Callable(self, "on_action"))
 
 func update_display():
 	if save_name:

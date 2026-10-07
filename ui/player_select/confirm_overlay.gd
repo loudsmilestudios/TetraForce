@@ -3,19 +3,19 @@ extends Control
 signal submission(result)
 signal close_without_submission
 
-export(String) var confirm_text = "Yes"
-export(String) var deny_text = "Cancel"
-export(String) var message = "Are you sure?"
+@export var confirm_text: String = "Yes"
+@export var deny_text: String = "Cancel"
+@export var message: String = "Are you sure?"
 
 func _ready():
 	set_message(message)
 	$Confirm.text = confirm_text
 	$Deny.text = deny_text
 	
-	self.connect("focus_entered", self, "on_focused")
+	self.connect("focus_entered", Callable(self, "on_focused"))
 	
-	$Confirm.connect("button_down", self, "submit", [true])
-	$Deny.connect("button_down", self, "submit", [false])
+	$Confirm.connect("button_down", Callable(self, "submit").bind(true))
+	$Deny.connect("button_down", Callable(self, "submit").bind(false))
 
 func set_message(msg):
 	message = msg

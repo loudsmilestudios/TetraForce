@@ -6,7 +6,7 @@ var action_string
 enum ACTIONS {UP, DOWN, LEFT, RIGHT, A, B, X, Y, START, QUICK_SAVE}
 
 func _ready():
-	global.connect("options_loaded", self, "update_options")
+	global.connect("options_loaded", Callable(self, "update_options"))
 	_set_keys()
 
 func _input(event):
@@ -20,13 +20,14 @@ func _input(event):
 			_change_key(event, InputEventJoypadButton)
 			can_change_key = false
 
-func _change_key(new_key, type):
+func _change_key(new_key, event_class):
 	# delete actions of the same type as the new key
-	if !InputMap.get_action_list(action_string).empty():
+	if !InputMap.action_get_events(action_string).is_empty():
 		# walk backwards through the array as we may be deleting its items!
-		for i in range(InputMap.get_action_list(action_string).size() - 1, -1, -1):
-			if InputMap.get_action_list(action_string)[i] is type:
-				InputMap.action_erase_event(action_string, InputMap.get_action_list(action_string)[i])
+		for i in range(InputMap.action_get_events(action_string).size() - 1, -1, -1):
+			var old_event = InputMap.action_get_events(action_string)[i]
+			if (event_class == InputEventKey and old_event is InputEventKey) or (event_class == InputEventJoypadButton and old_event is InputEventJoypadButton):
+				InputMap.action_erase_event(action_string, InputMap.action_get_events(action_string)[i])
 
 	# remove the new key from any action it is assigned to right now
 	for action in ACTIONS:
@@ -35,7 +36,8 @@ func _change_key(new_key, type):
 
 	# ass the new key to our currently selected action
 	InputMap.action_add_event(action_string, new_key)
-	update_action(type, action_string, new_key.scancode)
+	var value = new_key.keycode if new_key is InputEventKey else new_key.button_index
+	update_action(event_class, action_string, value)
 
 	# update the UI
 	_set_keys()
@@ -48,8 +50,7 @@ func _actions_join(array : Array, glue : String = "") -> String:
 		if array[index] is InputEventKey:
 			result += array[index].as_text()
 		elif array[index] is InputEventJoypadButton:
-			# result += "JOY_BUTTON_" + str(array[index].get_button_index())
-			result += Input.get_joy_button_string(array[index].get_button_index())
+			result += "Joypad %s" % array[index].button_index
 		else:
 			result += "*unknown*"
 		if index < array.size() - 1:
@@ -61,14 +62,14 @@ func _set_keys():
 		var action_button = get_node("scroll/vbox/Action_" + str(action) + "/Button")
 		var action_label = get_node("scroll/vbox/Action_" + str(action) + "/Label")
 
-		if !action_button.is_connected("pressed", self, "_mark_button"):
-			action_button.connect("pressed", self, "_mark_button", [str(action)])
+		if !action_button.is_connected("pressed", Callable(self, "_mark_button")):
+			action_button.connect("pressed", Callable(self, "_mark_button").bind(str(action)))
 
 		action_button.set_pressed(false)
 		action_label.set_text(str(action))
 		
-		if !InputMap.get_action_list(action).empty():
-			var btn_text = _actions_join(InputMap.get_action_list(action), ", ")
+		if !InputMap.action_get_events(action).is_empty():
+			var btn_text = _actions_join(InputMap.action_get_events(action), ", ")
 			action_button.set_text(btn_text)
 		else:
 			action_label.set_text("No Button!")
@@ -86,29 +87,33 @@ func _mark_button(target):
 func intialize_options():
 	if not "keybinds" in global.options:
 		global.options["keybinds"] = {}
-	for type in ["InputEventKey", "InputEventJoypadButton"]:
-		if not type in global.options.keybinds:
-			global.options.keybinds[type] = {}
+	for event_type in ["InputEventKey", "InputEventJoypadButton"]:
+		if not event_type in global.options.keybinds:
+			global.options.keybinds[event_type] = {}
 
 func update_options():
 	intialize_options()
 
-	for type in [InputEventKey, InputEventJoypadButton]:
-		for keybind in global.options.keybinds[input_type_to_string(type)]:
+	for event_class in [InputEventKey, InputEventJoypadButton]:
+		for keybind in global.options.keybinds[input_type_to_string(event_class)]:
 			action_string = keybind
-			var event = type.new()
-			event.scancode = OS.find_scancode_from_string(global.options.keybinds[input_type_to_string(type)][keybind])
-			_change_key(event, type)
+			var event = event_class.new()
+			var stored_value = global.options.keybinds[input_type_to_string(event_class)][keybind]
+			if event is InputEventKey:
+				event.keycode = OS.find_keycode_from_string(str(stored_value))
+			else:
+				event.button_index = int(stored_value)
+			_change_key(event, event_class)
 
-func input_type_to_string(type):
-	match type:
+func input_type_to_string(event_class):
+	match event_class:
 		InputEventKey:
 			return "InputEventKey"
 		InputEventJoypadButton:
 			return "InputEventJoypadButton"
 	return "unknown"
 
-func update_action(type, action, value):
+func update_action(event_class, action, value):
 	intialize_options()
 
-	global.options.keybinds[input_type_to_string(type)][action] = OS.get_scancode_string(value)
+	global.options.keybinds[input_type_to_string(event_class)][action] = OS.get_keycode_string(value) if event_class == InputEventKey else value

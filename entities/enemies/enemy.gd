@@ -2,32 +2,43 @@ extends Entity
 
 class_name Enemy
 
-export(bool) var chest_spawn = false
-export(String) var location = "room"
-export(String) var spawned_by = ""
+@export var chest_spawn: bool = false
+@export var location: String = "room"
+@export var spawned_by: String = ""
 
 var spawn_position = home_position
+var disabled_collision_shapes = {}
 
 func _ready():
+	super()
 	spawn_position = home_position
 	add_to_group("enemy")
 	add_to_group("maphost")
-	set_collision_layer_bit(0, 0)
-	set_collision_mask_bit(0, 0)
-	set_collision_layer_bit(1, 1)
-	set_collision_mask_bit(1, 1)
+	# Keep player-only obstacles (e.g. signs) out of enemy motion. Solid
+	# scenery that blocked enemies via its mask in Godot 3 now also belongs
+	# to ACTOR, so the enemy's own movement mask can detect it in Godot 4.
+	set_collision_layer_value(1, 0)
+	set_collision_mask_value(1, 0)
+	set_collision_layer_value(2, 1)
+	set_collision_mask_value(2, 1)
+	collision_layer |= CollisionLayers.ENEMY_BODY
+	set_hole_bit(hitstun == 0)
+	var player_detect = get_node_or_null("PlayerDetect")
+	if player_detect is Area2D:
+		player_detect.collision_mask = 1 << 1
 	if spawned_by != "":
 		set_dead()
-		map.get_node(spawned_by).connect("started", self, "spawned")
-		map.get_node(spawned_by).connect("check_for_active", self, "spawned")
-		map.get_node(spawned_by).connect("reset", self, "set_dead")
+		map.get_node(spawned_by).connect("started", Callable(self, "spawned"))
+		map.get_node(spawned_by).connect("check_for_active", Callable(self, "spawned"))
+		map.get_node(spawned_by).connect("reset", Callable(self, "set_dead"))
 
 func _process(delta):
+	super(delta)
 	set_hole_bit(hitstun == 0)
 
 func set_hole_bit(bit):
-	set_collision_layer_bit(7, bit)
-	set_collision_mask_bit(7, bit)
+	set_collision_layer_value(8, bit)
+	set_collision_mask_value(8, bit)
 
 func check_for_death():
 	if health <= 0:
@@ -36,7 +47,7 @@ func check_for_death():
 		enemy_death(global_position)
 
 func enemy_death(pos):
-	var death_animation = preload("res://effects/enemy_death.tscn").instance()
+	var death_animation = preload("res://effects/enemy_death.tscn").instantiate()
 	death_animation.global_position = pos
 	map.add_child(death_animation)
 	sfx.play("enemy_death")
@@ -50,34 +61,50 @@ func enemy_death(pos):
 	set_dead()
 
 func set_health(value):
-	health = value
-	if health <= 0:
+	super(value)
+	if value <= 0:
 		set_dead()
 
 func hole_fall():
 	set_dead()
 	network.peer_call(self, "set_dead")
 
-remote func set_dead():
+@rpc("any_peer") func set_dead():
 	hide()
 	set_physics_process(false)
+	set_collision_shapes_disabled(true)
 	home_position = Vector2(0,0)
-	pos = Vector2(0,0)
+	_pos = Vector2(0,0)
 	position = Vector2(0,0)
-	health = -1
+	super.set_health(-1)
 	
 func spawned():
 	if network.is_map_host():
 		network.peer_call(self, "spawned")
 	show()
 	set_physics_process(true)
+	set_collision_shapes_disabled(false)
 	home_position = spawn_position
-	pos = home_position
+	_pos = home_position
 	position = home_position
-	health = MAX_HEALTH
-	var death_animation = preload("res://effects/enemy_death.tscn").instance()
+	_health = MAX_HEALTH
+	var death_animation = preload("res://effects/enemy_death.tscn").instantiate()
 	death_animation.global_position = position
 	map.add_child(death_animation)
+
+func set_collision_shapes_disabled(disabled):
+	if disabled:
+		if !disabled_collision_shapes.is_empty():
+			return
+		for shape in find_children("*", "", true, false):
+			if shape is CollisionShape2D or shape is CollisionPolygon2D:
+				disabled_collision_shapes[shape] = shape.disabled
+				shape.set_deferred("disabled", true)
+	else:
+		for shape in disabled_collision_shapes:
+			if is_instance_valid(shape):
+				shape.set_deferred("disabled", disabled_collision_shapes[shape])
+		disabled_collision_shapes.clear()
 
 func is_dead():
 	if health <= 0 && hitstun == 0:

@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://entities/weapons/spike.gd" type="Script" id=1]
-[ext_resource path="res://entities/weapons/spike.png" type="Texture" id=2]
+[ext_resource path="res://entities/weapons/spike.png" type="Texture2D" id=2]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 3.8955
@@ -10,7 +10,7 @@ radius = 3.8955
 script = ExtResource( 1 )
 MAX_AMOUNT = 4
 
-[node name="Sprite" type="Sprite" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource( 2 )
 
 [node name="Hitbox" type="Area2D" parent="."]

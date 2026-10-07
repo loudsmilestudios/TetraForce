@@ -1,8 +1,8 @@
 extends Button
 
 func _ready():
-	global.connect("options_loaded", self, "update_options")
-	self.connect("pressed", self, "toggle_pvp")
+	global.connect("options_loaded", Callable(self, "update_options"))
+	self.connect("pressed", Callable(self, "toggle_pvp"))
 
 func toggle_pvp():
 	
@@ -15,8 +15,8 @@ func toggle_pvp():
 
 func update_options():
 	if not "pvp" in global.options or global.options["pvp"]:
-		self.pressed = true
+		self.button_pressed = true
 		global.pvp = true
 	else:
-		self.pressed = false
+		self.button_pressed = false
 		global.pvp = false

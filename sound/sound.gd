@@ -1,9 +1,9 @@
 extends Node
 
-onready var music = AudioStreamPlayer.new()
+@onready var music = AudioStreamPlayer.new()
 # Music that's being faded out is transferred here by swapping instances around.
 # This implies that if a music set occurs too immediately, a cross-fade occurs.
-onready var _music_fading = AudioStreamPlayer.new()
+@onready var _music_fading = AudioStreamPlayer.new()
 # This is the amount of time after the fading music has completely faded,
 #  but before it's actually stopped.
 # This allows a fading song to be "brought back from the dead".
@@ -22,7 +22,7 @@ var current_song = ""
 var gameover = false
 
 const DEFAULT_SFX_VOLUME = -15
-const DEFAULT_MUSIC_VOLUME = -20
+const DEFAULT_MUSIC_VOLUME = -20.0
 const QUIET_MUSIC_VOLUME = -27.5
 
 # Godot uses decibels as the measurement.
@@ -43,6 +43,17 @@ func _ready():
 	
 	add_child(music)
 	add_child(_music_fading)
+
+func _exit_tree():
+	stop_all()
+
+func stop_all():
+	for player in get_children():
+		if player is AudioStreamPlayer:
+			player.stop()
+			player.stream = null
+	current_song = ""
+	_fading_song = ""
 
 
 func _process(delta):
@@ -153,8 +164,8 @@ func play(sound, volume=0):
 	var path = str("res://sound/sfx/", sound, ".ogg")
 	var new_sound = AudioStreamPlayer.new()
 	new_sound.bus = "Sound Effects"
-	get_tree().get_root().add_child(new_sound)
+	add_child(new_sound)
 	new_sound.set_stream(load(path))
 	new_sound.set_volume_db(DEFAULT_SFX_VOLUME + volume)
-	new_sound.connect("finished", new_sound, "queue_free")
+	new_sound.connect("finished", Callable(new_sound, "queue_free"))
 	new_sound.play()

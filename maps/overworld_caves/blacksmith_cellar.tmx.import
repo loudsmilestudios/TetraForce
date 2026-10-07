@@ -1,22 +1,23 @@
 [remap]
 
-importer="vnen.tiled_importer"
+importer="YATI"
 type="PackedScene"
-path="res://.import/blacksmith_cellar.tmx-91fae3fafe0428acbfeb3a7e3f714817.scn"
+uid="uid://qrxf8me2xfb2"
+path="res://.godot/imported/blacksmith_cellar.tmx-91fae3fafe0428acbfeb3a7e3f714817.tscn"
 
 [deps]
 
 source_file="res://maps/overworld_caves/blacksmith_cellar.tmx"
-dest_files=[ "res://.import/blacksmith_cellar.tmx-91fae3fafe0428acbfeb3a7e3f714817.scn" ]
+dest_files=["res://.godot/imported/blacksmith_cellar.tmx-91fae3fafe0428acbfeb3a7e3f714817.tscn"]
 
 [params]
 
-custom_properties=true
-tile_metadata=true
-uv_clip=true
-image_flags=7
-collision_layer=1
-embed_internal_images=false
-save_tiled_properties=true
-add_background=true
-post_import_script="res://tiled/import.gd"
+use_default_filter=false
+add_class_as_metadata=false
+add_id_as_metadata=true
+no_alternative_tiles=false
+map_wangset_to_terrain=false
+custom_data_prefix="data_"
+tiled_project_file=""
+post_processor="res://tiled/import.gd"
+save_tileset_to=""

@@ -5,16 +5,17 @@ var movetimer = 0
 var new_rotation
 var sees_player = false
 
-var hold = false setget set_hold
+var hold = false: set = set_hold
 
-onready var detect = $PlayerDetect
-onready var enemy_array = $PlayerDetect/CollisionPolygon2D
+@onready var detect = $PlayerDetect
+@onready var enemy_array = $PlayerDetect/CollisionPolygon2D
 
 
 func _ready():
+	super()
 	MAX_HEALTH = 1
 	DAMAGE = 0.5
-	health = MAX_HEALTH
+	_health = MAX_HEALTH
 	movedir = rand_direction()
 	SPEED = 35
 
@@ -51,9 +52,10 @@ func _physics_process(delta):
 	if movetimer > 0:
 		movetimer -= 1
 		
-	for body in get_slide_count():
+	for body in get_slide_collision_count():
 		var collision = get_slide_collision(body)
-		if collision.collider is TileMap:
+		var collider = collision.get_collider()
+		if collider is TileMapLayer || collider is TileMap:
 			set_hold(true)
 		
 	var players = get_tree().get_nodes_in_group("player")
@@ -70,7 +72,7 @@ func _physics_process(delta):
 			else:
 				movedir = Vector2.ZERO
 				
-			enemy_array.rotation_degrees = rad2deg(position.angle_to_point(closest_player.position)) + 270
+			enemy_array.rotation_degrees = rad_to_deg(position.angle_to_point(closest_player.position)) + 270
 			
 			new_rotation = int(enemy_array.rotation_degrees)
 			

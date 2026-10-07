@@ -1,7 +1,7 @@
 extends Panel
 
-var text = "" setget set_text
-var selected = false setget set_selected
+var text = "": set = set_text
+var selected = false: set = set_selected
 
 func set_text(value):
 	text = value

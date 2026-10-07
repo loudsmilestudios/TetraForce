@@ -5,62 +5,47 @@ on:
   pull_request: {}
 
 jobs:
-  linux:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-      - name: Version
-        run: |
-          git rev-parse HEAD > semantic.version
-      - name: Setup Godot
-        run: |
-          wget https://downloads.tuxfamily.org/godotengine/3.3.2/Godot_v3.3.2-stable_linux_headless.64.zip -O Godot.zip
-          unzip Godot.zip
-          rm Godot.zip
-          mv Godot_v3.3.2-stable_linux_headless.64 /usr/local/bin/godot
-      - name: Build Project
-        run: |
-          wget https://downloads.tuxfamily.org/godotengine/3.3.2/Godot_v3.3.2-stable_export_templates.tpz -q
-          unzip Godot_v3.3.2-stable_export_templates.tpz -d .
-          mkdir -p ~/.local/share/godot/templates/3.3.2.stable
-          mv templates/* ~/.local/share/godot/templates/3.3.2.stable
-
-          mkdir -p $GITHUB_WORKSPACE/build
-          godot --export linux $GITHUB_WORKSPACE/build/TetraForce.x86_64
-      - name: Upload Artifact
-        uses: actions/upload-artifact@v2
-        with:
-          name: Client - linux
-          path: ${{ github.workspace }}/build
-  windows:
+  build:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        platform: [win32, win64]
+        include:
+          - preset: linux
+            artifact: Client - linux
+            output: TetraForce.x86_64
+          - preset: win32
+            artifact: Client - win32
+            output: TetraForce.x86_32.exe
+          - preset: win64
+            artifact: Client - win64
+            output: TetraForce.x86_64.exe
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
       - name: Version
-        run: |
-          git rev-parse HEAD > semantic.version
+        run: git rev-parse HEAD > semantic.version
       - name: Setup Godot
-        run: |
-          wget https://downloads.tuxfamily.org/godotengine/3.3.2/Godot_v3.3.2-stable_linux_headless.64.zip -O Godot.zip
-          unzip Godot.zip
-          rm Godot.zip
-          mv Godot_v3.3.2-stable_linux_headless.64 /usr/local/bin/godot
+        uses: chickensoft-games/setup-godot@v2
+        with:
+          version: 4.7.2
+          use-dotnet: false
+          include-templates: true
+      - name: Import Project
+        run: godot --headless --editor --import --path . --quit
+      - name: Collision Regression
+        if: matrix.preset == 'linux'
+        run: python3 tests/run_collision_regression.py
+      - name: Rendering Regression
+        if: matrix.preset == 'linux'
+        env:
+          LIBGL_ALWAYS_SOFTWARE: "1"
+        run: xvfb-run -a python3 tests/run_collision_regression.py --rendering
       - name: Build Project
         run: |
-          wget https://downloads.tuxfamily.org/godotengine/3.3.2/Godot_v3.3.2-stable_export_templates.tpz -q
-          unzip Godot_v3.3.2-stable_export_templates.tpz -d .
-          mkdir -p ~/.local/share/godot/templates/3.3.2.stable
-          mv templates/* ~/.local/share/godot/templates/3.3.2.stable
-
-          mkdir -p $GITHUB_WORKSPACE/build
-          godot --export ${{ matrix.platform }} $GITHUB_WORKSPACE/build/TetraForce.exe
+          mkdir -p "$GITHUB_WORKSPACE/build"
+          godot --headless --path . --export-release "${{ matrix.preset }}" "$GITHUB_WORKSPACE/build/${{ matrix.output }}"
       - name: Upload Artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
-          name: Client - ${{ matrix.platform }}
+          name: ${{ matrix.artifact }}
           path: ${{ github.workspace }}/build

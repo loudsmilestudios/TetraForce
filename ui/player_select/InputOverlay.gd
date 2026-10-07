@@ -3,14 +3,14 @@ extends Control
 signal submission(result)
 signal close_without_submission
 
-export(String) var button_text = "Submit"
-export(String) var placeholder_text = ""
+@export var button_text: String = "Submit"
+@export var placeholder_text: String = ""
 
 func _ready():
-	self.connect("focus_entered", self, "on_focused")
+	self.connect("focus_entered", Callable(self, "on_focused"))
 	
-	$Button.connect("button_down", self, "submit")
-	$TextEdit.connect("text_entered", self, "submit")
+	$Button.connect("button_down", Callable(self, "submit"))
+	$TextEdit.connect("text_submitted", Callable(self, "submit"))
 	$Button.text = button_text
 	$TextEdit.placeholder_text = placeholder_text
 

@@ -1,12 +1,12 @@
-extends KinematicBody2D
+extends CharacterBody2D
 
 class_name Entity
 
 # ATTRIBUTES
-export(String, "ENEMY", "PLAYER", "TRAP") var TYPE = "ENEMY"
-export(float, 0.5, 20, 0.5) var MAX_HEALTH = 1
-export(int) var SPEED = 70
-export(float, 0, 20, 0.5) var DAMAGE = 0.5
+@export var TYPE = "ENEMY" # (String, "ENEMY", "PLAYER", "TRAP")
+@export_range(0.5, 20.0, 0.5) var MAX_HEALTH: float = 1.0
+@export var SPEED: int = 70
+@export var DAMAGE = 0.5 # (float, 0, 20, 0.5)
 
 # MOVEMENT
 var movedir = Vector2(0,0)
@@ -16,7 +16,12 @@ var last_movedir = Vector2(0,1)
 var last_safe_pos = position
 
 # COMBAT
-var health = MAX_HEALTH setget set_health
+var _health = MAX_HEALTH
+var health:
+	get:
+		return _health
+	set(value):
+		set_health(value)
 var hitstun = 0
 var invunerable = 0
 var hurt_sfx = "hit_hurt"
@@ -26,17 +31,27 @@ signal update_count
 var state = "default"
 var home_position = Vector2(0,0)
 
-onready var anim = $AnimationPlayer
-onready var sprite = $Sprite
+@onready var anim = $AnimationPlayer
+@onready var sprite = $Sprite2D
 var hitbox : Area2D
 var center : Area2D
 var camera
 var tween
 var walkfx
-onready var map = get_parent()
+@onready var map = get_parent()
 
-var pos = Vector2(0,0) setget position_changed
-var animation = "idleDown" setget animation_changed
+var _pos = Vector2(0,0)
+var pos:
+	get:
+		return _pos
+	set(value):
+		position_changed(value)
+var _animation = "idleDown"
+var animation:
+	get:
+		return _animation
+	set(value):
+		animation_changed(value)
 
 signal update_persistent_state
 
@@ -45,24 +60,25 @@ signal damaged
 
 func _ready():
 	set_process(false)
+	motion_mode = CharacterBody2D.MOTION_MODE_FLOATING
+	if !has_meta("z_index"):
+		z_index = RenderLayers.ACTORS
 	add_to_group("entity")
 	
 	map = get_game(self)
 	
 	if !sprite.material:
 		sprite.material = ShaderMaterial.new()
-		sprite.material.set_shader(preload("res://entities/entity.shader"))
-	health = MAX_HEALTH
+		sprite.material.set_shader(preload("res://entities/entity.gdshader"))
+	_health = MAX_HEALTH
 	home_position = position
-	pos = position
+	_pos = position
 	create_hitbox()
 	create_center()
-	create_tween()
-	walkfx = preload("res://effects/walkfx.tscn").instance()
+	walkfx = preload("res://effects/walkfx.tscn").instantiate()
 	add_child(walkfx)
 	#map.connect("player_entered", self, "player_entered")
-	set_collision_layer_bit(10, 1)
-	#set_collision_mask_bit(10, 1)
+	set_collision_layer_value(11, 1)
 	set_process(true)
 
 func get_game(node):
@@ -90,10 +106,12 @@ func create_hitbox():
 	var new_shape = CapsuleShape2D.new()
 	new_collision.shape = new_shape
 	new_shape.radius = $CollisionShape2D.shape.radius + 1
-	new_shape.height = $CollisionShape2D.shape.height + 1
+	# Godot 4 includes the rounded ends in height. The old middle-section
+	# expansion was 3 pixels plus 1 extra radius pixel at each end.
+	new_shape.height = $CollisionShape2D.shape.height + 5
 	
-	new_hitbox.set_collision_layer_bit(7,1)
-	new_hitbox.set_collision_mask_bit(7,1)
+	new_hitbox.set_collision_layer_value(8,1)
+	new_hitbox.set_collision_mask_value(8,1)
 	
 	hitbox = new_hitbox
 
@@ -107,26 +125,21 @@ func create_center():
 	
 	var new_shape = RectangleShape2D.new()
 	new_collision.shape = new_shape
-	new_shape.extents = Vector2(1,1)
+	new_shape.size = Vector2(2, 2)
 	
 	# tall_grass
-	new_center.set_collision_layer_bit(0,0)
-	new_center.set_collision_mask_bit(0,0)
-	new_center.set_collision_layer_bit(5,1)
-	new_center.set_collision_mask_bit(5,1)
-	new_center.set_collision_layer_bit(6,1)
-	new_center.set_collision_mask_bit(6,1)
-	new_center.set_collision_layer_bit(7,1)
-	new_center.set_collision_mask_bit(7,1)
+	new_center.set_collision_layer_value(1,0)
+	new_center.set_collision_mask_value(1,0)
+	new_center.set_collision_layer_value(6,1)
+	new_center.set_collision_mask_value(6,1)
+	new_center.set_collision_layer_value(7,1)
+	new_center.set_collision_mask_value(7,1)
+	new_center.set_collision_layer_value(8,1)
+	new_center.set_collision_mask_value(8,1)
 	
 	new_center.position.y += 6
 	
 	center = new_center
-
-func create_tween():
-	var new_tween = Tween.new()
-	add_child(new_tween)
-	tween = new_tween
 
 func loop_movement():
 	var motion
@@ -135,9 +148,10 @@ func loop_movement():
 	else:
 		motion = knockdir.normalized() * 125
 	
-	move_and_slide(motion)
+	set_velocity(motion)
+	move_and_slide()
 	
-	pos = position
+	_pos = position
 	
 	if movedir != Vector2.ZERO:
 		last_movedir = movedir
@@ -161,7 +175,7 @@ func loop_damage():
 	if hitstun > 1:
 		hitstun -= 1
 	elif hitstun == 1:
-		if sprite.material.get_shader_param("is_hurt") == true:
+		if sprite.material.get_shader_parameter("is_hurt") == true:
 			set_hurt_texture(false)
 			network.peer_call(self, "set_hurt_texture", [false])
 		check_for_death()
@@ -186,14 +200,16 @@ func loop_damage():
 			damage(body.DAMAGE, global_position - body.global_position, body)
 
 func loop_holes():
-	if get_collision_layer_bit(7) == true:
+	if get_collision_layer_value(8) == true:
 		return
 	for body in center.get_overlapping_bodies():
 		if body is Holes:
-			var hole_origin = body.map_to_world(body.world_to_map(position.round() + Vector2(0,6))) + Vector2(8,8)
+			var sample_position = body.to_local(global_position + Vector2(0,6))
+			var hole_origin_global = body.to_global(body.map_to_local(body.local_to_map(sample_position)))
+			var hole_origin = get_parent().to_local(hole_origin_global)
 			var hole_hitbox = Rect2(hole_origin - Vector2(5,5), Vector2(10,10))
-			position = position.linear_interpolate(hole_origin, 0.1) # there's a way to lerp w/ delta time i forgot it tho
-			position += Vector2(0, rand_range(-1,0))
+			position = position.lerp(hole_origin, 0.1) # there's a way to lerp w/ delta time i forgot it tho
+			position += Vector2(0, randf_range(-1,0))
 			if hole_hitbox.has_point(position + Vector2(0,4)):
 				create_hole_fx(hole_origin)
 				network.peer_call(self, "create_hole_fx", [hole_origin])
@@ -204,13 +220,13 @@ func hole_fall():
 	pass
 
 func create_hole_fx(pos):
-	var hole_fx = preload("res://effects/hole_falling.tscn").instance()
+	var hole_fx = preload("res://effects/hole_falling.tscn").instantiate()
 	map.add_child(hole_fx)
 	hole_fx.position = pos
 	sfx.play("fall")
 	
 func create_drowning_fx(pos):
-	var drowning_fx = preload("res://effects/drowning.tscn").instance()
+	var drowning_fx = preload("res://effects/drowning.tscn").instantiate()
 	map.add_child(drowning_fx)
 	drowning_fx.position = pos
 	sfx.play("drown")
@@ -235,14 +251,14 @@ func damage(amount, dir, damager=null):
 				emit_signal("killed", damager)
 
 func update_health(amount):
-	health = max(min(health + amount, MAX_HEALTH), 0)
+	_health = max(min(_health + amount, MAX_HEALTH), 0)
 	emit_signal("health_changed")
 
 func check_for_death():
 	pass
 
-remote func set_hurt_texture(h):
-	sprite.material.set_shader_param("is_hurt", h)
+@rpc("any_peer") func set_hurt_texture(h):
+	sprite.material.set_shader_parameter("is_hurt", h)
 
 func anim_switch(a):
 	var newanim: String = str(a, spritedir)
@@ -250,26 +266,26 @@ func anim_switch(a):
 		newanim = str(a, "Side")
 	if anim.current_animation != newanim:
 		anim.play(newanim)
-	animation = newanim
+	_animation = newanim
 
-sync func use_weapon(weapon_name, input="A"):
+@rpc("any_peer", "call_local") func use_weapon(weapon_name, input="A"):
 	var weapon = global.weapons_def[weapon_name]
-	var new_weapon = load(weapon.path).instance()
+	var new_weapon = load(weapon.path).instantiate()
 	var weapon_group = str(weapon_name, name)
 	new_weapon.add_to_group(weapon_group)
 	new_weapon.add_to_group(name)
 	add_child(new_weapon)
 	
-	new_weapon.set_network_master(get_network_master())
+	new_weapon.set_multiplayer_authority(get_multiplayer_authority())
 	
 	if get_tree().get_nodes_in_group(weapon_group).size() > new_weapon.MAX_AMOUNT:
 		new_weapon.delete()
 		return
 	
-	if is_network_master() && is_in_group("player") && weapon.ammo_type != "":
+	if is_multiplayer_authority() && is_in_group("player") && weapon.ammo_type != "":
 		if global.ammo[weapon.ammo_type] <= 0:
 			new_weapon.delete()
-			yield(get_tree().create_timer(0.05), "timeout") # hacky
+			await get_tree().create_timer(0.05).timeout # hacky
 			network.peer_call(self, "remove_last_item", [weapon_group])
 			return
 		global.ammo[weapon.ammo_type] -= 1
@@ -282,17 +298,19 @@ func remove_last_item(group):
 	get_tree().get_nodes_in_group(group).back().queue_free()
 
 func position_changed(value):
-	pos = value
-	tween.interpolate_property(self, "position", position, pos, network.tick_time, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
-	tween.start()
+	_pos = value
+	if tween and tween.is_valid():
+		tween.kill()
+	tween = create_tween().set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_IN_OUT)
+	tween.tween_property(self, "position", pos, network.tick_time)
 
 func animation_changed(value):
-	animation = value
+	_animation = value
 	if anim.current_animation != value:
 		anim.play(value)
 
 func set_health(value):
-	health = value
+	_health = value
 	
 func reset_collision():
 	$CollisionShape2D.disabled = false

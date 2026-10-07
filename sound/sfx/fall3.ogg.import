@@ -1,15 +1,19 @@
 [remap]
 
-importer="ogg_vorbis"
-type="AudioStreamOGGVorbis"
-path="res://.import/fall3.ogg-1d0769eaa2ef09067629c82ed78a29f0.oggstr"
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://7hopi5rk085m"
+path="res://.godot/imported/fall3.ogg-1d0769eaa2ef09067629c82ed78a29f0.oggvorbisstr"
 
 [deps]
 
 source_file="res://sound/sfx/fall3.ogg"
-dest_files=[ "res://.import/fall3.ogg-1d0769eaa2ef09067629c82ed78a29f0.oggstr" ]
+dest_files=["res://.godot/imported/fall3.ogg-1d0769eaa2ef09067629c82ed78a29f0.oggvorbisstr"]
 
 [params]
 
 loop=false
 loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

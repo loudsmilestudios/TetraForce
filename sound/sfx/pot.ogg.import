@@ -1,15 +1,19 @@
 [remap]
 
-importer="ogg_vorbis"
-type="AudioStreamOGGVorbis"
-path="res://.import/pot.ogg-9b4d133a3882e23a8c0bd9c6ea4cce5a.oggstr"
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://dp4ljdu4jrut6"
+path="res://.godot/imported/pot.ogg-9b4d133a3882e23a8c0bd9c6ea4cce5a.oggvorbisstr"
 
 [deps]
 
 source_file="res://sound/sfx/pot.ogg"
-dest_files=[ "res://.import/pot.ogg-9b4d133a3882e23a8c0bd9c6ea4cce5a.oggstr" ]
+dest_files=["res://.godot/imported/pot.ogg-9b4d133a3882e23a8c0bd9c6ea4cce5a.oggvorbisstr"]
 
 [params]
 
 loop=false
 loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -8,14 +8,14 @@ signal entity_killed(killer, entity)
 signal entity_damaged(damager, entity)
 signal stage_changed(new_stage)
 
-export(Array, NodePath) var _managed_entities = [] # Only utilized on start
-export(int) var current_stage = DefaultStage.INACTIVE setget set_stage, get_stage
-export(bool) var automatic_boss_bar = true
+@export var _managed_entities = [] # Only utilized on start # (Array, NodePath)
+@export var current_stage: int = DefaultStage.INACTIVE: get = get_stage, set = set_stage
+@export var automatic_boss_bar: bool = true
 
-var difficulty_scale setget ,get_difficulty_scale
+var difficulty_scale : get = get_difficulty_scale
 var managed_entities = [] # Contains all entities managed by controller
 
-onready var boss_overlay : BossOverlay
+@onready var boss_overlay : BossOverlay
 
 func _ready():
 	_load_entities()
@@ -45,8 +45,8 @@ func _load_entities():
 #		setup entity signals
 func _configure_entity(entity : Entity):
 	managed_entities.append(entity)
-	entity.connect("damaged", self, "_on_entity_damaged", [entity])
-	entity.connect("killed", self, "_on_entity_killed", [entity])
+	entity.connect("damaged", Callable(self, "_on_entity_damaged").bind(entity))
+	entity.connect("killed", Callable(self, "_on_entity_killed").bind(entity))
 
 
 # _error_if_not_host: Prints error & returns true if not
@@ -145,7 +145,7 @@ func _boss_bar_auto_init():
 	_boss_bar_set_max_hp(max_hp)
 	network.peer_call(self, "_boss_bar_set_max_hp", max_hp)
 	_boss_bar_auto_update()
-	self.connect("stage_changed", self, "_boss_bar_on_stage_changed")
+	self.connect("stage_changed", Callable(self, "_boss_bar_on_stage_changed"))
 
 func _boss_bar_on_stage_changed(new_stage):
 	if automatic_boss_bar and new_stage != DefaultStage.INACTIVE:

@@ -1,19 +1,19 @@
 extends CanvasLayer
 
-onready var resume = $resume
-onready var exit = $exit
-onready var player = global.player
+@onready var resume = $resume
+@onready var exit = $exit
+@onready var player = global.player
 
 func _ready():
 	sfx.set_music("dungeon", "quiet")
 	sfx.gameover = true
 	player.state = "menu"
 	player.set_health(player.MAX_HEALTH)
-	yield(get_tree().create_timer(2.5), "timeout")
+	await get_tree().create_timer(2.5).timeout
 	resume.show()
-	yield(get_tree().create_timer(0.25), "timeout")
+	await get_tree().create_timer(0.25).timeout
 	exit.show()
-	yield(get_tree().create_timer(0.25), "timeout")
+	await get_tree().create_timer(0.25).timeout
 	resume.grab_focus()
 	
 func _input(event):
@@ -29,7 +29,7 @@ func _input(event):
 func _on_resume_pressed():
 	sfx.play("sword3")
 	resume.release_focus()
-	yield(get_tree().create_timer(0.75), "timeout")
+	await get_tree().create_timer(0.75).timeout
 	self.queue_free()
 	screenfx.play("fadeblackout")
 	sfx.gameover = false

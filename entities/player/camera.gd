@@ -2,6 +2,7 @@ extends Camera2D
 
 var target
 var current_rect
+var scroll_tween: Tween
 var screen_size = Vector2(256,144)
 
 const SCROLL_DURATION = 0.5
@@ -11,12 +12,13 @@ signal reset_limit
 func _ready():
 	set_process(false)
 	
-func _physics_process(delta):
-	global.player.get_node("Light2D").enabled = global.items.has("Lantern") #Moved so it updates while your in a dark room
+func _physics_process(_delta):
+	if is_instance_valid(global.player):
+		global.player.get_node("PointLight2D").enabled = global.items.has("Lantern") #Moved so it updates while your in a dark room
 
 func initialize(node):
 	target = node
-	current = true
+	enabled = true
 	
 func scroll_screen(rect : Rect2):
 	if rect == current_rect:
@@ -26,7 +28,7 @@ func scroll_screen(rect : Rect2):
 	target.set_physics_process(false) # yes i know i should use signals
 	set_process(false)
 	
-	var scroll_from = get_camera_screen_center()
+	var scroll_from = get_screen_center_position()
 	
 	unlimit() # remove the current camera limits (can't have limits while scrolling)
 	position = scroll_from
@@ -41,12 +43,14 @@ func scroll_screen(rect : Rect2):
 	scroll_to.y = clamp(scroll_to.y, scroll_to_min.y + 16, scroll_to_max.y)
 	
 	
-	$Tween.interpolate_property(self, "position", scroll_from, scroll_to, SCROLL_DURATION, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
-	$Tween.start()
-	yield($Tween, "tween_all_completed")
+	if scroll_tween and scroll_tween.is_valid():
+		scroll_tween.kill()
+	scroll_tween = create_tween().set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_IN_OUT)
+	scroll_tween.tween_property(self, "position", scroll_to, SCROLL_DURATION).from(scroll_from)
+	await scroll_tween.finished
 	
 	set_limits(rect)
-	smoothing_enabled = true
+	position_smoothing_enabled = true
 	target.set_physics_process(true)
 	set_process(true)
 
@@ -72,7 +76,7 @@ func set_light(mode):
 		$CanvasModulate.color = Color(0, 0, 0, 1.0)
 	else:
 		$CanvasModulate.color = Color(1.0, 1.0, 1.0, 1.0)
-		target.get_node("Light2D").enabled = false
+		target.get_node("PointLight2D").enabled = false
 		for light in get_tree().get_nodes_in_group("light_halo"):
 			light.enabled = false
 			

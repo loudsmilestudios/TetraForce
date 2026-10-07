@@ -1,20 +1,25 @@
-FROM centos:centos8
+FROM ubuntu:24.04
 
-RUN yum install -y wget unzip libXcursor openssl openssl-libs libXinerama libXrandr-devel libXi alsa-lib pulseaudio-libs mesa-libGL
+RUN apt-get update \
+	&& apt-get install -y --no-install-recommends ca-certificates wget unzip libfontconfig1 libdbus-1-3 libxkbcommon0 libwayland-client0 libx11-6 libxcursor1 libxinerama1 libxrandr2 libxi6 libgl1 libasound2t64 libpulse0 \
+	&& rm -rf /var/lib/apt/lists/*
 
-ENV GODOT_VERSION "3.3.2"
+ENV GODOT_VERSION=4.7.2
 
-# Install Godot Server
-RUN wget -q https://downloads.tuxfamily.org/godotengine/${GODOT_VERSION}/Godot_v${GODOT_VERSION}-stable_linux_headless.64.zip \
-    && unzip Godot_v${GODOT_VERSION}-stable_linux_headless.64.zip \
-    && mv Godot_v${GODOT_VERSION}-stable_linux_headless.64 /usr/local/bin/godot \
-    && chmod +x /usr/local/bin/godot
+RUN wget -q https://github.com/godotengine/godot/releases/download/${GODOT_VERSION}-stable/Godot_v${GODOT_VERSION}-stable_linux.x86_64.zip \
+	&& unzip Godot_v${GODOT_VERSION}-stable_linux.x86_64.zip \
+	&& mv Godot_v${GODOT_VERSION}-stable_linux.x86_64 /usr/local/bin/godot \
+	&& chmod +x /usr/local/bin/godot \
+	&& rm Godot_v${GODOT_VERSION}-stable_linux.x86_64.zip
 
 # Create Runtime User
-RUN useradd -d /tetra tetra
+RUN useradd --create-home --home-dir /tetra tetra
 
 
 # Add pck file
-ADD build/TetraForce.pck /tetra/TetraForce.pck
+COPY build/TetraForce.pck /tetra/TetraForce.pck
 
-CMD /usr/local/bin/godot --main-pack /tetra/TetraForce.pck --empty-server-timeout=900
+USER tetra
+WORKDIR /tetra
+
+CMD ["/usr/local/bin/godot", "--headless", "--main-pack", "/tetra/TetraForce.pck", "--", "--dedicatedserver=true", "--empty-server-timeout=900"]

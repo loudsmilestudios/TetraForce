@@ -4,7 +4,7 @@
 
 extends Node
 
-export(String) var api_endpoint = "api.online.tetraforce.io"
+@export var api_endpoint: String = "api.online.tetraforce.io"
 
 var _http_client : HTTPRequest
 var auth_token : String
@@ -21,25 +21,25 @@ func _ready():
 # Requests API for data from a specific server
 # Returns: {"message": [MESSAGE], "data" : [DATA] }
 func get_server(lobby : String) -> Dictionary:
-	return _api_request("get_servers", {"server" : lobby}, HTTPClient.METHOD_GET, false)
+	return await _api_request("get_servers", {"server" : lobby}, HTTPClient.METHOD_GET, false)
 
 # Asynchronous coroutine.
 # Requests API for a list of servers
 # Returns: {"message": [MESSAGE], "data" : [DATA] }
 func get_servers(page : int = 0) -> Dictionary:
-	return _api_request("get_servers", {"page" : str(page)}, HTTPClient.METHOD_GET, false)
+	return await _api_request("get_servers", {"page" : str(page)}, HTTPClient.METHOD_GET, false)
 
 # Asynchronous coroutine.
 # Requests API for creating a server
 # Returns: {"message": [MESSAGE], "success" : [SUCCESS] }
 func create_server(lobby : String = "") -> Dictionary:
-	return _api_request("create_server", {"server" : lobby}, HTTPClient.METHOD_POST, false)
+	return await _api_request("create_server", {"server" : lobby}, HTTPClient.METHOD_POST, false)
 
 # Asynchronous coroutine.
 # Requests API for stopping a server
 # Returns: {"message": [MESSAGE], "success" : [SUCCESS] }
 func stop_server(lobby : String = "") -> Dictionary:
-	return _api_request("stop_server", {"server" : lobby}, HTTPClient.METHOD_POST, true)
+	return await _api_request("stop_server", {"server" : lobby}, HTTPClient.METHOD_POST, true)
 
 
 ################
@@ -50,7 +50,7 @@ func stop_server(lobby : String = "") -> Dictionary:
 # Requests API for an auth token
 # Returns: True if auth token was found and set
 func login(username : String, password : String) -> bool:
-	var result = yield(_api_request("auth/login", {"username" : username, "password" : password}, HTTPClient.METHOD_POST, false), "completed")
+	var result = await _api_request("auth/login", {"username" : username, "password" : password}, HTTPClient.METHOD_POST, false)
 	if "success" in result and result["success"] and "AuthenticationResult" in result["message"]:
 		if "AccessToken" in result["message"]["AuthenticationResult"]:
 			auth_token = result["message"]["AuthenticationResult"]["AccessToken"]
@@ -62,19 +62,19 @@ func login(username : String, password : String) -> bool:
 # Requests API to create a new user
 # Returns: {"message": [MESSAGE], "success" : [SUCCESS] }
 func register(username : String, password : String, email : String) -> Dictionary:
-	return _api_request("auth/register", {"username" : username, "password" : password, "email" : email}, HTTPClient.METHOD_POST, false)
+	return await _api_request("auth/register", {"username" : username, "password" : password, "email" : email}, HTTPClient.METHOD_POST, false)
 
 # Asynchronous coroutine.
 # Requests API for a user's profile data
 # Returns: {"message": [MESSAGE], "success" : [SUCCESS] }
 func get_profile() -> Dictionary:
-	return _api_request("auth/profile", {}, HTTPClient.METHOD_GET, true)
+	return await _api_request("auth/profile", {}, HTTPClient.METHOD_GET, true)
 
 # Asynchronous coroutine.
 # Requests API to reset a user's password
 # Returns: {"message": [MESSAGE], "success" : [SUCCESS] }
 func reset_password(username : String) -> Dictionary:
-	return _api_request("auth/reset", {"username" : username}, HTTPClient.METHOD_POST, false)
+	return await _api_request("auth/reset", {"username" : username}, HTTPClient.METHOD_POST, false)
 
 ########################
 ### Helper Functions ###
@@ -85,7 +85,7 @@ func _api_request(path : String, params : Dictionary, method = HTTPClient.METHOD
 	
 	# Build required request objects
 	var request_string = "https://%s/%s%s" % [api_endpoint, path, _params_to_string(params)]	
-	var headers : PoolStringArray = []
+	var headers : PackedStringArray = []
 
 	# Update request with token if needed
 	if auth_required:
@@ -93,16 +93,18 @@ func _api_request(path : String, params : Dictionary, method = HTTPClient.METHOD
 			headers.append("Authorization: %s" % auth_token)
 	
 	# Make HTTP Requesst
-	_http_client.request(request_string, headers, true, method)
+	var request_error = _http_client.request(request_string, headers, method)
+	if request_error != OK:
+		return _build_error_message("Request failed to start: %s" % error_string(request_error))
 
 	# Get and parse result
-	var result = yield(_http_client, "request_completed")
+	var result = await _http_client.request_completed
 	if len(result) > 3:
 		if result[1] == 200:
-			var json : JSONParseResult = JSON.parse(result[3].get_string_from_utf8())
-			if json.error:
-				return _build_error_message("Failed to parse response: %s" % json.error_string)
-			return json.result
+			var json = JSON.parse_string(result[3].get_string_from_utf8())
+			if not json is Dictionary:
+				return _build_error_message("Failed to parse response")
+			return json
 		elif result[1] == 503: # Check for permission denied errors
 			_build_error_message("Unauthorized request!")
 		else: # Return response code in error message if possible
@@ -115,7 +117,7 @@ func _params_to_string(params : Dictionary) -> String:
 	
 	var param_strings = []
 	for param in params:
-		param_strings.append("%s=%s" % [param, str(params[param])])
+		param_strings.append("%s=%s" % [str(param).uri_encode(), str(params[param]).uri_encode()])
 	
 	var params_string = ""
 	for i in range(param_strings.size()):
@@ -124,7 +126,7 @@ func _params_to_string(params : Dictionary) -> String:
 
 		params_string += param_strings[i]
 		
-		if i != params.size():
+		if i < param_strings.size() - 1:
 			params_string += "&"
 	return params_string
 

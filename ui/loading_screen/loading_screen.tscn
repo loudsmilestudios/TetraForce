@@ -1,11 +1,11 @@
 [gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://ui/logo_animated_sprite.tres" type="SpriteFrames" id=1]
-[ext_resource path="res://ui/loading_screen/backgrounds/background_0.png" type="Texture" id=2]
-[ext_resource path="res://ui/loading_screen/loading_screen_frame.png" type="Texture" id=3]
+[ext_resource path="res://ui/loading_screen/backgrounds/background_0.png" type="Texture2D" id=2]
+[ext_resource path="res://ui/loading_screen/loading_screen_frame.png" type="Texture2D" id=3]
 [ext_resource path="res://ui/theme/theme.tres" type="Theme" id=4]
 [ext_resource path="res://ui/loading_screen/loading_screen.gd" type="Script" id=5]
-[ext_resource path="res://ui/loading_screen/backgrounds/background_1.png" type="Texture" id=6]
+[ext_resource path="res://ui/loading_screen/backgrounds/background_1.png" type="Texture2D" id=6]
 
 [sub_resource type="Animation" id=1]
 resource_name = "loading"
@@ -19,8 +19,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.25, 0.5, 0.75, 1.5 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"times": PackedFloat32Array( 0, 0.25, 0.5, 0.75, 1.5 ),
+"transitions": PackedFloat32Array( 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ "   ", ".  ", ".. ", "...", "   " ]
 }
@@ -53,29 +53,29 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="logo" type="AnimatedSprite" parent="."]
+[node name="logo" type="AnimatedSprite2D" parent="."]
 position = Vector2( 0, 90 )
 scale = Vector2( 0.298246, 0.298246 )
-frames = ExtResource( 1 )
+sprite_frames = ExtResource( 1 )
 animation = "Logo"
 centered = false
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
-margin_left = 7.0
-margin_top = 126.8
-margin_right = 613.0
-margin_bottom = 139.8
+offset_left = 7.0
+offset_top = 126.8
+offset_right = 613.0
+offset_bottom = 139.8
 alignment = 1
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
-margin_left = 15.0541
-margin_top = 126.892
-margin_right = 242.054
-margin_bottom = 140.892
+offset_left = 15.0541
+offset_top = 126.892
+offset_right = 242.054
+offset_bottom = 140.892
 size_flags_horizontal = 3
 theme = ExtResource( 4 )
 value = 2.0
-percent_visible = false
+show_percentage = false
 __meta__ = {
 "_edit_group_": true,
 "_edit_use_anchors_": false
@@ -84,33 +84,33 @@ __meta__ = {
 [node name="VBoxContainer" type="HBoxContainer" parent="ProgressBar"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = 76.0001
-margin_bottom = 5.0
-rect_scale = Vector2( 0.75, 0.75 )
+offset_right = 76.0001
+offset_bottom = 5.0
+scale = Vector2( 0.75, 0.75 )
 alignment = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="message" type="Label" parent="ProgressBar/VBoxContainer"]
-margin_left = 119.0
-margin_right = 161.0
-margin_bottom = 19.0
+offset_left = 119.0
+offset_right = 161.0
+offset_bottom = 19.0
 size_flags_horizontal = 9
 size_flags_vertical = 7
 theme = ExtResource( 4 )
 text = "MESSAGE"
-align = 1
-valign = 1
+horizontal_alignment = 1
+vertical_alignment = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="dots" type="Label" parent="ProgressBar/VBoxContainer"]
-margin_left = 165.0
-margin_top = 3.0
-margin_right = 183.0
-margin_bottom = 16.0
+offset_left = 165.0
+offset_top = 3.0
+offset_right = 183.0
+offset_bottom = 16.0
 theme = ExtResource( 4 )
 text = "..."
 __meta__ = {
